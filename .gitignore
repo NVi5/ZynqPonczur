@@ -1,0 +1,3 @@
+*.log
+vivado/*
+!vivado/Zynq.xpr
