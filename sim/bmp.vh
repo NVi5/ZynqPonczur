@@ -1,3 +1,6 @@
+`ifndef BMP_HEADER
+`define BMP_HEADER
+
 reg [7:0] bmp_header [0:1077] = {
     8'h42, 8'h4d, 8'h36, 8'h57, 8'h07, 8'h00, 8'h00, 8'h00, 8'h00, 8'h00, 8'h36, 8'h04,
     8'h00, 8'h00, 8'h28, 8'h00, 8'h00, 8'h00, 8'h20, 8'h03, 8'h00, 8'h00, 8'h58, 8'h02,
@@ -90,3 +93,5 @@ reg [7:0] bmp_header [0:1077] = {
     8'h00, 8'h00, 8'h00, 8'hff, 8'hff, 8'h00, 8'hff, 8'h00, 8'h00, 8'h00, 8'hff, 8'h00,
     8'hff, 8'h00, 8'hff, 8'hff, 8'h00, 8'h00, 8'hff, 8'hff, 8'hff, 8'h00
 };
+
+`endif

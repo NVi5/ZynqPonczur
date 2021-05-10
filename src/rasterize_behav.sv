@@ -20,16 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module rasterize_behav(
-    ref integer vertices[],
     ref reg [7:0] framebuffer[800*600],
-    input integer n_vertices
+    ref int vertices[]
 );
 
     function int edgeFunction(input int V1_x, input int V1_y, input int V2_x, input int V2_y, input int P_x, input int P_y);
         return ((P_x - V1_x) * (V2_y - V1_y) - (P_y - V1_y) * (V2_x - V1_x) >= 0) ? 1 : 0;
     endfunction
 
-    initial begin
+    task rasterize(input int n_vertices);
         reg [7:0] color;
         color = 1;
 
@@ -37,19 +36,19 @@ module rasterize_behav(
             framebuffer[i] = 1;
         end
 
-        for (integer v = 0; v < n_vertices/9; v++) begin
+        for (integer v = 0; v < n_vertices/12; v++) begin
 
             integer V1_x,V1_y,V2_x,V2_y,V3_x,V3_y;
             integer BB_TL_x, BB_TL_y, BB_BR_x, BB_BR_y;
             reg isInside;
-
-            V1_x = vertices[v * 9 + 0] + 400;
-            V1_y = vertices[v * 9 + 1] + 300;
-            V2_x = vertices[v * 9 + 3] + 400;
-            V2_y = vertices[v * 9 + 4] + 300;
-            V3_x = vertices[v * 9 + 6] + 400;
-            V3_y = vertices[v * 9 + 7] + 300;
-
+            
+            V1_x = vertices[v * 12 + 0] + 400;
+            V1_y = vertices[v * 12 + 1] + 300;
+            V2_x = vertices[v * 12 + 4] + 400;
+            V2_y = vertices[v * 12 + 5] + 300;
+            V3_x = vertices[v * 12 + 8] + 400;
+            V3_y = vertices[v * 12 + 9] + 300;
+            
             if (V1_x > V2_x) begin
                 BB_BR_x = V1_x;
                 BB_TL_x = V2_x;
@@ -106,5 +105,5 @@ module rasterize_behav(
             end
             color++;
         end
-    end
+    endtask
 endmodule
