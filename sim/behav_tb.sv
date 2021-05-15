@@ -2,17 +2,23 @@
 
 module behav_tb();
 
-    localparam scaling_factor = 2.0**-4.0;
+    // QM.N
+    localparam M = 11;
+    localparam N = 7;
 
     reg [7:0] framebuffer[800*600];
-    reg signed [14-1:0] transform_matrix[16] = {
-        14'd5, -14'd3, -14'd5, 14'd0,
-        14'd2, 14'd7, -14'd2, 14'd0,
-        14'd5, 14'd0, 14'd5, 14'd0,
-        14'd0, 14'd0, 14'd0, 14'd8
+    reg signed [(M+N)-1:0] transform_matrix [0:15] = {
+        83, -48, -83, 0,
+        34, 118, -34, 0,
+        90, 0, 90, 0,
+        0, 0, 0, 128
+//        128,0,0,0,
+//        0,128,0,0,
+//        0,0,128,0,
+//        0,0,0,128
     };
-    reg signed [14-1:0] input_vertices[];
-    reg signed [11-1:0] transformed_vertices[];
+    reg signed [(M+N)-1:0] input_vertices[];
+    reg signed [M-1:0] transformed_vertices[];
     int frame = 0;
     
     tv_loader TV_LOADER();
@@ -26,12 +32,13 @@ module behav_tb();
             input_vertices = new[input_vertices.size() + 1](input_vertices);
             input_vertices[input_vertices.size() - 1] = TV_LOADER.tv_int[i];
         end                
-        for (int i = 0; i < 20; i++) begin
+        for (int i = 0; i < 1; i++) begin
             vertex_processor_i.process();   
             restarizer_i.rasterize(transformed_vertices.size());
-            TV_LOADER.save_bmp_file($sformatf("picture_%0d.bmp", i), framebuffer);
+            TV_LOADER.save_bmp_file($sformatf("behav_test_result_picture_%0d.bmp", i), framebuffer);
             for (int x = 0; x < transformed_vertices.size(); x++) begin
-                input_vertices[x] = transformed_vertices[x] <<< 3;
+                $display("%d", transformed_vertices[x]);
+                input_vertices[x] = transformed_vertices[x] <<< N;
             end
         end
     end

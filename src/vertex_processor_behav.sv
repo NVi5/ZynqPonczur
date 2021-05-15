@@ -1,6 +1,6 @@
 module vertex_processor_behav # (
     parameter M = 11,
-    parameter N = 3
+    parameter N = 7
 )
 (
     input reg signed [M+N-1:0] transform_matrix[16],

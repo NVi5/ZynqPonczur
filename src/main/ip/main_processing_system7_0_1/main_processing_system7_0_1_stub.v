@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Tue Apr 20 19:12:43 2021
-// Host        : RYZEN-PC running 64-bit major release  (build 9200)
+// Date        : Tue May 11 00:26:27 2021
+// Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
-//               C:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqPonczur/src/main/ip/main_processing_system7_0_1/main_processing_system7_0_1_stub.v
+//               C:/Users/wojte/Desktop/sdup_projekt/ZynqSDUP/src/main/ip/main_processing_system7_0_1/main_processing_system7_0_1_stub.v
 // Design      : main_processing_system7_0_1
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z010clg400-1
