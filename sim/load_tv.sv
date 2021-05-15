@@ -18,7 +18,7 @@ task automatic load_signed_int(input string filename);
             if (status > 0) begin
                 tv_int = new[tv_int.size() + 1](tv_int);
                 // TODO
-                tv_int[tv_int.size() - 1] = temp << 4;
+                tv_int[tv_int.size() - 1] = temp << 3;
                 //tv_int[tv_int.size() - 1] = temp;
             end
         end

@@ -19,9 +19,13 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-module rasterize_behav(
+module rasterize_behav # (
+    parameter M = 11,
+    parameter N = 3
+)
+(
     ref reg [7:0] framebuffer[800*600],
-    ref int vertices[]
+    ref reg signed [M-1:0] vertices[]
 );
 
     function int edgeFunction(input int V1_x, input int V1_y, input int V2_x, input int V2_y, input int P_x, input int P_y);
@@ -33,7 +37,7 @@ module rasterize_behav(
         color = 1;
 
         for (integer i = 0; i < 800*600; i++) begin
-            framebuffer[i] = 1;
+            framebuffer[i] = 0;
         end
 
         for (integer v = 0; v < n_vertices/12; v++) begin
