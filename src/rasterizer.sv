@@ -29,7 +29,6 @@ module rasterizer (
 );
 
 wire [2:0] ef_inside;
-wire isInside;
 
 edgeFunction ef1(
     .inValid(inValid),

@@ -30,7 +30,7 @@ reg  signed [10:0] V2_x       = 0;
 reg  signed [10:0] V2_y       = 0;
 reg  signed [10:0] V3_x       = 0;
 reg  signed [10:0] V3_y       = 0;
-wire               isInside   = 0;
+wire               isInside;
 
 wire in_ready;
 wire in_valid;
@@ -103,7 +103,7 @@ always @(posedge clk) begin
                 addra <= 0;
                 frame_end <= 0;
                 vertex_select <= 0;
-                color <= 1;
+                color <= 0;
             end
         end
         CLEAR_SCREEN: begin
