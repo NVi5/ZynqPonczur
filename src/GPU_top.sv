@@ -6,13 +6,17 @@ module GPU_top
     reset,  
     vertex_count,
     start,
-    done,
     mem_wr_addr,
     mem_wr_data,
-    mem_wr_en,
+    mem_wr_en,    
+    transform_matrix,
     
-    transform_matrix
-    
+    output_color,
+    output_valid,
+    pixel_x_out,
+    pixel_y_out,
+    frame_end
+ 
     // AXI master tutaj kiedys bedzie
 );
 
@@ -26,13 +30,19 @@ input  wire reset;
 
 input  wire                         [31:0] vertex_count;
 input  wire                                start;
-input  wire                                done;
 
 input  wire [$clog2(vertex_mem_depth)-1:0] mem_wr_addr;
 input  wire [                   (M+N)-1:0] mem_wr_data;
 input  wire                                mem_wr_en;
 
 input  reg  signed               [M+N-1:0] transform_matrix [0:15];
+
+output wire [7:0]  output_color;
+output wire        output_valid;
+output wire [10:0] pixel_x_out;
+output wire [10:0] pixel_y_out;
+output wire        frame_end;
+
 
 reg         [$clog2(vertex_mem_depth)-1:0] vertex_mem_rd_addr;
 wire                             [M+N-1:0] vertex_mem_rd_data;
@@ -47,6 +57,7 @@ ram_rtl #(.width(M+N), .depth(vertex_mem_depth)) vertex_mem (
 );
 
 reg input_vertex_valid;
+wire transform_end;
 
 reg [31:0] vertex_count_reg;
 always @(posedge clk) begin
@@ -74,6 +85,8 @@ end
 wire [M-1:0] output_vertex;
 wire         output_vertex_valid;
 
+assign transform_end = vertex_count_reg == 0 & output_vertex_valid;
+
 vertex_processor_rtl vertex_processor_rtl
 (
     .clk(clk),
@@ -97,7 +110,7 @@ always @(posedge clk) begin
     end
     else if (start) begin
         transformed_vertex_mem_wr_en <= 0;
-        transformed_vertex_mem_wr_addr <= 0;
+        transformed_vertex_mem_wr_addr <= -1;
     end
     else if (output_vertex_valid) begin
         transformed_vertex_mem_wr_en <= 1;
@@ -109,13 +122,43 @@ always @(posedge clk) begin
     end
 end
 
-ram_rtl #(.width(M+N), .depth(transformed_vertex_mem_depth)) transformed_vertex_mem (
+reg [$clog2(vertex_mem_depth)-1:0] transformed_vertex_mem_rd_addr;
+reg [                       M-1:0] transformed_vertex_mem_rd_data;
+
+ram_rtl #(.width(M), .depth(transformed_vertex_mem_depth)) transformed_vertex_mem (
     .clk(clk),
     .wr_en(transformed_vertex_mem_wr_en),
     .wr_addr(transformed_vertex_mem_wr_addr),
     .wr_data(transformed_vertex_mem_wr_data),
-    .rd_addr(),
-    .rd_data()
+    .rd_addr(transformed_vertex_mem_rd_addr),
+    .rd_data(transformed_vertex_mem_rd_data)
+);
+
+//wire [7:0]  output_color;
+//wire        output_valid;
+//wire [10:0] pixel_x_out;
+//wire [10:0] pixel_y_out;
+//wire frame_end;
+
+rasterizer_control rasterizer_control(
+    .clk(clk),
+    .vertex_count(vertex_count),
+    .start(transform_end),
+    
+    .addra(transformed_vertex_mem_rd_addr),
+    .douta(transformed_vertex_mem_rd_data),
+
+    .out_data(output_color),
+    .out_ready(1'b1),
+    .out_valid(output_valid),
+
+    .pixel_x_out(pixel_x_out), 
+    .pixel_y_out(pixel_y_out),
+
+    .width(), //unused
+    .height(), //unused
+
+    .frame_end(frame_end)
 );
 
 endmodule
