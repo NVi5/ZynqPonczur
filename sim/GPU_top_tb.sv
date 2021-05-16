@@ -36,7 +36,7 @@ reg [7:0] framebuffer [800*600];
 
 always @(posedge clk) begin
     if (output_valid) begin
-        if (output_color != 8'h00) framebuffer[pixel_x_out + pixel_y_out * 800] <= output_color;
+        if (draw) framebuffer[pixel_x_out + pixel_y_out * 800] <= output_color;
     end
 end
 
@@ -54,7 +54,8 @@ GPU_top GPU_top
     .output_valid(output_valid),
     .pixel_x_out(pixel_x_out),
     .pixel_y_out(pixel_y_out),
-    .frame_end(frame_end)
+    .frame_end(frame_end),
+    .draw(draw)
 );
 
 initial begin

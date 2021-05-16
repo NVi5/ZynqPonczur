@@ -2,31 +2,30 @@
 
 module rasterizer (
 
-    input wire [10:0] pixel_x, 
-    input wire [10:0] pixel_y, 
-    
+    input wire [10:0] pixel_x,
+    input wire [10:0] pixel_y,
+
     input  wire inValid,
     output wire inReady,
-    
+
     input wire signed [10:0] V1_x,
     input wire signed [10:0] V1_y,
-    
+
     input wire signed [10:0] V2_x,
     input wire signed [10:0] V2_y,
-    
+
     input wire signed [10:0] V3_x,
     input wire signed [10:0] V3_y,
-    
+
     input wire clk,
-    
-    output wire [10:0] pixel_x_out, 
-    output wire [10:0] pixel_y_out, 
-    
+
+    output wire [10:0] pixel_x_out,
+    output wire [10:0] pixel_y_out,
+
     input  wire outReady,
     output wire outValid,
-    
-    output wire [7:0] pixel_color
-    
+
+    output wire isInside
 );
 
 wire [2:0] ef_inside;
@@ -36,12 +35,12 @@ edgeFunction ef1(
     .inValid(inValid),
     .inReady(inReady),
     .clk(clk),
-    .pixel_x(pixel_x), 
-    .pixel_y(pixel_y), 
+    .pixel_x(pixel_x),
+    .pixel_y(pixel_y),
     .V1_x(V1_x),
-    .V1_y(V1_y),   
+    .V1_y(V1_y),
     .V2_x(V2_x),
-    .V2_y(V2_y),   
+    .V2_y(V2_y),
     .outValid(outValid),
     .outReady(outReady),
     .isInside(ef_inside[0]),
@@ -53,12 +52,12 @@ edgeFunction ef2(
     .inValid(inValid),
     .inReady(),
     .clk(clk),
-    .pixel_x(pixel_x), 
-    .pixel_y(pixel_y), 
+    .pixel_x(pixel_x),
+    .pixel_y(pixel_y),
     .V1_x(V2_x),
-    .V1_y(V2_y),   
+    .V1_y(V2_y),
     .V2_x(V3_x),
-    .V2_y(V3_y),   
+    .V2_y(V3_y),
     .outValid(),
     .outReady(outReady),
     .isInside(ef_inside[1]),
@@ -70,12 +69,12 @@ edgeFunction ef3(
     .inValid(inValid),
     .inReady(),
     .clk(clk),
-    .pixel_x(pixel_x), 
-    .pixel_y(pixel_y), 
+    .pixel_x(pixel_x),
+    .pixel_y(pixel_y),
     .V1_x(V3_x),
-    .V1_y(V3_y),   
+    .V1_y(V3_y),
     .V2_x(V1_x),
-    .V2_y(V1_y),   
+    .V2_y(V1_y),
     .outValid(),
     .outReady(outReady),
     .isInside(ef_inside[2]),
@@ -84,7 +83,6 @@ edgeFunction ef3(
 );
 
 assign isInside = &ef_inside;
-assign pixel_color = (isInside) ? 8'hff : 8'h00;
 
 endmodule
 
