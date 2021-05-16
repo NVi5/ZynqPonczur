@@ -12,10 +12,6 @@ module behav_tb();
         34, 118, -34, 0,
         90, 0, 90, 0,
         0, 0, 0, 128
-//        128,0,0,0,
-//        0,128,0,0,
-//        0,0,128,0,
-//        0,0,0,128
     };
     reg signed [(M+N)-1:0] input_vertices[];
     reg signed [M-1:0] transformed_vertices[];

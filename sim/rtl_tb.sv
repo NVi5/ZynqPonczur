@@ -12,8 +12,8 @@ parameter N = 7;
 wire  signed [M-1:0]   output_vertex;
 wire                   output_vertex_valid;
 
-reg signed [M+N-1:0] transform_matrix [15:0] = {     
-    128,128,128,128,128,128,128,128,128,128,128,128,128,128,128,128
+reg signed [M+N-1:0] transform_matrix [0:15] = {     
+//    128,128,128,128,128,128,128,128,128,128,128,128,128,128,128,128
 //    83, -48, -83, 0,
 //    34, 118, -34, 0,
 //    90, 0, 90, 0,
@@ -22,11 +22,17 @@ reg signed [M+N-1:0] transform_matrix [15:0] = {
 //        0,128,0,0,
 //        0,0,128,0,
 //        0,0,0,128
+        83, -48, -83, 0,
+        34, 118, -34, 0,
+        90, 0, 90, 0,
+        0, 0, 0, 128         
 };
 reg signed [(N+M)-1:0] input_vertex = 0;
 reg signed [(N+M)-1:0] input_vertex_counter = 0;
 reg signed [(M+N)-1:0] input_vertices[];
 reg input_vertex_valid = 0;
+
+reg signed [M-1:0] transformed_vertices[];
 
 always @(posedge clk) begin
     if (!reset) begin
@@ -39,6 +45,13 @@ always @(posedge clk) begin
         input_vertex <= 0;
         input_vertex_counter <= 0;
         input_vertex_valid <= 0;
+    end
+end
+
+always @(posedge clk) begin
+    if (output_vertex_valid) begin
+        transformed_vertices = new[transformed_vertices.size() + 1](transformed_vertices);
+        transformed_vertices[transformed_vertices.size() - 1] = output_vertex;
     end
 end
 
@@ -57,9 +70,8 @@ vertex_processor_rtl vertex_processor_u0 (
     .output_vertex_valid(output_vertex_valid)
 );
 
-always @(output_vertex) begin
-    if (output_vertex_valid) $display("%d", output_vertex);
-end
+reg [7:0] framebuffer[800*600];
+rasterize_behav restarizer_i(framebuffer, transformed_vertices);
 
 initial begin
     reset = 1;
@@ -70,7 +82,12 @@ initial begin
     end  
     #100 reset = 0;
     
-    #10000 $stop;
+    @(negedge output_vertex_valid);
+    
+    restarizer_i.rasterize(transformed_vertices.size());
+    TV_LOADER.save_bmp_file("rtl_tb_image.bmp", framebuffer);
+    
+     $stop;
 end
 
 endmodule
