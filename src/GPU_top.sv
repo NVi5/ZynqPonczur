@@ -36,7 +36,7 @@ input  wire [$clog2(vertex_mem_depth)-1:0] mem_wr_addr;
 input  wire [                   (M+N)-1:0] mem_wr_data;
 input  wire                                mem_wr_en;
 
-input  reg  signed               [M+N-1:0] transform_matrix [0:15];
+input  wire signed               [M+N-1:0] transform_matrix [0:15];
 
 output wire [7:0]  output_color;
 output wire        output_valid;
