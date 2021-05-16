@@ -72,7 +72,7 @@ initial begin
     mem_wr_addr = -1;
     mem_wr_en = 1;
     
-    repeat (1700) begin
+    repeat (input_vertices.size()+1) begin
         mem_wr_data = input_vertices[mem_wr_addr];
         @(posedge clk);
         mem_wr_addr = mem_wr_addr + 1;
