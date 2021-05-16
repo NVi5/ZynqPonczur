@@ -25,24 +25,42 @@ reg start = 0;
 reg  [$clog2(vertex_mem_depth)-1:0] mem_wr_addr = -1;
 reg  [                   (M+N)-1:0] mem_wr_data = 0;
 reg                                 mem_wr_en = 0;
-reg [31:0] vertex_count;
+reg  [31:0] vertex_count;
+wire [ 7:0] output_color;
+wire        output_valid;
+wire [10:0] pixel_x_out;
+wire [10:0] pixel_y_out;
+wire        frame_end;
+reg [7:0] framebuffer [800*600];
+
+
+always @(posedge clk) begin
+    if (output_valid) begin
+        if (output_color != 8'h00) framebuffer[pixel_x_out + pixel_y_out * 800] <= output_color;
+    end
+end
+
 GPU_top GPU_top
 (
     .clk(clk),
     .reset(reset),  
     .vertex_count(vertex_count),
     .start(start),
-    .done(),
     .mem_wr_addr(mem_wr_addr),
     .mem_wr_data(mem_wr_data),
     .mem_wr_en(mem_wr_en),
-    .transform_matrix(transform_matrix)
+    .transform_matrix(transform_matrix),
+    .output_color(output_color),
+    .output_valid(output_valid),
+    .pixel_x_out(pixel_x_out),
+    .pixel_y_out(pixel_y_out),
+    .frame_end(frame_end)
 );
 
 initial begin
 
     reset = 1;
-    TV_LOADER.load_signed_int("../../../../../sim/test_vector_int.txt");  
+    TV_LOADER.load_signed_int("test_vector_int.txt");  
     for (int i = 0; i < TV_LOADER.tv_int.size(); i++) begin
         input_vertices = new[input_vertices.size() + 1](input_vertices);
         input_vertices[input_vertices.size() - 1] = TV_LOADER.tv_int[i];
@@ -65,6 +83,10 @@ initial begin
     #16000 
     @(posedge clk) start = 1;
     @(posedge clk) start = 0;
+    
+    @(posedge frame_end) TV_LOADER.save_bmp_file("gpu_tb_image.bmp", framebuffer);
+    #10000;
+    $stop;
 
 end
 
