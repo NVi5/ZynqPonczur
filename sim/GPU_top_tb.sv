@@ -31,7 +31,8 @@ wire        output_valid;
 wire [10:0] pixel_x_out;
 wire [10:0] pixel_y_out;
 wire        frame_end;
-reg [7:0] framebuffer [800*600];
+reg [7:0]   framebuffer [800*600];
+wire        draw;
 
 
 always @(posedge clk) begin

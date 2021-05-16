@@ -2,6 +2,7 @@
 
 module axi_master_burst(
     input  wire        clk,
+    input  wire        reset, // TODO
     
     input  wire [31:0] framebuffer_baseaddr,
     input  wire [10:0] pixel_x,
@@ -13,6 +14,7 @@ module axi_master_burst(
     
     input  wire [ 7:0] pixel_data,
     input  wire        pixel_valid,
+    input  wire        draw,
     output reg         pixel_ready = 1'b0,
     
     output reg  [31:0] axi_wdata   = 32'b0,
@@ -74,7 +76,8 @@ always @* begin
    
     axi_wdata = {24'b0,pixel_data} << (8 * pixel_addr[1:0]);
     axi_waddr = pixel_addr;
-    axi_wstrb = (pixel_data != 8'h00) ? (4'b0001 << pixel_addr[1:0]) : 4'b0;
+    //axi_wstrb = (pixel_data != 8'h00) ? (4'b0001 << pixel_addr[1:0]) : 4'b0;
+    axi_wstrb = (draw) ? (4'b0001 << pixel_addr[1:0]) : 4'b0;
 //        axi_waddr = {pixel_addr[31:2],2'b0};
 //    axi_wdata = {24'b0,pixel_data};
 //    axi_waddr = pixel_addr;
@@ -218,89 +221,9 @@ always @(posedge clk) begin
                     axi_wvalid  <= 0; 
                     axi_awvalid <= 0;
                 end
-            
-            
-//                if (pixel_valid) begin
-//                    axi_wvalid  <= 1;
-//                    if (width_reg - 1 == 0) axi_wlast <= 1; 
-//                    state <= BURST;
-//                    if (width_reg >= 11'd16) begin
-//                        axi_awlen <= 4'd15;
-//                        width_reg <= width_reg - 11'd16;
-//                        height_reg <= height_reg;
-//                    end
-//                    else begin
-//                        axi_awlen <= width_reg - 1;
-//                        if (height_reg > 0) begin
-//                            height_reg <= height_reg - 7'd1;
-//                            width_reg <= width_int + 1;
-//                        end
-//                        else begin
-//                            height_reg <= 0;
-//                            width_reg <= 0;
-//                        end
-//                    end
-//                end
             end
         end
     endcase
-
-//    case (axi_state)
-//        AXI_IDLE: begin
-//            pixel_ready <= 1'b1;
-//            if (pixel_valid) begin
-//                pixel_ready <= 1'b0;
-//                axi_wdata <= {24'b0,pixel_data} << (8 * pixel_addr[1:0]);
-//                axi_waddr <= {pixel_addr[31:2],2'b0};
-//                axi_wstrb <= 4'b1 << pixel_addr[1:0];
-//                axi_awvalid <= 1;
-//                axi_wvalid  <= 1;
-//                axi_bready  <= 1;
-//                axi_state <= AXI_0;
-//            end
-//        end
-//        AXI_0: begin
-//            if (axi_awready && axi_wready) begin
-//                axi_state <= AXI_1;
-//                axi_awvalid <= 0;
-//                axi_wvalid  <= 0;
-//            end
-//            else if (axi_awready) begin
-//                axi_awvalid <= 0;
-//                axi_state <= ADDRESS_ACCEPTED;
-//            end
-//            else if (axi_wready) begin
-//                axi_wvalid <= 0;
-//                axi_state <= DATA_ACCEPTED;
-//            end
-//        end
-//        DATA_ACCEPTED: begin
-//            if (axi_awready) begin
-//                axi_state <= AXI_1;
-//                axi_awvalid  <= 0;
-//             end
-//        end
-//        ADDRESS_ACCEPTED: begin
-//            if (axi_wready) begin
-//                axi_state <= AXI_1;
-//                axi_wvalid  <= 0;
-//             end
-//        end
-//        AXI_1: begin
-//            if (axi_bvalid) begin
-//                axi_bready  <= 0; 
-//                axi_state <= AXI_IDLE;
-//                pixel_ready <= 1'b1;
-//                axi_awvalid <= 0;
-//                axi_wvalid  <= 0;
-//                axi_bready  <= 0;
-//            end
-//        end
-//        AXI_2: begin
-//            axi_state <= AXI_IDLE;
-//            pixel_ready <= 1'b1;
-//        end
-//    endcase
 end
 
 endmodule
