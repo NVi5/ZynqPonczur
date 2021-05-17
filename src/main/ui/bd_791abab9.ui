@@ -1,41 +1,61 @@
 {
    "ExpandedHierarchyInLayout":"",
-   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 non-TLS
+   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 non-TLS-threadsafe
 #  -string -flagsOSRD
-preplace port DDR -pg 1 -y 610 -defaultsOSRD
-preplace port FIXED_IO -pg 1 -y 630 -defaultsOSRD
-preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -y 640 -defaultsOSRD
-preplace inst axi_smc -pg 1 -lvl 3 -y 430 -defaultsOSRD
-preplace inst gpu_control_0 -pg 1 -lvl 6 -y 480 -defaultsOSRD
-preplace inst axi_master_0 -pg 1 -lvl 2 -y 170 -defaultsOSRD
-preplace inst ps7_0_axi_periph -pg 1 -lvl 5 -y 470 -defaultsOSRD
-preplace inst gpu_wrapper_0 -pg 1 -lvl 1 -y 150 -defaultsOSRD
-preplace inst processing_system7_0 -pg 1 -lvl 4 -y 650 -defaultsOSRD
-preplace netloc processing_system7_0_DDR 1 4 3 1600J 650 NJ 650 2370J
-preplace netloc gpu_wrapper_0_pixel_y_out 1 1 1 480
-preplace netloc gpu_wrapper_0_output_color 1 1 1 510
-preplace netloc processing_system7_0_M_AXI_GP0 1 4 1 1590
-preplace netloc gpu_control_0_vertices_size 1 0 7 40 540 NJ 540 NJ 540 NJ 540 1610J 640 NJ 640 2360
-preplace netloc axi_smc_M00_AXI 1 3 1 1150
-preplace netloc gpu_control_0_mem_wr_en 1 0 7 70 530 NJ 530 NJ 530 NJ 530 1620J 630 NJ 630 2320
-preplace netloc axi_master_0_pixel_ready 1 0 3 80 320 NJ 320 850
-preplace netloc gpu_wrapper_0_width 1 1 1 490
-preplace netloc processing_system7_0_FIXED_IO 1 4 3 1580J 660 NJ 660 2380J
-preplace netloc gpu_control_0_address 1 1 6 520 560 NJ 560 1180J 510 1600J 600 NJ 600 2350
-preplace netloc rst_ps7_0_50M_peripheral_aresetn1 1 1 2 500 450 NJ
-preplace netloc gpu_control_0_mem_wr_addr 1 0 7 50 510 NJ 510 NJ 510 1140J 500 1670J 610 NJ 610 2340
-preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 0 6 30 740 NJ 740 NJ 740 1170J 490 1640 680 2000
+preplace port DDR -pg 1 -y 830 -defaultsOSRD
+preplace port ENET0_GMII_TX_CLK_0 -pg 1 -y 750 -defaultsOSRD
+preplace port MDIO_ETHERNET_0_0 -pg 1 -y 810 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -y 850 -defaultsOSRD
+preplace port ENET0_GMII_RX_CLK_0 -pg 1 -y 710 -defaultsOSRD
+preplace port ENET0_GMII_RX_DV_0 -pg 1 -y 730 -defaultsOSRD
+preplace portBus ENET0_GMII_RXD -pg 1 -y 590 -defaultsOSRD
+preplace portBus ENET0_GMII_TX_EN_0 -pg 1 -y 650 -defaultsOSRD
+preplace portBus ENET0_GMII_TXD -pg 1 -y 710 -defaultsOSRD
+preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -y 490 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 1 -y 650 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 3 -y 470 -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 6 -y 710 -defaultsOSRD
+preplace inst xlconcat_1 -pg 1 -lvl 2 -y 600 -defaultsOSRD
+preplace inst gpu_control_0 -pg 1 -lvl 6 -y 490 -defaultsOSRD
+preplace inst axi_master_0 -pg 1 -lvl 2 -y 160 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 5 -y 570 -defaultsOSRD
+preplace inst gpu_wrapper_0 -pg 1 -lvl 1 -y 140 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 4 -y 790 -defaultsOSRD
+preplace netloc processing_system7_0_DDR 1 4 3 NJ 830 NJ 830 NJ
+preplace netloc gpu_wrapper_0_pixel_y_out 1 1 1 490
+preplace netloc ENET0_GMII_RX_DV_0_1 1 0 5 NJ 730 NJ 730 870J 590 NJ 590 1630
+preplace netloc ENET0_GMII_TX_CLK_0_1 1 0 5 NJ 750 NJ 750 NJ 750 1150J 610 1620
+preplace netloc gpu_wrapper_0_output_color 1 1 1 520
+preplace netloc processing_system7_0_M_AXI_GP0 1 4 1 1670
+preplace netloc gpu_control_0_vertices_size 1 0 7 40 330 NJ 330 NJ 330 NJ 330 NJ 330 NJ 330 2330
+preplace netloc axi_smc_M00_AXI 1 3 1 1160
+preplace netloc xlconcat_1_dout 1 2 3 N 600 NJ 600 1650
+preplace netloc gpu_control_0_mem_wr_en 1 0 7 70 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 2350
+preplace netloc axi_master_0_pixel_ready 1 0 3 90 340 NJ 340 850
+preplace netloc processing_system7_0_ENET0_GMII_TX_EN 1 4 3 NJ 690 1990J 650 NJ
+preplace netloc processing_system7_0_MDIO_ETHERNET_0 1 4 3 NJ 810 NJ 810 NJ
+preplace netloc xlconstant_0_dout 1 1 1 490J
+preplace netloc xlconcat_0_dout 1 6 1 NJ
+preplace netloc gpu_wrapper_0_width 1 1 1 500
+preplace netloc processing_system7_0_FIXED_IO 1 4 3 NJ 850 NJ 850 NJ
+preplace netloc In0_0_1 1 0 2 NJ 590 NJ
+preplace netloc ENET0_GMII_RX_CLK_0_1 1 0 5 NJ 710 NJ 710 860J 580 NJ 580 1640
+preplace netloc gpu_control_0_address 1 1 6 530 310 NJ 310 NJ 310 NJ 310 NJ 310 2380
+preplace netloc rst_ps7_0_50M_peripheral_aresetn1 1 1 2 490 490 NJ
+preplace netloc gpu_control_0_mem_wr_addr 1 0 7 50 350 NJ 350 NJ 350 NJ 350 NJ 350 NJ 350 2370
+preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 0 6 30 390 NJ 390 NJ 390 NJ 390 1660 440 1990
+preplace netloc processing_system7_0_ENET0_GMII_TXD 1 4 2 NJ 710 NJ
 preplace netloc gpu_wrapper_0_draw 1 1 1 N
-preplace netloc gpu_control_0_mem_wr_data 1 0 7 60 520 NJ 520 NJ 520 NJ 520 1660J 620 NJ 620 2330
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 20 330 470 330 850 570 1160 480 1630 670 1990
-preplace netloc axi_master_0_M00_AXI 1 2 1 860
-preplace netloc ps7_0_axi_periph_M00_AXI 1 5 1 1970
-preplace netloc gpu_wrapper_0_output_valid 1 1 1 460
-preplace netloc gpu_wrapper_0_height 1 1 1 500
-preplace netloc gpu_wrapper_0_pixel_x_out 1 1 1 470
-preplace netloc gpu_wrapper_0_frame_end 1 1 5 450 550 NJ 550 NJ 550 1650J 590 1980J
-preplace netloc gpu_control_0_start 1 0 7 80 10 NJ 10 NJ 10 NJ 10 NJ 10 NJ 10 2320
-levelinfo -pg 1 0 270 690 1000 1380 1820 2160 2400 -top 0 -bot 750
+preplace netloc gpu_control_0_mem_wr_data 1 0 7 60 360 NJ 360 NJ 360 NJ 360 NJ 360 NJ 360 2360
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 20 380 450 400 850 760 1150 970 1680 450 1980
+preplace netloc axi_master_0_M00_AXI 1 2 1 870
+preplace netloc ps7_0_axi_periph_M00_AXI 1 5 1 2000
+preplace netloc gpu_wrapper_0_output_valid 1 1 1 470
+preplace netloc gpu_wrapper_0_height 1 1 1 510
+preplace netloc gpu_wrapper_0_pixel_x_out 1 1 1 480
+preplace netloc gpu_wrapper_0_frame_end 1 1 5 460 380 NJ 380 NJ 380 NJ 380 2010J
+preplace netloc gpu_control_0_start 1 0 7 80 320 NJ 320 NJ 320 NJ 320 NJ 320 NJ 320 2340
+levelinfo -pg 1 0 270 690 1010 1390 1830 2170 2400 -top 0 -bot 980
 "
 }
 {

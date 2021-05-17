@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xCC6CFA5306BD3ECB",
+      "boundary_crc": "0xFAE0E4A41CE32281",
       "device": "xc7z010clg400-1",
       "name": "main",
       "synth_flow_mode": "Hierarchical",
@@ -19,7 +19,10 @@
       "rst_ps7_0_50M": "",
       "axi_master_0": "",
       "gpu_wrapper_0": "",
-      "gpu_control_0": ""
+      "gpu_control_0": "",
+      "xlconcat_0": "",
+      "xlconcat_1": "",
+      "xlconstant_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -85,6 +88,86 @@
             "value_src": "default"
           }
         }
+      },
+      "MDIO_ETHERNET_0_0": {
+        "mode": "Master",
+        "vlnv": "xilinx.com:interface:mdio_rtl:1.0",
+        "parameters": {
+          "CAN_DEBUG": {
+            "value": "false",
+            "value_src": "default"
+          }
+        }
+      }
+    },
+    "ports": {
+      "ENET0_GMII_RX_CLK_0": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "main_ENET0_GMII_RX_CLK_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
+          }
+        }
+      },
+      "ENET0_GMII_TX_CLK_0": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "main_ENET0_GMII_TX_CLK_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
+          }
+        }
+      },
+      "ENET0_GMII_RX_DV_0": {
+        "direction": "I"
+      },
+      "ENET0_GMII_TXD": {
+        "direction": "O",
+        "left": "3",
+        "right": "0",
+        "parameters": {
+          "PortWidth": {
+            "value": "4",
+            "value_src": "ip_prop"
+          }
+        }
+      },
+      "ENET0_GMII_TX_EN_0": {
+        "direction": "O",
+        "left": "0",
+        "right": "0"
+      },
+      "ENET0_GMII_RXD": {
+        "direction": "I",
+        "left": "3",
+        "right": "0"
       }
     },
     "components": {
@@ -102,13 +185,13 @@
             "value": "10.158730"
           },
           "PCW_ACT_ENET0_PERIPHERAL_FREQMHZ": {
-            "value": "10.000000"
+            "value": "25.000000"
           },
           "PCW_ACT_ENET1_PERIPHERAL_FREQMHZ": {
             "value": "10.000000"
           },
           "PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ": {
-            "value": "50.000000"
+            "value": "150.000000"
           },
           "PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ": {
             "value": "10.000000"
@@ -162,7 +245,7 @@
             "value": "111.111115"
           },
           "PCW_CLK0_FREQ": {
-            "value": "50000000"
+            "value": "150000000"
           },
           "PCW_CLK1_FREQ": {
             "value": "10000000"
@@ -176,17 +259,44 @@
           "PCW_DDR_RAM_HIGHADDR": {
             "value": "0x1FFFFFFF"
           },
+          "PCW_ENET0_ENET0_IO": {
+            "value": "EMIO"
+          },
+          "PCW_ENET0_GRP_MDIO_ENABLE": {
+            "value": "1"
+          },
+          "PCW_ENET0_GRP_MDIO_IO": {
+            "value": "EMIO"
+          },
+          "PCW_ENET0_PERIPHERAL_ENABLE": {
+            "value": "1"
+          },
+          "PCW_ENET0_PERIPHERAL_FREQMHZ": {
+            "value": "100 Mbps"
+          },
+          "PCW_EN_CLK1_PORT": {
+            "value": "0"
+          },
           "PCW_EN_DDR": {
+            "value": "1"
+          },
+          "PCW_EN_EMIO_ENET0": {
             "value": "1"
           },
           "PCW_EN_EMIO_UART0": {
             "value": "0"
+          },
+          "PCW_EN_ENET0": {
+            "value": "1"
           },
           "PCW_EN_UART0": {
             "value": "0"
           },
           "PCW_EN_UART1": {
             "value": "1"
+          },
+          "PCW_FPGA0_PERIPHERAL_FREQMHZ": {
+            "value": "150"
           },
           "PCW_FPGA_FCLK0_ENABLE": {
             "value": "1"
@@ -433,16 +543,16 @@
               }
             },
             "interface_nets": {
-              "auto_pc_to_s00_couplers": {
-                "interface_ports": [
-                  "M_AXI",
-                  "auto_pc/M_AXI"
-                ]
-              },
               "s00_couplers_to_auto_pc": {
                 "interface_ports": [
                   "S_AXI",
                   "auto_pc/S_AXI"
+                ]
+              },
+              "auto_pc_to_s00_couplers": {
+                "interface_ports": [
+                  "M_AXI",
+                  "auto_pc/M_AXI"
                 ]
               }
             },
@@ -572,7 +682,7 @@
                 "value_src": "default_prop"
               },
               "FREQ_HZ": {
-                "value": "50000000",
+                "value": "150000000",
                 "value_src": "user_prop"
               }
             }
@@ -649,6 +759,42 @@
       "gpu_control_0": {
         "vlnv": "xilinx.com:user:gpu_control:1.0",
         "xci_name": "main_gpu_control_0_0"
+      },
+      "xlconcat_0": {
+        "vlnv": "xilinx.com:ip:xlconcat:2.1",
+        "xci_name": "main_xlconcat_0_0",
+        "parameters": {
+          "IN0_WIDTH": {
+            "value": "4"
+          },
+          "NUM_PORTS": {
+            "value": "1"
+          }
+        }
+      },
+      "xlconcat_1": {
+        "vlnv": "xilinx.com:ip:xlconcat:2.1",
+        "xci_name": "main_xlconcat_1_0",
+        "parameters": {
+          "IN0_WIDTH": {
+            "value": "4"
+          },
+          "IN1_WIDTH": {
+            "value": "4"
+          }
+        }
+      },
+      "xlconstant_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "main_xlconstant_0_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "4"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -686,6 +832,12 @@
         "interface_ports": [
           "processing_system7_0/M_AXI_GP0",
           "ps7_0_axi_periph/S00_AXI"
+        ]
+      },
+      "processing_system7_0_MDIO_ETHERNET_0": {
+        "interface_ports": [
+          "MDIO_ETHERNET_0_0",
+          "processing_system7_0/MDIO_ETHERNET_0"
         ]
       }
     },
@@ -811,6 +963,60 @@
         "ports": [
           "axi_master_0/pixel_ready",
           "gpu_wrapper_0/out_ready"
+        ]
+      },
+      "processing_system7_0_ENET0_GMII_TXD": {
+        "ports": [
+          "processing_system7_0/ENET0_GMII_TXD",
+          "xlconcat_0/In0"
+        ]
+      },
+      "ENET0_GMII_RX_CLK_0_1": {
+        "ports": [
+          "ENET0_GMII_RX_CLK_0",
+          "processing_system7_0/ENET0_GMII_RX_CLK"
+        ]
+      },
+      "ENET0_GMII_TX_CLK_0_1": {
+        "ports": [
+          "ENET0_GMII_TX_CLK_0",
+          "processing_system7_0/ENET0_GMII_TX_CLK"
+        ]
+      },
+      "ENET0_GMII_RX_DV_0_1": {
+        "ports": [
+          "ENET0_GMII_RX_DV_0",
+          "processing_system7_0/ENET0_GMII_RX_DV"
+        ]
+      },
+      "xlconcat_0_dout": {
+        "ports": [
+          "xlconcat_0/dout",
+          "ENET0_GMII_TXD"
+        ]
+      },
+      "processing_system7_0_ENET0_GMII_TX_EN": {
+        "ports": [
+          "processing_system7_0/ENET0_GMII_TX_EN",
+          "ENET0_GMII_TX_EN_0"
+        ]
+      },
+      "xlconstant_0_dout": {
+        "ports": [
+          "xlconstant_0/dout",
+          "xlconcat_1/In1"
+        ]
+      },
+      "In0_0_1": {
+        "ports": [
+          "ENET0_GMII_RXD",
+          "xlconcat_1/In0"
+        ]
+      },
+      "xlconcat_1_dout": {
+        "ports": [
+          "xlconcat_1/dout",
+          "processing_system7_0/ENET0_GMII_RXD"
         ]
       }
     },

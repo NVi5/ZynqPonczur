@@ -677,6 +677,21 @@
 
 //MODULE DECLARATION
  module main_processing_system7_0_1 (
+  ENET0_GMII_TX_EN,
+  ENET0_GMII_TX_ER,
+  ENET0_MDIO_MDC,
+  ENET0_MDIO_O,
+  ENET0_MDIO_T,
+  ENET0_GMII_TXD,
+  ENET0_GMII_COL,
+  ENET0_GMII_CRS,
+  ENET0_GMII_RX_CLK,
+  ENET0_GMII_RX_DV,
+  ENET0_GMII_RX_ER,
+  ENET0_GMII_TX_CLK,
+  ENET0_MDIO_I,
+  ENET0_EXT_INTIN,
+  ENET0_GMII_RXD,
   M_AXI_GP0_ARVALID,
   M_AXI_GP0_AWVALID,
   M_AXI_GP0_BREADY,
@@ -783,7 +798,7 @@
 //PARAMETERS
 
       parameter C_EN_EMIO_PJTAG = 0;
-      parameter C_EN_EMIO_ENET0 = 0;
+      parameter C_EN_EMIO_ENET0 = 1;
       parameter C_EN_EMIO_ENET1 = 0;
       parameter C_EN_EMIO_TRACE = 0;
       parameter C_INCLUDE_TRACE_BUFFER = 0;
@@ -841,6 +856,21 @@
 
 //INPUT AND OUTPUT PORTS
 
+      output  [0 : 0] ENET0_GMII_TX_EN;
+      output  [0 : 0] ENET0_GMII_TX_ER;
+      output  ENET0_MDIO_MDC;
+      output  ENET0_MDIO_O;
+      output  ENET0_MDIO_T;
+      output  [7 : 0] ENET0_GMII_TXD;
+      input  ENET0_GMII_COL;
+      input  ENET0_GMII_CRS;
+      input  ENET0_GMII_RX_CLK;
+      input  ENET0_GMII_RX_DV;
+      input  ENET0_GMII_RX_ER;
+      input  ENET0_GMII_TX_CLK;
+      input  ENET0_MDIO_I;
+      input  ENET0_EXT_INTIN;
+      input  [7 : 0] ENET0_GMII_RXD;
       output  M_AXI_GP0_ARVALID;
       output  M_AXI_GP0_AWVALID;
       output  M_AXI_GP0_BREADY;
@@ -945,6 +975,12 @@
 
 //REG DECLARATIONS
 
+      reg [0 : 0] ENET0_GMII_TX_EN;
+      reg [0 : 0] ENET0_GMII_TX_ER;
+      reg ENET0_MDIO_MDC;
+      reg ENET0_MDIO_O;
+      reg ENET0_MDIO_T;
+      reg [7 : 0] ENET0_GMII_TXD;
       reg M_AXI_GP0_ARVALID;
       reg M_AXI_GP0_AWVALID;
       reg M_AXI_GP0_BREADY;
@@ -1188,7 +1224,7 @@ output bit S_AXI_GP0_RVALID
      FCLK_CLK0 = 1'b0;
   end
 
-  always #(10.0) FCLK_CLK0 <= ~FCLK_CLK0;
+  always #(3.3333333333333335) FCLK_CLK0 <= ~FCLK_CLK0;
 
   always@(posedge FCLK_CLK0)
   begin

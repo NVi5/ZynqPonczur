@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-//Date        : Mon May 17 19:22:37 2021
+//Date        : Mon May 17 19:43:05 2021
 //Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
 //Command     : generate_target main_wrapper.bd
 //Design      : main_wrapper
@@ -25,12 +25,20 @@ module main_wrapper
     DDR_ras_n,
     DDR_reset_n,
     DDR_we_n,
+    ENET0_GMII_RXD,
+    ENET0_GMII_RX_CLK_0,
+    ENET0_GMII_RX_DV_0,
+    ENET0_GMII_TXD,
+    ENET0_GMII_TX_CLK_0,
+    ENET0_GMII_TX_EN_0,
     FIXED_IO_ddr_vrn,
     FIXED_IO_ddr_vrp,
     FIXED_IO_mio,
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
-    FIXED_IO_ps_srstb);
+    FIXED_IO_ps_srstb,
+    MDIO_ETHERNET_0_0_mdc,
+    MDIO_ETHERNET_0_0_mdio_io);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -46,12 +54,20 @@ module main_wrapper
   inout DDR_ras_n;
   inout DDR_reset_n;
   inout DDR_we_n;
+  input [3:0]ENET0_GMII_RXD;
+  input ENET0_GMII_RX_CLK_0;
+  input ENET0_GMII_RX_DV_0;
+  output [3:0]ENET0_GMII_TXD;
+  input ENET0_GMII_TX_CLK_0;
+  output [0:0]ENET0_GMII_TX_EN_0;
   inout FIXED_IO_ddr_vrn;
   inout FIXED_IO_ddr_vrp;
   inout [53:0]FIXED_IO_mio;
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
+  output MDIO_ETHERNET_0_0_mdc;
+  inout MDIO_ETHERNET_0_0_mdio_io;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -68,13 +84,29 @@ module main_wrapper
   wire DDR_ras_n;
   wire DDR_reset_n;
   wire DDR_we_n;
+  wire [3:0]ENET0_GMII_RXD;
+  wire ENET0_GMII_RX_CLK_0;
+  wire ENET0_GMII_RX_DV_0;
+  wire [3:0]ENET0_GMII_TXD;
+  wire ENET0_GMII_TX_CLK_0;
+  wire [0:0]ENET0_GMII_TX_EN_0;
   wire FIXED_IO_ddr_vrn;
   wire FIXED_IO_ddr_vrp;
   wire [53:0]FIXED_IO_mio;
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
+  wire MDIO_ETHERNET_0_0_mdc;
+  wire MDIO_ETHERNET_0_0_mdio_i;
+  wire MDIO_ETHERNET_0_0_mdio_io;
+  wire MDIO_ETHERNET_0_0_mdio_o;
+  wire MDIO_ETHERNET_0_0_mdio_t;
 
+  IOBUF MDIO_ETHERNET_0_0_mdio_iobuf
+       (.I(MDIO_ETHERNET_0_0_mdio_o),
+        .IO(MDIO_ETHERNET_0_0_mdio_io),
+        .O(MDIO_ETHERNET_0_0_mdio_i),
+        .T(MDIO_ETHERNET_0_0_mdio_t));
   main main_i
        (.DDR_addr(DDR_addr),
         .DDR_ba(DDR_ba),
@@ -91,10 +123,20 @@ module main_wrapper
         .DDR_ras_n(DDR_ras_n),
         .DDR_reset_n(DDR_reset_n),
         .DDR_we_n(DDR_we_n),
+        .ENET0_GMII_RXD(ENET0_GMII_RXD),
+        .ENET0_GMII_RX_CLK_0(ENET0_GMII_RX_CLK_0),
+        .ENET0_GMII_RX_DV_0(ENET0_GMII_RX_DV_0),
+        .ENET0_GMII_TXD(ENET0_GMII_TXD),
+        .ENET0_GMII_TX_CLK_0(ENET0_GMII_TX_CLK_0),
+        .ENET0_GMII_TX_EN_0(ENET0_GMII_TX_EN_0),
         .FIXED_IO_ddr_vrn(FIXED_IO_ddr_vrn),
         .FIXED_IO_ddr_vrp(FIXED_IO_ddr_vrp),
         .FIXED_IO_mio(FIXED_IO_mio),
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
-        .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb));
+        .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
+        .MDIO_ETHERNET_0_0_mdc(MDIO_ETHERNET_0_0_mdc),
+        .MDIO_ETHERNET_0_0_mdio_i(MDIO_ETHERNET_0_0_mdio_i),
+        .MDIO_ETHERNET_0_0_mdio_o(MDIO_ETHERNET_0_0_mdio_o),
+        .MDIO_ETHERNET_0_0_mdio_t(MDIO_ETHERNET_0_0_mdio_t));
 endmodule
