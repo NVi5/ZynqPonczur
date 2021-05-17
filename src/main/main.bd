@@ -15,8 +15,11 @@
           "auto_pc": ""
         }
       },
+      "gpu_control_0": "",
+      "axi_smc": "",
+      "rst_ps7_0_50M": "",
       "gpu_wrapper_0": "",
-      "gpu_control_0": ""
+      "axi_master_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -298,6 +301,9 @@
           },
           "PCW_UIPARAM_DDR_USE_INTERNAL_VREF": {
             "value": "0"
+          },
+          "PCW_USE_S_AXI_GP0": {
+            "value": "1"
           }
         }
       },
@@ -427,16 +433,16 @@
               }
             },
             "interface_nets": {
-              "s00_couplers_to_auto_pc": {
-                "interface_ports": [
-                  "S_AXI",
-                  "auto_pc/S_AXI"
-                ]
-              },
               "auto_pc_to_s00_couplers": {
                 "interface_ports": [
                   "M_AXI",
                   "auto_pc/M_AXI"
+                ]
+              },
+              "s00_couplers_to_auto_pc": {
+                "interface_ports": [
+                  "S_AXI",
+                  "auto_pc/S_AXI"
                 ]
               }
             },
@@ -457,16 +463,16 @@
           }
         },
         "interface_nets": {
-          "ps7_0_axi_periph_to_s00_couplers": {
-            "interface_ports": [
-              "S00_AXI",
-              "s00_couplers/S_AXI"
-            ]
-          },
           "s00_couplers_to_ps7_0_axi_periph": {
             "interface_ports": [
               "M00_AXI",
               "s00_couplers/M_AXI"
+            ]
+          },
+          "ps7_0_axi_periph_to_s00_couplers": {
+            "interface_ports": [
+              "S00_AXI",
+              "s00_couplers/S_AXI"
             ]
           }
         },
@@ -496,6 +502,36 @@
             ]
           }
         }
+      },
+      "gpu_control_0": {
+        "vlnv": "xilinx.com:user:gpu_control:1.0",
+        "xci_name": "main_gpu_control_0_0"
+      },
+      "axi_smc": {
+        "vlnv": "xilinx.com:ip:smartconnect:1.0",
+        "xci_name": "main_axi_smc_0",
+        "parameters": {
+          "NUM_SI": {
+            "value": "1"
+          }
+        },
+        "interface_ports": {
+          "S00_AXI": {
+            "mode": "Slave",
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0",
+            "bridges": [
+              "M00_AXI"
+            ]
+          },
+          "M00_AXI": {
+            "mode": "Master",
+            "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
+          }
+        }
+      },
+      "rst_ps7_0_50M": {
+        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
+        "xci_name": "main_rst_ps7_0_50M_0"
       },
       "gpu_wrapper_0": {
         "vlnv": "xilinx.com:module_ref:gpu_wrapper:1.0",
@@ -572,20 +608,62 @@
             "left": "10",
             "right": "0"
           },
+          "width": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "height": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
           "frame_end": {
             "direction": "O"
           },
           "draw": {
             "direction": "O"
+          },
+          "out_ready": {
+            "direction": "I"
           }
         }
       },
-      "gpu_control_0": {
-        "vlnv": "xilinx.com:user:gpu_control:1.0",
-        "xci_name": "main_gpu_control_0_0"
+      "axi_master_0": {
+        "vlnv": "xilinx.com:user:axi_master:1.0",
+        "xci_name": "main_axi_master_0_0",
+        "parameters": {
+          "C_M00_AXI_ARUSER_WIDTH": {
+            "value": "4"
+          },
+          "C_M00_AXI_AWUSER_WIDTH": {
+            "value": "4"
+          },
+          "C_M00_AXI_BUSER_WIDTH": {
+            "value": "4"
+          },
+          "C_M00_AXI_RUSER_WIDTH": {
+            "value": "4"
+          },
+          "C_M00_AXI_WUSER_WIDTH": {
+            "value": "4"
+          }
+        }
       }
     },
     "interface_nets": {
+      "axi_master_0_M00_AXI": {
+        "interface_ports": [
+          "axi_master_0/M00_AXI",
+          "axi_smc/S00_AXI"
+        ]
+      },
+      "axi_smc_M00_AXI": {
+        "interface_ports": [
+          "axi_smc/M00_AXI",
+          "processing_system7_0/S_AXI_GP0"
+        ]
+      },
       "processing_system7_0_FIXED_IO": {
         "interface_ports": [
           "FIXED_IO",
@@ -598,16 +676,16 @@
           "processing_system7_0/DDR"
         ]
       },
-      "processing_system7_0_M_AXI_GP0": {
-        "interface_ports": [
-          "processing_system7_0/M_AXI_GP0",
-          "ps7_0_axi_periph/S00_AXI"
-        ]
-      },
       "ps7_0_axi_periph_M00_AXI": {
         "interface_ports": [
           "ps7_0_axi_periph/M00_AXI",
           "gpu_control_0/S00_AXI"
+        ]
+      },
+      "processing_system7_0_M_AXI_GP0": {
+        "interface_ports": [
+          "processing_system7_0/M_AXI_GP0",
+          "ps7_0_axi_periph/S00_AXI"
         ]
       }
     },
@@ -619,8 +697,12 @@
           "ps7_0_axi_periph/S00_ACLK",
           "ps7_0_axi_periph/M00_ACLK",
           "ps7_0_axi_periph/ACLK",
+          "gpu_control_0/s00_axi_aclk",
+          "processing_system7_0/S_AXI_GP0_ACLK",
+          "axi_smc/aclk",
+          "rst_ps7_0_50M/slowest_sync_clk",
           "gpu_wrapper_0/clk",
-          "gpu_control_0/s00_axi_aclk"
+          "axi_master_0/m00_axi_aclk"
         ]
       },
       "rst_ps7_0_50M_peripheral_aresetn": {
@@ -629,8 +711,9 @@
           "ps7_0_axi_periph/S00_ARESETN",
           "ps7_0_axi_periph/M00_ARESETN",
           "ps7_0_axi_periph/ARESETN",
-          "gpu_wrapper_0/reset",
-          "gpu_control_0/s00_axi_aresetn"
+          "gpu_control_0/s00_axi_aresetn",
+          "rst_ps7_0_50M/ext_reset_in",
+          "gpu_wrapper_0/reset"
         ]
       },
       "gpu_control_0_vertices_size": {
@@ -674,6 +757,67 @@
           "gpu_control_0/mem_wr_en",
           "gpu_wrapper_0/mem_wr_en"
         ]
+      },
+      "rst_ps7_0_50M_peripheral_aresetn1": {
+        "ports": [
+          "rst_ps7_0_50M/peripheral_aresetn",
+          "axi_smc/aresetn",
+          "axi_master_0/m00_axi_aresetn"
+        ]
+      },
+      "gpu_control_0_address": {
+        "ports": [
+          "gpu_control_0/address",
+          "axi_master_0/framebuffer_baseaddr"
+        ]
+      },
+      "gpu_wrapper_0_pixel_x_out": {
+        "ports": [
+          "gpu_wrapper_0/pixel_x_out",
+          "axi_master_0/pixel_x"
+        ]
+      },
+      "gpu_wrapper_0_pixel_y_out": {
+        "ports": [
+          "gpu_wrapper_0/pixel_y_out",
+          "axi_master_0/pixel_y"
+        ]
+      },
+      "gpu_wrapper_0_width": {
+        "ports": [
+          "gpu_wrapper_0/width",
+          "axi_master_0/width"
+        ]
+      },
+      "gpu_wrapper_0_height": {
+        "ports": [
+          "gpu_wrapper_0/height",
+          "axi_master_0/height"
+        ]
+      },
+      "gpu_wrapper_0_output_color": {
+        "ports": [
+          "gpu_wrapper_0/output_color",
+          "axi_master_0/pixel_data"
+        ]
+      },
+      "gpu_wrapper_0_output_valid": {
+        "ports": [
+          "gpu_wrapper_0/output_valid",
+          "axi_master_0/pixel_valid"
+        ]
+      },
+      "gpu_wrapper_0_draw": {
+        "ports": [
+          "gpu_wrapper_0/draw",
+          "axi_master_0/draw"
+        ]
+      },
+      "axi_master_0_pixel_ready": {
+        "ports": [
+          "axi_master_0/pixel_ready",
+          "gpu_wrapper_0/out_ready"
+        ]
       }
     },
     "addressing": {
@@ -687,6 +831,31 @@
                 "address_block": "/gpu_control_0/S00_AXI/S00_AXI_reg",
                 "offset": "0x43C00000",
                 "range": "128K"
+              }
+            }
+          }
+        }
+      },
+      "/axi_master_0": {
+        "address_spaces": {
+          "M00_AXI": {
+            "range": "4G",
+            "width": "32",
+            "segments": {
+              "SEG_processing_system7_0_GP0_DDR_LOWOCM": {
+                "address_block": "/processing_system7_0/S_AXI_GP0/GP0_DDR_LOWOCM",
+                "offset": "0x00000000",
+                "range": "512M"
+              },
+              "SEG_processing_system7_0_GP0_IOP": {
+                "address_block": "/processing_system7_0/S_AXI_GP0/GP0_IOP",
+                "offset": "0xE0000000",
+                "range": "4M"
+              },
+              "SEG_processing_system7_0_GP0_M_AXI_GP0": {
+                "address_block": "/processing_system7_0/S_AXI_GP0/GP0_M_AXI_GP0",
+                "offset": "0x40000000",
+                "range": "1G"
               }
             }
           }

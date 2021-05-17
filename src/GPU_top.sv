@@ -15,8 +15,11 @@ module GPU_top
     output_valid,
     pixel_x_out,
     pixel_y_out,
+    width,
+    height,
     frame_end,
-    draw
+    draw,
+    out_ready
 
     // AXI master tutaj kiedys bedzie
 );
@@ -42,8 +45,11 @@ output wire [7:0]  output_color;
 output wire        output_valid;
 output wire [10:0] pixel_x_out;
 output wire [10:0] pixel_y_out;
+output wire [10:0] width;
+output wire [10:0] height;
 output wire        frame_end;
 output wire        draw;
+input  wire        out_ready;
 
 
 reg         [$clog2(vertex_mem_depth)-1:0] vertex_mem_rd_addr;
@@ -151,14 +157,14 @@ rasterizer_control rasterizer_control(
     .douta(transformed_vertex_mem_rd_data),
 
     .out_data(output_color),
-    .out_ready(1'b1),
+    .out_ready(out_ready),
     .out_valid(output_valid),
 
     .pixel_x_out(pixel_x_out),
     .pixel_y_out(pixel_y_out),
 
-    .width(), //unused
-    .height(), //unused
+    .width(width),
+    .height(height),
 
     .frame_end(frame_end),
     .draw(draw)

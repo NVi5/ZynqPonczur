@@ -56,7 +56,8 @@ GPU_top GPU_top
     .pixel_x_out(pixel_x_out),
     .pixel_y_out(pixel_y_out),
     .frame_end(frame_end),
-    .draw(draw)
+    .draw(draw),
+    .out_ready(1'b1)
 );
 
 initial begin

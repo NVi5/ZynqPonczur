@@ -15,9 +15,11 @@ module gpu_wrapper
     output_valid,
     pixel_x_out,
     pixel_y_out,
+    width,
+    height,
     frame_end,
-    draw
-
+    draw,
+    out_ready
 );
 
 localparam M = 11;
@@ -41,8 +43,11 @@ output wire [7:0]  output_color;
 output wire        output_valid;
 output wire [10:0] pixel_x_out;
 output wire [10:0] pixel_y_out;
+output wire [10:0] width;
+output wire [10:0] height;
 output wire        frame_end;
 output wire        draw;
+input  wire        out_ready;
 
 GPU_top GPU_top(
     .clk(clk),
@@ -57,7 +62,10 @@ GPU_top GPU_top(
     .output_valid(output_valid),
     .pixel_x_out(pixel_x_out),
     .pixel_y_out(pixel_y_out),
+    .width(width),
+    .height(height),
     .frame_end(frame_end),
-    .draw(draw)
+    .draw(draw),
+    .out_ready(out_ready)
 );
 endmodule
