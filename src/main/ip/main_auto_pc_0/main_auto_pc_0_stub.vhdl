@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
 -- Date        : Mon May 17 21:32:38 2021
 -- Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               c:/Users/wojte/Desktop/sdup_projekt/ZynqSDUP/src/main/ip/main_auto_pc_0/main_auto_pc_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top main_auto_pc_0 -prefix
+--               main_auto_pc_0_ main_auto_pc_0_stub.vhdl
 -- Design      : main_auto_pc_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z010clg400-1

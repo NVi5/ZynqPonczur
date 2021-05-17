@@ -19,11 +19,12 @@
       "rst_ps7_0_50M": "",
       "axi_master_0": "",
       "gpu_wrapper_0": "",
-      "gpu_control_0": "",
       "xlconcat_0": "",
       "xlconcat_1": "",
       "xlconstant_0": "",
-      "ila_0": ""
+      "ila_0": "",
+      "ila_1": "",
+      "gpu_control_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -757,10 +758,6 @@
           }
         }
       },
-      "gpu_control_0": {
-        "vlnv": "xilinx.com:user:gpu_control:1.0",
-        "xci_name": "main_gpu_control_0_0"
-      },
       "xlconcat_0": {
         "vlnv": "xilinx.com:ip:xlconcat:2.1",
         "xci_name": "main_xlconcat_0_0",
@@ -800,19 +797,50 @@
       "ila_0": {
         "vlnv": "xilinx.com:ip:ila:6.2",
         "xci_name": "main_ila_0_0"
+      },
+      "ila_1": {
+        "vlnv": "xilinx.com:ip:ila:6.2",
+        "xci_name": "main_ila_1_0",
+        "parameters": {
+          "C_ENABLE_ILA_AXI_MON": {
+            "value": "false"
+          },
+          "C_MONITOR_TYPE": {
+            "value": "Native"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "6"
+          },
+          "C_PROBE0_WIDTH": {
+            "value": "32"
+          },
+          "C_PROBE1_WIDTH": {
+            "value": "32"
+          },
+          "C_PROBE2_WIDTH": {
+            "value": "14"
+          },
+          "C_PROBE3_WIDTH": {
+            "value": "18"
+          }
+        }
+      },
+      "gpu_control_0": {
+        "vlnv": "xilinx.com:user:gpu_control:1.0",
+        "xci_name": "main_gpu_control_0_0"
       }
     },
     "interface_nets": {
-      "axi_master_0_M00_AXI": {
-        "interface_ports": [
-          "axi_master_0/M00_AXI",
-          "axi_smc/S00_AXI"
-        ]
-      },
       "axi_smc_M00_AXI": {
         "interface_ports": [
           "axi_smc/M00_AXI",
           "processing_system7_0/S_AXI_GP0"
+        ]
+      },
+      "axi_master_0_M00_AXI": {
+        "interface_ports": [
+          "axi_master_0/M00_AXI",
+          "axi_smc/S00_AXI"
         ]
       },
       "processing_system7_0_FIXED_IO": {
@@ -825,6 +853,18 @@
         "interface_ports": [
           "DDR",
           "processing_system7_0/DDR"
+        ]
+      },
+      "processing_system7_0_M_AXI_GP0": {
+        "interface_ports": [
+          "processing_system7_0/M_AXI_GP0",
+          "ps7_0_axi_periph/S00_AXI"
+        ]
+      },
+      "processing_system7_0_MDIO_ETHERNET_0": {
+        "interface_ports": [
+          "MDIO_ETHERNET_0_0",
+          "processing_system7_0/MDIO_ETHERNET_0"
         ]
       },
       "ps7_0_axi_periph_M00_AXI": {
@@ -841,18 +881,6 @@
             "value": "true"
           }
         }
-      },
-      "processing_system7_0_M_AXI_GP0": {
-        "interface_ports": [
-          "processing_system7_0/M_AXI_GP0",
-          "ps7_0_axi_periph/S00_AXI"
-        ]
-      },
-      "processing_system7_0_MDIO_ETHERNET_0": {
-        "interface_ports": [
-          "MDIO_ETHERNET_0_0",
-          "processing_system7_0/MDIO_ETHERNET_0"
-        ]
       }
     },
     "nets": {
@@ -868,8 +896,9 @@
           "rst_ps7_0_50M/slowest_sync_clk",
           "axi_master_0/m00_axi_aclk",
           "gpu_wrapper_0/clk",
-          "gpu_control_0/s00_axi_aclk",
-          "ila_0/clk"
+          "ila_0/clk",
+          "ila_1/clk",
+          "gpu_control_0/s00_axi_aclk"
         ]
       },
       "rst_ps7_0_50M_peripheral_aresetn": {
@@ -886,14 +915,32 @@
       "gpu_control_0_vertices_size": {
         "ports": [
           "gpu_control_0/vertex_count",
-          "gpu_wrapper_0/vertex_count"
-        ]
+          "gpu_wrapper_0/vertex_count",
+          "ila_1/probe0"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "gpu_control_0_start": {
         "ports": [
           "gpu_control_0/start",
-          "gpu_wrapper_0/start"
-        ]
+          "gpu_wrapper_0/start",
+          "ila_1/probe5"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "gpu_wrapper_0_frame_end": {
         "ports": [
@@ -904,20 +951,47 @@
       "gpu_control_0_mem_wr_addr": {
         "ports": [
           "gpu_control_0/mem_wr_addr",
-          "gpu_wrapper_0/mem_wr_addr"
-        ]
+          "gpu_wrapper_0/mem_wr_addr",
+          "ila_1/probe2"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "gpu_control_0_mem_wr_data": {
         "ports": [
           "gpu_control_0/mem_wr_data",
-          "gpu_wrapper_0/mem_wr_data"
-        ]
+          "gpu_wrapper_0/mem_wr_data",
+          "ila_1/probe3"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "gpu_control_0_mem_wr_en": {
         "ports": [
           "gpu_control_0/mem_wr_en",
-          "gpu_wrapper_0/mem_wr_en"
-        ]
+          "gpu_wrapper_0/mem_wr_en",
+          "ila_1/probe4"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "rst_ps7_0_50M_peripheral_aresetn1": {
         "ports": [
@@ -929,8 +1003,17 @@
       "gpu_control_0_address": {
         "ports": [
           "gpu_control_0/address",
-          "axi_master_0/framebuffer_baseaddr"
-        ]
+          "axi_master_0/framebuffer_baseaddr",
+          "ila_1/probe1"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "gpu_wrapper_0_pixel_x_out": {
         "ports": [

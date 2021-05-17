@@ -69,6 +69,7 @@ int main()
 		//read[0] = GPU_MEM[0];
 		memcpy(GPU_MEM, write, 40);
 		memcpy(read, GPU_MEM, 40);
+		gpu_mem[0x10] = 0x12345678;
 	}
 
 

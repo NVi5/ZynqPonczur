@@ -208,6 +208,18 @@ proc create_root_design { parentCell } {
   # Create instance: ila_0, and set properties
   set ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_0 ]
 
+  # Create instance: ila_1, and set properties
+  set ila_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_1 ]
+  set_property -dict [ list \
+   CONFIG.C_ENABLE_ILA_AXI_MON {false} \
+   CONFIG.C_MONITOR_TYPE {Native} \
+   CONFIG.C_NUM_OF_PROBES {6} \
+   CONFIG.C_PROBE0_WIDTH {32} \
+   CONFIG.C_PROBE1_WIDTH {32} \
+   CONFIG.C_PROBE2_WIDTH {14} \
+   CONFIG.C_PROBE3_WIDTH {18} \
+ ] $ila_1
+
   # Create instance: processing_system7_0, and set properties
   set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
   set_property -dict [ list \
@@ -397,12 +409,18 @@ set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_intf_nets ps7_0_axi_periph_M00_A
   connect_bd_net -net ENET0_GMII_TX_CLK_0_1 [get_bd_ports ENET0_GMII_TX_CLK_0] [get_bd_pins processing_system7_0/ENET0_GMII_TX_CLK]
   connect_bd_net -net In0_0_1 [get_bd_ports ENET0_GMII_RXD] [get_bd_pins xlconcat_1/In0]
   connect_bd_net -net axi_master_0_pixel_ready [get_bd_pins axi_master_0/pixel_ready] [get_bd_pins gpu_wrapper_0/out_ready]
-  connect_bd_net -net gpu_control_0_address [get_bd_pins axi_master_0/framebuffer_baseaddr] [get_bd_pins gpu_control_0/address]
-  connect_bd_net -net gpu_control_0_mem_wr_addr [get_bd_pins gpu_control_0/mem_wr_addr] [get_bd_pins gpu_wrapper_0/mem_wr_addr]
-  connect_bd_net -net gpu_control_0_mem_wr_data [get_bd_pins gpu_control_0/mem_wr_data] [get_bd_pins gpu_wrapper_0/mem_wr_data]
-  connect_bd_net -net gpu_control_0_mem_wr_en [get_bd_pins gpu_control_0/mem_wr_en] [get_bd_pins gpu_wrapper_0/mem_wr_en]
-  connect_bd_net -net gpu_control_0_start [get_bd_pins gpu_control_0/start] [get_bd_pins gpu_wrapper_0/start]
-  connect_bd_net -net gpu_control_0_vertices_size [get_bd_pins gpu_control_0/vertex_count] [get_bd_pins gpu_wrapper_0/vertex_count]
+  connect_bd_net -net gpu_control_0_address [get_bd_pins axi_master_0/framebuffer_baseaddr] [get_bd_pins gpu_control_0/address] [get_bd_pins ila_1/probe1]
+set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets gpu_control_0_address]
+  connect_bd_net -net gpu_control_0_mem_wr_addr [get_bd_pins gpu_control_0/mem_wr_addr] [get_bd_pins gpu_wrapper_0/mem_wr_addr] [get_bd_pins ila_1/probe2]
+set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets gpu_control_0_mem_wr_addr]
+  connect_bd_net -net gpu_control_0_mem_wr_data [get_bd_pins gpu_control_0/mem_wr_data] [get_bd_pins gpu_wrapper_0/mem_wr_data] [get_bd_pins ila_1/probe3]
+set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets gpu_control_0_mem_wr_data]
+  connect_bd_net -net gpu_control_0_mem_wr_en [get_bd_pins gpu_control_0/mem_wr_en] [get_bd_pins gpu_wrapper_0/mem_wr_en] [get_bd_pins ila_1/probe4]
+set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets gpu_control_0_mem_wr_en]
+  connect_bd_net -net gpu_control_0_start [get_bd_pins gpu_control_0/start] [get_bd_pins gpu_wrapper_0/start] [get_bd_pins ila_1/probe5]
+set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets gpu_control_0_start]
+  connect_bd_net -net gpu_control_0_vertices_size [get_bd_pins gpu_control_0/vertex_count] [get_bd_pins gpu_wrapper_0/vertex_count] [get_bd_pins ila_1/probe0]
+set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets gpu_control_0_vertices_size]
   connect_bd_net -net gpu_wrapper_0_draw [get_bd_pins axi_master_0/draw] [get_bd_pins gpu_wrapper_0/draw]
   connect_bd_net -net gpu_wrapper_0_frame_end [get_bd_pins gpu_control_0/status] [get_bd_pins gpu_wrapper_0/frame_end]
   connect_bd_net -net gpu_wrapper_0_height [get_bd_pins axi_master_0/height] [get_bd_pins gpu_wrapper_0/height]
@@ -413,7 +431,7 @@ set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_intf_nets ps7_0_axi_periph_M00_A
   connect_bd_net -net gpu_wrapper_0_width [get_bd_pins axi_master_0/width] [get_bd_pins gpu_wrapper_0/width]
   connect_bd_net -net processing_system7_0_ENET0_GMII_TXD [get_bd_pins processing_system7_0/ENET0_GMII_TXD] [get_bd_pins xlconcat_0/In0]
   connect_bd_net -net processing_system7_0_ENET0_GMII_TX_EN [get_bd_ports ENET0_GMII_TX_EN_0] [get_bd_pins processing_system7_0/ENET0_GMII_TX_EN]
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins axi_master_0/m00_axi_aclk] [get_bd_pins axi_smc/aclk] [get_bd_pins gpu_control_0/s00_axi_aclk] [get_bd_pins gpu_wrapper_0/clk] [get_bd_pins ila_0/clk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins axi_master_0/m00_axi_aclk] [get_bd_pins axi_smc/aclk] [get_bd_pins gpu_control_0/s00_axi_aclk] [get_bd_pins gpu_wrapper_0/clk] [get_bd_pins ila_0/clk] [get_bd_pins ila_1/clk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
   connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins gpu_control_0/s00_axi_aresetn] [get_bd_pins gpu_wrapper_0/reset] [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn1 [get_bd_pins axi_master_0/m00_axi_aresetn] [get_bd_pins axi_smc/aresetn] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
   connect_bd_net -net xlconcat_0_dout [get_bd_ports ENET0_GMII_TXD] [get_bd_pins xlconcat_0/dout]

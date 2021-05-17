@@ -86,11 +86,10 @@
         .start(start),
         .vertex_count(vertex_count),
         .address(address),
-        .transform_matrix(transform_matrix)
+        .transform_matrix(transform_matrix),
+        .mem_wr_addr(mem_wr_addr),
+        .mem_wr_data(mem_wr_data),
+        .mem_wr_en(mem_wr_en)
     );
-
-    // Add user logic here
-
-    // User logic ends
 
     endmodule

@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-//Date        : Mon May 17 21:31:05 2021
+//Date        : Mon May 17 22:18:24 2021
 //Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=13,numReposBlks=11,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_clkrst_cnt=1,da_ps7_cnt=4,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
+(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=14,numReposBlks=12,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_clkrst_cnt=1,da_ps7_cnt=4,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
 module main
    (DDR_addr,
     DDR_ba,
@@ -154,12 +154,12 @@ module main
   wire axi_smc_M00_AXI_WREADY;
   wire [3:0]axi_smc_M00_AXI_WSTRB;
   wire axi_smc_M00_AXI_WVALID;
-  wire [31:0]gpu_control_0_address;
-  wire [13:0]gpu_control_0_mem_wr_addr;
-  wire [17:0]gpu_control_0_mem_wr_data;
-  wire gpu_control_0_mem_wr_en;
-  wire gpu_control_0_start;
-  wire [31:0]gpu_control_0_vertices_size;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]gpu_control_0_address;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [13:0]gpu_control_0_mem_wr_addr;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [17:0]gpu_control_0_mem_wr_data;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire gpu_control_0_mem_wr_en;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire gpu_control_0_start;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]gpu_control_0_vertices_size;
   wire gpu_wrapper_0_draw;
   wire gpu_wrapper_0_frame_end;
   wire [10:0]gpu_wrapper_0_height;
@@ -470,6 +470,14 @@ module main
         .probe7(ps7_0_axi_periph_M00_AXI_WVALID),
         .probe8(ps7_0_axi_periph_M00_AXI_ARVALID),
         .probe9(ps7_0_axi_periph_M00_AXI_ARREADY));
+  main_ila_1_0 ila_1
+       (.clk(processing_system7_0_FCLK_CLK0),
+        .probe0(gpu_control_0_vertices_size),
+        .probe1(gpu_control_0_address),
+        .probe2(gpu_control_0_mem_wr_addr),
+        .probe3(gpu_control_0_mem_wr_data),
+        .probe4(gpu_control_0_mem_wr_en),
+        .probe5(gpu_control_0_start));
   main_processing_system7_0_1 processing_system7_0
        (.DDR_Addr(DDR_addr[14:0]),
         .DDR_BankAddr(DDR_ba[2:0]),
