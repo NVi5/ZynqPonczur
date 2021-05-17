@@ -13,7 +13,7 @@
         // Width of S_AXI data bus
         parameter integer C_S_AXI_DATA_WIDTH	= 32,
         // Width of S_AXI address bus
-        parameter integer C_S_AXI_ADDR_WIDTH	= 7
+        parameter integer C_S_AXI_ADDR_WIDTH	= 16
     )
     (
         // Users to add ports here
@@ -21,7 +21,7 @@
         output reg                              start,
         output reg  [C_S_AXI_DATA_WIDTH-1 : 0]  vertex_count,
         output reg  [C_S_AXI_DATA_WIDTH-1 : 0]  address,
-        output reg  signed [M+N-1:0]            transform_matrix [0:15],
+        output reg  [            16*(M+N)-1:0]  transform_matrix,
 
         output reg  [  $clog2(MEM_DEPTH)-1:0]   mem_wr_addr,
         output reg  [              (M+N)-1:0]   mem_wr_data,
@@ -109,7 +109,7 @@
     // ADDR_LSB = 2 for 32 bits (n downto 2)
     // ADDR_LSB = 3 for 64 bits (n downto 3)
     localparam integer ADDR_LSB = (C_S_AXI_DATA_WIDTH/32) + 1;
-    localparam integer OPT_MEM_ADDR_BITS = C_S_AXI_ADDR_WIDTH - ADDR_LSB;
+    localparam integer OPT_MEM_ADDR_BITS = C_S_AXI_ADDR_WIDTH - ADDR_LSB - 1;
     //----------------------------------------------
     //-- Signals for user logic register space example
     //------------------------------------------------
@@ -241,31 +241,17 @@
             if (slv_reg_wren) begin
                 case ( axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] ) inside
                     ['h00:'h0F]:
-                        for ( byte_index = 0; byte_index <= ((M + N) / 8); byte_index = byte_index + 1 )
-                            if ( S_AXI_WSTRB[byte_index] == 1 ) begin
-                                transform_matrix[axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB]][(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
-                            end
+                            transform_matrix[axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB]] <= S_AXI_WDATA;
                     'h10:
-                        for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH / 8) - 1; byte_index = byte_index + 1 )
-                            if ( S_AXI_WSTRB[byte_index] == 1 ) begin
-                                vertex_count[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
-                            end
+                            vertex_count <= S_AXI_WDATA;
                     'h11:
-                        for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH / 8) - 1; byte_index = byte_index + 1 )
-                            if ( S_AXI_WSTRB[byte_index] == 1 ) begin
-                                address[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
-                            end
+                            address <= S_AXI_WDATA;
                     'h12:
-                        if ( S_AXI_WSTRB[0] == 1 ) begin
                             start <= S_AXI_WDATA[0];
-                        end
                 default :   begin
                             mem_wr_addr <= axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] - 'h14;
                             mem_wr_en   <= 1'b1;
-                            for ( byte_index = 0; byte_index <= ((M + N) / 8); byte_index = byte_index + 1 )
-                                if ( S_AXI_WSTRB[byte_index] == 1 ) begin
-                                    mem_wr_data[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
-                                end
+                            mem_wr_data <= S_AXI_WDATA;
                             end
                 endcase
             end

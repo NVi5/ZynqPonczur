@@ -13,7 +13,7 @@
 
         // Parameters of Axi Slave Bus Interface S00_AXI
         parameter integer C_S00_AXI_DATA_WIDTH	= 32,
-        parameter integer C_S00_AXI_ADDR_WIDTH	= 16
+        parameter integer C_S00_AXI_ADDR_WIDTH	= 17
     )
     (
         // Users to add ports here
@@ -21,7 +21,7 @@
         output reg                                  start,
         output reg  [C_S00_AXI_DATA_WIDTH-1 : 0]    vertex_count,
         output reg  [C_S00_AXI_DATA_WIDTH-1 : 0]    address,
-        output reg  signed [            M+N-1:0]    transform_matrix [0:15],
+        output reg  [              16*(M+N)-1:0]    transform_matrix,
 
         output wire [     $clog2(MEM_DEPTH)-1:0]    mem_wr_addr,
         output wire [                 (M+N)-1:0]    mem_wr_data,

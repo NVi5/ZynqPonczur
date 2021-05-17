@@ -37,6 +37,13 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 # To test this script, run the following commands from Vivado Tcl console:
 # source main_script.tcl
 
+
+# The design that will be created by this Tcl script contains the following 
+# module references:
+# gpu_wrapper
+
+# Please add the sources of those modules before sourcing this Tcl script.
+
 # If there is no project opened, this script will create a
 # project, but make sure you do not have an existing project
 # <./myproj/project_1.xpr> in the current working folder.
@@ -158,6 +165,39 @@ proc create_root_design { parentCell } {
 
   # Create ports
 
+  # Create instance: axi_master_0, and set properties
+  set axi_master_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:axi_master:1.0 axi_master_0 ]
+  set_property -dict [ list \
+   CONFIG.C_M00_AXI_ARUSER_WIDTH {4} \
+   CONFIG.C_M00_AXI_AWUSER_WIDTH {4} \
+   CONFIG.C_M00_AXI_BUSER_WIDTH {4} \
+   CONFIG.C_M00_AXI_RUSER_WIDTH {4} \
+   CONFIG.C_M00_AXI_WUSER_WIDTH {4} \
+ ] $axi_master_0
+
+  # Create instance: axi_smc, and set properties
+  set axi_smc [ create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:1.0 axi_smc ]
+  set_property -dict [ list \
+   CONFIG.NUM_SI {1} \
+ ] $axi_smc
+
+  # Create instance: gpu_control_0, and set properties
+  set gpu_control_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:gpu_control:1.0 gpu_control_0 ]
+  set_property -dict [ list \
+   CONFIG.C_S00_AXI_ADDR_WIDTH {17} \
+ ] $gpu_control_0
+
+  # Create instance: gpu_wrapper_0, and set properties
+  set block_name gpu_wrapper
+  set block_cell_name gpu_wrapper_0
+  if { [catch {set gpu_wrapper_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $gpu_wrapper_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: processing_system7_0, and set properties
   set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
   set_property -dict [ list \
@@ -283,16 +323,51 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_UIPARAM_DDR_T_RCD {7} \
    CONFIG.PCW_UIPARAM_DDR_T_RP {7} \
    CONFIG.PCW_UIPARAM_DDR_USE_INTERNAL_VREF {0} \
+   CONFIG.PCW_USE_S_AXI_GP0 {1} \
  ] $processing_system7_0
 
+  # Create instance: ps7_0_axi_periph, and set properties
+  set ps7_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 ps7_0_axi_periph ]
+  set_property -dict [ list \
+   CONFIG.NUM_MI {1} \
+ ] $ps7_0_axi_periph
+
+  # Create instance: rst_ps7_0_50M, and set properties
+  set rst_ps7_0_50M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_ps7_0_50M ]
+
   # Create interface connections
+  connect_bd_intf_net -intf_net axi_master_0_M00_AXI [get_bd_intf_pins axi_master_0/M00_AXI] [get_bd_intf_pins axi_smc/S00_AXI]
+  connect_bd_intf_net -intf_net axi_smc_M00_AXI [get_bd_intf_pins axi_smc/M00_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_GP0]
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
+  connect_bd_intf_net -intf_net processing_system7_0_M_AXI_GP0 [get_bd_intf_pins processing_system7_0/M_AXI_GP0] [get_bd_intf_pins ps7_0_axi_periph/S00_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M00_AXI [get_bd_intf_pins gpu_control_0/S00_AXI] [get_bd_intf_pins ps7_0_axi_periph/M00_AXI]
 
   # Create port connections
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK]
+  connect_bd_net -net axi_master_0_pixel_ready [get_bd_pins axi_master_0/pixel_ready] [get_bd_pins gpu_wrapper_0/out_ready]
+  connect_bd_net -net gpu_control_0_address [get_bd_pins axi_master_0/framebuffer_baseaddr] [get_bd_pins gpu_control_0/address]
+  connect_bd_net -net gpu_control_0_mem_wr_addr [get_bd_pins gpu_control_0/mem_wr_addr] [get_bd_pins gpu_wrapper_0/mem_wr_addr]
+  connect_bd_net -net gpu_control_0_mem_wr_data [get_bd_pins gpu_control_0/mem_wr_data] [get_bd_pins gpu_wrapper_0/mem_wr_data]
+  connect_bd_net -net gpu_control_0_mem_wr_en [get_bd_pins gpu_control_0/mem_wr_en] [get_bd_pins gpu_wrapper_0/mem_wr_en]
+  connect_bd_net -net gpu_control_0_start [get_bd_pins gpu_control_0/start] [get_bd_pins gpu_wrapper_0/start]
+  connect_bd_net -net gpu_control_0_vertices_size [get_bd_pins gpu_control_0/vertex_count] [get_bd_pins gpu_wrapper_0/vertex_count]
+  connect_bd_net -net gpu_wrapper_0_draw [get_bd_pins axi_master_0/draw] [get_bd_pins gpu_wrapper_0/draw]
+  connect_bd_net -net gpu_wrapper_0_frame_end [get_bd_pins gpu_control_0/status] [get_bd_pins gpu_wrapper_0/frame_end]
+  connect_bd_net -net gpu_wrapper_0_height [get_bd_pins axi_master_0/height] [get_bd_pins gpu_wrapper_0/height]
+  connect_bd_net -net gpu_wrapper_0_output_color [get_bd_pins axi_master_0/pixel_data] [get_bd_pins gpu_wrapper_0/output_color]
+  connect_bd_net -net gpu_wrapper_0_output_valid [get_bd_pins axi_master_0/pixel_valid] [get_bd_pins gpu_wrapper_0/output_valid]
+  connect_bd_net -net gpu_wrapper_0_pixel_x_out [get_bd_pins axi_master_0/pixel_x] [get_bd_pins gpu_wrapper_0/pixel_x_out]
+  connect_bd_net -net gpu_wrapper_0_pixel_y_out [get_bd_pins axi_master_0/pixel_y] [get_bd_pins gpu_wrapper_0/pixel_y_out]
+  connect_bd_net -net gpu_wrapper_0_width [get_bd_pins axi_master_0/width] [get_bd_pins gpu_wrapper_0/width]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins axi_master_0/m00_axi_aclk] [get_bd_pins axi_smc/aclk] [get_bd_pins gpu_control_0/s00_axi_aclk] [get_bd_pins gpu_wrapper_0/clk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
+  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins gpu_control_0/s00_axi_aresetn] [get_bd_pins gpu_wrapper_0/reset] [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
+  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn1 [get_bd_pins axi_master_0/m00_axi_aresetn] [get_bd_pins axi_smc/aresetn] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
 
   # Create address segments
+  create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_master_0/M00_AXI] [get_bd_addr_segs processing_system7_0/S_AXI_GP0/GP0_DDR_LOWOCM] SEG_processing_system7_0_GP0_DDR_LOWOCM
+  create_bd_addr_seg -range 0x00400000 -offset 0xE0000000 [get_bd_addr_spaces axi_master_0/M00_AXI] [get_bd_addr_segs processing_system7_0/S_AXI_GP0/GP0_IOP] SEG_processing_system7_0_GP0_IOP
+  create_bd_addr_seg -range 0x40000000 -offset 0x40000000 [get_bd_addr_spaces axi_master_0/M00_AXI] [get_bd_addr_segs processing_system7_0/S_AXI_GP0/GP0_M_AXI_GP0] SEG_processing_system7_0_GP0_M_AXI_GP0
+  create_bd_addr_seg -range 0x00020000 -offset 0x43C00000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs gpu_control_0/S00_AXI/S00_AXI_reg] SEG_gpu_control_0_S00_AXI_reg
 
 
   # Restore current instance

@@ -57,7 +57,7 @@ GPU_top GPU_top(
     .mem_wr_addr(mem_wr_addr),
     .mem_wr_data(mem_wr_data),
     .mem_wr_en(mem_wr_en),
-    .transform_matrix(transform_matrix),
+    .transform_matrix(),
     .output_color(output_color),
     .output_valid(output_valid),
     .pixel_x_out(pixel_x_out),

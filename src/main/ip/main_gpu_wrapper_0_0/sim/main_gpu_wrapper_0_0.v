@@ -67,11 +67,14 @@ module main_gpu_wrapper_0_0 (
   output_valid,
   pixel_x_out,
   pixel_y_out,
+  width,
+  height,
   frame_end,
-  draw
+  draw,
+  out_ready
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET reset, FREQ_HZ 5e+07, PHASE 0.000, CLK_DOMAIN main_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET reset, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN main_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
@@ -87,8 +90,11 @@ output wire [7 : 0] output_color;
 output wire output_valid;
 output wire [10 : 0] pixel_x_out;
 output wire [10 : 0] pixel_y_out;
+output wire [10 : 0] width;
+output wire [10 : 0] height;
 output wire frame_end;
 output wire draw;
+input wire out_ready;
 
   gpu_wrapper inst (
     .clk(clk),
@@ -103,7 +109,10 @@ output wire draw;
     .output_valid(output_valid),
     .pixel_x_out(pixel_x_out),
     .pixel_y_out(pixel_y_out),
+    .width(width),
+    .height(height),
     .frame_end(frame_end),
-    .draw(draw)
+    .draw(draw),
+    .out_ready(out_ready)
   );
 endmodule
