@@ -88,6 +88,43 @@
 
 /******************************************************************/
 
+/* Definitions for driver EMACPS */
+#define XPAR_XEMACPS_NUM_INSTANCES 1
+
+/* Definitions for peripheral PS7_ETHERNET_0 */
+#define XPAR_PS7_ETHERNET_0_DEVICE_ID 0
+#define XPAR_PS7_ETHERNET_0_BASEADDR 0xE000B000
+#define XPAR_PS7_ETHERNET_0_HIGHADDR 0xE000BFFF
+#define XPAR_PS7_ETHERNET_0_ENET_CLK_FREQ_HZ 125000000
+#define XPAR_PS7_ETHERNET_0_ENET_SLCR_1000MBPS_DIV0 1
+#define XPAR_PS7_ETHERNET_0_ENET_SLCR_1000MBPS_DIV1 1
+#define XPAR_PS7_ETHERNET_0_ENET_SLCR_100MBPS_DIV0 1
+#define XPAR_PS7_ETHERNET_0_ENET_SLCR_100MBPS_DIV1 5
+#define XPAR_PS7_ETHERNET_0_ENET_SLCR_10MBPS_DIV0 1
+#define XPAR_PS7_ETHERNET_0_ENET_SLCR_10MBPS_DIV1 50
+#define XPAR_PS7_ETHERNET_0_ENET_TSU_CLK_FREQ_HZ 0
+
+
+/******************************************************************/
+
+#define XPAR_PS7_ETHERNET_0_IS_CACHE_COHERENT 0
+#define XPAR_XEMACPS_0_IS_CACHE_COHERENT 0
+/* Canonical definitions for peripheral PS7_ETHERNET_0 */
+#define XPAR_XEMACPS_0_DEVICE_ID XPAR_PS7_ETHERNET_0_DEVICE_ID
+#define XPAR_XEMACPS_0_BASEADDR 0xE000B000
+#define XPAR_XEMACPS_0_HIGHADDR 0xE000BFFF
+#define XPAR_XEMACPS_0_ENET_CLK_FREQ_HZ 125000000
+#define XPAR_XEMACPS_0_ENET_SLCR_1000Mbps_DIV0 1
+#define XPAR_XEMACPS_0_ENET_SLCR_1000Mbps_DIV1 1
+#define XPAR_XEMACPS_0_ENET_SLCR_100Mbps_DIV0 1
+#define XPAR_XEMACPS_0_ENET_SLCR_100Mbps_DIV1 5
+#define XPAR_XEMACPS_0_ENET_SLCR_10Mbps_DIV0 1
+#define XPAR_XEMACPS_0_ENET_SLCR_10Mbps_DIV1 50
+#define XPAR_XEMACPS_0_ENET_TSU_CLK_FREQ_HZ 0
+
+
+/******************************************************************/
+
 
 /* Definitions for peripheral PS7_AFI_0 */
 #define XPAR_PS7_AFI_0_S_AXI_BASEADDR 0xF8008000
@@ -174,6 +211,17 @@
 /* Definitions for peripheral PS7_SLCR_0 */
 #define XPAR_PS7_SLCR_0_S_AXI_BASEADDR 0xF8000000
 #define XPAR_PS7_SLCR_0_S_AXI_HIGHADDR 0xF8000FFF
+
+
+/******************************************************************/
+
+/* Definitions for driver GPU_CONTROL */
+#define XPAR_GPU_CONTROL_NUM_INSTANCES 1
+
+/* Definitions for peripheral GPU_CONTROL_0 */
+#define XPAR_GPU_CONTROL_0_DEVICE_ID 0
+#define XPAR_GPU_CONTROL_0_S00_AXI_BASEADDR 0x43C00000
+#define XPAR_GPU_CONTROL_0_S00_AXI_HIGHADDR 0x43C1FFFF
 
 
 /******************************************************************/

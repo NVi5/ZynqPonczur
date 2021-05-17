@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
--- Date        : Mon May 17 19:44:02 2021
+-- Date        : Mon May 17 21:32:06 2021
 -- Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               C:/Users/wojte/Desktop/sdup_projekt/ZynqSDUP/src/main/ip/main_processing_system7_0_1/main_processing_system7_0_1_stub.vhdl

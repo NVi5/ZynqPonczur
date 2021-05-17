@@ -168,6 +168,31 @@
 						"WVALID": { "actual": "s00_axi_wvalid"}
 					}
 				},
+				"/ila_0/SLOT_0_AXI": {
+					"interface": "xilinx.com:interface:aximm:1.0",
+					"ports": {
+						"ACLK": { "actual": "clk"},
+						"ARADDR": { "actual": "probe5"},
+						"ARPROT": { "actual": "probe17"},
+						"ARREADY": { "actual": "probe9"},
+						"ARVALID": { "actual": "probe8"},
+						"AWADDR": { "actual": "probe1"},
+						"AWPROT": { "actual": "probe18"},
+						"AWREADY": { "actual": "probe12"},
+						"AWVALID": { "actual": "probe11"},
+						"BREADY": { "actual": "probe4"},
+						"BRESP": { "actual": "probe2"},
+						"BVALID": { "actual": "probe3"},
+						"RDATA": { "actual": "probe10"},
+						"RREADY": { "actual": "probe6"},
+						"RRESP": { "actual": "probe13"},
+						"RVALID": { "actual": "probe16"},
+						"WDATA": { "actual": "probe14"},
+						"WREADY": { "actual": "probe0"},
+						"WSTRB": { "actual": "probe15"},
+						"WVALID": { "actual": "probe7"}
+					}
+				},
 				"/processing_system7_0/M_AXI_GP0": {
 					"interface": "xilinx.com:interface:aximm:1.0",
 					"ports": {

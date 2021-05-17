@@ -22,7 +22,8 @@
       "gpu_control_0": "",
       "xlconcat_0": "",
       "xlconcat_1": "",
-      "xlconstant_0": ""
+      "xlconstant_0": "",
+      "ila_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -185,13 +186,13 @@
             "value": "10.158730"
           },
           "PCW_ACT_ENET0_PERIPHERAL_FREQMHZ": {
-            "value": "25.000000"
+            "value": "125.000000"
           },
           "PCW_ACT_ENET1_PERIPHERAL_FREQMHZ": {
             "value": "10.000000"
           },
           "PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ": {
-            "value": "150.000000"
+            "value": "100.000000"
           },
           "PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ": {
             "value": "10.000000"
@@ -245,7 +246,7 @@
             "value": "111.111115"
           },
           "PCW_CLK0_FREQ": {
-            "value": "150000000"
+            "value": "100000000"
           },
           "PCW_CLK1_FREQ": {
             "value": "10000000"
@@ -272,7 +273,7 @@
             "value": "1"
           },
           "PCW_ENET0_PERIPHERAL_FREQMHZ": {
-            "value": "100 Mbps"
+            "value": "1000 Mbps"
           },
           "PCW_EN_CLK1_PORT": {
             "value": "0"
@@ -296,7 +297,7 @@
             "value": "1"
           },
           "PCW_FPGA0_PERIPHERAL_FREQMHZ": {
-            "value": "150"
+            "value": "100"
           },
           "PCW_FPGA_FCLK0_ENABLE": {
             "value": "1"
@@ -543,16 +544,16 @@
               }
             },
             "interface_nets": {
-              "s00_couplers_to_auto_pc": {
-                "interface_ports": [
-                  "S_AXI",
-                  "auto_pc/S_AXI"
-                ]
-              },
               "auto_pc_to_s00_couplers": {
                 "interface_ports": [
                   "M_AXI",
                   "auto_pc/M_AXI"
+                ]
+              },
+              "s00_couplers_to_auto_pc": {
+                "interface_ports": [
+                  "S_AXI",
+                  "auto_pc/S_AXI"
                 ]
               }
             },
@@ -682,7 +683,7 @@
                 "value_src": "default_prop"
               },
               "FREQ_HZ": {
-                "value": "150000000",
+                "value": "100000000",
                 "value_src": "user_prop"
               }
             }
@@ -795,6 +796,10 @@
             "value": "4"
           }
         }
+      },
+      "ila_0": {
+        "vlnv": "xilinx.com:ip:ila:6.2",
+        "xci_name": "main_ila_0_0"
       }
     },
     "interface_nets": {
@@ -825,8 +830,17 @@
       "ps7_0_axi_periph_M00_AXI": {
         "interface_ports": [
           "ps7_0_axi_periph/M00_AXI",
-          "gpu_control_0/S00_AXI"
-        ]
+          "gpu_control_0/S00_AXI",
+          "ila_0/SLOT_0_AXI"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "processing_system7_0_M_AXI_GP0": {
         "interface_ports": [
@@ -854,7 +868,8 @@
           "rst_ps7_0_50M/slowest_sync_clk",
           "axi_master_0/m00_axi_aclk",
           "gpu_wrapper_0/clk",
-          "gpu_control_0/s00_axi_aclk"
+          "gpu_control_0/s00_axi_aclk",
+          "ila_0/clk"
         ]
       },
       "rst_ps7_0_50M_peripheral_aresetn": {

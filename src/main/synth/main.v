@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-//Date        : Mon May 17 19:43:05 2021
+//Date        : Mon May 17 21:31:05 2021
 //Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=12,numReposBlks=10,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_clkrst_cnt=1,da_ps7_cnt=4,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
+(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=13,numReposBlks=11,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_clkrst_cnt=1,da_ps7_cnt=4,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
 module main
    (DDR_addr,
     DDR_ba,
@@ -234,25 +234,25 @@ module main
   wire processing_system7_0_M_AXI_GP0_WREADY;
   wire [3:0]processing_system7_0_M_AXI_GP0_WSTRB;
   wire processing_system7_0_M_AXI_GP0_WVALID;
-  wire [31:0]ps7_0_axi_periph_M00_AXI_ARADDR;
-  wire [2:0]ps7_0_axi_periph_M00_AXI_ARPROT;
-  wire ps7_0_axi_periph_M00_AXI_ARREADY;
-  wire ps7_0_axi_periph_M00_AXI_ARVALID;
-  wire [31:0]ps7_0_axi_periph_M00_AXI_AWADDR;
-  wire [2:0]ps7_0_axi_periph_M00_AXI_AWPROT;
-  wire ps7_0_axi_periph_M00_AXI_AWREADY;
-  wire ps7_0_axi_periph_M00_AXI_AWVALID;
-  wire ps7_0_axi_periph_M00_AXI_BREADY;
-  wire [1:0]ps7_0_axi_periph_M00_AXI_BRESP;
-  wire ps7_0_axi_periph_M00_AXI_BVALID;
-  wire [31:0]ps7_0_axi_periph_M00_AXI_RDATA;
-  wire ps7_0_axi_periph_M00_AXI_RREADY;
-  wire [1:0]ps7_0_axi_periph_M00_AXI_RRESP;
-  wire ps7_0_axi_periph_M00_AXI_RVALID;
-  wire [31:0]ps7_0_axi_periph_M00_AXI_WDATA;
-  wire ps7_0_axi_periph_M00_AXI_WREADY;
-  wire [3:0]ps7_0_axi_periph_M00_AXI_WSTRB;
-  wire ps7_0_axi_periph_M00_AXI_WVALID;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]ps7_0_axi_periph_M00_AXI_ARADDR;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [2:0]ps7_0_axi_periph_M00_AXI_ARPROT;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_ARREADY;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_ARVALID;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]ps7_0_axi_periph_M00_AXI_AWADDR;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [2:0]ps7_0_axi_periph_M00_AXI_AWPROT;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_AWREADY;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_AWVALID;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_BREADY;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [1:0]ps7_0_axi_periph_M00_AXI_BRESP;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_BVALID;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]ps7_0_axi_periph_M00_AXI_RDATA;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_RREADY;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [1:0]ps7_0_axi_periph_M00_AXI_RRESP;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_RVALID;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]ps7_0_axi_periph_M00_AXI_WDATA;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_WREADY;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [3:0]ps7_0_axi_periph_M00_AXI_WSTRB;
+  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_WVALID;
   wire rst_ps7_0_50M_peripheral_aresetn;
   wire [0:0]rst_ps7_0_50M_peripheral_aresetn1;
   wire [3:0]xlconcat_0_dout;
@@ -449,6 +449,27 @@ module main
         .transform_matrix({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .vertex_count(gpu_control_0_vertices_size),
         .width(gpu_wrapper_0_width));
+  main_ila_0_0 ila_0
+       (.clk(processing_system7_0_FCLK_CLK0),
+        .probe0(ps7_0_axi_periph_M00_AXI_WREADY),
+        .probe1(ps7_0_axi_periph_M00_AXI_AWADDR[16:0]),
+        .probe10(ps7_0_axi_periph_M00_AXI_RDATA),
+        .probe11(ps7_0_axi_periph_M00_AXI_AWVALID),
+        .probe12(ps7_0_axi_periph_M00_AXI_AWREADY),
+        .probe13(ps7_0_axi_periph_M00_AXI_RRESP),
+        .probe14(ps7_0_axi_periph_M00_AXI_WDATA),
+        .probe15(ps7_0_axi_periph_M00_AXI_WSTRB),
+        .probe16(ps7_0_axi_periph_M00_AXI_RVALID),
+        .probe17(ps7_0_axi_periph_M00_AXI_ARPROT),
+        .probe18(ps7_0_axi_periph_M00_AXI_AWPROT),
+        .probe2(ps7_0_axi_periph_M00_AXI_BRESP),
+        .probe3(ps7_0_axi_periph_M00_AXI_BVALID),
+        .probe4(ps7_0_axi_periph_M00_AXI_BREADY),
+        .probe5(ps7_0_axi_periph_M00_AXI_ARADDR[16:0]),
+        .probe6(ps7_0_axi_periph_M00_AXI_RREADY),
+        .probe7(ps7_0_axi_periph_M00_AXI_WVALID),
+        .probe8(ps7_0_axi_periph_M00_AXI_ARVALID),
+        .probe9(ps7_0_axi_periph_M00_AXI_ARREADY));
   main_processing_system7_0_1 processing_system7_0
        (.DDR_Addr(DDR_addr[14:0]),
         .DDR_BankAddr(DDR_ba[2:0]),

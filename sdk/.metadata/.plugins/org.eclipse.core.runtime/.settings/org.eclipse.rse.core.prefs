@@ -1,3 +1,4 @@
 activeuserprofiles=RYZEN-PC;Team
 eclipse.preferences.version=1
 org.eclipse.rse.systemtype.local.systemType.defaultUserId=nvade
+useridperkey=RYZEN-PC.Local\=nvade;

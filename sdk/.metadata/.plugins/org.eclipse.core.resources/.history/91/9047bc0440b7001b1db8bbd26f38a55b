@@ -1,0 +1,59 @@
+#include <glm/matrix.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
+
+#include <math.h>
+
+#include "xparameters.h"
+#include "netif/xadapter.h"
+#include "platform.h"
+#include "platform_config.h"
+#include "platform.h"
+#include "lwip/tcp.h"
+#include "xil_cache.h"
+#include "lwip/init.h"
+
+void tcp_fasttmr(void);
+void tcp_slowtmr(void);
+void lwip_init();
+
+extern volatile int TcpFastTmrFlag;
+extern volatile int TcpSlowTmrFlag;
+static struct netif server_netif;
+struct netif *echo_netif;
+
+int main()
+{
+	Xil_DCacheDisable();
+	ip_addr_t ipaddr, netmask, gw;
+	unsigned char mac_ethernet_address[] = { 0x00, 0x0a, 0x35, 0x00, 0x01, 0x02 };
+	echo_netif = &server_netif;
+	init_platform();
+	IP4_ADDR(&ipaddr,  172, 16,   0, 10);
+	IP4_ADDR(&netmask, 255, 255, 255, 0);
+	IP4_ADDR(&gw,      172, 16,   0,  1);
+	lwip_init();
+	if (!xemac_add(echo_netif, &ipaddr, &netmask, &gw, mac_ethernet_address, PLATFORM_EMAC_BASEADDR)) {
+		return -1;
+	}
+	netif_set_default(echo_netif);
+	platform_enable_interrupts();
+	netif_set_up(echo_netif);
+
+	while (1) {
+		if (TcpFastTmrFlag) {
+			tcp_fasttmr();
+			TcpFastTmrFlag = 0;
+		}
+		if (TcpSlowTmrFlag) {
+			tcp_slowtmr();
+			TcpSlowTmrFlag = 0;
+		}
+		xemacif_input(echo_netif);
+	}
+
+
+	glm::mat4 roatation_matrix = glm::rotate(glm::mat4(1.0f), (float)M_PI_2, glm::vec3(0.0f, 1.0f, 0.0f));
+	return 0;
+}
