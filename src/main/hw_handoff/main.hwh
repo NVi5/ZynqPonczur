@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon May 17 22:18:28 2021" VIVADOVERSION="2018.3">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon May 17 23:34:22 2021" VIVADOVERSION="2018.3">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z010" NAME="main" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -32,6 +32,26 @@
     <PORT DIR="I" LEFT="3" NAME="ENET0_GMII_RXD" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_ENET0_GMII_RXD">
       <CONNECTIONS>
         <CONNECTION INSTANCE="xlconcat_1" PORT="In0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="MDIO_ETHERNET_0_0_mdc" SIGIS="clk" SIGNAME="processing_system7_0_ENET0_MDIO_MDC">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="processing_system7_0" PORT="ENET0_MDIO_MDC"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="MDIO_ETHERNET_0_0_mdio_o" SIGIS="undef" SIGNAME="processing_system7_0_ENET0_MDIO_O">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="processing_system7_0" PORT="ENET0_MDIO_O"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="MDIO_ETHERNET_0_0_mdio_t" SIGIS="undef" SIGNAME="processing_system7_0_ENET0_MDIO_T">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="processing_system7_0" PORT="ENET0_MDIO_T"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="MDIO_ETHERNET_0_0_mdio_i" SIGIS="undef" SIGNAME="processing_system7_0_ENET0_MDIO_I">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="processing_system7_0" PORT="ENET0_MDIO_I"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="IO" LEFT="53" NAME="FIXED_IO_mio" RIGHT="0" SIGIS="undef" SIGNAME="processing_system7_0_MIO">
@@ -137,26 +157,6 @@
     <PORT DIR="IO" LEFT="3" NAME="DDR_dqs_p" RIGHT="0" SIGIS="undef" SIGNAME="processing_system7_0_DDR_DQS">
       <CONNECTIONS>
         <CONNECTION INSTANCE="processing_system7_0" PORT="DDR_DQS"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="MDIO_ETHERNET_0_0_mdc" SIGIS="clk" SIGNAME="processing_system7_0_ENET0_MDIO_MDC">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="processing_system7_0" PORT="ENET0_MDIO_MDC"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="MDIO_ETHERNET_0_0_mdio_o" SIGIS="undef" SIGNAME="processing_system7_0_ENET0_MDIO_O">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="processing_system7_0" PORT="ENET0_MDIO_O"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="MDIO_ETHERNET_0_0_mdio_t" SIGIS="undef" SIGNAME="processing_system7_0_ENET0_MDIO_T">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="processing_system7_0" PORT="ENET0_MDIO_T"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" NAME="MDIO_ETHERNET_0_0_mdio_i" SIGIS="undef" SIGNAME="processing_system7_0_ENET0_MDIO_I">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="processing_system7_0" PORT="ENET0_MDIO_I"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -1143,7 +1143,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="12" FULLNAME="/gpu_control_0" HWVERSION="1.0" INSTANCE="gpu_control_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="gpu_control" VLNV="xilinx.com:user:gpu_control:1.0">
+    <MODULE COREREVISION="16" FULLNAME="/gpu_control_0" HWVERSION="1.0" INSTANCE="gpu_control_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="gpu_control" VLNV="xilinx.com:user:gpu_control:1.0">
       <DOCUMENTS/>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="" INTERFACE="S00_AXI" NAME="S00_AXI_reg" RANGE="4096" USAGE="register"/>
@@ -1167,14 +1167,14 @@
         </PORT>
         <PORT DIR="O" NAME="start" SIGIS="undef" SIGNAME="gpu_control_0_start">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="start"/>
             <CONNECTION INSTANCE="ila_1" PORT="probe5"/>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="start"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="vertex_count" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_vertex_count">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="vertex_count"/>
             <CONNECTION INSTANCE="ila_1" PORT="probe0"/>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="vertex_count"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="address" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_address">
@@ -1183,23 +1183,102 @@
             <CONNECTION INSTANCE="ila_1" PORT="probe1"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="287" NAME="transform_matrix" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="17" NAME="matrix_00" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_00">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_00"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_01" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_01">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_01"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_02" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_02">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_02"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_03" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_03">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_03"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_04" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_04">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_04"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_05" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_05">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_05"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_06" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_06">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_06"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_07" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_07">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_07"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_08" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_08">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_08"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_09" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_09">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_09"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_10" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_10">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_10"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_11" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_11">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_11"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_12" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_12">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_12"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_13" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_13">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_13"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_14" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_14">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_14"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="17" NAME="matrix_15" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_15">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="matrix_15"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" LEFT="13" NAME="mem_wr_addr" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_mem_wr_addr">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="mem_wr_addr"/>
             <CONNECTION INSTANCE="ila_1" PORT="probe2"/>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="mem_wr_addr"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="17" NAME="mem_wr_data" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_mem_wr_data">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="mem_wr_data"/>
             <CONNECTION INSTANCE="ila_1" PORT="probe3"/>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="mem_wr_data"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="mem_wr_en" SIGIS="undef" SIGNAME="gpu_control_0_mem_wr_en">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="mem_wr_en"/>
             <CONNECTION INSTANCE="ila_1" PORT="probe4"/>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="mem_wr_en"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="16" NAME="s00_axi_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_s00_axi_awaddr">
@@ -1302,9 +1381,9 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="s00_axi_aresetn" SIGIS="rst" SIGNAME="processing_system7_0_FCLK_RESET0_N">
+        <PORT DIR="I" NAME="s00_axi_aresetn" SIGIS="rst" SIGNAME="rst_ps7_0_50M_peripheral_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_RESET0_N"/>
+            <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -1365,6 +1444,26 @@
             <PORTMAP LOGICAL="RREADY" PHYSICAL="s00_axi_rready"/>
           </PORTMAPS>
         </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="gpu_wrapper_0_transform_matrix" NAME="transform_matrix" TYPE="TARGET" VLNV="xilinx.com:user:transform_matrix:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="matrix_10" PHYSICAL="matrix_10"/>
+            <PORTMAP LOGICAL="matrix_00" PHYSICAL="matrix_00"/>
+            <PORTMAP LOGICAL="matrix_11" PHYSICAL="matrix_11"/>
+            <PORTMAP LOGICAL="matrix_01" PHYSICAL="matrix_01"/>
+            <PORTMAP LOGICAL="matrix_12" PHYSICAL="matrix_12"/>
+            <PORTMAP LOGICAL="matrix_02" PHYSICAL="matrix_02"/>
+            <PORTMAP LOGICAL="matrix_13" PHYSICAL="matrix_13"/>
+            <PORTMAP LOGICAL="matrix_03" PHYSICAL="matrix_03"/>
+            <PORTMAP LOGICAL="matrix_14" PHYSICAL="matrix_14"/>
+            <PORTMAP LOGICAL="matrix_04" PHYSICAL="matrix_04"/>
+            <PORTMAP LOGICAL="matrix_15" PHYSICAL="matrix_15"/>
+            <PORTMAP LOGICAL="matrix_05" PHYSICAL="matrix_05"/>
+            <PORTMAP LOGICAL="matrix_06" PHYSICAL="matrix_06"/>
+            <PORTMAP LOGICAL="matrix_07" PHYSICAL="matrix_07"/>
+            <PORTMAP LOGICAL="matrix_08" PHYSICAL="matrix_08"/>
+            <PORTMAP LOGICAL="matrix_09" PHYSICAL="matrix_09"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
     <MODULE COREREVISION="1" FULLNAME="/gpu_wrapper_0" HWVERSION="1.0" INSTANCE="gpu_wrapper_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="gpu_wrapper" VLNV="xilinx.com:module_ref:gpu_wrapper:1.0">
@@ -1379,9 +1478,9 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="reset" SIGIS="rst" SIGNAME="processing_system7_0_FCLK_RESET0_N">
+        <PORT DIR="I" NAME="reset" SIGIS="rst" SIGNAME="rst_ps7_0_50M_peripheral_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_RESET0_N"/>
+            <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="31" NAME="vertex_count" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_vertex_count">
@@ -1409,7 +1508,86 @@
             <CONNECTION INSTANCE="gpu_control_0" PORT="mem_wr_en"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="287" NAME="transform_matrix" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="17" NAME="matrix_00" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_00">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_00"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_01" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_01">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_01"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_02" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_02">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_02"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_03" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_03">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_03"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_04" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_04">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_04"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_05" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_05">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_05"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_06" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_06">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_06"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_07" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_07">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_07"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_08" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_08">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_08"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_09" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_09">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_09"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_10" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_10">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_10"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_11" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_11">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_11"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_12" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_12">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_12"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_13" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_13">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_13"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_14" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_14">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_14"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="17" NAME="matrix_15" RIGHT="0" SIGIS="undef" SIGNAME="gpu_control_0_matrix_15">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="matrix_15"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" LEFT="7" NAME="output_color" RIGHT="0" SIGIS="undef" SIGNAME="gpu_wrapper_0_output_color">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_master_0" PORT="pixel_data"/>
@@ -1456,7 +1634,28 @@
           </CONNECTIONS>
         </PORT>
       </PORTS>
-      <BUSINTERFACES/>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="gpu_wrapper_0_transform_matrix" NAME="transform_matrix" TYPE="INITIATOR" VLNV="xilinx.com:user:transform_matrix:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="matrix_00" PHYSICAL="matrix_00"/>
+            <PORTMAP LOGICAL="matrix_01" PHYSICAL="matrix_01"/>
+            <PORTMAP LOGICAL="matrix_02" PHYSICAL="matrix_02"/>
+            <PORTMAP LOGICAL="matrix_03" PHYSICAL="matrix_03"/>
+            <PORTMAP LOGICAL="matrix_04" PHYSICAL="matrix_04"/>
+            <PORTMAP LOGICAL="matrix_05" PHYSICAL="matrix_05"/>
+            <PORTMAP LOGICAL="matrix_06" PHYSICAL="matrix_06"/>
+            <PORTMAP LOGICAL="matrix_07" PHYSICAL="matrix_07"/>
+            <PORTMAP LOGICAL="matrix_08" PHYSICAL="matrix_08"/>
+            <PORTMAP LOGICAL="matrix_09" PHYSICAL="matrix_09"/>
+            <PORTMAP LOGICAL="matrix_10" PHYSICAL="matrix_10"/>
+            <PORTMAP LOGICAL="matrix_11" PHYSICAL="matrix_11"/>
+            <PORTMAP LOGICAL="matrix_12" PHYSICAL="matrix_12"/>
+            <PORTMAP LOGICAL="matrix_13" PHYSICAL="matrix_13"/>
+            <PORTMAP LOGICAL="matrix_14" PHYSICAL="matrix_14"/>
+            <PORTMAP LOGICAL="matrix_15" PHYSICAL="matrix_15"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
     </MODULE>
     <MODULE COREREVISION="8" FULLNAME="/ila_0" HWVERSION="6.2" INSTANCE="ila_0" IPTYPE="MONITOR" IS_ENABLE="1" MODCLASS="MONITOR" MODTYPE="ila" VLNV="xilinx.com:ip:ila:6.2">
       <DOCUMENTS>
@@ -9245,22 +9444,17 @@
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="ACLK"/>
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_GP0_ACLK"/>
             <CONNECTION INSTANCE="axi_smc" PORT="aclk"/>
-            <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="slowest_sync_clk"/>
             <CONNECTION INSTANCE="axi_master_0" PORT="m00_axi_aclk"/>
-            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="clk"/>
             <CONNECTION INSTANCE="ila_0" PORT="clk"/>
             <CONNECTION INSTANCE="ila_1" PORT="clk"/>
             <CONNECTION INSTANCE="gpu_control_0" PORT="s00_axi_aclk"/>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="clk"/>
+            <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="slowest_sync_clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="FCLK_RESET0_N" SIGIS="rst" SIGNAME="processing_system7_0_FCLK_RESET0_N">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="S00_ARESETN"/>
-            <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M00_ARESETN"/>
-            <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="ARESETN"/>
             <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="ext_reset_in"/>
-            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="reset"/>
-            <CONNECTION INSTANCE="gpu_control_0" PORT="s00_axi_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="IO" LEFT="53" NAME="MIO" RIGHT="0" SIGIS="undef" SIGNAME="processing_system7_0_MIO">
@@ -9919,9 +10113,9 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="ARESETN" SIGIS="rst" SIGNAME="processing_system7_0_FCLK_RESET0_N">
+        <PORT DIR="I" NAME="ARESETN" SIGIS="rst" SIGNAME="rst_ps7_0_50M_peripheral_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_RESET0_N"/>
+            <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="S00_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
@@ -9929,9 +10123,9 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S00_ARESETN" SIGIS="rst" SIGNAME="processing_system7_0_FCLK_RESET0_N">
+        <PORT DIR="I" NAME="S00_ARESETN" SIGIS="rst" SIGNAME="rst_ps7_0_50M_peripheral_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_RESET0_N"/>
+            <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="M00_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
@@ -9939,9 +10133,9 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_ARESETN" SIGIS="rst" SIGNAME="processing_system7_0_FCLK_RESET0_N">
+        <PORT DIR="I" NAME="M00_ARESETN" SIGIS="rst" SIGNAME="rst_ps7_0_50M_peripheral_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_RESET0_N"/>
+            <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="11" NAME="S00_AXI_awid" RIGHT="0" SIGIS="undef" SIGNAME="processing_system7_0_M_AXI_GP0_AWID">
@@ -10339,6 +10533,11 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_smc" PORT="aresetn"/>
             <CONNECTION INSTANCE="axi_master_0" PORT="m00_axi_aresetn"/>
+            <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="ARESETN"/>
+            <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="S00_ARESETN"/>
+            <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M00_ARESETN"/>
+            <CONNECTION INSTANCE="gpu_control_0" PORT="s00_axi_aresetn"/>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="reset"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

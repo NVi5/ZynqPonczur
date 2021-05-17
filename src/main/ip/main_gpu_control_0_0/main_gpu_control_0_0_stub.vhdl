@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
--- Date        : Mon May 17 22:09:18 2021
--- Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
+-- Date        : Mon May 17 23:20:02 2021
+-- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
---               C:/Users/wojte/Desktop/sdup_projekt/ZynqSDUP/src/main/ip/main_gpu_control_0_0/main_gpu_control_0_0_stub.vhdl
+--               C:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main/ip/main_gpu_control_0_0/main_gpu_control_0_0_stub.vhdl
 -- Design      : main_gpu_control_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z010clg400-1
@@ -18,7 +18,22 @@ entity main_gpu_control_0_0 is
     start : out STD_LOGIC;
     vertex_count : out STD_LOGIC_VECTOR ( 31 downto 0 );
     address : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    transform_matrix : out STD_LOGIC_VECTOR ( 287 downto 0 );
+    matrix_00 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_01 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_02 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_03 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_04 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_05 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_06 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_07 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_08 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_09 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_10 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_11 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_12 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_13 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_14 : out STD_LOGIC_VECTOR ( 17 downto 0 );
+    matrix_15 : out STD_LOGIC_VECTOR ( 17 downto 0 );
     mem_wr_addr : out STD_LOGIC_VECTOR ( 13 downto 0 );
     mem_wr_data : out STD_LOGIC_VECTOR ( 17 downto 0 );
     mem_wr_en : out STD_LOGIC;
@@ -51,7 +66,7 @@ architecture stub of main_gpu_control_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "status,start,vertex_count[31:0],address[31:0],transform_matrix[287:0],mem_wr_addr[13:0],mem_wr_data[17:0],mem_wr_en,s00_axi_awaddr[16:0],s00_axi_awprot[2:0],s00_axi_awvalid,s00_axi_awready,s00_axi_wdata[31:0],s00_axi_wstrb[3:0],s00_axi_wvalid,s00_axi_wready,s00_axi_bresp[1:0],s00_axi_bvalid,s00_axi_bready,s00_axi_araddr[16:0],s00_axi_arprot[2:0],s00_axi_arvalid,s00_axi_arready,s00_axi_rdata[31:0],s00_axi_rresp[1:0],s00_axi_rvalid,s00_axi_rready,s00_axi_aclk,s00_axi_aresetn";
+attribute black_box_pad_pin of stub : architecture is "status,start,vertex_count[31:0],address[31:0],matrix_00[17:0],matrix_01[17:0],matrix_02[17:0],matrix_03[17:0],matrix_04[17:0],matrix_05[17:0],matrix_06[17:0],matrix_07[17:0],matrix_08[17:0],matrix_09[17:0],matrix_10[17:0],matrix_11[17:0],matrix_12[17:0],matrix_13[17:0],matrix_14[17:0],matrix_15[17:0],mem_wr_addr[13:0],mem_wr_data[17:0],mem_wr_en,s00_axi_awaddr[16:0],s00_axi_awprot[2:0],s00_axi_awvalid,s00_axi_awready,s00_axi_wdata[31:0],s00_axi_wstrb[3:0],s00_axi_wvalid,s00_axi_wready,s00_axi_bresp[1:0],s00_axi_bvalid,s00_axi_bready,s00_axi_araddr[16:0],s00_axi_arprot[2:0],s00_axi_arvalid,s00_axi_arready,s00_axi_rdata[31:0],s00_axi_rresp[1:0],s00_axi_rvalid,s00_axi_rready,s00_axi_aclk,s00_axi_aresetn";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "gpu_control_v1_0,Vivado 2018.3";
 begin

@@ -1,15 +1,15 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-//Date        : Mon May 17 22:18:24 2021
-//Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
+//Date        : Mon May 17 23:34:18 2021
+//Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
 //Purpose     : IP block netlist
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=14,numReposBlks=12,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=4,da_clkrst_cnt=1,da_ps7_cnt=4,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
+(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=14,numReposBlks=12,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=5,da_board_cnt=1,da_clkrst_cnt=1,da_ps7_cnt=4,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
 module main
    (DDR_addr,
     DDR_ba,
@@ -167,6 +167,22 @@ module main
   wire gpu_wrapper_0_output_valid;
   wire [10:0]gpu_wrapper_0_pixel_x_out;
   wire [10:0]gpu_wrapper_0_pixel_y_out;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_00;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_01;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_02;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_03;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_04;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_05;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_06;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_07;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_08;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_09;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_10;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_11;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_12;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_13;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_14;
+  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_15;
   wire [10:0]gpu_wrapper_0_width;
   wire [14:0]processing_system7_0_DDR_ADDR;
   wire [2:0]processing_system7_0_DDR_BA;
@@ -186,6 +202,7 @@ module main
   wire [7:0]processing_system7_0_ENET0_GMII_TXD;
   wire [0:0]processing_system7_0_ENET0_GMII_TX_EN;
   wire processing_system7_0_FCLK_CLK0;
+  wire processing_system7_0_FCLK_RESET0_N;
   wire processing_system7_0_FIXED_IO_DDR_VRN;
   wire processing_system7_0_FIXED_IO_DDR_VRP;
   wire [53:0]processing_system7_0_FIXED_IO_MIO;
@@ -253,7 +270,6 @@ module main
   (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_WREADY;
   (* DEBUG = "true" *) (* MARK_DEBUG *) wire [3:0]ps7_0_axi_periph_M00_AXI_WSTRB;
   (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_WVALID;
-  wire rst_ps7_0_50M_peripheral_aresetn;
   wire [0:0]rst_ps7_0_50M_peripheral_aresetn1;
   wire [3:0]xlconcat_0_dout;
   wire [7:0]xlconcat_1_dout;
@@ -404,12 +420,28 @@ module main
         .aresetn(rst_ps7_0_50M_peripheral_aresetn1));
   main_gpu_control_0_0 gpu_control_0
        (.address(gpu_control_0_address),
+        .matrix_00(gpu_wrapper_0_transform_matrix_matrix_00),
+        .matrix_01(gpu_wrapper_0_transform_matrix_matrix_01),
+        .matrix_02(gpu_wrapper_0_transform_matrix_matrix_02),
+        .matrix_03(gpu_wrapper_0_transform_matrix_matrix_03),
+        .matrix_04(gpu_wrapper_0_transform_matrix_matrix_04),
+        .matrix_05(gpu_wrapper_0_transform_matrix_matrix_05),
+        .matrix_06(gpu_wrapper_0_transform_matrix_matrix_06),
+        .matrix_07(gpu_wrapper_0_transform_matrix_matrix_07),
+        .matrix_08(gpu_wrapper_0_transform_matrix_matrix_08),
+        .matrix_09(gpu_wrapper_0_transform_matrix_matrix_09),
+        .matrix_10(gpu_wrapper_0_transform_matrix_matrix_10),
+        .matrix_11(gpu_wrapper_0_transform_matrix_matrix_11),
+        .matrix_12(gpu_wrapper_0_transform_matrix_matrix_12),
+        .matrix_13(gpu_wrapper_0_transform_matrix_matrix_13),
+        .matrix_14(gpu_wrapper_0_transform_matrix_matrix_14),
+        .matrix_15(gpu_wrapper_0_transform_matrix_matrix_15),
         .mem_wr_addr(gpu_control_0_mem_wr_addr),
         .mem_wr_data(gpu_control_0_mem_wr_data),
         .mem_wr_en(gpu_control_0_mem_wr_en),
         .s00_axi_aclk(processing_system7_0_FCLK_CLK0),
         .s00_axi_araddr(ps7_0_axi_periph_M00_AXI_ARADDR[16:0]),
-        .s00_axi_aresetn(rst_ps7_0_50M_peripheral_aresetn),
+        .s00_axi_aresetn(rst_ps7_0_50M_peripheral_aresetn1),
         .s00_axi_arprot(ps7_0_axi_periph_M00_AXI_ARPROT),
         .s00_axi_arready(ps7_0_axi_periph_M00_AXI_ARREADY),
         .s00_axi_arvalid(ps7_0_axi_periph_M00_AXI_ARVALID),
@@ -436,6 +468,22 @@ module main
         .draw(gpu_wrapper_0_draw),
         .frame_end(gpu_wrapper_0_frame_end),
         .height(gpu_wrapper_0_height),
+        .matrix_00(gpu_wrapper_0_transform_matrix_matrix_00),
+        .matrix_01(gpu_wrapper_0_transform_matrix_matrix_01),
+        .matrix_02(gpu_wrapper_0_transform_matrix_matrix_02),
+        .matrix_03(gpu_wrapper_0_transform_matrix_matrix_03),
+        .matrix_04(gpu_wrapper_0_transform_matrix_matrix_04),
+        .matrix_05(gpu_wrapper_0_transform_matrix_matrix_05),
+        .matrix_06(gpu_wrapper_0_transform_matrix_matrix_06),
+        .matrix_07(gpu_wrapper_0_transform_matrix_matrix_07),
+        .matrix_08(gpu_wrapper_0_transform_matrix_matrix_08),
+        .matrix_09(gpu_wrapper_0_transform_matrix_matrix_09),
+        .matrix_10(gpu_wrapper_0_transform_matrix_matrix_10),
+        .matrix_11(gpu_wrapper_0_transform_matrix_matrix_11),
+        .matrix_12(gpu_wrapper_0_transform_matrix_matrix_12),
+        .matrix_13(gpu_wrapper_0_transform_matrix_matrix_13),
+        .matrix_14(gpu_wrapper_0_transform_matrix_matrix_14),
+        .matrix_15(gpu_wrapper_0_transform_matrix_matrix_15),
         .mem_wr_addr(gpu_control_0_mem_wr_addr),
         .mem_wr_data(gpu_control_0_mem_wr_data),
         .mem_wr_en(gpu_control_0_mem_wr_en),
@@ -444,9 +492,8 @@ module main
         .output_valid(gpu_wrapper_0_output_valid),
         .pixel_x_out(gpu_wrapper_0_pixel_x_out),
         .pixel_y_out(gpu_wrapper_0_pixel_y_out),
-        .reset(rst_ps7_0_50M_peripheral_aresetn),
+        .reset(rst_ps7_0_50M_peripheral_aresetn1),
         .start(gpu_control_0_start),
-        .transform_matrix({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .vertex_count(gpu_control_0_vertices_size),
         .width(gpu_wrapper_0_width));
   main_ila_0_0 ila_0
@@ -511,7 +558,7 @@ module main
         .ENET0_MDIO_O(processing_system7_0_MDIO_ETHERNET_0_MDIO_O),
         .ENET0_MDIO_T(processing_system7_0_MDIO_ETHERNET_0_MDIO_T),
         .FCLK_CLK0(processing_system7_0_FCLK_CLK0),
-        .FCLK_RESET0_N(rst_ps7_0_50M_peripheral_aresetn),
+        .FCLK_RESET0_N(processing_system7_0_FCLK_RESET0_N),
         .MIO(FIXED_IO_mio[53:0]),
         .M_AXI_GP0_ACLK(processing_system7_0_FCLK_CLK0),
         .M_AXI_GP0_ARADDR(processing_system7_0_M_AXI_GP0_ARADDR),
@@ -594,9 +641,9 @@ module main
         .S_AXI_GP0_WVALID(axi_smc_M00_AXI_WVALID));
   main_ps7_0_axi_periph_0 ps7_0_axi_periph
        (.ACLK(processing_system7_0_FCLK_CLK0),
-        .ARESETN(rst_ps7_0_50M_peripheral_aresetn),
+        .ARESETN(rst_ps7_0_50M_peripheral_aresetn1),
         .M00_ACLK(processing_system7_0_FCLK_CLK0),
-        .M00_ARESETN(rst_ps7_0_50M_peripheral_aresetn),
+        .M00_ARESETN(rst_ps7_0_50M_peripheral_aresetn1),
         .M00_AXI_araddr(ps7_0_axi_periph_M00_AXI_ARADDR),
         .M00_AXI_arprot(ps7_0_axi_periph_M00_AXI_ARPROT),
         .M00_AXI_arready(ps7_0_axi_periph_M00_AXI_ARREADY),
@@ -617,7 +664,7 @@ module main
         .M00_AXI_wstrb(ps7_0_axi_periph_M00_AXI_WSTRB),
         .M00_AXI_wvalid(ps7_0_axi_periph_M00_AXI_WVALID),
         .S00_ACLK(processing_system7_0_FCLK_CLK0),
-        .S00_ARESETN(rst_ps7_0_50M_peripheral_aresetn),
+        .S00_ARESETN(rst_ps7_0_50M_peripheral_aresetn1),
         .S00_AXI_araddr(processing_system7_0_M_AXI_GP0_ARADDR),
         .S00_AXI_arburst(processing_system7_0_M_AXI_GP0_ARBURST),
         .S00_AXI_arcache(processing_system7_0_M_AXI_GP0_ARCACHE),
@@ -659,7 +706,7 @@ module main
   main_rst_ps7_0_50M_0 rst_ps7_0_50M
        (.aux_reset_in(1'b1),
         .dcm_locked(1'b1),
-        .ext_reset_in(rst_ps7_0_50M_peripheral_aresetn),
+        .ext_reset_in(processing_system7_0_FCLK_RESET0_N),
         .mb_debug_sys_rst(1'b0),
         .peripheral_aresetn(rst_ps7_0_50M_peripheral_aresetn1),
         .slowest_sync_clk(processing_system7_0_FCLK_CLK0));

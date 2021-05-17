@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Mon May 17 22:09:18 2021
-// Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
+// Date        : Mon May 17 23:20:02 2021
+// Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               C:/Users/wojte/Desktop/sdup_projekt/ZynqSDUP/src/main/ip/main_gpu_control_0_0/main_gpu_control_0_0_sim_netlist.v
+//               C:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main/ip/main_gpu_control_0_0/main_gpu_control_0_0_sim_netlist.v
 // Design      : main_gpu_control_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -19,7 +19,22 @@ module main_gpu_control_0_0
     start,
     vertex_count,
     address,
-    transform_matrix,
+    matrix_00,
+    matrix_01,
+    matrix_02,
+    matrix_03,
+    matrix_04,
+    matrix_05,
+    matrix_06,
+    matrix_07,
+    matrix_08,
+    matrix_09,
+    matrix_10,
+    matrix_11,
+    matrix_12,
+    matrix_13,
+    matrix_14,
+    matrix_15,
     mem_wr_addr,
     mem_wr_data,
     mem_wr_en,
@@ -48,7 +63,22 @@ module main_gpu_control_0_0
   output start;
   output [31:0]vertex_count;
   output [31:0]address;
-  output [287:0]transform_matrix;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_00" *) output [17:0]matrix_00;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_01" *) output [17:0]matrix_01;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_02" *) output [17:0]matrix_02;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_03" *) output [17:0]matrix_03;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_04" *) output [17:0]matrix_04;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_05" *) output [17:0]matrix_05;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_06" *) output [17:0]matrix_06;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_07" *) output [17:0]matrix_07;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_08" *) output [17:0]matrix_08;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_09" *) output [17:0]matrix_09;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_10" *) output [17:0]matrix_10;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_11" *) output [17:0]matrix_11;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_12" *) output [17:0]matrix_12;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_13" *) output [17:0]matrix_13;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_14" *) output [17:0]matrix_14;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_15" *) output [17:0]matrix_15;
   output [13:0]mem_wr_addr;
   output [17:0]mem_wr_data;
   output mem_wr_en;
@@ -76,6 +106,7 @@ module main_gpu_control_0_0
 
   wire \<const0> ;
   wire [31:0]address;
+  wire [15:0]\^matrix_15 ;
   wire [13:0]mem_wr_addr;
   wire [17:0]mem_wr_data;
   wire mem_wr_en;
@@ -97,9 +128,281 @@ module main_gpu_control_0_0
   wire s00_axi_wvalid;
   wire start;
   wire status;
-  wire [15:0]\^transform_matrix ;
   wire [31:0]vertex_count;
 
+  assign matrix_00[17] = \<const0> ;
+  assign matrix_00[16] = \<const0> ;
+  assign matrix_00[15] = \<const0> ;
+  assign matrix_00[14] = \<const0> ;
+  assign matrix_00[13] = \<const0> ;
+  assign matrix_00[12] = \<const0> ;
+  assign matrix_00[11] = \<const0> ;
+  assign matrix_00[10] = \<const0> ;
+  assign matrix_00[9] = \<const0> ;
+  assign matrix_00[8] = \<const0> ;
+  assign matrix_00[7] = \<const0> ;
+  assign matrix_00[6] = \<const0> ;
+  assign matrix_00[5] = \<const0> ;
+  assign matrix_00[4] = \<const0> ;
+  assign matrix_00[3] = \<const0> ;
+  assign matrix_00[2] = \<const0> ;
+  assign matrix_00[1] = \<const0> ;
+  assign matrix_00[0] = \<const0> ;
+  assign matrix_01[17] = \<const0> ;
+  assign matrix_01[16] = \<const0> ;
+  assign matrix_01[15] = \<const0> ;
+  assign matrix_01[14] = \<const0> ;
+  assign matrix_01[13] = \<const0> ;
+  assign matrix_01[12] = \<const0> ;
+  assign matrix_01[11] = \<const0> ;
+  assign matrix_01[10] = \<const0> ;
+  assign matrix_01[9] = \<const0> ;
+  assign matrix_01[8] = \<const0> ;
+  assign matrix_01[7] = \<const0> ;
+  assign matrix_01[6] = \<const0> ;
+  assign matrix_01[5] = \<const0> ;
+  assign matrix_01[4] = \<const0> ;
+  assign matrix_01[3] = \<const0> ;
+  assign matrix_01[2] = \<const0> ;
+  assign matrix_01[1] = \<const0> ;
+  assign matrix_01[0] = \<const0> ;
+  assign matrix_02[17] = \<const0> ;
+  assign matrix_02[16] = \<const0> ;
+  assign matrix_02[15] = \<const0> ;
+  assign matrix_02[14] = \<const0> ;
+  assign matrix_02[13] = \<const0> ;
+  assign matrix_02[12] = \<const0> ;
+  assign matrix_02[11] = \<const0> ;
+  assign matrix_02[10] = \<const0> ;
+  assign matrix_02[9] = \<const0> ;
+  assign matrix_02[8] = \<const0> ;
+  assign matrix_02[7] = \<const0> ;
+  assign matrix_02[6] = \<const0> ;
+  assign matrix_02[5] = \<const0> ;
+  assign matrix_02[4] = \<const0> ;
+  assign matrix_02[3] = \<const0> ;
+  assign matrix_02[2] = \<const0> ;
+  assign matrix_02[1] = \<const0> ;
+  assign matrix_02[0] = \<const0> ;
+  assign matrix_03[17] = \<const0> ;
+  assign matrix_03[16] = \<const0> ;
+  assign matrix_03[15] = \<const0> ;
+  assign matrix_03[14] = \<const0> ;
+  assign matrix_03[13] = \<const0> ;
+  assign matrix_03[12] = \<const0> ;
+  assign matrix_03[11] = \<const0> ;
+  assign matrix_03[10] = \<const0> ;
+  assign matrix_03[9] = \<const0> ;
+  assign matrix_03[8] = \<const0> ;
+  assign matrix_03[7] = \<const0> ;
+  assign matrix_03[6] = \<const0> ;
+  assign matrix_03[5] = \<const0> ;
+  assign matrix_03[4] = \<const0> ;
+  assign matrix_03[3] = \<const0> ;
+  assign matrix_03[2] = \<const0> ;
+  assign matrix_03[1] = \<const0> ;
+  assign matrix_03[0] = \<const0> ;
+  assign matrix_04[17] = \<const0> ;
+  assign matrix_04[16] = \<const0> ;
+  assign matrix_04[15] = \<const0> ;
+  assign matrix_04[14] = \<const0> ;
+  assign matrix_04[13] = \<const0> ;
+  assign matrix_04[12] = \<const0> ;
+  assign matrix_04[11] = \<const0> ;
+  assign matrix_04[10] = \<const0> ;
+  assign matrix_04[9] = \<const0> ;
+  assign matrix_04[8] = \<const0> ;
+  assign matrix_04[7] = \<const0> ;
+  assign matrix_04[6] = \<const0> ;
+  assign matrix_04[5] = \<const0> ;
+  assign matrix_04[4] = \<const0> ;
+  assign matrix_04[3] = \<const0> ;
+  assign matrix_04[2] = \<const0> ;
+  assign matrix_04[1] = \<const0> ;
+  assign matrix_04[0] = \<const0> ;
+  assign matrix_05[17] = \<const0> ;
+  assign matrix_05[16] = \<const0> ;
+  assign matrix_05[15] = \<const0> ;
+  assign matrix_05[14] = \<const0> ;
+  assign matrix_05[13] = \<const0> ;
+  assign matrix_05[12] = \<const0> ;
+  assign matrix_05[11] = \<const0> ;
+  assign matrix_05[10] = \<const0> ;
+  assign matrix_05[9] = \<const0> ;
+  assign matrix_05[8] = \<const0> ;
+  assign matrix_05[7] = \<const0> ;
+  assign matrix_05[6] = \<const0> ;
+  assign matrix_05[5] = \<const0> ;
+  assign matrix_05[4] = \<const0> ;
+  assign matrix_05[3] = \<const0> ;
+  assign matrix_05[2] = \<const0> ;
+  assign matrix_05[1] = \<const0> ;
+  assign matrix_05[0] = \<const0> ;
+  assign matrix_06[17] = \<const0> ;
+  assign matrix_06[16] = \<const0> ;
+  assign matrix_06[15] = \<const0> ;
+  assign matrix_06[14] = \<const0> ;
+  assign matrix_06[13] = \<const0> ;
+  assign matrix_06[12] = \<const0> ;
+  assign matrix_06[11] = \<const0> ;
+  assign matrix_06[10] = \<const0> ;
+  assign matrix_06[9] = \<const0> ;
+  assign matrix_06[8] = \<const0> ;
+  assign matrix_06[7] = \<const0> ;
+  assign matrix_06[6] = \<const0> ;
+  assign matrix_06[5] = \<const0> ;
+  assign matrix_06[4] = \<const0> ;
+  assign matrix_06[3] = \<const0> ;
+  assign matrix_06[2] = \<const0> ;
+  assign matrix_06[1] = \<const0> ;
+  assign matrix_06[0] = \<const0> ;
+  assign matrix_07[17] = \<const0> ;
+  assign matrix_07[16] = \<const0> ;
+  assign matrix_07[15] = \<const0> ;
+  assign matrix_07[14] = \<const0> ;
+  assign matrix_07[13] = \<const0> ;
+  assign matrix_07[12] = \<const0> ;
+  assign matrix_07[11] = \<const0> ;
+  assign matrix_07[10] = \<const0> ;
+  assign matrix_07[9] = \<const0> ;
+  assign matrix_07[8] = \<const0> ;
+  assign matrix_07[7] = \<const0> ;
+  assign matrix_07[6] = \<const0> ;
+  assign matrix_07[5] = \<const0> ;
+  assign matrix_07[4] = \<const0> ;
+  assign matrix_07[3] = \<const0> ;
+  assign matrix_07[2] = \<const0> ;
+  assign matrix_07[1] = \<const0> ;
+  assign matrix_07[0] = \<const0> ;
+  assign matrix_08[17] = \<const0> ;
+  assign matrix_08[16] = \<const0> ;
+  assign matrix_08[15] = \<const0> ;
+  assign matrix_08[14] = \<const0> ;
+  assign matrix_08[13] = \<const0> ;
+  assign matrix_08[12] = \<const0> ;
+  assign matrix_08[11] = \<const0> ;
+  assign matrix_08[10] = \<const0> ;
+  assign matrix_08[9] = \<const0> ;
+  assign matrix_08[8] = \<const0> ;
+  assign matrix_08[7] = \<const0> ;
+  assign matrix_08[6] = \<const0> ;
+  assign matrix_08[5] = \<const0> ;
+  assign matrix_08[4] = \<const0> ;
+  assign matrix_08[3] = \<const0> ;
+  assign matrix_08[2] = \<const0> ;
+  assign matrix_08[1] = \<const0> ;
+  assign matrix_08[0] = \<const0> ;
+  assign matrix_09[17] = \<const0> ;
+  assign matrix_09[16] = \<const0> ;
+  assign matrix_09[15] = \<const0> ;
+  assign matrix_09[14] = \<const0> ;
+  assign matrix_09[13] = \<const0> ;
+  assign matrix_09[12] = \<const0> ;
+  assign matrix_09[11] = \<const0> ;
+  assign matrix_09[10] = \<const0> ;
+  assign matrix_09[9] = \<const0> ;
+  assign matrix_09[8] = \<const0> ;
+  assign matrix_09[7] = \<const0> ;
+  assign matrix_09[6] = \<const0> ;
+  assign matrix_09[5] = \<const0> ;
+  assign matrix_09[4] = \<const0> ;
+  assign matrix_09[3] = \<const0> ;
+  assign matrix_09[2] = \<const0> ;
+  assign matrix_09[1] = \<const0> ;
+  assign matrix_09[0] = \<const0> ;
+  assign matrix_10[17] = \<const0> ;
+  assign matrix_10[16] = \<const0> ;
+  assign matrix_10[15] = \<const0> ;
+  assign matrix_10[14] = \<const0> ;
+  assign matrix_10[13] = \<const0> ;
+  assign matrix_10[12] = \<const0> ;
+  assign matrix_10[11] = \<const0> ;
+  assign matrix_10[10] = \<const0> ;
+  assign matrix_10[9] = \<const0> ;
+  assign matrix_10[8] = \<const0> ;
+  assign matrix_10[7] = \<const0> ;
+  assign matrix_10[6] = \<const0> ;
+  assign matrix_10[5] = \<const0> ;
+  assign matrix_10[4] = \<const0> ;
+  assign matrix_10[3] = \<const0> ;
+  assign matrix_10[2] = \<const0> ;
+  assign matrix_10[1] = \<const0> ;
+  assign matrix_10[0] = \<const0> ;
+  assign matrix_11[17] = \<const0> ;
+  assign matrix_11[16] = \<const0> ;
+  assign matrix_11[15] = \<const0> ;
+  assign matrix_11[14] = \<const0> ;
+  assign matrix_11[13] = \<const0> ;
+  assign matrix_11[12] = \<const0> ;
+  assign matrix_11[11] = \<const0> ;
+  assign matrix_11[10] = \<const0> ;
+  assign matrix_11[9] = \<const0> ;
+  assign matrix_11[8] = \<const0> ;
+  assign matrix_11[7] = \<const0> ;
+  assign matrix_11[6] = \<const0> ;
+  assign matrix_11[5] = \<const0> ;
+  assign matrix_11[4] = \<const0> ;
+  assign matrix_11[3] = \<const0> ;
+  assign matrix_11[2] = \<const0> ;
+  assign matrix_11[1] = \<const0> ;
+  assign matrix_11[0] = \<const0> ;
+  assign matrix_12[17] = \<const0> ;
+  assign matrix_12[16] = \<const0> ;
+  assign matrix_12[15] = \<const0> ;
+  assign matrix_12[14] = \<const0> ;
+  assign matrix_12[13] = \<const0> ;
+  assign matrix_12[12] = \<const0> ;
+  assign matrix_12[11] = \<const0> ;
+  assign matrix_12[10] = \<const0> ;
+  assign matrix_12[9] = \<const0> ;
+  assign matrix_12[8] = \<const0> ;
+  assign matrix_12[7] = \<const0> ;
+  assign matrix_12[6] = \<const0> ;
+  assign matrix_12[5] = \<const0> ;
+  assign matrix_12[4] = \<const0> ;
+  assign matrix_12[3] = \<const0> ;
+  assign matrix_12[2] = \<const0> ;
+  assign matrix_12[1] = \<const0> ;
+  assign matrix_12[0] = \<const0> ;
+  assign matrix_13[17] = \<const0> ;
+  assign matrix_13[16] = \<const0> ;
+  assign matrix_13[15] = \<const0> ;
+  assign matrix_13[14] = \<const0> ;
+  assign matrix_13[13] = \<const0> ;
+  assign matrix_13[12] = \<const0> ;
+  assign matrix_13[11] = \<const0> ;
+  assign matrix_13[10] = \<const0> ;
+  assign matrix_13[9] = \<const0> ;
+  assign matrix_13[8] = \<const0> ;
+  assign matrix_13[7] = \<const0> ;
+  assign matrix_13[6] = \<const0> ;
+  assign matrix_13[5] = \<const0> ;
+  assign matrix_13[4] = \<const0> ;
+  assign matrix_13[3] = \<const0> ;
+  assign matrix_13[2] = \<const0> ;
+  assign matrix_13[1] = \<const0> ;
+  assign matrix_13[0] = \<const0> ;
+  assign matrix_14[17] = \<const0> ;
+  assign matrix_14[16] = \<const0> ;
+  assign matrix_14[15] = \<const0> ;
+  assign matrix_14[14] = \<const0> ;
+  assign matrix_14[13] = \<const0> ;
+  assign matrix_14[12] = \<const0> ;
+  assign matrix_14[11] = \<const0> ;
+  assign matrix_14[10] = \<const0> ;
+  assign matrix_14[9] = \<const0> ;
+  assign matrix_14[8] = \<const0> ;
+  assign matrix_14[7] = \<const0> ;
+  assign matrix_14[6] = \<const0> ;
+  assign matrix_14[5] = \<const0> ;
+  assign matrix_14[4] = \<const0> ;
+  assign matrix_14[3] = \<const0> ;
+  assign matrix_14[2] = \<const0> ;
+  assign matrix_14[1] = \<const0> ;
+  assign matrix_14[0] = \<const0> ;
+  assign matrix_15[17] = \<const0> ;
+  assign matrix_15[16] = \<const0> ;
+  assign matrix_15[15:0] = \^matrix_15 [15:0];
   assign s00_axi_bresp[1] = \<const0> ;
   assign s00_axi_bresp[0] = \<const0> ;
   assign s00_axi_rdata[31] = \<const0> ;
@@ -136,279 +439,6 @@ module main_gpu_control_0_0
   assign s00_axi_rdata[0] = \^s00_axi_rdata [0];
   assign s00_axi_rresp[1] = \<const0> ;
   assign s00_axi_rresp[0] = \<const0> ;
-  assign transform_matrix[287] = \<const0> ;
-  assign transform_matrix[286] = \<const0> ;
-  assign transform_matrix[285] = \<const0> ;
-  assign transform_matrix[284] = \<const0> ;
-  assign transform_matrix[283] = \<const0> ;
-  assign transform_matrix[282] = \<const0> ;
-  assign transform_matrix[281] = \<const0> ;
-  assign transform_matrix[280] = \<const0> ;
-  assign transform_matrix[279] = \<const0> ;
-  assign transform_matrix[278] = \<const0> ;
-  assign transform_matrix[277] = \<const0> ;
-  assign transform_matrix[276] = \<const0> ;
-  assign transform_matrix[275] = \<const0> ;
-  assign transform_matrix[274] = \<const0> ;
-  assign transform_matrix[273] = \<const0> ;
-  assign transform_matrix[272] = \<const0> ;
-  assign transform_matrix[271] = \<const0> ;
-  assign transform_matrix[270] = \<const0> ;
-  assign transform_matrix[269] = \<const0> ;
-  assign transform_matrix[268] = \<const0> ;
-  assign transform_matrix[267] = \<const0> ;
-  assign transform_matrix[266] = \<const0> ;
-  assign transform_matrix[265] = \<const0> ;
-  assign transform_matrix[264] = \<const0> ;
-  assign transform_matrix[263] = \<const0> ;
-  assign transform_matrix[262] = \<const0> ;
-  assign transform_matrix[261] = \<const0> ;
-  assign transform_matrix[260] = \<const0> ;
-  assign transform_matrix[259] = \<const0> ;
-  assign transform_matrix[258] = \<const0> ;
-  assign transform_matrix[257] = \<const0> ;
-  assign transform_matrix[256] = \<const0> ;
-  assign transform_matrix[255] = \<const0> ;
-  assign transform_matrix[254] = \<const0> ;
-  assign transform_matrix[253] = \<const0> ;
-  assign transform_matrix[252] = \<const0> ;
-  assign transform_matrix[251] = \<const0> ;
-  assign transform_matrix[250] = \<const0> ;
-  assign transform_matrix[249] = \<const0> ;
-  assign transform_matrix[248] = \<const0> ;
-  assign transform_matrix[247] = \<const0> ;
-  assign transform_matrix[246] = \<const0> ;
-  assign transform_matrix[245] = \<const0> ;
-  assign transform_matrix[244] = \<const0> ;
-  assign transform_matrix[243] = \<const0> ;
-  assign transform_matrix[242] = \<const0> ;
-  assign transform_matrix[241] = \<const0> ;
-  assign transform_matrix[240] = \<const0> ;
-  assign transform_matrix[239] = \<const0> ;
-  assign transform_matrix[238] = \<const0> ;
-  assign transform_matrix[237] = \<const0> ;
-  assign transform_matrix[236] = \<const0> ;
-  assign transform_matrix[235] = \<const0> ;
-  assign transform_matrix[234] = \<const0> ;
-  assign transform_matrix[233] = \<const0> ;
-  assign transform_matrix[232] = \<const0> ;
-  assign transform_matrix[231] = \<const0> ;
-  assign transform_matrix[230] = \<const0> ;
-  assign transform_matrix[229] = \<const0> ;
-  assign transform_matrix[228] = \<const0> ;
-  assign transform_matrix[227] = \<const0> ;
-  assign transform_matrix[226] = \<const0> ;
-  assign transform_matrix[225] = \<const0> ;
-  assign transform_matrix[224] = \<const0> ;
-  assign transform_matrix[223] = \<const0> ;
-  assign transform_matrix[222] = \<const0> ;
-  assign transform_matrix[221] = \<const0> ;
-  assign transform_matrix[220] = \<const0> ;
-  assign transform_matrix[219] = \<const0> ;
-  assign transform_matrix[218] = \<const0> ;
-  assign transform_matrix[217] = \<const0> ;
-  assign transform_matrix[216] = \<const0> ;
-  assign transform_matrix[215] = \<const0> ;
-  assign transform_matrix[214] = \<const0> ;
-  assign transform_matrix[213] = \<const0> ;
-  assign transform_matrix[212] = \<const0> ;
-  assign transform_matrix[211] = \<const0> ;
-  assign transform_matrix[210] = \<const0> ;
-  assign transform_matrix[209] = \<const0> ;
-  assign transform_matrix[208] = \<const0> ;
-  assign transform_matrix[207] = \<const0> ;
-  assign transform_matrix[206] = \<const0> ;
-  assign transform_matrix[205] = \<const0> ;
-  assign transform_matrix[204] = \<const0> ;
-  assign transform_matrix[203] = \<const0> ;
-  assign transform_matrix[202] = \<const0> ;
-  assign transform_matrix[201] = \<const0> ;
-  assign transform_matrix[200] = \<const0> ;
-  assign transform_matrix[199] = \<const0> ;
-  assign transform_matrix[198] = \<const0> ;
-  assign transform_matrix[197] = \<const0> ;
-  assign transform_matrix[196] = \<const0> ;
-  assign transform_matrix[195] = \<const0> ;
-  assign transform_matrix[194] = \<const0> ;
-  assign transform_matrix[193] = \<const0> ;
-  assign transform_matrix[192] = \<const0> ;
-  assign transform_matrix[191] = \<const0> ;
-  assign transform_matrix[190] = \<const0> ;
-  assign transform_matrix[189] = \<const0> ;
-  assign transform_matrix[188] = \<const0> ;
-  assign transform_matrix[187] = \<const0> ;
-  assign transform_matrix[186] = \<const0> ;
-  assign transform_matrix[185] = \<const0> ;
-  assign transform_matrix[184] = \<const0> ;
-  assign transform_matrix[183] = \<const0> ;
-  assign transform_matrix[182] = \<const0> ;
-  assign transform_matrix[181] = \<const0> ;
-  assign transform_matrix[180] = \<const0> ;
-  assign transform_matrix[179] = \<const0> ;
-  assign transform_matrix[178] = \<const0> ;
-  assign transform_matrix[177] = \<const0> ;
-  assign transform_matrix[176] = \<const0> ;
-  assign transform_matrix[175] = \<const0> ;
-  assign transform_matrix[174] = \<const0> ;
-  assign transform_matrix[173] = \<const0> ;
-  assign transform_matrix[172] = \<const0> ;
-  assign transform_matrix[171] = \<const0> ;
-  assign transform_matrix[170] = \<const0> ;
-  assign transform_matrix[169] = \<const0> ;
-  assign transform_matrix[168] = \<const0> ;
-  assign transform_matrix[167] = \<const0> ;
-  assign transform_matrix[166] = \<const0> ;
-  assign transform_matrix[165] = \<const0> ;
-  assign transform_matrix[164] = \<const0> ;
-  assign transform_matrix[163] = \<const0> ;
-  assign transform_matrix[162] = \<const0> ;
-  assign transform_matrix[161] = \<const0> ;
-  assign transform_matrix[160] = \<const0> ;
-  assign transform_matrix[159] = \<const0> ;
-  assign transform_matrix[158] = \<const0> ;
-  assign transform_matrix[157] = \<const0> ;
-  assign transform_matrix[156] = \<const0> ;
-  assign transform_matrix[155] = \<const0> ;
-  assign transform_matrix[154] = \<const0> ;
-  assign transform_matrix[153] = \<const0> ;
-  assign transform_matrix[152] = \<const0> ;
-  assign transform_matrix[151] = \<const0> ;
-  assign transform_matrix[150] = \<const0> ;
-  assign transform_matrix[149] = \<const0> ;
-  assign transform_matrix[148] = \<const0> ;
-  assign transform_matrix[147] = \<const0> ;
-  assign transform_matrix[146] = \<const0> ;
-  assign transform_matrix[145] = \<const0> ;
-  assign transform_matrix[144] = \<const0> ;
-  assign transform_matrix[143] = \<const0> ;
-  assign transform_matrix[142] = \<const0> ;
-  assign transform_matrix[141] = \<const0> ;
-  assign transform_matrix[140] = \<const0> ;
-  assign transform_matrix[139] = \<const0> ;
-  assign transform_matrix[138] = \<const0> ;
-  assign transform_matrix[137] = \<const0> ;
-  assign transform_matrix[136] = \<const0> ;
-  assign transform_matrix[135] = \<const0> ;
-  assign transform_matrix[134] = \<const0> ;
-  assign transform_matrix[133] = \<const0> ;
-  assign transform_matrix[132] = \<const0> ;
-  assign transform_matrix[131] = \<const0> ;
-  assign transform_matrix[130] = \<const0> ;
-  assign transform_matrix[129] = \<const0> ;
-  assign transform_matrix[128] = \<const0> ;
-  assign transform_matrix[127] = \<const0> ;
-  assign transform_matrix[126] = \<const0> ;
-  assign transform_matrix[125] = \<const0> ;
-  assign transform_matrix[124] = \<const0> ;
-  assign transform_matrix[123] = \<const0> ;
-  assign transform_matrix[122] = \<const0> ;
-  assign transform_matrix[121] = \<const0> ;
-  assign transform_matrix[120] = \<const0> ;
-  assign transform_matrix[119] = \<const0> ;
-  assign transform_matrix[118] = \<const0> ;
-  assign transform_matrix[117] = \<const0> ;
-  assign transform_matrix[116] = \<const0> ;
-  assign transform_matrix[115] = \<const0> ;
-  assign transform_matrix[114] = \<const0> ;
-  assign transform_matrix[113] = \<const0> ;
-  assign transform_matrix[112] = \<const0> ;
-  assign transform_matrix[111] = \<const0> ;
-  assign transform_matrix[110] = \<const0> ;
-  assign transform_matrix[109] = \<const0> ;
-  assign transform_matrix[108] = \<const0> ;
-  assign transform_matrix[107] = \<const0> ;
-  assign transform_matrix[106] = \<const0> ;
-  assign transform_matrix[105] = \<const0> ;
-  assign transform_matrix[104] = \<const0> ;
-  assign transform_matrix[103] = \<const0> ;
-  assign transform_matrix[102] = \<const0> ;
-  assign transform_matrix[101] = \<const0> ;
-  assign transform_matrix[100] = \<const0> ;
-  assign transform_matrix[99] = \<const0> ;
-  assign transform_matrix[98] = \<const0> ;
-  assign transform_matrix[97] = \<const0> ;
-  assign transform_matrix[96] = \<const0> ;
-  assign transform_matrix[95] = \<const0> ;
-  assign transform_matrix[94] = \<const0> ;
-  assign transform_matrix[93] = \<const0> ;
-  assign transform_matrix[92] = \<const0> ;
-  assign transform_matrix[91] = \<const0> ;
-  assign transform_matrix[90] = \<const0> ;
-  assign transform_matrix[89] = \<const0> ;
-  assign transform_matrix[88] = \<const0> ;
-  assign transform_matrix[87] = \<const0> ;
-  assign transform_matrix[86] = \<const0> ;
-  assign transform_matrix[85] = \<const0> ;
-  assign transform_matrix[84] = \<const0> ;
-  assign transform_matrix[83] = \<const0> ;
-  assign transform_matrix[82] = \<const0> ;
-  assign transform_matrix[81] = \<const0> ;
-  assign transform_matrix[80] = \<const0> ;
-  assign transform_matrix[79] = \<const0> ;
-  assign transform_matrix[78] = \<const0> ;
-  assign transform_matrix[77] = \<const0> ;
-  assign transform_matrix[76] = \<const0> ;
-  assign transform_matrix[75] = \<const0> ;
-  assign transform_matrix[74] = \<const0> ;
-  assign transform_matrix[73] = \<const0> ;
-  assign transform_matrix[72] = \<const0> ;
-  assign transform_matrix[71] = \<const0> ;
-  assign transform_matrix[70] = \<const0> ;
-  assign transform_matrix[69] = \<const0> ;
-  assign transform_matrix[68] = \<const0> ;
-  assign transform_matrix[67] = \<const0> ;
-  assign transform_matrix[66] = \<const0> ;
-  assign transform_matrix[65] = \<const0> ;
-  assign transform_matrix[64] = \<const0> ;
-  assign transform_matrix[63] = \<const0> ;
-  assign transform_matrix[62] = \<const0> ;
-  assign transform_matrix[61] = \<const0> ;
-  assign transform_matrix[60] = \<const0> ;
-  assign transform_matrix[59] = \<const0> ;
-  assign transform_matrix[58] = \<const0> ;
-  assign transform_matrix[57] = \<const0> ;
-  assign transform_matrix[56] = \<const0> ;
-  assign transform_matrix[55] = \<const0> ;
-  assign transform_matrix[54] = \<const0> ;
-  assign transform_matrix[53] = \<const0> ;
-  assign transform_matrix[52] = \<const0> ;
-  assign transform_matrix[51] = \<const0> ;
-  assign transform_matrix[50] = \<const0> ;
-  assign transform_matrix[49] = \<const0> ;
-  assign transform_matrix[48] = \<const0> ;
-  assign transform_matrix[47] = \<const0> ;
-  assign transform_matrix[46] = \<const0> ;
-  assign transform_matrix[45] = \<const0> ;
-  assign transform_matrix[44] = \<const0> ;
-  assign transform_matrix[43] = \<const0> ;
-  assign transform_matrix[42] = \<const0> ;
-  assign transform_matrix[41] = \<const0> ;
-  assign transform_matrix[40] = \<const0> ;
-  assign transform_matrix[39] = \<const0> ;
-  assign transform_matrix[38] = \<const0> ;
-  assign transform_matrix[37] = \<const0> ;
-  assign transform_matrix[36] = \<const0> ;
-  assign transform_matrix[35] = \<const0> ;
-  assign transform_matrix[34] = \<const0> ;
-  assign transform_matrix[33] = \<const0> ;
-  assign transform_matrix[32] = \<const0> ;
-  assign transform_matrix[31] = \<const0> ;
-  assign transform_matrix[30] = \<const0> ;
-  assign transform_matrix[29] = \<const0> ;
-  assign transform_matrix[28] = \<const0> ;
-  assign transform_matrix[27] = \<const0> ;
-  assign transform_matrix[26] = \<const0> ;
-  assign transform_matrix[25] = \<const0> ;
-  assign transform_matrix[24] = \<const0> ;
-  assign transform_matrix[23] = \<const0> ;
-  assign transform_matrix[22] = \<const0> ;
-  assign transform_matrix[21] = \<const0> ;
-  assign transform_matrix[20] = \<const0> ;
-  assign transform_matrix[19] = \<const0> ;
-  assign transform_matrix[18] = \<const0> ;
-  assign transform_matrix[17] = \<const0> ;
-  assign transform_matrix[16] = \<const0> ;
-  assign transform_matrix[15:0] = \^transform_matrix [15:0];
   GND GND
        (.G(\<const0> ));
   main_gpu_control_0_0_gpu_control_v1_0 inst
@@ -416,6 +446,7 @@ module main_gpu_control_0_0
         .S_AXI_AWREADY(s00_axi_awready),
         .S_AXI_WREADY(s00_axi_wready),
         .address(address),
+        .matrix_15(\^matrix_15 ),
         .mem_wr_addr(mem_wr_addr),
         .mem_wr_data(mem_wr_data),
         .mem_wr_en(mem_wr_en),
@@ -434,7 +465,6 @@ module main_gpu_control_0_0
         .s00_axi_wvalid(s00_axi_wvalid),
         .start(start),
         .status(status),
-        .transform_matrix(\^transform_matrix ),
         .vertex_count(vertex_count));
 endmodule
 
@@ -444,7 +474,7 @@ module main_gpu_control_0_0_gpu_control_v1_0
     S_AXI_WREADY,
     vertex_count,
     address,
-    transform_matrix,
+    matrix_15,
     mem_wr_addr,
     mem_wr_data,
     S_AXI_ARREADY,
@@ -468,7 +498,7 @@ module main_gpu_control_0_0_gpu_control_v1_0
   output S_AXI_WREADY;
   output [31:0]vertex_count;
   output [31:0]address;
-  output [15:0]transform_matrix;
+  output [15:0]matrix_15;
   output [13:0]mem_wr_addr;
   output [17:0]mem_wr_data;
   output S_AXI_ARREADY;
@@ -493,6 +523,7 @@ module main_gpu_control_0_0_gpu_control_v1_0
   wire S_AXI_AWREADY;
   wire S_AXI_WREADY;
   wire [31:0]address;
+  wire [15:0]matrix_15;
   wire [13:0]mem_wr_addr;
   wire [17:0]mem_wr_data;
   wire mem_wr_en;
@@ -511,7 +542,6 @@ module main_gpu_control_0_0_gpu_control_v1_0
   wire s00_axi_wvalid;
   wire start;
   wire status;
-  wire [15:0]transform_matrix;
   wire [31:0]vertex_count;
 
   main_gpu_control_0_0_gpu_control_v1_0_S00_AXI gpu_control_v1_0_S00_AXI_inst
@@ -519,6 +549,7 @@ module main_gpu_control_0_0_gpu_control_v1_0
         .S_AXI_AWREADY(S_AXI_AWREADY),
         .S_AXI_WREADY(S_AXI_WREADY),
         .address(address),
+        .matrix_15(matrix_15),
         .mem_wr_addr(mem_wr_addr),
         .mem_wr_data(mem_wr_data),
         .mem_wr_en(mem_wr_en),
@@ -537,7 +568,6 @@ module main_gpu_control_0_0_gpu_control_v1_0
         .s00_axi_wvalid(s00_axi_wvalid),
         .start(start),
         .status(status),
-        .transform_matrix(transform_matrix),
         .vertex_count(vertex_count));
 endmodule
 
@@ -547,7 +577,7 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
     S_AXI_WREADY,
     vertex_count,
     address,
-    transform_matrix,
+    matrix_15,
     mem_wr_addr,
     mem_wr_data,
     S_AXI_ARREADY,
@@ -571,7 +601,7 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
   output S_AXI_WREADY;
   output [31:0]vertex_count;
   output [31:0]address;
-  output [15:0]transform_matrix;
+  output [15:0]matrix_15;
   output [13:0]mem_wr_addr;
   output [17:0]mem_wr_data;
   output S_AXI_ARREADY;
@@ -609,6 +639,7 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
   wire \axi_rdata[0]_i_4_n_0 ;
   wire axi_rvalid_i_1_n_0;
   wire axi_wready0;
+  wire [15:0]matrix_15;
   wire [13:0]mem_wr_addr;
   wire [13:1]mem_wr_addr0;
   wire mem_wr_addr0_carry__0_i_1_n_0;
@@ -637,7 +668,6 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
   wire \mem_wr_addr[13]_i_1_n_0 ;
   wire \mem_wr_addr[13]_i_2_n_0 ;
   wire \mem_wr_addr[13]_i_3_n_0 ;
-  wire \mem_wr_addr[13]_i_4_n_0 ;
   wire [17:0]mem_wr_data;
   wire \mem_wr_data[0]_i_1_n_0 ;
   wire \mem_wr_data[10]_i_1_n_0 ;
@@ -649,7 +679,6 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
   wire \mem_wr_data[16]_i_1_n_0 ;
   wire \mem_wr_data[17]_i_1_n_0 ;
   wire \mem_wr_data[17]_i_2_n_0 ;
-  wire \mem_wr_data[17]_i_3_n_0 ;
   wire \mem_wr_data[1]_i_1_n_0 ;
   wire \mem_wr_data[2]_i_1_n_0 ;
   wire \mem_wr_data[3]_i_1_n_0 ;
@@ -684,14 +713,11 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
   wire start_i_3_n_0;
   wire start_i_4_n_0;
   wire status;
-  wire [15:0]transform_matrix;
   wire \transform_matrix[0]_i_1_n_0 ;
   wire \transform_matrix[10]_i_1_n_0 ;
   wire \transform_matrix[11]_i_1_n_0 ;
   wire \transform_matrix[12]_i_1_n_0 ;
-  wire \transform_matrix[12]_i_2_n_0 ;
   wire \transform_matrix[13]_i_1_n_0 ;
-  wire \transform_matrix[13]_i_2_n_0 ;
   wire \transform_matrix[14]_i_1_n_0 ;
   wire \transform_matrix[14]_i_2_n_0 ;
   wire \transform_matrix[15]_i_1_n_0 ;
@@ -712,13 +738,13 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
   wire [3:1]NLW_mem_wr_addr0_carry__2_O_UNCONNECTED;
 
   LUT6 #(
-    .INIT(64'h0000000000000020)) 
+    .INIT(64'h0000000001000000)) 
     \address[31]_i_1 
-       (.I0(axi_awaddr[2]),
-        .I1(axi_awaddr[3]),
-        .I2(axi_awaddr[6]),
-        .I3(axi_awaddr[5]),
-        .I4(axi_awaddr[4]),
+       (.I0(axi_awaddr[5]),
+        .I1(axi_awaddr[4]),
+        .I2(axi_awaddr[3]),
+        .I3(axi_awaddr[2]),
+        .I4(axi_awaddr[6]),
         .I5(start_i_3_n_0),
         .O(\address[31]_i_1_n_0 ));
   FDRE \address_reg[0] 
@@ -1190,7 +1216,7 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
         .I4(sel0[14]),
         .I5(s00_axi_aresetn),
         .O(\axi_rdata[0]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \axi_rdata[0]_i_5 
@@ -1204,7 +1230,7 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
         .D(\axi_rdata[0]_i_1_n_0 ),
         .Q(s00_axi_rdata),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT4 #(
     .INIT(16'h7444)) 
     axi_rvalid_i_1
@@ -1316,15 +1342,17 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
     mem_wr_addr0_carry_i_2
        (.I0(axi_awaddr[4]),
         .O(mem_wr_addr0_carry_i_2_n_0));
-  LUT4 #(
-    .INIT(16'hBA00)) 
+  LUT6 #(
+    .INIT(64'hABABABBB00000000)) 
     \mem_wr_addr[13]_i_1 
        (.I0(\mem_wr_addr[13]_i_2_n_0 ),
         .I1(\mem_wr_addr[13]_i_3_n_0 ),
-        .I2(\mem_wr_addr[13]_i_4_n_0 ),
-        .I3(s00_axi_aresetn),
+        .I2(axi_awaddr[6]),
+        .I3(axi_awaddr[4]),
+        .I4(axi_awaddr[5]),
+        .I5(s00_axi_aresetn),
         .O(\mem_wr_addr[13]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \mem_wr_addr[13]_i_2 
@@ -1343,16 +1371,6 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
         .I3(axi_awaddr[9]),
         .I4(axi_awaddr[10]),
         .O(\mem_wr_addr[13]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT5 #(
-    .INIT(32'h0111FFFF)) 
-    \mem_wr_addr[13]_i_4 
-       (.I0(axi_awaddr[4]),
-        .I1(axi_awaddr[5]),
-        .I2(axi_awaddr[2]),
-        .I3(axi_awaddr[3]),
-        .I4(axi_awaddr[6]),
-        .O(\mem_wr_addr[13]_i_4_n_0 ));
   FDRE \mem_wr_addr_reg[0] 
        (.C(s00_axi_aclk),
         .CE(s00_axi_aresetn),
@@ -1509,15 +1527,14 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
         .I3(S_AXI_WREADY),
         .I4(S_AXI_AWREADY),
         .O(\mem_wr_data[16]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h00000000557F0000)) 
+  LUT5 #(
+    .INIT(32'h00005700)) 
     \mem_wr_data[17]_i_1 
        (.I0(axi_awaddr[6]),
-        .I1(axi_awaddr[3]),
-        .I2(axi_awaddr[2]),
-        .I3(\mem_wr_data[17]_i_3_n_0 ),
-        .I4(s00_axi_aresetn),
-        .I5(start_i_3_n_0),
+        .I1(axi_awaddr[4]),
+        .I2(axi_awaddr[5]),
+        .I3(s00_axi_aresetn),
+        .I4(start_i_3_n_0),
         .O(\mem_wr_data[17]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'h80000000)) 
@@ -1528,14 +1545,6 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
         .I3(S_AXI_WREADY),
         .I4(S_AXI_AWREADY),
         .O(\mem_wr_data[17]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT2 #(
-    .INIT(4'hE)) 
-    \mem_wr_data[17]_i_3 
-       (.I0(axi_awaddr[4]),
-        .I1(axi_awaddr[5]),
-        .O(\mem_wr_data[17]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'h80000000)) 
     \mem_wr_data[1]_i_1 
@@ -1581,6 +1590,7 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
         .I3(S_AXI_WREADY),
         .I4(S_AXI_AWREADY),
         .O(\mem_wr_data[5]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'h80000000)) 
     \mem_wr_data[6]_i_1 
@@ -1726,7 +1736,7 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
         .Q(mem_wr_data[9]),
         .R(\mem_wr_data[17]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h0FFF0F0004FF0400)) 
+    .INIT(64'h0FFF0F0008FF0800)) 
     mem_wr_en_i_1
        (.I0(mem_wr_en_i_2_n_0),
         .I1(axi_awaddr[6]),
@@ -1735,14 +1745,11 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
         .I4(mem_wr_en),
         .I5(start_i_3_n_0),
         .O(mem_wr_en_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT4 #(
-    .INIT(16'h0007)) 
+  LUT2 #(
+    .INIT(4'hE)) 
     mem_wr_en_i_2
-       (.I0(axi_awaddr[3]),
-        .I1(axi_awaddr[2]),
-        .I2(axi_awaddr[5]),
-        .I3(axi_awaddr[4]),
+       (.I0(axi_awaddr[4]),
+        .I1(axi_awaddr[5]),
         .O(mem_wr_en_i_2_n_0));
   FDRE mem_wr_en_reg
        (.C(s00_axi_aclk),
@@ -1793,108 +1800,95 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
         .D(start_i_1_n_0),
         .Q(start),
         .R(1'b0));
-  LUT5 #(
-    .INIT(32'hFFFB0008)) 
+  LUT6 #(
+    .INIT(64'hFFFEFFFF00020000)) 
     \transform_matrix[0]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[12]_i_2_n_0 ),
-        .I2(axi_awaddr[5]),
-        .I3(axi_awaddr[4]),
-        .I4(transform_matrix[0]),
+        .I1(axi_awaddr[3]),
+        .I2(axi_awaddr[4]),
+        .I3(axi_awaddr[5]),
+        .I4(\transform_matrix[14]_i_2_n_0 ),
+        .I5(matrix_15[0]),
         .O(\transform_matrix[0]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hFBFF0800)) 
+  LUT6 #(
+    .INIT(64'hFFBFFFFF00800000)) 
     \transform_matrix[10]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[14]_i_2_n_0 ),
-        .I2(axi_awaddr[4]),
-        .I3(axi_awaddr[5]),
-        .I4(transform_matrix[10]),
+        .I1(axi_awaddr[3]),
+        .I2(axi_awaddr[5]),
+        .I3(axi_awaddr[4]),
+        .I4(\transform_matrix[14]_i_2_n_0 ),
+        .I5(matrix_15[10]),
         .O(\transform_matrix[10]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hFBFF0800)) 
+  LUT6 #(
+    .INIT(64'hFFBFFFFF00800000)) 
     \transform_matrix[11]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[15]_i_2_n_0 ),
-        .I2(axi_awaddr[4]),
-        .I3(axi_awaddr[5]),
-        .I4(transform_matrix[11]),
+        .I1(axi_awaddr[3]),
+        .I2(axi_awaddr[5]),
+        .I3(axi_awaddr[4]),
+        .I4(\transform_matrix[15]_i_2_n_0 ),
+        .I5(matrix_15[11]),
         .O(\transform_matrix[11]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hBFFF8000)) 
+  LUT6 #(
+    .INIT(64'hFFBFFFFF00800000)) 
     \transform_matrix[12]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[12]_i_2_n_0 ),
-        .I2(axi_awaddr[5]),
-        .I3(axi_awaddr[4]),
-        .I4(transform_matrix[12]),
+        .I1(axi_awaddr[5]),
+        .I2(axi_awaddr[4]),
+        .I3(axi_awaddr[3]),
+        .I4(\transform_matrix[14]_i_2_n_0 ),
+        .I5(matrix_15[12]),
         .O(\transform_matrix[12]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000000001)) 
-    \transform_matrix[12]_i_2 
-       (.I0(axi_awaddr[2]),
-        .I1(\mem_wr_addr[13]_i_2_n_0 ),
-        .I2(start_i_4_n_0),
-        .I3(\transform_matrix[15]_i_3_n_0 ),
-        .I4(axi_awaddr[6]),
-        .I5(axi_awaddr[3]),
-        .O(\transform_matrix[12]_i_2_n_0 ));
-  LUT5 #(
-    .INIT(32'hBFFF8000)) 
+    .INIT(64'hFFBFFFFF00800000)) 
     \transform_matrix[13]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[13]_i_2_n_0 ),
-        .I2(axi_awaddr[5]),
-        .I3(axi_awaddr[4]),
-        .I4(transform_matrix[13]),
+        .I1(axi_awaddr[5]),
+        .I2(axi_awaddr[4]),
+        .I3(axi_awaddr[3]),
+        .I4(\transform_matrix[15]_i_2_n_0 ),
+        .I5(matrix_15[13]),
         .O(\transform_matrix[13]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000000004)) 
-    \transform_matrix[13]_i_2 
-       (.I0(axi_awaddr[3]),
-        .I1(axi_awaddr[2]),
-        .I2(axi_awaddr[6]),
-        .I3(\transform_matrix[15]_i_3_n_0 ),
-        .I4(start_i_4_n_0),
-        .I5(\mem_wr_addr[13]_i_2_n_0 ),
-        .O(\transform_matrix[13]_i_2_n_0 ));
-  LUT5 #(
-    .INIT(32'hBFFF8000)) 
+    .INIT(64'hBFFFFFFF80000000)) 
     \transform_matrix[14]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[14]_i_2_n_0 ),
-        .I2(axi_awaddr[5]),
+        .I1(axi_awaddr[5]),
+        .I2(axi_awaddr[3]),
         .I3(axi_awaddr[4]),
-        .I4(transform_matrix[14]),
+        .I4(\transform_matrix[14]_i_2_n_0 ),
+        .I5(matrix_15[14]),
         .O(\transform_matrix[14]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000100000000)) 
-    \transform_matrix[14]_i_2 
-       (.I0(axi_awaddr[2]),
-        .I1(\mem_wr_addr[13]_i_2_n_0 ),
-        .I2(start_i_4_n_0),
-        .I3(\transform_matrix[15]_i_3_n_0 ),
-        .I4(axi_awaddr[6]),
-        .I5(axi_awaddr[3]),
-        .O(\transform_matrix[14]_i_2_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
-    .INIT(32'hBFFF8000)) 
+    .INIT(32'h00000001)) 
+    \transform_matrix[14]_i_2 
+       (.I0(axi_awaddr[6]),
+        .I1(\transform_matrix[15]_i_3_n_0 ),
+        .I2(start_i_4_n_0),
+        .I3(\mem_wr_addr[13]_i_2_n_0 ),
+        .I4(axi_awaddr[2]),
+        .O(\transform_matrix[14]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hBFFFFFFF80000000)) 
     \transform_matrix[15]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[15]_i_2_n_0 ),
-        .I2(axi_awaddr[5]),
+        .I1(axi_awaddr[5]),
+        .I2(axi_awaddr[3]),
         .I3(axi_awaddr[4]),
-        .I4(transform_matrix[15]),
+        .I4(\transform_matrix[15]_i_2_n_0 ),
+        .I5(matrix_15[15]),
         .O(\transform_matrix[15]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h0001000000000000)) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  LUT5 #(
+    .INIT(32'h00010000)) 
     \transform_matrix[15]_i_2 
        (.I0(axi_awaddr[6]),
         .I1(\transform_matrix[15]_i_3_n_0 ),
         .I2(start_i_4_n_0),
         .I3(\mem_wr_addr[13]_i_2_n_0 ),
-        .I4(axi_awaddr[3]),
-        .I5(axi_awaddr[2]),
+        .I4(axi_awaddr[2]),
         .O(\transform_matrix[15]_i_2_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT4 #(
@@ -1905,183 +1899,191 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
         .I2(axi_awaddr[12]),
         .I3(axi_awaddr[11]),
         .O(\transform_matrix[15]_i_3_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFB0008)) 
+  LUT6 #(
+    .INIT(64'hFFFEFFFF00020000)) 
     \transform_matrix[1]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[13]_i_2_n_0 ),
-        .I2(axi_awaddr[5]),
-        .I3(axi_awaddr[4]),
-        .I4(transform_matrix[1]),
+        .I1(axi_awaddr[3]),
+        .I2(axi_awaddr[4]),
+        .I3(axi_awaddr[5]),
+        .I4(\transform_matrix[15]_i_2_n_0 ),
+        .I5(matrix_15[1]),
         .O(\transform_matrix[1]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFB0008)) 
+  LUT6 #(
+    .INIT(64'hFEFFFFFF02000000)) 
     \transform_matrix[2]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[14]_i_2_n_0 ),
+        .I1(axi_awaddr[4]),
         .I2(axi_awaddr[5]),
-        .I3(axi_awaddr[4]),
-        .I4(transform_matrix[2]),
+        .I3(axi_awaddr[3]),
+        .I4(\transform_matrix[14]_i_2_n_0 ),
+        .I5(matrix_15[2]),
         .O(\transform_matrix[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT5 #(
-    .INIT(32'hFFFB0008)) 
+  LUT6 #(
+    .INIT(64'hFEFFFFFF02000000)) 
     \transform_matrix[3]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[15]_i_2_n_0 ),
+        .I1(axi_awaddr[4]),
         .I2(axi_awaddr[5]),
-        .I3(axi_awaddr[4]),
-        .I4(transform_matrix[3]),
+        .I3(axi_awaddr[3]),
+        .I4(\transform_matrix[15]_i_2_n_0 ),
+        .I5(matrix_15[3]),
         .O(\transform_matrix[3]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hFBFF0800)) 
+  LUT6 #(
+    .INIT(64'hFFEFFFFF00200000)) 
     \transform_matrix[4]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[12]_i_2_n_0 ),
-        .I2(axi_awaddr[5]),
-        .I3(axi_awaddr[4]),
-        .I4(transform_matrix[4]),
+        .I1(axi_awaddr[5]),
+        .I2(axi_awaddr[4]),
+        .I3(axi_awaddr[3]),
+        .I4(\transform_matrix[14]_i_2_n_0 ),
+        .I5(matrix_15[4]),
         .O(\transform_matrix[4]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hFBFF0800)) 
+  LUT6 #(
+    .INIT(64'hFFEFFFFF00200000)) 
     \transform_matrix[5]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[13]_i_2_n_0 ),
-        .I2(axi_awaddr[5]),
-        .I3(axi_awaddr[4]),
-        .I4(transform_matrix[5]),
+        .I1(axi_awaddr[5]),
+        .I2(axi_awaddr[4]),
+        .I3(axi_awaddr[3]),
+        .I4(\transform_matrix[15]_i_2_n_0 ),
+        .I5(matrix_15[5]),
         .O(\transform_matrix[5]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hFBFF0800)) 
+  LUT6 #(
+    .INIT(64'hEFFFFFFF20000000)) 
     \transform_matrix[6]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[14]_i_2_n_0 ),
-        .I2(axi_awaddr[5]),
+        .I1(axi_awaddr[5]),
+        .I2(axi_awaddr[3]),
         .I3(axi_awaddr[4]),
-        .I4(transform_matrix[6]),
+        .I4(\transform_matrix[14]_i_2_n_0 ),
+        .I5(matrix_15[6]),
         .O(\transform_matrix[6]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hFBFF0800)) 
+  LUT6 #(
+    .INIT(64'hEFFFFFFF20000000)) 
     \transform_matrix[7]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[15]_i_2_n_0 ),
-        .I2(axi_awaddr[5]),
+        .I1(axi_awaddr[5]),
+        .I2(axi_awaddr[3]),
         .I3(axi_awaddr[4]),
-        .I4(transform_matrix[7]),
+        .I4(\transform_matrix[15]_i_2_n_0 ),
+        .I5(matrix_15[7]),
         .O(\transform_matrix[7]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hFBFF0800)) 
+  LUT6 #(
+    .INIT(64'hFFEFFFFF00200000)) 
     \transform_matrix[8]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[12]_i_2_n_0 ),
-        .I2(axi_awaddr[4]),
-        .I3(axi_awaddr[5]),
-        .I4(transform_matrix[8]),
+        .I1(axi_awaddr[3]),
+        .I2(axi_awaddr[5]),
+        .I3(axi_awaddr[4]),
+        .I4(\transform_matrix[14]_i_2_n_0 ),
+        .I5(matrix_15[8]),
         .O(\transform_matrix[8]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hFBFF0800)) 
+  LUT6 #(
+    .INIT(64'hFFEFFFFF00200000)) 
     \transform_matrix[9]_i_1 
        (.I0(s00_axi_wdata[0]),
-        .I1(\transform_matrix[13]_i_2_n_0 ),
-        .I2(axi_awaddr[4]),
-        .I3(axi_awaddr[5]),
-        .I4(transform_matrix[9]),
+        .I1(axi_awaddr[3]),
+        .I2(axi_awaddr[5]),
+        .I3(axi_awaddr[4]),
+        .I4(\transform_matrix[15]_i_2_n_0 ),
+        .I5(matrix_15[9]),
         .O(\transform_matrix[9]_i_1_n_0 ));
   FDRE \transform_matrix_reg[0] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[0]_i_1_n_0 ),
-        .Q(transform_matrix[0]),
+        .Q(matrix_15[0]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[10] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[10]_i_1_n_0 ),
-        .Q(transform_matrix[10]),
+        .Q(matrix_15[10]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[11] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[11]_i_1_n_0 ),
-        .Q(transform_matrix[11]),
+        .Q(matrix_15[11]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[12] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[12]_i_1_n_0 ),
-        .Q(transform_matrix[12]),
+        .Q(matrix_15[12]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[13] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[13]_i_1_n_0 ),
-        .Q(transform_matrix[13]),
+        .Q(matrix_15[13]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[14] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[14]_i_1_n_0 ),
-        .Q(transform_matrix[14]),
+        .Q(matrix_15[14]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[15] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[15]_i_1_n_0 ),
-        .Q(transform_matrix[15]),
+        .Q(matrix_15[15]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[1] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[1]_i_1_n_0 ),
-        .Q(transform_matrix[1]),
+        .Q(matrix_15[1]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[2] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[2]_i_1_n_0 ),
-        .Q(transform_matrix[2]),
+        .Q(matrix_15[2]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[3] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[3]_i_1_n_0 ),
-        .Q(transform_matrix[3]),
+        .Q(matrix_15[3]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[4] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[4]_i_1_n_0 ),
-        .Q(transform_matrix[4]),
+        .Q(matrix_15[4]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[5] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[5]_i_1_n_0 ),
-        .Q(transform_matrix[5]),
+        .Q(matrix_15[5]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[6] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[6]_i_1_n_0 ),
-        .Q(transform_matrix[6]),
+        .Q(matrix_15[6]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[7] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[7]_i_1_n_0 ),
-        .Q(transform_matrix[7]),
+        .Q(matrix_15[7]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[8] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[8]_i_1_n_0 ),
-        .Q(transform_matrix[8]),
+        .Q(matrix_15[8]),
         .R(p_0_in));
   FDRE \transform_matrix_reg[9] 
        (.C(s00_axi_aclk),
         .CE(1'b1),
         .D(\transform_matrix[9]_i_1_n_0 ),
-        .Q(transform_matrix[9]),
+        .Q(matrix_15[9]),
         .R(p_0_in));
   LUT1 #(
     .INIT(2'h1)) 
@@ -2091,8 +2093,8 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
   LUT6 #(
     .INIT(64'h0000000000000100)) 
     \vertex_count[31]_i_2 
-       (.I0(axi_awaddr[4]),
-        .I1(axi_awaddr[5]),
+       (.I0(axi_awaddr[5]),
+        .I1(axi_awaddr[4]),
         .I2(axi_awaddr[3]),
         .I3(axi_awaddr[6]),
         .I4(axi_awaddr[2]),

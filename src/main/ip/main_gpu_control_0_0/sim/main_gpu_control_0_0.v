@@ -48,7 +48,7 @@
 
 
 // IP VLNV: xilinx.com:user:gpu_control:1.0
-// IP Revision: 12
+// IP Revision: 16
 
 `timescale 1ns/1ps
 
@@ -58,7 +58,22 @@ module main_gpu_control_0_0 (
   start,
   vertex_count,
   address,
-  transform_matrix,
+  matrix_00,
+  matrix_01,
+  matrix_02,
+  matrix_03,
+  matrix_04,
+  matrix_05,
+  matrix_06,
+  matrix_07,
+  matrix_08,
+  matrix_09,
+  matrix_10,
+  matrix_11,
+  matrix_12,
+  matrix_13,
+  matrix_14,
+  matrix_15,
   mem_wr_addr,
   mem_wr_data,
   mem_wr_en,
@@ -89,7 +104,38 @@ input wire status;
 output wire start;
 output wire [31 : 0] vertex_count;
 output wire [31 : 0] address;
-output wire [287 : 0] transform_matrix;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_00" *)
+output wire [17 : 0] matrix_00;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_01" *)
+output wire [17 : 0] matrix_01;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_02" *)
+output wire [17 : 0] matrix_02;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_03" *)
+output wire [17 : 0] matrix_03;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_04" *)
+output wire [17 : 0] matrix_04;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_05" *)
+output wire [17 : 0] matrix_05;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_06" *)
+output wire [17 : 0] matrix_06;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_07" *)
+output wire [17 : 0] matrix_07;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_08" *)
+output wire [17 : 0] matrix_08;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_09" *)
+output wire [17 : 0] matrix_09;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_10" *)
+output wire [17 : 0] matrix_10;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_11" *)
+output wire [17 : 0] matrix_11;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_12" *)
+output wire [17 : 0] matrix_12;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_13" *)
+output wire [17 : 0] matrix_13;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_14" *)
+output wire [17 : 0] matrix_14;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_15" *)
+output wire [17 : 0] matrix_15;
 output wire [13 : 0] mem_wr_addr;
 output wire [17 : 0] mem_wr_data;
 output wire mem_wr_en;
@@ -151,7 +197,22 @@ input wire s00_axi_aresetn;
     .start(start),
     .vertex_count(vertex_count),
     .address(address),
-    .transform_matrix(transform_matrix),
+    .matrix_00(matrix_00),
+    .matrix_01(matrix_01),
+    .matrix_02(matrix_02),
+    .matrix_03(matrix_03),
+    .matrix_04(matrix_04),
+    .matrix_05(matrix_05),
+    .matrix_06(matrix_06),
+    .matrix_07(matrix_07),
+    .matrix_08(matrix_08),
+    .matrix_09(matrix_09),
+    .matrix_10(matrix_10),
+    .matrix_11(matrix_11),
+    .matrix_12(matrix_12),
+    .matrix_13(matrix_13),
+    .matrix_14(matrix_14),
+    .matrix_15(matrix_15),
     .mem_wr_addr(mem_wr_addr),
     .mem_wr_data(mem_wr_data),
     .mem_wr_en(mem_wr_en),

@@ -248,6 +248,7 @@
                             address <= S_AXI_WDATA;
                     'h12:
                             start <= S_AXI_WDATA[0];
+                    'h13:;
                 default :   begin
                             mem_wr_addr <= axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] - 'h14;
                             mem_wr_en   <= 1'b1;

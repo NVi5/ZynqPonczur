@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Mon May 17 18:43:47 2021
-// Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
+// Date        : Mon May 17 23:35:03 2021
+// Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               C:/Users/wojte/Desktop/sdup_projekt/ZynqSDUP/src/main/ip/main_gpu_wrapper_0_0/main_gpu_wrapper_0_0_sim_netlist.v
+//               C:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main/ip/main_gpu_wrapper_0_0/main_gpu_wrapper_0_0_sim_netlist.v
 // Design      : main_gpu_wrapper_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -23,7 +23,22 @@ module main_gpu_wrapper_0_0
     mem_wr_addr,
     mem_wr_data,
     mem_wr_en,
-    transform_matrix,
+    matrix_00,
+    matrix_01,
+    matrix_02,
+    matrix_03,
+    matrix_04,
+    matrix_05,
+    matrix_06,
+    matrix_07,
+    matrix_08,
+    matrix_09,
+    matrix_10,
+    matrix_11,
+    matrix_12,
+    matrix_13,
+    matrix_14,
+    matrix_15,
     output_color,
     output_valid,
     pixel_x_out,
@@ -33,14 +48,29 @@ module main_gpu_wrapper_0_0
     frame_end,
     draw,
     out_ready);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET reset, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN main_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET reset, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *) input clk;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input reset;
   input [31:0]vertex_count;
   input start;
   input [13:0]mem_wr_addr;
   input [17:0]mem_wr_data;
   input mem_wr_en;
-  input [287:0]transform_matrix;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_00" *) input [17:0]matrix_00;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_01" *) input [17:0]matrix_01;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_02" *) input [17:0]matrix_02;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_03" *) input [17:0]matrix_03;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_04" *) input [17:0]matrix_04;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_05" *) input [17:0]matrix_05;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_06" *) input [17:0]matrix_06;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_07" *) input [17:0]matrix_07;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_08" *) input [17:0]matrix_08;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_09" *) input [17:0]matrix_09;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_10" *) input [17:0]matrix_10;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_11" *) input [17:0]matrix_11;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_12" *) input [17:0]matrix_12;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_13" *) input [17:0]matrix_13;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_14" *) input [17:0]matrix_14;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_15" *) input [17:0]matrix_15;
   output [7:0]output_color;
   output output_valid;
   output [10:0]pixel_x_out;
@@ -55,6 +85,22 @@ module main_gpu_wrapper_0_0
   wire draw;
   wire frame_end;
   wire [10:0]height;
+  wire [17:0]matrix_00;
+  wire [17:0]matrix_01;
+  wire [17:0]matrix_02;
+  wire [17:0]matrix_03;
+  wire [17:0]matrix_04;
+  wire [17:0]matrix_05;
+  wire [17:0]matrix_06;
+  wire [17:0]matrix_07;
+  wire [17:0]matrix_08;
+  wire [17:0]matrix_09;
+  wire [17:0]matrix_10;
+  wire [17:0]matrix_11;
+  wire [17:0]matrix_12;
+  wire [17:0]matrix_13;
+  wire [17:0]matrix_14;
+  wire [17:0]matrix_15;
   wire [13:0]mem_wr_addr;
   wire [17:0]mem_wr_data;
   wire mem_wr_en;
@@ -73,6 +119,22 @@ module main_gpu_wrapper_0_0
         .draw(draw),
         .frame_end(frame_end),
         .height(height),
+        .matrix_00(matrix_00),
+        .matrix_01(matrix_01),
+        .matrix_02(matrix_02),
+        .matrix_03(matrix_03),
+        .matrix_04(matrix_04),
+        .matrix_05(matrix_05),
+        .matrix_06(matrix_06),
+        .matrix_07(matrix_07),
+        .matrix_08(matrix_08),
+        .matrix_09(matrix_09),
+        .matrix_10(matrix_10),
+        .matrix_11(matrix_11),
+        .matrix_12(matrix_12),
+        .matrix_13(matrix_13),
+        .matrix_14(matrix_14),
+        .matrix_15(matrix_15),
         .mem_wr_addr(mem_wr_addr),
         .mem_wr_data(mem_wr_data),
         .mem_wr_en(mem_wr_en),
@@ -111,7 +173,23 @@ module main_gpu_wrapper_0_0_GPU_top
     mem_wr_en,
     mem_wr_addr,
     mem_wr_data,
-    out_ready);
+    out_ready,
+    matrix_15,
+    matrix_14,
+    matrix_13,
+    matrix_12,
+    matrix_11,
+    matrix_10,
+    matrix_09,
+    matrix_08,
+    matrix_07,
+    matrix_06,
+    matrix_05,
+    matrix_04,
+    matrix_03,
+    matrix_02,
+    matrix_01,
+    matrix_00);
   output force_black_reg;
   output frame_end;
   output \FSM_onehot_state_reg[2] ;
@@ -135,6 +213,22 @@ module main_gpu_wrapper_0_0_GPU_top
   input [13:0]mem_wr_addr;
   input [17:0]mem_wr_data;
   input out_ready;
+  input [17:0]matrix_15;
+  input [17:0]matrix_14;
+  input [17:0]matrix_13;
+  input [17:0]matrix_12;
+  input [17:0]matrix_11;
+  input [17:0]matrix_10;
+  input [17:0]matrix_09;
+  input [17:0]matrix_08;
+  input [17:0]matrix_07;
+  input [17:0]matrix_06;
+  input [17:0]matrix_05;
+  input [17:0]matrix_04;
+  input [17:0]matrix_03;
+  input [17:0]matrix_02;
+  input [17:0]matrix_01;
+  input [17:0]matrix_00;
 
   wire [0:0]\BB_BR_x_reg[10] ;
   wire [0:0]CO;
@@ -147,6 +241,22 @@ module main_gpu_wrapper_0_0_GPU_top
   wire frame_end;
   wire [10:0]height;
   wire input_vertex_valid;
+  wire [17:0]matrix_00;
+  wire [17:0]matrix_01;
+  wire [17:0]matrix_02;
+  wire [17:0]matrix_03;
+  wire [17:0]matrix_04;
+  wire [17:0]matrix_05;
+  wire [17:0]matrix_06;
+  wire [17:0]matrix_07;
+  wire [17:0]matrix_08;
+  wire [17:0]matrix_09;
+  wire [17:0]matrix_10;
+  wire [17:0]matrix_11;
+  wire [17:0]matrix_12;
+  wire [17:0]matrix_13;
+  wire [17:0]matrix_14;
+  wire [17:0]matrix_15;
   wire [13:0]mem_wr_addr;
   wire [17:0]mem_wr_data;
   wire mem_wr_en;
@@ -1521,6 +1631,22 @@ module main_gpu_wrapper_0_0_GPU_top
         .E(transformed_vertex_mem_wr_data),
         .Q(output_vertex),
         .clk(clk),
+        .matrix_00(matrix_00),
+        .matrix_01(matrix_01),
+        .matrix_02(matrix_02),
+        .matrix_03(matrix_03),
+        .matrix_04(matrix_04),
+        .matrix_05(matrix_05),
+        .matrix_06(matrix_06),
+        .matrix_07(matrix_07),
+        .matrix_08(matrix_08),
+        .matrix_09(matrix_09),
+        .matrix_10(matrix_10),
+        .matrix_11(matrix_11),
+        .matrix_12(matrix_12),
+        .matrix_13(matrix_13),
+        .matrix_14(matrix_14),
+        .matrix_15(matrix_15),
         .output_vertex_valid(output_vertex_valid),
         .rd_data(vertex_mem_rd_data),
         .reset(reset),
@@ -5144,7 +5270,23 @@ module main_gpu_wrapper_0_0_gpu_wrapper
     mem_wr_addr,
     mem_wr_data,
     reset,
-    out_ready);
+    out_ready,
+    matrix_15,
+    matrix_14,
+    matrix_13,
+    matrix_12,
+    matrix_11,
+    matrix_10,
+    matrix_09,
+    matrix_08,
+    matrix_07,
+    matrix_06,
+    matrix_05,
+    matrix_04,
+    matrix_03,
+    matrix_02,
+    matrix_01,
+    matrix_00);
   output frame_end;
   output [10:0]pixel_x_out;
   output [10:0]pixel_y_out;
@@ -5161,6 +5303,22 @@ module main_gpu_wrapper_0_0_gpu_wrapper
   input [17:0]mem_wr_data;
   input reset;
   input out_ready;
+  input [17:0]matrix_15;
+  input [17:0]matrix_14;
+  input [17:0]matrix_13;
+  input [17:0]matrix_12;
+  input [17:0]matrix_11;
+  input [17:0]matrix_10;
+  input [17:0]matrix_09;
+  input [17:0]matrix_08;
+  input [17:0]matrix_07;
+  input [17:0]matrix_06;
+  input [17:0]matrix_05;
+  input [17:0]matrix_04;
+  input [17:0]matrix_03;
+  input [17:0]matrix_02;
+  input [17:0]matrix_01;
+  input [17:0]matrix_00;
 
   wire GPU_top_n_0;
   wire GPU_top_n_2;
@@ -5172,6 +5330,22 @@ module main_gpu_wrapper_0_0_gpu_wrapper
   wire force_black_i_1_n_0;
   wire frame_end;
   wire [10:0]height;
+  wire [17:0]matrix_00;
+  wire [17:0]matrix_01;
+  wire [17:0]matrix_02;
+  wire [17:0]matrix_03;
+  wire [17:0]matrix_04;
+  wire [17:0]matrix_05;
+  wire [17:0]matrix_06;
+  wire [17:0]matrix_07;
+  wire [17:0]matrix_08;
+  wire [17:0]matrix_09;
+  wire [17:0]matrix_10;
+  wire [17:0]matrix_11;
+  wire [17:0]matrix_12;
+  wire [17:0]matrix_13;
+  wire [17:0]matrix_14;
+  wire [17:0]matrix_15;
   wire [13:0]mem_wr_addr;
   wire [17:0]mem_wr_data;
   wire mem_wr_en;
@@ -5197,6 +5371,22 @@ module main_gpu_wrapper_0_0_gpu_wrapper
         .force_black_reg_0(force_black_i_1_n_0),
         .frame_end(frame_end),
         .height(height),
+        .matrix_00(matrix_00),
+        .matrix_01(matrix_01),
+        .matrix_02(matrix_02),
+        .matrix_03(matrix_03),
+        .matrix_04(matrix_04),
+        .matrix_05(matrix_05),
+        .matrix_06(matrix_06),
+        .matrix_07(matrix_07),
+        .matrix_08(matrix_08),
+        .matrix_09(matrix_09),
+        .matrix_10(matrix_10),
+        .matrix_11(matrix_11),
+        .matrix_12(matrix_12),
+        .matrix_13(matrix_13),
+        .matrix_14(matrix_14),
+        .matrix_15(matrix_15),
         .mem_wr_addr(mem_wr_addr),
         .mem_wr_data(mem_wr_data),
         .mem_wr_en(mem_wr_en),
@@ -12742,7 +12932,23 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
     rd_data,
     reset,
     D,
-    start);
+    start,
+    matrix_15,
+    matrix_14,
+    matrix_13,
+    matrix_12,
+    matrix_11,
+    matrix_10,
+    matrix_09,
+    matrix_08,
+    matrix_07,
+    matrix_06,
+    matrix_05,
+    matrix_04,
+    matrix_03,
+    matrix_02,
+    matrix_01,
+    matrix_00);
   output output_vertex_valid;
   output [0:0]E;
   output [10:0]Q;
@@ -12751,11 +12957,44 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
   input reset;
   input [0:0]D;
   input start;
+  input [17:0]matrix_15;
+  input [17:0]matrix_14;
+  input [17:0]matrix_13;
+  input [17:0]matrix_12;
+  input [17:0]matrix_11;
+  input [17:0]matrix_10;
+  input [17:0]matrix_09;
+  input [17:0]matrix_08;
+  input [17:0]matrix_07;
+  input [17:0]matrix_06;
+  input [17:0]matrix_05;
+  input [17:0]matrix_04;
+  input [17:0]matrix_03;
+  input [17:0]matrix_02;
+  input [17:0]matrix_01;
+  input [17:0]matrix_00;
 
+  wire [17:0]A;
   wire [0:0]D;
   wire [0:0]E;
   wire [10:0]Q;
   wire clk;
+  wire [17:0]matrix_00;
+  wire [17:0]matrix_01;
+  wire [17:0]matrix_02;
+  wire [17:0]matrix_03;
+  wire [17:0]matrix_04;
+  wire [17:0]matrix_05;
+  wire [17:0]matrix_06;
+  wire [17:0]matrix_07;
+  wire [17:0]matrix_08;
+  wire [17:0]matrix_09;
+  wire [17:0]matrix_10;
+  wire [17:0]matrix_11;
+  wire [17:0]matrix_12;
+  wire [17:0]matrix_13;
+  wire [17:0]matrix_14;
+  wire [17:0]matrix_15;
   wire [24:0]\mul_0_out_reg[1]_12 ;
   wire [24:0]\mul_0_out_reg[2]_13 ;
   wire [24:0]\mul_0_out_reg[3]_14 ;
@@ -12796,6 +13035,24 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
   wire \mul_0_out_reg_n_98_[0] ;
   wire \mul_0_out_reg_n_99_[0] ;
   wire [24:0]\mul_1_out_reg[1]__0 ;
+  wire \mul_1_out_reg[1]_i_10_n_0 ;
+  wire \mul_1_out_reg[1]_i_11_n_0 ;
+  wire \mul_1_out_reg[1]_i_12_n_0 ;
+  wire \mul_1_out_reg[1]_i_13_n_0 ;
+  wire \mul_1_out_reg[1]_i_14_n_0 ;
+  wire \mul_1_out_reg[1]_i_15_n_0 ;
+  wire \mul_1_out_reg[1]_i_16_n_0 ;
+  wire \mul_1_out_reg[1]_i_17_n_0 ;
+  wire \mul_1_out_reg[1]_i_18_n_0 ;
+  wire \mul_1_out_reg[1]_i_1_n_0 ;
+  wire \mul_1_out_reg[1]_i_2_n_0 ;
+  wire \mul_1_out_reg[1]_i_3_n_0 ;
+  wire \mul_1_out_reg[1]_i_4_n_0 ;
+  wire \mul_1_out_reg[1]_i_5_n_0 ;
+  wire \mul_1_out_reg[1]_i_6_n_0 ;
+  wire \mul_1_out_reg[1]_i_7_n_0 ;
+  wire \mul_1_out_reg[1]_i_8_n_0 ;
+  wire \mul_1_out_reg[1]_i_9_n_0 ;
   wire [24:0]\mul_1_out_reg[2]_9 ;
   wire [24:0]\mul_1_out_reg[3]_10 ;
   wire [24:0]\mul_1_out_reg[4]_11 ;
@@ -12811,6 +13068,24 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
   wire \mul_1_out_reg_n_79_[1] ;
   wire \mul_1_out_reg_n_80_[1] ;
   wire [24:0]\mul_2_out_reg[1]__0 ;
+  wire \mul_2_out_reg[1]_i_10_n_0 ;
+  wire \mul_2_out_reg[1]_i_11_n_0 ;
+  wire \mul_2_out_reg[1]_i_12_n_0 ;
+  wire \mul_2_out_reg[1]_i_13_n_0 ;
+  wire \mul_2_out_reg[1]_i_14_n_0 ;
+  wire \mul_2_out_reg[1]_i_15_n_0 ;
+  wire \mul_2_out_reg[1]_i_16_n_0 ;
+  wire \mul_2_out_reg[1]_i_17_n_0 ;
+  wire \mul_2_out_reg[1]_i_18_n_0 ;
+  wire \mul_2_out_reg[1]_i_1_n_0 ;
+  wire \mul_2_out_reg[1]_i_2_n_0 ;
+  wire \mul_2_out_reg[1]_i_3_n_0 ;
+  wire \mul_2_out_reg[1]_i_4_n_0 ;
+  wire \mul_2_out_reg[1]_i_5_n_0 ;
+  wire \mul_2_out_reg[1]_i_6_n_0 ;
+  wire \mul_2_out_reg[1]_i_7_n_0 ;
+  wire \mul_2_out_reg[1]_i_8_n_0 ;
+  wire \mul_2_out_reg[1]_i_9_n_0 ;
   wire [24:0]\mul_2_out_reg[2]_5 ;
   wire [24:0]\mul_2_out_reg[3]_6 ;
   wire [24:0]\mul_2_out_reg[4]_7 ;
@@ -13162,6 +13437,7 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
   wire \sum_1_0_out_reg[23]_i_1_n_6 ;
   wire \sum_1_0_out_reg[23]_i_1_n_7 ;
   wire \sum_1_0_out_reg[24]_i_1_n_7 ;
+  wire [17:0]transform_matrix;
   wire [1:0]vertex_counter;
   wire \vertex_counter[0]_i_1__0_n_0 ;
   wire \vertex_counter[1]_i_1__0_n_0 ;
@@ -13285,7 +13561,7 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
     .USE_PATTERN_DETECT("NO_PATDET"),
     .USE_SIMD("ONE48")) 
     \mul_0_out_reg[0] 
-       (.A({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+       (.A({A[17],A[17],A[17],A[17],A[17],A[17],A[17],A[17],A[17],A[17],A[17],A[17],A}),
         .ACIN({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .ACOUT(\NLW_mul_0_out_reg[0]_ACOUT_UNCONNECTED [29:0]),
         .ALUMODE({1'b0,1'b0,1'b0,1'b0}),
@@ -13334,6 +13610,186 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
         .RSTM(1'b0),
         .RSTP(1'b0),
         .UNDERFLOW(\NLW_mul_0_out_reg[0]_UNDERFLOW_UNCONNECTED ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_1 
+       (.I0(matrix_03[17]),
+        .I1(matrix_02[17]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[17]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[17]),
+        .O(A[17]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_10 
+       (.I0(matrix_03[8]),
+        .I1(matrix_02[8]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[8]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[8]),
+        .O(A[8]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_11 
+       (.I0(matrix_03[7]),
+        .I1(matrix_02[7]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[7]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[7]),
+        .O(A[7]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_12 
+       (.I0(matrix_03[6]),
+        .I1(matrix_02[6]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[6]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[6]),
+        .O(A[6]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_13 
+       (.I0(matrix_03[5]),
+        .I1(matrix_02[5]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[5]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[5]),
+        .O(A[5]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_14 
+       (.I0(matrix_03[4]),
+        .I1(matrix_02[4]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[4]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[4]),
+        .O(A[4]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_15 
+       (.I0(matrix_03[3]),
+        .I1(matrix_02[3]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[3]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[3]),
+        .O(A[3]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_16 
+       (.I0(matrix_03[2]),
+        .I1(matrix_02[2]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[2]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[2]),
+        .O(A[2]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_17 
+       (.I0(matrix_03[1]),
+        .I1(matrix_02[1]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[1]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[1]),
+        .O(A[1]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_18 
+       (.I0(matrix_03[0]),
+        .I1(matrix_02[0]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[0]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[0]),
+        .O(A[0]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_2 
+       (.I0(matrix_03[16]),
+        .I1(matrix_02[16]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[16]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[16]),
+        .O(A[16]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_3 
+       (.I0(matrix_03[15]),
+        .I1(matrix_02[15]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[15]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[15]),
+        .O(A[15]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_4 
+       (.I0(matrix_03[14]),
+        .I1(matrix_02[14]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[14]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[14]),
+        .O(A[14]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_5 
+       (.I0(matrix_03[13]),
+        .I1(matrix_02[13]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[13]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[13]),
+        .O(A[13]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_6 
+       (.I0(matrix_03[12]),
+        .I1(matrix_02[12]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[12]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[12]),
+        .O(A[12]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_7 
+       (.I0(matrix_03[11]),
+        .I1(matrix_02[11]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[11]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[11]),
+        .O(A[11]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_8 
+       (.I0(matrix_03[10]),
+        .I1(matrix_02[10]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[10]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[10]),
+        .O(A[10]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_0_out_reg[0]_i_9 
+       (.I0(matrix_03[9]),
+        .I1(matrix_02[9]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_01[9]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_00[9]),
+        .O(A[9]));
   FDRE \mul_0_out_reg[1][0] 
        (.C(clk),
         .CE(mul_3_out),
@@ -13812,7 +14268,7 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
     .USE_PATTERN_DETECT("NO_PATDET"),
     .USE_SIMD("ONE48")) 
     \mul_1_out_reg[1] 
-       (.A({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+       (.A({\mul_1_out_reg[1]_i_1_n_0 ,\mul_1_out_reg[1]_i_1_n_0 ,\mul_1_out_reg[1]_i_1_n_0 ,\mul_1_out_reg[1]_i_1_n_0 ,\mul_1_out_reg[1]_i_1_n_0 ,\mul_1_out_reg[1]_i_1_n_0 ,\mul_1_out_reg[1]_i_1_n_0 ,\mul_1_out_reg[1]_i_1_n_0 ,\mul_1_out_reg[1]_i_1_n_0 ,\mul_1_out_reg[1]_i_1_n_0 ,\mul_1_out_reg[1]_i_1_n_0 ,\mul_1_out_reg[1]_i_1_n_0 ,\mul_1_out_reg[1]_i_1_n_0 ,\mul_1_out_reg[1]_i_2_n_0 ,\mul_1_out_reg[1]_i_3_n_0 ,\mul_1_out_reg[1]_i_4_n_0 ,\mul_1_out_reg[1]_i_5_n_0 ,\mul_1_out_reg[1]_i_6_n_0 ,\mul_1_out_reg[1]_i_7_n_0 ,\mul_1_out_reg[1]_i_8_n_0 ,\mul_1_out_reg[1]_i_9_n_0 ,\mul_1_out_reg[1]_i_10_n_0 ,\mul_1_out_reg[1]_i_11_n_0 ,\mul_1_out_reg[1]_i_12_n_0 ,\mul_1_out_reg[1]_i_13_n_0 ,\mul_1_out_reg[1]_i_14_n_0 ,\mul_1_out_reg[1]_i_15_n_0 ,\mul_1_out_reg[1]_i_16_n_0 ,\mul_1_out_reg[1]_i_17_n_0 ,\mul_1_out_reg[1]_i_18_n_0 }),
         .ACIN({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .ACOUT(\NLW_mul_1_out_reg[1]_ACOUT_UNCONNECTED [29:0]),
         .ALUMODE({1'b0,1'b0,1'b0,1'b0}),
@@ -13861,6 +14317,186 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
         .RSTM(1'b0),
         .RSTP(1'b0),
         .UNDERFLOW(\NLW_mul_1_out_reg[1]_UNDERFLOW_UNCONNECTED ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_1 
+       (.I0(matrix_07[17]),
+        .I1(matrix_06[17]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[17]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[17]),
+        .O(\mul_1_out_reg[1]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_10 
+       (.I0(matrix_07[8]),
+        .I1(matrix_06[8]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[8]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[8]),
+        .O(\mul_1_out_reg[1]_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_11 
+       (.I0(matrix_07[7]),
+        .I1(matrix_06[7]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[7]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[7]),
+        .O(\mul_1_out_reg[1]_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_12 
+       (.I0(matrix_07[6]),
+        .I1(matrix_06[6]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[6]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[6]),
+        .O(\mul_1_out_reg[1]_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_13 
+       (.I0(matrix_07[5]),
+        .I1(matrix_06[5]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[5]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[5]),
+        .O(\mul_1_out_reg[1]_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_14 
+       (.I0(matrix_07[4]),
+        .I1(matrix_06[4]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[4]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[4]),
+        .O(\mul_1_out_reg[1]_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_15 
+       (.I0(matrix_07[3]),
+        .I1(matrix_06[3]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[3]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[3]),
+        .O(\mul_1_out_reg[1]_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_16 
+       (.I0(matrix_07[2]),
+        .I1(matrix_06[2]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[2]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[2]),
+        .O(\mul_1_out_reg[1]_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_17 
+       (.I0(matrix_07[1]),
+        .I1(matrix_06[1]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[1]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[1]),
+        .O(\mul_1_out_reg[1]_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_18 
+       (.I0(matrix_07[0]),
+        .I1(matrix_06[0]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[0]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[0]),
+        .O(\mul_1_out_reg[1]_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_2 
+       (.I0(matrix_07[16]),
+        .I1(matrix_06[16]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[16]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[16]),
+        .O(\mul_1_out_reg[1]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_3 
+       (.I0(matrix_07[15]),
+        .I1(matrix_06[15]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[15]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[15]),
+        .O(\mul_1_out_reg[1]_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_4 
+       (.I0(matrix_07[14]),
+        .I1(matrix_06[14]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[14]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[14]),
+        .O(\mul_1_out_reg[1]_i_4_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_5 
+       (.I0(matrix_07[13]),
+        .I1(matrix_06[13]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[13]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[13]),
+        .O(\mul_1_out_reg[1]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_6 
+       (.I0(matrix_07[12]),
+        .I1(matrix_06[12]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[12]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[12]),
+        .O(\mul_1_out_reg[1]_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_7 
+       (.I0(matrix_07[11]),
+        .I1(matrix_06[11]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[11]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[11]),
+        .O(\mul_1_out_reg[1]_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_8 
+       (.I0(matrix_07[10]),
+        .I1(matrix_06[10]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[10]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[10]),
+        .O(\mul_1_out_reg[1]_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_1_out_reg[1]_i_9 
+       (.I0(matrix_07[9]),
+        .I1(matrix_06[9]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_05[9]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_04[9]),
+        .O(\mul_1_out_reg[1]_i_9_n_0 ));
   FDRE \mul_1_out_reg[2][0] 
        (.C(clk),
         .CE(mul_3_out),
@@ -14339,7 +14975,7 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
     .USE_PATTERN_DETECT("NO_PATDET"),
     .USE_SIMD("ONE48")) 
     \mul_2_out_reg[1] 
-       (.A({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+       (.A({\mul_2_out_reg[1]_i_1_n_0 ,\mul_2_out_reg[1]_i_1_n_0 ,\mul_2_out_reg[1]_i_1_n_0 ,\mul_2_out_reg[1]_i_1_n_0 ,\mul_2_out_reg[1]_i_1_n_0 ,\mul_2_out_reg[1]_i_1_n_0 ,\mul_2_out_reg[1]_i_1_n_0 ,\mul_2_out_reg[1]_i_1_n_0 ,\mul_2_out_reg[1]_i_1_n_0 ,\mul_2_out_reg[1]_i_1_n_0 ,\mul_2_out_reg[1]_i_1_n_0 ,\mul_2_out_reg[1]_i_1_n_0 ,\mul_2_out_reg[1]_i_1_n_0 ,\mul_2_out_reg[1]_i_2_n_0 ,\mul_2_out_reg[1]_i_3_n_0 ,\mul_2_out_reg[1]_i_4_n_0 ,\mul_2_out_reg[1]_i_5_n_0 ,\mul_2_out_reg[1]_i_6_n_0 ,\mul_2_out_reg[1]_i_7_n_0 ,\mul_2_out_reg[1]_i_8_n_0 ,\mul_2_out_reg[1]_i_9_n_0 ,\mul_2_out_reg[1]_i_10_n_0 ,\mul_2_out_reg[1]_i_11_n_0 ,\mul_2_out_reg[1]_i_12_n_0 ,\mul_2_out_reg[1]_i_13_n_0 ,\mul_2_out_reg[1]_i_14_n_0 ,\mul_2_out_reg[1]_i_15_n_0 ,\mul_2_out_reg[1]_i_16_n_0 ,\mul_2_out_reg[1]_i_17_n_0 ,\mul_2_out_reg[1]_i_18_n_0 }),
         .ACIN({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .ACOUT(\NLW_mul_2_out_reg[1]_ACOUT_UNCONNECTED [29:0]),
         .ALUMODE({1'b0,1'b0,1'b0,1'b0}),
@@ -14388,6 +15024,186 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
         .RSTM(1'b0),
         .RSTP(1'b0),
         .UNDERFLOW(\NLW_mul_2_out_reg[1]_UNDERFLOW_UNCONNECTED ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_1 
+       (.I0(matrix_11[17]),
+        .I1(matrix_10[17]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[17]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[17]),
+        .O(\mul_2_out_reg[1]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_10 
+       (.I0(matrix_11[8]),
+        .I1(matrix_10[8]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[8]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[8]),
+        .O(\mul_2_out_reg[1]_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_11 
+       (.I0(matrix_11[7]),
+        .I1(matrix_10[7]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[7]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[7]),
+        .O(\mul_2_out_reg[1]_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_12 
+       (.I0(matrix_11[6]),
+        .I1(matrix_10[6]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[6]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[6]),
+        .O(\mul_2_out_reg[1]_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_13 
+       (.I0(matrix_11[5]),
+        .I1(matrix_10[5]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[5]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[5]),
+        .O(\mul_2_out_reg[1]_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_14 
+       (.I0(matrix_11[4]),
+        .I1(matrix_10[4]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[4]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[4]),
+        .O(\mul_2_out_reg[1]_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_15 
+       (.I0(matrix_11[3]),
+        .I1(matrix_10[3]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[3]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[3]),
+        .O(\mul_2_out_reg[1]_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_16 
+       (.I0(matrix_11[2]),
+        .I1(matrix_10[2]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[2]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[2]),
+        .O(\mul_2_out_reg[1]_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_17 
+       (.I0(matrix_11[1]),
+        .I1(matrix_10[1]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[1]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[1]),
+        .O(\mul_2_out_reg[1]_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_18 
+       (.I0(matrix_11[0]),
+        .I1(matrix_10[0]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[0]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[0]),
+        .O(\mul_2_out_reg[1]_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_2 
+       (.I0(matrix_11[16]),
+        .I1(matrix_10[16]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[16]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[16]),
+        .O(\mul_2_out_reg[1]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_3 
+       (.I0(matrix_11[15]),
+        .I1(matrix_10[15]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[15]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[15]),
+        .O(\mul_2_out_reg[1]_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_4 
+       (.I0(matrix_11[14]),
+        .I1(matrix_10[14]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[14]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[14]),
+        .O(\mul_2_out_reg[1]_i_4_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_5 
+       (.I0(matrix_11[13]),
+        .I1(matrix_10[13]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[13]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[13]),
+        .O(\mul_2_out_reg[1]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_6 
+       (.I0(matrix_11[12]),
+        .I1(matrix_10[12]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[12]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[12]),
+        .O(\mul_2_out_reg[1]_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_7 
+       (.I0(matrix_11[11]),
+        .I1(matrix_10[11]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[11]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[11]),
+        .O(\mul_2_out_reg[1]_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_8 
+       (.I0(matrix_11[10]),
+        .I1(matrix_10[10]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[10]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[10]),
+        .O(\mul_2_out_reg[1]_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_2_out_reg[1]_i_9 
+       (.I0(matrix_11[9]),
+        .I1(matrix_10[9]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_09[9]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_08[9]),
+        .O(\mul_2_out_reg[1]_i_9_n_0 ));
   FDRE \mul_2_out_reg[2][0] 
        (.C(clk),
         .CE(mul_3_out),
@@ -15016,7 +15832,7 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
     .USE_PATTERN_DETECT("NO_PATDET"),
     .USE_SIMD("ONE48")) 
     \mul_3_out_reg[1] 
-       (.A({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+       (.A({transform_matrix[17],transform_matrix[17],transform_matrix[17],transform_matrix[17],transform_matrix[17],transform_matrix[17],transform_matrix[17],transform_matrix[17],transform_matrix[17],transform_matrix[17],transform_matrix[17],transform_matrix[17],transform_matrix}),
         .ACIN({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .ACOUT(\NLW_mul_3_out_reg[1]_ACOUT_UNCONNECTED [29:0]),
         .ALUMODE({1'b0,1'b0,1'b0,1'b0}),
@@ -15073,6 +15889,106 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
         .I2(p_0_out[3]),
         .I3(p_0_out[4]),
         .O(\mul_3_out_reg[1]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_10 
+       (.I0(matrix_15[10]),
+        .I1(matrix_14[10]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[10]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[10]),
+        .O(transform_matrix[10]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_11 
+       (.I0(matrix_15[9]),
+        .I1(matrix_14[9]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[9]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[9]),
+        .O(transform_matrix[9]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_12 
+       (.I0(matrix_15[8]),
+        .I1(matrix_14[8]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[8]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[8]),
+        .O(transform_matrix[8]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_13 
+       (.I0(matrix_15[7]),
+        .I1(matrix_14[7]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[7]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[7]),
+        .O(transform_matrix[7]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_14 
+       (.I0(matrix_15[6]),
+        .I1(matrix_14[6]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[6]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[6]),
+        .O(transform_matrix[6]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_15 
+       (.I0(matrix_15[5]),
+        .I1(matrix_14[5]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[5]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[5]),
+        .O(transform_matrix[5]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_16 
+       (.I0(matrix_15[4]),
+        .I1(matrix_14[4]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[4]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[4]),
+        .O(transform_matrix[4]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_17 
+       (.I0(matrix_15[3]),
+        .I1(matrix_14[3]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[3]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[3]),
+        .O(transform_matrix[3]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_18 
+       (.I0(matrix_15[2]),
+        .I1(matrix_14[2]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[2]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[2]),
+        .O(transform_matrix[2]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_19 
+       (.I0(matrix_15[1]),
+        .I1(matrix_14[1]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[1]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[1]),
+        .O(transform_matrix[1]));
   LUT5 #(
     .INIT(32'h55555554)) 
     \mul_3_out_reg[1]_i_2 
@@ -15082,6 +15998,86 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
         .I3(p_0_out[3]),
         .I4(p_0_out[4]),
         .O(mul_3_out));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_20 
+       (.I0(matrix_15[0]),
+        .I1(matrix_14[0]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[0]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[0]),
+        .O(transform_matrix[0]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_3 
+       (.I0(matrix_15[17]),
+        .I1(matrix_14[17]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[17]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[17]),
+        .O(transform_matrix[17]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_4 
+       (.I0(matrix_15[16]),
+        .I1(matrix_14[16]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[16]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[16]),
+        .O(transform_matrix[16]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_5 
+       (.I0(matrix_15[15]),
+        .I1(matrix_14[15]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[15]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[15]),
+        .O(transform_matrix[15]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_6 
+       (.I0(matrix_15[14]),
+        .I1(matrix_14[14]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[14]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[14]),
+        .O(transform_matrix[14]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_7 
+       (.I0(matrix_15[13]),
+        .I1(matrix_14[13]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[13]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[13]),
+        .O(transform_matrix[13]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_8 
+       (.I0(matrix_15[12]),
+        .I1(matrix_14[12]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[12]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[12]),
+        .O(transform_matrix[12]));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \mul_3_out_reg[1]_i_9 
+       (.I0(matrix_15[11]),
+        .I1(matrix_14[11]),
+        .I2(vertex_counter[1]),
+        .I3(matrix_13[11]),
+        .I4(vertex_counter[0]),
+        .I5(matrix_12[11]),
+        .O(transform_matrix[11]));
   FDRE \mul_3_out_reg[2][0] 
        (.C(clk),
         .CE(mul_3_out),
@@ -17331,20 +18327,20 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
   LUT5 #(
     .INIT(32'h606F6F60)) 
     sum_0_1_out0_carry__5_i_2
-       (.I0(\mul_3_out_reg[6]_4 [24]),
-        .I1(\mul_3_out_reg[5]_3 [24]),
+       (.I0(\mul_3_out_reg[5]_3 [24]),
+        .I1(\mul_3_out_reg[6]_4 [24]),
         .I2(vertex_counter[0]),
-        .I3(\mul_2_out_reg[5]_8 [24]),
-        .I4(\mul_2_out_reg[4]_7 [24]),
+        .I3(\mul_2_out_reg[4]_7 [24]),
+        .I4(\mul_2_out_reg[5]_8 [24]),
         .O(sum_0_1_out0_carry__5_i_2_n_0));
   LUT5 #(
     .INIT(32'h606F6F60)) 
     sum_0_1_out0_carry__5_i_3
-       (.I0(\mul_1_out_reg[4]_11 [24]),
-        .I1(\mul_1_out_reg[3]_10 [24]),
+       (.I0(\mul_1_out_reg[3]_10 [24]),
+        .I1(\mul_1_out_reg[4]_11 [24]),
         .I2(vertex_counter[0]),
-        .I3(\mul_0_out_reg[3]_14 [24]),
-        .I4(\mul_0_out_reg[2]_13 [24]),
+        .I3(\mul_0_out_reg[2]_13 [24]),
+        .I4(\mul_0_out_reg[3]_14 [24]),
         .O(sum_0_1_out0_carry__5_i_3_n_0));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 

@@ -16,15 +16,15 @@
         }
       },
       "axi_smc": "",
-      "rst_ps7_0_50M": "",
       "axi_master_0": "",
-      "gpu_wrapper_0": "",
       "xlconcat_0": "",
       "xlconcat_1": "",
       "xlconstant_0": "",
       "ila_0": "",
       "ila_1": "",
-      "gpu_control_0": ""
+      "gpu_control_0": "",
+      "gpu_wrapper_0": "",
+      "rst_ps7_0_50M": ""
     },
     "interface_ports": {
       "DDR": {
@@ -637,10 +637,6 @@
           }
         }
       },
-      "rst_ps7_0_50M": {
-        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
-        "xci_name": "main_rst_ps7_0_50M_0"
-      },
       "axi_master_0": {
         "vlnv": "xilinx.com:user:axi_master:1.0",
         "xci_name": "main_axi_master_0_0",
@@ -659,102 +655,6 @@
           },
           "C_M00_AXI_WUSER_WIDTH": {
             "value": "4"
-          }
-        }
-      },
-      "gpu_wrapper_0": {
-        "vlnv": "xilinx.com:module_ref:gpu_wrapper:1.0",
-        "xci_name": "main_gpu_wrapper_0_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "gpu_wrapper",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "reset",
-                "value_src": "constant"
-              },
-              "CLK_DOMAIN": {
-                "value": "main_processing_system7_0_1_FCLK_CLK0",
-                "value_src": "default_prop"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "user_prop"
-              }
-            }
-          },
-          "reset": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "vertex_count": {
-            "direction": "I",
-            "left": "31",
-            "right": "0"
-          },
-          "start": {
-            "direction": "I"
-          },
-          "mem_wr_addr": {
-            "direction": "I",
-            "left": "13",
-            "right": "0"
-          },
-          "mem_wr_data": {
-            "direction": "I",
-            "left": "17",
-            "right": "0"
-          },
-          "mem_wr_en": {
-            "direction": "I"
-          },
-          "transform_matrix": {
-            "direction": "I",
-            "left": "287",
-            "right": "0"
-          },
-          "output_color": {
-            "direction": "O",
-            "left": "7",
-            "right": "0"
-          },
-          "output_valid": {
-            "direction": "O"
-          },
-          "pixel_x_out": {
-            "direction": "O",
-            "left": "10",
-            "right": "0"
-          },
-          "pixel_y_out": {
-            "direction": "O",
-            "left": "10",
-            "right": "0"
-          },
-          "width": {
-            "direction": "O",
-            "left": "10",
-            "right": "0"
-          },
-          "height": {
-            "direction": "O",
-            "left": "10",
-            "right": "0"
-          },
-          "frame_end": {
-            "direction": "O"
-          },
-          "draw": {
-            "direction": "O"
-          },
-          "out_ready": {
-            "direction": "I"
           }
         }
       },
@@ -828,25 +728,218 @@
       "gpu_control_0": {
         "vlnv": "xilinx.com:user:gpu_control:1.0",
         "xci_name": "main_gpu_control_0_0"
+      },
+      "gpu_wrapper_0": {
+        "vlnv": "xilinx.com:module_ref:gpu_wrapper:1.0",
+        "xci_name": "main_gpu_wrapper_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "gpu_wrapper",
+          "boundary_crc": "0x0"
+        },
+        "interface_ports": {
+          "transform_matrix": {
+            "mode": "Master",
+            "vlnv": "xilinx.com:user:transform_matrix_rtl:1.0",
+            "port_maps": {
+              "matrix_00": {
+                "physical_name": "matrix_00",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_01": {
+                "physical_name": "matrix_01",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_02": {
+                "physical_name": "matrix_02",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_03": {
+                "physical_name": "matrix_03",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_04": {
+                "physical_name": "matrix_04",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_05": {
+                "physical_name": "matrix_05",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_06": {
+                "physical_name": "matrix_06",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_07": {
+                "physical_name": "matrix_07",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_08": {
+                "physical_name": "matrix_08",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_09": {
+                "physical_name": "matrix_09",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_10": {
+                "physical_name": "matrix_10",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_11": {
+                "physical_name": "matrix_11",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_12": {
+                "physical_name": "matrix_12",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_13": {
+                "physical_name": "matrix_13",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_14": {
+                "physical_name": "matrix_14",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_15": {
+                "physical_name": "matrix_15",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              }
+            }
+          }
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "main_processing_system7_0_1_FCLK_CLK0",
+                "value_src": "default_prop"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              }
+            }
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "const_prop"
+              }
+            }
+          },
+          "vertex_count": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "start": {
+            "direction": "I"
+          },
+          "mem_wr_addr": {
+            "direction": "I",
+            "left": "13",
+            "right": "0"
+          },
+          "mem_wr_data": {
+            "direction": "I",
+            "left": "17",
+            "right": "0"
+          },
+          "mem_wr_en": {
+            "direction": "I"
+          },
+          "output_color": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "output_valid": {
+            "direction": "O"
+          },
+          "pixel_x_out": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "pixel_y_out": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "width": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "height": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "frame_end": {
+            "direction": "O"
+          },
+          "draw": {
+            "direction": "O"
+          },
+          "out_ready": {
+            "direction": "I"
+          }
+        }
+      },
+      "rst_ps7_0_50M": {
+        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
+        "xci_name": "main_rst_ps7_0_50M_0"
       }
     },
     "interface_nets": {
-      "axi_smc_M00_AXI": {
+      "processing_system7_0_MDIO_ETHERNET_0": {
         "interface_ports": [
-          "axi_smc/M00_AXI",
-          "processing_system7_0/S_AXI_GP0"
-        ]
-      },
-      "axi_master_0_M00_AXI": {
-        "interface_ports": [
-          "axi_master_0/M00_AXI",
-          "axi_smc/S00_AXI"
-        ]
-      },
-      "processing_system7_0_FIXED_IO": {
-        "interface_ports": [
-          "FIXED_IO",
-          "processing_system7_0/FIXED_IO"
+          "MDIO_ETHERNET_0_0",
+          "processing_system7_0/MDIO_ETHERNET_0"
         ]
       },
       "processing_system7_0_DDR": {
@@ -855,16 +948,10 @@
           "processing_system7_0/DDR"
         ]
       },
-      "processing_system7_0_M_AXI_GP0": {
+      "processing_system7_0_FIXED_IO": {
         "interface_ports": [
-          "processing_system7_0/M_AXI_GP0",
-          "ps7_0_axi_periph/S00_AXI"
-        ]
-      },
-      "processing_system7_0_MDIO_ETHERNET_0": {
-        "interface_ports": [
-          "MDIO_ETHERNET_0_0",
-          "processing_system7_0/MDIO_ETHERNET_0"
+          "FIXED_IO",
+          "processing_system7_0/FIXED_IO"
         ]
       },
       "ps7_0_axi_periph_M00_AXI": {
@@ -881,6 +968,30 @@
             "value": "true"
           }
         }
+      },
+      "axi_smc_M00_AXI": {
+        "interface_ports": [
+          "axi_smc/M00_AXI",
+          "processing_system7_0/S_AXI_GP0"
+        ]
+      },
+      "processing_system7_0_M_AXI_GP0": {
+        "interface_ports": [
+          "processing_system7_0/M_AXI_GP0",
+          "ps7_0_axi_periph/S00_AXI"
+        ]
+      },
+      "axi_master_0_M00_AXI": {
+        "interface_ports": [
+          "axi_master_0/M00_AXI",
+          "axi_smc/S00_AXI"
+        ]
+      },
+      "gpu_wrapper_0_transform_matrix": {
+        "interface_ports": [
+          "gpu_control_0/transform_matrix",
+          "gpu_wrapper_0/transform_matrix"
+        ]
       }
     },
     "nets": {
@@ -893,30 +1004,19 @@
           "ps7_0_axi_periph/ACLK",
           "processing_system7_0/S_AXI_GP0_ACLK",
           "axi_smc/aclk",
-          "rst_ps7_0_50M/slowest_sync_clk",
           "axi_master_0/m00_axi_aclk",
-          "gpu_wrapper_0/clk",
           "ila_0/clk",
           "ila_1/clk",
-          "gpu_control_0/s00_axi_aclk"
-        ]
-      },
-      "rst_ps7_0_50M_peripheral_aresetn": {
-        "ports": [
-          "processing_system7_0/FCLK_RESET0_N",
-          "ps7_0_axi_periph/S00_ARESETN",
-          "ps7_0_axi_periph/M00_ARESETN",
-          "ps7_0_axi_periph/ARESETN",
-          "rst_ps7_0_50M/ext_reset_in",
-          "gpu_wrapper_0/reset",
-          "gpu_control_0/s00_axi_aresetn"
+          "gpu_control_0/s00_axi_aclk",
+          "gpu_wrapper_0/clk",
+          "rst_ps7_0_50M/slowest_sync_clk"
         ]
       },
       "gpu_control_0_vertices_size": {
         "ports": [
           "gpu_control_0/vertex_count",
-          "gpu_wrapper_0/vertex_count",
-          "ila_1/probe0"
+          "ila_1/probe0",
+          "gpu_wrapper_0/vertex_count"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -930,8 +1030,8 @@
       "gpu_control_0_start": {
         "ports": [
           "gpu_control_0/start",
-          "gpu_wrapper_0/start",
-          "ila_1/probe5"
+          "ila_1/probe5",
+          "gpu_wrapper_0/start"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -951,8 +1051,8 @@
       "gpu_control_0_mem_wr_addr": {
         "ports": [
           "gpu_control_0/mem_wr_addr",
-          "gpu_wrapper_0/mem_wr_addr",
-          "ila_1/probe2"
+          "ila_1/probe2",
+          "gpu_wrapper_0/mem_wr_addr"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -966,8 +1066,8 @@
       "gpu_control_0_mem_wr_data": {
         "ports": [
           "gpu_control_0/mem_wr_data",
-          "gpu_wrapper_0/mem_wr_data",
-          "ila_1/probe3"
+          "ila_1/probe3",
+          "gpu_wrapper_0/mem_wr_data"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -981,8 +1081,8 @@
       "gpu_control_0_mem_wr_en": {
         "ports": [
           "gpu_control_0/mem_wr_en",
-          "gpu_wrapper_0/mem_wr_en",
-          "ila_1/probe4"
+          "ila_1/probe4",
+          "gpu_wrapper_0/mem_wr_en"
         ],
         "hdl_attributes": {
           "DEBUG": {
@@ -992,13 +1092,6 @@
             "value": "true"
           }
         }
-      },
-      "rst_ps7_0_50M_peripheral_aresetn1": {
-        "ports": [
-          "rst_ps7_0_50M/peripheral_aresetn",
-          "axi_smc/aresetn",
-          "axi_master_0/m00_axi_aresetn"
-        ]
       },
       "gpu_control_0_address": {
         "ports": [
@@ -1115,6 +1208,24 @@
         "ports": [
           "xlconcat_1/dout",
           "processing_system7_0/ENET0_GMII_RXD"
+        ]
+      },
+      "rst_ps7_0_50M_peripheral_aresetn1": {
+        "ports": [
+          "rst_ps7_0_50M/peripheral_aresetn",
+          "axi_smc/aresetn",
+          "axi_master_0/m00_axi_aresetn",
+          "ps7_0_axi_periph/ARESETN",
+          "ps7_0_axi_periph/S00_ARESETN",
+          "ps7_0_axi_periph/M00_ARESETN",
+          "gpu_control_0/s00_axi_aresetn",
+          "gpu_wrapper_0/reset"
+        ]
+      },
+      "processing_system7_0_FCLK_RESET0_N": {
+        "ports": [
+          "processing_system7_0/FCLK_RESET0_N",
+          "rst_ps7_0_50M/ext_reset_in"
         ]
       }
     },

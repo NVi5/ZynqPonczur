@@ -63,7 +63,22 @@ module main_gpu_wrapper_0_0 (
   mem_wr_addr,
   mem_wr_data,
   mem_wr_en,
-  transform_matrix,
+  matrix_00,
+  matrix_01,
+  matrix_02,
+  matrix_03,
+  matrix_04,
+  matrix_05,
+  matrix_06,
+  matrix_07,
+  matrix_08,
+  matrix_09,
+  matrix_10,
+  matrix_11,
+  matrix_12,
+  matrix_13,
+  matrix_14,
+  matrix_15,
   output_color,
   output_valid,
   pixel_x_out,
@@ -75,7 +90,7 @@ module main_gpu_wrapper_0_0 (
   out_ready
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET reset, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN main_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET reset, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
@@ -86,7 +101,38 @@ input wire start;
 input wire [13 : 0] mem_wr_addr;
 input wire [17 : 0] mem_wr_data;
 input wire mem_wr_en;
-input wire [287 : 0] transform_matrix;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_00" *)
+input wire [17 : 0] matrix_00;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_01" *)
+input wire [17 : 0] matrix_01;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_02" *)
+input wire [17 : 0] matrix_02;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_03" *)
+input wire [17 : 0] matrix_03;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_04" *)
+input wire [17 : 0] matrix_04;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_05" *)
+input wire [17 : 0] matrix_05;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_06" *)
+input wire [17 : 0] matrix_06;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_07" *)
+input wire [17 : 0] matrix_07;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_08" *)
+input wire [17 : 0] matrix_08;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_09" *)
+input wire [17 : 0] matrix_09;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_10" *)
+input wire [17 : 0] matrix_10;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_11" *)
+input wire [17 : 0] matrix_11;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_12" *)
+input wire [17 : 0] matrix_12;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_13" *)
+input wire [17 : 0] matrix_13;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_14" *)
+input wire [17 : 0] matrix_14;
+(* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_15" *)
+input wire [17 : 0] matrix_15;
 output wire [7 : 0] output_color;
 output wire output_valid;
 output wire [10 : 0] pixel_x_out;
@@ -105,7 +151,22 @@ input wire out_ready;
     .mem_wr_addr(mem_wr_addr),
     .mem_wr_data(mem_wr_data),
     .mem_wr_en(mem_wr_en),
-    .transform_matrix(transform_matrix),
+    .matrix_00(matrix_00),
+    .matrix_01(matrix_01),
+    .matrix_02(matrix_02),
+    .matrix_03(matrix_03),
+    .matrix_04(matrix_04),
+    .matrix_05(matrix_05),
+    .matrix_06(matrix_06),
+    .matrix_07(matrix_07),
+    .matrix_08(matrix_08),
+    .matrix_09(matrix_09),
+    .matrix_10(matrix_10),
+    .matrix_11(matrix_11),
+    .matrix_12(matrix_12),
+    .matrix_13(matrix_13),
+    .matrix_14(matrix_14),
+    .matrix_15(matrix_15),
     .output_color(output_color),
     .output_valid(output_valid),
     .pixel_x_out(pixel_x_out),
