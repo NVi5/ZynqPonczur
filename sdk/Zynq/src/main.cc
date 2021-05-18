@@ -40,7 +40,7 @@ struct netif *echo_netif;
 void glm_mat4_to_fpga(glm::mat4 &mat, uint32_t *fpga_addr) {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-				fpga_addr[15-(4*i+j)] = (int32_t)(mat[i][j] * 128.0f);
+				fpga_addr[4*i+j] = (int32_t)(mat[j][i] * 128.0f);
 		}
 	}
 }
@@ -90,16 +90,7 @@ int main()
 	xd->onopen = (websocket_onopen_fn)onOpen;
 	xd->onmessage = (websocket_onmessage_fn)onMessage;
 	xd->onclose = (websocket_onclose_fn)onClose;
-//	glm::mat4 roatation_matrix = glm::rotate(glm::mat4(1.0f), (float)M_PI_2, glm::vec3(0.0f, 1.0f, 0.0f));
-//	roatation_matrix = glm::transpose(roatation_matrix);
-	int32_t xd1[16] = {
-		//128,0,0,0,0,90,0,90,0,-34,118,34,0,-83,-48,83
-		128,0,0,0,0,90,0,90,0,-34,118,34,0,-83,-48,83
-//		83, -48, -83, 0,
-//		34, 118, -34, 0,
-//		90, 0, 90, 0,
-//		0, 0, 0, 128
-	};
+
 
 	for (unsigned int i = 0; i < len; i++) {
 		test[i] = test[i] << 7;
@@ -107,17 +98,11 @@ int main()
 
 
 
-	//memcpy(gpu_mem, xd1, 16*4);
 	memcpy(GPU_MEM, test, len*sizeof(test[0]));
 	gpu_mem[0x10] = len;
 	gpu_mem[0x11] = (uint32_t)framebuffer;
-//	gpu_mem[0x12] = 1;
-//	while(!gpu_mem[0x13]);
 
-//	glm::mat4 matrix = glm::rotate(glm::mat4(1.0f), 3.14f/4, glm::vec3(0.0f, 1.0f, 0.0f));
-//	glm_mat4_to_fpga(matrix, gpu_mem);
-
-	#define N_PONCZUR 4
+	#define N_PONCZUR 5
 	int data_size = 0;
 	unsigned int buffer_pos = 0;
 
@@ -137,9 +122,12 @@ int main()
 
 				//alfa += 0.01;
 
-				glm::mat4 matrix = glm::rotate(glm::mat4(1.0f), alfa, glm::vec3(1.0f, 0.0f, 0.0f));
+				glm::mat4 matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
+				matrix = glm::rotate(matrix, alfa, glm::vec3(1.0f, 0.0f, 0.0f));
 				matrix = glm::rotate(matrix, beta, glm::vec3(0.0f, 1.0f, 0.0f));
 				matrix = glm::rotate(matrix, gamm, glm::vec3(0.0f, 0.0f, 1.0f));
+
+
 				//	glm_mat4_to_fpga(matrix, gpu_mem);
 				glm_mat4_to_fpga(matrix, gpu_mem);
 				gpu_mem[0x12] = 1;
