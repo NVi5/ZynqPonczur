@@ -127,6 +127,7 @@ always @(posedge clk) begin
                 rasterize_end <= 1;
             end
             vertex_select <= 0;
+            color <= color + 1;
             addra <= addra + 1;
         end
         LOAD_VERTEX: begin
@@ -224,7 +225,6 @@ always @(posedge clk) begin
                     end
                     else begin
                         pixel_y <= BB_TL_y;
-                        color <= color + 1;
                         if (force_black) force_black <= 0;
                         state <= START;
                     end
