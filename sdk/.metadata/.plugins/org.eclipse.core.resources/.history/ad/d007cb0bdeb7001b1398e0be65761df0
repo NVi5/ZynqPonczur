@@ -120,8 +120,6 @@ int main()
 			if (data_size <= 0){
 				data_size = 480000;
 
-				alfa += 0.1;
-
 				while(!gpu_mem[0x13]);
 				if (current_framebuffer == 0) current_framebuffer = 1;
 				else current_framebuffer = 0;
