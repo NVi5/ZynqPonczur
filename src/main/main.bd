@@ -19,9 +19,9 @@
       "xlconcat_1": "",
       "xlconstant_0": "",
       "rst_ps7_0_50M": "",
-      "gpu_control_0": "",
       "axi_master_burst_axi3_0": "",
-      "gpu_wrapper_0": ""
+      "gpu_wrapper_0": "",
+      "gpu_control_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -542,16 +542,16 @@
               }
             },
             "interface_nets": {
-              "s00_couplers_to_auto_pc": {
-                "interface_ports": [
-                  "S_AXI",
-                  "auto_pc/S_AXI"
-                ]
-              },
               "auto_pc_to_s00_couplers": {
                 "interface_ports": [
                   "M_AXI",
                   "auto_pc/M_AXI"
+                ]
+              },
+              "s00_couplers_to_auto_pc": {
+                "interface_ports": [
+                  "S_AXI",
+                  "auto_pc/S_AXI"
                 ]
               }
             },
@@ -572,16 +572,16 @@
           }
         },
         "interface_nets": {
-          "s00_couplers_to_ps7_0_axi_periph": {
-            "interface_ports": [
-              "M00_AXI",
-              "s00_couplers/M_AXI"
-            ]
-          },
           "ps7_0_axi_periph_to_s00_couplers": {
             "interface_ports": [
               "S00_AXI",
               "s00_couplers/S_AXI"
+            ]
+          },
+          "s00_couplers_to_ps7_0_axi_periph": {
+            "interface_ports": [
+              "M00_AXI",
+              "s00_couplers/M_AXI"
             ]
           }
         },
@@ -651,10 +651,6 @@
       "rst_ps7_0_50M": {
         "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
         "xci_name": "main_rst_ps7_0_50M_0"
-      },
-      "gpu_control_0": {
-        "vlnv": "xilinx.com:user:gpu_control:1.0",
-        "xci_name": "main_gpu_control_0_0"
       },
       "axi_master_burst_axi3_0": {
         "vlnv": "xilinx.com:module_ref:axi_master_burst_axi3:1.0",
@@ -1249,6 +1245,10 @@
             "direction": "I"
           }
         }
+      },
+      "gpu_control_0": {
+        "vlnv": "xilinx.com:user:gpu_control:1.0",
+        "xci_name": "main_gpu_control_0_0"
       }
     },
     "interface_nets": {
@@ -1256,18 +1256,6 @@
         "interface_ports": [
           "DDR",
           "processing_system7_0/DDR"
-        ]
-      },
-      "processing_system7_0_M_AXI_GP0": {
-        "interface_ports": [
-          "processing_system7_0/M_AXI_GP0",
-          "ps7_0_axi_periph/S00_AXI"
-        ]
-      },
-      "processing_system7_0_FIXED_IO": {
-        "interface_ports": [
-          "FIXED_IO",
-          "processing_system7_0/FIXED_IO"
         ]
       },
       "ps7_0_axi_periph_M00_AXI": {
@@ -1288,10 +1276,22 @@
           "gpu_wrapper_0/transform_matrix"
         ]
       },
+      "processing_system7_0_FIXED_IO": {
+        "interface_ports": [
+          "FIXED_IO",
+          "processing_system7_0/FIXED_IO"
+        ]
+      },
       "axi_master_burst_axi3_0_M00_AXI": {
         "interface_ports": [
           "axi_master_burst_axi3_0/M00_AXI",
           "processing_system7_0/S_AXI_GP0"
+        ]
+      },
+      "processing_system7_0_M_AXI_GP0": {
+        "interface_ports": [
+          "processing_system7_0/M_AXI_GP0",
+          "ps7_0_axi_periph/S00_AXI"
         ]
       }
     },
@@ -1305,9 +1305,9 @@
           "ps7_0_axi_periph/ACLK",
           "processing_system7_0/S_AXI_GP0_ACLK",
           "rst_ps7_0_50M/slowest_sync_clk",
-          "gpu_control_0/s00_axi_aclk",
           "axi_master_burst_axi3_0/clk",
-          "gpu_wrapper_0/clk"
+          "gpu_wrapper_0/clk",
+          "gpu_control_0/s00_axi_aclk"
         ]
       },
       "gpu_control_0_vertices_size": {
@@ -1406,9 +1406,9 @@
           "ps7_0_axi_periph/ARESETN",
           "ps7_0_axi_periph/S00_ARESETN",
           "ps7_0_axi_periph/M00_ARESETN",
-          "gpu_control_0/s00_axi_aresetn",
           "axi_master_burst_axi3_0/reset",
-          "gpu_wrapper_0/reset"
+          "gpu_wrapper_0/reset",
+          "gpu_control_0/s00_axi_aresetn"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {

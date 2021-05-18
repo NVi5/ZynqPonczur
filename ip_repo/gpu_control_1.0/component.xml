@@ -402,7 +402,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5325c6e5</spirit:value>
+            <spirit:value>67af854e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -418,7 +418,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5325c6e5</spirit:value>
+            <spirit:value>67af854e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -485,7 +485,7 @@
           <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -502,7 +502,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -519,7 +519,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -536,7 +536,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -553,7 +553,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -570,7 +570,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -587,7 +587,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -604,7 +604,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -621,7 +621,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -638,7 +638,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -655,7 +655,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -672,7 +672,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -689,7 +689,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -706,7 +706,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -723,7 +723,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -740,7 +740,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -757,7 +757,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -774,7 +774,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -791,7 +791,7 @@
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -1210,8 +1210,8 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/gpu_control_v1_0.v</spirit:name>
-        <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_4bec274d</spirit:userFileType>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>CHECKSUM_539dd55b</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -1222,7 +1222,7 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/gpu_control_v1_0.v</spirit:name>
-        <spirit:fileType>systemVerilogSource</spirit:fileType>
+        <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -1355,8 +1355,8 @@
         <xilinx:taxonomy>AXI_Peripheral</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>gpu_control_v1.0</xilinx:displayName>
-      <xilinx:coreRevision>17</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2021-05-17T23:58:40Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>25</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-05-18T12:25:57Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@7cd2085d_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@4c144ad7_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
@@ -1665,14 +1665,122 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@6abcfe00_ARCHIVE_LOCATION">c:/Users/wojte/Desktop/sdup_projekt/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@136c51cf_ARCHIVE_LOCATION">c:/Users/wojte/Desktop/sdup_projekt/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@793727e7_ARCHIVE_LOCATION">c:/Users/wojte/Desktop/sdup_projekt/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1011e2fa_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@26829c23_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4141d396_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@89b19c6_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3efd537f_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@625d1eb4_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2d8a4464_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@fc4332f_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ed3f10a_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2718cc3e_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e6588b9_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@545919de_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@429318f2_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5a03bada_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@f39003b_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f7e21f7_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@644f2231_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52eef36_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@47863826_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6a87b35e_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@60ad8da8_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3b9f88a5_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a348a46_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d171601_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@61bfd13d_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2323ae0_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13eea412_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3984635_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@53c94ff_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@49a0e4f6_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@25198443_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@69b594eb_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d7f0bf9_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e3314ac_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@277e4fed_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c7efe8a_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@725e71e1_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@71b5945b_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a79137b_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c0298f8_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@77527fa_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@236f35fc_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@29df4e72_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@534a46be_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@72b0da36_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@d243728_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@304052c9_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@66eb8ceb_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b7f066e_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@45306914_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@59ccbeef_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@10513d83_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2df96a3a_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8605554_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@255799f2_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d7f2e43_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@678a0265_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@467c9eff_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@715b5b65_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@41a1a416_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e144437_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@78abcfd8_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@76d0e7cc_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3cbc71a2_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@373fccf0_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1dde8f38_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c24be59_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@37c810fa_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2389b937_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d6d8558_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2cf186af_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@71f8be7e_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4495aa34_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7145994c_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52308faf_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@401c8600_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@babfe15_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@450860b9_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2a9ef83a_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1f94fdaa_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@a21b4a_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@25e873ff_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4f170179_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@73216ad5_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6b99cf9c_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@165e6561_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@55f9d3c7_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d7203cb_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@28153f17_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@cf0e9d0_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7358aed2_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ee2c793_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2123eb76_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@28c72cf4_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4505e660_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b88bc2_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@30ac1e94_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@117862a8_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@90dc83f_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@20068118_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a98eef4_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@605a3d8_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2d6524b4_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@77be10cd_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d435b51_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@407d8a1a_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@739376c3_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5896927f_ARCHIVE_LOCATION">c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/ip_repo/gpu_control_1.0</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2018.3</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="fc3a22a9"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="ed1368d5"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="d1150828"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="8047f7ba"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="8ac1ba3f"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="5cfb9c02"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="54883d77"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="b401c5ad"/>
     </xilinx:packagingInfo>

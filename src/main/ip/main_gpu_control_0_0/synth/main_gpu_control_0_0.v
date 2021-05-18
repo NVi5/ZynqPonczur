@@ -48,11 +48,11 @@
 
 
 // IP VLNV: xilinx.com:user:gpu_control:1.0
-// IP Revision: 17
+// IP Revision: 25
 
 (* X_CORE_INFO = "gpu_control_v1_0,Vivado 2018.3" *)
 (* CHECK_LICENSE_TYPE = "main_gpu_control_0_0,gpu_control_v1_0,{}" *)
-(* CORE_GENERATION_INFO = "main_gpu_control_0_0,gpu_control_v1_0,{x_ipProduct=Vivado 2018.3,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=gpu_control,x_ipVersion=1.0,x_ipCoreRevision=17,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_S00_AXI_DATA_WIDTH=32,C_S00_AXI_ADDR_WIDTH=17,M=11,N=7,MEM_DEPTH=16384}" *)
+(* CORE_GENERATION_INFO = "main_gpu_control_0_0,gpu_control_v1_0,{x_ipProduct=Vivado 2018.3,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=gpu_control,x_ipVersion=1.0,x_ipCoreRevision=25,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_S00_AXI_DATA_WIDTH=32,C_S00_AXI_ADDR_WIDTH=17,M=11,N=7,MEM_DEPTH=16384}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module main_gpu_control_0_0 (
   status,
