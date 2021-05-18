@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
--- Date        : Tue May 18 14:03:14 2021
+-- Date        : Tue May 18 16:23:07 2021
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               C:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main/ip/main_gpu_wrapper_0_0/main_gpu_wrapper_0_0_sim_netlist.vhdl
@@ -20,17 +20,13 @@ entity main_gpu_wrapper_0_0_edgeFunction is
     \out_valid_d_reg[2]_0\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     \vertex_select_reg[4]\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     ef_inside : out STD_LOGIC_VECTOR ( 0 to 0 );
-    \FSM_onehot_state_reg[0]\ : out STD_LOGIC;
     \FSM_onehot_state_reg[2]\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     \out_valid_d_reg[0]_0\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    \FSM_onehot_state_reg[0]_0\ : out STD_LOGIC;
-    output_vertex_valid_reg : out STD_LOGIC;
+    \FSM_onehot_state_reg[4]\ : out STD_LOGIC;
     \FSM_onehot_state_reg[9]\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     output_valid : out STD_LOGIC;
     \FSM_onehot_state_reg[1]\ : out STD_LOGIC;
     \FSM_onehot_state_reg[2]_0\ : out STD_LOGIC;
-    output_vertex_valid_reg_0 : out STD_LOGIC;
-    output_vertex_valid_reg_1 : out STD_LOGIC;
     pixel_x_out : out STD_LOGIC_VECTOR ( 10 downto 0 );
     pixel_y_out : out STD_LOGIC_VECTOR ( 10 downto 0 );
     clk : in STD_LOGIC;
@@ -42,27 +38,23 @@ entity main_gpu_wrapper_0_0_edgeFunction is
     mul1_result_reg_1 : in STD_LOGIC_VECTOR ( 10 downto 0 );
     sub_result_reg_2 : in STD_LOGIC_VECTOR ( 10 downto 0 );
     sub_result_reg_3 : in STD_LOGIC_VECTOR ( 10 downto 0 );
-    \color_reg[0]\ : in STD_LOGIC;
-    output_vertex_valid : in STD_LOGIC;
-    \color_reg[6]\ : in STD_LOGIC;
-    \out_valid_d_reg[0]_1\ : in STD_LOGIC;
     \pixel_y_reg[0]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \out_valid_d_reg[0]_1\ : in STD_LOGIC;
     CO : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \FSM_onehot_state_reg[0]\ : in STD_LOGIC;
+    mul1_result_reg_2 : in STD_LOGIC;
+    \FSM_onehot_state_reg[0]_0\ : in STD_LOGIC;
     \FSM_onehot_state_reg[0]_1\ : in STD_LOGIC;
     force_black_reg : in STD_LOGIC_VECTOR ( 0 to 0 );
     \pixel_x_reg[0]\ : in STD_LOGIC;
     \pixel_x_reg[0]_0\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     \pixel_x_reg[0]_1\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     out_ready : in STD_LOGIC;
-    mul1_result_reg_2 : in STD_LOGIC_VECTOR ( 4 downto 0 );
-    mul1_result_reg_3 : in STD_LOGIC;
+    mul1_result_reg_3 : in STD_LOGIC_VECTOR ( 4 downto 0 );
     p_0_in : in STD_LOGIC;
     force_black : in STD_LOGIC;
     force_black_reg_0 : in STD_LOGIC;
-    \FSM_onehot_state_reg[2]_1\ : in STD_LOGIC;
-    \color_reg[6]_0\ : in STD_LOGIC;
-    color : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \color_reg[1]\ : in STD_LOGIC
+    \FSM_onehot_state_reg[2]_1\ : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_gpu_wrapper_0_0_edgeFunction : entity is "edgeFunction";
@@ -283,9 +275,6 @@ architecture STRUCTURE of main_gpu_wrapper_0_0_edgeFunction is
   signal NLW_sub_result_reg_CARRYOUT_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_sub_result_reg_P_UNCONNECTED : STD_LOGIC_VECTOR ( 47 downto 25 );
   signal NLW_sub_result_reg_PCOUT_UNCONNECTED : STD_LOGIC_VECTOR ( 47 downto 0 );
-  attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \color[7]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \color[7]_i_2\ : label is "soft_lutpair0";
 begin
   E(0) <= \^e\(0);
   \out_valid_d_reg[0]_0\(0) <= \^out_valid_d_reg[0]_0\(0);
@@ -298,23 +287,23 @@ begin
         port map (
       I0 => \out_valid_d_reg[0]_1\,
       I1 => \pixel_y_reg[0]\(0),
-      I2 => \FSM_onehot_state[9]_i_2_n_0\,
-      I3 => \FSM_onehot_state_reg[2]_1\,
-      I4 => \FSM_onehot_state_reg[0]_1\,
+      I2 => \FSM_onehot_state_reg[0]\,
+      I3 => \FSM_onehot_state[9]_i_2_n_0\,
+      I4 => \FSM_onehot_state_reg[2]_1\,
       I5 => force_black,
       O => \FSM_onehot_state_reg[2]_0\
     );
 \FSM_onehot_state[9]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFFAAEA"
+      INIT => X"FFFFFEEE"
     )
         port map (
-      I0 => \FSM_onehot_state[9]_i_2_n_0\,
-      I1 => \color_reg[0]\,
-      I2 => output_vertex_valid,
-      I3 => \color_reg[6]\,
+      I0 => \FSM_onehot_state_reg[0]\,
+      I1 => \FSM_onehot_state[9]_i_2_n_0\,
+      I2 => mul1_result_reg_2,
+      I3 => \FSM_onehot_state_reg[0]_0\,
       I4 => \FSM_onehot_state_reg[0]_1\,
-      O => \FSM_onehot_state_reg[0]_0\
+      O => \FSM_onehot_state_reg[4]\
     );
 \FSM_onehot_state[9]_i_2\: unisim.vcomponents.LUT5
     generic map(
@@ -333,12 +322,12 @@ begin
       INIT => X"0000000100000000"
     )
         port map (
-      I0 => mul1_result_reg_2(2),
-      I1 => mul1_result_reg_2(0),
-      I2 => mul1_result_reg_2(1),
-      I3 => mul1_result_reg_2(4),
-      I4 => mul1_result_reg_2(3),
-      I5 => mul1_result_reg_3,
+      I0 => mul1_result_reg_3(2),
+      I1 => mul1_result_reg_3(0),
+      I2 => mul1_result_reg_3(1),
+      I3 => mul1_result_reg_3(4),
+      I4 => mul1_result_reg_3(3),
+      I5 => mul1_result_reg_2,
       O => \^e\(0)
     );
 \V1_y[10]_i_1\: unisim.vcomponents.LUT6
@@ -346,12 +335,12 @@ begin
       INIT => X"0000000000100000"
     )
         port map (
-      I0 => mul1_result_reg_2(4),
-      I1 => mul1_result_reg_2(3),
-      I2 => mul1_result_reg_3,
-      I3 => mul1_result_reg_2(1),
-      I4 => mul1_result_reg_2(0),
-      I5 => mul1_result_reg_2(2),
+      I0 => mul1_result_reg_3(4),
+      I1 => mul1_result_reg_3(3),
+      I2 => mul1_result_reg_2,
+      I3 => mul1_result_reg_3(1),
+      I4 => mul1_result_reg_3(0),
+      I5 => mul1_result_reg_3(2),
       O => \^vertex_select_reg[4]\(0)
     );
 V2_X_minus_V1_X0_carry: unisim.vcomponents.CARRY4
@@ -654,55 +643,6 @@ V2_Y_minus_V1_Y0_carry: unisim.vcomponents.CARRY4
       I0 => mul1_result_reg_0(0),
       I1 => mul1_result_reg_1(0),
       O => \V2_Y_minus_V1_Y0_carry_i_4__1_n_0\
-    );
-\color[1]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"AAAAEFFFAAAA2000"
-    )
-        port map (
-      I0 => \color_reg[1]\,
-      I1 => \color_reg[6]\,
-      I2 => output_vertex_valid,
-      I3 => \color_reg[0]\,
-      I4 => \FSM_onehot_state[9]_i_2_n_0\,
-      I5 => color(0),
-      O => output_vertex_valid_reg_1
-    );
-\color[6]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"AAAAEFFFAAAA2000"
-    )
-        port map (
-      I0 => \color_reg[6]_0\,
-      I1 => \color_reg[6]\,
-      I2 => output_vertex_valid,
-      I3 => \color_reg[0]\,
-      I4 => \FSM_onehot_state[9]_i_2_n_0\,
-      I5 => color(1),
-      O => output_vertex_valid_reg_0
-    );
-\color[7]_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"0000AAEA"
-    )
-        port map (
-      I0 => \FSM_onehot_state[9]_i_2_n_0\,
-      I1 => \color_reg[0]\,
-      I2 => output_vertex_valid,
-      I3 => \color_reg[6]\,
-      I4 => \out_valid_d_reg[0]_1\,
-      O => \FSM_onehot_state_reg[0]\
-    );
-\color[7]_i_2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FF40"
-    )
-        port map (
-      I0 => \color_reg[6]\,
-      I1 => output_vertex_valid,
-      I2 => \color_reg[0]\,
-      I3 => \FSM_onehot_state[9]_i_2_n_0\,
-      O => output_vertex_valid_reg
     );
 force_black_i_1: unisim.vcomponents.LUT6
     generic map(
@@ -2746,10 +2686,10 @@ architecture STRUCTURE of main_gpu_wrapper_0_0_edgeFunction_0 is
   signal NLW_sub_result_reg_P_UNCONNECTED : STD_LOGIC_VECTOR ( 47 downto 25 );
   signal NLW_sub_result_reg_PCOUT_UNCONNECTED : STD_LOGIC_VECTOR ( 47 downto 0 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of isInside_i_1 : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \out_valid_d[1]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \out_valid_d[2]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \out_valid_d[3]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of isInside_i_1 : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \out_valid_d[1]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \out_valid_d[2]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \out_valid_d[3]_i_1\ : label is "soft_lutpair1";
 begin
   ef_inside(0) <= \^ef_inside\(0);
   \vertex_select_reg[0]\(0) <= \^vertex_select_reg[0]\(0);
@@ -4152,10 +4092,10 @@ architecture STRUCTURE of main_gpu_wrapper_0_0_edgeFunction_1 is
   signal NLW_sub_result_reg_P_UNCONNECTED : STD_LOGIC_VECTOR ( 47 downto 25 );
   signal NLW_sub_result_reg_PCOUT_UNCONNECTED : STD_LOGIC_VECTOR ( 47 downto 0 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \isInside_i_1__0\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \out_valid_d[1]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \out_valid_d[2]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \out_valid_d[3]_i_1\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \isInside_i_1__0\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \out_valid_d[1]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \out_valid_d[2]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \out_valid_d[3]_i_1\ : label is "soft_lutpair3";
 begin
   \vertex_select_reg[1]\(0) <= \^vertex_select_reg[1]\(0);
   \vertex_select_reg[2]\(0) <= \^vertex_select_reg[2]\(0);
@@ -6280,8 +6220,8 @@ architecture STRUCTURE of \main_gpu_wrapper_0_0_ram_rtl__parameterized0\ is
   signal NLW_mem_reg_5_DOPADOP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_mem_reg_5_DOPBDOP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \V2_x[10]_i_2\ : label is "soft_lutpair46";
-  attribute SOFT_HLUTNM of \V2_y[10]_i_2\ : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of \V2_x[10]_i_2\ : label is "soft_lutpair48";
+  attribute SOFT_HLUTNM of \V2_y[10]_i_2\ : label is "soft_lutpair48";
   attribute \MEM.PORTA.DATA_BIT_LAYOUT\ : string;
   attribute \MEM.PORTA.DATA_BIT_LAYOUT\ of mem_reg_0 : label is "p0_d2";
   attribute \MEM.PORTB.DATA_BIT_LAYOUT\ : string;
@@ -7626,10 +7566,10 @@ architecture STRUCTURE of main_gpu_wrapper_0_0_vertex_processor_rtl is
   attribute METHODOLOGY_DRC_VIOS of \mul_2_out_reg[1]\ : label is "{SYNTH-12 {cell *THIS*}}";
   attribute METHODOLOGY_DRC_VIOS of \mul_3_out_reg[1]\ : label is "{SYNTH-12 {cell *THIS*}}";
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of output_vertex_valid_i_1 : label is "soft_lutpair47";
-  attribute SOFT_HLUTNM of \transformed_vertex_mem_wr_data[10]_i_2\ : label is "soft_lutpair48";
-  attribute SOFT_HLUTNM of transformed_vertex_mem_wr_en_i_1 : label is "soft_lutpair48";
-  attribute SOFT_HLUTNM of \vertex_counter[1]_i_2\ : label is "soft_lutpair47";
+  attribute SOFT_HLUTNM of output_vertex_valid_i_1 : label is "soft_lutpair49";
+  attribute SOFT_HLUTNM of \transformed_vertex_mem_wr_data[10]_i_2\ : label is "soft_lutpair50";
+  attribute SOFT_HLUTNM of transformed_vertex_mem_wr_en_i_1 : label is "soft_lutpair50";
+  attribute SOFT_HLUTNM of \vertex_counter[1]_i_2\ : label is "soft_lutpair49";
 begin
   SR(0) <= \^sr\(0);
   output_vertex_valid <= \^output_vertex_valid\;
@@ -15153,17 +15093,13 @@ entity main_gpu_wrapper_0_0_rasterizer is
     \vertex_select_reg[0]\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     \vertex_select_reg[2]\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     \vertex_select_reg[1]_0\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    \FSM_onehot_state_reg[0]\ : out STD_LOGIC;
     \FSM_onehot_state_reg[2]\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    \FSM_onehot_state_reg[0]_0\ : out STD_LOGIC;
-    output_vertex_valid_reg : out STD_LOGIC;
+    \FSM_onehot_state_reg[4]\ : out STD_LOGIC;
     \FSM_onehot_state_reg[9]\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     output_valid : out STD_LOGIC;
     draw : out STD_LOGIC;
     \FSM_onehot_state_reg[1]\ : out STD_LOGIC;
     \FSM_onehot_state_reg[2]_0\ : out STD_LOGIC;
-    output_vertex_valid_reg_0 : out STD_LOGIC;
-    output_vertex_valid_reg_1 : out STD_LOGIC;
     pixel_x_out : out STD_LOGIC_VECTOR ( 10 downto 0 );
     pixel_y_out : out STD_LOGIC_VECTOR ( 10 downto 0 );
     clk : in STD_LOGIC;
@@ -15181,27 +15117,23 @@ entity main_gpu_wrapper_0_0_rasterizer is
     sub_result_reg_4 : in STD_LOGIC_VECTOR ( 10 downto 0 );
     mul1_result_reg_3 : in STD_LOGIC_VECTOR ( 10 downto 0 );
     sub_result_reg_5 : in STD_LOGIC_VECTOR ( 10 downto 0 );
-    \color_reg[0]\ : in STD_LOGIC;
-    output_vertex_valid : in STD_LOGIC;
-    \color_reg[6]\ : in STD_LOGIC;
-    \out_valid_d_reg[0]\ : in STD_LOGIC;
     \pixel_y_reg[0]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \out_valid_d_reg[0]\ : in STD_LOGIC;
     CO : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \FSM_onehot_state_reg[0]\ : in STD_LOGIC;
+    sub_result_reg_6 : in STD_LOGIC;
+    \FSM_onehot_state_reg[0]_0\ : in STD_LOGIC;
     \FSM_onehot_state_reg[0]_1\ : in STD_LOGIC;
     force_black_reg : in STD_LOGIC_VECTOR ( 0 to 0 );
     \pixel_x_reg[0]\ : in STD_LOGIC;
     \pixel_x_reg[0]_0\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     \pixel_x_reg[0]_1\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     out_ready : in STD_LOGIC;
-    sub_result_reg_6 : in STD_LOGIC_VECTOR ( 4 downto 0 );
-    sub_result_reg_7 : in STD_LOGIC;
+    sub_result_reg_7 : in STD_LOGIC_VECTOR ( 4 downto 0 );
     p_0_in : in STD_LOGIC;
     force_black : in STD_LOGIC;
     force_black_reg_0 : in STD_LOGIC;
-    \FSM_onehot_state_reg[2]_1\ : in STD_LOGIC;
-    \color_reg[6]_0\ : in STD_LOGIC;
-    color : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \color_reg[1]\ : in STD_LOGIC
+    \FSM_onehot_state_reg[2]_1\ : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_gpu_wrapper_0_0_rasterizer : entity is "rasterizer";
@@ -15224,31 +15156,23 @@ ef1: entity work.main_gpu_wrapper_0_0_edgeFunction
       \FSM_onehot_state_reg[2]\(0) => \FSM_onehot_state_reg[2]\(0),
       \FSM_onehot_state_reg[2]_0\ => \FSM_onehot_state_reg[2]_0\,
       \FSM_onehot_state_reg[2]_1\ => \FSM_onehot_state_reg[2]_1\,
+      \FSM_onehot_state_reg[4]\ => \FSM_onehot_state_reg[4]\,
       \FSM_onehot_state_reg[9]\(0) => \FSM_onehot_state_reg[9]\(0),
       Q(10 downto 0) => Q(10 downto 0),
       clk => clk,
-      color(1 downto 0) => color(1 downto 0),
-      \color_reg[0]\ => \color_reg[0]\,
-      \color_reg[1]\ => \color_reg[1]\,
-      \color_reg[6]\ => \color_reg[6]\,
-      \color_reg[6]_0\ => \color_reg[6]_0\,
       ef_inside(0) => ef_inside(0),
       force_black => force_black,
       force_black_reg(0) => force_black_reg(0),
       force_black_reg_0 => force_black_reg_0,
       mul1_result_reg_0(10 downto 0) => mul1_result_reg_1(10 downto 0),
       mul1_result_reg_1(10 downto 0) => mul1_result_reg_2(10 downto 0),
-      mul1_result_reg_2(4 downto 0) => sub_result_reg_6(4 downto 0),
-      mul1_result_reg_3 => sub_result_reg_7,
+      mul1_result_reg_2 => sub_result_reg_6,
+      mul1_result_reg_3(4 downto 0) => sub_result_reg_7(4 downto 0),
       out_ready => out_ready,
       \out_valid_d_reg[0]_0\(0) => out_valid_d(0),
       \out_valid_d_reg[0]_1\ => \out_valid_d_reg[0]\,
       \out_valid_d_reg[2]_0\(0) => ce_d_reg(1),
       output_valid => output_valid,
-      output_vertex_valid => output_vertex_valid,
-      output_vertex_valid_reg => output_vertex_valid_reg,
-      output_vertex_valid_reg_0 => output_vertex_valid_reg_0,
-      output_vertex_valid_reg_1 => output_vertex_valid_reg_1,
       p_0_in => p_0_in,
       pixel_x_out(10 downto 0) => pixel_x_out(10 downto 0),
       \pixel_x_reg[0]\ => \pixel_x_reg[0]\,
@@ -15271,8 +15195,8 @@ ef2: entity work.main_gpu_wrapper_0_0_edgeFunction_0
       ef_inside(0) => ef_inside(1),
       mul1_result_reg_0(10 downto 0) => mul1_result_reg_3(10 downto 0),
       mul1_result_reg_1(10 downto 0) => mul1_result_reg_1(10 downto 0),
-      mul1_result_reg_2(4 downto 0) => sub_result_reg_6(4 downto 0),
-      mul1_result_reg_3 => sub_result_reg_7,
+      mul1_result_reg_2(4 downto 0) => sub_result_reg_7(4 downto 0),
+      mul1_result_reg_3 => sub_result_reg_6,
       out_ready => out_ready,
       \out_valid_d_reg[0]_0\ => \out_valid_d_reg[0]\,
       \out_valid_d_reg[0]_1\(0) => ce_d_reg(1),
@@ -15305,8 +15229,8 @@ ef3: entity work.main_gpu_wrapper_0_0_edgeFunction_1
       sub_result_reg_1(7 downto 0) => sub_result_reg_0(7 downto 0),
       sub_result_reg_2(10 downto 0) => sub_result_reg_4(10 downto 0),
       sub_result_reg_3(10 downto 0) => sub_result_reg_5(10 downto 0),
-      sub_result_reg_4(4 downto 0) => sub_result_reg_6(4 downto 0),
-      sub_result_reg_5 => sub_result_reg_7,
+      sub_result_reg_4(4 downto 0) => sub_result_reg_7(4 downto 0),
+      sub_result_reg_5 => sub_result_reg_6,
       \vertex_select_reg[1]\(0) => \vertex_select_reg[1]_0\(0),
       \vertex_select_reg[2]\(0) => \vertex_select_reg[2]\(0)
     );
@@ -15319,7 +15243,7 @@ entity main_gpu_wrapper_0_0_rasterizer_control is
   port (
     ADDRBWRADDR : out STD_LOGIC_VECTOR ( 13 downto 0 );
     rasterize_end_int : out STD_LOGIC;
-    vertex_count_reg_reg_20_sp_1 : out STD_LOGIC;
+    vertex_count_reg_reg_21_sp_1 : out STD_LOGIC;
     output_valid : out STD_LOGIC;
     draw : out STD_LOGIC;
     output_color : out STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -15502,14 +15426,13 @@ architecture STRUCTURE of main_gpu_wrapper_0_0_rasterizer_control is
   signal \BB_TL_y_reg_n_0_[9]\ : STD_LOGIC;
   signal \FSM_onehot_state[0]_i_1_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[2]_i_2_n_0\ : STD_LOGIC;
+  signal \FSM_onehot_state[2]_i_3_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[3]_i_1_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[4]_i_1_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[4]_i_2_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[4]_i_3_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[4]_i_4_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[9]_i_3_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state[9]_i_4_n_0\ : STD_LOGIC;
-  signal \FSM_onehot_state[9]_i_5_n_0\ : STD_LOGIC;
   signal \FSM_onehot_state_reg_n_0_[0]\ : STD_LOGIC;
   signal \FSM_onehot_state_reg_n_0_[2]\ : STD_LOGIC;
   signal \FSM_onehot_state_reg_n_0_[3]\ : STD_LOGIC;
@@ -15603,19 +15526,33 @@ architecture STRUCTURE of main_gpu_wrapper_0_0_rasterizer_control is
   signal addra0_carry_n_2 : STD_LOGIC;
   signal addra0_carry_n_3 : STD_LOGIC;
   signal \addra[0]_i_1_n_0\ : STD_LOGIC;
+  signal \addra[13]_i_10_n_0\ : STD_LOGIC;
+  signal \addra[13]_i_11_n_0\ : STD_LOGIC;
+  signal \addra[13]_i_12_n_0\ : STD_LOGIC;
+  signal \addra[13]_i_13_n_0\ : STD_LOGIC;
   signal \addra[13]_i_1_n_0\ : STD_LOGIC;
   signal \addra[13]_i_2_n_0\ : STD_LOGIC;
   signal \addra[13]_i_3_n_0\ : STD_LOGIC;
+  signal \addra[13]_i_4_n_0\ : STD_LOGIC;
+  signal \addra[13]_i_5_n_0\ : STD_LOGIC;
+  signal \addra[13]_i_6_n_0\ : STD_LOGIC;
+  signal \addra[13]_i_7_n_0\ : STD_LOGIC;
+  signal \addra[13]_i_8_n_0\ : STD_LOGIC;
+  signal \addra[13]_i_9_n_0\ : STD_LOGIC;
   signal color : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal \color[0]_i_1_n_0\ : STD_LOGIC;
-  signal \color[1]_i_2_n_0\ : STD_LOGIC;
+  signal \color[1]_i_1_n_0\ : STD_LOGIC;
   signal \color[2]_i_1_n_0\ : STD_LOGIC;
   signal \color[3]_i_1_n_0\ : STD_LOGIC;
   signal \color[4]_i_1_n_0\ : STD_LOGIC;
   signal \color[5]_i_1_n_0\ : STD_LOGIC;
-  signal \color[6]_i_2_n_0\ : STD_LOGIC;
+  signal \color[6]_i_1_n_0\ : STD_LOGIC;
+  signal \color[7]_i_1_n_0\ : STD_LOGIC;
+  signal \color[7]_i_2_n_0\ : STD_LOGIC;
   signal \color[7]_i_3_n_0\ : STD_LOGIC;
   signal \color[7]_i_4_n_0\ : STD_LOGIC;
+  signal \color[7]_i_5_n_0\ : STD_LOGIC;
+  signal \color[7]_i_6_n_0\ : STD_LOGIC;
   signal force_black : STD_LOGIC;
   signal \force_black_d_reg[1]_srl2_n_0\ : STD_LOGIC;
   signal force_black_reg_n_0 : STD_LOGIC;
@@ -15791,15 +15728,11 @@ architecture STRUCTURE of main_gpu_wrapper_0_0_rasterizer_control is
   signal \pixel_y_reg_n_0_[9]\ : STD_LOGIC;
   signal rasterize_end_i_1_n_0 : STD_LOGIC;
   signal \^rasterize_end_int\ : STD_LOGIC;
-  signal rasterizer_u0_n_10 : STD_LOGIC;
-  signal rasterizer_u0_n_13 : STD_LOGIC;
-  signal rasterizer_u0_n_14 : STD_LOGIC;
-  signal rasterizer_u0_n_15 : STD_LOGIC;
-  signal rasterizer_u0_n_16 : STD_LOGIC;
+  signal rasterizer_u0_n_11 : STD_LOGIC;
+  signal rasterizer_u0_n_12 : STD_LOGIC;
   signal rasterizer_u0_n_6 : STD_LOGIC;
   signal rasterizer_u0_n_7 : STD_LOGIC;
   signal rasterizer_u0_n_8 : STD_LOGIC;
-  signal rasterizer_u0_n_9 : STD_LOGIC;
   signal \state1_carry__0_i_1_n_0\ : STD_LOGIC;
   signal \state1_carry__0_i_2_n_0\ : STD_LOGIC;
   signal \state1_carry__0_i_3_n_0\ : STD_LOGIC;
@@ -15836,7 +15769,7 @@ architecture STRUCTURE of main_gpu_wrapper_0_0_rasterizer_control is
   signal \state2_inferred__0/i__carry_n_1\ : STD_LOGIC;
   signal \state2_inferred__0/i__carry_n_2\ : STD_LOGIC;
   signal \state2_inferred__0/i__carry_n_3\ : STD_LOGIC;
-  signal vertex_count_reg_reg_20_sn_1 : STD_LOGIC;
+  signal vertex_count_reg_reg_21_sn_1 : STD_LOGIC;
   signal vertex_counter : STD_LOGIC_VECTOR ( 14 downto 0 );
   signal \vertex_counter0_carry__0_i_1_n_0\ : STD_LOGIC;
   signal \vertex_counter0_carry__0_i_2_n_0\ : STD_LOGIC;
@@ -15881,14 +15814,8 @@ architecture STRUCTURE of main_gpu_wrapper_0_0_rasterizer_control is
   signal \vertex_counter[7]_i_1_n_0\ : STD_LOGIC;
   signal \vertex_counter[8]_i_1_n_0\ : STD_LOGIC;
   signal \vertex_counter[9]_i_1_n_0\ : STD_LOGIC;
-  signal \vertex_mem_rd_addr[0]_i_10_n_0\ : STD_LOGIC;
   signal \vertex_mem_rd_addr[0]_i_3_n_0\ : STD_LOGIC;
   signal \vertex_mem_rd_addr[0]_i_4_n_0\ : STD_LOGIC;
-  signal \vertex_mem_rd_addr[0]_i_5_n_0\ : STD_LOGIC;
-  signal \vertex_mem_rd_addr[0]_i_6_n_0\ : STD_LOGIC;
-  signal \vertex_mem_rd_addr[0]_i_7_n_0\ : STD_LOGIC;
-  signal \vertex_mem_rd_addr[0]_i_8_n_0\ : STD_LOGIC;
-  signal \vertex_mem_rd_addr[0]_i_9_n_0\ : STD_LOGIC;
   signal vertex_select : STD_LOGIC_VECTOR ( 4 downto 0 );
   signal \vertex_select[1]_i_1_n_0\ : STD_LOGIC;
   signal \vertex_select[4]_i_1_n_0\ : STD_LOGIC;
@@ -15955,11 +15882,11 @@ architecture STRUCTURE of main_gpu_wrapper_0_0_rasterizer_control is
   signal \NLW_width0_carry__1_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 2 );
   signal \NLW_width0_carry__1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 to 3 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \BB_BR_x[10]_i_4\ : label is "soft_lutpair35";
-  attribute SOFT_HLUTNM of \BB_TL_x[10]_i_4\ : label is "soft_lutpair35";
-  attribute SOFT_HLUTNM of \FSM_onehot_state[0]_i_1\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \FSM_onehot_state[3]_i_1\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \FSM_onehot_state[9]_i_5\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \BB_BR_x[10]_i_4\ : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of \BB_TL_x[10]_i_4\ : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of \FSM_onehot_state[2]_i_3\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \FSM_onehot_state[3]_i_1\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \FSM_onehot_state[9]_i_3\ : label is "soft_lutpair4";
   attribute FSM_ENCODED_STATES : string;
   attribute FSM_ENCODED_STATES of \FSM_onehot_state_reg[0]\ : label is "TRIANGLE_CLIPPING_1:0000100000,TRIANGLE_CLIPPING_2:0001000000,CLEAR_SCREEN:0000000010,START:0000001000,LOAD_VERTEX:0000010000,IDLE:0000000001,TRIANGLE_CLIPPING_5:1000000000,RASTERIZE:0000000100,TRIANGLE_CLIPPING_4:0100000000,TRIANGLE_CLIPPING_3:0010000000";
   attribute FSM_ENCODED_STATES of \FSM_onehot_state_reg[1]\ : label is "TRIANGLE_CLIPPING_1:0000100000,TRIANGLE_CLIPPING_2:0001000000,CLEAR_SCREEN:0000000010,START:0000001000,LOAD_VERTEX:0000010000,IDLE:0000000001,TRIANGLE_CLIPPING_5:1000000000,RASTERIZE:0000000100,TRIANGLE_CLIPPING_4:0100000000,TRIANGLE_CLIPPING_3:0010000000";
@@ -15971,91 +15898,97 @@ architecture STRUCTURE of main_gpu_wrapper_0_0_rasterizer_control is
   attribute FSM_ENCODED_STATES of \FSM_onehot_state_reg[7]\ : label is "TRIANGLE_CLIPPING_1:0000100000,TRIANGLE_CLIPPING_2:0001000000,CLEAR_SCREEN:0000000010,START:0000001000,LOAD_VERTEX:0000010000,IDLE:0000000001,TRIANGLE_CLIPPING_5:1000000000,RASTERIZE:0000000100,TRIANGLE_CLIPPING_4:0100000000,TRIANGLE_CLIPPING_3:0010000000";
   attribute FSM_ENCODED_STATES of \FSM_onehot_state_reg[8]\ : label is "TRIANGLE_CLIPPING_1:0000100000,TRIANGLE_CLIPPING_2:0001000000,CLEAR_SCREEN:0000000010,START:0000001000,LOAD_VERTEX:0000010000,IDLE:0000000001,TRIANGLE_CLIPPING_5:1000000000,RASTERIZE:0000000100,TRIANGLE_CLIPPING_4:0100000000,TRIANGLE_CLIPPING_3:0010000000";
   attribute FSM_ENCODED_STATES of \FSM_onehot_state_reg[9]\ : label is "TRIANGLE_CLIPPING_1:0000100000,TRIANGLE_CLIPPING_2:0001000000,CLEAR_SCREEN:0000000010,START:0000001000,LOAD_VERTEX:0000010000,IDLE:0000000001,TRIANGLE_CLIPPING_5:1000000000,RASTERIZE:0000000100,TRIANGLE_CLIPPING_4:0100000000,TRIANGLE_CLIPPING_3:0010000000";
-  attribute SOFT_HLUTNM of \color[1]_i_2\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \color[2]_i_1\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \color[3]_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \color[4]_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \color[6]_i_2\ : label is "soft_lutpair37";
-  attribute SOFT_HLUTNM of \color[7]_i_3\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \addra[13]_i_11\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \addra[13]_i_13\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \addra[13]_i_7\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \addra[13]_i_9\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \color[2]_i_1\ : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of \color[3]_i_1\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \color[4]_i_1\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \color[7]_i_3\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \color[7]_i_4\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \color[7]_i_5\ : label is "soft_lutpair11";
   attribute srl_bus_name : string;
   attribute srl_bus_name of \force_black_d_reg[1]_srl2\ : label is "\inst/GPU_top/rasterizer_control/force_black_d_reg ";
   attribute srl_name : string;
   attribute srl_name of \force_black_d_reg[1]_srl2\ : label is "\inst/GPU_top/rasterizer_control/force_black_d_reg[1]_srl2 ";
-  attribute SOFT_HLUTNM of \max_temp_x[0]_i_1\ : label is "soft_lutpair40";
-  attribute SOFT_HLUTNM of \max_temp_x[10]_i_1\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \max_temp_x[1]_i_1\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \max_temp_x[2]_i_1\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \max_temp_x[3]_i_1\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \max_temp_x[4]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \max_temp_x[5]_i_1\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \max_temp_x[6]_i_1\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \max_temp_x[7]_i_1\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \max_temp_x[8]_i_1\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \max_temp_x[9]_i_1\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \max_temp_y[0]_i_1\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \max_temp_y[10]_i_1\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \max_temp_y[1]_i_1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \max_temp_y[2]_i_1\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \max_temp_y[3]_i_1\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \max_temp_y[4]_i_1\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \max_temp_y[5]_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \max_temp_y[6]_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \max_temp_y[7]_i_1\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \max_temp_y[8]_i_1\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \max_temp_y[9]_i_1\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \min_temp_x[0]_i_1\ : label is "soft_lutpair40";
-  attribute SOFT_HLUTNM of \min_temp_x[10]_i_1\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \min_temp_x[1]_i_1\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \min_temp_x[2]_i_1\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \min_temp_x[3]_i_1\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \min_temp_x[4]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \min_temp_x[5]_i_1\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \min_temp_x[6]_i_1\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \min_temp_x[7]_i_1\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \min_temp_x[8]_i_1\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \min_temp_x[9]_i_1\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \min_temp_y[0]_i_1\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \min_temp_y[10]_i_1\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \min_temp_y[1]_i_1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \min_temp_y[2]_i_1\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \min_temp_y[3]_i_1\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \min_temp_y[4]_i_1\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \min_temp_y[5]_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \min_temp_y[6]_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \min_temp_y[7]_i_1\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \min_temp_y[8]_i_1\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \min_temp_y[9]_i_1\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \output_color[0]_INST_0\ : label is "soft_lutpair45";
-  attribute SOFT_HLUTNM of \output_color[1]_INST_0\ : label is "soft_lutpair45";
-  attribute SOFT_HLUTNM of \output_color[2]_INST_0\ : label is "soft_lutpair44";
-  attribute SOFT_HLUTNM of \output_color[3]_INST_0\ : label is "soft_lutpair44";
-  attribute SOFT_HLUTNM of \output_color[4]_INST_0\ : label is "soft_lutpair43";
-  attribute SOFT_HLUTNM of \output_color[5]_INST_0\ : label is "soft_lutpair43";
-  attribute SOFT_HLUTNM of \output_color[6]_INST_0\ : label is "soft_lutpair42";
-  attribute SOFT_HLUTNM of \output_color[7]_INST_0\ : label is "soft_lutpair42";
-  attribute SOFT_HLUTNM of \pixel_x[0]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \pixel_x[10]_i_3\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \pixel_x[2]_i_2\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \pixel_x[2]_i_3\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \pixel_x[4]_i_2\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \pixel_x[5]_i_2\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \pixel_x[7]_i_2\ : label is "soft_lutpair41";
-  attribute SOFT_HLUTNM of \pixel_x[8]_i_2\ : label is "soft_lutpair41";
-  attribute SOFT_HLUTNM of \pixel_x[9]_i_2\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \pixel_y[0]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \pixel_y[10]_i_3\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \pixel_y[2]_i_2\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \max_temp_x[0]_i_1\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \max_temp_x[10]_i_1\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \max_temp_x[1]_i_1\ : label is "soft_lutpair43";
+  attribute SOFT_HLUTNM of \max_temp_x[2]_i_1\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \max_temp_x[3]_i_1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \max_temp_x[4]_i_1\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \max_temp_x[5]_i_1\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \max_temp_x[6]_i_1\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \max_temp_x[7]_i_1\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \max_temp_x[8]_i_1\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \max_temp_x[9]_i_1\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \max_temp_y[0]_i_1\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \max_temp_y[10]_i_1\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \max_temp_y[1]_i_1\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \max_temp_y[2]_i_1\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \max_temp_y[3]_i_1\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \max_temp_y[4]_i_1\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \max_temp_y[5]_i_1\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \max_temp_y[6]_i_1\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \max_temp_y[7]_i_1\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \max_temp_y[8]_i_1\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \max_temp_y[9]_i_1\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \min_temp_x[0]_i_1\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \min_temp_x[10]_i_1\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \min_temp_x[1]_i_1\ : label is "soft_lutpair43";
+  attribute SOFT_HLUTNM of \min_temp_x[2]_i_1\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \min_temp_x[3]_i_1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \min_temp_x[4]_i_1\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \min_temp_x[5]_i_1\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \min_temp_x[6]_i_1\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \min_temp_x[7]_i_1\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \min_temp_x[8]_i_1\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \min_temp_x[9]_i_1\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \min_temp_y[0]_i_1\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \min_temp_y[10]_i_1\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \min_temp_y[1]_i_1\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \min_temp_y[2]_i_1\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \min_temp_y[3]_i_1\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \min_temp_y[4]_i_1\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \min_temp_y[5]_i_1\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \min_temp_y[6]_i_1\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \min_temp_y[7]_i_1\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \min_temp_y[8]_i_1\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \min_temp_y[9]_i_1\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \output_color[0]_INST_0\ : label is "soft_lutpair47";
+  attribute SOFT_HLUTNM of \output_color[1]_INST_0\ : label is "soft_lutpair47";
+  attribute SOFT_HLUTNM of \output_color[2]_INST_0\ : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of \output_color[3]_INST_0\ : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of \output_color[4]_INST_0\ : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of \output_color[5]_INST_0\ : label is "soft_lutpair45";
+  attribute SOFT_HLUTNM of \output_color[6]_INST_0\ : label is "soft_lutpair45";
+  attribute SOFT_HLUTNM of \output_color[7]_INST_0\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \pixel_x[0]_i_1\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \pixel_x[10]_i_3\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \pixel_x[2]_i_2\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \pixel_x[2]_i_3\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \pixel_x[4]_i_2\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \pixel_x[5]_i_2\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \pixel_x[7]_i_2\ : label is "soft_lutpair44";
+  attribute SOFT_HLUTNM of \pixel_x[8]_i_2\ : label is "soft_lutpair44";
+  attribute SOFT_HLUTNM of \pixel_x[9]_i_2\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \pixel_y[0]_i_1\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \pixel_y[10]_i_3\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \pixel_y[2]_i_2\ : label is "soft_lutpair10";
   attribute SOFT_HLUTNM of \pixel_y[4]_i_2\ : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of \pixel_y[5]_i_2\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \pixel_y[7]_i_2\ : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of \pixel_y[8]_i_2\ : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of \pixel_y[9]_i_2\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \vertex_select[0]_i_1\ : label is "soft_lutpair39";
-  attribute SOFT_HLUTNM of \vertex_select[1]_i_1\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \pixel_y[7]_i_2\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \pixel_y[8]_i_2\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \pixel_y[9]_i_2\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \vertex_mem_rd_addr[0]_i_3\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \vertex_mem_rd_addr[0]_i_4\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \vertex_select[0]_i_1\ : label is "soft_lutpair42";
+  attribute SOFT_HLUTNM of \vertex_select[1]_i_1\ : label is "soft_lutpair42";
 begin
   ADDRBWRADDR(13 downto 0) <= \^addrbwraddr\(13 downto 0);
   rasterize_end_int <= \^rasterize_end_int\;
-  vertex_count_reg_reg_20_sp_1 <= vertex_count_reg_reg_20_sn_1;
+  vertex_count_reg_reg_21_sp_1 <= vertex_count_reg_reg_21_sn_1;
 BB_BR_x1_carry: unisim.vcomponents.CARRY4
      port map (
       CI => '0',
@@ -16698,12 +16631,12 @@ BB_BR_y1_carry_i_8: unisim.vcomponents.LUT4
     );
 \BB_BR_y[10]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFFFFFFF800"
+      INIT => X"FFFFFFFFFFFFEA00"
     )
         port map (
-      I0 => \BB_BR_y_reg_n_0_[4]\,
-      I1 => \BB_BR_y_reg_n_0_[3]\,
-      I2 => \BB_BR_y_reg_n_0_[5]\,
+      I0 => \BB_BR_y_reg_n_0_[5]\,
+      I1 => \BB_BR_y_reg_n_0_[4]\,
+      I2 => \BB_BR_y_reg_n_0_[3]\,
       I3 => \BB_BR_y_reg_n_0_[6]\,
       I4 => \BB_BR_y_reg_n_0_[8]\,
       I5 => \BB_BR_y_reg_n_0_[7]\,
@@ -17812,27 +17745,40 @@ BB_TL_y1_carry_i_8: unisim.vcomponents.LUT4
       Q => \BB_TL_y_reg_n_0_[9]\,
       R => force_black
     );
-\FSM_onehot_state[0]_i_1\: unisim.vcomponents.LUT2
+\FSM_onehot_state[0]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"8"
+      INIT => X"0000000200000000"
     )
         port map (
-      I0 => \FSM_onehot_state_reg_n_0_[3]\,
-      I1 => \FSM_onehot_state[4]_i_2_n_0\,
+      I0 => \FSM_onehot_state[4]_i_2_n_0\,
+      I1 => \FSM_onehot_state[4]_i_3_n_0\,
+      I2 => vertex_counter(14),
+      I3 => vertex_counter(7),
+      I4 => vertex_counter(9),
+      I5 => \FSM_onehot_state_reg_n_0_[3]\,
       O => \FSM_onehot_state[0]_i_1_n_0\
     );
 \FSM_onehot_state[2]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000000008"
+      INIT => X"FFFFFFFF00000800"
     )
         port map (
-      I0 => \FSM_onehot_state_reg_n_0_[0]\,
-      I1 => output_vertex_valid,
-      I2 => \vertex_mem_rd_addr[0]_i_3_n_0\,
-      I3 => \vertex_mem_rd_addr[0]_i_4_n_0\,
-      I4 => \vertex_mem_rd_addr[0]_i_5_n_0\,
-      I5 => \vertex_mem_rd_addr[0]_i_6_n_0\,
+      I0 => \FSM_onehot_state_reg_n_0_[4]\,
+      I1 => \FSM_onehot_state[2]_i_3_n_0\,
+      I2 => \vertex_select_reg_n_0_[4]\,
+      I3 => \vertex_select_reg_n_0_[3]\,
+      I4 => \vertex_select_reg_n_0_[2]\,
+      I5 => \FSM_onehot_state[9]_i_4_n_0\,
       O => \FSM_onehot_state[2]_i_2_n_0\
+    );
+\FSM_onehot_state[2]_i_3\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"8"
+    )
+        port map (
+      I0 => \vertex_select_reg_n_0_[0]\,
+      I1 => \vertex_select_reg_n_0_[1]\,
+      O => \FSM_onehot_state[2]_i_3_n_0\
     );
 \FSM_onehot_state[3]_i_1\: unisim.vcomponents.LUT4
     generic map(
@@ -17845,65 +17791,44 @@ BB_TL_y1_carry_i_8: unisim.vcomponents.LUT4
       I3 => \FSM_onehot_state_reg_n_0_[9]\,
       O => \FSM_onehot_state[3]_i_1_n_0\
     );
-\FSM_onehot_state[4]_i_1\: unisim.vcomponents.LUT2
+\FSM_onehot_state[4]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"2"
+      INIT => X"FFFFFFFD00000000"
     )
         port map (
-      I0 => \FSM_onehot_state_reg_n_0_[3]\,
-      I1 => \FSM_onehot_state[4]_i_2_n_0\,
+      I0 => \FSM_onehot_state[4]_i_2_n_0\,
+      I1 => \FSM_onehot_state[4]_i_3_n_0\,
+      I2 => vertex_counter(14),
+      I3 => vertex_counter(7),
+      I4 => vertex_counter(9),
+      I5 => \FSM_onehot_state_reg_n_0_[3]\,
       O => \FSM_onehot_state[4]_i_1_n_0\
     );
-\FSM_onehot_state[4]_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"00000002"
-    )
-        port map (
-      I0 => \FSM_onehot_state[4]_i_3_n_0\,
-      I1 => \FSM_onehot_state[4]_i_4_n_0\,
-      I2 => vertex_counter(11),
-      I3 => vertex_counter(6),
-      I4 => vertex_counter(7),
-      O => \FSM_onehot_state[4]_i_2_n_0\
-    );
-\FSM_onehot_state[4]_i_3\: unisim.vcomponents.LUT6
+\FSM_onehot_state[4]_i_2\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"0000000000000007"
     )
         port map (
       I0 => vertex_counter(3),
       I1 => vertex_counter(2),
-      I2 => vertex_counter(5),
-      I3 => vertex_counter(4),
-      I4 => vertex_counter(10),
-      I5 => vertex_counter(9),
-      O => \FSM_onehot_state[4]_i_3_n_0\
+      I2 => vertex_counter(12),
+      I3 => vertex_counter(6),
+      I4 => vertex_counter(11),
+      I5 => vertex_counter(5),
+      O => \FSM_onehot_state[4]_i_2_n_0\
     );
-\FSM_onehot_state[4]_i_4\: unisim.vcomponents.LUT4
+\FSM_onehot_state[4]_i_3\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFFE"
     )
         port map (
-      I0 => vertex_counter(12),
-      I1 => vertex_counter(14),
-      I2 => vertex_counter(8),
-      I3 => vertex_counter(13),
-      O => \FSM_onehot_state[4]_i_4_n_0\
+      I0 => vertex_counter(8),
+      I1 => vertex_counter(13),
+      I2 => vertex_counter(4),
+      I3 => vertex_counter(10),
+      O => \FSM_onehot_state[4]_i_3_n_0\
     );
-\FSM_onehot_state[9]_i_3\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFFFFFFFFFF8"
-    )
-        port map (
-      I0 => \FSM_onehot_state_reg_n_0_[4]\,
-      I1 => \FSM_onehot_state[9]_i_4_n_0\,
-      I2 => \FSM_onehot_state[9]_i_5_n_0\,
-      I3 => \FSM_onehot_state_reg_n_0_[6]\,
-      I4 => force_black,
-      I5 => \FSM_onehot_state_reg_n_0_[9]\,
-      O => \FSM_onehot_state[9]_i_3_n_0\
-    );
-\FSM_onehot_state[9]_i_4\: unisim.vcomponents.LUT5
+\FSM_onehot_state[9]_i_3\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"00000800"
     )
@@ -17913,18 +17838,20 @@ BB_TL_y1_carry_i_8: unisim.vcomponents.LUT4
       I2 => \vertex_select_reg_n_0_[4]\,
       I3 => \vertex_select_reg_n_0_[3]\,
       I4 => \vertex_select_reg_n_0_[2]\,
-      O => \FSM_onehot_state[9]_i_4_n_0\
+      O => \FSM_onehot_state[9]_i_3_n_0\
     );
-\FSM_onehot_state[9]_i_5\: unisim.vcomponents.LUT4
+\FSM_onehot_state[9]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFE"
+      INIT => X"FFFFFFFFFFFFFFFE"
     )
         port map (
-      I0 => \FSM_onehot_state_reg_n_0_[8]\,
-      I1 => max_temp_x,
-      I2 => \FSM_onehot_state_reg_n_0_[7]\,
-      I3 => \FSM_onehot_state_reg_n_0_[3]\,
-      O => \FSM_onehot_state[9]_i_5_n_0\
+      I0 => \FSM_onehot_state_reg_n_0_[7]\,
+      I1 => \FSM_onehot_state_reg_n_0_[6]\,
+      I2 => \FSM_onehot_state_reg_n_0_[9]\,
+      I3 => max_temp_x,
+      I4 => \FSM_onehot_state_reg_n_0_[8]\,
+      I5 => force_black,
+      O => \FSM_onehot_state[9]_i_4_n_0\
     );
 \FSM_onehot_state_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -17932,7 +17859,7 @@ BB_TL_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_8,
+      CE => rasterizer_u0_n_7,
       D => \FSM_onehot_state[0]_i_1_n_0\,
       Q => \FSM_onehot_state_reg_n_0_[0]\,
       R => '0'
@@ -17943,7 +17870,7 @@ BB_TL_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_8,
+      CE => rasterizer_u0_n_7,
       D => \FSM_onehot_state_reg_n_0_[0]\,
       Q => force_black,
       R => '0'
@@ -17955,7 +17882,7 @@ BB_TL_y1_carry_i_8: unisim.vcomponents.LUT4
         port map (
       C => clk,
       CE => '1',
-      D => rasterizer_u0_n_14,
+      D => rasterizer_u0_n_12,
       Q => \FSM_onehot_state_reg_n_0_[2]\,
       R => '0'
     );
@@ -17965,7 +17892,7 @@ BB_TL_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_8,
+      CE => rasterizer_u0_n_7,
       D => \FSM_onehot_state[3]_i_1_n_0\,
       Q => \FSM_onehot_state_reg_n_0_[3]\,
       R => '0'
@@ -17976,7 +17903,7 @@ BB_TL_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_8,
+      CE => rasterizer_u0_n_7,
       D => \FSM_onehot_state[4]_i_1_n_0\,
       Q => \FSM_onehot_state_reg_n_0_[4]\,
       R => '0'
@@ -17987,7 +17914,7 @@ BB_TL_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_8,
+      CE => rasterizer_u0_n_7,
       D => \FSM_onehot_state_reg_n_0_[4]\,
       Q => max_temp_x,
       R => '0'
@@ -17998,7 +17925,7 @@ BB_TL_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_8,
+      CE => rasterizer_u0_n_7,
       D => max_temp_x,
       Q => \FSM_onehot_state_reg_n_0_[6]\,
       R => '0'
@@ -18009,7 +17936,7 @@ BB_TL_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_8,
+      CE => rasterizer_u0_n_7,
       D => \FSM_onehot_state_reg_n_0_[6]\,
       Q => \FSM_onehot_state_reg_n_0_[7]\,
       R => '0'
@@ -18020,7 +17947,7 @@ BB_TL_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_8,
+      CE => rasterizer_u0_n_7,
       D => \FSM_onehot_state_reg_n_0_[7]\,
       Q => \FSM_onehot_state_reg_n_0_[8]\,
       R => '0'
@@ -18031,7 +17958,7 @@ BB_TL_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_8,
+      CE => rasterizer_u0_n_7,
       D => \FSM_onehot_state_reg_n_0_[8]\,
       Q => \FSM_onehot_state_reg_n_0_[9]\,
       R => '0'
@@ -18809,40 +18736,106 @@ addra0_carry: unisim.vcomponents.CARRY4
       S(3 downto 1) => B"000",
       S(0) => \^addrbwraddr\(13)
     );
-\addra[0]_i_1\: unisim.vcomponents.LUT1
+\addra[0]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"1"
+      INIT => X"0E"
     )
         port map (
-      I0 => \^addrbwraddr\(0),
+      I0 => \FSM_onehot_state_reg_n_0_[3]\,
+      I1 => \FSM_onehot_state_reg_n_0_[4]\,
+      I2 => \^addrbwraddr\(0),
       O => \addra[0]_i_1_n_0\
     );
-\addra[13]_i_1\: unisim.vcomponents.LUT6
+\addra[13]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"1010101011101010"
+      INIT => X"10"
     )
         port map (
-      I0 => \FSM_onehot_state_reg_n_0_[4]\,
-      I1 => \FSM_onehot_state_reg_n_0_[3]\,
-      I2 => \addra[13]_i_3_n_0\,
-      I3 => \FSM_onehot_state_reg_n_0_[0]\,
-      I4 => output_vertex_valid,
-      I5 => vertex_count_reg_reg_20_sn_1,
+      I0 => \FSM_onehot_state_reg_n_0_[3]\,
+      I1 => \FSM_onehot_state_reg_n_0_[4]\,
+      I2 => \addra[13]_i_2_n_0\,
       O => \addra[13]_i_1_n_0\
     );
-\addra[13]_i_2\: unisim.vcomponents.LUT5
+\addra[13]_i_10\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FFFFFF40"
+      INIT => X"FFFE"
     )
         port map (
-      I0 => vertex_count_reg_reg_20_sn_1,
+      I0 => vertex_count_reg_reg(11),
+      I1 => vertex_count_reg_reg(10),
+      I2 => vertex_count_reg_reg(9),
+      I3 => vertex_count_reg_reg(8),
+      O => \addra[13]_i_10_n_0\
+    );
+\addra[13]_i_11\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => vertex_count_reg_reg(14),
+      I1 => vertex_count_reg_reg(13),
+      I2 => vertex_count_reg_reg(15),
+      I3 => vertex_count_reg_reg(12),
+      O => \addra[13]_i_11_n_0\
+    );
+\addra[13]_i_12\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => vertex_count_reg_reg(3),
+      I1 => vertex_count_reg_reg(2),
+      I2 => vertex_count_reg_reg(0),
+      I3 => vertex_count_reg_reg(1),
+      O => \addra[13]_i_12_n_0\
+    );
+\addra[13]_i_13\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => vertex_count_reg_reg(5),
+      I1 => vertex_count_reg_reg(4),
+      I2 => vertex_count_reg_reg(7),
+      I3 => vertex_count_reg_reg(6),
+      O => \addra[13]_i_13_n_0\
+    );
+\addra[13]_i_2\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFFFFFFFFFFF0008"
+    )
+        port map (
+      I0 => \FSM_onehot_state_reg_n_0_[0]\,
       I1 => output_vertex_valid,
-      I2 => \FSM_onehot_state_reg_n_0_[0]\,
-      I3 => \addra[13]_i_3_n_0\,
+      I2 => \addra[13]_i_3_n_0\,
+      I3 => \addra[13]_i_4_n_0\,
       I4 => \FSM_onehot_state_reg_n_0_[3]\,
+      I5 => \addra[13]_i_5_n_0\,
       O => \addra[13]_i_2_n_0\
     );
-\addra[13]_i_3\: unisim.vcomponents.LUT6
+\addra[13]_i_3\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => \addra[13]_i_6_n_0\,
+      I1 => \addra[13]_i_7_n_0\,
+      I2 => \addra[13]_i_8_n_0\,
+      I3 => \addra[13]_i_9_n_0\,
+      O => \addra[13]_i_3_n_0\
+    );
+\addra[13]_i_4\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => \addra[13]_i_10_n_0\,
+      I1 => \addra[13]_i_11_n_0\,
+      I2 => \addra[13]_i_12_n_0\,
+      I3 => \addra[13]_i_13_n_0\,
+      O => \addra[13]_i_4_n_0\
+    );
+\addra[13]_i_5\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"AA8AAAAAAAAAAAAA"
     )
@@ -18853,7 +18846,51 @@ addra0_carry: unisim.vcomponents.CARRY4
       I3 => \vertex_select_reg_n_0_[4]\,
       I4 => \vertex_select_reg_n_0_[0]\,
       I5 => \vertex_select_reg_n_0_[1]\,
-      O => \addra[13]_i_3_n_0\
+      O => \addra[13]_i_5_n_0\
+    );
+\addra[13]_i_6\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => vertex_count_reg_reg(27),
+      I1 => vertex_count_reg_reg(26),
+      I2 => vertex_count_reg_reg(25),
+      I3 => vertex_count_reg_reg(24),
+      O => \addra[13]_i_6_n_0\
+    );
+\addra[13]_i_7\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => vertex_count_reg_reg(31),
+      I1 => vertex_count_reg_reg(28),
+      I2 => vertex_count_reg_reg(30),
+      I3 => vertex_count_reg_reg(29),
+      O => \addra[13]_i_7_n_0\
+    );
+\addra[13]_i_8\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => vertex_count_reg_reg(19),
+      I1 => vertex_count_reg_reg(18),
+      I2 => vertex_count_reg_reg(17),
+      I3 => vertex_count_reg_reg(16),
+      O => \addra[13]_i_8_n_0\
+    );
+\addra[13]_i_9\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => vertex_count_reg_reg(23),
+      I1 => vertex_count_reg_reg(20),
+      I2 => vertex_count_reg_reg(22),
+      I3 => vertex_count_reg_reg(21),
+      O => \addra[13]_i_9_n_0\
     );
 \addra_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -18864,7 +18901,7 @@ addra0_carry: unisim.vcomponents.CARRY4
       CE => \addra[13]_i_2_n_0\,
       D => \addra[0]_i_1_n_0\,
       Q => \^addrbwraddr\(0),
-      R => \addra[13]_i_1_n_0\
+      R => '0'
     );
 \addra_reg[10]\: unisim.vcomponents.FDRE
     generic map(
@@ -19017,15 +19054,18 @@ addra0_carry: unisim.vcomponents.CARRY4
       I0 => color(0),
       O => \color[0]_i_1_n_0\
     );
-\color[1]_i_2\: unisim.vcomponents.LUT3
+\color[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"60"
+      INIT => X"7477777788888888"
     )
         port map (
-      I0 => color(1),
-      I1 => color(0),
-      I2 => \FSM_onehot_state_reg_n_0_[2]\,
-      O => \color[1]_i_2_n_0\
+      I0 => color(0),
+      I1 => \FSM_onehot_state_reg_n_0_[3]\,
+      I2 => vertex_count_reg_reg_21_sn_1,
+      I3 => output_vertex_valid,
+      I4 => \FSM_onehot_state_reg_n_0_[0]\,
+      I5 => color(1),
+      O => \color[1]_i_1_n_0\
     );
 \color[2]_i_1\: unisim.vcomponents.LUT3
     generic map(
@@ -19073,15 +19113,42 @@ addra0_carry: unisim.vcomponents.CARRY4
       I5 => color(3),
       O => \color[5]_i_1_n_0\
     );
-\color[6]_i_2\: unisim.vcomponents.LUT3
+\color[6]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"60"
+      INIT => X"7477777788888888"
     )
         port map (
-      I0 => \color[7]_i_4_n_0\,
-      I1 => color(6),
-      I2 => \FSM_onehot_state_reg_n_0_[2]\,
-      O => \color[6]_i_2_n_0\
+      I0 => \color[7]_i_6_n_0\,
+      I1 => \FSM_onehot_state_reg_n_0_[3]\,
+      I2 => vertex_count_reg_reg_21_sn_1,
+      I3 => output_vertex_valid,
+      I4 => \FSM_onehot_state_reg_n_0_[0]\,
+      I5 => color(6),
+      O => \color[6]_i_1_n_0\
+    );
+\color[7]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"0008"
+    )
+        port map (
+      I0 => \FSM_onehot_state_reg_n_0_[0]\,
+      I1 => output_vertex_valid,
+      I2 => vertex_count_reg_reg_21_sn_1,
+      I3 => \FSM_onehot_state_reg_n_0_[3]\,
+      O => \color[7]_i_1_n_0\
+    );
+\color[7]_i_2\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"AAABAAAAAAAAAAAA"
+    )
+        port map (
+      I0 => \FSM_onehot_state_reg_n_0_[3]\,
+      I1 => \addra[13]_i_4_n_0\,
+      I2 => \color[7]_i_4_n_0\,
+      I3 => \color[7]_i_5_n_0\,
+      I4 => output_vertex_valid,
+      I5 => \FSM_onehot_state_reg_n_0_[0]\,
+      O => \color[7]_i_2_n_0\
     );
 \color[7]_i_3\: unisim.vcomponents.LUT3
     generic map(
@@ -19089,11 +19156,35 @@ addra0_carry: unisim.vcomponents.CARRY4
     )
         port map (
       I0 => color(7),
-      I1 => \color[7]_i_4_n_0\,
+      I1 => \color[7]_i_6_n_0\,
       I2 => color(6),
       O => \color[7]_i_3_n_0\
     );
-\color[7]_i_4\: unisim.vcomponents.LUT6
+\color[7]_i_4\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFFFFFFE"
+    )
+        port map (
+      I0 => vertex_count_reg_reg(29),
+      I1 => vertex_count_reg_reg(30),
+      I2 => vertex_count_reg_reg(28),
+      I3 => vertex_count_reg_reg(31),
+      I4 => \addra[13]_i_6_n_0\,
+      O => \color[7]_i_4_n_0\
+    );
+\color[7]_i_5\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFFFFFFE"
+    )
+        port map (
+      I0 => vertex_count_reg_reg(21),
+      I1 => vertex_count_reg_reg(22),
+      I2 => vertex_count_reg_reg(20),
+      I3 => vertex_count_reg_reg(23),
+      I4 => \addra[13]_i_8_n_0\,
+      O => \color[7]_i_5_n_0\
+    );
+\color[7]_i_6\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"8000000000000000"
     )
@@ -19104,7 +19195,7 @@ addra0_carry: unisim.vcomponents.CARRY4
       I3 => color(1),
       I4 => color(3),
       I5 => color(5),
-      O => \color[7]_i_4_n_0\
+      O => \color[7]_i_6_n_0\
     );
 \color_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -19112,10 +19203,10 @@ addra0_carry: unisim.vcomponents.CARRY4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_9,
+      CE => \color[7]_i_2_n_0\,
       D => \color[0]_i_1_n_0\,
       Q => color(0),
-      R => rasterizer_u0_n_6
+      R => \color[7]_i_1_n_0\
     );
 \color_reg[1]\: unisim.vcomponents.FDRE
     generic map(
@@ -19124,7 +19215,7 @@ addra0_carry: unisim.vcomponents.CARRY4
         port map (
       C => clk,
       CE => '1',
-      D => rasterizer_u0_n_16,
+      D => \color[1]_i_1_n_0\,
       Q => color(1),
       R => '0'
     );
@@ -19134,10 +19225,10 @@ addra0_carry: unisim.vcomponents.CARRY4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_9,
+      CE => \color[7]_i_2_n_0\,
       D => \color[2]_i_1_n_0\,
       Q => color(2),
-      R => rasterizer_u0_n_6
+      R => \color[7]_i_1_n_0\
     );
 \color_reg[3]\: unisim.vcomponents.FDRE
     generic map(
@@ -19145,10 +19236,10 @@ addra0_carry: unisim.vcomponents.CARRY4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_9,
+      CE => \color[7]_i_2_n_0\,
       D => \color[3]_i_1_n_0\,
       Q => color(3),
-      R => rasterizer_u0_n_6
+      R => \color[7]_i_1_n_0\
     );
 \color_reg[4]\: unisim.vcomponents.FDRE
     generic map(
@@ -19156,10 +19247,10 @@ addra0_carry: unisim.vcomponents.CARRY4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_9,
+      CE => \color[7]_i_2_n_0\,
       D => \color[4]_i_1_n_0\,
       Q => color(4),
-      R => rasterizer_u0_n_6
+      R => \color[7]_i_1_n_0\
     );
 \color_reg[5]\: unisim.vcomponents.FDRE
     generic map(
@@ -19167,10 +19258,10 @@ addra0_carry: unisim.vcomponents.CARRY4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_9,
+      CE => \color[7]_i_2_n_0\,
       D => \color[5]_i_1_n_0\,
       Q => color(5),
-      R => rasterizer_u0_n_6
+      R => \color[7]_i_1_n_0\
     );
 \color_reg[6]\: unisim.vcomponents.FDRE
     generic map(
@@ -19179,7 +19270,7 @@ addra0_carry: unisim.vcomponents.CARRY4
         port map (
       C => clk,
       CE => '1',
-      D => rasterizer_u0_n_15,
+      D => \color[6]_i_1_n_0\,
       Q => color(6),
       R => '0'
     );
@@ -19189,10 +19280,10 @@ addra0_carry: unisim.vcomponents.CARRY4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_9,
+      CE => \color[7]_i_2_n_0\,
       D => \color[7]_i_3_n_0\,
       Q => color(7),
-      R => rasterizer_u0_n_6
+      R => \color[7]_i_1_n_0\
     );
 \force_black_d_reg[1]_srl2\: unisim.vcomponents.SRL16E
     generic map(
@@ -19226,7 +19317,7 @@ force_black_reg: unisim.vcomponents.FDRE
         port map (
       C => clk,
       CE => '1',
-      D => rasterizer_u0_n_13,
+      D => rasterizer_u0_n_11,
       Q => force_black_reg_n_0,
       R => '0'
     );
@@ -19301,8 +19392,8 @@ height0_carry: unisim.vcomponents.CARRY4
       INIT => X"9"
     )
         port map (
-      I0 => \BB_TL_y_reg_n_0_[5]\,
-      I1 => \BB_BR_y_reg_n_0_[5]\,
+      I0 => \BB_BR_y_reg_n_0_[5]\,
+      I1 => \BB_TL_y_reg_n_0_[5]\,
       O => \height0_carry__0_i_3_n_0\
     );
 \height0_carry__0_i_4\: unisim.vcomponents.LUT2
@@ -19310,8 +19401,8 @@ height0_carry: unisim.vcomponents.CARRY4
       INIT => X"9"
     )
         port map (
-      I0 => \BB_BR_y_reg_n_0_[4]\,
-      I1 => \BB_TL_y_reg_n_0_[4]\,
+      I0 => \BB_TL_y_reg_n_0_[4]\,
+      I1 => \BB_BR_y_reg_n_0_[4]\,
       O => \height0_carry__0_i_4_n_0\
     );
 \height0_carry__1\: unisim.vcomponents.CARRY4
@@ -19593,10 +19684,10 @@ height0_carry_i_4: unisim.vcomponents.LUT2
       INIT => X"9009000000009009"
     )
         port map (
-      I0 => \BB_TL_x_reg_n_0_[7]\,
-      I1 => \BB_BR_x_reg_n_0_[7]\,
-      I2 => \BB_BR_x_reg_n_0_[8]\,
-      I3 => \BB_TL_x_reg_n_0_[8]\,
+      I0 => \BB_TL_x_reg_n_0_[8]\,
+      I1 => \BB_BR_x_reg_n_0_[8]\,
+      I2 => \BB_BR_x_reg_n_0_[7]\,
+      I3 => \BB_TL_x_reg_n_0_[7]\,
       I4 => \BB_BR_x_reg_n_0_[6]\,
       I5 => \BB_TL_x_reg_n_0_[6]\,
       O => \i__carry_i_2__0_n_0\
@@ -19641,12 +19732,12 @@ height0_carry_i_4: unisim.vcomponents.LUT2
       INIT => X"9009000000009009"
     )
         port map (
-      I0 => \BB_TL_x_reg_n_0_[2]\,
-      I1 => \BB_BR_x_reg_n_0_[2]\,
-      I2 => \BB_BR_x_reg_n_0_[0]\,
-      I3 => \BB_TL_x_reg_n_0_[0]\,
-      I4 => \BB_BR_x_reg_n_0_[1]\,
-      I5 => \BB_TL_x_reg_n_0_[1]\,
+      I0 => \BB_TL_x_reg_n_0_[1]\,
+      I1 => \BB_BR_x_reg_n_0_[1]\,
+      I2 => \BB_BR_x_reg_n_0_[2]\,
+      I3 => \BB_TL_x_reg_n_0_[2]\,
+      I4 => \BB_BR_x_reg_n_0_[0]\,
+      I5 => \BB_TL_x_reg_n_0_[0]\,
       O => \i__carry_i_4__0_n_0\
     );
 \i__carry_i_5\: unisim.vcomponents.LUT4
@@ -21266,7 +21357,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_10,
+      CE => rasterizer_u0_n_8,
       D => pixel_x(0),
       Q => \pixel_x_reg_n_0_[0]\,
       R => force_black
@@ -21277,7 +21368,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_10,
+      CE => rasterizer_u0_n_8,
       D => pixel_x(10),
       Q => \pixel_x_reg_n_0_[10]\,
       R => force_black
@@ -21288,7 +21379,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_10,
+      CE => rasterizer_u0_n_8,
       D => pixel_x(1),
       Q => \pixel_x_reg_n_0_[1]\,
       R => force_black
@@ -21299,7 +21390,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_10,
+      CE => rasterizer_u0_n_8,
       D => pixel_x(2),
       Q => \pixel_x_reg_n_0_[2]\,
       R => force_black
@@ -21310,7 +21401,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_10,
+      CE => rasterizer_u0_n_8,
       D => pixel_x(3),
       Q => \pixel_x_reg_n_0_[3]\,
       R => force_black
@@ -21321,7 +21412,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_10,
+      CE => rasterizer_u0_n_8,
       D => pixel_x(4),
       Q => \pixel_x_reg_n_0_[4]\,
       R => force_black
@@ -21332,7 +21423,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_10,
+      CE => rasterizer_u0_n_8,
       D => pixel_x(5),
       Q => \pixel_x_reg_n_0_[5]\,
       R => force_black
@@ -21343,7 +21434,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_10,
+      CE => rasterizer_u0_n_8,
       D => pixel_x(6),
       Q => \pixel_x_reg_n_0_[6]\,
       R => force_black
@@ -21354,7 +21445,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_10,
+      CE => rasterizer_u0_n_8,
       D => pixel_x(7),
       Q => \pixel_x_reg_n_0_[7]\,
       R => force_black
@@ -21365,7 +21456,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_10,
+      CE => rasterizer_u0_n_8,
       D => pixel_x(8),
       Q => \pixel_x_reg_n_0_[8]\,
       R => force_black
@@ -21376,7 +21467,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_10,
+      CE => rasterizer_u0_n_8,
       D => pixel_x(9),
       Q => \pixel_x_reg_n_0_[9]\,
       R => force_black
@@ -21636,7 +21727,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_7,
+      CE => rasterizer_u0_n_6,
       D => pixel_y(0),
       Q => \pixel_y_reg_n_0_[0]\,
       R => force_black
@@ -21647,7 +21738,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_7,
+      CE => rasterizer_u0_n_6,
       D => pixel_y(10),
       Q => \pixel_y_reg_n_0_[10]\,
       R => force_black
@@ -21658,7 +21749,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_7,
+      CE => rasterizer_u0_n_6,
       D => pixel_y(1),
       Q => \pixel_y_reg_n_0_[1]\,
       R => force_black
@@ -21669,7 +21760,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_7,
+      CE => rasterizer_u0_n_6,
       D => pixel_y(2),
       Q => \pixel_y_reg_n_0_[2]\,
       R => force_black
@@ -21680,7 +21771,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_7,
+      CE => rasterizer_u0_n_6,
       D => pixel_y(3),
       Q => \pixel_y_reg_n_0_[3]\,
       R => force_black
@@ -21691,7 +21782,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_7,
+      CE => rasterizer_u0_n_6,
       D => pixel_y(4),
       Q => \pixel_y_reg_n_0_[4]\,
       R => force_black
@@ -21702,7 +21793,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_7,
+      CE => rasterizer_u0_n_6,
       D => pixel_y(5),
       Q => \pixel_y_reg_n_0_[5]\,
       R => force_black
@@ -21713,7 +21804,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_7,
+      CE => rasterizer_u0_n_6,
       D => pixel_y(6),
       Q => \pixel_y_reg_n_0_[6]\,
       R => force_black
@@ -21724,7 +21815,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_7,
+      CE => rasterizer_u0_n_6,
       D => pixel_y(7),
       Q => \pixel_y_reg_n_0_[7]\,
       R => force_black
@@ -21735,7 +21826,7 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_7,
+      CE => rasterizer_u0_n_6,
       D => pixel_y(8),
       Q => \pixel_y_reg_n_0_[8]\,
       R => force_black
@@ -21746,21 +21837,21 @@ max_temp_y1_carry_i_8: unisim.vcomponents.LUT4
     )
         port map (
       C => clk,
-      CE => rasterizer_u0_n_7,
+      CE => rasterizer_u0_n_6,
       D => pixel_y(9),
       Q => \pixel_y_reg_n_0_[9]\,
       R => force_black
     );
 rasterize_end_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FAFFFFFFFAFF8888"
+      INIT => X"EFAAEFFFEFAAEF00"
     )
         port map (
       I0 => \FSM_onehot_state_reg_n_0_[3]\,
-      I1 => \FSM_onehot_state[4]_i_2_n_0\,
-      I2 => vertex_count_reg_reg_20_sn_1,
-      I3 => output_vertex_valid,
-      I4 => \FSM_onehot_state_reg_n_0_[0]\,
+      I1 => vertex_count_reg_reg_21_sn_1,
+      I2 => output_vertex_valid,
+      I3 => \FSM_onehot_state_reg_n_0_[0]\,
+      I4 => \FSM_onehot_state[0]_i_1_n_0\,
       I5 => \^rasterize_end_int\,
       O => rasterize_end_i_1_n_0
     );
@@ -21780,14 +21871,15 @@ rasterizer_u0: entity work.main_gpu_wrapper_0_0_rasterizer
       A(11 downto 0) => A(11 downto 0),
       CO(0) => \state1_carry__0_n_2\,
       E(0) => V1_x,
-      \FSM_onehot_state_reg[0]\ => rasterizer_u0_n_6,
-      \FSM_onehot_state_reg[0]_0\ => rasterizer_u0_n_8,
-      \FSM_onehot_state_reg[0]_1\ => \FSM_onehot_state[9]_i_3_n_0\,
-      \FSM_onehot_state_reg[1]\ => rasterizer_u0_n_13,
-      \FSM_onehot_state_reg[2]\(0) => rasterizer_u0_n_7,
-      \FSM_onehot_state_reg[2]_0\ => rasterizer_u0_n_14,
+      \FSM_onehot_state_reg[0]\ => \color[7]_i_2_n_0\,
+      \FSM_onehot_state_reg[0]_0\ => \FSM_onehot_state[9]_i_3_n_0\,
+      \FSM_onehot_state_reg[0]_1\ => \FSM_onehot_state[9]_i_4_n_0\,
+      \FSM_onehot_state_reg[1]\ => rasterizer_u0_n_11,
+      \FSM_onehot_state_reg[2]\(0) => rasterizer_u0_n_6,
+      \FSM_onehot_state_reg[2]_0\ => rasterizer_u0_n_12,
       \FSM_onehot_state_reg[2]_1\ => \FSM_onehot_state[2]_i_2_n_0\,
-      \FSM_onehot_state_reg[9]\(0) => rasterizer_u0_n_10,
+      \FSM_onehot_state_reg[4]\ => rasterizer_u0_n_7,
+      \FSM_onehot_state_reg[9]\(0) => rasterizer_u0_n_8,
       Q(10) => \pixel_x_reg_n_0_[10]\,
       Q(9) => \pixel_x_reg_n_0_[9]\,
       Q(8) => \pixel_x_reg_n_0_[8]\,
@@ -21800,12 +21892,6 @@ rasterizer_u0: entity work.main_gpu_wrapper_0_0_rasterizer
       Q(1) => \pixel_x_reg_n_0_[1]\,
       Q(0) => \pixel_x_reg_n_0_[0]\,
       clk => clk,
-      color(1) => color(6),
-      color(0) => color(1),
-      \color_reg[0]\ => \FSM_onehot_state_reg_n_0_[0]\,
-      \color_reg[1]\ => \color[1]_i_2_n_0\,
-      \color_reg[6]\ => vertex_count_reg_reg_20_sn_1,
-      \color_reg[6]_0\ => \color[6]_i_2_n_0\,
       draw => draw,
       force_black => force_black,
       force_black_reg(0) => \state1_inferred__0/i__carry__0_n_2\,
@@ -21848,10 +21934,6 @@ rasterizer_u0: entity work.main_gpu_wrapper_0_0_rasterizer
       out_ready => out_ready,
       \out_valid_d_reg[0]\ => \FSM_onehot_state_reg_n_0_[2]\,
       output_valid => output_valid,
-      output_vertex_valid => output_vertex_valid,
-      output_vertex_valid_reg => rasterizer_u0_n_9,
-      output_vertex_valid_reg_0 => rasterizer_u0_n_15,
-      output_vertex_valid_reg_1 => rasterizer_u0_n_16,
       p_0_in => p_0_in,
       pixel_x_out(10 downto 0) => pixel_x_out(10 downto 0),
       \pixel_x_reg[0]\ => \FSM_onehot_state_reg_n_0_[9]\,
@@ -21906,12 +21988,12 @@ rasterizer_u0: entity work.main_gpu_wrapper_0_0_rasterizer
       sub_result_reg_5(2) => \V3_x_reg_n_0_[2]\,
       sub_result_reg_5(1) => \V3_x_reg_n_0_[1]\,
       sub_result_reg_5(0) => \V3_x_reg_n_0_[0]\,
-      sub_result_reg_6(4) => \vertex_select_reg_n_0_[4]\,
-      sub_result_reg_6(3) => \vertex_select_reg_n_0_[3]\,
-      sub_result_reg_6(2) => \vertex_select_reg_n_0_[2]\,
-      sub_result_reg_6(1) => \vertex_select_reg_n_0_[1]\,
-      sub_result_reg_6(0) => \vertex_select_reg_n_0_[0]\,
-      sub_result_reg_7 => \FSM_onehot_state_reg_n_0_[4]\,
+      sub_result_reg_6 => \FSM_onehot_state_reg_n_0_[4]\,
+      sub_result_reg_7(4) => \vertex_select_reg_n_0_[4]\,
+      sub_result_reg_7(3) => \vertex_select_reg_n_0_[3]\,
+      sub_result_reg_7(2) => \vertex_select_reg_n_0_[2]\,
+      sub_result_reg_7(1) => \vertex_select_reg_n_0_[1]\,
+      sub_result_reg_7(0) => \vertex_select_reg_n_0_[0]\,
       \vertex_select_reg[0]\(0) => V2_y,
       \vertex_select_reg[1]\(0) => V2_x,
       \vertex_select_reg[1]_0\(0) => V3_y,
@@ -22156,10 +22238,10 @@ state2_carry_i_3: unisim.vcomponents.LUT6
       INIT => X"9009000000009009"
     )
         port map (
-      I0 => \BB_TL_y_reg_n_0_[4]\,
-      I1 => \BB_BR_y_reg_n_0_[4]\,
-      I2 => \BB_BR_y_reg_n_0_[5]\,
-      I3 => \BB_TL_y_reg_n_0_[5]\,
+      I0 => \BB_TL_y_reg_n_0_[5]\,
+      I1 => \BB_BR_y_reg_n_0_[5]\,
+      I2 => \BB_BR_y_reg_n_0_[4]\,
+      I3 => \BB_TL_y_reg_n_0_[4]\,
       I4 => \BB_BR_y_reg_n_0_[3]\,
       I5 => \BB_TL_y_reg_n_0_[3]\,
       O => state2_carry_i_3_n_0
@@ -22424,7 +22506,7 @@ vertex_counter0_carry_i_4: unisim.vcomponents.LUT1
     )
         port map (
       I0 => \FSM_onehot_state_reg_n_0_[4]\,
-      I1 => vertex_count_reg_reg_20_sn_1,
+      I1 => vertex_count_reg_reg_21_sn_1,
       I2 => output_vertex_valid,
       I3 => \FSM_onehot_state_reg_n_0_[0]\,
       O => \vertex_counter[14]_i_1_n_0\
@@ -22704,65 +22786,30 @@ vertex_counter0_carry_i_4: unisim.vcomponents.LUT1
       Q => vertex_counter(9),
       R => '0'
     );
-\vertex_mem_rd_addr[0]_i_10\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => vertex_count_reg_reg(11),
-      I1 => vertex_count_reg_reg(10),
-      I2 => vertex_count_reg_reg(9),
-      I3 => vertex_count_reg_reg(8),
-      O => \vertex_mem_rd_addr[0]_i_10_n_0\
-    );
 \vertex_mem_rd_addr[0]_i_2\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFFE"
     )
         port map (
-      I0 => \vertex_mem_rd_addr[0]_i_3_n_0\,
-      I1 => \vertex_mem_rd_addr[0]_i_4_n_0\,
-      I2 => \vertex_mem_rd_addr[0]_i_5_n_0\,
-      I3 => \vertex_mem_rd_addr[0]_i_6_n_0\,
-      O => vertex_count_reg_reg_20_sn_1
+      I0 => \color[7]_i_5_n_0\,
+      I1 => \color[7]_i_4_n_0\,
+      I2 => \vertex_mem_rd_addr[0]_i_3_n_0\,
+      I3 => \vertex_mem_rd_addr[0]_i_4_n_0\,
+      O => vertex_count_reg_reg_21_sn_1
     );
 \vertex_mem_rd_addr[0]_i_3\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"FFFFFFFE"
     )
         port map (
-      I0 => vertex_count_reg_reg(20),
-      I1 => vertex_count_reg_reg(23),
-      I2 => vertex_count_reg_reg(21),
-      I3 => vertex_count_reg_reg(22),
-      I4 => \vertex_mem_rd_addr[0]_i_7_n_0\,
+      I0 => vertex_count_reg_reg(6),
+      I1 => vertex_count_reg_reg(7),
+      I2 => vertex_count_reg_reg(4),
+      I3 => vertex_count_reg_reg(5),
+      I4 => \addra[13]_i_12_n_0\,
       O => \vertex_mem_rd_addr[0]_i_3_n_0\
     );
 \vertex_mem_rd_addr[0]_i_4\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFFFFFE"
-    )
-        port map (
-      I0 => vertex_count_reg_reg(28),
-      I1 => vertex_count_reg_reg(31),
-      I2 => vertex_count_reg_reg(29),
-      I3 => vertex_count_reg_reg(30),
-      I4 => \vertex_mem_rd_addr[0]_i_8_n_0\,
-      O => \vertex_mem_rd_addr[0]_i_4_n_0\
-    );
-\vertex_mem_rd_addr[0]_i_5\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFFFFFE"
-    )
-        port map (
-      I0 => vertex_count_reg_reg(4),
-      I1 => vertex_count_reg_reg(7),
-      I2 => vertex_count_reg_reg(5),
-      I3 => vertex_count_reg_reg(6),
-      I4 => \vertex_mem_rd_addr[0]_i_9_n_0\,
-      O => \vertex_mem_rd_addr[0]_i_5_n_0\
-    );
-\vertex_mem_rd_addr[0]_i_6\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"FFFFFFFE"
     )
@@ -22771,41 +22818,8 @@ vertex_counter0_carry_i_4: unisim.vcomponents.LUT1
       I1 => vertex_count_reg_reg(15),
       I2 => vertex_count_reg_reg(13),
       I3 => vertex_count_reg_reg(14),
-      I4 => \vertex_mem_rd_addr[0]_i_10_n_0\,
-      O => \vertex_mem_rd_addr[0]_i_6_n_0\
-    );
-\vertex_mem_rd_addr[0]_i_7\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => vertex_count_reg_reg(18),
-      I1 => vertex_count_reg_reg(17),
-      I2 => vertex_count_reg_reg(19),
-      I3 => vertex_count_reg_reg(16),
-      O => \vertex_mem_rd_addr[0]_i_7_n_0\
-    );
-\vertex_mem_rd_addr[0]_i_8\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => vertex_count_reg_reg(27),
-      I1 => vertex_count_reg_reg(26),
-      I2 => vertex_count_reg_reg(25),
-      I3 => vertex_count_reg_reg(24),
-      O => \vertex_mem_rd_addr[0]_i_8_n_0\
-    );
-\vertex_mem_rd_addr[0]_i_9\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => vertex_count_reg_reg(3),
-      I1 => vertex_count_reg_reg(2),
-      I2 => vertex_count_reg_reg(0),
-      I3 => vertex_count_reg_reg(1),
-      O => \vertex_mem_rd_addr[0]_i_9_n_0\
+      I4 => \addra[13]_i_10_n_0\,
+      O => \vertex_mem_rd_addr[0]_i_4_n_0\
     );
 \vertex_select[0]_i_1\: unisim.vcomponents.LUT2
     generic map(
@@ -22857,7 +22871,7 @@ vertex_counter0_carry_i_4: unisim.vcomponents.LUT1
       INIT => X"FFFFFF40"
     )
         port map (
-      I0 => vertex_count_reg_reg_20_sn_1,
+      I0 => vertex_count_reg_reg_21_sn_1,
       I1 => output_vertex_valid,
       I2 => \FSM_onehot_state_reg_n_0_[0]\,
       I3 => \FSM_onehot_state_reg_n_0_[3]\,
@@ -22973,8 +22987,8 @@ width0_carry: unisim.vcomponents.CARRY4
       INIT => X"9"
     )
         port map (
-      I0 => \BB_BR_x_reg_n_0_[7]\,
-      I1 => \BB_TL_x_reg_n_0_[7]\,
+      I0 => \BB_TL_x_reg_n_0_[7]\,
+      I1 => \BB_BR_x_reg_n_0_[7]\,
       O => \width0_carry__0_i_1_n_0\
     );
 \width0_carry__0_i_2\: unisim.vcomponents.LUT2
@@ -23044,8 +23058,8 @@ width0_carry: unisim.vcomponents.CARRY4
       INIT => X"9"
     )
         port map (
-      I0 => \BB_TL_x_reg_n_0_[8]\,
-      I1 => \BB_BR_x_reg_n_0_[8]\,
+      I0 => \BB_BR_x_reg_n_0_[8]\,
+      I1 => \BB_TL_x_reg_n_0_[8]\,
       O => \width0_carry__1_i_3_n_0\
     );
 width0_carry_i_1: unisim.vcomponents.LUT2
@@ -23062,8 +23076,8 @@ width0_carry_i_2: unisim.vcomponents.LUT2
       INIT => X"9"
     )
         port map (
-      I0 => \BB_BR_x_reg_n_0_[2]\,
-      I1 => \BB_TL_x_reg_n_0_[2]\,
+      I0 => \BB_TL_x_reg_n_0_[2]\,
+      I1 => \BB_BR_x_reg_n_0_[2]\,
       O => width0_carry_i_2_n_0
     );
 width0_carry_i_3: unisim.vcomponents.LUT2
@@ -23071,8 +23085,8 @@ width0_carry_i_3: unisim.vcomponents.LUT2
       INIT => X"9"
     )
         port map (
-      I0 => \BB_TL_x_reg_n_0_[1]\,
-      I1 => \BB_BR_x_reg_n_0_[1]\,
+      I0 => \BB_BR_x_reg_n_0_[1]\,
+      I1 => \BB_TL_x_reg_n_0_[1]\,
       O => width0_carry_i_3_n_0
     );
 width0_carry_i_4: unisim.vcomponents.LUT2
@@ -24560,7 +24574,7 @@ rasterizer_control: entity work.main_gpu_wrapper_0_0_rasterizer_control
       sub_result_reg_1(0) => transformed_vertex_mem_n_25,
       vertex_count(14 downto 0) => vertex_count(14 downto 0),
       vertex_count_reg_reg(31 downto 0) => vertex_count_reg_reg(31 downto 0),
-      vertex_count_reg_reg_20_sp_1 => rasterizer_control_n_15,
+      vertex_count_reg_reg_21_sp_1 => rasterizer_control_n_15,
       width(10 downto 0) => width(10 downto 0)
     );
 transformed_vertex_mem: entity work.\main_gpu_wrapper_0_0_ram_rtl__parameterized0\

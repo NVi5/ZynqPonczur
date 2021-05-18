@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue May 18 14:26:07 2021" VIVADOVERSION="2018.3">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue May 18 16:22:26 2021" VIVADOVERSION="2018.3">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z010" NAME="main" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -2426,8 +2426,8 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_GP0_ACLK"/>
             <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="slowest_sync_clk"/>
             <CONNECTION INSTANCE="axi_master_burst_axi3_0" PORT="clk"/>
-            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="clk"/>
             <CONNECTION INSTANCE="gpu_control_0" PORT="s00_axi_aclk"/>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="FCLK_RESET0_N" SIGIS="rst" SIGNAME="processing_system7_0_FCLK_RESET0_N">
@@ -3513,8 +3513,8 @@
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="S00_ARESETN"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M00_ARESETN"/>
             <CONNECTION INSTANCE="axi_master_burst_axi3_0" PORT="reset"/>
-            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="reset"/>
             <CONNECTION INSTANCE="gpu_control_0" PORT="s00_axi_aresetn"/>
+            <CONNECTION INSTANCE="gpu_wrapper_0" PORT="reset"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Tue May 18 14:03:14 2021
+// Date        : Tue May 18 16:23:06 2021
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               C:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main/ip/main_gpu_wrapper_0_0/main_gpu_wrapper_0_0_sim_netlist.v
@@ -1153,7 +1153,7 @@ module main_gpu_wrapper_0_0_GPU_top
         .sub_result_reg_1({transformed_vertex_mem_n_24,transformed_vertex_mem_n_25}),
         .vertex_count(vertex_count[14:0]),
         .vertex_count_reg_reg(vertex_count_reg_reg),
-        .vertex_count_reg_reg_20_sp_1(rasterizer_control_n_15),
+        .vertex_count_reg_reg_21_sp_1(rasterizer_control_n_15),
         .width(width));
   main_gpu_wrapper_0_0_ram_rtl__parameterized0 transformed_vertex_mem
        (.A({transformed_vertex_mem_n_0,transformed_vertex_mem_n_1,transformed_vertex_mem_n_2,transformed_vertex_mem_n_3,transformed_vertex_mem_n_4,transformed_vertex_mem_n_5,transformed_vertex_mem_n_6,transformed_vertex_mem_n_7,transformed_vertex_mem_rd_data}),
@@ -1661,17 +1661,13 @@ module main_gpu_wrapper_0_0_edgeFunction
     \out_valid_d_reg[2]_0 ,
     \vertex_select_reg[4] ,
     ef_inside,
-    \FSM_onehot_state_reg[0] ,
     \FSM_onehot_state_reg[2] ,
     \out_valid_d_reg[0]_0 ,
-    \FSM_onehot_state_reg[0]_0 ,
-    output_vertex_valid_reg,
+    \FSM_onehot_state_reg[4] ,
     \FSM_onehot_state_reg[9] ,
     output_valid,
     \FSM_onehot_state_reg[1] ,
     \FSM_onehot_state_reg[2]_0 ,
-    output_vertex_valid_reg_0,
-    output_vertex_valid_reg_1,
     pixel_x_out,
     pixel_y_out,
     clk,
@@ -1683,42 +1679,34 @@ module main_gpu_wrapper_0_0_edgeFunction
     mul1_result_reg_1,
     sub_result_reg_2,
     sub_result_reg_3,
-    \color_reg[0] ,
-    output_vertex_valid,
-    \color_reg[6] ,
-    \out_valid_d_reg[0]_1 ,
     \pixel_y_reg[0] ,
+    \out_valid_d_reg[0]_1 ,
     CO,
+    \FSM_onehot_state_reg[0] ,
+    mul1_result_reg_2,
+    \FSM_onehot_state_reg[0]_0 ,
     \FSM_onehot_state_reg[0]_1 ,
     force_black_reg,
     \pixel_x_reg[0] ,
     \pixel_x_reg[0]_0 ,
     \pixel_x_reg[0]_1 ,
     out_ready,
-    mul1_result_reg_2,
     mul1_result_reg_3,
     p_0_in,
     force_black,
     force_black_reg_0,
-    \FSM_onehot_state_reg[2]_1 ,
-    \color_reg[6]_0 ,
-    color,
-    \color_reg[1] );
+    \FSM_onehot_state_reg[2]_1 );
   output [0:0]E;
   output [0:0]\out_valid_d_reg[2]_0 ;
   output [0:0]\vertex_select_reg[4] ;
   output [0:0]ef_inside;
-  output \FSM_onehot_state_reg[0] ;
   output [0:0]\FSM_onehot_state_reg[2] ;
   output [0:0]\out_valid_d_reg[0]_0 ;
-  output \FSM_onehot_state_reg[0]_0 ;
-  output output_vertex_valid_reg;
+  output \FSM_onehot_state_reg[4] ;
   output [0:0]\FSM_onehot_state_reg[9] ;
   output output_valid;
   output \FSM_onehot_state_reg[1] ;
   output \FSM_onehot_state_reg[2]_0 ;
-  output output_vertex_valid_reg_0;
-  output output_vertex_valid_reg_1;
   output [10:0]pixel_x_out;
   output [10:0]pixel_y_out;
   input clk;
@@ -1730,27 +1718,23 @@ module main_gpu_wrapper_0_0_edgeFunction
   input [10:0]mul1_result_reg_1;
   input [10:0]sub_result_reg_2;
   input [10:0]sub_result_reg_3;
-  input \color_reg[0] ;
-  input output_vertex_valid;
-  input \color_reg[6] ;
-  input \out_valid_d_reg[0]_1 ;
   input [0:0]\pixel_y_reg[0] ;
+  input \out_valid_d_reg[0]_1 ;
   input [0:0]CO;
+  input \FSM_onehot_state_reg[0] ;
+  input mul1_result_reg_2;
+  input \FSM_onehot_state_reg[0]_0 ;
   input \FSM_onehot_state_reg[0]_1 ;
   input [0:0]force_black_reg;
   input \pixel_x_reg[0] ;
   input [0:0]\pixel_x_reg[0]_0 ;
   input [0:0]\pixel_x_reg[0]_1 ;
   input out_ready;
-  input [4:0]mul1_result_reg_2;
-  input mul1_result_reg_3;
+  input [4:0]mul1_result_reg_3;
   input p_0_in;
   input force_black;
   input force_black_reg_0;
   input \FSM_onehot_state_reg[2]_1 ;
-  input \color_reg[6]_0 ;
-  input [1:0]color;
-  input \color_reg[1] ;
 
   wire [11:0]A;
   wire [11:0]B;
@@ -1764,6 +1748,7 @@ module main_gpu_wrapper_0_0_edgeFunction
   wire [0:0]\FSM_onehot_state_reg[2] ;
   wire \FSM_onehot_state_reg[2]_0 ;
   wire \FSM_onehot_state_reg[2]_1 ;
+  wire \FSM_onehot_state_reg[4] ;
   wire [0:0]\FSM_onehot_state_reg[9] ;
   wire [10:0]Q;
   wire V2_X_minus_V1_X0_carry__0_i_1__1_n_0;
@@ -1824,11 +1809,6 @@ module main_gpu_wrapper_0_0_edgeFunction
   wire V2_Y_minus_V1_Y0_carry_n_3;
   wire [2:2]ce_d_reg;
   wire clk;
-  wire [1:0]color;
-  wire \color_reg[0] ;
-  wire \color_reg[1] ;
-  wire \color_reg[6] ;
-  wire \color_reg[6]_0 ;
   wire [0:0]ef_inside;
   wire force_black;
   wire force_black_i_2_n_0;
@@ -1876,8 +1856,8 @@ module main_gpu_wrapper_0_0_edgeFunction
   wire isInside_reg_i_4_n_3;
   wire [10:0]mul1_result_reg_0;
   wire [10:0]mul1_result_reg_1;
-  wire [4:0]mul1_result_reg_2;
-  wire mul1_result_reg_3;
+  wire mul1_result_reg_2;
+  wire [4:0]mul1_result_reg_3;
   wire mul1_result_reg_n_106;
   wire mul1_result_reg_n_107;
   wire mul1_result_reg_n_108;
@@ -1933,10 +1913,6 @@ module main_gpu_wrapper_0_0_edgeFunction
   wire [0:0]\out_valid_d_reg[2]_0 ;
   wire out_valid_int;
   wire output_valid;
-  wire output_vertex_valid;
-  wire output_vertex_valid_reg;
-  wire output_vertex_valid_reg_0;
-  wire output_vertex_valid_reg_1;
   wire p_0_in;
   wire \pixel_x_d[3][10]_i_1_n_0 ;
   wire [10:0]\pixel_x_d_reg[0]_15 ;
@@ -2015,20 +1991,20 @@ module main_gpu_wrapper_0_0_edgeFunction
     \FSM_onehot_state[2]_i_1 
        (.I0(\out_valid_d_reg[0]_1 ),
         .I1(\pixel_y_reg[0] ),
-        .I2(\FSM_onehot_state[9]_i_2_n_0 ),
-        .I3(\FSM_onehot_state_reg[2]_1 ),
-        .I4(\FSM_onehot_state_reg[0]_1 ),
+        .I2(\FSM_onehot_state_reg[0] ),
+        .I3(\FSM_onehot_state[9]_i_2_n_0 ),
+        .I4(\FSM_onehot_state_reg[2]_1 ),
         .I5(force_black),
         .O(\FSM_onehot_state_reg[2]_0 ));
   LUT5 #(
-    .INIT(32'hFFFFAAEA)) 
+    .INIT(32'hFFFFFEEE)) 
     \FSM_onehot_state[9]_i_1 
-       (.I0(\FSM_onehot_state[9]_i_2_n_0 ),
-        .I1(\color_reg[0] ),
-        .I2(output_vertex_valid),
-        .I3(\color_reg[6] ),
+       (.I0(\FSM_onehot_state_reg[0] ),
+        .I1(\FSM_onehot_state[9]_i_2_n_0 ),
+        .I2(mul1_result_reg_2),
+        .I3(\FSM_onehot_state_reg[0]_0 ),
         .I4(\FSM_onehot_state_reg[0]_1 ),
-        .O(\FSM_onehot_state_reg[0]_0 ));
+        .O(\FSM_onehot_state_reg[4] ));
   LUT5 #(
     .INIT(32'h04040004)) 
     \FSM_onehot_state[9]_i_2 
@@ -2041,22 +2017,22 @@ module main_gpu_wrapper_0_0_edgeFunction
   LUT6 #(
     .INIT(64'h0000000100000000)) 
     \V1_x[10]_i_1 
-       (.I0(mul1_result_reg_2[2]),
-        .I1(mul1_result_reg_2[0]),
-        .I2(mul1_result_reg_2[1]),
-        .I3(mul1_result_reg_2[4]),
-        .I4(mul1_result_reg_2[3]),
-        .I5(mul1_result_reg_3),
+       (.I0(mul1_result_reg_3[2]),
+        .I1(mul1_result_reg_3[0]),
+        .I2(mul1_result_reg_3[1]),
+        .I3(mul1_result_reg_3[4]),
+        .I4(mul1_result_reg_3[3]),
+        .I5(mul1_result_reg_2),
         .O(E));
   LUT6 #(
     .INIT(64'h0000000000100000)) 
     \V1_y[10]_i_1 
-       (.I0(mul1_result_reg_2[4]),
-        .I1(mul1_result_reg_2[3]),
-        .I2(mul1_result_reg_3),
-        .I3(mul1_result_reg_2[1]),
-        .I4(mul1_result_reg_2[0]),
-        .I5(mul1_result_reg_2[2]),
+       (.I0(mul1_result_reg_3[4]),
+        .I1(mul1_result_reg_3[3]),
+        .I2(mul1_result_reg_2),
+        .I3(mul1_result_reg_3[1]),
+        .I4(mul1_result_reg_3[0]),
+        .I5(mul1_result_reg_3[2]),
         .O(\vertex_select_reg[4] ));
   CARRY4 V2_X_minus_V1_X0_carry
        (.CI(1'b0),
@@ -2232,45 +2208,6 @@ module main_gpu_wrapper_0_0_edgeFunction
        (.I0(mul1_result_reg_0[0]),
         .I1(mul1_result_reg_1[0]),
         .O(V2_Y_minus_V1_Y0_carry_i_4__1_n_0));
-  LUT6 #(
-    .INIT(64'hAAAAEFFFAAAA2000)) 
-    \color[1]_i_1 
-       (.I0(\color_reg[1] ),
-        .I1(\color_reg[6] ),
-        .I2(output_vertex_valid),
-        .I3(\color_reg[0] ),
-        .I4(\FSM_onehot_state[9]_i_2_n_0 ),
-        .I5(color[0]),
-        .O(output_vertex_valid_reg_1));
-  LUT6 #(
-    .INIT(64'hAAAAEFFFAAAA2000)) 
-    \color[6]_i_1 
-       (.I0(\color_reg[6]_0 ),
-        .I1(\color_reg[6] ),
-        .I2(output_vertex_valid),
-        .I3(\color_reg[0] ),
-        .I4(\FSM_onehot_state[9]_i_2_n_0 ),
-        .I5(color[1]),
-        .O(output_vertex_valid_reg_0));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT5 #(
-    .INIT(32'h0000AAEA)) 
-    \color[7]_i_1 
-       (.I0(\FSM_onehot_state[9]_i_2_n_0 ),
-        .I1(\color_reg[0] ),
-        .I2(output_vertex_valid),
-        .I3(\color_reg[6] ),
-        .I4(\out_valid_d_reg[0]_1 ),
-        .O(\FSM_onehot_state_reg[0] ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT4 #(
-    .INIT(16'hFF40)) 
-    \color[7]_i_2 
-       (.I0(\color_reg[6] ),
-        .I1(output_vertex_valid),
-        .I2(\color_reg[0] ),
-        .I3(\FSM_onehot_state[9]_i_2_n_0 ),
-        .O(output_vertex_valid_reg));
   LUT6 #(
     .INIT(64'hFFFFFFEFAAAAAAAA)) 
     force_black_i_1
@@ -3898,7 +3835,7 @@ module main_gpu_wrapper_0_0_edgeFunction_0
         .I4(mul1_result_reg_2[4]),
         .I5(mul1_result_reg_2[2]),
         .O(\vertex_select_reg[0] ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
     .INIT(16'hBA8A)) 
     isInside_i_1
@@ -4194,7 +4131,7 @@ module main_gpu_wrapper_0_0_edgeFunction_0
         .I3(mul1_result_reg_i_1_n_0),
         .I4(out_valid_d[0]),
         .O(\out_valid_d[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'hAEAAAAAA)) 
     \out_valid_d[1]_i_1 
@@ -4204,7 +4141,7 @@ module main_gpu_wrapper_0_0_edgeFunction_0
         .I3(\out_valid_d_reg_n_0_[3] ),
         .I4(out_valid_d[1]),
         .O(\out_valid_d[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
     .INIT(16'hAEAA)) 
     \out_valid_d[2]_i_1 
@@ -4213,7 +4150,7 @@ module main_gpu_wrapper_0_0_edgeFunction_0
         .I2(out_ready),
         .I3(out_valid_d[2]),
         .O(\out_valid_d[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
     .INIT(8'hBA)) 
     \out_valid_d[3]_i_1 
@@ -4875,7 +4812,7 @@ module main_gpu_wrapper_0_0_edgeFunction_1
        (.I0(sub_result_reg_n_91),
         .I1(sub_result_reg_n_90),
         .O(isInside_i_19__1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT4 #(
     .INIT(16'hBA8A)) 
     isInside_i_1__0
@@ -5117,7 +5054,7 @@ module main_gpu_wrapper_0_0_edgeFunction_1
         .I3(mul1_result_reg_i_1__0_n_0),
         .I4(out_valid_d[0]),
         .O(\out_valid_d[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
     .INIT(32'hAEAAAAAA)) 
     \out_valid_d[1]_i_1 
@@ -5127,7 +5064,7 @@ module main_gpu_wrapper_0_0_edgeFunction_1
         .I3(\out_valid_d_reg_n_0_[3] ),
         .I4(out_valid_d[1]),
         .O(\out_valid_d[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT4 #(
     .INIT(16'hAEAA)) 
     \out_valid_d[2]_i_1 
@@ -5136,7 +5073,7 @@ module main_gpu_wrapper_0_0_edgeFunction_1
         .I2(out_ready),
         .I3(out_valid_d[2]),
         .O(\out_valid_d[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'hBA)) 
     \out_valid_d[3]_i_1 
@@ -6259,7 +6196,7 @@ module main_gpu_wrapper_0_0_ram_rtl__parameterized0
   wire [1:0]NLW_mem_reg_5_DOPADOP_UNCONNECTED;
   wire [1:0]NLW_mem_reg_5_DOPBDOP_UNCONNECTED;
 
-  (* SOFT_HLUTNM = "soft_lutpair46" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \V2_x[10]_i_2 
@@ -6321,7 +6258,7 @@ module main_gpu_wrapper_0_0_ram_rtl__parameterized0
         .I4(transformed_vertex_mem_rd_data[7]),
         .I5(transformed_vertex_mem_rd_data[9]),
         .O(A[9]));
-  (* SOFT_HLUTNM = "soft_lutpair46" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT4 #(
     .INIT(16'h1FE0)) 
     \V2_y[10]_i_2 
@@ -6898,17 +6835,13 @@ module main_gpu_wrapper_0_0_rasterizer
     \vertex_select_reg[0] ,
     \vertex_select_reg[2] ,
     \vertex_select_reg[1]_0 ,
-    \FSM_onehot_state_reg[0] ,
     \FSM_onehot_state_reg[2] ,
-    \FSM_onehot_state_reg[0]_0 ,
-    output_vertex_valid_reg,
+    \FSM_onehot_state_reg[4] ,
     \FSM_onehot_state_reg[9] ,
     output_valid,
     draw,
     \FSM_onehot_state_reg[1] ,
     \FSM_onehot_state_reg[2]_0 ,
-    output_vertex_valid_reg_0,
-    output_vertex_valid_reg_1,
     pixel_x_out,
     pixel_y_out,
     clk,
@@ -6926,44 +6859,36 @@ module main_gpu_wrapper_0_0_rasterizer
     sub_result_reg_4,
     mul1_result_reg_3,
     sub_result_reg_5,
-    \color_reg[0] ,
-    output_vertex_valid,
-    \color_reg[6] ,
-    \out_valid_d_reg[0] ,
     \pixel_y_reg[0] ,
+    \out_valid_d_reg[0] ,
     CO,
+    \FSM_onehot_state_reg[0] ,
+    sub_result_reg_6,
+    \FSM_onehot_state_reg[0]_0 ,
     \FSM_onehot_state_reg[0]_1 ,
     force_black_reg,
     \pixel_x_reg[0] ,
     \pixel_x_reg[0]_0 ,
     \pixel_x_reg[0]_1 ,
     out_ready,
-    sub_result_reg_6,
     sub_result_reg_7,
     p_0_in,
     force_black,
     force_black_reg_0,
-    \FSM_onehot_state_reg[2]_1 ,
-    \color_reg[6]_0 ,
-    color,
-    \color_reg[1] );
+    \FSM_onehot_state_reg[2]_1 );
   output [0:0]E;
   output [0:0]\vertex_select_reg[4] ;
   output [0:0]\vertex_select_reg[1] ;
   output [0:0]\vertex_select_reg[0] ;
   output [0:0]\vertex_select_reg[2] ;
   output [0:0]\vertex_select_reg[1]_0 ;
-  output \FSM_onehot_state_reg[0] ;
   output [0:0]\FSM_onehot_state_reg[2] ;
-  output \FSM_onehot_state_reg[0]_0 ;
-  output output_vertex_valid_reg;
+  output \FSM_onehot_state_reg[4] ;
   output [0:0]\FSM_onehot_state_reg[9] ;
   output output_valid;
   output draw;
   output \FSM_onehot_state_reg[1] ;
   output \FSM_onehot_state_reg[2]_0 ;
-  output output_vertex_valid_reg_0;
-  output output_vertex_valid_reg_1;
   output [10:0]pixel_x_out;
   output [10:0]pixel_y_out;
   input clk;
@@ -6981,27 +6906,23 @@ module main_gpu_wrapper_0_0_rasterizer
   input [10:0]sub_result_reg_4;
   input [10:0]mul1_result_reg_3;
   input [10:0]sub_result_reg_5;
-  input \color_reg[0] ;
-  input output_vertex_valid;
-  input \color_reg[6] ;
-  input \out_valid_d_reg[0] ;
   input [0:0]\pixel_y_reg[0] ;
+  input \out_valid_d_reg[0] ;
   input [0:0]CO;
+  input \FSM_onehot_state_reg[0] ;
+  input sub_result_reg_6;
+  input \FSM_onehot_state_reg[0]_0 ;
   input \FSM_onehot_state_reg[0]_1 ;
   input [0:0]force_black_reg;
   input \pixel_x_reg[0] ;
   input [0:0]\pixel_x_reg[0]_0 ;
   input [0:0]\pixel_x_reg[0]_1 ;
   input out_ready;
-  input [4:0]sub_result_reg_6;
-  input sub_result_reg_7;
+  input [4:0]sub_result_reg_7;
   input p_0_in;
   input force_black;
   input force_black_reg_0;
   input \FSM_onehot_state_reg[2]_1 ;
-  input \color_reg[6]_0 ;
-  input [1:0]color;
-  input \color_reg[1] ;
 
   wire [11:0]A;
   wire [0:0]CO;
@@ -7013,15 +6934,11 @@ module main_gpu_wrapper_0_0_rasterizer
   wire [0:0]\FSM_onehot_state_reg[2] ;
   wire \FSM_onehot_state_reg[2]_0 ;
   wire \FSM_onehot_state_reg[2]_1 ;
+  wire \FSM_onehot_state_reg[4] ;
   wire [0:0]\FSM_onehot_state_reg[9] ;
   wire [10:0]Q;
   wire [1:1]ce_d_reg;
   wire clk;
-  wire [1:0]color;
-  wire \color_reg[0] ;
-  wire \color_reg[1] ;
-  wire \color_reg[6] ;
-  wire \color_reg[6]_0 ;
   wire draw;
   wire [1:0]ef_inside;
   wire force_black;
@@ -7036,10 +6953,6 @@ module main_gpu_wrapper_0_0_rasterizer
   wire [0:0]out_valid_d;
   wire \out_valid_d_reg[0] ;
   wire output_valid;
-  wire output_vertex_valid;
-  wire output_vertex_valid_reg;
-  wire output_vertex_valid_reg_0;
-  wire output_vertex_valid_reg_1;
   wire p_0_in;
   wire [10:0]pixel_x_out;
   wire \pixel_x_reg[0] ;
@@ -7054,8 +6967,8 @@ module main_gpu_wrapper_0_0_rasterizer
   wire [10:0]sub_result_reg_3;
   wire [10:0]sub_result_reg_4;
   wire [10:0]sub_result_reg_5;
-  wire [4:0]sub_result_reg_6;
-  wire sub_result_reg_7;
+  wire sub_result_reg_6;
+  wire [4:0]sub_result_reg_7;
   wire [0:0]\vertex_select_reg[0] ;
   wire [0:0]\vertex_select_reg[1] ;
   wire [0:0]\vertex_select_reg[1]_0 ;
@@ -7073,14 +6986,10 @@ module main_gpu_wrapper_0_0_rasterizer
         .\FSM_onehot_state_reg[2] (\FSM_onehot_state_reg[2] ),
         .\FSM_onehot_state_reg[2]_0 (\FSM_onehot_state_reg[2]_0 ),
         .\FSM_onehot_state_reg[2]_1 (\FSM_onehot_state_reg[2]_1 ),
+        .\FSM_onehot_state_reg[4] (\FSM_onehot_state_reg[4] ),
         .\FSM_onehot_state_reg[9] (\FSM_onehot_state_reg[9] ),
         .Q(Q),
         .clk(clk),
-        .color(color),
-        .\color_reg[0] (\color_reg[0] ),
-        .\color_reg[1] (\color_reg[1] ),
-        .\color_reg[6] (\color_reg[6] ),
-        .\color_reg[6]_0 (\color_reg[6]_0 ),
         .ef_inside(ef_inside[0]),
         .force_black(force_black),
         .force_black_reg(force_black_reg),
@@ -7094,10 +7003,6 @@ module main_gpu_wrapper_0_0_rasterizer
         .\out_valid_d_reg[0]_1 (\out_valid_d_reg[0] ),
         .\out_valid_d_reg[2]_0 (ce_d_reg),
         .output_valid(output_valid),
-        .output_vertex_valid(output_vertex_valid),
-        .output_vertex_valid_reg(output_vertex_valid_reg),
-        .output_vertex_valid_reg_0(output_vertex_valid_reg_0),
-        .output_vertex_valid_reg_1(output_vertex_valid_reg_1),
         .p_0_in(p_0_in),
         .pixel_x_out(pixel_x_out),
         .\pixel_x_reg[0] (\pixel_x_reg[0] ),
@@ -7117,8 +7022,8 @@ module main_gpu_wrapper_0_0_rasterizer
         .ef_inside(ef_inside[1]),
         .mul1_result_reg_0(mul1_result_reg_3),
         .mul1_result_reg_1(mul1_result_reg_1),
-        .mul1_result_reg_2(sub_result_reg_6),
-        .mul1_result_reg_3(sub_result_reg_7),
+        .mul1_result_reg_2(sub_result_reg_7),
+        .mul1_result_reg_3(sub_result_reg_6),
         .out_ready(out_ready),
         .\out_valid_d_reg[0]_0 (\out_valid_d_reg[0] ),
         .\out_valid_d_reg[0]_1 (ce_d_reg),
@@ -7146,8 +7051,8 @@ module main_gpu_wrapper_0_0_rasterizer
         .sub_result_reg_1({sub_result_reg_2,sub_result_reg_0[7:0]}),
         .sub_result_reg_2(sub_result_reg_4),
         .sub_result_reg_3(sub_result_reg_5),
-        .sub_result_reg_4(sub_result_reg_6),
-        .sub_result_reg_5(sub_result_reg_7),
+        .sub_result_reg_4(sub_result_reg_7),
+        .sub_result_reg_5(sub_result_reg_6),
         .\vertex_select_reg[1] (\vertex_select_reg[1]_0 ),
         .\vertex_select_reg[2] (\vertex_select_reg[2] ));
 endmodule
@@ -7156,7 +7061,7 @@ endmodule
 module main_gpu_wrapper_0_0_rasterizer_control
    (ADDRBWRADDR,
     rasterize_end_int,
-    vertex_count_reg_reg_20_sp_1,
+    vertex_count_reg_reg_21_sp_1,
     output_valid,
     draw,
     output_color,
@@ -7184,7 +7089,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     \V3_y_reg[10]_0 );
   output [13:0]ADDRBWRADDR;
   output rasterize_end_int;
-  output vertex_count_reg_reg_20_sp_1;
+  output vertex_count_reg_reg_21_sp_1;
   output output_valid;
   output draw;
   output [7:0]output_color;
@@ -7364,14 +7269,13 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire [0:0]D;
   wire \FSM_onehot_state[0]_i_1_n_0 ;
   wire \FSM_onehot_state[2]_i_2_n_0 ;
+  wire \FSM_onehot_state[2]_i_3_n_0 ;
   wire \FSM_onehot_state[3]_i_1_n_0 ;
   wire \FSM_onehot_state[4]_i_1_n_0 ;
   wire \FSM_onehot_state[4]_i_2_n_0 ;
   wire \FSM_onehot_state[4]_i_3_n_0 ;
-  wire \FSM_onehot_state[4]_i_4_n_0 ;
   wire \FSM_onehot_state[9]_i_3_n_0 ;
   wire \FSM_onehot_state[9]_i_4_n_0 ;
-  wire \FSM_onehot_state[9]_i_5_n_0 ;
   wire \FSM_onehot_state_reg_n_0_[0] ;
   wire \FSM_onehot_state_reg_n_0_[2] ;
   wire \FSM_onehot_state_reg_n_0_[3] ;
@@ -7466,20 +7370,34 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire addra0_carry_n_2;
   wire addra0_carry_n_3;
   wire \addra[0]_i_1_n_0 ;
+  wire \addra[13]_i_10_n_0 ;
+  wire \addra[13]_i_11_n_0 ;
+  wire \addra[13]_i_12_n_0 ;
+  wire \addra[13]_i_13_n_0 ;
   wire \addra[13]_i_1_n_0 ;
   wire \addra[13]_i_2_n_0 ;
   wire \addra[13]_i_3_n_0 ;
+  wire \addra[13]_i_4_n_0 ;
+  wire \addra[13]_i_5_n_0 ;
+  wire \addra[13]_i_6_n_0 ;
+  wire \addra[13]_i_7_n_0 ;
+  wire \addra[13]_i_8_n_0 ;
+  wire \addra[13]_i_9_n_0 ;
   wire clk;
   wire [7:0]color;
   wire \color[0]_i_1_n_0 ;
-  wire \color[1]_i_2_n_0 ;
+  wire \color[1]_i_1_n_0 ;
   wire \color[2]_i_1_n_0 ;
   wire \color[3]_i_1_n_0 ;
   wire \color[4]_i_1_n_0 ;
   wire \color[5]_i_1_n_0 ;
-  wire \color[6]_i_2_n_0 ;
+  wire \color[6]_i_1_n_0 ;
+  wire \color[7]_i_1_n_0 ;
+  wire \color[7]_i_2_n_0 ;
   wire \color[7]_i_3_n_0 ;
   wire \color[7]_i_4_n_0 ;
+  wire \color[7]_i_5_n_0 ;
+  wire \color[7]_i_6_n_0 ;
   wire draw;
   wire force_black;
   wire \force_black_d_reg[1]_srl2_n_0 ;
@@ -7668,15 +7586,11 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire rasterize_end_d;
   wire rasterize_end_i_1_n_0;
   wire rasterize_end_int;
-  wire rasterizer_u0_n_10;
-  wire rasterizer_u0_n_13;
-  wire rasterizer_u0_n_14;
-  wire rasterizer_u0_n_15;
-  wire rasterizer_u0_n_16;
+  wire rasterizer_u0_n_11;
+  wire rasterizer_u0_n_12;
   wire rasterizer_u0_n_6;
   wire rasterizer_u0_n_7;
   wire rasterizer_u0_n_8;
-  wire rasterizer_u0_n_9;
   wire reset;
   wire start;
   wire state1_carry__0_i_1_n_0;
@@ -7720,7 +7634,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire [1:0]sub_result_reg_1;
   wire [14:0]vertex_count;
   wire [31:0]vertex_count_reg_reg;
-  wire vertex_count_reg_reg_20_sn_1;
+  wire vertex_count_reg_reg_21_sn_1;
   wire [14:0]vertex_counter;
   wire vertex_counter0_carry__0_i_1_n_0;
   wire vertex_counter0_carry__0_i_2_n_0;
@@ -7765,14 +7679,8 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire \vertex_counter[7]_i_1_n_0 ;
   wire \vertex_counter[8]_i_1_n_0 ;
   wire \vertex_counter[9]_i_1_n_0 ;
-  wire \vertex_mem_rd_addr[0]_i_10_n_0 ;
   wire \vertex_mem_rd_addr[0]_i_3_n_0 ;
   wire \vertex_mem_rd_addr[0]_i_4_n_0 ;
-  wire \vertex_mem_rd_addr[0]_i_5_n_0 ;
-  wire \vertex_mem_rd_addr[0]_i_6_n_0 ;
-  wire \vertex_mem_rd_addr[0]_i_7_n_0 ;
-  wire \vertex_mem_rd_addr[0]_i_8_n_0 ;
-  wire \vertex_mem_rd_addr[0]_i_9_n_0 ;
   wire [4:0]vertex_select;
   wire \vertex_select[1]_i_1_n_0 ;
   wire \vertex_select[4]_i_1_n_0 ;
@@ -7840,7 +7748,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire [3:2]NLW_width0_carry__1_CO_UNCONNECTED;
   wire [3:3]NLW_width0_carry__1_O_UNCONNECTED;
 
-  assign vertex_count_reg_reg_20_sp_1 = vertex_count_reg_reg_20_sn_1;
+  assign vertex_count_reg_reg_21_sp_1 = vertex_count_reg_reg_21_sn_1;
   CARRY4 BB_BR_x1_carry
        (.CI(1'b0),
         .CO({BB_BR_x1_carry_n_0,BB_BR_x1_carry_n_1,BB_BR_x1_carry_n_2,BB_BR_x1_carry_n_3}),
@@ -7981,7 +7889,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I2(\FSM_onehot_state_reg_n_0_[8] ),
         .I3(\BB_BR_x_reg_n_0_[9] ),
         .O(\BB_BR_x[10]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT3 #(
     .INIT(8'hEA)) 
     \BB_BR_x[10]_i_4 
@@ -8289,11 +8197,11 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I3(\FSM_onehot_state_reg_n_0_[6] ),
         .O(\BB_BR_y[10]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFF800)) 
+    .INIT(64'hFFFFFFFFFFFFEA00)) 
     \BB_BR_y[10]_i_3 
-       (.I0(\BB_BR_y_reg_n_0_[4] ),
-        .I1(\BB_BR_y_reg_n_0_[3] ),
-        .I2(\BB_BR_y_reg_n_0_[5] ),
+       (.I0(\BB_BR_y_reg_n_0_[5] ),
+        .I1(\BB_BR_y_reg_n_0_[4] ),
+        .I2(\BB_BR_y_reg_n_0_[3] ),
         .I3(\BB_BR_y_reg_n_0_[6] ),
         .I4(\BB_BR_y_reg_n_0_[8] ),
         .I5(\BB_BR_y_reg_n_0_[7] ),
@@ -8603,7 +8511,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I2(\FSM_onehot_state_reg_n_0_[8] ),
         .I3(\BB_TL_x_reg_n_0_[9] ),
         .O(\BB_TL_x[10]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT3 #(
     .INIT(8'hEA)) 
     \BB_TL_x[10]_i_4 
@@ -9085,24 +8993,34 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .D(BB_TL_y[9]),
         .Q(\BB_TL_y_reg_n_0_[9] ),
         .R(force_black));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
-  LUT2 #(
-    .INIT(4'h8)) 
+  LUT6 #(
+    .INIT(64'h0000000200000000)) 
     \FSM_onehot_state[0]_i_1 
-       (.I0(\FSM_onehot_state_reg_n_0_[3] ),
-        .I1(\FSM_onehot_state[4]_i_2_n_0 ),
+       (.I0(\FSM_onehot_state[4]_i_2_n_0 ),
+        .I1(\FSM_onehot_state[4]_i_3_n_0 ),
+        .I2(vertex_counter[14]),
+        .I3(vertex_counter[7]),
+        .I4(vertex_counter[9]),
+        .I5(\FSM_onehot_state_reg_n_0_[3] ),
         .O(\FSM_onehot_state[0]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000000008)) 
+    .INIT(64'hFFFFFFFF00000800)) 
     \FSM_onehot_state[2]_i_2 
-       (.I0(\FSM_onehot_state_reg_n_0_[0] ),
-        .I1(output_vertex_valid),
-        .I2(\vertex_mem_rd_addr[0]_i_3_n_0 ),
-        .I3(\vertex_mem_rd_addr[0]_i_4_n_0 ),
-        .I4(\vertex_mem_rd_addr[0]_i_5_n_0 ),
-        .I5(\vertex_mem_rd_addr[0]_i_6_n_0 ),
+       (.I0(\FSM_onehot_state_reg_n_0_[4] ),
+        .I1(\FSM_onehot_state[2]_i_3_n_0 ),
+        .I2(\vertex_select_reg_n_0_[4] ),
+        .I3(\vertex_select_reg_n_0_[3] ),
+        .I4(\vertex_select_reg_n_0_[2] ),
+        .I5(\FSM_onehot_state[9]_i_4_n_0 ),
         .O(\FSM_onehot_state[2]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    \FSM_onehot_state[2]_i_3 
+       (.I0(\vertex_select_reg_n_0_[0] ),
+        .I1(\vertex_select_reg_n_0_[1] ),
+        .O(\FSM_onehot_state[2]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT4 #(
     .INIT(16'hFEAA)) 
     \FSM_onehot_state[3]_i_1 
@@ -9111,73 +9029,60 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I2(state20_in),
         .I3(\FSM_onehot_state_reg_n_0_[9] ),
         .O(\FSM_onehot_state[3]_i_1_n_0 ));
-  LUT2 #(
-    .INIT(4'h2)) 
+  LUT6 #(
+    .INIT(64'hFFFFFFFD00000000)) 
     \FSM_onehot_state[4]_i_1 
-       (.I0(\FSM_onehot_state_reg_n_0_[3] ),
-        .I1(\FSM_onehot_state[4]_i_2_n_0 ),
+       (.I0(\FSM_onehot_state[4]_i_2_n_0 ),
+        .I1(\FSM_onehot_state[4]_i_3_n_0 ),
+        .I2(vertex_counter[14]),
+        .I3(vertex_counter[7]),
+        .I4(vertex_counter[9]),
+        .I5(\FSM_onehot_state_reg_n_0_[3] ),
         .O(\FSM_onehot_state[4]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'h00000002)) 
-    \FSM_onehot_state[4]_i_2 
-       (.I0(\FSM_onehot_state[4]_i_3_n_0 ),
-        .I1(\FSM_onehot_state[4]_i_4_n_0 ),
-        .I2(vertex_counter[11]),
-        .I3(vertex_counter[6]),
-        .I4(vertex_counter[7]),
-        .O(\FSM_onehot_state[4]_i_2_n_0 ));
   LUT6 #(
     .INIT(64'h0000000000000007)) 
-    \FSM_onehot_state[4]_i_3 
+    \FSM_onehot_state[4]_i_2 
        (.I0(vertex_counter[3]),
         .I1(vertex_counter[2]),
-        .I2(vertex_counter[5]),
-        .I3(vertex_counter[4]),
-        .I4(vertex_counter[10]),
-        .I5(vertex_counter[9]),
-        .O(\FSM_onehot_state[4]_i_3_n_0 ));
+        .I2(vertex_counter[12]),
+        .I3(vertex_counter[6]),
+        .I4(vertex_counter[11]),
+        .I5(vertex_counter[5]),
+        .O(\FSM_onehot_state[4]_i_2_n_0 ));
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \FSM_onehot_state[4]_i_4 
-       (.I0(vertex_counter[12]),
-        .I1(vertex_counter[14]),
-        .I2(vertex_counter[8]),
-        .I3(vertex_counter[13]),
-        .O(\FSM_onehot_state[4]_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFF8)) 
-    \FSM_onehot_state[9]_i_3 
-       (.I0(\FSM_onehot_state_reg_n_0_[4] ),
-        .I1(\FSM_onehot_state[9]_i_4_n_0 ),
-        .I2(\FSM_onehot_state[9]_i_5_n_0 ),
-        .I3(\FSM_onehot_state_reg_n_0_[6] ),
-        .I4(force_black),
-        .I5(\FSM_onehot_state_reg_n_0_[9] ),
-        .O(\FSM_onehot_state[9]_i_3_n_0 ));
+    \FSM_onehot_state[4]_i_3 
+       (.I0(vertex_counter[8]),
+        .I1(vertex_counter[13]),
+        .I2(vertex_counter[4]),
+        .I3(vertex_counter[10]),
+        .O(\FSM_onehot_state[4]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT5 #(
     .INIT(32'h00000800)) 
-    \FSM_onehot_state[9]_i_4 
+    \FSM_onehot_state[9]_i_3 
        (.I0(\vertex_select_reg_n_0_[1] ),
         .I1(\vertex_select_reg_n_0_[0] ),
         .I2(\vertex_select_reg_n_0_[4] ),
         .I3(\vertex_select_reg_n_0_[3] ),
         .I4(\vertex_select_reg_n_0_[2] ),
+        .O(\FSM_onehot_state[9]_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    \FSM_onehot_state[9]_i_4 
+       (.I0(\FSM_onehot_state_reg_n_0_[7] ),
+        .I1(\FSM_onehot_state_reg_n_0_[6] ),
+        .I2(\FSM_onehot_state_reg_n_0_[9] ),
+        .I3(max_temp_x),
+        .I4(\FSM_onehot_state_reg_n_0_[8] ),
+        .I5(force_black),
         .O(\FSM_onehot_state[9]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
-  LUT4 #(
-    .INIT(16'hFFFE)) 
-    \FSM_onehot_state[9]_i_5 
-       (.I0(\FSM_onehot_state_reg_n_0_[8] ),
-        .I1(max_temp_x),
-        .I2(\FSM_onehot_state_reg_n_0_[7] ),
-        .I3(\FSM_onehot_state_reg_n_0_[3] ),
-        .O(\FSM_onehot_state[9]_i_5_n_0 ));
   (* FSM_ENCODED_STATES = "TRIANGLE_CLIPPING_1:0000100000,TRIANGLE_CLIPPING_2:0001000000,CLEAR_SCREEN:0000000010,START:0000001000,LOAD_VERTEX:0000010000,IDLE:0000000001,TRIANGLE_CLIPPING_5:1000000000,RASTERIZE:0000000100,TRIANGLE_CLIPPING_4:0100000000,TRIANGLE_CLIPPING_3:0010000000" *) 
   FDRE #(
     .INIT(1'b1)) 
     \FSM_onehot_state_reg[0] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_7),
         .D(\FSM_onehot_state[0]_i_1_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[0] ),
         .R(1'b0));
@@ -9186,7 +9091,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[1] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_7),
         .D(\FSM_onehot_state_reg_n_0_[0] ),
         .Q(force_black),
         .R(1'b0));
@@ -9196,7 +9101,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     \FSM_onehot_state_reg[2] 
        (.C(clk),
         .CE(1'b1),
-        .D(rasterizer_u0_n_14),
+        .D(rasterizer_u0_n_12),
         .Q(\FSM_onehot_state_reg_n_0_[2] ),
         .R(1'b0));
   (* FSM_ENCODED_STATES = "TRIANGLE_CLIPPING_1:0000100000,TRIANGLE_CLIPPING_2:0001000000,CLEAR_SCREEN:0000000010,START:0000001000,LOAD_VERTEX:0000010000,IDLE:0000000001,TRIANGLE_CLIPPING_5:1000000000,RASTERIZE:0000000100,TRIANGLE_CLIPPING_4:0100000000,TRIANGLE_CLIPPING_3:0010000000" *) 
@@ -9204,7 +9109,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[3] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_7),
         .D(\FSM_onehot_state[3]_i_1_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[3] ),
         .R(1'b0));
@@ -9213,7 +9118,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[4] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_7),
         .D(\FSM_onehot_state[4]_i_1_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[4] ),
         .R(1'b0));
@@ -9222,7 +9127,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[5] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_7),
         .D(\FSM_onehot_state_reg_n_0_[4] ),
         .Q(max_temp_x),
         .R(1'b0));
@@ -9231,7 +9136,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[6] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_7),
         .D(max_temp_x),
         .Q(\FSM_onehot_state_reg_n_0_[6] ),
         .R(1'b0));
@@ -9240,7 +9145,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[7] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_7),
         .D(\FSM_onehot_state_reg_n_0_[6] ),
         .Q(\FSM_onehot_state_reg_n_0_[7] ),
         .R(1'b0));
@@ -9249,7 +9154,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[8] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_7),
         .D(\FSM_onehot_state_reg_n_0_[7] ),
         .Q(\FSM_onehot_state_reg_n_0_[8] ),
         .R(1'b0));
@@ -9258,7 +9163,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[9] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_7),
         .D(\FSM_onehot_state_reg_n_0_[8] ),
         .Q(\FSM_onehot_state_reg_n_0_[9] ),
         .R(1'b0));
@@ -9818,40 +9723,124 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({NLW_addra0_carry__2_O_UNCONNECTED[3:1],in10[13]}),
         .S({1'b0,1'b0,1'b0,ADDRBWRADDR[13]}));
-  LUT1 #(
-    .INIT(2'h1)) 
+  LUT3 #(
+    .INIT(8'h0E)) 
     \addra[0]_i_1 
-       (.I0(ADDRBWRADDR[0]),
+       (.I0(\FSM_onehot_state_reg_n_0_[3] ),
+        .I1(\FSM_onehot_state_reg_n_0_[4] ),
+        .I2(ADDRBWRADDR[0]),
         .O(\addra[0]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h1010101011101010)) 
+  LUT3 #(
+    .INIT(8'h10)) 
     \addra[13]_i_1 
-       (.I0(\FSM_onehot_state_reg_n_0_[4] ),
-        .I1(\FSM_onehot_state_reg_n_0_[3] ),
-        .I2(\addra[13]_i_3_n_0 ),
-        .I3(\FSM_onehot_state_reg_n_0_[0] ),
-        .I4(output_vertex_valid),
-        .I5(vertex_count_reg_reg_20_sn_1),
+       (.I0(\FSM_onehot_state_reg_n_0_[3] ),
+        .I1(\FSM_onehot_state_reg_n_0_[4] ),
+        .I2(\addra[13]_i_2_n_0 ),
         .O(\addra[13]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFFFF40)) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \addra[13]_i_10 
+       (.I0(vertex_count_reg_reg[11]),
+        .I1(vertex_count_reg_reg[10]),
+        .I2(vertex_count_reg_reg[9]),
+        .I3(vertex_count_reg_reg[8]),
+        .O(\addra[13]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \addra[13]_i_11 
+       (.I0(vertex_count_reg_reg[14]),
+        .I1(vertex_count_reg_reg[13]),
+        .I2(vertex_count_reg_reg[15]),
+        .I3(vertex_count_reg_reg[12]),
+        .O(\addra[13]_i_11_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \addra[13]_i_12 
+       (.I0(vertex_count_reg_reg[3]),
+        .I1(vertex_count_reg_reg[2]),
+        .I2(vertex_count_reg_reg[0]),
+        .I3(vertex_count_reg_reg[1]),
+        .O(\addra[13]_i_12_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \addra[13]_i_13 
+       (.I0(vertex_count_reg_reg[5]),
+        .I1(vertex_count_reg_reg[4]),
+        .I2(vertex_count_reg_reg[7]),
+        .I3(vertex_count_reg_reg[6]),
+        .O(\addra[13]_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFF0008)) 
     \addra[13]_i_2 
-       (.I0(vertex_count_reg_reg_20_sn_1),
+       (.I0(\FSM_onehot_state_reg_n_0_[0] ),
         .I1(output_vertex_valid),
-        .I2(\FSM_onehot_state_reg_n_0_[0] ),
-        .I3(\addra[13]_i_3_n_0 ),
+        .I2(\addra[13]_i_3_n_0 ),
+        .I3(\addra[13]_i_4_n_0 ),
         .I4(\FSM_onehot_state_reg_n_0_[3] ),
+        .I5(\addra[13]_i_5_n_0 ),
         .O(\addra[13]_i_2_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \addra[13]_i_3 
+       (.I0(\addra[13]_i_6_n_0 ),
+        .I1(\addra[13]_i_7_n_0 ),
+        .I2(\addra[13]_i_8_n_0 ),
+        .I3(\addra[13]_i_9_n_0 ),
+        .O(\addra[13]_i_3_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \addra[13]_i_4 
+       (.I0(\addra[13]_i_10_n_0 ),
+        .I1(\addra[13]_i_11_n_0 ),
+        .I2(\addra[13]_i_12_n_0 ),
+        .I3(\addra[13]_i_13_n_0 ),
+        .O(\addra[13]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'hAA8AAAAAAAAAAAAA)) 
-    \addra[13]_i_3 
+    \addra[13]_i_5 
        (.I0(\FSM_onehot_state_reg_n_0_[4] ),
         .I1(\vertex_select_reg_n_0_[2] ),
         .I2(\vertex_select_reg_n_0_[3] ),
         .I3(\vertex_select_reg_n_0_[4] ),
         .I4(\vertex_select_reg_n_0_[0] ),
         .I5(\vertex_select_reg_n_0_[1] ),
-        .O(\addra[13]_i_3_n_0 ));
+        .O(\addra[13]_i_5_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \addra[13]_i_6 
+       (.I0(vertex_count_reg_reg[27]),
+        .I1(vertex_count_reg_reg[26]),
+        .I2(vertex_count_reg_reg[25]),
+        .I3(vertex_count_reg_reg[24]),
+        .O(\addra[13]_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \addra[13]_i_7 
+       (.I0(vertex_count_reg_reg[31]),
+        .I1(vertex_count_reg_reg[28]),
+        .I2(vertex_count_reg_reg[30]),
+        .I3(vertex_count_reg_reg[29]),
+        .O(\addra[13]_i_7_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \addra[13]_i_8 
+       (.I0(vertex_count_reg_reg[19]),
+        .I1(vertex_count_reg_reg[18]),
+        .I2(vertex_count_reg_reg[17]),
+        .I3(vertex_count_reg_reg[16]),
+        .O(\addra[13]_i_8_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \addra[13]_i_9 
+       (.I0(vertex_count_reg_reg[23]),
+        .I1(vertex_count_reg_reg[20]),
+        .I2(vertex_count_reg_reg[22]),
+        .I3(vertex_count_reg_reg[21]),
+        .O(\addra[13]_i_9_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \addra_reg[0] 
@@ -9859,7 +9848,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\addra[13]_i_2_n_0 ),
         .D(\addra[0]_i_1_n_0 ),
         .Q(ADDRBWRADDR[0]),
-        .R(\addra[13]_i_1_n_0 ));
+        .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \addra_reg[10] 
@@ -9969,15 +9958,17 @@ module main_gpu_wrapper_0_0_rasterizer_control
     \color[0]_i_1 
        (.I0(color[0]),
         .O(\color[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
-  LUT3 #(
-    .INIT(8'h60)) 
-    \color[1]_i_2 
-       (.I0(color[1]),
-        .I1(color[0]),
-        .I2(\FSM_onehot_state_reg_n_0_[2] ),
-        .O(\color[1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  LUT6 #(
+    .INIT(64'h7477777788888888)) 
+    \color[1]_i_1 
+       (.I0(color[0]),
+        .I1(\FSM_onehot_state_reg_n_0_[3] ),
+        .I2(vertex_count_reg_reg_21_sn_1),
+        .I3(output_vertex_valid),
+        .I4(\FSM_onehot_state_reg_n_0_[0] ),
+        .I5(color[1]),
+        .O(\color[1]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \color[2]_i_1 
@@ -9985,7 +9976,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(color[1]),
         .I2(color[0]),
         .O(\color[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT4 #(
     .INIT(16'h6AAA)) 
     \color[3]_i_1 
@@ -9994,7 +9985,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I2(color[0]),
         .I3(color[1]),
         .O(\color[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     \color[4]_i_1 
@@ -10014,96 +10005,136 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(color[1]),
         .I5(color[3]),
         .O(\color[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
-  LUT3 #(
-    .INIT(8'h60)) 
-    \color[6]_i_2 
-       (.I0(\color[7]_i_4_n_0 ),
-        .I1(color[6]),
-        .I2(\FSM_onehot_state_reg_n_0_[2] ),
-        .O(\color[6]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  LUT6 #(
+    .INIT(64'h7477777788888888)) 
+    \color[6]_i_1 
+       (.I0(\color[7]_i_6_n_0 ),
+        .I1(\FSM_onehot_state_reg_n_0_[3] ),
+        .I2(vertex_count_reg_reg_21_sn_1),
+        .I3(output_vertex_valid),
+        .I4(\FSM_onehot_state_reg_n_0_[0] ),
+        .I5(color[6]),
+        .O(\color[6]_i_1_n_0 ));
+  LUT4 #(
+    .INIT(16'h0008)) 
+    \color[7]_i_1 
+       (.I0(\FSM_onehot_state_reg_n_0_[0] ),
+        .I1(output_vertex_valid),
+        .I2(vertex_count_reg_reg_21_sn_1),
+        .I3(\FSM_onehot_state_reg_n_0_[3] ),
+        .O(\color[7]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'hAAABAAAAAAAAAAAA)) 
+    \color[7]_i_2 
+       (.I0(\FSM_onehot_state_reg_n_0_[3] ),
+        .I1(\addra[13]_i_4_n_0 ),
+        .I2(\color[7]_i_4_n_0 ),
+        .I3(\color[7]_i_5_n_0 ),
+        .I4(output_vertex_valid),
+        .I5(\FSM_onehot_state_reg_n_0_[0] ),
+        .O(\color[7]_i_2_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \color[7]_i_3 
        (.I0(color[7]),
-        .I1(\color[7]_i_4_n_0 ),
+        .I1(\color[7]_i_6_n_0 ),
         .I2(color[6]),
         .O(\color[7]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  LUT5 #(
+    .INIT(32'hFFFFFFFE)) 
+    \color[7]_i_4 
+       (.I0(vertex_count_reg_reg[29]),
+        .I1(vertex_count_reg_reg[30]),
+        .I2(vertex_count_reg_reg[28]),
+        .I3(vertex_count_reg_reg[31]),
+        .I4(\addra[13]_i_6_n_0 ),
+        .O(\color[7]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT5 #(
+    .INIT(32'hFFFFFFFE)) 
+    \color[7]_i_5 
+       (.I0(vertex_count_reg_reg[21]),
+        .I1(vertex_count_reg_reg[22]),
+        .I2(vertex_count_reg_reg[20]),
+        .I3(vertex_count_reg_reg[23]),
+        .I4(\addra[13]_i_8_n_0 ),
+        .O(\color[7]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'h8000000000000000)) 
-    \color[7]_i_4 
+    \color[7]_i_6 
        (.I0(color[4]),
         .I1(color[2]),
         .I2(color[0]),
         .I3(color[1]),
         .I4(color[3]),
         .I5(color[5]),
-        .O(\color[7]_i_4_n_0 ));
+        .O(\color[7]_i_6_n_0 ));
   FDRE #(
     .INIT(1'b1)) 
     \color_reg[0] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(\color[7]_i_2_n_0 ),
         .D(\color[0]_i_1_n_0 ),
         .Q(color[0]),
-        .R(rasterizer_u0_n_6));
+        .R(\color[7]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \color_reg[1] 
        (.C(clk),
         .CE(1'b1),
-        .D(rasterizer_u0_n_16),
+        .D(\color[1]_i_1_n_0 ),
         .Q(color[1]),
         .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \color_reg[2] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(\color[7]_i_2_n_0 ),
         .D(\color[2]_i_1_n_0 ),
         .Q(color[2]),
-        .R(rasterizer_u0_n_6));
+        .R(\color[7]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \color_reg[3] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(\color[7]_i_2_n_0 ),
         .D(\color[3]_i_1_n_0 ),
         .Q(color[3]),
-        .R(rasterizer_u0_n_6));
+        .R(\color[7]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \color_reg[4] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(\color[7]_i_2_n_0 ),
         .D(\color[4]_i_1_n_0 ),
         .Q(color[4]),
-        .R(rasterizer_u0_n_6));
+        .R(\color[7]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \color_reg[5] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(\color[7]_i_2_n_0 ),
         .D(\color[5]_i_1_n_0 ),
         .Q(color[5]),
-        .R(rasterizer_u0_n_6));
+        .R(\color[7]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \color_reg[6] 
        (.C(clk),
         .CE(1'b1),
-        .D(rasterizer_u0_n_15),
+        .D(\color[6]_i_1_n_0 ),
         .Q(color[6]),
         .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \color_reg[7] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(\color[7]_i_2_n_0 ),
         .D(\color[7]_i_3_n_0 ),
         .Q(color[7]),
-        .R(rasterizer_u0_n_6));
+        .R(\color[7]_i_1_n_0 ));
   (* srl_bus_name = "\inst/GPU_top/rasterizer_control/force_black_d_reg " *) 
   (* srl_name = "\inst/GPU_top/rasterizer_control/force_black_d_reg[1]_srl2 " *) 
   SRL16E #(
@@ -10130,7 +10161,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     force_black_reg
        (.C(clk),
         .CE(1'b1),
-        .D(rasterizer_u0_n_13),
+        .D(rasterizer_u0_n_11),
         .Q(force_black_reg_n_0),
         .R(1'b0));
   LUT5 #(
@@ -10171,14 +10202,14 @@ module main_gpu_wrapper_0_0_rasterizer_control
   LUT2 #(
     .INIT(4'h9)) 
     height0_carry__0_i_3
-       (.I0(\BB_TL_y_reg_n_0_[5] ),
-        .I1(\BB_BR_y_reg_n_0_[5] ),
+       (.I0(\BB_BR_y_reg_n_0_[5] ),
+        .I1(\BB_TL_y_reg_n_0_[5] ),
         .O(height0_carry__0_i_3_n_0));
   LUT2 #(
     .INIT(4'h9)) 
     height0_carry__0_i_4
-       (.I0(\BB_BR_y_reg_n_0_[4] ),
-        .I1(\BB_TL_y_reg_n_0_[4] ),
+       (.I0(\BB_TL_y_reg_n_0_[4] ),
+        .I1(\BB_BR_y_reg_n_0_[4] ),
         .O(height0_carry__0_i_4_n_0));
   CARRY4 height0_carry__1
        (.CI(height0_carry__0_n_0),
@@ -10372,10 +10403,10 @@ module main_gpu_wrapper_0_0_rasterizer_control
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     i__carry_i_2__0
-       (.I0(\BB_TL_x_reg_n_0_[7] ),
-        .I1(\BB_BR_x_reg_n_0_[7] ),
-        .I2(\BB_BR_x_reg_n_0_[8] ),
-        .I3(\BB_TL_x_reg_n_0_[8] ),
+       (.I0(\BB_TL_x_reg_n_0_[8] ),
+        .I1(\BB_BR_x_reg_n_0_[8] ),
+        .I2(\BB_BR_x_reg_n_0_[7] ),
+        .I3(\BB_TL_x_reg_n_0_[7] ),
         .I4(\BB_BR_x_reg_n_0_[6] ),
         .I5(\BB_TL_x_reg_n_0_[6] ),
         .O(i__carry_i_2__0_n_0));
@@ -10408,12 +10439,12 @@ module main_gpu_wrapper_0_0_rasterizer_control
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     i__carry_i_4__0
-       (.I0(\BB_TL_x_reg_n_0_[2] ),
-        .I1(\BB_BR_x_reg_n_0_[2] ),
-        .I2(\BB_BR_x_reg_n_0_[0] ),
-        .I3(\BB_TL_x_reg_n_0_[0] ),
-        .I4(\BB_BR_x_reg_n_0_[1] ),
-        .I5(\BB_TL_x_reg_n_0_[1] ),
+       (.I0(\BB_TL_x_reg_n_0_[1] ),
+        .I1(\BB_BR_x_reg_n_0_[1] ),
+        .I2(\BB_BR_x_reg_n_0_[2] ),
+        .I3(\BB_TL_x_reg_n_0_[2] ),
+        .I4(\BB_BR_x_reg_n_0_[0] ),
+        .I5(\BB_TL_x_reg_n_0_[0] ),
         .O(i__carry_i_4__0_n_0));
   LUT4 #(
     .INIT(16'h9009)) 
@@ -10553,7 +10584,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I2(\V2_x_reg_n_0_[0] ),
         .I3(\V1_x_reg_n_0_[0] ),
         .O(max_temp_x1_carry_i_8_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[0]_i_1 
@@ -10561,7 +10592,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[0] ),
         .O(\max_temp_x[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[10]_i_1 
@@ -10569,7 +10600,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[10] ),
         .O(\max_temp_x[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[1]_i_1 
@@ -10577,7 +10608,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[1] ),
         .O(\max_temp_x[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[2]_i_1 
@@ -10585,7 +10616,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[2] ),
         .O(\max_temp_x[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[3]_i_1 
@@ -10593,7 +10624,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[3] ),
         .O(\max_temp_x[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[4]_i_1 
@@ -10601,7 +10632,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[4] ),
         .O(\max_temp_x[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[5]_i_1 
@@ -10609,7 +10640,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[5] ),
         .O(\max_temp_x[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[6]_i_1 
@@ -10617,7 +10648,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[6] ),
         .O(\max_temp_x[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[7]_i_1 
@@ -10625,7 +10656,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[7] ),
         .O(\max_temp_x[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[8]_i_1 
@@ -10633,7 +10664,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[8] ),
         .O(\max_temp_x[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[9]_i_1 
@@ -10835,7 +10866,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I2(\V2_y_reg_n_0_[0] ),
         .I3(\V1_y_reg_n_0_[0] ),
         .O(max_temp_y1_carry_i_8_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[0]_i_1 
@@ -10843,7 +10874,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[0] ),
         .O(\max_temp_y[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[10]_i_1 
@@ -10851,7 +10882,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[10] ),
         .O(\max_temp_y[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[1]_i_1 
@@ -10859,7 +10890,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[1] ),
         .O(\max_temp_y[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[2]_i_1 
@@ -10867,7 +10898,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[2] ),
         .O(\max_temp_y[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[3]_i_1 
@@ -10875,7 +10906,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[3] ),
         .O(\max_temp_y[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[4]_i_1 
@@ -10883,7 +10914,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[4] ),
         .O(\max_temp_y[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[5]_i_1 
@@ -10891,7 +10922,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[5] ),
         .O(\max_temp_y[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[6]_i_1 
@@ -10899,7 +10930,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[6] ),
         .O(\max_temp_y[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[7]_i_1 
@@ -10907,7 +10938,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[7] ),
         .O(\max_temp_y[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[8]_i_1 
@@ -10915,7 +10946,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[8] ),
         .O(\max_temp_y[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[9]_i_1 
@@ -11011,7 +11042,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .D(\max_temp_y[9]_i_1_n_0 ),
         .Q(max_temp_y[9]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[0]_i_1 
@@ -11019,7 +11050,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[0] ),
         .O(\min_temp_x[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[10]_i_1 
@@ -11027,7 +11058,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[10] ),
         .O(\min_temp_x[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[1]_i_1 
@@ -11035,7 +11066,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[1] ),
         .O(\min_temp_x[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[2]_i_1 
@@ -11043,7 +11074,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[2] ),
         .O(\min_temp_x[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[3]_i_1 
@@ -11051,7 +11082,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[3] ),
         .O(\min_temp_x[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[4]_i_1 
@@ -11059,7 +11090,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[4] ),
         .O(\min_temp_x[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[5]_i_1 
@@ -11067,7 +11098,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[5] ),
         .O(\min_temp_x[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[6]_i_1 
@@ -11075,7 +11106,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[6] ),
         .O(\min_temp_x[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[7]_i_1 
@@ -11083,7 +11114,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[7] ),
         .O(\min_temp_x[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[8]_i_1 
@@ -11091,7 +11122,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[8] ),
         .O(\min_temp_x[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[9]_i_1 
@@ -11187,7 +11218,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .D(\min_temp_x[9]_i_1_n_0 ),
         .Q(min_temp_x[9]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[0]_i_1 
@@ -11195,7 +11226,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[0] ),
         .O(\min_temp_y[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[10]_i_1 
@@ -11203,7 +11234,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[10] ),
         .O(\min_temp_y[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[1]_i_1 
@@ -11211,7 +11242,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[1] ),
         .O(\min_temp_y[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[2]_i_1 
@@ -11219,7 +11250,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[2] ),
         .O(\min_temp_y[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[3]_i_1 
@@ -11227,7 +11258,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[3] ),
         .O(\min_temp_y[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[4]_i_1 
@@ -11235,7 +11266,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[4] ),
         .O(\min_temp_y[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[5]_i_1 
@@ -11243,7 +11274,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[5] ),
         .O(\min_temp_y[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[6]_i_1 
@@ -11251,7 +11282,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[6] ),
         .O(\min_temp_y[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[7]_i_1 
@@ -11259,7 +11290,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[7] ),
         .O(\min_temp_y[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[8]_i_1 
@@ -11267,7 +11298,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[8] ),
         .O(\min_temp_y[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[9]_i_1 
@@ -11363,63 +11394,63 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .D(\min_temp_y[9]_i_1_n_0 ),
         .Q(min_temp_y[9]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \output_color[0]_INST_0 
        (.I0(color[0]),
         .I1(p_0_in),
         .O(output_color[0]));
-  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \output_color[1]_INST_0 
        (.I0(color[1]),
         .I1(p_0_in),
         .O(output_color[1]));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \output_color[2]_INST_0 
        (.I0(color[2]),
         .I1(p_0_in),
         .O(output_color[2]));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \output_color[3]_INST_0 
        (.I0(color[3]),
         .I1(p_0_in),
         .O(output_color[3]));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \output_color[4]_INST_0 
        (.I0(color[4]),
         .I1(p_0_in),
         .O(output_color[4]));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \output_color[5]_INST_0 
        (.I0(color[5]),
         .I1(p_0_in),
         .O(output_color[5]));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \output_color[6]_INST_0 
        (.I0(color[6]),
         .I1(p_0_in),
         .O(output_color[6]));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \output_color[7]_INST_0 
        (.I0(color[7]),
         .I1(p_0_in),
         .O(output_color[7]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT5 #(
     .INIT(32'h88C8F8C8)) 
     \pixel_x[0]_i_1 
@@ -11439,7 +11470,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(\pixel_x[10]_i_3_n_0 ),
         .I5(\pixel_x_reg_n_0_[10] ),
         .O(pixel_x[10]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT5 #(
     .INIT(32'hF7FFFFFF)) 
     \pixel_x[10]_i_3 
@@ -11469,7 +11500,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(\pixel_x_reg_n_0_[0] ),
         .I5(\pixel_x_reg_n_0_[1] ),
         .O(pixel_x[2]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'h45)) 
     \pixel_x[2]_i_2 
@@ -11477,7 +11508,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(state1_carry__0_n_2),
         .I2(\FSM_onehot_state_reg_n_0_[2] ),
         .O(\pixel_x[2]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT2 #(
     .INIT(4'h7)) 
     \pixel_x[2]_i_3 
@@ -11511,7 +11542,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(\pixel_x_reg_n_0_[4] ),
         .I5(\pixel_x[4]_i_2_n_0 ),
         .O(pixel_x[4]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \pixel_x[4]_i_2 
@@ -11530,7 +11561,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(\pixel_x_reg_n_0_[5] ),
         .I5(\pixel_x[5]_i_2_n_0 ),
         .O(pixel_x[5]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT5 #(
     .INIT(32'h7FFFFFFF)) 
     \pixel_x[5]_i_2 
@@ -11570,7 +11601,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(\BB_TL_x_reg_n_0_[7] ),
         .I5(\FSM_onehot_state_reg_n_0_[2] ),
         .O(pixel_x[7]));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT2 #(
     .INIT(4'hB)) 
     \pixel_x[7]_i_2 
@@ -11587,7 +11618,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(\FSM_onehot_state_reg_n_0_[2] ),
         .I5(\BB_TL_x_reg_n_0_[8] ),
         .O(pixel_x[8]));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT3 #(
     .INIT(8'hDF)) 
     \pixel_x[8]_i_2 
@@ -11605,7 +11636,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(\FSM_onehot_state_reg_n_0_[2] ),
         .I5(\BB_TL_x_reg_n_0_[9] ),
         .O(pixel_x[9]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT4 #(
     .INIT(16'hDFFF)) 
     \pixel_x[9]_i_2 
@@ -11618,7 +11649,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_x_reg[0] 
        (.C(clk),
-        .CE(rasterizer_u0_n_10),
+        .CE(rasterizer_u0_n_8),
         .D(pixel_x[0]),
         .Q(\pixel_x_reg_n_0_[0] ),
         .R(force_black));
@@ -11626,7 +11657,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_x_reg[10] 
        (.C(clk),
-        .CE(rasterizer_u0_n_10),
+        .CE(rasterizer_u0_n_8),
         .D(pixel_x[10]),
         .Q(\pixel_x_reg_n_0_[10] ),
         .R(force_black));
@@ -11634,7 +11665,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_x_reg[1] 
        (.C(clk),
-        .CE(rasterizer_u0_n_10),
+        .CE(rasterizer_u0_n_8),
         .D(pixel_x[1]),
         .Q(\pixel_x_reg_n_0_[1] ),
         .R(force_black));
@@ -11642,7 +11673,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_x_reg[2] 
        (.C(clk),
-        .CE(rasterizer_u0_n_10),
+        .CE(rasterizer_u0_n_8),
         .D(pixel_x[2]),
         .Q(\pixel_x_reg_n_0_[2] ),
         .R(force_black));
@@ -11650,7 +11681,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_x_reg[3] 
        (.C(clk),
-        .CE(rasterizer_u0_n_10),
+        .CE(rasterizer_u0_n_8),
         .D(pixel_x[3]),
         .Q(\pixel_x_reg_n_0_[3] ),
         .R(force_black));
@@ -11658,7 +11689,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_x_reg[4] 
        (.C(clk),
-        .CE(rasterizer_u0_n_10),
+        .CE(rasterizer_u0_n_8),
         .D(pixel_x[4]),
         .Q(\pixel_x_reg_n_0_[4] ),
         .R(force_black));
@@ -11666,7 +11697,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_x_reg[5] 
        (.C(clk),
-        .CE(rasterizer_u0_n_10),
+        .CE(rasterizer_u0_n_8),
         .D(pixel_x[5]),
         .Q(\pixel_x_reg_n_0_[5] ),
         .R(force_black));
@@ -11674,7 +11705,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_x_reg[6] 
        (.C(clk),
-        .CE(rasterizer_u0_n_10),
+        .CE(rasterizer_u0_n_8),
         .D(pixel_x[6]),
         .Q(\pixel_x_reg_n_0_[6] ),
         .R(force_black));
@@ -11682,7 +11713,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_x_reg[7] 
        (.C(clk),
-        .CE(rasterizer_u0_n_10),
+        .CE(rasterizer_u0_n_8),
         .D(pixel_x[7]),
         .Q(\pixel_x_reg_n_0_[7] ),
         .R(force_black));
@@ -11690,7 +11721,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_x_reg[8] 
        (.C(clk),
-        .CE(rasterizer_u0_n_10),
+        .CE(rasterizer_u0_n_8),
         .D(pixel_x[8]),
         .Q(\pixel_x_reg_n_0_[8] ),
         .R(force_black));
@@ -11698,11 +11729,11 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_x_reg[9] 
        (.C(clk),
-        .CE(rasterizer_u0_n_10),
+        .CE(rasterizer_u0_n_8),
         .D(pixel_x[9]),
         .Q(\pixel_x_reg_n_0_[9] ),
         .R(force_black));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT5 #(
     .INIT(32'h88C8F8C8)) 
     \pixel_y[0]_i_1 
@@ -11722,7 +11753,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(\pixel_y[10]_i_3_n_0 ),
         .I5(\pixel_y_reg_n_0_[10] ),
         .O(pixel_y[10]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT5 #(
     .INIT(32'hF7FFFFFF)) 
     \pixel_y[10]_i_3 
@@ -11752,7 +11783,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(\pixel_y_reg_n_0_[0] ),
         .I5(\pixel_y_reg_n_0_[1] ),
         .O(pixel_y[2]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'h45)) 
     \pixel_y[2]_i_2 
@@ -11852,7 +11883,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(\FSM_onehot_state_reg_n_0_[2] ),
         .I5(\BB_TL_y_reg_n_0_[7] ),
         .O(pixel_y[7]));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT2 #(
     .INIT(4'hB)) 
     \pixel_y[7]_i_2 
@@ -11869,7 +11900,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(\FSM_onehot_state_reg_n_0_[2] ),
         .I5(\BB_TL_y_reg_n_0_[8] ),
         .O(pixel_y[8]));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT3 #(
     .INIT(8'hDF)) 
     \pixel_y[8]_i_2 
@@ -11887,7 +11918,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(\FSM_onehot_state_reg_n_0_[2] ),
         .I5(\BB_TL_y_reg_n_0_[9] ),
         .O(pixel_y[9]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT4 #(
     .INIT(16'hDFFF)) 
     \pixel_y[9]_i_2 
@@ -11900,7 +11931,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_y_reg[0] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_6),
         .D(pixel_y[0]),
         .Q(\pixel_y_reg_n_0_[0] ),
         .R(force_black));
@@ -11908,7 +11939,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_y_reg[10] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_6),
         .D(pixel_y[10]),
         .Q(\pixel_y_reg_n_0_[10] ),
         .R(force_black));
@@ -11916,7 +11947,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_y_reg[1] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_6),
         .D(pixel_y[1]),
         .Q(\pixel_y_reg_n_0_[1] ),
         .R(force_black));
@@ -11924,7 +11955,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_y_reg[2] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_6),
         .D(pixel_y[2]),
         .Q(\pixel_y_reg_n_0_[2] ),
         .R(force_black));
@@ -11932,7 +11963,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_y_reg[3] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_6),
         .D(pixel_y[3]),
         .Q(\pixel_y_reg_n_0_[3] ),
         .R(force_black));
@@ -11940,7 +11971,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_y_reg[4] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_6),
         .D(pixel_y[4]),
         .Q(\pixel_y_reg_n_0_[4] ),
         .R(force_black));
@@ -11948,7 +11979,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_y_reg[5] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_6),
         .D(pixel_y[5]),
         .Q(\pixel_y_reg_n_0_[5] ),
         .R(force_black));
@@ -11956,7 +11987,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_y_reg[6] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_6),
         .D(pixel_y[6]),
         .Q(\pixel_y_reg_n_0_[6] ),
         .R(force_black));
@@ -11964,7 +11995,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_y_reg[7] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_6),
         .D(pixel_y[7]),
         .Q(\pixel_y_reg_n_0_[7] ),
         .R(force_black));
@@ -11972,7 +12003,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_y_reg[8] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_6),
         .D(pixel_y[8]),
         .Q(\pixel_y_reg_n_0_[8] ),
         .R(force_black));
@@ -11980,18 +12011,18 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_y_reg[9] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_6),
         .D(pixel_y[9]),
         .Q(\pixel_y_reg_n_0_[9] ),
         .R(force_black));
   LUT6 #(
-    .INIT(64'hFAFFFFFFFAFF8888)) 
+    .INIT(64'hEFAAEFFFEFAAEF00)) 
     rasterize_end_i_1
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
-        .I1(\FSM_onehot_state[4]_i_2_n_0 ),
-        .I2(vertex_count_reg_reg_20_sn_1),
-        .I3(output_vertex_valid),
-        .I4(\FSM_onehot_state_reg_n_0_[0] ),
+        .I1(vertex_count_reg_reg_21_sn_1),
+        .I2(output_vertex_valid),
+        .I3(\FSM_onehot_state_reg_n_0_[0] ),
+        .I4(\FSM_onehot_state[0]_i_1_n_0 ),
         .I5(rasterize_end_int),
         .O(rasterize_end_i_1_n_0));
   FDRE #(
@@ -12006,21 +12037,17 @@ module main_gpu_wrapper_0_0_rasterizer_control
        (.A(A),
         .CO(state1_carry__0_n_2),
         .E(V1_x),
-        .\FSM_onehot_state_reg[0] (rasterizer_u0_n_6),
-        .\FSM_onehot_state_reg[0]_0 (rasterizer_u0_n_8),
-        .\FSM_onehot_state_reg[0]_1 (\FSM_onehot_state[9]_i_3_n_0 ),
-        .\FSM_onehot_state_reg[1] (rasterizer_u0_n_13),
-        .\FSM_onehot_state_reg[2] (rasterizer_u0_n_7),
-        .\FSM_onehot_state_reg[2]_0 (rasterizer_u0_n_14),
+        .\FSM_onehot_state_reg[0] (\color[7]_i_2_n_0 ),
+        .\FSM_onehot_state_reg[0]_0 (\FSM_onehot_state[9]_i_3_n_0 ),
+        .\FSM_onehot_state_reg[0]_1 (\FSM_onehot_state[9]_i_4_n_0 ),
+        .\FSM_onehot_state_reg[1] (rasterizer_u0_n_11),
+        .\FSM_onehot_state_reg[2] (rasterizer_u0_n_6),
+        .\FSM_onehot_state_reg[2]_0 (rasterizer_u0_n_12),
         .\FSM_onehot_state_reg[2]_1 (\FSM_onehot_state[2]_i_2_n_0 ),
-        .\FSM_onehot_state_reg[9] (rasterizer_u0_n_10),
+        .\FSM_onehot_state_reg[4] (rasterizer_u0_n_7),
+        .\FSM_onehot_state_reg[9] (rasterizer_u0_n_8),
         .Q({\pixel_x_reg_n_0_[10] ,\pixel_x_reg_n_0_[9] ,\pixel_x_reg_n_0_[8] ,\pixel_x_reg_n_0_[7] ,\pixel_x_reg_n_0_[6] ,\pixel_x_reg_n_0_[5] ,\pixel_x_reg_n_0_[4] ,\pixel_x_reg_n_0_[3] ,\pixel_x_reg_n_0_[2] ,\pixel_x_reg_n_0_[1] ,\pixel_x_reg_n_0_[0] }),
         .clk(clk),
-        .color({color[6],color[1]}),
-        .\color_reg[0] (\FSM_onehot_state_reg_n_0_[0] ),
-        .\color_reg[1] (\color[1]_i_2_n_0 ),
-        .\color_reg[6] (vertex_count_reg_reg_20_sn_1),
-        .\color_reg[6]_0 (\color[6]_i_2_n_0 ),
         .draw(draw),
         .force_black(force_black),
         .force_black_reg(\state1_inferred__0/i__carry__0_n_2 ),
@@ -12033,10 +12060,6 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .out_ready(out_ready),
         .\out_valid_d_reg[0] (\FSM_onehot_state_reg_n_0_[2] ),
         .output_valid(output_valid),
-        .output_vertex_valid(output_vertex_valid),
-        .output_vertex_valid_reg(rasterizer_u0_n_9),
-        .output_vertex_valid_reg_0(rasterizer_u0_n_15),
-        .output_vertex_valid_reg_1(rasterizer_u0_n_16),
         .p_0_in(p_0_in),
         .pixel_x_out(pixel_x_out),
         .\pixel_x_reg[0] (\FSM_onehot_state_reg_n_0_[9] ),
@@ -12051,8 +12074,8 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .sub_result_reg_3({\V2_x_reg_n_0_[10] ,\V2_x_reg_n_0_[9] ,\V2_x_reg_n_0_[8] ,\V2_x_reg_n_0_[7] ,\V2_x_reg_n_0_[6] ,\V2_x_reg_n_0_[5] ,\V2_x_reg_n_0_[4] ,\V2_x_reg_n_0_[3] ,\V2_x_reg_n_0_[2] ,\V2_x_reg_n_0_[1] ,\V2_x_reg_n_0_[0] }),
         .sub_result_reg_4({\V1_x_reg_n_0_[10] ,\V1_x_reg_n_0_[9] ,\V1_x_reg_n_0_[8] ,\V1_x_reg_n_0_[7] ,\V1_x_reg_n_0_[6] ,\V1_x_reg_n_0_[5] ,\V1_x_reg_n_0_[4] ,\V1_x_reg_n_0_[3] ,\V1_x_reg_n_0_[2] ,\V1_x_reg_n_0_[1] ,\V1_x_reg_n_0_[0] }),
         .sub_result_reg_5({\V3_x_reg_n_0_[10] ,\V3_x_reg_n_0_[9] ,\V3_x_reg_n_0_[8] ,\V3_x_reg_n_0_[7] ,\V3_x_reg_n_0_[6] ,\V3_x_reg_n_0_[5] ,\V3_x_reg_n_0_[4] ,\V3_x_reg_n_0_[3] ,\V3_x_reg_n_0_[2] ,\V3_x_reg_n_0_[1] ,\V3_x_reg_n_0_[0] }),
-        .sub_result_reg_6({\vertex_select_reg_n_0_[4] ,\vertex_select_reg_n_0_[3] ,\vertex_select_reg_n_0_[2] ,\vertex_select_reg_n_0_[1] ,\vertex_select_reg_n_0_[0] }),
-        .sub_result_reg_7(\FSM_onehot_state_reg_n_0_[4] ),
+        .sub_result_reg_6(\FSM_onehot_state_reg_n_0_[4] ),
+        .sub_result_reg_7({\vertex_select_reg_n_0_[4] ,\vertex_select_reg_n_0_[3] ,\vertex_select_reg_n_0_[2] ,\vertex_select_reg_n_0_[1] ,\vertex_select_reg_n_0_[0] }),
         .\vertex_select_reg[0] (V2_y),
         .\vertex_select_reg[1] (V2_x),
         .\vertex_select_reg[1]_0 (V3_y),
@@ -12206,10 +12229,10 @@ module main_gpu_wrapper_0_0_rasterizer_control
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     state2_carry_i_3
-       (.I0(\BB_TL_y_reg_n_0_[4] ),
-        .I1(\BB_BR_y_reg_n_0_[4] ),
-        .I2(\BB_BR_y_reg_n_0_[5] ),
-        .I3(\BB_TL_y_reg_n_0_[5] ),
+       (.I0(\BB_TL_y_reg_n_0_[5] ),
+        .I1(\BB_BR_y_reg_n_0_[5] ),
+        .I2(\BB_BR_y_reg_n_0_[4] ),
+        .I3(\BB_TL_y_reg_n_0_[4] ),
         .I4(\BB_BR_y_reg_n_0_[3] ),
         .I5(\BB_TL_y_reg_n_0_[3] ),
         .O(state2_carry_i_3_n_0));
@@ -12372,7 +12395,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(16'hBAAA)) 
     \vertex_counter[14]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[4] ),
-        .I1(vertex_count_reg_reg_20_sn_1),
+        .I1(vertex_count_reg_reg_21_sn_1),
         .I2(output_vertex_valid),
         .I3(\FSM_onehot_state_reg_n_0_[0] ),
         .O(\vertex_counter[14]_i_1_n_0 ));
@@ -12578,88 +12601,40 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .R(1'b0));
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \vertex_mem_rd_addr[0]_i_10 
-       (.I0(vertex_count_reg_reg[11]),
-        .I1(vertex_count_reg_reg[10]),
-        .I2(vertex_count_reg_reg[9]),
-        .I3(vertex_count_reg_reg[8]),
-        .O(\vertex_mem_rd_addr[0]_i_10_n_0 ));
-  LUT4 #(
-    .INIT(16'hFFFE)) 
     \vertex_mem_rd_addr[0]_i_2 
-       (.I0(\vertex_mem_rd_addr[0]_i_3_n_0 ),
-        .I1(\vertex_mem_rd_addr[0]_i_4_n_0 ),
-        .I2(\vertex_mem_rd_addr[0]_i_5_n_0 ),
-        .I3(\vertex_mem_rd_addr[0]_i_6_n_0 ),
-        .O(vertex_count_reg_reg_20_sn_1));
+       (.I0(\color[7]_i_5_n_0 ),
+        .I1(\color[7]_i_4_n_0 ),
+        .I2(\vertex_mem_rd_addr[0]_i_3_n_0 ),
+        .I3(\vertex_mem_rd_addr[0]_i_4_n_0 ),
+        .O(vertex_count_reg_reg_21_sn_1));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
     .INIT(32'hFFFFFFFE)) 
     \vertex_mem_rd_addr[0]_i_3 
-       (.I0(vertex_count_reg_reg[20]),
-        .I1(vertex_count_reg_reg[23]),
-        .I2(vertex_count_reg_reg[21]),
-        .I3(vertex_count_reg_reg[22]),
-        .I4(\vertex_mem_rd_addr[0]_i_7_n_0 ),
+       (.I0(vertex_count_reg_reg[6]),
+        .I1(vertex_count_reg_reg[7]),
+        .I2(vertex_count_reg_reg[4]),
+        .I3(vertex_count_reg_reg[5]),
+        .I4(\addra[13]_i_12_n_0 ),
         .O(\vertex_mem_rd_addr[0]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
     .INIT(32'hFFFFFFFE)) 
     \vertex_mem_rd_addr[0]_i_4 
-       (.I0(vertex_count_reg_reg[28]),
-        .I1(vertex_count_reg_reg[31]),
-        .I2(vertex_count_reg_reg[29]),
-        .I3(vertex_count_reg_reg[30]),
-        .I4(\vertex_mem_rd_addr[0]_i_8_n_0 ),
-        .O(\vertex_mem_rd_addr[0]_i_4_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFFFFFE)) 
-    \vertex_mem_rd_addr[0]_i_5 
-       (.I0(vertex_count_reg_reg[4]),
-        .I1(vertex_count_reg_reg[7]),
-        .I2(vertex_count_reg_reg[5]),
-        .I3(vertex_count_reg_reg[6]),
-        .I4(\vertex_mem_rd_addr[0]_i_9_n_0 ),
-        .O(\vertex_mem_rd_addr[0]_i_5_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFFFFFE)) 
-    \vertex_mem_rd_addr[0]_i_6 
        (.I0(vertex_count_reg_reg[12]),
         .I1(vertex_count_reg_reg[15]),
         .I2(vertex_count_reg_reg[13]),
         .I3(vertex_count_reg_reg[14]),
-        .I4(\vertex_mem_rd_addr[0]_i_10_n_0 ),
-        .O(\vertex_mem_rd_addr[0]_i_6_n_0 ));
-  LUT4 #(
-    .INIT(16'hFFFE)) 
-    \vertex_mem_rd_addr[0]_i_7 
-       (.I0(vertex_count_reg_reg[18]),
-        .I1(vertex_count_reg_reg[17]),
-        .I2(vertex_count_reg_reg[19]),
-        .I3(vertex_count_reg_reg[16]),
-        .O(\vertex_mem_rd_addr[0]_i_7_n_0 ));
-  LUT4 #(
-    .INIT(16'hFFFE)) 
-    \vertex_mem_rd_addr[0]_i_8 
-       (.I0(vertex_count_reg_reg[27]),
-        .I1(vertex_count_reg_reg[26]),
-        .I2(vertex_count_reg_reg[25]),
-        .I3(vertex_count_reg_reg[24]),
-        .O(\vertex_mem_rd_addr[0]_i_8_n_0 ));
-  LUT4 #(
-    .INIT(16'hFFFE)) 
-    \vertex_mem_rd_addr[0]_i_9 
-       (.I0(vertex_count_reg_reg[3]),
-        .I1(vertex_count_reg_reg[2]),
-        .I2(vertex_count_reg_reg[0]),
-        .I3(vertex_count_reg_reg[1]),
-        .O(\vertex_mem_rd_addr[0]_i_9_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+        .I4(\addra[13]_i_10_n_0 ),
+        .O(\vertex_mem_rd_addr[0]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \vertex_select[0]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[4] ),
         .I1(\vertex_select_reg_n_0_[0] ),
         .O(vertex_select[0]));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT3 #(
     .INIT(8'h60)) 
     \vertex_select[1]_i_1 
@@ -12690,7 +12665,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
   LUT5 #(
     .INIT(32'hFFFFFF40)) 
     \vertex_select[4]_i_1 
-       (.I0(vertex_count_reg_reg_20_sn_1),
+       (.I0(vertex_count_reg_reg_21_sn_1),
         .I1(output_vertex_valid),
         .I2(\FSM_onehot_state_reg_n_0_[0] ),
         .I3(\FSM_onehot_state_reg_n_0_[3] ),
@@ -12763,8 +12738,8 @@ module main_gpu_wrapper_0_0_rasterizer_control
   LUT2 #(
     .INIT(4'h9)) 
     width0_carry__0_i_1
-       (.I0(\BB_BR_x_reg_n_0_[7] ),
-        .I1(\BB_TL_x_reg_n_0_[7] ),
+       (.I0(\BB_TL_x_reg_n_0_[7] ),
+        .I1(\BB_BR_x_reg_n_0_[7] ),
         .O(width0_carry__0_i_1_n_0));
   LUT2 #(
     .INIT(4'h9)) 
@@ -12806,8 +12781,8 @@ module main_gpu_wrapper_0_0_rasterizer_control
   LUT2 #(
     .INIT(4'h9)) 
     width0_carry__1_i_3
-       (.I0(\BB_TL_x_reg_n_0_[8] ),
-        .I1(\BB_BR_x_reg_n_0_[8] ),
+       (.I0(\BB_BR_x_reg_n_0_[8] ),
+        .I1(\BB_TL_x_reg_n_0_[8] ),
         .O(width0_carry__1_i_3_n_0));
   LUT2 #(
     .INIT(4'h9)) 
@@ -12818,14 +12793,14 @@ module main_gpu_wrapper_0_0_rasterizer_control
   LUT2 #(
     .INIT(4'h9)) 
     width0_carry_i_2
-       (.I0(\BB_BR_x_reg_n_0_[2] ),
-        .I1(\BB_TL_x_reg_n_0_[2] ),
+       (.I0(\BB_TL_x_reg_n_0_[2] ),
+        .I1(\BB_BR_x_reg_n_0_[2] ),
         .O(width0_carry_i_2_n_0));
   LUT2 #(
     .INIT(4'h9)) 
     width0_carry_i_3
-       (.I0(\BB_TL_x_reg_n_0_[1] ),
-        .I1(\BB_BR_x_reg_n_0_[1] ),
+       (.I0(\BB_BR_x_reg_n_0_[1] ),
+        .I1(\BB_TL_x_reg_n_0_[1] ),
         .O(width0_carry_i_3_n_0));
   LUT2 #(
     .INIT(4'h9)) 
@@ -16915,7 +16890,7 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
         .D(p_1_in[9]),
         .Q(Q[9]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT2 #(
     .INIT(4'h8)) 
     output_vertex_valid_i_1
@@ -18889,14 +18864,14 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\NLW_sum_1_0_out_reg[24]_i_1_O_UNCONNECTED [3:1],\sum_1_0_out_reg[24]_i_1_n_7 }),
         .S({1'b0,1'b0,1'b0,\sum_1_0_out[24]_i_2_n_0 }));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
+  (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \transformed_vertex_mem_wr_data[10]_i_2 
        (.I0(output_vertex_valid),
         .I1(start),
         .O(E));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
+  (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT3 #(
     .INIT(8'h08)) 
     transformed_vertex_mem_wr_en_i_1
@@ -18923,7 +18898,7 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
         .I4(vertex_counter[0]),
         .I5(vertex_counter[1]),
         .O(\vertex_counter[1]_i_1__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     \vertex_counter[1]_i_2 
