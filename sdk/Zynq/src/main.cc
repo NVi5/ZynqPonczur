@@ -126,10 +126,14 @@ int main()
 				if (current_framebuffer == 0) current_framebuffer = 1;
 				else current_framebuffer = 0;
 				gpu_mem[0x11] = (uint32_t)framebuffer[current_framebuffer];
-				glm::mat4 matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
-				matrix = glm::rotate(matrix, alfa, glm::vec3(1.0f, 0.0f, 0.0f));
+
+				glm::mat4 Projection = glm::perspective(glm::pi<float>() * 0.50f, 3.0f / 3.0f, 0.1f, 100.f);
+				glm::mat4 View = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -500.0f));
+				glm::mat4 matrix = glm::rotate(glm::mat4(1.0f), alfa, glm::vec3(1.0f, 0.0f, 0.0f));
 				matrix = glm::rotate(matrix, beta, glm::vec3(0.0f, 1.0f, 0.0f));
 				matrix = glm::rotate(matrix, gamm, glm::vec3(0.0f, 0.0f, 1.0f));
+				matrix = Projection * View * matrix;
+
 				glm_mat4_to_fpga(matrix, gpu_mem);
 				gpu_mem[0x12] = 1;
 			}
