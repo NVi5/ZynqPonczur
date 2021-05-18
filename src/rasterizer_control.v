@@ -18,7 +18,7 @@ module rasterizer_control (
     output reg  [10:0] width          = 11'b0,
     output reg  [10:0] height         = 11'b0,
 
-    output reg         frame_end      = 1'b0,
+    output reg         rasterize_end  =  1'b0,
     output wire        draw
 );
 
@@ -96,12 +96,12 @@ assign in_valid = in_ready & (state == RASTERIZE);
 always @(posedge clk) begin
     case (state)
         IDLE: begin
-           frame_end <= 1;
+           rasterize_end <= 1;
             if (start) begin
                 state <= CLEAR_SCREEN;
                 vertex_counter <= vertex_count;
                 addra <= 0;
-                frame_end <= 0;
+                rasterize_end <= 0;
                 vertex_select <= 0;
                 color <= 0;
             end
@@ -124,7 +124,7 @@ always @(posedge clk) begin
             end
             else begin
                 state <= IDLE;
-                frame_end <= 1;
+                rasterize_end <= 1;
             end
             vertex_select <= 0;
             addra <= addra + 1;

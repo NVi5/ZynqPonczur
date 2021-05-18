@@ -47,7 +47,7 @@ output wire [10:0] pixel_x_out;
 output wire [10:0] pixel_y_out;
 output wire [10:0] width;
 output wire [10:0] height;
-output wire        frame_end;
+output reg         frame_end;
 output wire        draw;
 input  wire        out_ready;
 
@@ -142,11 +142,8 @@ ram_rtl #(.width(M), .depth(transformed_vertex_mem_depth)) transformed_vertex_me
     .rd_data(transformed_vertex_mem_rd_data)
 );
 
-//wire [7:0]  output_color;
-//wire        output_valid;
-//wire [10:0] pixel_x_out;
-//wire [10:0] pixel_y_out;
-//wire frame_end;
+wire rasterize_end_int;
+reg  rasterize_end_d;
 
 rasterizer_control rasterizer_control(
     .clk(clk),
@@ -166,8 +163,25 @@ rasterizer_control rasterizer_control(
     .width(width),
     .height(height),
 
-    .frame_end(frame_end),
+    .rasterize_end(rasterize_end_int),
     .draw(draw)
 );
+
+always @(posedge clk) begin
+    rasterize_end_d <= rasterize_end_int;
+
+    if (reset) begin
+        frame_end <= 1;
+    end
+    else if (start) begin
+        frame_end <= 0;
+    end
+    else if (rasterize_end_int && !rasterize_end_d) begin
+        frame_end <= 1;
+    end
+    else begin
+        frame_end <= frame_end;
+    end
+end
 
 endmodule

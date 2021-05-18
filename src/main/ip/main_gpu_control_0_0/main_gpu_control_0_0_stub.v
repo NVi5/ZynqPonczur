@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Tue May 18 01:59:55 2021
-// Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
+// Date        : Tue May 18 11:02:49 2021
+// Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
-//               C:/Users/wojte/Desktop/sdup_projekt/ZynqSDUP/src/main/ip/main_gpu_control_0_0/main_gpu_control_0_0_stub.v
+//               C:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main/ip/main_gpu_control_0_0/main_gpu_control_0_0_stub.v
 // Design      : main_gpu_control_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z010clg400-1
