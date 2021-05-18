@@ -37,6 +37,37 @@ extern volatile int TcpSlowTmrFlag;
 static struct netif server_netif;
 struct netif *echo_netif;
 
+void glm_mat4_to_fpga(glm::mat4 &mat, uint32_t *fpga_addr) {
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+				fpga_addr[15-(4*i+j)] = (int32_t)(mat[i][j] * 128.0f);
+		}
+	}
+}
+
+void onOpen (websocket_t *websocket){}
+
+float alfa = 0.0f;
+float beta = 0.0f;
+float gamm = 0.0f;
+
+void onMessage (websocket_t *websocket, websocket_frame_t * frame){
+	if (frame->opcode == websocket_opcode_binary) {
+		float *data = (float*)frame->data;
+
+		if (data[0] != 1.337f) {
+			alfa = data[0];
+			beta = data[1];
+			gamm = data[2];
+
+		}
+	}
+}
+
+void onClose (websocket_t *websocket){}
+
+uint8_t ponczur [4800*10] = {0};
+
 int main()
 {
 	Xil_DCacheDisable();
@@ -55,14 +86,19 @@ int main()
 	platform_enable_interrupts();
 	netif_set_up(echo_netif);
 
-	websocket_t *websocket = new_websocket((ip_addr_t *)IP_ADDR_ANY, 1000);
-	glm::mat4 roatation_matrix = glm::rotate(glm::mat4(1.0f), (float)M_PI_2, glm::vec3(0.0f, 1.0f, 0.0f));
-	roatation_matrix = glm::transpose(roatation_matrix);
-	uint32_t xd[16] = {
-			128,0,0,0,
-			0,128,0,0,
-			0,0,128,0,
-			0,0,0,128
+	websocket_t *xd = new_websocket(&ipaddr, 1000);
+	xd->onopen = (websocket_onopen_fn)onOpen;
+	xd->onmessage = (websocket_onmessage_fn)onMessage;
+	xd->onclose = (websocket_onclose_fn)onClose;
+//	glm::mat4 roatation_matrix = glm::rotate(glm::mat4(1.0f), (float)M_PI_2, glm::vec3(0.0f, 1.0f, 0.0f));
+//	roatation_matrix = glm::transpose(roatation_matrix);
+	int32_t xd1[16] = {
+		//128,0,0,0,0,90,0,90,0,-34,118,34,0,-83,-48,83
+		128,0,0,0,0,90,0,90,0,-34,118,34,0,-83,-48,83
+//		83, -48, -83, 0,
+//		34, 118, -34, 0,
+//		90, 0, 90, 0,
+//		0, 0, 0, 128
 	};
 
 	for (unsigned int i = 0; i < len; i++) {
@@ -70,11 +106,20 @@ int main()
 	}
 
 
-	memcpy(gpu_mem, xd, 16*4);
+
+	//memcpy(gpu_mem, xd1, 16*4);
 	memcpy(GPU_MEM, test, len*sizeof(test[0]));
 	gpu_mem[0x10] = len;
 	gpu_mem[0x11] = (uint32_t)framebuffer;
-	gpu_mem[0x12] = 1;
+//	gpu_mem[0x12] = 1;
+//	while(!gpu_mem[0x13]);
+
+//	glm::mat4 matrix = glm::rotate(glm::mat4(1.0f), 3.14f/4, glm::vec3(0.0f, 1.0f, 0.0f));
+//	glm_mat4_to_fpga(matrix, gpu_mem);
+
+	#define N_PONCZUR 4
+	int data_size = 0;
+	unsigned int buffer_pos = 0;
 
 	while (1) {
 		if (TcpFastTmrFlag) {
@@ -85,6 +130,36 @@ int main()
 			tcp_slowtmr();
 			TcpSlowTmrFlag = 0;
 		}
+
+		if (xd->status == websocket_status_open) {
+			if (data_size <= 0){
+				data_size = 480000;
+
+				//alfa += 0.01;
+
+				glm::mat4 matrix = glm::rotate(glm::mat4(1.0f), alfa, glm::vec3(1.0f, 0.0f, 0.0f));
+				matrix = glm::rotate(matrix, beta, glm::vec3(0.0f, 1.0f, 0.0f));
+				matrix = glm::rotate(matrix, gamm, glm::vec3(0.0f, 0.0f, 1.0f));
+				//	glm_mat4_to_fpga(matrix, gpu_mem);
+				glm_mat4_to_fpga(matrix, gpu_mem);
+				gpu_mem[0x12] = 1;
+				while(!gpu_mem[0x13]);
+			}
+
+
+			ponczur[0] = buffer_pos&0x000000ff;
+			ponczur[1] = (buffer_pos&0x0000ff00)>>8;
+			ponczur[2] = (buffer_pos&0x00ff0000)>>16;
+			ponczur[3] = (buffer_pos&0xff000000)>>24;
+			memcpy(&ponczur[4],(void*)&framebuffer[buffer_pos], 4800*N_PONCZUR);
+
+			err_t err = websocket_send_binary(xd, ponczur, 4+(4800*N_PONCZUR));
+			if (err == 0) {
+				data_size -= 4800*N_PONCZUR;
+				buffer_pos = (4800*N_PONCZUR + buffer_pos) % (800*600);
+			}
+		}
+
 		xemacif_input(echo_netif);
 	}
 

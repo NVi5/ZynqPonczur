@@ -197,6 +197,16 @@ BEGIN LIBRARY
  PARAMETER LIBRARY_NAME = lwip202
  PARAMETER LIBRARY_VER = 1.2
  PARAMETER PROC_INSTANCE = ps7_cortexa9_0
+ PARAMETER mem_size = 33554432
+ PARAMETER memp_n_pbuf = 2048
+ PARAMETER memp_n_tcp_seg = 1024
+ PARAMETER n_rx_descriptors = 2048
+ PARAMETER n_tx_descriptors = 2048
+ PARAMETER pbuf_pool_size = 4096
+ PARAMETER tcp_ip_rx_checksum_offload = true
+ PARAMETER tcp_ip_tx_checksum_offload = true
+ PARAMETER tcp_snd_buf = 65535
+ PARAMETER tcp_wnd = 65535
 END
 
 

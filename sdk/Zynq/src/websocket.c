@@ -283,10 +283,10 @@ websocket_frame_t* websocket_encode_frame( websocket_opcode_t opcode, u8_t * dat
 
 int websocket_send ( websocket_t * websocket, u8_t * data, u16_t len ){
 
-	if ( websocket->status != websocket_status_open ) return 0;
+	if ( websocket->status != websocket_status_open ) return 1;
 	websocket_frame_t *frame = websocket_encode_frame( websocket_opcode_text, data, len );
 
-	if ( frame == NULL ) return 0;
+	if ( frame == NULL ) return 1;
 
 	err_t err;
 	err_t err2;
@@ -302,10 +302,10 @@ int websocket_send ( websocket_t * websocket, u8_t * data, u16_t len ){
 
 int websocket_send_binary ( websocket_t * websocket, u8_t * data, u16_t len ){
 
-	if ( websocket->status != websocket_status_open ) return 0;
+	if ( websocket->status != websocket_status_open ) return 1;
 	websocket_frame_t *frame = websocket_encode_frame( websocket_opcode_binary, data, len );
 
-	if ( frame == NULL ) return 0;
+	if ( frame == NULL ) return 1;
 
 	err_t err;
 	err = tcp_write(websocket->server_conn, frame->data, frame->length, TCP_WRITE_FLAG_COPY);

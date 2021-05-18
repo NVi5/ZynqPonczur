@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
--- Date        : Tue May 18 11:02:49 2021
--- Host        : RYZEN-PC running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               C:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main/ip/main_gpu_control_0_0/main_gpu_control_0_0_sim_netlist.vhdl
+-- Date        : Tue May 18 01:59:55 2021
+-- Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode funcsim -rename_top main_gpu_control_0_0 -prefix
+--               main_gpu_control_0_0_ main_gpu_control_0_0_sim_netlist.vhdl
 -- Design      : main_gpu_control_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -60,8 +60,6 @@ entity main_gpu_control_0_0_gpu_control_v1_0_S00_AXI is
     s00_axi_arvalid : in STD_LOGIC;
     status : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gpu_control_0_0_gpu_control_v1_0_S00_AXI : entity is "gpu_control_v1_0_S00_AXI";
 end main_gpu_control_0_0_gpu_control_v1_0_S00_AXI;
 
 architecture STRUCTURE of main_gpu_control_0_0_gpu_control_v1_0_S00_AXI is
@@ -12438,8 +12436,6 @@ entity main_gpu_control_0_0_gpu_control_v1_0 is
     s00_axi_bready : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gpu_control_0_0_gpu_control_v1_0 : entity is "gpu_control_v1_0";
 end main_gpu_control_0_0_gpu_control_v1_0;
 
 architecture STRUCTURE of main_gpu_control_0_0_gpu_control_v1_0 is

@@ -8,6 +8,7 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="ponczur[0] = buffer_pos&amp;0x000000ff;"/>
 			<item value="framebu"/>
 			<item value="GPU"/>
 			<item value="tcp_fast"/>
@@ -15,7 +16,6 @@
 			<item value="fastt"/>
 			<item value="lwip_init"/>
 			<item value="callbackP9XScuTimer"/>
-			<item value="tcp_slowtmr"/>
 		</list>
 		<list key="replacehistory">
 		</list>

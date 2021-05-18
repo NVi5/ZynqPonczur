@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Tue May 18 11:02:49 2021
-// Host        : RYZEN-PC running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               C:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main/ip/main_gpu_control_0_0/main_gpu_control_0_0_sim_netlist.v
+// Date        : Tue May 18 01:59:55 2021
+// Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
+// Command     : write_verilog -force -mode funcsim -rename_top main_gpu_control_0_0 -prefix
+//               main_gpu_control_0_0_ main_gpu_control_0_0_sim_netlist.v
 // Design      : main_gpu_control_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,220 +12,6 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "main_gpu_control_0_0,gpu_control_v1_0,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "gpu_control_v1_0,Vivado 2018.3" *) 
-(* NotValidForBitStream *)
-module main_gpu_control_0_0
-   (status,
-    start,
-    vertex_count,
-    address,
-    matrix_00,
-    matrix_01,
-    matrix_02,
-    matrix_03,
-    matrix_04,
-    matrix_05,
-    matrix_06,
-    matrix_07,
-    matrix_08,
-    matrix_09,
-    matrix_10,
-    matrix_11,
-    matrix_12,
-    matrix_13,
-    matrix_14,
-    matrix_15,
-    mem_wr_addr,
-    mem_wr_data,
-    mem_wr_en,
-    s00_axi_awaddr,
-    s00_axi_awprot,
-    s00_axi_awvalid,
-    s00_axi_awready,
-    s00_axi_wdata,
-    s00_axi_wstrb,
-    s00_axi_wvalid,
-    s00_axi_wready,
-    s00_axi_bresp,
-    s00_axi_bvalid,
-    s00_axi_bready,
-    s00_axi_araddr,
-    s00_axi_arprot,
-    s00_axi_arvalid,
-    s00_axi_arready,
-    s00_axi_rdata,
-    s00_axi_rresp,
-    s00_axi_rvalid,
-    s00_axi_rready,
-    s00_axi_aclk,
-    s00_axi_aresetn);
-  input status;
-  output start;
-  output [31:0]vertex_count;
-  output [31:0]address;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_00" *) output [17:0]matrix_00;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_01" *) output [17:0]matrix_01;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_02" *) output [17:0]matrix_02;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_03" *) output [17:0]matrix_03;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_04" *) output [17:0]matrix_04;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_05" *) output [17:0]matrix_05;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_06" *) output [17:0]matrix_06;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_07" *) output [17:0]matrix_07;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_08" *) output [17:0]matrix_08;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_09" *) output [17:0]matrix_09;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_10" *) output [17:0]matrix_10;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_11" *) output [17:0]matrix_11;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_12" *) output [17:0]matrix_12;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_13" *) output [17:0]matrix_13;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_14" *) output [17:0]matrix_14;
-  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_15" *) output [17:0]matrix_15;
-  output [13:0]mem_wr_addr;
-  output [17:0]mem_wr_data;
-  output mem_wr_en;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWADDR" *) input [16:0]s00_axi_awaddr;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWPROT" *) input [2:0]s00_axi_awprot;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWVALID" *) input s00_axi_awvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWREADY" *) output s00_axi_awready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WDATA" *) input [31:0]s00_axi_wdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WSTRB" *) input [3:0]s00_axi_wstrb;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WVALID" *) input s00_axi_wvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WREADY" *) output s00_axi_wready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI BRESP" *) output [1:0]s00_axi_bresp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI BVALID" *) output s00_axi_bvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI BREADY" *) input s00_axi_bready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARADDR" *) input [16:0]s00_axi_araddr;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARPROT" *) input [2:0]s00_axi_arprot;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARVALID" *) input s00_axi_arvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARREADY" *) output s00_axi_arready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RDATA" *) output [31:0]s00_axi_rdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RRESP" *) output [1:0]s00_axi_rresp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RVALID" *) output s00_axi_rvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI, WIZ_DATA_WIDTH 32, WIZ_NUM_REG 20, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 17, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 8, NUM_WRITE_OUTSTANDING 8, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN main_processing_system7_0_1_FCLK_CLK0, NUM_READ_THREADS 4, NUM_WRITE_THREADS 4, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) input s00_axi_rready;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 S00_AXI_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI_CLK, ASSOCIATED_BUSIF S00_AXI, ASSOCIATED_RESET s00_axi_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *) input s00_axi_aclk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 S00_AXI_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI_RST, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input s00_axi_aresetn;
-
-  wire \<const0> ;
-  wire [31:0]address;
-  wire [17:0]matrix_00;
-  wire [17:0]matrix_01;
-  wire [17:0]matrix_02;
-  wire [17:0]matrix_03;
-  wire [17:0]matrix_04;
-  wire [17:0]matrix_05;
-  wire [17:0]matrix_06;
-  wire [17:0]matrix_07;
-  wire [17:0]matrix_08;
-  wire [17:0]matrix_09;
-  wire [17:0]matrix_10;
-  wire [17:0]matrix_11;
-  wire [17:0]matrix_12;
-  wire [17:0]matrix_13;
-  wire [17:0]matrix_14;
-  wire [17:0]matrix_15;
-  wire [13:0]mem_wr_addr;
-  wire [17:0]mem_wr_data;
-  wire mem_wr_en;
-  wire s00_axi_aclk;
-  wire [16:0]s00_axi_araddr;
-  wire s00_axi_aresetn;
-  wire s00_axi_arready;
-  wire s00_axi_arvalid;
-  wire [16:0]s00_axi_awaddr;
-  wire s00_axi_awready;
-  wire s00_axi_awvalid;
-  wire s00_axi_bready;
-  wire s00_axi_bvalid;
-  wire [0:0]\^s00_axi_rdata ;
-  wire s00_axi_rready;
-  wire s00_axi_rvalid;
-  wire [31:0]s00_axi_wdata;
-  wire s00_axi_wready;
-  wire s00_axi_wvalid;
-  wire start;
-  wire status;
-  wire [31:0]vertex_count;
-
-  assign s00_axi_bresp[1] = \<const0> ;
-  assign s00_axi_bresp[0] = \<const0> ;
-  assign s00_axi_rdata[31] = \<const0> ;
-  assign s00_axi_rdata[30] = \<const0> ;
-  assign s00_axi_rdata[29] = \<const0> ;
-  assign s00_axi_rdata[28] = \<const0> ;
-  assign s00_axi_rdata[27] = \<const0> ;
-  assign s00_axi_rdata[26] = \<const0> ;
-  assign s00_axi_rdata[25] = \<const0> ;
-  assign s00_axi_rdata[24] = \<const0> ;
-  assign s00_axi_rdata[23] = \<const0> ;
-  assign s00_axi_rdata[22] = \<const0> ;
-  assign s00_axi_rdata[21] = \<const0> ;
-  assign s00_axi_rdata[20] = \<const0> ;
-  assign s00_axi_rdata[19] = \<const0> ;
-  assign s00_axi_rdata[18] = \<const0> ;
-  assign s00_axi_rdata[17] = \<const0> ;
-  assign s00_axi_rdata[16] = \<const0> ;
-  assign s00_axi_rdata[15] = \<const0> ;
-  assign s00_axi_rdata[14] = \<const0> ;
-  assign s00_axi_rdata[13] = \<const0> ;
-  assign s00_axi_rdata[12] = \<const0> ;
-  assign s00_axi_rdata[11] = \<const0> ;
-  assign s00_axi_rdata[10] = \<const0> ;
-  assign s00_axi_rdata[9] = \<const0> ;
-  assign s00_axi_rdata[8] = \<const0> ;
-  assign s00_axi_rdata[7] = \<const0> ;
-  assign s00_axi_rdata[6] = \<const0> ;
-  assign s00_axi_rdata[5] = \<const0> ;
-  assign s00_axi_rdata[4] = \<const0> ;
-  assign s00_axi_rdata[3] = \<const0> ;
-  assign s00_axi_rdata[2] = \<const0> ;
-  assign s00_axi_rdata[1] = \<const0> ;
-  assign s00_axi_rdata[0] = \^s00_axi_rdata [0];
-  assign s00_axi_rresp[1] = \<const0> ;
-  assign s00_axi_rresp[0] = \<const0> ;
-  GND GND
-       (.G(\<const0> ));
-  main_gpu_control_0_0_gpu_control_v1_0 inst
-       (.S_AXI_ARREADY(s00_axi_arready),
-        .S_AXI_AWREADY(s00_axi_awready),
-        .S_AXI_WREADY(s00_axi_wready),
-        .address(address),
-        .matrix_00(matrix_00),
-        .matrix_01(matrix_01),
-        .matrix_02(matrix_02),
-        .matrix_03(matrix_03),
-        .matrix_04(matrix_04),
-        .matrix_05(matrix_05),
-        .matrix_06(matrix_06),
-        .matrix_07(matrix_07),
-        .matrix_08(matrix_08),
-        .matrix_09(matrix_09),
-        .matrix_10(matrix_10),
-        .matrix_11(matrix_11),
-        .matrix_12(matrix_12),
-        .matrix_13(matrix_13),
-        .matrix_14(matrix_14),
-        .matrix_15(matrix_15),
-        .mem_wr_addr(mem_wr_addr),
-        .mem_wr_data(mem_wr_data),
-        .mem_wr_en(mem_wr_en),
-        .s00_axi_aclk(s00_axi_aclk),
-        .s00_axi_araddr(s00_axi_araddr[16:2]),
-        .s00_axi_aresetn(s00_axi_aresetn),
-        .s00_axi_arvalid(s00_axi_arvalid),
-        .s00_axi_awaddr(s00_axi_awaddr[16:2]),
-        .s00_axi_awvalid(s00_axi_awvalid),
-        .s00_axi_bready(s00_axi_bready),
-        .s00_axi_bvalid(s00_axi_bvalid),
-        .s00_axi_rdata(\^s00_axi_rdata ),
-        .s00_axi_rready(s00_axi_rready),
-        .s00_axi_rvalid(s00_axi_rvalid),
-        .s00_axi_wdata(s00_axi_wdata),
-        .s00_axi_wvalid(s00_axi_wvalid),
-        .start(start),
-        .status(status),
-        .vertex_count(vertex_count));
-endmodule
-
-(* ORIG_REF_NAME = "gpu_control_v1_0" *) 
 module main_gpu_control_0_0_gpu_control_v1_0
    (S_AXI_AWREADY,
     S_AXI_WREADY,
@@ -436,7 +222,6 @@ module main_gpu_control_0_0_gpu_control_v1_0
         .vertex_count(vertex_count));
 endmodule
 
-(* ORIG_REF_NAME = "gpu_control_v1_0_S00_AXI" *) 
 module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
    (axi_awready_reg_0,
     axi_wready_reg_0,
@@ -10003,6 +9788,219 @@ module main_gpu_control_0_0_gpu_control_v1_0_S00_AXI
         .D(s00_axi_wdata[9]),
         .Q(vertex_count[9]),
         .R(p_0_in));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "main_gpu_control_0_0,gpu_control_v1_0,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "gpu_control_v1_0,Vivado 2018.3" *) 
+(* NotValidForBitStream *)
+module main_gpu_control_0_0
+   (status,
+    start,
+    vertex_count,
+    address,
+    matrix_00,
+    matrix_01,
+    matrix_02,
+    matrix_03,
+    matrix_04,
+    matrix_05,
+    matrix_06,
+    matrix_07,
+    matrix_08,
+    matrix_09,
+    matrix_10,
+    matrix_11,
+    matrix_12,
+    matrix_13,
+    matrix_14,
+    matrix_15,
+    mem_wr_addr,
+    mem_wr_data,
+    mem_wr_en,
+    s00_axi_awaddr,
+    s00_axi_awprot,
+    s00_axi_awvalid,
+    s00_axi_awready,
+    s00_axi_wdata,
+    s00_axi_wstrb,
+    s00_axi_wvalid,
+    s00_axi_wready,
+    s00_axi_bresp,
+    s00_axi_bvalid,
+    s00_axi_bready,
+    s00_axi_araddr,
+    s00_axi_arprot,
+    s00_axi_arvalid,
+    s00_axi_arready,
+    s00_axi_rdata,
+    s00_axi_rresp,
+    s00_axi_rvalid,
+    s00_axi_rready,
+    s00_axi_aclk,
+    s00_axi_aresetn);
+  input status;
+  output start;
+  output [31:0]vertex_count;
+  output [31:0]address;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_00" *) output [17:0]matrix_00;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_01" *) output [17:0]matrix_01;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_02" *) output [17:0]matrix_02;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_03" *) output [17:0]matrix_03;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_04" *) output [17:0]matrix_04;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_05" *) output [17:0]matrix_05;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_06" *) output [17:0]matrix_06;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_07" *) output [17:0]matrix_07;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_08" *) output [17:0]matrix_08;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_09" *) output [17:0]matrix_09;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_10" *) output [17:0]matrix_10;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_11" *) output [17:0]matrix_11;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_12" *) output [17:0]matrix_12;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_13" *) output [17:0]matrix_13;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_14" *) output [17:0]matrix_14;
+  (* X_INTERFACE_INFO = "xilinx.com:user:transform_matrix:1.0 transform_matrix matrix_15" *) output [17:0]matrix_15;
+  output [13:0]mem_wr_addr;
+  output [17:0]mem_wr_data;
+  output mem_wr_en;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWADDR" *) input [16:0]s00_axi_awaddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWPROT" *) input [2:0]s00_axi_awprot;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWVALID" *) input s00_axi_awvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI AWREADY" *) output s00_axi_awready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WDATA" *) input [31:0]s00_axi_wdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WSTRB" *) input [3:0]s00_axi_wstrb;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WVALID" *) input s00_axi_wvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI WREADY" *) output s00_axi_wready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI BRESP" *) output [1:0]s00_axi_bresp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI BVALID" *) output s00_axi_bvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI BREADY" *) input s00_axi_bready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARADDR" *) input [16:0]s00_axi_araddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARPROT" *) input [2:0]s00_axi_arprot;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARVALID" *) input s00_axi_arvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI ARREADY" *) output s00_axi_arready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RDATA" *) output [31:0]s00_axi_rdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RRESP" *) output [1:0]s00_axi_rresp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RVALID" *) output s00_axi_rvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S00_AXI RREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI, WIZ_DATA_WIDTH 32, WIZ_NUM_REG 20, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 17, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 8, NUM_WRITE_OUTSTANDING 8, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN main_processing_system7_0_1_FCLK_CLK0, NUM_READ_THREADS 4, NUM_WRITE_THREADS 4, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) input s00_axi_rready;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 S00_AXI_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI_CLK, ASSOCIATED_BUSIF S00_AXI, ASSOCIATED_RESET s00_axi_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *) input s00_axi_aclk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 S00_AXI_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI_RST, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input s00_axi_aresetn;
+
+  wire \<const0> ;
+  wire [31:0]address;
+  wire [17:0]matrix_00;
+  wire [17:0]matrix_01;
+  wire [17:0]matrix_02;
+  wire [17:0]matrix_03;
+  wire [17:0]matrix_04;
+  wire [17:0]matrix_05;
+  wire [17:0]matrix_06;
+  wire [17:0]matrix_07;
+  wire [17:0]matrix_08;
+  wire [17:0]matrix_09;
+  wire [17:0]matrix_10;
+  wire [17:0]matrix_11;
+  wire [17:0]matrix_12;
+  wire [17:0]matrix_13;
+  wire [17:0]matrix_14;
+  wire [17:0]matrix_15;
+  wire [13:0]mem_wr_addr;
+  wire [17:0]mem_wr_data;
+  wire mem_wr_en;
+  wire s00_axi_aclk;
+  wire [16:0]s00_axi_araddr;
+  wire s00_axi_aresetn;
+  wire s00_axi_arready;
+  wire s00_axi_arvalid;
+  wire [16:0]s00_axi_awaddr;
+  wire s00_axi_awready;
+  wire s00_axi_awvalid;
+  wire s00_axi_bready;
+  wire s00_axi_bvalid;
+  wire [0:0]\^s00_axi_rdata ;
+  wire s00_axi_rready;
+  wire s00_axi_rvalid;
+  wire [31:0]s00_axi_wdata;
+  wire s00_axi_wready;
+  wire s00_axi_wvalid;
+  wire start;
+  wire status;
+  wire [31:0]vertex_count;
+
+  assign s00_axi_bresp[1] = \<const0> ;
+  assign s00_axi_bresp[0] = \<const0> ;
+  assign s00_axi_rdata[31] = \<const0> ;
+  assign s00_axi_rdata[30] = \<const0> ;
+  assign s00_axi_rdata[29] = \<const0> ;
+  assign s00_axi_rdata[28] = \<const0> ;
+  assign s00_axi_rdata[27] = \<const0> ;
+  assign s00_axi_rdata[26] = \<const0> ;
+  assign s00_axi_rdata[25] = \<const0> ;
+  assign s00_axi_rdata[24] = \<const0> ;
+  assign s00_axi_rdata[23] = \<const0> ;
+  assign s00_axi_rdata[22] = \<const0> ;
+  assign s00_axi_rdata[21] = \<const0> ;
+  assign s00_axi_rdata[20] = \<const0> ;
+  assign s00_axi_rdata[19] = \<const0> ;
+  assign s00_axi_rdata[18] = \<const0> ;
+  assign s00_axi_rdata[17] = \<const0> ;
+  assign s00_axi_rdata[16] = \<const0> ;
+  assign s00_axi_rdata[15] = \<const0> ;
+  assign s00_axi_rdata[14] = \<const0> ;
+  assign s00_axi_rdata[13] = \<const0> ;
+  assign s00_axi_rdata[12] = \<const0> ;
+  assign s00_axi_rdata[11] = \<const0> ;
+  assign s00_axi_rdata[10] = \<const0> ;
+  assign s00_axi_rdata[9] = \<const0> ;
+  assign s00_axi_rdata[8] = \<const0> ;
+  assign s00_axi_rdata[7] = \<const0> ;
+  assign s00_axi_rdata[6] = \<const0> ;
+  assign s00_axi_rdata[5] = \<const0> ;
+  assign s00_axi_rdata[4] = \<const0> ;
+  assign s00_axi_rdata[3] = \<const0> ;
+  assign s00_axi_rdata[2] = \<const0> ;
+  assign s00_axi_rdata[1] = \<const0> ;
+  assign s00_axi_rdata[0] = \^s00_axi_rdata [0];
+  assign s00_axi_rresp[1] = \<const0> ;
+  assign s00_axi_rresp[0] = \<const0> ;
+  GND GND
+       (.G(\<const0> ));
+  main_gpu_control_0_0_gpu_control_v1_0 inst
+       (.S_AXI_ARREADY(s00_axi_arready),
+        .S_AXI_AWREADY(s00_axi_awready),
+        .S_AXI_WREADY(s00_axi_wready),
+        .address(address),
+        .matrix_00(matrix_00),
+        .matrix_01(matrix_01),
+        .matrix_02(matrix_02),
+        .matrix_03(matrix_03),
+        .matrix_04(matrix_04),
+        .matrix_05(matrix_05),
+        .matrix_06(matrix_06),
+        .matrix_07(matrix_07),
+        .matrix_08(matrix_08),
+        .matrix_09(matrix_09),
+        .matrix_10(matrix_10),
+        .matrix_11(matrix_11),
+        .matrix_12(matrix_12),
+        .matrix_13(matrix_13),
+        .matrix_14(matrix_14),
+        .matrix_15(matrix_15),
+        .mem_wr_addr(mem_wr_addr),
+        .mem_wr_data(mem_wr_data),
+        .mem_wr_en(mem_wr_en),
+        .s00_axi_aclk(s00_axi_aclk),
+        .s00_axi_araddr(s00_axi_araddr[16:2]),
+        .s00_axi_aresetn(s00_axi_aresetn),
+        .s00_axi_arvalid(s00_axi_arvalid),
+        .s00_axi_awaddr(s00_axi_awaddr[16:2]),
+        .s00_axi_awvalid(s00_axi_awvalid),
+        .s00_axi_bready(s00_axi_bready),
+        .s00_axi_bvalid(s00_axi_bvalid),
+        .s00_axi_rdata(\^s00_axi_rdata ),
+        .s00_axi_rready(s00_axi_rready),
+        .s00_axi_rvalid(s00_axi_rvalid),
+        .s00_axi_wdata(s00_axi_wdata),
+        .s00_axi_wvalid(s00_axi_wvalid),
+        .start(start),
+        .status(status),
+        .vertex_count(vertex_count));
 endmodule
 `ifndef GLBL
 `define GLBL

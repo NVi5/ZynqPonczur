@@ -99,6 +99,7 @@ vertex_processor_rtl vertex_processor_rtl
 (
     .clk(clk),
     .reset(reset),
+    .start(start),
     .transform_matrix(transform_matrix),
     .input_vertex(vertex_mem_rd_data),
     .input_vertex_valid(input_vertex_valid),

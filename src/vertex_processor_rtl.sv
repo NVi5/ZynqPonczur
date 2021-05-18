@@ -7,6 +7,7 @@ module vertex_processor_rtl #(
 (
     input  wire                  clk,
     input  wire                  reset,
+    input  wire                  start,
 
     input  reg  signed [M+N-1:0] transform_matrix [0:15],
 
@@ -54,7 +55,7 @@ assign mul_2_in_b = transform_matrix[vertex_counter + 8];
 assign mul_3_in_b = transform_matrix[vertex_counter + 12];
 
 always @(posedge clk) begin
-    if (reset) begin
+    if (reset || start) begin
         input_vertex_valid_reg <= 0;
         vertex_counter <= 2'd0;
     end
@@ -63,6 +64,7 @@ always @(posedge clk) begin
         input_vertex_valid_reg[0] <= input_vertex_valid;
         for ( int i = 0; i < VERTEX_VALID_DELAY; i = i + 1)
             input_vertex_valid_reg[i + 1] <= input_vertex_valid_reg[i];
+            
 
         if (input_vertex_valid || (|input_vertex_valid_reg)) begin
 
