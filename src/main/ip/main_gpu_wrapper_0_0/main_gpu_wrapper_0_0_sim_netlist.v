@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Mon May 17 23:35:03 2021
-// Host        : RYZEN-PC running 64-bit major release  (build 9200)
+// Date        : Tue May 18 09:59:06 2021
+// Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               C:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main/ip/main_gpu_wrapper_0_0/main_gpu_wrapper_0_0_sim_netlist.v
+//               C:/Users/wojte/Desktop/sdup_projekt/ZynqSDUP/src/main/ip/main_gpu_wrapper_0_0/main_gpu_wrapper_0_0_sim_netlist.v
 // Design      : main_gpu_wrapper_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -48,7 +48,7 @@ module main_gpu_wrapper_0_0
     frame_end,
     draw,
     out_ready);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET reset, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET reset, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN main_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *) input clk;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input reset;
   input [31:0]vertex_count;
   input start;
@@ -151,23 +151,16 @@ endmodule
 
 (* ORIG_REF_NAME = "GPU_top" *) 
 module main_gpu_wrapper_0_0_GPU_top
-   (force_black_reg,
-    frame_end,
-    \FSM_onehot_state_reg[2] ,
-    CO,
-    \BB_BR_x_reg[10] ,
-    Q,
+   (frame_end,
     pixel_x_out,
     pixel_y_out,
     width,
     height,
-    \out_valid_d_reg[0] ,
     output_valid,
     draw,
     output_color,
     clk,
     reset,
-    force_black_reg_0,
     vertex_count,
     start,
     mem_wr_en,
@@ -190,23 +183,16 @@ module main_gpu_wrapper_0_0_GPU_top
     matrix_02,
     matrix_01,
     matrix_00);
-  output force_black_reg;
   output frame_end;
-  output \FSM_onehot_state_reg[2] ;
-  output [0:0]CO;
-  output [0:0]\BB_BR_x_reg[10] ;
-  output [0:0]Q;
   output [10:0]pixel_x_out;
   output [10:0]pixel_y_out;
   output [10:0]width;
   output [10:0]height;
-  output \out_valid_d_reg[0] ;
   output output_valid;
   output draw;
   output [7:0]output_color;
   input clk;
   input reset;
-  input force_black_reg_0;
   input [31:0]vertex_count;
   input start;
   input mem_wr_en;
@@ -230,17 +216,192 @@ module main_gpu_wrapper_0_0_GPU_top
   input [17:0]matrix_01;
   input [17:0]matrix_00;
 
-  wire [0:0]\BB_BR_x_reg[10] ;
-  wire [0:0]CO;
-  wire \FSM_onehot_state_reg[2] ;
-  wire [0:0]Q;
   wire clk;
   wire draw;
-  wire force_black_reg;
-  wire force_black_reg_0;
   wire frame_end;
   wire [10:0]height;
+  wire \i_/i_/i___120_carry__0_n_0 ;
+  wire \i_/i_/i___120_carry__0_n_1 ;
+  wire \i_/i_/i___120_carry__0_n_2 ;
+  wire \i_/i_/i___120_carry__0_n_3 ;
+  wire \i_/i_/i___120_carry__0_n_4 ;
+  wire \i_/i_/i___120_carry__0_n_5 ;
+  wire \i_/i_/i___120_carry__0_n_6 ;
+  wire \i_/i_/i___120_carry__0_n_7 ;
+  wire \i_/i_/i___120_carry__1_n_0 ;
+  wire \i_/i_/i___120_carry__1_n_1 ;
+  wire \i_/i_/i___120_carry__1_n_2 ;
+  wire \i_/i_/i___120_carry__1_n_3 ;
+  wire \i_/i_/i___120_carry__1_n_4 ;
+  wire \i_/i_/i___120_carry__1_n_5 ;
+  wire \i_/i_/i___120_carry__1_n_6 ;
+  wire \i_/i_/i___120_carry__1_n_7 ;
+  wire \i_/i_/i___120_carry__2_n_3 ;
+  wire \i_/i_/i___120_carry__2_n_6 ;
+  wire \i_/i_/i___120_carry__2_n_7 ;
+  wire \i_/i_/i___120_carry_n_0 ;
+  wire \i_/i_/i___120_carry_n_1 ;
+  wire \i_/i_/i___120_carry_n_2 ;
+  wire \i_/i_/i___120_carry_n_3 ;
+  wire \i_/i_/i___120_carry_n_4 ;
+  wire \i_/i_/i___120_carry_n_5 ;
+  wire \i_/i_/i___120_carry_n_6 ;
+  wire \i_/i_/i___120_carry_n_7 ;
+  wire \i_/i_/i___93_carry__0_n_0 ;
+  wire \i_/i_/i___93_carry__0_n_1 ;
+  wire \i_/i_/i___93_carry__0_n_2 ;
+  wire \i_/i_/i___93_carry__0_n_3 ;
+  wire \i_/i_/i___93_carry__0_n_4 ;
+  wire \i_/i_/i___93_carry__0_n_5 ;
+  wire \i_/i_/i___93_carry__0_n_6 ;
+  wire \i_/i_/i___93_carry__0_n_7 ;
+  wire \i_/i_/i___93_carry__1_n_0 ;
+  wire \i_/i_/i___93_carry__1_n_1 ;
+  wire \i_/i_/i___93_carry__1_n_2 ;
+  wire \i_/i_/i___93_carry__1_n_3 ;
+  wire \i_/i_/i___93_carry__1_n_4 ;
+  wire \i_/i_/i___93_carry__1_n_5 ;
+  wire \i_/i_/i___93_carry__1_n_6 ;
+  wire \i_/i_/i___93_carry__1_n_7 ;
+  wire \i_/i_/i___93_carry__2_n_3 ;
+  wire \i_/i_/i___93_carry__2_n_6 ;
+  wire \i_/i_/i___93_carry__2_n_7 ;
+  wire \i_/i_/i___93_carry_n_0 ;
+  wire \i_/i_/i___93_carry_n_1 ;
+  wire \i_/i_/i___93_carry_n_2 ;
+  wire \i_/i_/i___93_carry_n_3 ;
+  wire \i_/i_/i___93_carry_n_4 ;
+  wire \i_/i_/i___93_carry_n_5 ;
+  wire \i_/i_/i___93_carry_n_6 ;
+  wire \i_/i_/i___93_carry_n_7 ;
+  wire \i_/i_/i__carry__0_n_0 ;
+  wire \i_/i_/i__carry__0_n_1 ;
+  wire \i_/i_/i__carry__0_n_2 ;
+  wire \i_/i_/i__carry__0_n_3 ;
+  wire \i_/i_/i__carry__0_n_4 ;
+  wire \i_/i_/i__carry__0_n_5 ;
+  wire \i_/i_/i__carry__0_n_6 ;
+  wire \i_/i_/i__carry__0_n_7 ;
+  wire \i_/i_/i__carry__1_n_0 ;
+  wire \i_/i_/i__carry__1_n_1 ;
+  wire \i_/i_/i__carry__1_n_2 ;
+  wire \i_/i_/i__carry__1_n_3 ;
+  wire \i_/i_/i__carry__1_n_4 ;
+  wire \i_/i_/i__carry__1_n_5 ;
+  wire \i_/i_/i__carry__1_n_6 ;
+  wire \i_/i_/i__carry__1_n_7 ;
+  wire \i_/i_/i__carry__2_n_0 ;
+  wire \i_/i_/i__carry__2_n_1 ;
+  wire \i_/i_/i__carry__2_n_2 ;
+  wire \i_/i_/i__carry__2_n_3 ;
+  wire \i_/i_/i__carry__2_n_4 ;
+  wire \i_/i_/i__carry__2_n_5 ;
+  wire \i_/i_/i__carry__2_n_6 ;
+  wire \i_/i_/i__carry__2_n_7 ;
+  wire \i_/i_/i__carry__3_n_0 ;
+  wire \i_/i_/i__carry__3_n_1 ;
+  wire \i_/i_/i__carry__3_n_2 ;
+  wire \i_/i_/i__carry__3_n_3 ;
+  wire \i_/i_/i__carry__3_n_4 ;
+  wire \i_/i_/i__carry__3_n_5 ;
+  wire \i_/i_/i__carry__3_n_6 ;
+  wire \i_/i_/i__carry__3_n_7 ;
+  wire \i_/i_/i__carry__4_n_0 ;
+  wire \i_/i_/i__carry__4_n_1 ;
+  wire \i_/i_/i__carry__4_n_2 ;
+  wire \i_/i_/i__carry__4_n_3 ;
+  wire \i_/i_/i__carry__4_n_4 ;
+  wire \i_/i_/i__carry__4_n_5 ;
+  wire \i_/i_/i__carry__4_n_6 ;
+  wire \i_/i_/i__carry__4_n_7 ;
+  wire \i_/i_/i__carry__5_n_0 ;
+  wire \i_/i_/i__carry__5_n_1 ;
+  wire \i_/i_/i__carry__5_n_2 ;
+  wire \i_/i_/i__carry__5_n_3 ;
+  wire \i_/i_/i__carry__5_n_4 ;
+  wire \i_/i_/i__carry__5_n_5 ;
+  wire \i_/i_/i__carry__5_n_6 ;
+  wire \i_/i_/i__carry__5_n_7 ;
+  wire \i_/i_/i__carry__6_n_1 ;
+  wire \i_/i_/i__carry__6_n_2 ;
+  wire \i_/i_/i__carry__6_n_3 ;
+  wire \i_/i_/i__carry__6_n_4 ;
+  wire \i_/i_/i__carry__6_n_5 ;
+  wire \i_/i_/i__carry__6_n_6 ;
+  wire \i_/i_/i__carry__6_n_7 ;
+  wire \i_/i_/i__carry_n_0 ;
+  wire \i_/i_/i__carry_n_1 ;
+  wire \i_/i_/i__carry_n_2 ;
+  wire \i_/i_/i__carry_n_3 ;
+  wire \i_/i_/i__carry_n_4 ;
+  wire \i_/i_/i__carry_n_5 ;
+  wire \i_/i_/i__carry_n_6 ;
+  wire \i_/i_/i__carry_n_7 ;
+  wire i___120_carry_i_1_n_0;
+  wire i___93_carry_i_1_n_0;
+  wire i__carry__0_i_1__0_n_0;
+  wire i__carry__0_i_2__0_n_0;
+  wire i__carry__0_i_3_n_0;
+  wire i__carry__0_i_4__0_n_0;
+  wire i__carry__0_i_5_n_0;
+  wire i__carry__0_i_6_n_0;
+  wire i__carry__0_i_7_n_0;
+  wire i__carry__0_i_8_n_0;
+  wire i__carry__1_i_1_n_0;
+  wire i__carry__1_i_2_n_0;
+  wire i__carry__1_i_3_n_0;
+  wire i__carry__1_i_4_n_0;
+  wire i__carry__1_i_5_n_0;
+  wire i__carry__1_i_6_n_0;
+  wire i__carry__1_i_7_n_0;
+  wire i__carry__1_i_8_n_0;
+  wire i__carry__2_i_1_n_0;
+  wire i__carry__2_i_2_n_0;
+  wire i__carry__2_i_3_n_0;
+  wire i__carry__2_i_4_n_0;
+  wire i__carry__2_i_5_n_0;
+  wire i__carry__2_i_6_n_0;
+  wire i__carry__2_i_7_n_0;
+  wire i__carry__2_i_8_n_0;
+  wire i__carry__3_i_1_n_0;
+  wire i__carry__3_i_2_n_0;
+  wire i__carry__3_i_3_n_0;
+  wire i__carry__3_i_4_n_0;
+  wire i__carry__3_i_5_n_0;
+  wire i__carry__3_i_6_n_0;
+  wire i__carry__3_i_7_n_0;
+  wire i__carry__3_i_8_n_0;
+  wire i__carry__4_i_1_n_0;
+  wire i__carry__4_i_2_n_0;
+  wire i__carry__4_i_3_n_0;
+  wire i__carry__4_i_4_n_0;
+  wire i__carry__4_i_5_n_0;
+  wire i__carry__4_i_6_n_0;
+  wire i__carry__4_i_7_n_0;
+  wire i__carry__4_i_8_n_0;
+  wire i__carry__5_i_1_n_0;
+  wire i__carry__5_i_2_n_0;
+  wire i__carry__5_i_3_n_0;
+  wire i__carry__5_i_4_n_0;
+  wire i__carry__5_i_5_n_0;
+  wire i__carry__5_i_6_n_0;
+  wire i__carry__5_i_7_n_0;
+  wire i__carry__5_i_8_n_0;
+  wire i__carry__6_i_1_n_0;
+  wire i__carry__6_i_2_n_0;
+  wire i__carry__6_i_3_n_0;
+  wire i__carry__6_i_4_n_0;
+  wire i__carry__6_i_5_n_0;
+  wire i__carry__6_i_6_n_0;
+  wire i__carry__6_i_7_n_0;
+  wire i__carry_i_1__1_n_0;
+  wire i__carry_i_2__1_n_0;
+  wire i__carry_i_3__1_n_0;
+  wire i__carry_i_4__1_n_0;
+  wire i__carry_i_5__0_n_0;
+  wire i__carry_i_6__0_n_0;
   wire input_vertex_valid;
+  wire input_vertex_valid_i_1_n_0;
   wire [17:0]matrix_00;
   wire [17:0]matrix_01;
   wire [17:0]matrix_02;
@@ -261,14 +422,13 @@ module main_gpu_wrapper_0_0_GPU_top
   wire [17:0]mem_wr_data;
   wire mem_wr_en;
   wire out_ready;
-  wire \out_valid_d_reg[0] ;
   wire [7:0]output_color;
   wire output_valid;
   wire [10:0]output_vertex;
   wire output_vertex_valid;
   wire [10:0]pixel_x_out;
   wire [10:0]pixel_y_out;
-  wire rasterizer_control_n_18;
+  wire rasterizer_control_n_15;
   wire reset;
   wire start;
   wire transformed_vertex_mem_n_0;
@@ -302,35 +462,7 @@ module main_gpu_wrapper_0_0_GPU_top
   wire [13:0]transformed_vertex_mem_rd_addr;
   wire [3:0]transformed_vertex_mem_rd_data;
   wire \transformed_vertex_mem_wr_addr[0]_i_1_n_0 ;
-  wire \transformed_vertex_mem_wr_addr[0]_i_3_n_0 ;
   wire [13:0]transformed_vertex_mem_wr_addr_reg;
-  wire \transformed_vertex_mem_wr_addr_reg[0]_i_2_n_0 ;
-  wire \transformed_vertex_mem_wr_addr_reg[0]_i_2_n_1 ;
-  wire \transformed_vertex_mem_wr_addr_reg[0]_i_2_n_2 ;
-  wire \transformed_vertex_mem_wr_addr_reg[0]_i_2_n_3 ;
-  wire \transformed_vertex_mem_wr_addr_reg[0]_i_2_n_4 ;
-  wire \transformed_vertex_mem_wr_addr_reg[0]_i_2_n_5 ;
-  wire \transformed_vertex_mem_wr_addr_reg[0]_i_2_n_6 ;
-  wire \transformed_vertex_mem_wr_addr_reg[0]_i_2_n_7 ;
-  wire \transformed_vertex_mem_wr_addr_reg[12]_i_1_n_3 ;
-  wire \transformed_vertex_mem_wr_addr_reg[12]_i_1_n_6 ;
-  wire \transformed_vertex_mem_wr_addr_reg[12]_i_1_n_7 ;
-  wire \transformed_vertex_mem_wr_addr_reg[4]_i_1_n_0 ;
-  wire \transformed_vertex_mem_wr_addr_reg[4]_i_1_n_1 ;
-  wire \transformed_vertex_mem_wr_addr_reg[4]_i_1_n_2 ;
-  wire \transformed_vertex_mem_wr_addr_reg[4]_i_1_n_3 ;
-  wire \transformed_vertex_mem_wr_addr_reg[4]_i_1_n_4 ;
-  wire \transformed_vertex_mem_wr_addr_reg[4]_i_1_n_5 ;
-  wire \transformed_vertex_mem_wr_addr_reg[4]_i_1_n_6 ;
-  wire \transformed_vertex_mem_wr_addr_reg[4]_i_1_n_7 ;
-  wire \transformed_vertex_mem_wr_addr_reg[8]_i_1_n_0 ;
-  wire \transformed_vertex_mem_wr_addr_reg[8]_i_1_n_1 ;
-  wire \transformed_vertex_mem_wr_addr_reg[8]_i_1_n_2 ;
-  wire \transformed_vertex_mem_wr_addr_reg[8]_i_1_n_3 ;
-  wire \transformed_vertex_mem_wr_addr_reg[8]_i_1_n_4 ;
-  wire \transformed_vertex_mem_wr_addr_reg[8]_i_1_n_5 ;
-  wire \transformed_vertex_mem_wr_addr_reg[8]_i_1_n_6 ;
-  wire \transformed_vertex_mem_wr_addr_reg[8]_i_1_n_7 ;
   wire transformed_vertex_mem_wr_data;
   wire \transformed_vertex_mem_wr_data_reg_n_0_[0] ;
   wire \transformed_vertex_mem_wr_data_reg_n_0_[10] ;
@@ -346,194 +478,651 @@ module main_gpu_wrapper_0_0_GPU_top
   wire transformed_vertex_mem_wr_en;
   wire [31:0]vertex_count;
   wire \vertex_count_reg[0]_i_1_n_0 ;
-  wire \vertex_count_reg[0]_i_3_n_0 ;
-  wire \vertex_count_reg[0]_i_4_n_0 ;
-  wire \vertex_count_reg[0]_i_5_n_0 ;
-  wire \vertex_count_reg[0]_i_6_n_0 ;
-  wire \vertex_count_reg[0]_i_7_n_0 ;
-  wire \vertex_count_reg[0]_i_8_n_0 ;
-  wire \vertex_count_reg[12]_i_2_n_0 ;
-  wire \vertex_count_reg[12]_i_3_n_0 ;
-  wire \vertex_count_reg[12]_i_4_n_0 ;
-  wire \vertex_count_reg[12]_i_5_n_0 ;
-  wire \vertex_count_reg[12]_i_6_n_0 ;
-  wire \vertex_count_reg[12]_i_7_n_0 ;
-  wire \vertex_count_reg[12]_i_8_n_0 ;
-  wire \vertex_count_reg[12]_i_9_n_0 ;
-  wire \vertex_count_reg[16]_i_2_n_0 ;
-  wire \vertex_count_reg[16]_i_3_n_0 ;
-  wire \vertex_count_reg[16]_i_4_n_0 ;
-  wire \vertex_count_reg[16]_i_5_n_0 ;
-  wire \vertex_count_reg[16]_i_6_n_0 ;
-  wire \vertex_count_reg[16]_i_7_n_0 ;
-  wire \vertex_count_reg[16]_i_8_n_0 ;
-  wire \vertex_count_reg[16]_i_9_n_0 ;
-  wire \vertex_count_reg[20]_i_2_n_0 ;
-  wire \vertex_count_reg[20]_i_3_n_0 ;
-  wire \vertex_count_reg[20]_i_4_n_0 ;
-  wire \vertex_count_reg[20]_i_5_n_0 ;
-  wire \vertex_count_reg[20]_i_6_n_0 ;
-  wire \vertex_count_reg[20]_i_7_n_0 ;
-  wire \vertex_count_reg[20]_i_8_n_0 ;
-  wire \vertex_count_reg[20]_i_9_n_0 ;
-  wire \vertex_count_reg[24]_i_2_n_0 ;
-  wire \vertex_count_reg[24]_i_3_n_0 ;
-  wire \vertex_count_reg[24]_i_4_n_0 ;
-  wire \vertex_count_reg[24]_i_5_n_0 ;
-  wire \vertex_count_reg[24]_i_6_n_0 ;
-  wire \vertex_count_reg[24]_i_7_n_0 ;
-  wire \vertex_count_reg[24]_i_8_n_0 ;
-  wire \vertex_count_reg[24]_i_9_n_0 ;
-  wire \vertex_count_reg[28]_i_2_n_0 ;
-  wire \vertex_count_reg[28]_i_3_n_0 ;
-  wire \vertex_count_reg[28]_i_4_n_0 ;
-  wire \vertex_count_reg[28]_i_5_n_0 ;
-  wire \vertex_count_reg[28]_i_6_n_0 ;
-  wire \vertex_count_reg[28]_i_7_n_0 ;
-  wire \vertex_count_reg[28]_i_8_n_0 ;
-  wire \vertex_count_reg[4]_i_2_n_0 ;
-  wire \vertex_count_reg[4]_i_3_n_0 ;
-  wire \vertex_count_reg[4]_i_4_n_0 ;
-  wire \vertex_count_reg[4]_i_5_n_0 ;
-  wire \vertex_count_reg[4]_i_6_n_0 ;
-  wire \vertex_count_reg[4]_i_7_n_0 ;
-  wire \vertex_count_reg[4]_i_8_n_0 ;
-  wire \vertex_count_reg[4]_i_9_n_0 ;
-  wire \vertex_count_reg[8]_i_2_n_0 ;
-  wire \vertex_count_reg[8]_i_3_n_0 ;
-  wire \vertex_count_reg[8]_i_4_n_0 ;
-  wire \vertex_count_reg[8]_i_5_n_0 ;
-  wire \vertex_count_reg[8]_i_6_n_0 ;
-  wire \vertex_count_reg[8]_i_7_n_0 ;
-  wire \vertex_count_reg[8]_i_8_n_0 ;
-  wire \vertex_count_reg[8]_i_9_n_0 ;
   wire [31:0]vertex_count_reg_reg;
-  wire \vertex_count_reg_reg[0]_i_2_n_0 ;
-  wire \vertex_count_reg_reg[0]_i_2_n_1 ;
-  wire \vertex_count_reg_reg[0]_i_2_n_2 ;
-  wire \vertex_count_reg_reg[0]_i_2_n_3 ;
-  wire \vertex_count_reg_reg[0]_i_2_n_4 ;
-  wire \vertex_count_reg_reg[0]_i_2_n_5 ;
-  wire \vertex_count_reg_reg[0]_i_2_n_6 ;
-  wire \vertex_count_reg_reg[0]_i_2_n_7 ;
-  wire \vertex_count_reg_reg[12]_i_1_n_0 ;
-  wire \vertex_count_reg_reg[12]_i_1_n_1 ;
-  wire \vertex_count_reg_reg[12]_i_1_n_2 ;
-  wire \vertex_count_reg_reg[12]_i_1_n_3 ;
-  wire \vertex_count_reg_reg[12]_i_1_n_4 ;
-  wire \vertex_count_reg_reg[12]_i_1_n_5 ;
-  wire \vertex_count_reg_reg[12]_i_1_n_6 ;
-  wire \vertex_count_reg_reg[12]_i_1_n_7 ;
-  wire \vertex_count_reg_reg[16]_i_1_n_0 ;
-  wire \vertex_count_reg_reg[16]_i_1_n_1 ;
-  wire \vertex_count_reg_reg[16]_i_1_n_2 ;
-  wire \vertex_count_reg_reg[16]_i_1_n_3 ;
-  wire \vertex_count_reg_reg[16]_i_1_n_4 ;
-  wire \vertex_count_reg_reg[16]_i_1_n_5 ;
-  wire \vertex_count_reg_reg[16]_i_1_n_6 ;
-  wire \vertex_count_reg_reg[16]_i_1_n_7 ;
-  wire \vertex_count_reg_reg[20]_i_1_n_0 ;
-  wire \vertex_count_reg_reg[20]_i_1_n_1 ;
-  wire \vertex_count_reg_reg[20]_i_1_n_2 ;
-  wire \vertex_count_reg_reg[20]_i_1_n_3 ;
-  wire \vertex_count_reg_reg[20]_i_1_n_4 ;
-  wire \vertex_count_reg_reg[20]_i_1_n_5 ;
-  wire \vertex_count_reg_reg[20]_i_1_n_6 ;
-  wire \vertex_count_reg_reg[20]_i_1_n_7 ;
-  wire \vertex_count_reg_reg[24]_i_1_n_0 ;
-  wire \vertex_count_reg_reg[24]_i_1_n_1 ;
-  wire \vertex_count_reg_reg[24]_i_1_n_2 ;
-  wire \vertex_count_reg_reg[24]_i_1_n_3 ;
-  wire \vertex_count_reg_reg[24]_i_1_n_4 ;
-  wire \vertex_count_reg_reg[24]_i_1_n_5 ;
-  wire \vertex_count_reg_reg[24]_i_1_n_6 ;
-  wire \vertex_count_reg_reg[24]_i_1_n_7 ;
-  wire \vertex_count_reg_reg[28]_i_1_n_1 ;
-  wire \vertex_count_reg_reg[28]_i_1_n_2 ;
-  wire \vertex_count_reg_reg[28]_i_1_n_3 ;
-  wire \vertex_count_reg_reg[28]_i_1_n_4 ;
-  wire \vertex_count_reg_reg[28]_i_1_n_5 ;
-  wire \vertex_count_reg_reg[28]_i_1_n_6 ;
-  wire \vertex_count_reg_reg[28]_i_1_n_7 ;
-  wire \vertex_count_reg_reg[4]_i_1_n_0 ;
-  wire \vertex_count_reg_reg[4]_i_1_n_1 ;
-  wire \vertex_count_reg_reg[4]_i_1_n_2 ;
-  wire \vertex_count_reg_reg[4]_i_1_n_3 ;
-  wire \vertex_count_reg_reg[4]_i_1_n_4 ;
-  wire \vertex_count_reg_reg[4]_i_1_n_5 ;
-  wire \vertex_count_reg_reg[4]_i_1_n_6 ;
-  wire \vertex_count_reg_reg[4]_i_1_n_7 ;
-  wire \vertex_count_reg_reg[8]_i_1_n_0 ;
-  wire \vertex_count_reg_reg[8]_i_1_n_1 ;
-  wire \vertex_count_reg_reg[8]_i_1_n_2 ;
-  wire \vertex_count_reg_reg[8]_i_1_n_3 ;
-  wire \vertex_count_reg_reg[8]_i_1_n_4 ;
-  wire \vertex_count_reg_reg[8]_i_1_n_5 ;
-  wire \vertex_count_reg_reg[8]_i_1_n_6 ;
-  wire \vertex_count_reg_reg[8]_i_1_n_7 ;
   wire \vertex_mem_rd_addr[0]_i_1_n_0 ;
-  wire \vertex_mem_rd_addr[0]_i_8_n_0 ;
   wire [13:0]vertex_mem_rd_addr_reg;
-  wire \vertex_mem_rd_addr_reg[0]_i_3_n_0 ;
-  wire \vertex_mem_rd_addr_reg[0]_i_3_n_1 ;
-  wire \vertex_mem_rd_addr_reg[0]_i_3_n_2 ;
-  wire \vertex_mem_rd_addr_reg[0]_i_3_n_3 ;
-  wire \vertex_mem_rd_addr_reg[0]_i_3_n_4 ;
-  wire \vertex_mem_rd_addr_reg[0]_i_3_n_5 ;
-  wire \vertex_mem_rd_addr_reg[0]_i_3_n_6 ;
-  wire \vertex_mem_rd_addr_reg[0]_i_3_n_7 ;
-  wire \vertex_mem_rd_addr_reg[12]_i_1_n_3 ;
-  wire \vertex_mem_rd_addr_reg[12]_i_1_n_6 ;
-  wire \vertex_mem_rd_addr_reg[12]_i_1_n_7 ;
-  wire \vertex_mem_rd_addr_reg[4]_i_1_n_0 ;
-  wire \vertex_mem_rd_addr_reg[4]_i_1_n_1 ;
-  wire \vertex_mem_rd_addr_reg[4]_i_1_n_2 ;
-  wire \vertex_mem_rd_addr_reg[4]_i_1_n_3 ;
-  wire \vertex_mem_rd_addr_reg[4]_i_1_n_4 ;
-  wire \vertex_mem_rd_addr_reg[4]_i_1_n_5 ;
-  wire \vertex_mem_rd_addr_reg[4]_i_1_n_6 ;
-  wire \vertex_mem_rd_addr_reg[4]_i_1_n_7 ;
-  wire \vertex_mem_rd_addr_reg[8]_i_1_n_0 ;
-  wire \vertex_mem_rd_addr_reg[8]_i_1_n_1 ;
-  wire \vertex_mem_rd_addr_reg[8]_i_1_n_2 ;
-  wire \vertex_mem_rd_addr_reg[8]_i_1_n_3 ;
-  wire \vertex_mem_rd_addr_reg[8]_i_1_n_4 ;
-  wire \vertex_mem_rd_addr_reg[8]_i_1_n_5 ;
-  wire \vertex_mem_rd_addr_reg[8]_i_1_n_6 ;
-  wire \vertex_mem_rd_addr_reg[8]_i_1_n_7 ;
   wire [17:0]vertex_mem_rd_data;
+  wire vertex_processor_rtl_n_1;
+  wire vertex_processor_rtl_n_2;
   wire [10:0]width;
-  wire [3:1]\NLW_transformed_vertex_mem_wr_addr_reg[12]_i_1_CO_UNCONNECTED ;
-  wire [3:2]\NLW_transformed_vertex_mem_wr_addr_reg[12]_i_1_O_UNCONNECTED ;
-  wire [3:3]\NLW_vertex_count_reg_reg[28]_i_1_CO_UNCONNECTED ;
-  wire [3:1]\NLW_vertex_mem_rd_addr_reg[12]_i_1_CO_UNCONNECTED ;
-  wire [3:2]\NLW_vertex_mem_rd_addr_reg[12]_i_1_O_UNCONNECTED ;
+  wire [3:1]\NLW_i_/i_/i___120_carry__2_CO_UNCONNECTED ;
+  wire [3:2]\NLW_i_/i_/i___120_carry__2_O_UNCONNECTED ;
+  wire [3:1]\NLW_i_/i_/i___93_carry__2_CO_UNCONNECTED ;
+  wire [3:2]\NLW_i_/i_/i___93_carry__2_O_UNCONNECTED ;
+  wire [3:3]\NLW_i_/i_/i__carry__6_CO_UNCONNECTED ;
 
+  CARRY4 \i_/i_/i___120_carry 
+       (.CI(1'b0),
+        .CO({\i_/i_/i___120_carry_n_0 ,\i_/i_/i___120_carry_n_1 ,\i_/i_/i___120_carry_n_2 ,\i_/i_/i___120_carry_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b1}),
+        .O({\i_/i_/i___120_carry_n_4 ,\i_/i_/i___120_carry_n_5 ,\i_/i_/i___120_carry_n_6 ,\i_/i_/i___120_carry_n_7 }),
+        .S({vertex_mem_rd_addr_reg[3:1],i___120_carry_i_1_n_0}));
+  CARRY4 \i_/i_/i___120_carry__0 
+       (.CI(\i_/i_/i___120_carry_n_0 ),
+        .CO({\i_/i_/i___120_carry__0_n_0 ,\i_/i_/i___120_carry__0_n_1 ,\i_/i_/i___120_carry__0_n_2 ,\i_/i_/i___120_carry__0_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({\i_/i_/i___120_carry__0_n_4 ,\i_/i_/i___120_carry__0_n_5 ,\i_/i_/i___120_carry__0_n_6 ,\i_/i_/i___120_carry__0_n_7 }),
+        .S(vertex_mem_rd_addr_reg[7:4]));
+  CARRY4 \i_/i_/i___120_carry__1 
+       (.CI(\i_/i_/i___120_carry__0_n_0 ),
+        .CO({\i_/i_/i___120_carry__1_n_0 ,\i_/i_/i___120_carry__1_n_1 ,\i_/i_/i___120_carry__1_n_2 ,\i_/i_/i___120_carry__1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({\i_/i_/i___120_carry__1_n_4 ,\i_/i_/i___120_carry__1_n_5 ,\i_/i_/i___120_carry__1_n_6 ,\i_/i_/i___120_carry__1_n_7 }),
+        .S(vertex_mem_rd_addr_reg[11:8]));
+  CARRY4 \i_/i_/i___120_carry__2 
+       (.CI(\i_/i_/i___120_carry__1_n_0 ),
+        .CO({\NLW_i_/i_/i___120_carry__2_CO_UNCONNECTED [3:1],\i_/i_/i___120_carry__2_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({\NLW_i_/i_/i___120_carry__2_O_UNCONNECTED [3:2],\i_/i_/i___120_carry__2_n_6 ,\i_/i_/i___120_carry__2_n_7 }),
+        .S({1'b0,1'b0,vertex_mem_rd_addr_reg[13:12]}));
+  CARRY4 \i_/i_/i___93_carry 
+       (.CI(1'b0),
+        .CO({\i_/i_/i___93_carry_n_0 ,\i_/i_/i___93_carry_n_1 ,\i_/i_/i___93_carry_n_2 ,\i_/i_/i___93_carry_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b1}),
+        .O({\i_/i_/i___93_carry_n_4 ,\i_/i_/i___93_carry_n_5 ,\i_/i_/i___93_carry_n_6 ,\i_/i_/i___93_carry_n_7 }),
+        .S({transformed_vertex_mem_wr_addr_reg[3:1],i___93_carry_i_1_n_0}));
+  CARRY4 \i_/i_/i___93_carry__0 
+       (.CI(\i_/i_/i___93_carry_n_0 ),
+        .CO({\i_/i_/i___93_carry__0_n_0 ,\i_/i_/i___93_carry__0_n_1 ,\i_/i_/i___93_carry__0_n_2 ,\i_/i_/i___93_carry__0_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({\i_/i_/i___93_carry__0_n_4 ,\i_/i_/i___93_carry__0_n_5 ,\i_/i_/i___93_carry__0_n_6 ,\i_/i_/i___93_carry__0_n_7 }),
+        .S(transformed_vertex_mem_wr_addr_reg[7:4]));
+  CARRY4 \i_/i_/i___93_carry__1 
+       (.CI(\i_/i_/i___93_carry__0_n_0 ),
+        .CO({\i_/i_/i___93_carry__1_n_0 ,\i_/i_/i___93_carry__1_n_1 ,\i_/i_/i___93_carry__1_n_2 ,\i_/i_/i___93_carry__1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({\i_/i_/i___93_carry__1_n_4 ,\i_/i_/i___93_carry__1_n_5 ,\i_/i_/i___93_carry__1_n_6 ,\i_/i_/i___93_carry__1_n_7 }),
+        .S(transformed_vertex_mem_wr_addr_reg[11:8]));
+  CARRY4 \i_/i_/i___93_carry__2 
+       (.CI(\i_/i_/i___93_carry__1_n_0 ),
+        .CO({\NLW_i_/i_/i___93_carry__2_CO_UNCONNECTED [3:1],\i_/i_/i___93_carry__2_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({\NLW_i_/i_/i___93_carry__2_O_UNCONNECTED [3:2],\i_/i_/i___93_carry__2_n_6 ,\i_/i_/i___93_carry__2_n_7 }),
+        .S({1'b0,1'b0,transformed_vertex_mem_wr_addr_reg[13:12]}));
+  CARRY4 \i_/i_/i__carry 
+       (.CI(1'b0),
+        .CO({\i_/i_/i__carry_n_0 ,\i_/i_/i__carry_n_1 ,\i_/i_/i__carry_n_2 ,\i_/i_/i__carry_n_3 }),
+        .CYINIT(1'b0),
+        .DI({i__carry_i_1__1_n_0,i__carry_i_2__1_n_0,vertex_count_reg_reg[1:0]}),
+        .O({\i_/i_/i__carry_n_4 ,\i_/i_/i__carry_n_5 ,\i_/i_/i__carry_n_6 ,\i_/i_/i__carry_n_7 }),
+        .S({i__carry_i_3__1_n_0,i__carry_i_4__1_n_0,i__carry_i_5__0_n_0,i__carry_i_6__0_n_0}));
+  CARRY4 \i_/i_/i__carry__0 
+       (.CI(\i_/i_/i__carry_n_0 ),
+        .CO({\i_/i_/i__carry__0_n_0 ,\i_/i_/i__carry__0_n_1 ,\i_/i_/i__carry__0_n_2 ,\i_/i_/i__carry__0_n_3 }),
+        .CYINIT(1'b0),
+        .DI({i__carry__0_i_1__0_n_0,i__carry__0_i_2__0_n_0,i__carry__0_i_3_n_0,i__carry__0_i_4__0_n_0}),
+        .O({\i_/i_/i__carry__0_n_4 ,\i_/i_/i__carry__0_n_5 ,\i_/i_/i__carry__0_n_6 ,\i_/i_/i__carry__0_n_7 }),
+        .S({i__carry__0_i_5_n_0,i__carry__0_i_6_n_0,i__carry__0_i_7_n_0,i__carry__0_i_8_n_0}));
+  CARRY4 \i_/i_/i__carry__1 
+       (.CI(\i_/i_/i__carry__0_n_0 ),
+        .CO({\i_/i_/i__carry__1_n_0 ,\i_/i_/i__carry__1_n_1 ,\i_/i_/i__carry__1_n_2 ,\i_/i_/i__carry__1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({i__carry__1_i_1_n_0,i__carry__1_i_2_n_0,i__carry__1_i_3_n_0,i__carry__1_i_4_n_0}),
+        .O({\i_/i_/i__carry__1_n_4 ,\i_/i_/i__carry__1_n_5 ,\i_/i_/i__carry__1_n_6 ,\i_/i_/i__carry__1_n_7 }),
+        .S({i__carry__1_i_5_n_0,i__carry__1_i_6_n_0,i__carry__1_i_7_n_0,i__carry__1_i_8_n_0}));
+  CARRY4 \i_/i_/i__carry__2 
+       (.CI(\i_/i_/i__carry__1_n_0 ),
+        .CO({\i_/i_/i__carry__2_n_0 ,\i_/i_/i__carry__2_n_1 ,\i_/i_/i__carry__2_n_2 ,\i_/i_/i__carry__2_n_3 }),
+        .CYINIT(1'b0),
+        .DI({i__carry__2_i_1_n_0,i__carry__2_i_2_n_0,i__carry__2_i_3_n_0,i__carry__2_i_4_n_0}),
+        .O({\i_/i_/i__carry__2_n_4 ,\i_/i_/i__carry__2_n_5 ,\i_/i_/i__carry__2_n_6 ,\i_/i_/i__carry__2_n_7 }),
+        .S({i__carry__2_i_5_n_0,i__carry__2_i_6_n_0,i__carry__2_i_7_n_0,i__carry__2_i_8_n_0}));
+  CARRY4 \i_/i_/i__carry__3 
+       (.CI(\i_/i_/i__carry__2_n_0 ),
+        .CO({\i_/i_/i__carry__3_n_0 ,\i_/i_/i__carry__3_n_1 ,\i_/i_/i__carry__3_n_2 ,\i_/i_/i__carry__3_n_3 }),
+        .CYINIT(1'b0),
+        .DI({i__carry__3_i_1_n_0,i__carry__3_i_2_n_0,i__carry__3_i_3_n_0,i__carry__3_i_4_n_0}),
+        .O({\i_/i_/i__carry__3_n_4 ,\i_/i_/i__carry__3_n_5 ,\i_/i_/i__carry__3_n_6 ,\i_/i_/i__carry__3_n_7 }),
+        .S({i__carry__3_i_5_n_0,i__carry__3_i_6_n_0,i__carry__3_i_7_n_0,i__carry__3_i_8_n_0}));
+  CARRY4 \i_/i_/i__carry__4 
+       (.CI(\i_/i_/i__carry__3_n_0 ),
+        .CO({\i_/i_/i__carry__4_n_0 ,\i_/i_/i__carry__4_n_1 ,\i_/i_/i__carry__4_n_2 ,\i_/i_/i__carry__4_n_3 }),
+        .CYINIT(1'b0),
+        .DI({i__carry__4_i_1_n_0,i__carry__4_i_2_n_0,i__carry__4_i_3_n_0,i__carry__4_i_4_n_0}),
+        .O({\i_/i_/i__carry__4_n_4 ,\i_/i_/i__carry__4_n_5 ,\i_/i_/i__carry__4_n_6 ,\i_/i_/i__carry__4_n_7 }),
+        .S({i__carry__4_i_5_n_0,i__carry__4_i_6_n_0,i__carry__4_i_7_n_0,i__carry__4_i_8_n_0}));
+  CARRY4 \i_/i_/i__carry__5 
+       (.CI(\i_/i_/i__carry__4_n_0 ),
+        .CO({\i_/i_/i__carry__5_n_0 ,\i_/i_/i__carry__5_n_1 ,\i_/i_/i__carry__5_n_2 ,\i_/i_/i__carry__5_n_3 }),
+        .CYINIT(1'b0),
+        .DI({i__carry__5_i_1_n_0,i__carry__5_i_2_n_0,i__carry__5_i_3_n_0,i__carry__5_i_4_n_0}),
+        .O({\i_/i_/i__carry__5_n_4 ,\i_/i_/i__carry__5_n_5 ,\i_/i_/i__carry__5_n_6 ,\i_/i_/i__carry__5_n_7 }),
+        .S({i__carry__5_i_5_n_0,i__carry__5_i_6_n_0,i__carry__5_i_7_n_0,i__carry__5_i_8_n_0}));
+  CARRY4 \i_/i_/i__carry__6 
+       (.CI(\i_/i_/i__carry__5_n_0 ),
+        .CO({\NLW_i_/i_/i__carry__6_CO_UNCONNECTED [3],\i_/i_/i__carry__6_n_1 ,\i_/i_/i__carry__6_n_2 ,\i_/i_/i__carry__6_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,i__carry__6_i_1_n_0,i__carry__6_i_2_n_0,i__carry__6_i_3_n_0}),
+        .O({\i_/i_/i__carry__6_n_4 ,\i_/i_/i__carry__6_n_5 ,\i_/i_/i__carry__6_n_6 ,\i_/i_/i__carry__6_n_7 }),
+        .S({i__carry__6_i_4_n_0,i__carry__6_i_5_n_0,i__carry__6_i_6_n_0,i__carry__6_i_7_n_0}));
+  LUT1 #(
+    .INIT(2'h1)) 
+    i___120_carry_i_1
+       (.I0(vertex_mem_rd_addr_reg[0]),
+        .O(i___120_carry_i_1_n_0));
+  LUT1 #(
+    .INIT(2'h1)) 
+    i___93_carry_i_1
+       (.I0(transformed_vertex_mem_wr_addr_reg[0]),
+        .O(i___93_carry_i_1_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__0_i_1__0
+       (.I0(vertex_count_reg_reg[7]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[7]),
+        .O(i__carry__0_i_1__0_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__0_i_2__0
+       (.I0(vertex_count_reg_reg[6]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[6]),
+        .O(i__carry__0_i_2__0_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__0_i_3
+       (.I0(vertex_count_reg_reg[5]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[5]),
+        .O(i__carry__0_i_3_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__0_i_4__0
+       (.I0(vertex_count_reg_reg[4]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[4]),
+        .O(i__carry__0_i_4__0_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__0_i_5
+       (.I0(vertex_count[7]),
+        .I1(vertex_count_reg_reg[7]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__0_i_5_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__0_i_6
+       (.I0(vertex_count[6]),
+        .I1(vertex_count_reg_reg[6]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__0_i_6_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__0_i_7
+       (.I0(vertex_count[5]),
+        .I1(vertex_count_reg_reg[5]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__0_i_7_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__0_i_8
+       (.I0(vertex_count[4]),
+        .I1(vertex_count_reg_reg[4]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__0_i_8_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__1_i_1
+       (.I0(vertex_count_reg_reg[11]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[11]),
+        .O(i__carry__1_i_1_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__1_i_2
+       (.I0(vertex_count_reg_reg[10]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[10]),
+        .O(i__carry__1_i_2_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__1_i_3
+       (.I0(vertex_count_reg_reg[9]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[9]),
+        .O(i__carry__1_i_3_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__1_i_4
+       (.I0(vertex_count_reg_reg[8]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[8]),
+        .O(i__carry__1_i_4_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__1_i_5
+       (.I0(vertex_count[11]),
+        .I1(vertex_count_reg_reg[11]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__1_i_5_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__1_i_6
+       (.I0(vertex_count[10]),
+        .I1(vertex_count_reg_reg[10]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__1_i_6_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__1_i_7
+       (.I0(vertex_count[9]),
+        .I1(vertex_count_reg_reg[9]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__1_i_7_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__1_i_8
+       (.I0(vertex_count[8]),
+        .I1(vertex_count_reg_reg[8]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__1_i_8_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__2_i_1
+       (.I0(vertex_count_reg_reg[15]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[15]),
+        .O(i__carry__2_i_1_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__2_i_2
+       (.I0(vertex_count_reg_reg[14]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[14]),
+        .O(i__carry__2_i_2_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__2_i_3
+       (.I0(vertex_count_reg_reg[13]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[13]),
+        .O(i__carry__2_i_3_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__2_i_4
+       (.I0(vertex_count_reg_reg[12]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[12]),
+        .O(i__carry__2_i_4_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__2_i_5
+       (.I0(vertex_count[15]),
+        .I1(vertex_count_reg_reg[15]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__2_i_5_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__2_i_6
+       (.I0(vertex_count[14]),
+        .I1(vertex_count_reg_reg[14]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__2_i_6_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__2_i_7
+       (.I0(vertex_count[13]),
+        .I1(vertex_count_reg_reg[13]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__2_i_7_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__2_i_8
+       (.I0(vertex_count[12]),
+        .I1(vertex_count_reg_reg[12]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__2_i_8_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__3_i_1
+       (.I0(vertex_count_reg_reg[19]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[19]),
+        .O(i__carry__3_i_1_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__3_i_2
+       (.I0(vertex_count_reg_reg[18]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[18]),
+        .O(i__carry__3_i_2_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__3_i_3
+       (.I0(vertex_count_reg_reg[17]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[17]),
+        .O(i__carry__3_i_3_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__3_i_4
+       (.I0(vertex_count_reg_reg[16]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[16]),
+        .O(i__carry__3_i_4_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__3_i_5
+       (.I0(vertex_count[19]),
+        .I1(vertex_count_reg_reg[19]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__3_i_5_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__3_i_6
+       (.I0(vertex_count[18]),
+        .I1(vertex_count_reg_reg[18]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__3_i_6_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__3_i_7
+       (.I0(vertex_count[17]),
+        .I1(vertex_count_reg_reg[17]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__3_i_7_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__3_i_8
+       (.I0(vertex_count[16]),
+        .I1(vertex_count_reg_reg[16]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__3_i_8_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__4_i_1
+       (.I0(vertex_count_reg_reg[23]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[23]),
+        .O(i__carry__4_i_1_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__4_i_2
+       (.I0(vertex_count_reg_reg[22]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[22]),
+        .O(i__carry__4_i_2_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__4_i_3
+       (.I0(vertex_count_reg_reg[21]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[21]),
+        .O(i__carry__4_i_3_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__4_i_4
+       (.I0(vertex_count_reg_reg[20]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[20]),
+        .O(i__carry__4_i_4_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__4_i_5
+       (.I0(vertex_count[23]),
+        .I1(vertex_count_reg_reg[23]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__4_i_5_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__4_i_6
+       (.I0(vertex_count[22]),
+        .I1(vertex_count_reg_reg[22]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__4_i_6_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__4_i_7
+       (.I0(vertex_count[21]),
+        .I1(vertex_count_reg_reg[21]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__4_i_7_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__4_i_8
+       (.I0(vertex_count[20]),
+        .I1(vertex_count_reg_reg[20]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__4_i_8_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__5_i_1
+       (.I0(vertex_count_reg_reg[27]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[27]),
+        .O(i__carry__5_i_1_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__5_i_2
+       (.I0(vertex_count_reg_reg[26]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[26]),
+        .O(i__carry__5_i_2_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__5_i_3
+       (.I0(vertex_count_reg_reg[25]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[25]),
+        .O(i__carry__5_i_3_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__5_i_4
+       (.I0(vertex_count_reg_reg[24]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[24]),
+        .O(i__carry__5_i_4_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__5_i_5
+       (.I0(vertex_count[27]),
+        .I1(vertex_count_reg_reg[27]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__5_i_5_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__5_i_6
+       (.I0(vertex_count[26]),
+        .I1(vertex_count_reg_reg[26]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__5_i_6_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__5_i_7
+       (.I0(vertex_count[25]),
+        .I1(vertex_count_reg_reg[25]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__5_i_7_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__5_i_8
+       (.I0(vertex_count[24]),
+        .I1(vertex_count_reg_reg[24]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__5_i_8_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__6_i_1
+       (.I0(vertex_count_reg_reg[30]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[30]),
+        .O(i__carry__6_i_1_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__6_i_2
+       (.I0(vertex_count_reg_reg[29]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[29]),
+        .O(i__carry__6_i_2_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry__6_i_3
+       (.I0(vertex_count_reg_reg[28]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[28]),
+        .O(i__carry__6_i_3_n_0));
+  LUT4 #(
+    .INIT(16'h00FD)) 
+    i__carry__6_i_4
+       (.I0(start),
+        .I1(rasterizer_control_n_15),
+        .I2(vertex_count[31]),
+        .I3(vertex_count_reg_reg[31]),
+        .O(i__carry__6_i_4_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__6_i_5
+       (.I0(vertex_count[30]),
+        .I1(vertex_count_reg_reg[30]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__6_i_5_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__6_i_6
+       (.I0(vertex_count[29]),
+        .I1(vertex_count_reg_reg[29]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__6_i_6_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry__6_i_7
+       (.I0(vertex_count[28]),
+        .I1(vertex_count_reg_reg[28]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry__6_i_7_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry_i_1__1
+       (.I0(vertex_count_reg_reg[3]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[3]),
+        .O(i__carry_i_1__1_n_0));
+  LUT4 #(
+    .INIT(16'hAEAA)) 
+    i__carry_i_2__1
+       (.I0(vertex_count_reg_reg[2]),
+        .I1(start),
+        .I2(rasterizer_control_n_15),
+        .I3(vertex_count[2]),
+        .O(i__carry_i_2__1_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry_i_3__1
+       (.I0(vertex_count[3]),
+        .I1(vertex_count_reg_reg[3]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry_i_3__1_n_0));
+  LUT4 #(
+    .INIT(16'h3E33)) 
+    i__carry_i_4__1
+       (.I0(vertex_count[2]),
+        .I1(vertex_count_reg_reg[2]),
+        .I2(rasterizer_control_n_15),
+        .I3(start),
+        .O(i__carry_i_4__1_n_0));
+  LUT3 #(
+    .INIT(8'h65)) 
+    i__carry_i_5__0
+       (.I0(vertex_count_reg_reg[1]),
+        .I1(rasterizer_control_n_15),
+        .I2(start),
+        .O(i__carry_i_5__0_n_0));
+  LUT3 #(
+    .INIT(8'h65)) 
+    i__carry_i_6__0
+       (.I0(vertex_count_reg_reg[0]),
+        .I1(rasterizer_control_n_15),
+        .I2(start),
+        .O(i__carry_i_6__0_n_0));
+  LUT2 #(
+    .INIT(4'h8)) 
+    input_vertex_valid_i_1
+       (.I0(rasterizer_control_n_15),
+        .I1(reset),
+        .O(input_vertex_valid_i_1_n_0));
   FDRE input_vertex_valid_reg
        (.C(clk),
         .CE(1'b1),
-        .D(rasterizer_control_n_18),
+        .D(input_vertex_valid_i_1_n_0),
         .Q(input_vertex_valid),
-        .R(reset));
+        .R(1'b0));
   main_gpu_wrapper_0_0_rasterizer_control rasterizer_control
        (.A({transformed_vertex_mem_n_0,transformed_vertex_mem_n_1,transformed_vertex_mem_n_2,transformed_vertex_mem_n_3,transformed_vertex_mem_n_4,transformed_vertex_mem_n_5,transformed_vertex_mem_n_6,transformed_vertex_mem_n_7,transformed_vertex_mem_rd_data}),
         .ADDRBWRADDR(transformed_vertex_mem_rd_addr),
-        .\BB_BR_y_reg[10]_0 (CO),
-        .CO(\BB_BR_x_reg[10] ),
         .D(transformed_vertex_mem_n_22),
-        .\FSM_onehot_state_reg[2]_0 (\FSM_onehot_state_reg[2] ),
-        .Q(Q),
         .\V3_y_reg[10]_0 (transformed_vertex_mem_n_23),
         .clk(clk),
         .draw(draw),
-        .force_black_reg_0(force_black_reg),
-        .force_black_reg_1(force_black_reg_0),
         .frame_end(frame_end),
         .height(height),
         .mul1_result_reg({transformed_vertex_mem_n_30,transformed_vertex_mem_n_31}),
         .mul1_result_reg_0({transformed_vertex_mem_n_28,transformed_vertex_mem_n_29}),
         .out_ready(out_ready),
-        .\out_valid_d_reg[0] (\out_valid_d_reg[0] ),
         .output_color(output_color),
         .output_valid(output_valid),
         .output_vertex_valid(output_vertex_valid),
@@ -544,7 +1133,7 @@ module main_gpu_wrapper_0_0_GPU_top
         .sub_result_reg_1({transformed_vertex_mem_n_24,transformed_vertex_mem_n_25}),
         .vertex_count(vertex_count[14:0]),
         .vertex_count_reg_reg(vertex_count_reg_reg),
-        .vertex_count_reg_reg_6_sp_1(rasterizer_control_n_18),
+        .vertex_count_reg_reg_20_sp_1(rasterizer_control_n_15),
         .width(width));
   main_gpu_wrapper_0_0_ram_rtl__parameterized0 transformed_vertex_mem
        (.A({transformed_vertex_mem_n_0,transformed_vertex_mem_n_1,transformed_vertex_mem_n_2,transformed_vertex_mem_n_3,transformed_vertex_mem_n_4,transformed_vertex_mem_n_5,transformed_vertex_mem_n_6,transformed_vertex_mem_n_7,transformed_vertex_mem_rd_data}),
@@ -561,126 +1150,93 @@ module main_gpu_wrapper_0_0_GPU_top
         .mem_reg_4_4({transformed_vertex_mem_n_28,transformed_vertex_mem_n_29}),
         .mem_reg_4_5({transformed_vertex_mem_n_30,transformed_vertex_mem_n_31}));
   LUT2 #(
-    .INIT(4'hE)) 
+    .INIT(4'hB)) 
     \transformed_vertex_mem_wr_addr[0]_i_1 
-       (.I0(reset),
-        .I1(start),
+       (.I0(start),
+        .I1(reset),
         .O(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \transformed_vertex_mem_wr_addr[0]_i_3 
-       (.I0(transformed_vertex_mem_wr_addr_reg[0]),
-        .O(\transformed_vertex_mem_wr_addr[0]_i_3_n_0 ));
   FDSE \transformed_vertex_mem_wr_addr_reg[0] 
        (.C(clk),
         .CE(output_vertex_valid),
-        .D(\transformed_vertex_mem_wr_addr_reg[0]_i_2_n_7 ),
+        .D(\i_/i_/i___93_carry_n_7 ),
         .Q(transformed_vertex_mem_wr_addr_reg[0]),
         .S(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
-  CARRY4 \transformed_vertex_mem_wr_addr_reg[0]_i_2 
-       (.CI(1'b0),
-        .CO({\transformed_vertex_mem_wr_addr_reg[0]_i_2_n_0 ,\transformed_vertex_mem_wr_addr_reg[0]_i_2_n_1 ,\transformed_vertex_mem_wr_addr_reg[0]_i_2_n_2 ,\transformed_vertex_mem_wr_addr_reg[0]_i_2_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b1}),
-        .O({\transformed_vertex_mem_wr_addr_reg[0]_i_2_n_4 ,\transformed_vertex_mem_wr_addr_reg[0]_i_2_n_5 ,\transformed_vertex_mem_wr_addr_reg[0]_i_2_n_6 ,\transformed_vertex_mem_wr_addr_reg[0]_i_2_n_7 }),
-        .S({transformed_vertex_mem_wr_addr_reg[3:1],\transformed_vertex_mem_wr_addr[0]_i_3_n_0 }));
   FDSE \transformed_vertex_mem_wr_addr_reg[10] 
        (.C(clk),
         .CE(output_vertex_valid),
-        .D(\transformed_vertex_mem_wr_addr_reg[8]_i_1_n_5 ),
+        .D(\i_/i_/i___93_carry__1_n_5 ),
         .Q(transformed_vertex_mem_wr_addr_reg[10]),
         .S(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
   FDSE \transformed_vertex_mem_wr_addr_reg[11] 
        (.C(clk),
         .CE(output_vertex_valid),
-        .D(\transformed_vertex_mem_wr_addr_reg[8]_i_1_n_4 ),
+        .D(\i_/i_/i___93_carry__1_n_4 ),
         .Q(transformed_vertex_mem_wr_addr_reg[11]),
         .S(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
   FDSE \transformed_vertex_mem_wr_addr_reg[12] 
        (.C(clk),
         .CE(output_vertex_valid),
-        .D(\transformed_vertex_mem_wr_addr_reg[12]_i_1_n_7 ),
+        .D(\i_/i_/i___93_carry__2_n_7 ),
         .Q(transformed_vertex_mem_wr_addr_reg[12]),
         .S(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
-  CARRY4 \transformed_vertex_mem_wr_addr_reg[12]_i_1 
-       (.CI(\transformed_vertex_mem_wr_addr_reg[8]_i_1_n_0 ),
-        .CO({\NLW_transformed_vertex_mem_wr_addr_reg[12]_i_1_CO_UNCONNECTED [3:1],\transformed_vertex_mem_wr_addr_reg[12]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\NLW_transformed_vertex_mem_wr_addr_reg[12]_i_1_O_UNCONNECTED [3:2],\transformed_vertex_mem_wr_addr_reg[12]_i_1_n_6 ,\transformed_vertex_mem_wr_addr_reg[12]_i_1_n_7 }),
-        .S({1'b0,1'b0,transformed_vertex_mem_wr_addr_reg[13:12]}));
   FDSE \transformed_vertex_mem_wr_addr_reg[13] 
        (.C(clk),
         .CE(output_vertex_valid),
-        .D(\transformed_vertex_mem_wr_addr_reg[12]_i_1_n_6 ),
+        .D(\i_/i_/i___93_carry__2_n_6 ),
         .Q(transformed_vertex_mem_wr_addr_reg[13]),
         .S(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
   FDSE \transformed_vertex_mem_wr_addr_reg[1] 
        (.C(clk),
         .CE(output_vertex_valid),
-        .D(\transformed_vertex_mem_wr_addr_reg[0]_i_2_n_6 ),
+        .D(\i_/i_/i___93_carry_n_6 ),
         .Q(transformed_vertex_mem_wr_addr_reg[1]),
         .S(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
   FDSE \transformed_vertex_mem_wr_addr_reg[2] 
        (.C(clk),
         .CE(output_vertex_valid),
-        .D(\transformed_vertex_mem_wr_addr_reg[0]_i_2_n_5 ),
+        .D(\i_/i_/i___93_carry_n_5 ),
         .Q(transformed_vertex_mem_wr_addr_reg[2]),
         .S(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
   FDSE \transformed_vertex_mem_wr_addr_reg[3] 
        (.C(clk),
         .CE(output_vertex_valid),
-        .D(\transformed_vertex_mem_wr_addr_reg[0]_i_2_n_4 ),
+        .D(\i_/i_/i___93_carry_n_4 ),
         .Q(transformed_vertex_mem_wr_addr_reg[3]),
         .S(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
   FDSE \transformed_vertex_mem_wr_addr_reg[4] 
        (.C(clk),
         .CE(output_vertex_valid),
-        .D(\transformed_vertex_mem_wr_addr_reg[4]_i_1_n_7 ),
+        .D(\i_/i_/i___93_carry__0_n_7 ),
         .Q(transformed_vertex_mem_wr_addr_reg[4]),
         .S(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
-  CARRY4 \transformed_vertex_mem_wr_addr_reg[4]_i_1 
-       (.CI(\transformed_vertex_mem_wr_addr_reg[0]_i_2_n_0 ),
-        .CO({\transformed_vertex_mem_wr_addr_reg[4]_i_1_n_0 ,\transformed_vertex_mem_wr_addr_reg[4]_i_1_n_1 ,\transformed_vertex_mem_wr_addr_reg[4]_i_1_n_2 ,\transformed_vertex_mem_wr_addr_reg[4]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\transformed_vertex_mem_wr_addr_reg[4]_i_1_n_4 ,\transformed_vertex_mem_wr_addr_reg[4]_i_1_n_5 ,\transformed_vertex_mem_wr_addr_reg[4]_i_1_n_6 ,\transformed_vertex_mem_wr_addr_reg[4]_i_1_n_7 }),
-        .S(transformed_vertex_mem_wr_addr_reg[7:4]));
   FDSE \transformed_vertex_mem_wr_addr_reg[5] 
        (.C(clk),
         .CE(output_vertex_valid),
-        .D(\transformed_vertex_mem_wr_addr_reg[4]_i_1_n_6 ),
+        .D(\i_/i_/i___93_carry__0_n_6 ),
         .Q(transformed_vertex_mem_wr_addr_reg[5]),
         .S(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
   FDSE \transformed_vertex_mem_wr_addr_reg[6] 
        (.C(clk),
         .CE(output_vertex_valid),
-        .D(\transformed_vertex_mem_wr_addr_reg[4]_i_1_n_5 ),
+        .D(\i_/i_/i___93_carry__0_n_5 ),
         .Q(transformed_vertex_mem_wr_addr_reg[6]),
         .S(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
   FDSE \transformed_vertex_mem_wr_addr_reg[7] 
        (.C(clk),
         .CE(output_vertex_valid),
-        .D(\transformed_vertex_mem_wr_addr_reg[4]_i_1_n_4 ),
+        .D(\i_/i_/i___93_carry__0_n_4 ),
         .Q(transformed_vertex_mem_wr_addr_reg[7]),
         .S(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
   FDSE \transformed_vertex_mem_wr_addr_reg[8] 
        (.C(clk),
         .CE(output_vertex_valid),
-        .D(\transformed_vertex_mem_wr_addr_reg[8]_i_1_n_7 ),
+        .D(\i_/i_/i___93_carry__1_n_7 ),
         .Q(transformed_vertex_mem_wr_addr_reg[8]),
         .S(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
-  CARRY4 \transformed_vertex_mem_wr_addr_reg[8]_i_1 
-       (.CI(\transformed_vertex_mem_wr_addr_reg[4]_i_1_n_0 ),
-        .CO({\transformed_vertex_mem_wr_addr_reg[8]_i_1_n_0 ,\transformed_vertex_mem_wr_addr_reg[8]_i_1_n_1 ,\transformed_vertex_mem_wr_addr_reg[8]_i_1_n_2 ,\transformed_vertex_mem_wr_addr_reg[8]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\transformed_vertex_mem_wr_addr_reg[8]_i_1_n_4 ,\transformed_vertex_mem_wr_addr_reg[8]_i_1_n_5 ,\transformed_vertex_mem_wr_addr_reg[8]_i_1_n_6 ,\transformed_vertex_mem_wr_addr_reg[8]_i_1_n_7 }),
-        .S(transformed_vertex_mem_wr_addr_reg[11:8]));
   FDSE \transformed_vertex_mem_wr_addr_reg[9] 
        (.C(clk),
         .CE(output_vertex_valid),
-        .D(\transformed_vertex_mem_wr_addr_reg[8]_i_1_n_6 ),
+        .D(\i_/i_/i___93_carry__1_n_6 ),
         .Q(transformed_vertex_mem_wr_addr_reg[9]),
         .S(\transformed_vertex_mem_wr_addr[0]_i_1_n_0 ));
   FDRE \transformed_vertex_mem_wr_data_reg[0] 
@@ -688,813 +1244,271 @@ module main_gpu_wrapper_0_0_GPU_top
         .CE(transformed_vertex_mem_wr_data),
         .D(output_vertex[0]),
         .Q(\transformed_vertex_mem_wr_data_reg_n_0_[0] ),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \transformed_vertex_mem_wr_data_reg[10] 
        (.C(clk),
         .CE(transformed_vertex_mem_wr_data),
         .D(output_vertex[10]),
         .Q(\transformed_vertex_mem_wr_data_reg_n_0_[10] ),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \transformed_vertex_mem_wr_data_reg[1] 
        (.C(clk),
         .CE(transformed_vertex_mem_wr_data),
         .D(output_vertex[1]),
         .Q(\transformed_vertex_mem_wr_data_reg_n_0_[1] ),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \transformed_vertex_mem_wr_data_reg[2] 
        (.C(clk),
         .CE(transformed_vertex_mem_wr_data),
         .D(output_vertex[2]),
         .Q(\transformed_vertex_mem_wr_data_reg_n_0_[2] ),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \transformed_vertex_mem_wr_data_reg[3] 
        (.C(clk),
         .CE(transformed_vertex_mem_wr_data),
         .D(output_vertex[3]),
         .Q(\transformed_vertex_mem_wr_data_reg_n_0_[3] ),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \transformed_vertex_mem_wr_data_reg[4] 
        (.C(clk),
         .CE(transformed_vertex_mem_wr_data),
         .D(output_vertex[4]),
         .Q(\transformed_vertex_mem_wr_data_reg_n_0_[4] ),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \transformed_vertex_mem_wr_data_reg[5] 
        (.C(clk),
         .CE(transformed_vertex_mem_wr_data),
         .D(output_vertex[5]),
         .Q(\transformed_vertex_mem_wr_data_reg_n_0_[5] ),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \transformed_vertex_mem_wr_data_reg[6] 
        (.C(clk),
         .CE(transformed_vertex_mem_wr_data),
         .D(output_vertex[6]),
         .Q(\transformed_vertex_mem_wr_data_reg_n_0_[6] ),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \transformed_vertex_mem_wr_data_reg[7] 
        (.C(clk),
         .CE(transformed_vertex_mem_wr_data),
         .D(output_vertex[7]),
         .Q(\transformed_vertex_mem_wr_data_reg_n_0_[7] ),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \transformed_vertex_mem_wr_data_reg[8] 
        (.C(clk),
         .CE(transformed_vertex_mem_wr_data),
         .D(output_vertex[8]),
         .Q(\transformed_vertex_mem_wr_data_reg_n_0_[8] ),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \transformed_vertex_mem_wr_data_reg[9] 
        (.C(clk),
         .CE(transformed_vertex_mem_wr_data),
         .D(output_vertex[9]),
         .Q(\transformed_vertex_mem_wr_data_reg_n_0_[9] ),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE transformed_vertex_mem_wr_en_reg
        (.C(clk),
         .CE(1'b1),
-        .D(transformed_vertex_mem_wr_data),
+        .D(vertex_processor_rtl_n_2),
         .Q(transformed_vertex_mem_wr_en),
-        .R(reset));
+        .R(1'b0));
   LUT2 #(
     .INIT(4'hE)) 
     \vertex_count_reg[0]_i_1 
        (.I0(start),
-        .I1(rasterizer_control_n_18),
+        .I1(rasterizer_control_n_15),
         .O(\vertex_count_reg[0]_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[0]_i_3 
-       (.I0(vertex_count_reg_reg[3]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[3]),
-        .O(\vertex_count_reg[0]_i_3_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[0]_i_4 
-       (.I0(vertex_count_reg_reg[2]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[2]),
-        .O(\vertex_count_reg[0]_i_4_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[0]_i_5 
-       (.I0(vertex_count[3]),
-        .I1(vertex_count_reg_reg[3]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[0]_i_5_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[0]_i_6 
-       (.I0(vertex_count[2]),
-        .I1(vertex_count_reg_reg[2]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[0]_i_6_n_0 ));
-  LUT3 #(
-    .INIT(8'h65)) 
-    \vertex_count_reg[0]_i_7 
-       (.I0(vertex_count_reg_reg[1]),
-        .I1(rasterizer_control_n_18),
-        .I2(start),
-        .O(\vertex_count_reg[0]_i_7_n_0 ));
-  LUT3 #(
-    .INIT(8'h65)) 
-    \vertex_count_reg[0]_i_8 
-       (.I0(vertex_count_reg_reg[0]),
-        .I1(rasterizer_control_n_18),
-        .I2(start),
-        .O(\vertex_count_reg[0]_i_8_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[12]_i_2 
-       (.I0(vertex_count_reg_reg[15]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[15]),
-        .O(\vertex_count_reg[12]_i_2_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[12]_i_3 
-       (.I0(vertex_count_reg_reg[14]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[14]),
-        .O(\vertex_count_reg[12]_i_3_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[12]_i_4 
-       (.I0(vertex_count_reg_reg[13]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[13]),
-        .O(\vertex_count_reg[12]_i_4_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[12]_i_5 
-       (.I0(vertex_count_reg_reg[12]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[12]),
-        .O(\vertex_count_reg[12]_i_5_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[12]_i_6 
-       (.I0(vertex_count[15]),
-        .I1(vertex_count_reg_reg[15]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[12]_i_6_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[12]_i_7 
-       (.I0(vertex_count[14]),
-        .I1(vertex_count_reg_reg[14]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[12]_i_7_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[12]_i_8 
-       (.I0(vertex_count[13]),
-        .I1(vertex_count_reg_reg[13]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[12]_i_8_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[12]_i_9 
-       (.I0(vertex_count[12]),
-        .I1(vertex_count_reg_reg[12]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[12]_i_9_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[16]_i_2 
-       (.I0(vertex_count_reg_reg[19]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[19]),
-        .O(\vertex_count_reg[16]_i_2_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[16]_i_3 
-       (.I0(vertex_count_reg_reg[18]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[18]),
-        .O(\vertex_count_reg[16]_i_3_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[16]_i_4 
-       (.I0(vertex_count_reg_reg[17]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[17]),
-        .O(\vertex_count_reg[16]_i_4_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[16]_i_5 
-       (.I0(vertex_count_reg_reg[16]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[16]),
-        .O(\vertex_count_reg[16]_i_5_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[16]_i_6 
-       (.I0(vertex_count[19]),
-        .I1(vertex_count_reg_reg[19]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[16]_i_6_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[16]_i_7 
-       (.I0(vertex_count[18]),
-        .I1(vertex_count_reg_reg[18]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[16]_i_7_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[16]_i_8 
-       (.I0(vertex_count[17]),
-        .I1(vertex_count_reg_reg[17]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[16]_i_8_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[16]_i_9 
-       (.I0(vertex_count[16]),
-        .I1(vertex_count_reg_reg[16]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[16]_i_9_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[20]_i_2 
-       (.I0(vertex_count_reg_reg[23]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[23]),
-        .O(\vertex_count_reg[20]_i_2_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[20]_i_3 
-       (.I0(vertex_count_reg_reg[22]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[22]),
-        .O(\vertex_count_reg[20]_i_3_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[20]_i_4 
-       (.I0(vertex_count_reg_reg[21]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[21]),
-        .O(\vertex_count_reg[20]_i_4_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[20]_i_5 
-       (.I0(vertex_count_reg_reg[20]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[20]),
-        .O(\vertex_count_reg[20]_i_5_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[20]_i_6 
-       (.I0(vertex_count[23]),
-        .I1(vertex_count_reg_reg[23]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[20]_i_6_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[20]_i_7 
-       (.I0(vertex_count[22]),
-        .I1(vertex_count_reg_reg[22]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[20]_i_7_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[20]_i_8 
-       (.I0(vertex_count[21]),
-        .I1(vertex_count_reg_reg[21]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[20]_i_8_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[20]_i_9 
-       (.I0(vertex_count[20]),
-        .I1(vertex_count_reg_reg[20]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[20]_i_9_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[24]_i_2 
-       (.I0(vertex_count_reg_reg[27]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[27]),
-        .O(\vertex_count_reg[24]_i_2_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[24]_i_3 
-       (.I0(vertex_count_reg_reg[26]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[26]),
-        .O(\vertex_count_reg[24]_i_3_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[24]_i_4 
-       (.I0(vertex_count_reg_reg[25]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[25]),
-        .O(\vertex_count_reg[24]_i_4_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[24]_i_5 
-       (.I0(vertex_count_reg_reg[24]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[24]),
-        .O(\vertex_count_reg[24]_i_5_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[24]_i_6 
-       (.I0(vertex_count[27]),
-        .I1(vertex_count_reg_reg[27]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[24]_i_6_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[24]_i_7 
-       (.I0(vertex_count[26]),
-        .I1(vertex_count_reg_reg[26]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[24]_i_7_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[24]_i_8 
-       (.I0(vertex_count[25]),
-        .I1(vertex_count_reg_reg[25]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[24]_i_8_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[24]_i_9 
-       (.I0(vertex_count[24]),
-        .I1(vertex_count_reg_reg[24]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[24]_i_9_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[28]_i_2 
-       (.I0(vertex_count_reg_reg[30]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[30]),
-        .O(\vertex_count_reg[28]_i_2_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[28]_i_3 
-       (.I0(vertex_count_reg_reg[29]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[29]),
-        .O(\vertex_count_reg[28]_i_3_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[28]_i_4 
-       (.I0(vertex_count_reg_reg[28]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[28]),
-        .O(\vertex_count_reg[28]_i_4_n_0 ));
-  LUT4 #(
-    .INIT(16'h00FD)) 
-    \vertex_count_reg[28]_i_5 
-       (.I0(start),
-        .I1(rasterizer_control_n_18),
-        .I2(vertex_count[31]),
-        .I3(vertex_count_reg_reg[31]),
-        .O(\vertex_count_reg[28]_i_5_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[28]_i_6 
-       (.I0(vertex_count[30]),
-        .I1(vertex_count_reg_reg[30]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[28]_i_6_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[28]_i_7 
-       (.I0(vertex_count[29]),
-        .I1(vertex_count_reg_reg[29]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[28]_i_7_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[28]_i_8 
-       (.I0(vertex_count[28]),
-        .I1(vertex_count_reg_reg[28]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[28]_i_8_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[4]_i_2 
-       (.I0(vertex_count_reg_reg[7]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[7]),
-        .O(\vertex_count_reg[4]_i_2_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[4]_i_3 
-       (.I0(vertex_count_reg_reg[6]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[6]),
-        .O(\vertex_count_reg[4]_i_3_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[4]_i_4 
-       (.I0(vertex_count_reg_reg[5]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[5]),
-        .O(\vertex_count_reg[4]_i_4_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[4]_i_5 
-       (.I0(vertex_count_reg_reg[4]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[4]),
-        .O(\vertex_count_reg[4]_i_5_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[4]_i_6 
-       (.I0(vertex_count[7]),
-        .I1(vertex_count_reg_reg[7]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[4]_i_6_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[4]_i_7 
-       (.I0(vertex_count[6]),
-        .I1(vertex_count_reg_reg[6]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[4]_i_7_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[4]_i_8 
-       (.I0(vertex_count[5]),
-        .I1(vertex_count_reg_reg[5]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[4]_i_8_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[4]_i_9 
-       (.I0(vertex_count[4]),
-        .I1(vertex_count_reg_reg[4]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[4]_i_9_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[8]_i_2 
-       (.I0(vertex_count_reg_reg[11]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[11]),
-        .O(\vertex_count_reg[8]_i_2_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[8]_i_3 
-       (.I0(vertex_count_reg_reg[10]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[10]),
-        .O(\vertex_count_reg[8]_i_3_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[8]_i_4 
-       (.I0(vertex_count_reg_reg[9]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[9]),
-        .O(\vertex_count_reg[8]_i_4_n_0 ));
-  LUT4 #(
-    .INIT(16'hAEAA)) 
-    \vertex_count_reg[8]_i_5 
-       (.I0(vertex_count_reg_reg[8]),
-        .I1(start),
-        .I2(rasterizer_control_n_18),
-        .I3(vertex_count[8]),
-        .O(\vertex_count_reg[8]_i_5_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[8]_i_6 
-       (.I0(vertex_count[11]),
-        .I1(vertex_count_reg_reg[11]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[8]_i_6_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[8]_i_7 
-       (.I0(vertex_count[10]),
-        .I1(vertex_count_reg_reg[10]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[8]_i_7_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[8]_i_8 
-       (.I0(vertex_count[9]),
-        .I1(vertex_count_reg_reg[9]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[8]_i_8_n_0 ));
-  LUT4 #(
-    .INIT(16'h3E33)) 
-    \vertex_count_reg[8]_i_9 
-       (.I0(vertex_count[8]),
-        .I1(vertex_count_reg_reg[8]),
-        .I2(rasterizer_control_n_18),
-        .I3(start),
-        .O(\vertex_count_reg[8]_i_9_n_0 ));
   FDRE \vertex_count_reg_reg[0] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[0]_i_2_n_7 ),
+        .D(\i_/i_/i__carry_n_7 ),
         .Q(vertex_count_reg_reg[0]),
-        .R(reset));
-  CARRY4 \vertex_count_reg_reg[0]_i_2 
-       (.CI(1'b0),
-        .CO({\vertex_count_reg_reg[0]_i_2_n_0 ,\vertex_count_reg_reg[0]_i_2_n_1 ,\vertex_count_reg_reg[0]_i_2_n_2 ,\vertex_count_reg_reg[0]_i_2_n_3 }),
-        .CYINIT(1'b0),
-        .DI({\vertex_count_reg[0]_i_3_n_0 ,\vertex_count_reg[0]_i_4_n_0 ,vertex_count_reg_reg[1:0]}),
-        .O({\vertex_count_reg_reg[0]_i_2_n_4 ,\vertex_count_reg_reg[0]_i_2_n_5 ,\vertex_count_reg_reg[0]_i_2_n_6 ,\vertex_count_reg_reg[0]_i_2_n_7 }),
-        .S({\vertex_count_reg[0]_i_5_n_0 ,\vertex_count_reg[0]_i_6_n_0 ,\vertex_count_reg[0]_i_7_n_0 ,\vertex_count_reg[0]_i_8_n_0 }));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[10] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[8]_i_1_n_5 ),
+        .D(\i_/i_/i__carry__1_n_5 ),
         .Q(vertex_count_reg_reg[10]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[11] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[8]_i_1_n_4 ),
+        .D(\i_/i_/i__carry__1_n_4 ),
         .Q(vertex_count_reg_reg[11]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[12] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[12]_i_1_n_7 ),
+        .D(\i_/i_/i__carry__2_n_7 ),
         .Q(vertex_count_reg_reg[12]),
-        .R(reset));
-  CARRY4 \vertex_count_reg_reg[12]_i_1 
-       (.CI(\vertex_count_reg_reg[8]_i_1_n_0 ),
-        .CO({\vertex_count_reg_reg[12]_i_1_n_0 ,\vertex_count_reg_reg[12]_i_1_n_1 ,\vertex_count_reg_reg[12]_i_1_n_2 ,\vertex_count_reg_reg[12]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({\vertex_count_reg[12]_i_2_n_0 ,\vertex_count_reg[12]_i_3_n_0 ,\vertex_count_reg[12]_i_4_n_0 ,\vertex_count_reg[12]_i_5_n_0 }),
-        .O({\vertex_count_reg_reg[12]_i_1_n_4 ,\vertex_count_reg_reg[12]_i_1_n_5 ,\vertex_count_reg_reg[12]_i_1_n_6 ,\vertex_count_reg_reg[12]_i_1_n_7 }),
-        .S({\vertex_count_reg[12]_i_6_n_0 ,\vertex_count_reg[12]_i_7_n_0 ,\vertex_count_reg[12]_i_8_n_0 ,\vertex_count_reg[12]_i_9_n_0 }));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[13] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[12]_i_1_n_6 ),
+        .D(\i_/i_/i__carry__2_n_6 ),
         .Q(vertex_count_reg_reg[13]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[14] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[12]_i_1_n_5 ),
+        .D(\i_/i_/i__carry__2_n_5 ),
         .Q(vertex_count_reg_reg[14]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[15] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[12]_i_1_n_4 ),
+        .D(\i_/i_/i__carry__2_n_4 ),
         .Q(vertex_count_reg_reg[15]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[16] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[16]_i_1_n_7 ),
+        .D(\i_/i_/i__carry__3_n_7 ),
         .Q(vertex_count_reg_reg[16]),
-        .R(reset));
-  CARRY4 \vertex_count_reg_reg[16]_i_1 
-       (.CI(\vertex_count_reg_reg[12]_i_1_n_0 ),
-        .CO({\vertex_count_reg_reg[16]_i_1_n_0 ,\vertex_count_reg_reg[16]_i_1_n_1 ,\vertex_count_reg_reg[16]_i_1_n_2 ,\vertex_count_reg_reg[16]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({\vertex_count_reg[16]_i_2_n_0 ,\vertex_count_reg[16]_i_3_n_0 ,\vertex_count_reg[16]_i_4_n_0 ,\vertex_count_reg[16]_i_5_n_0 }),
-        .O({\vertex_count_reg_reg[16]_i_1_n_4 ,\vertex_count_reg_reg[16]_i_1_n_5 ,\vertex_count_reg_reg[16]_i_1_n_6 ,\vertex_count_reg_reg[16]_i_1_n_7 }),
-        .S({\vertex_count_reg[16]_i_6_n_0 ,\vertex_count_reg[16]_i_7_n_0 ,\vertex_count_reg[16]_i_8_n_0 ,\vertex_count_reg[16]_i_9_n_0 }));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[17] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[16]_i_1_n_6 ),
+        .D(\i_/i_/i__carry__3_n_6 ),
         .Q(vertex_count_reg_reg[17]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[18] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[16]_i_1_n_5 ),
+        .D(\i_/i_/i__carry__3_n_5 ),
         .Q(vertex_count_reg_reg[18]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[19] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[16]_i_1_n_4 ),
+        .D(\i_/i_/i__carry__3_n_4 ),
         .Q(vertex_count_reg_reg[19]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[1] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[0]_i_2_n_6 ),
+        .D(\i_/i_/i__carry_n_6 ),
         .Q(vertex_count_reg_reg[1]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[20] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[20]_i_1_n_7 ),
+        .D(\i_/i_/i__carry__4_n_7 ),
         .Q(vertex_count_reg_reg[20]),
-        .R(reset));
-  CARRY4 \vertex_count_reg_reg[20]_i_1 
-       (.CI(\vertex_count_reg_reg[16]_i_1_n_0 ),
-        .CO({\vertex_count_reg_reg[20]_i_1_n_0 ,\vertex_count_reg_reg[20]_i_1_n_1 ,\vertex_count_reg_reg[20]_i_1_n_2 ,\vertex_count_reg_reg[20]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({\vertex_count_reg[20]_i_2_n_0 ,\vertex_count_reg[20]_i_3_n_0 ,\vertex_count_reg[20]_i_4_n_0 ,\vertex_count_reg[20]_i_5_n_0 }),
-        .O({\vertex_count_reg_reg[20]_i_1_n_4 ,\vertex_count_reg_reg[20]_i_1_n_5 ,\vertex_count_reg_reg[20]_i_1_n_6 ,\vertex_count_reg_reg[20]_i_1_n_7 }),
-        .S({\vertex_count_reg[20]_i_6_n_0 ,\vertex_count_reg[20]_i_7_n_0 ,\vertex_count_reg[20]_i_8_n_0 ,\vertex_count_reg[20]_i_9_n_0 }));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[21] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[20]_i_1_n_6 ),
+        .D(\i_/i_/i__carry__4_n_6 ),
         .Q(vertex_count_reg_reg[21]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[22] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[20]_i_1_n_5 ),
+        .D(\i_/i_/i__carry__4_n_5 ),
         .Q(vertex_count_reg_reg[22]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[23] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[20]_i_1_n_4 ),
+        .D(\i_/i_/i__carry__4_n_4 ),
         .Q(vertex_count_reg_reg[23]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[24] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[24]_i_1_n_7 ),
+        .D(\i_/i_/i__carry__5_n_7 ),
         .Q(vertex_count_reg_reg[24]),
-        .R(reset));
-  CARRY4 \vertex_count_reg_reg[24]_i_1 
-       (.CI(\vertex_count_reg_reg[20]_i_1_n_0 ),
-        .CO({\vertex_count_reg_reg[24]_i_1_n_0 ,\vertex_count_reg_reg[24]_i_1_n_1 ,\vertex_count_reg_reg[24]_i_1_n_2 ,\vertex_count_reg_reg[24]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({\vertex_count_reg[24]_i_2_n_0 ,\vertex_count_reg[24]_i_3_n_0 ,\vertex_count_reg[24]_i_4_n_0 ,\vertex_count_reg[24]_i_5_n_0 }),
-        .O({\vertex_count_reg_reg[24]_i_1_n_4 ,\vertex_count_reg_reg[24]_i_1_n_5 ,\vertex_count_reg_reg[24]_i_1_n_6 ,\vertex_count_reg_reg[24]_i_1_n_7 }),
-        .S({\vertex_count_reg[24]_i_6_n_0 ,\vertex_count_reg[24]_i_7_n_0 ,\vertex_count_reg[24]_i_8_n_0 ,\vertex_count_reg[24]_i_9_n_0 }));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[25] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[24]_i_1_n_6 ),
+        .D(\i_/i_/i__carry__5_n_6 ),
         .Q(vertex_count_reg_reg[25]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[26] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[24]_i_1_n_5 ),
+        .D(\i_/i_/i__carry__5_n_5 ),
         .Q(vertex_count_reg_reg[26]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[27] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[24]_i_1_n_4 ),
+        .D(\i_/i_/i__carry__5_n_4 ),
         .Q(vertex_count_reg_reg[27]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[28] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[28]_i_1_n_7 ),
+        .D(\i_/i_/i__carry__6_n_7 ),
         .Q(vertex_count_reg_reg[28]),
-        .R(reset));
-  CARRY4 \vertex_count_reg_reg[28]_i_1 
-       (.CI(\vertex_count_reg_reg[24]_i_1_n_0 ),
-        .CO({\NLW_vertex_count_reg_reg[28]_i_1_CO_UNCONNECTED [3],\vertex_count_reg_reg[28]_i_1_n_1 ,\vertex_count_reg_reg[28]_i_1_n_2 ,\vertex_count_reg_reg[28]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,\vertex_count_reg[28]_i_2_n_0 ,\vertex_count_reg[28]_i_3_n_0 ,\vertex_count_reg[28]_i_4_n_0 }),
-        .O({\vertex_count_reg_reg[28]_i_1_n_4 ,\vertex_count_reg_reg[28]_i_1_n_5 ,\vertex_count_reg_reg[28]_i_1_n_6 ,\vertex_count_reg_reg[28]_i_1_n_7 }),
-        .S({\vertex_count_reg[28]_i_5_n_0 ,\vertex_count_reg[28]_i_6_n_0 ,\vertex_count_reg[28]_i_7_n_0 ,\vertex_count_reg[28]_i_8_n_0 }));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[29] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[28]_i_1_n_6 ),
+        .D(\i_/i_/i__carry__6_n_6 ),
         .Q(vertex_count_reg_reg[29]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[2] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[0]_i_2_n_5 ),
+        .D(\i_/i_/i__carry_n_5 ),
         .Q(vertex_count_reg_reg[2]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[30] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[28]_i_1_n_5 ),
+        .D(\i_/i_/i__carry__6_n_5 ),
         .Q(vertex_count_reg_reg[30]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[31] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[28]_i_1_n_4 ),
+        .D(\i_/i_/i__carry__6_n_4 ),
         .Q(vertex_count_reg_reg[31]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[3] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[0]_i_2_n_4 ),
+        .D(\i_/i_/i__carry_n_4 ),
         .Q(vertex_count_reg_reg[3]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[4] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[4]_i_1_n_7 ),
+        .D(\i_/i_/i__carry__0_n_7 ),
         .Q(vertex_count_reg_reg[4]),
-        .R(reset));
-  CARRY4 \vertex_count_reg_reg[4]_i_1 
-       (.CI(\vertex_count_reg_reg[0]_i_2_n_0 ),
-        .CO({\vertex_count_reg_reg[4]_i_1_n_0 ,\vertex_count_reg_reg[4]_i_1_n_1 ,\vertex_count_reg_reg[4]_i_1_n_2 ,\vertex_count_reg_reg[4]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({\vertex_count_reg[4]_i_2_n_0 ,\vertex_count_reg[4]_i_3_n_0 ,\vertex_count_reg[4]_i_4_n_0 ,\vertex_count_reg[4]_i_5_n_0 }),
-        .O({\vertex_count_reg_reg[4]_i_1_n_4 ,\vertex_count_reg_reg[4]_i_1_n_5 ,\vertex_count_reg_reg[4]_i_1_n_6 ,\vertex_count_reg_reg[4]_i_1_n_7 }),
-        .S({\vertex_count_reg[4]_i_6_n_0 ,\vertex_count_reg[4]_i_7_n_0 ,\vertex_count_reg[4]_i_8_n_0 ,\vertex_count_reg[4]_i_9_n_0 }));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[5] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[4]_i_1_n_6 ),
+        .D(\i_/i_/i__carry__0_n_6 ),
         .Q(vertex_count_reg_reg[5]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[6] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[4]_i_1_n_5 ),
+        .D(\i_/i_/i__carry__0_n_5 ),
         .Q(vertex_count_reg_reg[6]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[7] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[4]_i_1_n_4 ),
+        .D(\i_/i_/i__carry__0_n_4 ),
         .Q(vertex_count_reg_reg[7]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[8] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[8]_i_1_n_7 ),
+        .D(\i_/i_/i__carry__1_n_7 ),
         .Q(vertex_count_reg_reg[8]),
-        .R(reset));
-  CARRY4 \vertex_count_reg_reg[8]_i_1 
-       (.CI(\vertex_count_reg_reg[4]_i_1_n_0 ),
-        .CO({\vertex_count_reg_reg[8]_i_1_n_0 ,\vertex_count_reg_reg[8]_i_1_n_1 ,\vertex_count_reg_reg[8]_i_1_n_2 ,\vertex_count_reg_reg[8]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({\vertex_count_reg[8]_i_2_n_0 ,\vertex_count_reg[8]_i_3_n_0 ,\vertex_count_reg[8]_i_4_n_0 ,\vertex_count_reg[8]_i_5_n_0 }),
-        .O({\vertex_count_reg_reg[8]_i_1_n_4 ,\vertex_count_reg_reg[8]_i_1_n_5 ,\vertex_count_reg_reg[8]_i_1_n_6 ,\vertex_count_reg_reg[8]_i_1_n_7 }),
-        .S({\vertex_count_reg[8]_i_6_n_0 ,\vertex_count_reg[8]_i_7_n_0 ,\vertex_count_reg[8]_i_8_n_0 ,\vertex_count_reg[8]_i_9_n_0 }));
+        .R(vertex_processor_rtl_n_1));
   FDRE \vertex_count_reg_reg[9] 
        (.C(clk),
         .CE(\vertex_count_reg[0]_i_1_n_0 ),
-        .D(\vertex_count_reg_reg[8]_i_1_n_6 ),
+        .D(\i_/i_/i__carry__1_n_6 ),
         .Q(vertex_count_reg_reg[9]),
-        .R(reset));
+        .R(vertex_processor_rtl_n_1));
   main_gpu_wrapper_0_0_ram_rtl vertex_mem
        (.ADDRBWRADDR(vertex_mem_rd_addr_reg),
         .clk(clk),
@@ -1503,133 +1517,101 @@ module main_gpu_wrapper_0_0_GPU_top
         .mem_wr_en(mem_wr_en),
         .rd_data(vertex_mem_rd_data));
   LUT3 #(
-    .INIT(8'hBA)) 
+    .INIT(8'h4F)) 
     \vertex_mem_rd_addr[0]_i_1 
-       (.I0(reset),
-        .I1(rasterizer_control_n_18),
-        .I2(start),
+       (.I0(rasterizer_control_n_15),
+        .I1(start),
+        .I2(reset),
         .O(\vertex_mem_rd_addr[0]_i_1_n_0 ));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \vertex_mem_rd_addr[0]_i_8 
-       (.I0(vertex_mem_rd_addr_reg[0]),
-        .O(\vertex_mem_rd_addr[0]_i_8_n_0 ));
   FDRE \vertex_mem_rd_addr_reg[0] 
        (.C(clk),
-        .CE(rasterizer_control_n_18),
-        .D(\vertex_mem_rd_addr_reg[0]_i_3_n_7 ),
+        .CE(rasterizer_control_n_15),
+        .D(\i_/i_/i___120_carry_n_7 ),
         .Q(vertex_mem_rd_addr_reg[0]),
         .R(\vertex_mem_rd_addr[0]_i_1_n_0 ));
-  CARRY4 \vertex_mem_rd_addr_reg[0]_i_3 
-       (.CI(1'b0),
-        .CO({\vertex_mem_rd_addr_reg[0]_i_3_n_0 ,\vertex_mem_rd_addr_reg[0]_i_3_n_1 ,\vertex_mem_rd_addr_reg[0]_i_3_n_2 ,\vertex_mem_rd_addr_reg[0]_i_3_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b1}),
-        .O({\vertex_mem_rd_addr_reg[0]_i_3_n_4 ,\vertex_mem_rd_addr_reg[0]_i_3_n_5 ,\vertex_mem_rd_addr_reg[0]_i_3_n_6 ,\vertex_mem_rd_addr_reg[0]_i_3_n_7 }),
-        .S({vertex_mem_rd_addr_reg[3:1],\vertex_mem_rd_addr[0]_i_8_n_0 }));
   FDRE \vertex_mem_rd_addr_reg[10] 
        (.C(clk),
-        .CE(rasterizer_control_n_18),
-        .D(\vertex_mem_rd_addr_reg[8]_i_1_n_5 ),
+        .CE(rasterizer_control_n_15),
+        .D(\i_/i_/i___120_carry__1_n_5 ),
         .Q(vertex_mem_rd_addr_reg[10]),
         .R(\vertex_mem_rd_addr[0]_i_1_n_0 ));
   FDRE \vertex_mem_rd_addr_reg[11] 
        (.C(clk),
-        .CE(rasterizer_control_n_18),
-        .D(\vertex_mem_rd_addr_reg[8]_i_1_n_4 ),
+        .CE(rasterizer_control_n_15),
+        .D(\i_/i_/i___120_carry__1_n_4 ),
         .Q(vertex_mem_rd_addr_reg[11]),
         .R(\vertex_mem_rd_addr[0]_i_1_n_0 ));
   FDRE \vertex_mem_rd_addr_reg[12] 
        (.C(clk),
-        .CE(rasterizer_control_n_18),
-        .D(\vertex_mem_rd_addr_reg[12]_i_1_n_7 ),
+        .CE(rasterizer_control_n_15),
+        .D(\i_/i_/i___120_carry__2_n_7 ),
         .Q(vertex_mem_rd_addr_reg[12]),
         .R(\vertex_mem_rd_addr[0]_i_1_n_0 ));
-  CARRY4 \vertex_mem_rd_addr_reg[12]_i_1 
-       (.CI(\vertex_mem_rd_addr_reg[8]_i_1_n_0 ),
-        .CO({\NLW_vertex_mem_rd_addr_reg[12]_i_1_CO_UNCONNECTED [3:1],\vertex_mem_rd_addr_reg[12]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\NLW_vertex_mem_rd_addr_reg[12]_i_1_O_UNCONNECTED [3:2],\vertex_mem_rd_addr_reg[12]_i_1_n_6 ,\vertex_mem_rd_addr_reg[12]_i_1_n_7 }),
-        .S({1'b0,1'b0,vertex_mem_rd_addr_reg[13:12]}));
   FDRE \vertex_mem_rd_addr_reg[13] 
        (.C(clk),
-        .CE(rasterizer_control_n_18),
-        .D(\vertex_mem_rd_addr_reg[12]_i_1_n_6 ),
+        .CE(rasterizer_control_n_15),
+        .D(\i_/i_/i___120_carry__2_n_6 ),
         .Q(vertex_mem_rd_addr_reg[13]),
         .R(\vertex_mem_rd_addr[0]_i_1_n_0 ));
   FDRE \vertex_mem_rd_addr_reg[1] 
        (.C(clk),
-        .CE(rasterizer_control_n_18),
-        .D(\vertex_mem_rd_addr_reg[0]_i_3_n_6 ),
+        .CE(rasterizer_control_n_15),
+        .D(\i_/i_/i___120_carry_n_6 ),
         .Q(vertex_mem_rd_addr_reg[1]),
         .R(\vertex_mem_rd_addr[0]_i_1_n_0 ));
   FDRE \vertex_mem_rd_addr_reg[2] 
        (.C(clk),
-        .CE(rasterizer_control_n_18),
-        .D(\vertex_mem_rd_addr_reg[0]_i_3_n_5 ),
+        .CE(rasterizer_control_n_15),
+        .D(\i_/i_/i___120_carry_n_5 ),
         .Q(vertex_mem_rd_addr_reg[2]),
         .R(\vertex_mem_rd_addr[0]_i_1_n_0 ));
   FDRE \vertex_mem_rd_addr_reg[3] 
        (.C(clk),
-        .CE(rasterizer_control_n_18),
-        .D(\vertex_mem_rd_addr_reg[0]_i_3_n_4 ),
+        .CE(rasterizer_control_n_15),
+        .D(\i_/i_/i___120_carry_n_4 ),
         .Q(vertex_mem_rd_addr_reg[3]),
         .R(\vertex_mem_rd_addr[0]_i_1_n_0 ));
   FDRE \vertex_mem_rd_addr_reg[4] 
        (.C(clk),
-        .CE(rasterizer_control_n_18),
-        .D(\vertex_mem_rd_addr_reg[4]_i_1_n_7 ),
+        .CE(rasterizer_control_n_15),
+        .D(\i_/i_/i___120_carry__0_n_7 ),
         .Q(vertex_mem_rd_addr_reg[4]),
         .R(\vertex_mem_rd_addr[0]_i_1_n_0 ));
-  CARRY4 \vertex_mem_rd_addr_reg[4]_i_1 
-       (.CI(\vertex_mem_rd_addr_reg[0]_i_3_n_0 ),
-        .CO({\vertex_mem_rd_addr_reg[4]_i_1_n_0 ,\vertex_mem_rd_addr_reg[4]_i_1_n_1 ,\vertex_mem_rd_addr_reg[4]_i_1_n_2 ,\vertex_mem_rd_addr_reg[4]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\vertex_mem_rd_addr_reg[4]_i_1_n_4 ,\vertex_mem_rd_addr_reg[4]_i_1_n_5 ,\vertex_mem_rd_addr_reg[4]_i_1_n_6 ,\vertex_mem_rd_addr_reg[4]_i_1_n_7 }),
-        .S(vertex_mem_rd_addr_reg[7:4]));
   FDRE \vertex_mem_rd_addr_reg[5] 
        (.C(clk),
-        .CE(rasterizer_control_n_18),
-        .D(\vertex_mem_rd_addr_reg[4]_i_1_n_6 ),
+        .CE(rasterizer_control_n_15),
+        .D(\i_/i_/i___120_carry__0_n_6 ),
         .Q(vertex_mem_rd_addr_reg[5]),
         .R(\vertex_mem_rd_addr[0]_i_1_n_0 ));
   FDRE \vertex_mem_rd_addr_reg[6] 
        (.C(clk),
-        .CE(rasterizer_control_n_18),
-        .D(\vertex_mem_rd_addr_reg[4]_i_1_n_5 ),
+        .CE(rasterizer_control_n_15),
+        .D(\i_/i_/i___120_carry__0_n_5 ),
         .Q(vertex_mem_rd_addr_reg[6]),
         .R(\vertex_mem_rd_addr[0]_i_1_n_0 ));
   FDRE \vertex_mem_rd_addr_reg[7] 
        (.C(clk),
-        .CE(rasterizer_control_n_18),
-        .D(\vertex_mem_rd_addr_reg[4]_i_1_n_4 ),
+        .CE(rasterizer_control_n_15),
+        .D(\i_/i_/i___120_carry__0_n_4 ),
         .Q(vertex_mem_rd_addr_reg[7]),
         .R(\vertex_mem_rd_addr[0]_i_1_n_0 ));
   FDRE \vertex_mem_rd_addr_reg[8] 
        (.C(clk),
-        .CE(rasterizer_control_n_18),
-        .D(\vertex_mem_rd_addr_reg[8]_i_1_n_7 ),
+        .CE(rasterizer_control_n_15),
+        .D(\i_/i_/i___120_carry__1_n_7 ),
         .Q(vertex_mem_rd_addr_reg[8]),
         .R(\vertex_mem_rd_addr[0]_i_1_n_0 ));
-  CARRY4 \vertex_mem_rd_addr_reg[8]_i_1 
-       (.CI(\vertex_mem_rd_addr_reg[4]_i_1_n_0 ),
-        .CO({\vertex_mem_rd_addr_reg[8]_i_1_n_0 ,\vertex_mem_rd_addr_reg[8]_i_1_n_1 ,\vertex_mem_rd_addr_reg[8]_i_1_n_2 ,\vertex_mem_rd_addr_reg[8]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\vertex_mem_rd_addr_reg[8]_i_1_n_4 ,\vertex_mem_rd_addr_reg[8]_i_1_n_5 ,\vertex_mem_rd_addr_reg[8]_i_1_n_6 ,\vertex_mem_rd_addr_reg[8]_i_1_n_7 }),
-        .S(vertex_mem_rd_addr_reg[11:8]));
   FDRE \vertex_mem_rd_addr_reg[9] 
        (.C(clk),
-        .CE(rasterizer_control_n_18),
-        .D(\vertex_mem_rd_addr_reg[8]_i_1_n_6 ),
+        .CE(rasterizer_control_n_15),
+        .D(\i_/i_/i___120_carry__1_n_6 ),
         .Q(vertex_mem_rd_addr_reg[9]),
         .R(\vertex_mem_rd_addr[0]_i_1_n_0 ));
   main_gpu_wrapper_0_0_vertex_processor_rtl vertex_processor_rtl
        (.D(input_vertex_valid),
         .E(transformed_vertex_mem_wr_data),
         .Q(output_vertex),
+        .SR(vertex_processor_rtl_n_1),
         .clk(clk),
         .matrix_00(matrix_00),
         .matrix_01(matrix_01),
@@ -1650,7 +1632,8 @@ module main_gpu_wrapper_0_0_GPU_top
         .output_vertex_valid(output_vertex_valid),
         .rd_data(vertex_mem_rd_data),
         .reset(reset),
-        .start(start));
+        .start(start),
+        .start_0(vertex_processor_rtl_n_2));
 endmodule
 
 (* ORIG_REF_NAME = "edgeFunction" *) 
@@ -1660,13 +1643,13 @@ module main_gpu_wrapper_0_0_edgeFunction
     \vertex_select_reg[4] ,
     ef_inside,
     \FSM_onehot_state_reg[0] ,
+    \FSM_onehot_state_reg[2] ,
     \out_valid_d_reg[0]_0 ,
     \FSM_onehot_state_reg[0]_0 ,
     output_vertex_valid_reg,
-    \FSM_onehot_state_reg[2] ,
     \FSM_onehot_state_reg[9] ,
-    \out_valid_d_reg[0]_1 ,
     output_valid,
+    \FSM_onehot_state_reg[1] ,
     \FSM_onehot_state_reg[2]_0 ,
     output_vertex_valid_reg_0,
     output_vertex_valid_reg_1,
@@ -1684,11 +1667,11 @@ module main_gpu_wrapper_0_0_edgeFunction
     \color_reg[0] ,
     output_vertex_valid,
     \color_reg[6] ,
-    \out_valid_d_reg[0]_2 ,
-    CO,
+    \out_valid_d_reg[0]_1 ,
     \pixel_y_reg[0] ,
+    CO,
     \FSM_onehot_state_reg[0]_1 ,
-    \pixel_y_reg[0]_0 ,
+    force_black_reg,
     \pixel_x_reg[0] ,
     \pixel_x_reg[0]_0 ,
     \pixel_x_reg[0]_1 ,
@@ -1696,8 +1679,9 @@ module main_gpu_wrapper_0_0_edgeFunction
     mul1_result_reg_2,
     mul1_result_reg_3,
     p_0_in,
+    force_black,
+    force_black_reg_0,
     \FSM_onehot_state_reg[2]_1 ,
-    SR,
     \color_reg[6]_0 ,
     color,
     \color_reg[1] );
@@ -1706,13 +1690,13 @@ module main_gpu_wrapper_0_0_edgeFunction
   output [0:0]\vertex_select_reg[4] ;
   output [0:0]ef_inside;
   output \FSM_onehot_state_reg[0] ;
+  output [0:0]\FSM_onehot_state_reg[2] ;
   output [0:0]\out_valid_d_reg[0]_0 ;
   output \FSM_onehot_state_reg[0]_0 ;
   output output_vertex_valid_reg;
-  output [0:0]\FSM_onehot_state_reg[2] ;
   output [0:0]\FSM_onehot_state_reg[9] ;
-  output \out_valid_d_reg[0]_1 ;
   output output_valid;
+  output \FSM_onehot_state_reg[1] ;
   output \FSM_onehot_state_reg[2]_0 ;
   output output_vertex_valid_reg_0;
   output output_vertex_valid_reg_1;
@@ -1730,11 +1714,11 @@ module main_gpu_wrapper_0_0_edgeFunction
   input \color_reg[0] ;
   input output_vertex_valid;
   input \color_reg[6] ;
-  input \out_valid_d_reg[0]_2 ;
-  input [0:0]CO;
+  input \out_valid_d_reg[0]_1 ;
   input [0:0]\pixel_y_reg[0] ;
+  input [0:0]CO;
   input \FSM_onehot_state_reg[0]_1 ;
-  input [0:0]\pixel_y_reg[0]_0 ;
+  input [0:0]force_black_reg;
   input \pixel_x_reg[0] ;
   input [0:0]\pixel_x_reg[0]_0 ;
   input [0:0]\pixel_x_reg[0]_1 ;
@@ -1742,8 +1726,9 @@ module main_gpu_wrapper_0_0_edgeFunction
   input [4:0]mul1_result_reg_2;
   input mul1_result_reg_3;
   input p_0_in;
+  input force_black;
+  input force_black_reg_0;
   input \FSM_onehot_state_reg[2]_1 ;
-  input [0:0]SR;
   input \color_reg[6]_0 ;
   input [1:0]color;
   input \color_reg[1] ;
@@ -1756,12 +1741,12 @@ module main_gpu_wrapper_0_0_edgeFunction
   wire \FSM_onehot_state_reg[0] ;
   wire \FSM_onehot_state_reg[0]_0 ;
   wire \FSM_onehot_state_reg[0]_1 ;
+  wire \FSM_onehot_state_reg[1] ;
   wire [0:0]\FSM_onehot_state_reg[2] ;
   wire \FSM_onehot_state_reg[2]_0 ;
   wire \FSM_onehot_state_reg[2]_1 ;
   wire [0:0]\FSM_onehot_state_reg[9] ;
   wire [10:0]Q;
-  wire [0:0]SR;
   wire V2_X_minus_V1_X0_carry__0_i_1__1_n_0;
   wire V2_X_minus_V1_X0_carry__0_i_2__1_n_0;
   wire V2_X_minus_V1_X0_carry__0_i_3__1_n_0;
@@ -1826,47 +1811,50 @@ module main_gpu_wrapper_0_0_edgeFunction
   wire \color_reg[6] ;
   wire \color_reg[6]_0 ;
   wire [0:0]ef_inside;
+  wire force_black;
+  wire force_black_i_2_n_0;
+  wire [0:0]force_black_reg;
+  wire force_black_reg_0;
   wire in_ready;
   wire in_valid;
-  wire isInside0_carry__0_i_1_n_0;
-  wire isInside0_carry__0_i_2_n_0;
-  wire isInside0_carry__0_i_3_n_0;
-  wire isInside0_carry__0_i_4_n_0;
-  wire isInside0_carry__0_i_5_n_0;
-  wire isInside0_carry__0_i_6_n_0;
-  wire isInside0_carry__0_i_7_n_0;
-  wire isInside0_carry__0_i_8_n_0;
-  wire isInside0_carry__0_n_0;
-  wire isInside0_carry__0_n_1;
-  wire isInside0_carry__0_n_2;
-  wire isInside0_carry__0_n_3;
-  wire isInside0_carry__1_i_1_n_0;
-  wire isInside0_carry__1_i_2_n_0;
-  wire isInside0_carry__1_i_3_n_0;
-  wire isInside0_carry__1_i_4_n_0;
-  wire isInside0_carry__1_i_5_n_0;
-  wire isInside0_carry__1_i_6_n_0;
-  wire isInside0_carry__1_i_7_n_0;
-  wire isInside0_carry__1_i_8_n_0;
-  wire isInside0_carry__1_n_0;
-  wire isInside0_carry__1_n_1;
-  wire isInside0_carry__1_n_2;
-  wire isInside0_carry__1_n_3;
-  wire isInside0_carry__2_i_1_n_0;
-  wire isInside0_carry__2_n_3;
-  wire isInside0_carry_i_1_n_0;
-  wire isInside0_carry_i_2_n_0;
-  wire isInside0_carry_i_3_n_0;
-  wire isInside0_carry_i_4_n_0;
-  wire isInside0_carry_i_5_n_0;
-  wire isInside0_carry_i_6_n_0;
-  wire isInside0_carry_i_7_n_0;
-  wire isInside0_carry_i_8_n_0;
-  wire isInside0_carry_n_0;
-  wire isInside0_carry_n_1;
-  wire isInside0_carry_n_2;
-  wire isInside0_carry_n_3;
-  wire isInside_i_1_n_0;
+  wire isInside_i_10_n_0;
+  wire isInside_i_11_n_0;
+  wire isInside_i_12_n_0;
+  wire isInside_i_14_n_0;
+  wire isInside_i_15_n_0;
+  wire isInside_i_16_n_0;
+  wire isInside_i_17_n_0;
+  wire isInside_i_18_n_0;
+  wire isInside_i_19_n_0;
+  wire isInside_i_20_n_0;
+  wire isInside_i_21_n_0;
+  wire isInside_i_22_n_0;
+  wire isInside_i_23_n_0;
+  wire isInside_i_24_n_0;
+  wire isInside_i_25_n_0;
+  wire isInside_i_26_n_0;
+  wire isInside_i_27_n_0;
+  wire isInside_i_28_n_0;
+  wire isInside_i_29_n_0;
+  wire isInside_i_3_n_0;
+  wire isInside_i_5_n_0;
+  wire isInside_i_6_n_0;
+  wire isInside_i_7_n_0;
+  wire isInside_i_8_n_0;
+  wire isInside_i_9_n_0;
+  wire isInside_reg_i_13_n_0;
+  wire isInside_reg_i_13_n_1;
+  wire isInside_reg_i_13_n_2;
+  wire isInside_reg_i_13_n_3;
+  wire isInside_reg_i_1_n_3;
+  wire isInside_reg_i_2_n_0;
+  wire isInside_reg_i_2_n_1;
+  wire isInside_reg_i_2_n_2;
+  wire isInside_reg_i_2_n_3;
+  wire isInside_reg_i_4_n_0;
+  wire isInside_reg_i_4_n_1;
+  wire isInside_reg_i_4_n_2;
+  wire isInside_reg_i_4_n_3;
   wire [10:0]mul1_result_reg_0;
   wire [10:0]mul1_result_reg_1;
   wire [4:0]mul1_result_reg_2;
@@ -1923,7 +1911,6 @@ module main_gpu_wrapper_0_0_edgeFunction
   wire [2:1]out_valid_d;
   wire [0:0]\out_valid_d_reg[0]_0 ;
   wire \out_valid_d_reg[0]_1 ;
-  wire \out_valid_d_reg[0]_2 ;
   wire [0:0]\out_valid_d_reg[2]_0 ;
   wire out_valid_int;
   wire output_valid;
@@ -1945,7 +1932,6 @@ module main_gpu_wrapper_0_0_edgeFunction
   wire [10:0]\pixel_y_d_reg[2]_20 ;
   wire [10:0]pixel_y_out;
   wire [0:0]\pixel_y_reg[0] ;
-  wire [0:0]\pixel_y_reg[0]_0 ;
   wire [10:0]sub_result_reg_0;
   wire [9:0]sub_result_reg_1;
   wire [10:0]sub_result_reg_2;
@@ -1978,11 +1964,11 @@ module main_gpu_wrapper_0_0_edgeFunction
   wire [0:0]\vertex_select_reg[4] ;
   wire [3:3]NLW_V2_X_minus_V1_X0_carry__1_CO_UNCONNECTED;
   wire [3:3]NLW_V2_Y_minus_V1_Y0_carry__1_CO_UNCONNECTED;
-  wire [3:0]NLW_isInside0_carry_O_UNCONNECTED;
-  wire [3:0]NLW_isInside0_carry__0_O_UNCONNECTED;
-  wire [3:0]NLW_isInside0_carry__1_O_UNCONNECTED;
-  wire [3:1]NLW_isInside0_carry__2_CO_UNCONNECTED;
-  wire [3:0]NLW_isInside0_carry__2_O_UNCONNECTED;
+  wire [3:1]NLW_isInside_reg_i_1_CO_UNCONNECTED;
+  wire [3:0]NLW_isInside_reg_i_1_O_UNCONNECTED;
+  wire [3:0]NLW_isInside_reg_i_13_O_UNCONNECTED;
+  wire [3:0]NLW_isInside_reg_i_2_O_UNCONNECTED;
+  wire [3:0]NLW_isInside_reg_i_4_O_UNCONNECTED;
   wire NLW_mul1_result_reg_CARRYCASCOUT_UNCONNECTED;
   wire NLW_mul1_result_reg_MULTSIGNOUT_UNCONNECTED;
   wire NLW_mul1_result_reg_OVERFLOW_UNCONNECTED;
@@ -2008,12 +1994,12 @@ module main_gpu_wrapper_0_0_edgeFunction
   LUT6 #(
     .INIT(64'hFFFFFFFACCCCCCCA)) 
     \FSM_onehot_state[2]_i_1 
-       (.I0(\out_valid_d_reg[0]_2 ),
-        .I1(\pixel_y_reg[0]_0 ),
+       (.I0(\out_valid_d_reg[0]_1 ),
+        .I1(\pixel_y_reg[0] ),
         .I2(\FSM_onehot_state[9]_i_2_n_0 ),
         .I3(\FSM_onehot_state_reg[2]_1 ),
         .I4(\FSM_onehot_state_reg[0]_1 ),
-        .I5(SR),
+        .I5(force_black),
         .O(\FSM_onehot_state_reg[2]_0 ));
   LUT5 #(
     .INIT(32'hFFFFAAEA)) 
@@ -2027,9 +2013,9 @@ module main_gpu_wrapper_0_0_edgeFunction
   LUT5 #(
     .INIT(32'h04040004)) 
     \FSM_onehot_state[9]_i_2 
-       (.I0(CO),
-        .I1(\out_valid_d_reg[0]_2 ),
-        .I2(\pixel_y_reg[0] ),
+       (.I0(force_black_reg),
+        .I1(\out_valid_d_reg[0]_1 ),
+        .I2(CO),
         .I3(\out_valid_d_reg[0]_0 ),
         .I4(\out_valid_d_reg[2]_0 ),
         .O(\FSM_onehot_state[9]_i_2_n_0 ));
@@ -2255,7 +2241,7 @@ module main_gpu_wrapper_0_0_edgeFunction
         .I1(\color_reg[0] ),
         .I2(output_vertex_valid),
         .I3(\color_reg[6] ),
-        .I4(\out_valid_d_reg[0]_2 ),
+        .I4(\out_valid_d_reg[0]_1 ),
         .O(\FSM_onehot_state_reg[0] ));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
@@ -2266,6 +2252,16 @@ module main_gpu_wrapper_0_0_edgeFunction
         .I2(\color_reg[0] ),
         .I3(\FSM_onehot_state[9]_i_2_n_0 ),
         .O(output_vertex_valid_reg));
+  LUT6 #(
+    .INIT(64'hFFFFFFEFAAAAAAAA)) 
+    force_black_i_1
+       (.I0(force_black),
+        .I1(force_black_reg),
+        .I2(\out_valid_d_reg[0]_1 ),
+        .I3(CO),
+        .I4(force_black_i_2_n_0),
+        .I5(force_black_reg_0),
+        .O(\FSM_onehot_state_reg[1] ));
   LUT5 #(
     .INIT(32'h00800000)) 
     force_black_i_2
@@ -2274,200 +2270,192 @@ module main_gpu_wrapper_0_0_edgeFunction
         .I2(out_valid_int),
         .I3(out_ready),
         .I4(out_valid_d[2]),
-        .O(\out_valid_d_reg[0]_1 ));
-  CARRY4 isInside0_carry
-       (.CI(1'b0),
-        .CO({isInside0_carry_n_0,isInside0_carry_n_1,isInside0_carry_n_2,isInside0_carry_n_3}),
-        .CYINIT(1'b1),
-        .DI({isInside0_carry_i_1_n_0,isInside0_carry_i_2_n_0,isInside0_carry_i_3_n_0,isInside0_carry_i_4_n_0}),
-        .O(NLW_isInside0_carry_O_UNCONNECTED[3:0]),
-        .S({isInside0_carry_i_5_n_0,isInside0_carry_i_6_n_0,isInside0_carry_i_7_n_0,isInside0_carry_i_8_n_0}));
-  CARRY4 isInside0_carry__0
-       (.CI(isInside0_carry_n_0),
-        .CO({isInside0_carry__0_n_0,isInside0_carry__0_n_1,isInside0_carry__0_n_2,isInside0_carry__0_n_3}),
-        .CYINIT(1'b0),
-        .DI({isInside0_carry__0_i_1_n_0,isInside0_carry__0_i_2_n_0,isInside0_carry__0_i_3_n_0,isInside0_carry__0_i_4_n_0}),
-        .O(NLW_isInside0_carry__0_O_UNCONNECTED[3:0]),
-        .S({isInside0_carry__0_i_5_n_0,isInside0_carry__0_i_6_n_0,isInside0_carry__0_i_7_n_0,isInside0_carry__0_i_8_n_0}));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__0_i_1
-       (.I0(sub_result_reg_n_90),
-        .I1(sub_result_reg_n_91),
-        .O(isInside0_carry__0_i_1_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__0_i_2
-       (.I0(sub_result_reg_n_92),
-        .I1(sub_result_reg_n_93),
-        .O(isInside0_carry__0_i_2_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__0_i_3
-       (.I0(sub_result_reg_n_94),
-        .I1(sub_result_reg_n_95),
-        .O(isInside0_carry__0_i_3_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__0_i_4
-       (.I0(sub_result_reg_n_96),
-        .I1(sub_result_reg_n_97),
-        .O(isInside0_carry__0_i_4_n_0));
+        .O(force_black_i_2_n_0));
   LUT2 #(
     .INIT(4'h1)) 
-    isInside0_carry__0_i_5
-       (.I0(sub_result_reg_n_91),
-        .I1(sub_result_reg_n_90),
-        .O(isInside0_carry__0_i_5_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__0_i_6
-       (.I0(sub_result_reg_n_93),
-        .I1(sub_result_reg_n_92),
-        .O(isInside0_carry__0_i_6_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__0_i_7
-       (.I0(sub_result_reg_n_95),
-        .I1(sub_result_reg_n_94),
-        .O(isInside0_carry__0_i_7_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__0_i_8
-       (.I0(sub_result_reg_n_97),
-        .I1(sub_result_reg_n_96),
-        .O(isInside0_carry__0_i_8_n_0));
-  CARRY4 isInside0_carry__1
-       (.CI(isInside0_carry__0_n_0),
-        .CO({isInside0_carry__1_n_0,isInside0_carry__1_n_1,isInside0_carry__1_n_2,isInside0_carry__1_n_3}),
-        .CYINIT(1'b0),
-        .DI({isInside0_carry__1_i_1_n_0,isInside0_carry__1_i_2_n_0,isInside0_carry__1_i_3_n_0,isInside0_carry__1_i_4_n_0}),
-        .O(NLW_isInside0_carry__1_O_UNCONNECTED[3:0]),
-        .S({isInside0_carry__1_i_5_n_0,isInside0_carry__1_i_6_n_0,isInside0_carry__1_i_7_n_0,isInside0_carry__1_i_8_n_0}));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__1_i_1
-       (.I0(sub_result_reg_n_82),
-        .I1(sub_result_reg_n_83),
-        .O(isInside0_carry__1_i_1_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__1_i_2
-       (.I0(sub_result_reg_n_84),
-        .I1(sub_result_reg_n_85),
-        .O(isInside0_carry__1_i_2_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__1_i_3
-       (.I0(sub_result_reg_n_86),
-        .I1(sub_result_reg_n_87),
-        .O(isInside0_carry__1_i_3_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__1_i_4
-       (.I0(sub_result_reg_n_88),
-        .I1(sub_result_reg_n_89),
-        .O(isInside0_carry__1_i_4_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__1_i_5
-       (.I0(sub_result_reg_n_83),
-        .I1(sub_result_reg_n_82),
-        .O(isInside0_carry__1_i_5_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__1_i_6
+    isInside_i_10
        (.I0(sub_result_reg_n_85),
         .I1(sub_result_reg_n_84),
-        .O(isInside0_carry__1_i_6_n_0));
+        .O(isInside_i_10_n_0));
   LUT2 #(
     .INIT(4'h1)) 
-    isInside0_carry__1_i_7
+    isInside_i_11
        (.I0(sub_result_reg_n_87),
         .I1(sub_result_reg_n_86),
-        .O(isInside0_carry__1_i_7_n_0));
+        .O(isInside_i_11_n_0));
   LUT2 #(
     .INIT(4'h1)) 
-    isInside0_carry__1_i_8
+    isInside_i_12
        (.I0(sub_result_reg_n_89),
         .I1(sub_result_reg_n_88),
-        .O(isInside0_carry__1_i_8_n_0));
-  CARRY4 isInside0_carry__2
-       (.CI(isInside0_carry__1_n_0),
-        .CO({NLW_isInside0_carry__2_CO_UNCONNECTED[3:1],isInside0_carry__2_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(NLW_isInside0_carry__2_O_UNCONNECTED[3:0]),
-        .S({1'b0,1'b0,1'b0,isInside0_carry__2_i_1_n_0}));
-  LUT1 #(
-    .INIT(2'h1)) 
-    isInside0_carry__2_i_1
-       (.I0(sub_result_reg_n_81),
-        .O(isInside0_carry__2_i_1_n_0));
+        .O(isInside_i_12_n_0));
   LUT2 #(
     .INIT(4'hE)) 
-    isInside0_carry_i_1
-       (.I0(sub_result_reg_n_98),
-        .I1(sub_result_reg_n_99),
-        .O(isInside0_carry_i_1_n_0));
+    isInside_i_14
+       (.I0(sub_result_reg_n_91),
+        .I1(sub_result_reg_n_90),
+        .O(isInside_i_14_n_0));
   LUT2 #(
     .INIT(4'hE)) 
-    isInside0_carry_i_2
-       (.I0(sub_result_reg_n_100),
-        .I1(sub_result_reg_n_101),
-        .O(isInside0_carry_i_2_n_0));
+    isInside_i_15
+       (.I0(sub_result_reg_n_93),
+        .I1(sub_result_reg_n_92),
+        .O(isInside_i_15_n_0));
   LUT2 #(
     .INIT(4'hE)) 
-    isInside0_carry_i_3
-       (.I0(sub_result_reg_n_102),
-        .I1(sub_result_reg_n_103),
-        .O(isInside0_carry_i_3_n_0));
+    isInside_i_16
+       (.I0(sub_result_reg_n_95),
+        .I1(sub_result_reg_n_94),
+        .O(isInside_i_16_n_0));
   LUT2 #(
     .INIT(4'hE)) 
-    isInside0_carry_i_4
-       (.I0(sub_result_reg_n_104),
-        .I1(sub_result_reg_n_105),
-        .O(isInside0_carry_i_4_n_0));
+    isInside_i_17
+       (.I0(sub_result_reg_n_97),
+        .I1(sub_result_reg_n_96),
+        .O(isInside_i_17_n_0));
   LUT2 #(
     .INIT(4'h1)) 
-    isInside0_carry_i_5
+    isInside_i_18
+       (.I0(sub_result_reg_n_91),
+        .I1(sub_result_reg_n_90),
+        .O(isInside_i_18_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_19
+       (.I0(sub_result_reg_n_93),
+        .I1(sub_result_reg_n_92),
+        .O(isInside_i_19_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_20
+       (.I0(sub_result_reg_n_95),
+        .I1(sub_result_reg_n_94),
+        .O(isInside_i_20_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_21
+       (.I0(sub_result_reg_n_97),
+        .I1(sub_result_reg_n_96),
+        .O(isInside_i_21_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_22
        (.I0(sub_result_reg_n_99),
         .I1(sub_result_reg_n_98),
-        .O(isInside0_carry_i_5_n_0));
+        .O(isInside_i_22_n_0));
   LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry_i_6
+    .INIT(4'hE)) 
+    isInside_i_23
        (.I0(sub_result_reg_n_101),
         .I1(sub_result_reg_n_100),
-        .O(isInside0_carry_i_6_n_0));
+        .O(isInside_i_23_n_0));
   LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry_i_7
+    .INIT(4'hE)) 
+    isInside_i_24
        (.I0(sub_result_reg_n_103),
         .I1(sub_result_reg_n_102),
-        .O(isInside0_carry_i_7_n_0));
+        .O(isInside_i_24_n_0));
   LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry_i_8
+    .INIT(4'hE)) 
+    isInside_i_25
        (.I0(sub_result_reg_n_105),
         .I1(sub_result_reg_n_104),
-        .O(isInside0_carry_i_8_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT3 #(
-    .INIT(8'hA2)) 
-    isInside_i_1
-       (.I0(isInside0_carry__2_n_3),
-        .I1(out_valid_int),
-        .I2(out_ready),
-        .O(isInside_i_1_n_0));
+        .O(isInside_i_25_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_26
+       (.I0(sub_result_reg_n_99),
+        .I1(sub_result_reg_n_98),
+        .O(isInside_i_26_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_27
+       (.I0(sub_result_reg_n_101),
+        .I1(sub_result_reg_n_100),
+        .O(isInside_i_27_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_28
+       (.I0(sub_result_reg_n_103),
+        .I1(sub_result_reg_n_102),
+        .O(isInside_i_28_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_29
+       (.I0(sub_result_reg_n_105),
+        .I1(sub_result_reg_n_104),
+        .O(isInside_i_29_n_0));
+  LUT1 #(
+    .INIT(2'h1)) 
+    isInside_i_3
+       (.I0(sub_result_reg_n_81),
+        .O(isInside_i_3_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_5
+       (.I0(sub_result_reg_n_83),
+        .I1(sub_result_reg_n_82),
+        .O(isInside_i_5_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_6
+       (.I0(sub_result_reg_n_85),
+        .I1(sub_result_reg_n_84),
+        .O(isInside_i_6_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_7
+       (.I0(sub_result_reg_n_87),
+        .I1(sub_result_reg_n_86),
+        .O(isInside_i_7_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_8
+       (.I0(sub_result_reg_n_89),
+        .I1(sub_result_reg_n_88),
+        .O(isInside_i_8_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_9
+       (.I0(sub_result_reg_n_83),
+        .I1(sub_result_reg_n_82),
+        .O(isInside_i_9_n_0));
   FDRE #(
     .INIT(1'b0)) 
     isInside_reg
        (.C(clk),
-        .CE(1'b1),
-        .D(isInside_i_1_n_0),
+        .CE(\pixel_x_d[3][10]_i_1_n_0 ),
+        .D(isInside_reg_i_1_n_3),
         .Q(ef_inside),
         .R(1'b0));
+  CARRY4 isInside_reg_i_1
+       (.CI(isInside_reg_i_2_n_0),
+        .CO({NLW_isInside_reg_i_1_CO_UNCONNECTED[3:1],isInside_reg_i_1_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(NLW_isInside_reg_i_1_O_UNCONNECTED[3:0]),
+        .S({1'b0,1'b0,1'b0,isInside_i_3_n_0}));
+  CARRY4 isInside_reg_i_13
+       (.CI(1'b0),
+        .CO({isInside_reg_i_13_n_0,isInside_reg_i_13_n_1,isInside_reg_i_13_n_2,isInside_reg_i_13_n_3}),
+        .CYINIT(1'b1),
+        .DI({isInside_i_22_n_0,isInside_i_23_n_0,isInside_i_24_n_0,isInside_i_25_n_0}),
+        .O(NLW_isInside_reg_i_13_O_UNCONNECTED[3:0]),
+        .S({isInside_i_26_n_0,isInside_i_27_n_0,isInside_i_28_n_0,isInside_i_29_n_0}));
+  CARRY4 isInside_reg_i_2
+       (.CI(isInside_reg_i_4_n_0),
+        .CO({isInside_reg_i_2_n_0,isInside_reg_i_2_n_1,isInside_reg_i_2_n_2,isInside_reg_i_2_n_3}),
+        .CYINIT(1'b0),
+        .DI({isInside_i_5_n_0,isInside_i_6_n_0,isInside_i_7_n_0,isInside_i_8_n_0}),
+        .O(NLW_isInside_reg_i_2_O_UNCONNECTED[3:0]),
+        .S({isInside_i_9_n_0,isInside_i_10_n_0,isInside_i_11_n_0,isInside_i_12_n_0}));
+  CARRY4 isInside_reg_i_4
+       (.CI(isInside_reg_i_13_n_0),
+        .CO({isInside_reg_i_4_n_0,isInside_reg_i_4_n_1,isInside_reg_i_4_n_2,isInside_reg_i_4_n_3}),
+        .CYINIT(1'b0),
+        .DI({isInside_i_14_n_0,isInside_i_15_n_0,isInside_i_16_n_0,isInside_i_17_n_0}),
+        .O(NLW_isInside_reg_i_4_O_UNCONNECTED[3:0]),
+        .S({isInside_i_18_n_0,isInside_i_19_n_0,isInside_i_20_n_0,isInside_i_21_n_0}));
   DSP48E1 #(
     .ACASCREG(1),
     .ADREG(1),
@@ -2556,7 +2544,7 @@ module main_gpu_wrapper_0_0_edgeFunction
   LUT6 #(
     .INIT(64'hA2AAAAAAAAAAAAAA)) 
     \out_valid_d[0]_i_2 
-       (.I0(\out_valid_d_reg[0]_2 ),
+       (.I0(\out_valid_d_reg[0]_1 ),
         .I1(out_valid_d[2]),
         .I2(out_ready),
         .I3(out_valid_int),
@@ -2610,7 +2598,6 @@ module main_gpu_wrapper_0_0_edgeFunction
         .D(out_valid_d[2]),
         .Q(out_valid_int),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT2 #(
     .INIT(4'hE)) 
     output_valid_INST_0
@@ -2625,7 +2612,7 @@ module main_gpu_wrapper_0_0_edgeFunction
         .I2(\pixel_x_reg[0]_1 ),
         .I3(\out_valid_d_reg[0]_0 ),
         .I4(\out_valid_d_reg[2]_0 ),
-        .I5(\out_valid_d_reg[0]_2 ),
+        .I5(\out_valid_d_reg[0]_1 ),
         .O(\FSM_onehot_state_reg[9] ));
   LUT2 #(
     .INIT(4'hB)) 
@@ -2988,9 +2975,9 @@ module main_gpu_wrapper_0_0_edgeFunction
   LUT5 #(
     .INIT(32'hAEAEAAAE)) 
     \pixel_y[10]_i_1 
-       (.I0(\pixel_y_reg[0]_0 ),
-        .I1(\out_valid_d_reg[0]_2 ),
-        .I2(\pixel_y_reg[0] ),
+       (.I0(\pixel_y_reg[0] ),
+        .I1(\out_valid_d_reg[0]_1 ),
+        .I2(CO),
         .I3(\out_valid_d_reg[0]_0 ),
         .I4(\out_valid_d_reg[2]_0 ),
         .O(\FSM_onehot_state_reg[2] ));
@@ -3536,45 +3523,45 @@ module main_gpu_wrapper_0_0_edgeFunction_0
   wire [2:1]ce_d_reg;
   wire clk;
   wire [0:0]ef_inside;
-  wire isInside0_carry__0_i_1__0_n_0;
-  wire isInside0_carry__0_i_2__0_n_0;
-  wire isInside0_carry__0_i_3__0_n_0;
-  wire isInside0_carry__0_i_4__0_n_0;
-  wire isInside0_carry__0_i_5__0_n_0;
-  wire isInside0_carry__0_i_6__0_n_0;
-  wire isInside0_carry__0_i_7__0_n_0;
-  wire isInside0_carry__0_i_8__0_n_0;
-  wire isInside0_carry__0_n_0;
-  wire isInside0_carry__0_n_1;
-  wire isInside0_carry__0_n_2;
-  wire isInside0_carry__0_n_3;
-  wire isInside0_carry__1_i_1__0_n_0;
-  wire isInside0_carry__1_i_2__0_n_0;
-  wire isInside0_carry__1_i_3__0_n_0;
-  wire isInside0_carry__1_i_4__0_n_0;
-  wire isInside0_carry__1_i_5__0_n_0;
-  wire isInside0_carry__1_i_6__0_n_0;
-  wire isInside0_carry__1_i_7__0_n_0;
-  wire isInside0_carry__1_i_8__0_n_0;
-  wire isInside0_carry__1_n_0;
-  wire isInside0_carry__1_n_1;
-  wire isInside0_carry__1_n_2;
-  wire isInside0_carry__1_n_3;
-  wire isInside0_carry__2_i_1__0_n_0;
-  wire isInside0_carry__2_n_3;
-  wire isInside0_carry_i_1__0_n_0;
-  wire isInside0_carry_i_2__0_n_0;
-  wire isInside0_carry_i_3__0_n_0;
-  wire isInside0_carry_i_4__0_n_0;
-  wire isInside0_carry_i_5__0_n_0;
-  wire isInside0_carry_i_6__0_n_0;
-  wire isInside0_carry_i_7__0_n_0;
-  wire isInside0_carry_i_8__0_n_0;
-  wire isInside0_carry_n_0;
-  wire isInside0_carry_n_1;
-  wire isInside0_carry_n_2;
-  wire isInside0_carry_n_3;
-  wire isInside_i_1__0_n_0;
+  wire isInside_i_10__0_n_0;
+  wire isInside_i_11__0_n_0;
+  wire isInside_i_12__0_n_0;
+  wire isInside_i_13_n_0;
+  wire isInside_i_15_n_0;
+  wire isInside_i_16_n_0;
+  wire isInside_i_17_n_0;
+  wire isInside_i_18_n_0;
+  wire isInside_i_19__0_n_0;
+  wire isInside_i_1_n_0;
+  wire isInside_i_20__0_n_0;
+  wire isInside_i_21__0_n_0;
+  wire isInside_i_22_n_0;
+  wire isInside_i_23_n_0;
+  wire isInside_i_24_n_0;
+  wire isInside_i_25_n_0;
+  wire isInside_i_26_n_0;
+  wire isInside_i_27__0_n_0;
+  wire isInside_i_28__0_n_0;
+  wire isInside_i_29__0_n_0;
+  wire isInside_i_30_n_0;
+  wire isInside_i_4_n_0;
+  wire isInside_i_6_n_0;
+  wire isInside_i_7_n_0;
+  wire isInside_i_8_n_0;
+  wire isInside_i_9_n_0;
+  wire isInside_reg_i_14_n_0;
+  wire isInside_reg_i_14_n_1;
+  wire isInside_reg_i_14_n_2;
+  wire isInside_reg_i_14_n_3;
+  wire isInside_reg_i_2_n_3;
+  wire isInside_reg_i_3_n_0;
+  wire isInside_reg_i_3_n_1;
+  wire isInside_reg_i_3_n_2;
+  wire isInside_reg_i_3_n_3;
+  wire isInside_reg_i_5_n_0;
+  wire isInside_reg_i_5_n_1;
+  wire isInside_reg_i_5_n_2;
+  wire isInside_reg_i_5_n_3;
   wire [10:0]mul1_result_reg_0;
   wire [10:0]mul1_result_reg_1;
   wire [4:0]mul1_result_reg_2;
@@ -3671,11 +3658,11 @@ module main_gpu_wrapper_0_0_edgeFunction_0
   wire [0:0]\vertex_select_reg[1] ;
   wire [3:3]NLW_V2_X_minus_V1_X0_carry__1_CO_UNCONNECTED;
   wire [3:3]NLW_V2_Y_minus_V1_Y0_carry__1_CO_UNCONNECTED;
-  wire [3:0]NLW_isInside0_carry_O_UNCONNECTED;
-  wire [3:0]NLW_isInside0_carry__0_O_UNCONNECTED;
-  wire [3:0]NLW_isInside0_carry__1_O_UNCONNECTED;
-  wire [3:1]NLW_isInside0_carry__2_CO_UNCONNECTED;
-  wire [3:0]NLW_isInside0_carry__2_O_UNCONNECTED;
+  wire [3:0]NLW_isInside_reg_i_14_O_UNCONNECTED;
+  wire [3:1]NLW_isInside_reg_i_2_CO_UNCONNECTED;
+  wire [3:0]NLW_isInside_reg_i_2_O_UNCONNECTED;
+  wire [3:0]NLW_isInside_reg_i_3_O_UNCONNECTED;
+  wire [3:0]NLW_isInside_reg_i_5_O_UNCONNECTED;
   wire NLW_mul1_result_reg_CARRYCASCOUT_UNCONNECTED;
   wire NLW_mul1_result_reg_MULTSIGNOUT_UNCONNECTED;
   wire NLW_mul1_result_reg_OVERFLOW_UNCONNECTED;
@@ -3892,199 +3879,200 @@ module main_gpu_wrapper_0_0_edgeFunction_0
         .I4(mul1_result_reg_2[4]),
         .I5(mul1_result_reg_2[2]),
         .O(\vertex_select_reg[0] ));
-  CARRY4 isInside0_carry
-       (.CI(1'b0),
-        .CO({isInside0_carry_n_0,isInside0_carry_n_1,isInside0_carry_n_2,isInside0_carry_n_3}),
-        .CYINIT(1'b1),
-        .DI({isInside0_carry_i_1__0_n_0,isInside0_carry_i_2__0_n_0,isInside0_carry_i_3__0_n_0,isInside0_carry_i_4__0_n_0}),
-        .O(NLW_isInside0_carry_O_UNCONNECTED[3:0]),
-        .S({isInside0_carry_i_5__0_n_0,isInside0_carry_i_6__0_n_0,isInside0_carry_i_7__0_n_0,isInside0_carry_i_8__0_n_0}));
-  CARRY4 isInside0_carry__0
-       (.CI(isInside0_carry_n_0),
-        .CO({isInside0_carry__0_n_0,isInside0_carry__0_n_1,isInside0_carry__0_n_2,isInside0_carry__0_n_3}),
-        .CYINIT(1'b0),
-        .DI({isInside0_carry__0_i_1__0_n_0,isInside0_carry__0_i_2__0_n_0,isInside0_carry__0_i_3__0_n_0,isInside0_carry__0_i_4__0_n_0}),
-        .O(NLW_isInside0_carry__0_O_UNCONNECTED[3:0]),
-        .S({isInside0_carry__0_i_5__0_n_0,isInside0_carry__0_i_6__0_n_0,isInside0_carry__0_i_7__0_n_0,isInside0_carry__0_i_8__0_n_0}));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__0_i_1__0
-       (.I0(sub_result_reg_n_90),
-        .I1(sub_result_reg_n_91),
-        .O(isInside0_carry__0_i_1__0_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__0_i_2__0
-       (.I0(sub_result_reg_n_92),
-        .I1(sub_result_reg_n_93),
-        .O(isInside0_carry__0_i_2__0_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__0_i_3__0
-       (.I0(sub_result_reg_n_94),
-        .I1(sub_result_reg_n_95),
-        .O(isInside0_carry__0_i_3__0_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__0_i_4__0
-       (.I0(sub_result_reg_n_96),
-        .I1(sub_result_reg_n_97),
-        .O(isInside0_carry__0_i_4__0_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__0_i_5__0
-       (.I0(sub_result_reg_n_91),
-        .I1(sub_result_reg_n_90),
-        .O(isInside0_carry__0_i_5__0_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__0_i_6__0
-       (.I0(sub_result_reg_n_93),
-        .I1(sub_result_reg_n_92),
-        .O(isInside0_carry__0_i_6__0_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__0_i_7__0
-       (.I0(sub_result_reg_n_95),
-        .I1(sub_result_reg_n_94),
-        .O(isInside0_carry__0_i_7__0_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__0_i_8__0
-       (.I0(sub_result_reg_n_97),
-        .I1(sub_result_reg_n_96),
-        .O(isInside0_carry__0_i_8__0_n_0));
-  CARRY4 isInside0_carry__1
-       (.CI(isInside0_carry__0_n_0),
-        .CO({isInside0_carry__1_n_0,isInside0_carry__1_n_1,isInside0_carry__1_n_2,isInside0_carry__1_n_3}),
-        .CYINIT(1'b0),
-        .DI({isInside0_carry__1_i_1__0_n_0,isInside0_carry__1_i_2__0_n_0,isInside0_carry__1_i_3__0_n_0,isInside0_carry__1_i_4__0_n_0}),
-        .O(NLW_isInside0_carry__1_O_UNCONNECTED[3:0]),
-        .S({isInside0_carry__1_i_5__0_n_0,isInside0_carry__1_i_6__0_n_0,isInside0_carry__1_i_7__0_n_0,isInside0_carry__1_i_8__0_n_0}));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__1_i_1__0
-       (.I0(sub_result_reg_n_82),
-        .I1(sub_result_reg_n_83),
-        .O(isInside0_carry__1_i_1__0_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__1_i_2__0
-       (.I0(sub_result_reg_n_84),
-        .I1(sub_result_reg_n_85),
-        .O(isInside0_carry__1_i_2__0_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__1_i_3__0
-       (.I0(sub_result_reg_n_86),
-        .I1(sub_result_reg_n_87),
-        .O(isInside0_carry__1_i_3__0_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__1_i_4__0
-       (.I0(sub_result_reg_n_88),
-        .I1(sub_result_reg_n_89),
-        .O(isInside0_carry__1_i_4__0_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__1_i_5__0
-       (.I0(sub_result_reg_n_83),
-        .I1(sub_result_reg_n_82),
-        .O(isInside0_carry__1_i_5__0_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__1_i_6__0
-       (.I0(sub_result_reg_n_85),
-        .I1(sub_result_reg_n_84),
-        .O(isInside0_carry__1_i_6__0_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__1_i_7__0
-       (.I0(sub_result_reg_n_87),
-        .I1(sub_result_reg_n_86),
-        .O(isInside0_carry__1_i_7__0_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__1_i_8__0
-       (.I0(sub_result_reg_n_89),
-        .I1(sub_result_reg_n_88),
-        .O(isInside0_carry__1_i_8__0_n_0));
-  CARRY4 isInside0_carry__2
-       (.CI(isInside0_carry__1_n_0),
-        .CO({NLW_isInside0_carry__2_CO_UNCONNECTED[3:1],isInside0_carry__2_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(NLW_isInside0_carry__2_O_UNCONNECTED[3:0]),
-        .S({1'b0,1'b0,1'b0,isInside0_carry__2_i_1__0_n_0}));
-  LUT1 #(
-    .INIT(2'h1)) 
-    isInside0_carry__2_i_1__0
-       (.I0(sub_result_reg_n_81),
-        .O(isInside0_carry__2_i_1__0_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry_i_1__0
-       (.I0(sub_result_reg_n_98),
-        .I1(sub_result_reg_n_99),
-        .O(isInside0_carry_i_1__0_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry_i_2__0
-       (.I0(sub_result_reg_n_100),
-        .I1(sub_result_reg_n_101),
-        .O(isInside0_carry_i_2__0_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry_i_3__0
-       (.I0(sub_result_reg_n_102),
-        .I1(sub_result_reg_n_103),
-        .O(isInside0_carry_i_3__0_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry_i_4__0
-       (.I0(sub_result_reg_n_104),
-        .I1(sub_result_reg_n_105),
-        .O(isInside0_carry_i_4__0_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry_i_5__0
-       (.I0(sub_result_reg_n_99),
-        .I1(sub_result_reg_n_98),
-        .O(isInside0_carry_i_5__0_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry_i_6__0
-       (.I0(sub_result_reg_n_101),
-        .I1(sub_result_reg_n_100),
-        .O(isInside0_carry_i_6__0_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry_i_7__0
-       (.I0(sub_result_reg_n_103),
-        .I1(sub_result_reg_n_102),
-        .O(isInside0_carry_i_7__0_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry_i_8__0
-       (.I0(sub_result_reg_n_105),
-        .I1(sub_result_reg_n_104),
-        .O(isInside0_carry_i_8__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT3 #(
-    .INIT(8'h8A)) 
-    isInside_i_1__0
-       (.I0(isInside0_carry__2_n_3),
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  LUT4 #(
+    .INIT(16'hBA8A)) 
+    isInside_i_1
+       (.I0(isInside_reg_i_2_n_3),
         .I1(out_ready),
         .I2(\out_valid_d_reg_n_0_[3] ),
-        .O(isInside_i_1__0_n_0));
+        .I3(ef_inside),
+        .O(isInside_i_1_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_10__0
+       (.I0(sub_result_reg_n_83),
+        .I1(sub_result_reg_n_82),
+        .O(isInside_i_10__0_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_11__0
+       (.I0(sub_result_reg_n_85),
+        .I1(sub_result_reg_n_84),
+        .O(isInside_i_11__0_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_12__0
+       (.I0(sub_result_reg_n_87),
+        .I1(sub_result_reg_n_86),
+        .O(isInside_i_12__0_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_13
+       (.I0(sub_result_reg_n_89),
+        .I1(sub_result_reg_n_88),
+        .O(isInside_i_13_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_15
+       (.I0(sub_result_reg_n_91),
+        .I1(sub_result_reg_n_90),
+        .O(isInside_i_15_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_16
+       (.I0(sub_result_reg_n_93),
+        .I1(sub_result_reg_n_92),
+        .O(isInside_i_16_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_17
+       (.I0(sub_result_reg_n_95),
+        .I1(sub_result_reg_n_94),
+        .O(isInside_i_17_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_18
+       (.I0(sub_result_reg_n_97),
+        .I1(sub_result_reg_n_96),
+        .O(isInside_i_18_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_19__0
+       (.I0(sub_result_reg_n_91),
+        .I1(sub_result_reg_n_90),
+        .O(isInside_i_19__0_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_20__0
+       (.I0(sub_result_reg_n_93),
+        .I1(sub_result_reg_n_92),
+        .O(isInside_i_20__0_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_21__0
+       (.I0(sub_result_reg_n_95),
+        .I1(sub_result_reg_n_94),
+        .O(isInside_i_21__0_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_22
+       (.I0(sub_result_reg_n_97),
+        .I1(sub_result_reg_n_96),
+        .O(isInside_i_22_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_23
+       (.I0(sub_result_reg_n_99),
+        .I1(sub_result_reg_n_98),
+        .O(isInside_i_23_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_24
+       (.I0(sub_result_reg_n_101),
+        .I1(sub_result_reg_n_100),
+        .O(isInside_i_24_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_25
+       (.I0(sub_result_reg_n_103),
+        .I1(sub_result_reg_n_102),
+        .O(isInside_i_25_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_26
+       (.I0(sub_result_reg_n_105),
+        .I1(sub_result_reg_n_104),
+        .O(isInside_i_26_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_27__0
+       (.I0(sub_result_reg_n_99),
+        .I1(sub_result_reg_n_98),
+        .O(isInside_i_27__0_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_28__0
+       (.I0(sub_result_reg_n_101),
+        .I1(sub_result_reg_n_100),
+        .O(isInside_i_28__0_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_29__0
+       (.I0(sub_result_reg_n_103),
+        .I1(sub_result_reg_n_102),
+        .O(isInside_i_29__0_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_30
+       (.I0(sub_result_reg_n_105),
+        .I1(sub_result_reg_n_104),
+        .O(isInside_i_30_n_0));
+  LUT1 #(
+    .INIT(2'h1)) 
+    isInside_i_4
+       (.I0(sub_result_reg_n_81),
+        .O(isInside_i_4_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_6
+       (.I0(sub_result_reg_n_83),
+        .I1(sub_result_reg_n_82),
+        .O(isInside_i_6_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_7
+       (.I0(sub_result_reg_n_85),
+        .I1(sub_result_reg_n_84),
+        .O(isInside_i_7_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_8
+       (.I0(sub_result_reg_n_87),
+        .I1(sub_result_reg_n_86),
+        .O(isInside_i_8_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_9
+       (.I0(sub_result_reg_n_89),
+        .I1(sub_result_reg_n_88),
+        .O(isInside_i_9_n_0));
   FDRE #(
     .INIT(1'b0)) 
     isInside_reg
        (.C(clk),
         .CE(1'b1),
-        .D(isInside_i_1__0_n_0),
+        .D(isInside_i_1_n_0),
         .Q(ef_inside),
         .R(1'b0));
+  CARRY4 isInside_reg_i_14
+       (.CI(1'b0),
+        .CO({isInside_reg_i_14_n_0,isInside_reg_i_14_n_1,isInside_reg_i_14_n_2,isInside_reg_i_14_n_3}),
+        .CYINIT(1'b1),
+        .DI({isInside_i_23_n_0,isInside_i_24_n_0,isInside_i_25_n_0,isInside_i_26_n_0}),
+        .O(NLW_isInside_reg_i_14_O_UNCONNECTED[3:0]),
+        .S({isInside_i_27__0_n_0,isInside_i_28__0_n_0,isInside_i_29__0_n_0,isInside_i_30_n_0}));
+  CARRY4 isInside_reg_i_2
+       (.CI(isInside_reg_i_3_n_0),
+        .CO({NLW_isInside_reg_i_2_CO_UNCONNECTED[3:1],isInside_reg_i_2_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(NLW_isInside_reg_i_2_O_UNCONNECTED[3:0]),
+        .S({1'b0,1'b0,1'b0,isInside_i_4_n_0}));
+  CARRY4 isInside_reg_i_3
+       (.CI(isInside_reg_i_5_n_0),
+        .CO({isInside_reg_i_3_n_0,isInside_reg_i_3_n_1,isInside_reg_i_3_n_2,isInside_reg_i_3_n_3}),
+        .CYINIT(1'b0),
+        .DI({isInside_i_6_n_0,isInside_i_7_n_0,isInside_i_8_n_0,isInside_i_9_n_0}),
+        .O(NLW_isInside_reg_i_3_O_UNCONNECTED[3:0]),
+        .S({isInside_i_10__0_n_0,isInside_i_11__0_n_0,isInside_i_12__0_n_0,isInside_i_13_n_0}));
+  CARRY4 isInside_reg_i_5
+       (.CI(isInside_reg_i_14_n_0),
+        .CO({isInside_reg_i_5_n_0,isInside_reg_i_5_n_1,isInside_reg_i_5_n_2,isInside_reg_i_5_n_3}),
+        .CYINIT(1'b0),
+        .DI({isInside_i_15_n_0,isInside_i_16_n_0,isInside_i_17_n_0,isInside_i_18_n_0}),
+        .O(NLW_isInside_reg_i_5_O_UNCONNECTED[3:0]),
+        .S({isInside_i_19__0_n_0,isInside_i_20__0_n_0,isInside_i_21__0_n_0,isInside_i_22_n_0}));
   DSP48E1 #(
     .ACASCREG(1),
     .ADREG(1),
@@ -4165,17 +4153,17 @@ module main_gpu_wrapper_0_0_edgeFunction_0
     .INIT(32'hF7FFFFFF)) 
     mul1_result_reg_i_1
        (.I0(out_valid_d[1]),
-        .I1(out_valid_d[2]),
+        .I1(\out_valid_d_reg_n_0_[3] ),
         .I2(out_ready),
-        .I3(\out_valid_d_reg_n_0_[3] ),
+        .I3(out_valid_d[2]),
         .I4(out_valid_d[0]),
         .O(mul1_result_reg_i_1_n_0));
   LUT4 #(
     .INIT(16'hDFFF)) 
     mul1_result_reg_i_2
-       (.I0(\out_valid_d_reg_n_0_[3] ),
+       (.I0(out_valid_d[2]),
         .I1(out_ready),
-        .I2(out_valid_d[2]),
+        .I2(\out_valid_d_reg_n_0_[3] ),
         .I3(out_valid_d[1]),
         .O(ce_d_reg[1]));
   LUT5 #(
@@ -4187,32 +4175,32 @@ module main_gpu_wrapper_0_0_edgeFunction_0
         .I3(mul1_result_reg_i_1_n_0),
         .I4(out_valid_d[0]),
         .O(\out_valid_d[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'hAEAAAAAA)) 
     \out_valid_d[1]_i_1 
        (.I0(out_valid_d[0]),
-        .I1(\out_valid_d_reg_n_0_[3] ),
+        .I1(out_valid_d[2]),
         .I2(out_ready),
-        .I3(out_valid_d[2]),
+        .I3(\out_valid_d_reg_n_0_[3] ),
         .I4(out_valid_d[1]),
         .O(\out_valid_d[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
     .INIT(16'hAEAA)) 
     \out_valid_d[2]_i_1 
        (.I0(out_valid_d[1]),
-        .I1(out_valid_d[2]),
+        .I1(\out_valid_d_reg_n_0_[3] ),
         .I2(out_ready),
-        .I3(\out_valid_d_reg_n_0_[3] ),
+        .I3(out_valid_d[2]),
         .O(\out_valid_d[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
-    .INIT(8'hF2)) 
+    .INIT(8'hBA)) 
     \out_valid_d[3]_i_1 
-       (.I0(\out_valid_d_reg_n_0_[3] ),
+       (.I0(out_valid_d[2]),
         .I1(out_ready),
-        .I2(out_valid_d[2]),
+        .I2(\out_valid_d_reg_n_0_[3] ),
         .O(\out_valid_d[3]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
@@ -4325,9 +4313,9 @@ module main_gpu_wrapper_0_0_edgeFunction_0
   LUT3 #(
     .INIT(8'hDF)) 
     sub_result_reg_i_1
-       (.I0(out_valid_d[2]),
+       (.I0(\out_valid_d_reg_n_0_[3] ),
         .I1(out_ready),
-        .I2(\out_valid_d_reg_n_0_[3] ),
+        .I2(out_valid_d[2]),
         .O(ce_d_reg[2]));
 endmodule
 
@@ -4341,11 +4329,11 @@ module main_gpu_wrapper_0_0_edgeFunction_1
     A,
     sub_result_reg_0,
     sub_result_reg_1,
-    draw_0,
     mul1_result_reg_0,
     mul1_result_reg_1,
     sub_result_reg_2,
     sub_result_reg_3,
+    draw_0,
     out_ready,
     sub_result_reg_4,
     sub_result_reg_5,
@@ -4361,11 +4349,11 @@ module main_gpu_wrapper_0_0_edgeFunction_1
   input [11:0]A;
   input [10:0]sub_result_reg_0;
   input [9:0]sub_result_reg_1;
-  input [1:0]draw_0;
   input [10:0]mul1_result_reg_0;
   input [10:0]mul1_result_reg_1;
   input [10:0]sub_result_reg_2;
   input [10:0]sub_result_reg_3;
+  input [1:0]draw_0;
   input out_ready;
   input [4:0]sub_result_reg_4;
   input sub_result_reg_5;
@@ -4449,45 +4437,45 @@ module main_gpu_wrapper_0_0_edgeFunction_1
   wire draw;
   wire [1:0]draw_0;
   wire [2:2]ef_inside;
-  wire isInside0_carry__0_i_1__1_n_0;
-  wire isInside0_carry__0_i_2__1_n_0;
-  wire isInside0_carry__0_i_3__1_n_0;
-  wire isInside0_carry__0_i_4__1_n_0;
-  wire isInside0_carry__0_i_5__1_n_0;
-  wire isInside0_carry__0_i_6__1_n_0;
-  wire isInside0_carry__0_i_7__1_n_0;
-  wire isInside0_carry__0_i_8__1_n_0;
-  wire isInside0_carry__0_n_0;
-  wire isInside0_carry__0_n_1;
-  wire isInside0_carry__0_n_2;
-  wire isInside0_carry__0_n_3;
-  wire isInside0_carry__1_i_1__1_n_0;
-  wire isInside0_carry__1_i_2__1_n_0;
-  wire isInside0_carry__1_i_3__1_n_0;
-  wire isInside0_carry__1_i_4__1_n_0;
-  wire isInside0_carry__1_i_5__1_n_0;
-  wire isInside0_carry__1_i_6__1_n_0;
-  wire isInside0_carry__1_i_7__1_n_0;
-  wire isInside0_carry__1_i_8__1_n_0;
-  wire isInside0_carry__1_n_0;
-  wire isInside0_carry__1_n_1;
-  wire isInside0_carry__1_n_2;
-  wire isInside0_carry__1_n_3;
-  wire isInside0_carry__2_i_1__1_n_0;
-  wire isInside0_carry__2_n_3;
-  wire isInside0_carry_i_1__1_n_0;
-  wire isInside0_carry_i_2__1_n_0;
-  wire isInside0_carry_i_3__1_n_0;
-  wire isInside0_carry_i_4__1_n_0;
-  wire isInside0_carry_i_5__1_n_0;
-  wire isInside0_carry_i_6__1_n_0;
-  wire isInside0_carry_i_7__1_n_0;
-  wire isInside0_carry_i_8__1_n_0;
-  wire isInside0_carry_n_0;
-  wire isInside0_carry_n_1;
-  wire isInside0_carry_n_2;
-  wire isInside0_carry_n_3;
-  wire isInside_i_1__1_n_0;
+  wire isInside_i_10__1_n_0;
+  wire isInside_i_11__1_n_0;
+  wire isInside_i_12__1_n_0;
+  wire isInside_i_13__0_n_0;
+  wire isInside_i_15_n_0;
+  wire isInside_i_16_n_0;
+  wire isInside_i_17_n_0;
+  wire isInside_i_18_n_0;
+  wire isInside_i_19__1_n_0;
+  wire isInside_i_1__0_n_0;
+  wire isInside_i_20__1_n_0;
+  wire isInside_i_21__1_n_0;
+  wire isInside_i_22__0_n_0;
+  wire isInside_i_23_n_0;
+  wire isInside_i_24_n_0;
+  wire isInside_i_25_n_0;
+  wire isInside_i_26_n_0;
+  wire isInside_i_27__1_n_0;
+  wire isInside_i_28__1_n_0;
+  wire isInside_i_29__1_n_0;
+  wire isInside_i_30__0_n_0;
+  wire isInside_i_4_n_0;
+  wire isInside_i_6_n_0;
+  wire isInside_i_7_n_0;
+  wire isInside_i_8_n_0;
+  wire isInside_i_9_n_0;
+  wire isInside_reg_i_14_n_0;
+  wire isInside_reg_i_14_n_1;
+  wire isInside_reg_i_14_n_2;
+  wire isInside_reg_i_14_n_3;
+  wire isInside_reg_i_2_n_3;
+  wire isInside_reg_i_3_n_0;
+  wire isInside_reg_i_3_n_1;
+  wire isInside_reg_i_3_n_2;
+  wire isInside_reg_i_3_n_3;
+  wire isInside_reg_i_5_n_0;
+  wire isInside_reg_i_5_n_1;
+  wire isInside_reg_i_5_n_2;
+  wire isInside_reg_i_5_n_3;
   wire [10:0]mul1_result_reg_0;
   wire [10:0]mul1_result_reg_1;
   wire mul1_result_reg_i_1__0_n_0;
@@ -4585,11 +4573,11 @@ module main_gpu_wrapper_0_0_edgeFunction_1
   wire [0:0]\vertex_select_reg[2] ;
   wire [3:3]NLW_V2_X_minus_V1_X0_carry__1_CO_UNCONNECTED;
   wire [3:3]NLW_V2_Y_minus_V1_Y0_carry__1_CO_UNCONNECTED;
-  wire [3:0]NLW_isInside0_carry_O_UNCONNECTED;
-  wire [3:0]NLW_isInside0_carry__0_O_UNCONNECTED;
-  wire [3:0]NLW_isInside0_carry__1_O_UNCONNECTED;
-  wire [3:1]NLW_isInside0_carry__2_CO_UNCONNECTED;
-  wire [3:0]NLW_isInside0_carry__2_O_UNCONNECTED;
+  wire [3:0]NLW_isInside_reg_i_14_O_UNCONNECTED;
+  wire [3:1]NLW_isInside_reg_i_2_CO_UNCONNECTED;
+  wire [3:0]NLW_isInside_reg_i_2_O_UNCONNECTED;
+  wire [3:0]NLW_isInside_reg_i_3_O_UNCONNECTED;
+  wire [3:0]NLW_isInside_reg_i_5_O_UNCONNECTED;
   wire NLW_mul1_result_reg_CARRYCASCOUT_UNCONNECTED;
   wire NLW_mul1_result_reg_MULTSIGNOUT_UNCONNECTED;
   wire NLW_mul1_result_reg_OVERFLOW_UNCONNECTED;
@@ -4814,199 +4802,200 @@ module main_gpu_wrapper_0_0_edgeFunction_1
         .I2(draw_0[1]),
         .I3(draw_0[0]),
         .O(draw));
-  CARRY4 isInside0_carry
-       (.CI(1'b0),
-        .CO({isInside0_carry_n_0,isInside0_carry_n_1,isInside0_carry_n_2,isInside0_carry_n_3}),
-        .CYINIT(1'b1),
-        .DI({isInside0_carry_i_1__1_n_0,isInside0_carry_i_2__1_n_0,isInside0_carry_i_3__1_n_0,isInside0_carry_i_4__1_n_0}),
-        .O(NLW_isInside0_carry_O_UNCONNECTED[3:0]),
-        .S({isInside0_carry_i_5__1_n_0,isInside0_carry_i_6__1_n_0,isInside0_carry_i_7__1_n_0,isInside0_carry_i_8__1_n_0}));
-  CARRY4 isInside0_carry__0
-       (.CI(isInside0_carry_n_0),
-        .CO({isInside0_carry__0_n_0,isInside0_carry__0_n_1,isInside0_carry__0_n_2,isInside0_carry__0_n_3}),
-        .CYINIT(1'b0),
-        .DI({isInside0_carry__0_i_1__1_n_0,isInside0_carry__0_i_2__1_n_0,isInside0_carry__0_i_3__1_n_0,isInside0_carry__0_i_4__1_n_0}),
-        .O(NLW_isInside0_carry__0_O_UNCONNECTED[3:0]),
-        .S({isInside0_carry__0_i_5__1_n_0,isInside0_carry__0_i_6__1_n_0,isInside0_carry__0_i_7__1_n_0,isInside0_carry__0_i_8__1_n_0}));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__0_i_1__1
-       (.I0(sub_result_reg_n_90),
-        .I1(sub_result_reg_n_91),
-        .O(isInside0_carry__0_i_1__1_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__0_i_2__1
-       (.I0(sub_result_reg_n_92),
-        .I1(sub_result_reg_n_93),
-        .O(isInside0_carry__0_i_2__1_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__0_i_3__1
-       (.I0(sub_result_reg_n_94),
-        .I1(sub_result_reg_n_95),
-        .O(isInside0_carry__0_i_3__1_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__0_i_4__1
-       (.I0(sub_result_reg_n_96),
-        .I1(sub_result_reg_n_97),
-        .O(isInside0_carry__0_i_4__1_n_0));
   LUT2 #(
     .INIT(4'h1)) 
-    isInside0_carry__0_i_5__1
-       (.I0(sub_result_reg_n_91),
-        .I1(sub_result_reg_n_90),
-        .O(isInside0_carry__0_i_5__1_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__0_i_6__1
-       (.I0(sub_result_reg_n_93),
-        .I1(sub_result_reg_n_92),
-        .O(isInside0_carry__0_i_6__1_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__0_i_7__1
-       (.I0(sub_result_reg_n_95),
-        .I1(sub_result_reg_n_94),
-        .O(isInside0_carry__0_i_7__1_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__0_i_8__1
-       (.I0(sub_result_reg_n_97),
-        .I1(sub_result_reg_n_96),
-        .O(isInside0_carry__0_i_8__1_n_0));
-  CARRY4 isInside0_carry__1
-       (.CI(isInside0_carry__0_n_0),
-        .CO({isInside0_carry__1_n_0,isInside0_carry__1_n_1,isInside0_carry__1_n_2,isInside0_carry__1_n_3}),
-        .CYINIT(1'b0),
-        .DI({isInside0_carry__1_i_1__1_n_0,isInside0_carry__1_i_2__1_n_0,isInside0_carry__1_i_3__1_n_0,isInside0_carry__1_i_4__1_n_0}),
-        .O(NLW_isInside0_carry__1_O_UNCONNECTED[3:0]),
-        .S({isInside0_carry__1_i_5__1_n_0,isInside0_carry__1_i_6__1_n_0,isInside0_carry__1_i_7__1_n_0,isInside0_carry__1_i_8__1_n_0}));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__1_i_1__1
-       (.I0(sub_result_reg_n_82),
-        .I1(sub_result_reg_n_83),
-        .O(isInside0_carry__1_i_1__1_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__1_i_2__1
-       (.I0(sub_result_reg_n_84),
-        .I1(sub_result_reg_n_85),
-        .O(isInside0_carry__1_i_2__1_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__1_i_3__1
-       (.I0(sub_result_reg_n_86),
-        .I1(sub_result_reg_n_87),
-        .O(isInside0_carry__1_i_3__1_n_0));
-  LUT2 #(
-    .INIT(4'hE)) 
-    isInside0_carry__1_i_4__1
-       (.I0(sub_result_reg_n_88),
-        .I1(sub_result_reg_n_89),
-        .O(isInside0_carry__1_i_4__1_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry__1_i_5__1
+    isInside_i_10__1
        (.I0(sub_result_reg_n_83),
         .I1(sub_result_reg_n_82),
-        .O(isInside0_carry__1_i_5__1_n_0));
+        .O(isInside_i_10__1_n_0));
   LUT2 #(
     .INIT(4'h1)) 
-    isInside0_carry__1_i_6__1
+    isInside_i_11__1
        (.I0(sub_result_reg_n_85),
         .I1(sub_result_reg_n_84),
-        .O(isInside0_carry__1_i_6__1_n_0));
+        .O(isInside_i_11__1_n_0));
   LUT2 #(
     .INIT(4'h1)) 
-    isInside0_carry__1_i_7__1
+    isInside_i_12__1
        (.I0(sub_result_reg_n_87),
         .I1(sub_result_reg_n_86),
-        .O(isInside0_carry__1_i_7__1_n_0));
+        .O(isInside_i_12__1_n_0));
   LUT2 #(
     .INIT(4'h1)) 
-    isInside0_carry__1_i_8__1
+    isInside_i_13__0
        (.I0(sub_result_reg_n_89),
         .I1(sub_result_reg_n_88),
-        .O(isInside0_carry__1_i_8__1_n_0));
-  CARRY4 isInside0_carry__2
-       (.CI(isInside0_carry__1_n_0),
-        .CO({NLW_isInside0_carry__2_CO_UNCONNECTED[3:1],isInside0_carry__2_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(NLW_isInside0_carry__2_O_UNCONNECTED[3:0]),
-        .S({1'b0,1'b0,1'b0,isInside0_carry__2_i_1__1_n_0}));
-  LUT1 #(
-    .INIT(2'h1)) 
-    isInside0_carry__2_i_1__1
-       (.I0(sub_result_reg_n_81),
-        .O(isInside0_carry__2_i_1__1_n_0));
+        .O(isInside_i_13__0_n_0));
   LUT2 #(
     .INIT(4'hE)) 
-    isInside0_carry_i_1__1
-       (.I0(sub_result_reg_n_98),
-        .I1(sub_result_reg_n_99),
-        .O(isInside0_carry_i_1__1_n_0));
+    isInside_i_15
+       (.I0(sub_result_reg_n_91),
+        .I1(sub_result_reg_n_90),
+        .O(isInside_i_15_n_0));
   LUT2 #(
     .INIT(4'hE)) 
-    isInside0_carry_i_2__1
-       (.I0(sub_result_reg_n_100),
-        .I1(sub_result_reg_n_101),
-        .O(isInside0_carry_i_2__1_n_0));
+    isInside_i_16
+       (.I0(sub_result_reg_n_93),
+        .I1(sub_result_reg_n_92),
+        .O(isInside_i_16_n_0));
   LUT2 #(
     .INIT(4'hE)) 
-    isInside0_carry_i_3__1
-       (.I0(sub_result_reg_n_102),
-        .I1(sub_result_reg_n_103),
-        .O(isInside0_carry_i_3__1_n_0));
+    isInside_i_17
+       (.I0(sub_result_reg_n_95),
+        .I1(sub_result_reg_n_94),
+        .O(isInside_i_17_n_0));
   LUT2 #(
     .INIT(4'hE)) 
-    isInside0_carry_i_4__1
-       (.I0(sub_result_reg_n_104),
-        .I1(sub_result_reg_n_105),
-        .O(isInside0_carry_i_4__1_n_0));
+    isInside_i_18
+       (.I0(sub_result_reg_n_97),
+        .I1(sub_result_reg_n_96),
+        .O(isInside_i_18_n_0));
   LUT2 #(
     .INIT(4'h1)) 
-    isInside0_carry_i_5__1
-       (.I0(sub_result_reg_n_99),
-        .I1(sub_result_reg_n_98),
-        .O(isInside0_carry_i_5__1_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry_i_6__1
-       (.I0(sub_result_reg_n_101),
-        .I1(sub_result_reg_n_100),
-        .O(isInside0_carry_i_6__1_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry_i_7__1
-       (.I0(sub_result_reg_n_103),
-        .I1(sub_result_reg_n_102),
-        .O(isInside0_carry_i_7__1_n_0));
-  LUT2 #(
-    .INIT(4'h1)) 
-    isInside0_carry_i_8__1
-       (.I0(sub_result_reg_n_105),
-        .I1(sub_result_reg_n_104),
-        .O(isInside0_carry_i_8__1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT3 #(
-    .INIT(8'h8A)) 
-    isInside_i_1__1
-       (.I0(isInside0_carry__2_n_3),
+    isInside_i_19__1
+       (.I0(sub_result_reg_n_91),
+        .I1(sub_result_reg_n_90),
+        .O(isInside_i_19__1_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT4 #(
+    .INIT(16'hBA8A)) 
+    isInside_i_1__0
+       (.I0(isInside_reg_i_2_n_3),
         .I1(out_ready),
         .I2(\out_valid_d_reg_n_0_[3] ),
-        .O(isInside_i_1__1_n_0));
+        .I3(ef_inside),
+        .O(isInside_i_1__0_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_20__1
+       (.I0(sub_result_reg_n_93),
+        .I1(sub_result_reg_n_92),
+        .O(isInside_i_20__1_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_21__1
+       (.I0(sub_result_reg_n_95),
+        .I1(sub_result_reg_n_94),
+        .O(isInside_i_21__1_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_22__0
+       (.I0(sub_result_reg_n_97),
+        .I1(sub_result_reg_n_96),
+        .O(isInside_i_22__0_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_23
+       (.I0(sub_result_reg_n_99),
+        .I1(sub_result_reg_n_98),
+        .O(isInside_i_23_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_24
+       (.I0(sub_result_reg_n_101),
+        .I1(sub_result_reg_n_100),
+        .O(isInside_i_24_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_25
+       (.I0(sub_result_reg_n_103),
+        .I1(sub_result_reg_n_102),
+        .O(isInside_i_25_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_26
+       (.I0(sub_result_reg_n_105),
+        .I1(sub_result_reg_n_104),
+        .O(isInside_i_26_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_27__1
+       (.I0(sub_result_reg_n_99),
+        .I1(sub_result_reg_n_98),
+        .O(isInside_i_27__1_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_28__1
+       (.I0(sub_result_reg_n_101),
+        .I1(sub_result_reg_n_100),
+        .O(isInside_i_28__1_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_29__1
+       (.I0(sub_result_reg_n_103),
+        .I1(sub_result_reg_n_102),
+        .O(isInside_i_29__1_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    isInside_i_30__0
+       (.I0(sub_result_reg_n_105),
+        .I1(sub_result_reg_n_104),
+        .O(isInside_i_30__0_n_0));
+  LUT1 #(
+    .INIT(2'h1)) 
+    isInside_i_4
+       (.I0(sub_result_reg_n_81),
+        .O(isInside_i_4_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_6
+       (.I0(sub_result_reg_n_83),
+        .I1(sub_result_reg_n_82),
+        .O(isInside_i_6_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_7
+       (.I0(sub_result_reg_n_85),
+        .I1(sub_result_reg_n_84),
+        .O(isInside_i_7_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_8
+       (.I0(sub_result_reg_n_87),
+        .I1(sub_result_reg_n_86),
+        .O(isInside_i_8_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    isInside_i_9
+       (.I0(sub_result_reg_n_89),
+        .I1(sub_result_reg_n_88),
+        .O(isInside_i_9_n_0));
   FDRE #(
     .INIT(1'b0)) 
     isInside_reg
        (.C(clk),
         .CE(1'b1),
-        .D(isInside_i_1__1_n_0),
+        .D(isInside_i_1__0_n_0),
         .Q(ef_inside),
         .R(1'b0));
+  CARRY4 isInside_reg_i_14
+       (.CI(1'b0),
+        .CO({isInside_reg_i_14_n_0,isInside_reg_i_14_n_1,isInside_reg_i_14_n_2,isInside_reg_i_14_n_3}),
+        .CYINIT(1'b1),
+        .DI({isInside_i_23_n_0,isInside_i_24_n_0,isInside_i_25_n_0,isInside_i_26_n_0}),
+        .O(NLW_isInside_reg_i_14_O_UNCONNECTED[3:0]),
+        .S({isInside_i_27__1_n_0,isInside_i_28__1_n_0,isInside_i_29__1_n_0,isInside_i_30__0_n_0}));
+  CARRY4 isInside_reg_i_2
+       (.CI(isInside_reg_i_3_n_0),
+        .CO({NLW_isInside_reg_i_2_CO_UNCONNECTED[3:1],isInside_reg_i_2_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(NLW_isInside_reg_i_2_O_UNCONNECTED[3:0]),
+        .S({1'b0,1'b0,1'b0,isInside_i_4_n_0}));
+  CARRY4 isInside_reg_i_3
+       (.CI(isInside_reg_i_5_n_0),
+        .CO({isInside_reg_i_3_n_0,isInside_reg_i_3_n_1,isInside_reg_i_3_n_2,isInside_reg_i_3_n_3}),
+        .CYINIT(1'b0),
+        .DI({isInside_i_6_n_0,isInside_i_7_n_0,isInside_i_8_n_0,isInside_i_9_n_0}),
+        .O(NLW_isInside_reg_i_3_O_UNCONNECTED[3:0]),
+        .S({isInside_i_10__1_n_0,isInside_i_11__1_n_0,isInside_i_12__1_n_0,isInside_i_13__0_n_0}));
+  CARRY4 isInside_reg_i_5
+       (.CI(isInside_reg_i_14_n_0),
+        .CO({isInside_reg_i_5_n_0,isInside_reg_i_5_n_1,isInside_reg_i_5_n_2,isInside_reg_i_5_n_3}),
+        .CYINIT(1'b0),
+        .DI({isInside_i_15_n_0,isInside_i_16_n_0,isInside_i_17_n_0,isInside_i_18_n_0}),
+        .O(NLW_isInside_reg_i_5_O_UNCONNECTED[3:0]),
+        .S({isInside_i_19__1_n_0,isInside_i_20__1_n_0,isInside_i_21__1_n_0,isInside_i_22__0_n_0}));
   DSP48E1 #(
     .ACASCREG(1),
     .ADREG(1),
@@ -5087,17 +5076,17 @@ module main_gpu_wrapper_0_0_edgeFunction_1
     .INIT(32'hF7FFFFFF)) 
     mul1_result_reg_i_1__0
        (.I0(out_valid_d[1]),
-        .I1(out_valid_d[2]),
+        .I1(\out_valid_d_reg_n_0_[3] ),
         .I2(out_ready),
-        .I3(\out_valid_d_reg_n_0_[3] ),
+        .I3(out_valid_d[2]),
         .I4(out_valid_d[0]),
         .O(mul1_result_reg_i_1__0_n_0));
   LUT4 #(
     .INIT(16'hDFFF)) 
     mul1_result_reg_i_2__0
-       (.I0(\out_valid_d_reg_n_0_[3] ),
+       (.I0(out_valid_d[2]),
         .I1(out_ready),
-        .I2(out_valid_d[2]),
+        .I2(\out_valid_d_reg_n_0_[3] ),
         .I3(out_valid_d[1]),
         .O(ce_d_reg[1]));
   LUT5 #(
@@ -5109,32 +5098,32 @@ module main_gpu_wrapper_0_0_edgeFunction_1
         .I3(mul1_result_reg_i_1__0_n_0),
         .I4(out_valid_d[0]),
         .O(\out_valid_d[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
     .INIT(32'hAEAAAAAA)) 
     \out_valid_d[1]_i_1 
        (.I0(out_valid_d[0]),
-        .I1(\out_valid_d_reg_n_0_[3] ),
+        .I1(out_valid_d[2]),
         .I2(out_ready),
-        .I3(out_valid_d[2]),
+        .I3(\out_valid_d_reg_n_0_[3] ),
         .I4(out_valid_d[1]),
         .O(\out_valid_d[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT4 #(
     .INIT(16'hAEAA)) 
     \out_valid_d[2]_i_1 
        (.I0(out_valid_d[1]),
-        .I1(out_valid_d[2]),
+        .I1(\out_valid_d_reg_n_0_[3] ),
         .I2(out_ready),
-        .I3(\out_valid_d_reg_n_0_[3] ),
+        .I3(out_valid_d[2]),
         .O(\out_valid_d[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
-    .INIT(8'hF2)) 
+    .INIT(8'hBA)) 
     \out_valid_d[3]_i_1 
-       (.I0(\out_valid_d_reg_n_0_[3] ),
+       (.I0(out_valid_d[2]),
         .I1(out_ready),
-        .I2(out_valid_d[2]),
+        .I2(\out_valid_d_reg_n_0_[3] ),
         .O(\out_valid_d[3]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
@@ -5247,9 +5236,9 @@ module main_gpu_wrapper_0_0_edgeFunction_1
   LUT3 #(
     .INIT(8'hDF)) 
     sub_result_reg_i_1__0
-       (.I0(out_valid_d[2]),
+       (.I0(\out_valid_d_reg_n_0_[3] ),
         .I1(out_ready),
-        .I2(\out_valid_d_reg_n_0_[3] ),
+        .I2(out_valid_d[2]),
         .O(ce_d_reg[2]));
 endmodule
 
@@ -5264,12 +5253,12 @@ module main_gpu_wrapper_0_0_gpu_wrapper
     draw,
     output_color,
     clk,
+    reset,
     vertex_count,
     start,
     mem_wr_en,
     mem_wr_addr,
     mem_wr_data,
-    reset,
     out_ready,
     matrix_15,
     matrix_14,
@@ -5296,12 +5285,12 @@ module main_gpu_wrapper_0_0_gpu_wrapper
   output draw;
   output [7:0]output_color;
   input clk;
+  input reset;
   input [31:0]vertex_count;
   input start;
   input mem_wr_en;
   input [13:0]mem_wr_addr;
   input [17:0]mem_wr_data;
-  input reset;
   input out_ready;
   input [17:0]matrix_15;
   input [17:0]matrix_14;
@@ -5320,14 +5309,8 @@ module main_gpu_wrapper_0_0_gpu_wrapper
   input [17:0]matrix_01;
   input [17:0]matrix_00;
 
-  wire GPU_top_n_0;
-  wire GPU_top_n_2;
-  wire GPU_top_n_3;
-  wire GPU_top_n_4;
-  wire GPU_top_n_50;
   wire clk;
   wire draw;
-  wire force_black_i_1_n_0;
   wire frame_end;
   wire [10:0]height;
   wire [17:0]matrix_00;
@@ -5354,21 +5337,14 @@ module main_gpu_wrapper_0_0_gpu_wrapper
   wire output_valid;
   wire [10:0]pixel_x_out;
   wire [10:0]pixel_y_out;
-  wire \rasterizer_control/force_black ;
   wire reset;
   wire start;
   wire [31:0]vertex_count;
   wire [10:0]width;
 
   main_gpu_wrapper_0_0_GPU_top GPU_top
-       (.\BB_BR_x_reg[10] (GPU_top_n_4),
-        .CO(GPU_top_n_3),
-        .\FSM_onehot_state_reg[2] (GPU_top_n_2),
-        .Q(\rasterizer_control/force_black ),
-        .clk(clk),
+       (.clk(clk),
         .draw(draw),
-        .force_black_reg(GPU_top_n_0),
-        .force_black_reg_0(force_black_i_1_n_0),
         .frame_end(frame_end),
         .height(height),
         .matrix_00(matrix_00),
@@ -5391,7 +5367,6 @@ module main_gpu_wrapper_0_0_gpu_wrapper
         .mem_wr_data(mem_wr_data),
         .mem_wr_en(mem_wr_en),
         .out_ready(out_ready),
-        .\out_valid_d_reg[0] (GPU_top_n_50),
         .output_color(output_color),
         .output_valid(output_valid),
         .pixel_x_out(pixel_x_out),
@@ -5400,16 +5375,6 @@ module main_gpu_wrapper_0_0_gpu_wrapper
         .start(start),
         .vertex_count(vertex_count),
         .width(width));
-  LUT6 #(
-    .INIT(64'hFFFFFFEFAAAAAAAA)) 
-    force_black_i_1
-       (.I0(\rasterizer_control/force_black ),
-        .I1(GPU_top_n_3),
-        .I2(GPU_top_n_2),
-        .I3(GPU_top_n_4),
-        .I4(GPU_top_n_50),
-        .I5(GPU_top_n_0),
-        .O(force_black_i_1_n_0));
 endmodule
 
 (* ORIG_REF_NAME = "ram_rtl" *) 
@@ -6915,13 +6880,13 @@ module main_gpu_wrapper_0_0_rasterizer
     \vertex_select_reg[2] ,
     \vertex_select_reg[1]_0 ,
     \FSM_onehot_state_reg[0] ,
+    \FSM_onehot_state_reg[2] ,
     \FSM_onehot_state_reg[0]_0 ,
     output_vertex_valid_reg,
-    \FSM_onehot_state_reg[2] ,
     \FSM_onehot_state_reg[9] ,
-    \out_valid_d_reg[0] ,
     output_valid,
     draw,
+    \FSM_onehot_state_reg[1] ,
     \FSM_onehot_state_reg[2]_0 ,
     output_vertex_valid_reg_0,
     output_vertex_valid_reg_1,
@@ -6945,11 +6910,11 @@ module main_gpu_wrapper_0_0_rasterizer
     \color_reg[0] ,
     output_vertex_valid,
     \color_reg[6] ,
-    \out_valid_d_reg[0]_0 ,
-    CO,
+    \out_valid_d_reg[0] ,
     \pixel_y_reg[0] ,
+    CO,
     \FSM_onehot_state_reg[0]_1 ,
-    \pixel_y_reg[0]_0 ,
+    force_black_reg,
     \pixel_x_reg[0] ,
     \pixel_x_reg[0]_0 ,
     \pixel_x_reg[0]_1 ,
@@ -6957,8 +6922,9 @@ module main_gpu_wrapper_0_0_rasterizer
     sub_result_reg_6,
     sub_result_reg_7,
     p_0_in,
+    force_black,
+    force_black_reg_0,
     \FSM_onehot_state_reg[2]_1 ,
-    SR,
     \color_reg[6]_0 ,
     color,
     \color_reg[1] );
@@ -6969,13 +6935,13 @@ module main_gpu_wrapper_0_0_rasterizer
   output [0:0]\vertex_select_reg[2] ;
   output [0:0]\vertex_select_reg[1]_0 ;
   output \FSM_onehot_state_reg[0] ;
+  output [0:0]\FSM_onehot_state_reg[2] ;
   output \FSM_onehot_state_reg[0]_0 ;
   output output_vertex_valid_reg;
-  output [0:0]\FSM_onehot_state_reg[2] ;
   output [0:0]\FSM_onehot_state_reg[9] ;
-  output \out_valid_d_reg[0] ;
   output output_valid;
   output draw;
+  output \FSM_onehot_state_reg[1] ;
   output \FSM_onehot_state_reg[2]_0 ;
   output output_vertex_valid_reg_0;
   output output_vertex_valid_reg_1;
@@ -6999,11 +6965,11 @@ module main_gpu_wrapper_0_0_rasterizer
   input \color_reg[0] ;
   input output_vertex_valid;
   input \color_reg[6] ;
-  input \out_valid_d_reg[0]_0 ;
-  input [0:0]CO;
+  input \out_valid_d_reg[0] ;
   input [0:0]\pixel_y_reg[0] ;
+  input [0:0]CO;
   input \FSM_onehot_state_reg[0]_1 ;
-  input [0:0]\pixel_y_reg[0]_0 ;
+  input [0:0]force_black_reg;
   input \pixel_x_reg[0] ;
   input [0:0]\pixel_x_reg[0]_0 ;
   input [0:0]\pixel_x_reg[0]_1 ;
@@ -7011,8 +6977,9 @@ module main_gpu_wrapper_0_0_rasterizer
   input [4:0]sub_result_reg_6;
   input sub_result_reg_7;
   input p_0_in;
+  input force_black;
+  input force_black_reg_0;
   input \FSM_onehot_state_reg[2]_1 ;
-  input [0:0]SR;
   input \color_reg[6]_0 ;
   input [1:0]color;
   input \color_reg[1] ;
@@ -7023,12 +6990,12 @@ module main_gpu_wrapper_0_0_rasterizer
   wire \FSM_onehot_state_reg[0] ;
   wire \FSM_onehot_state_reg[0]_0 ;
   wire \FSM_onehot_state_reg[0]_1 ;
+  wire \FSM_onehot_state_reg[1] ;
   wire [0:0]\FSM_onehot_state_reg[2] ;
   wire \FSM_onehot_state_reg[2]_0 ;
   wire \FSM_onehot_state_reg[2]_1 ;
   wire [0:0]\FSM_onehot_state_reg[9] ;
   wire [10:0]Q;
-  wire [0:0]SR;
   wire [1:1]ce_d_reg;
   wire clk;
   wire [1:0]color;
@@ -7038,6 +7005,9 @@ module main_gpu_wrapper_0_0_rasterizer
   wire \color_reg[6]_0 ;
   wire draw;
   wire [1:0]ef_inside;
+  wire force_black;
+  wire [0:0]force_black_reg;
+  wire force_black_reg_0;
   wire [1:0]mul1_result_reg;
   wire [1:0]mul1_result_reg_0;
   wire [10:0]mul1_result_reg_1;
@@ -7046,7 +7016,6 @@ module main_gpu_wrapper_0_0_rasterizer
   wire out_ready;
   wire [0:0]out_valid_d;
   wire \out_valid_d_reg[0] ;
-  wire \out_valid_d_reg[0]_0 ;
   wire output_valid;
   wire output_vertex_valid;
   wire output_vertex_valid_reg;
@@ -7059,7 +7028,6 @@ module main_gpu_wrapper_0_0_rasterizer
   wire [0:0]\pixel_x_reg[0]_1 ;
   wire [10:0]pixel_y_out;
   wire [0:0]\pixel_y_reg[0] ;
-  wire [0:0]\pixel_y_reg[0]_0 ;
   wire [10:0]sub_result_reg;
   wire [9:0]sub_result_reg_0;
   wire [1:0]sub_result_reg_1;
@@ -7082,12 +7050,12 @@ module main_gpu_wrapper_0_0_rasterizer
         .\FSM_onehot_state_reg[0] (\FSM_onehot_state_reg[0] ),
         .\FSM_onehot_state_reg[0]_0 (\FSM_onehot_state_reg[0]_0 ),
         .\FSM_onehot_state_reg[0]_1 (\FSM_onehot_state_reg[0]_1 ),
+        .\FSM_onehot_state_reg[1] (\FSM_onehot_state_reg[1] ),
         .\FSM_onehot_state_reg[2] (\FSM_onehot_state_reg[2] ),
         .\FSM_onehot_state_reg[2]_0 (\FSM_onehot_state_reg[2]_0 ),
         .\FSM_onehot_state_reg[2]_1 (\FSM_onehot_state_reg[2]_1 ),
         .\FSM_onehot_state_reg[9] (\FSM_onehot_state_reg[9] ),
         .Q(Q),
-        .SR(SR),
         .clk(clk),
         .color(color),
         .\color_reg[0] (\color_reg[0] ),
@@ -7095,6 +7063,9 @@ module main_gpu_wrapper_0_0_rasterizer
         .\color_reg[6] (\color_reg[6] ),
         .\color_reg[6]_0 (\color_reg[6]_0 ),
         .ef_inside(ef_inside[0]),
+        .force_black(force_black),
+        .force_black_reg(force_black_reg),
+        .force_black_reg_0(force_black_reg_0),
         .mul1_result_reg_0(mul1_result_reg_1),
         .mul1_result_reg_1(mul1_result_reg_2),
         .mul1_result_reg_2(sub_result_reg_6),
@@ -7102,7 +7073,6 @@ module main_gpu_wrapper_0_0_rasterizer
         .out_ready(out_ready),
         .\out_valid_d_reg[0]_0 (out_valid_d),
         .\out_valid_d_reg[0]_1 (\out_valid_d_reg[0] ),
-        .\out_valid_d_reg[0]_2 (\out_valid_d_reg[0]_0 ),
         .\out_valid_d_reg[2]_0 (ce_d_reg),
         .output_valid(output_valid),
         .output_vertex_valid(output_vertex_valid),
@@ -7116,7 +7086,6 @@ module main_gpu_wrapper_0_0_rasterizer
         .\pixel_x_reg[0]_1 (\pixel_x_reg[0]_1 ),
         .pixel_y_out(pixel_y_out),
         .\pixel_y_reg[0] (\pixel_y_reg[0] ),
-        .\pixel_y_reg[0]_0 (\pixel_y_reg[0]_0 ),
         .sub_result_reg_0(sub_result_reg),
         .sub_result_reg_1(sub_result_reg_0),
         .sub_result_reg_2(sub_result_reg_3),
@@ -7132,7 +7101,7 @@ module main_gpu_wrapper_0_0_rasterizer
         .mul1_result_reg_2(sub_result_reg_6),
         .mul1_result_reg_3(sub_result_reg_7),
         .out_ready(out_ready),
-        .\out_valid_d_reg[0]_0 (\out_valid_d_reg[0]_0 ),
+        .\out_valid_d_reg[0]_0 (\out_valid_d_reg[0] ),
         .\out_valid_d_reg[0]_1 (ce_d_reg),
         .\out_valid_d_reg[0]_2 (out_valid_d),
         .sub_result_reg_0(sub_result_reg),
@@ -7150,7 +7119,7 @@ module main_gpu_wrapper_0_0_rasterizer
         .mul1_result_reg_0(mul1_result_reg_2),
         .mul1_result_reg_1(mul1_result_reg_3),
         .out_ready(out_ready),
-        .\out_valid_d_reg[0]_0 (\out_valid_d_reg[0]_0 ),
+        .\out_valid_d_reg[0]_0 (\out_valid_d_reg[0] ),
         .\out_valid_d_reg[0]_1 (ce_d_reg),
         .\out_valid_d_reg[0]_2 (out_valid_d),
         .p_0_in(p_0_in),
@@ -7166,17 +7135,11 @@ endmodule
 
 (* ORIG_REF_NAME = "rasterizer_control" *) 
 module main_gpu_wrapper_0_0_rasterizer_control
-   (force_black_reg_0,
+   (ADDRBWRADDR,
     frame_end,
-    CO,
-    \BB_BR_y_reg[10]_0 ,
-    ADDRBWRADDR,
-    vertex_count_reg_reg_6_sp_1,
-    \FSM_onehot_state_reg[2]_0 ,
-    \out_valid_d_reg[0] ,
+    vertex_count_reg_reg_20_sp_1,
     output_valid,
     draw,
-    Q,
     output_color,
     pixel_x_out,
     pixel_y_out,
@@ -7189,24 +7152,17 @@ module main_gpu_wrapper_0_0_rasterizer_control
     sub_result_reg_0,
     mul1_result_reg_0,
     sub_result_reg_1,
-    force_black_reg_1,
     output_vertex_valid,
     out_ready,
     vertex_count_reg_reg,
     vertex_count,
     D,
     \V3_y_reg[10]_0 );
-  output force_black_reg_0;
-  output frame_end;
-  output [0:0]CO;
-  output [0:0]\BB_BR_y_reg[10]_0 ;
   output [13:0]ADDRBWRADDR;
-  output vertex_count_reg_reg_6_sp_1;
-  output \FSM_onehot_state_reg[2]_0 ;
-  output \out_valid_d_reg[0] ;
+  output frame_end;
+  output vertex_count_reg_reg_20_sp_1;
   output output_valid;
   output draw;
-  output [0:0]Q;
   output [7:0]output_color;
   output [10:0]pixel_x_out;
   output [10:0]pixel_y_out;
@@ -7219,7 +7175,6 @@ module main_gpu_wrapper_0_0_rasterizer_control
   input [1:0]sub_result_reg_0;
   input [1:0]mul1_result_reg_0;
   input [1:0]sub_result_reg_1;
-  input force_black_reg_1;
   input output_vertex_valid;
   input out_ready;
   input [31:0]vertex_count_reg_reg;
@@ -7292,7 +7247,6 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire \BB_BR_y[5]_i_1_n_0 ;
   wire \BB_BR_y[7]_i_1_n_0 ;
   wire \BB_BR_y[8]_i_1_n_0 ;
-  wire [0:0]\BB_BR_y_reg[10]_0 ;
   wire \BB_BR_y_reg_n_0_[0] ;
   wire \BB_BR_y_reg_n_0_[10] ;
   wire \BB_BR_y_reg_n_0_[1] ;
@@ -7378,7 +7332,6 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire \BB_TL_y_reg_n_0_[7] ;
   wire \BB_TL_y_reg_n_0_[8] ;
   wire \BB_TL_y_reg_n_0_[9] ;
-  wire [0:0]CO;
   wire [0:0]D;
   wire \FSM_onehot_state[0]_i_1_n_0 ;
   wire \FSM_onehot_state[2]_i_2_n_0 ;
@@ -7387,15 +7340,14 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire \FSM_onehot_state[9]_i_3_n_0 ;
   wire \FSM_onehot_state[9]_i_4_n_0 ;
   wire \FSM_onehot_state[9]_i_5_n_0 ;
-  wire \FSM_onehot_state_reg[2]_0 ;
   wire \FSM_onehot_state_reg_n_0_[0] ;
+  wire \FSM_onehot_state_reg_n_0_[2] ;
   wire \FSM_onehot_state_reg_n_0_[3] ;
   wire \FSM_onehot_state_reg_n_0_[4] ;
   wire \FSM_onehot_state_reg_n_0_[6] ;
   wire \FSM_onehot_state_reg_n_0_[7] ;
   wire \FSM_onehot_state_reg_n_0_[8] ;
   wire \FSM_onehot_state_reg_n_0_[9] ;
-  wire [0:0]Q;
   wire V1_x;
   wire \V1_x_reg_n_0_[0] ;
   wire \V1_x_reg_n_0_[10] ;
@@ -7497,9 +7449,9 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire \color[7]_i_3_n_0 ;
   wire \color[7]_i_4_n_0 ;
   wire draw;
+  wire force_black;
   wire \force_black_d_reg[1]_srl2_n_0 ;
-  wire force_black_reg_0;
-  wire force_black_reg_1;
+  wire force_black_reg_n_0;
   wire frame_end;
   wire frame_end_i_1_n_0;
   wire frame_end_i_2_n_0;
@@ -7530,7 +7482,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire height0_carry_n_3;
   wire i__carry__0_i_1_n_0;
   wire i__carry__0_i_2_n_0;
-  wire i__carry__0_i_3_n_0;
+  wire i__carry__0_i_3__0_n_0;
   wire i__carry__0_i_4_n_0;
   wire i__carry_i_1__0_n_0;
   wire i__carry_i_1_n_0;
@@ -7634,7 +7586,6 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire [1:0]mul1_result_reg;
   wire [1:0]mul1_result_reg_0;
   wire out_ready;
-  wire \out_valid_d_reg[0] ;
   wire [7:0]output_color;
   wire output_valid;
   wire output_vertex_valid;
@@ -7664,12 +7615,13 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire \pixel_x_reg_n_0_[9] ;
   wire [10:0]pixel_y;
   wire \pixel_y[10]_i_3_n_0 ;
+  wire \pixel_y[2]_i_2_n_0 ;
+  wire \pixel_y[2]_i_3_n_0 ;
   wire \pixel_y[3]_i_2_n_0 ;
   wire \pixel_y[4]_i_2_n_0 ;
   wire \pixel_y[5]_i_2_n_0 ;
+  wire \pixel_y[6]_i_2_n_0 ;
   wire \pixel_y[7]_i_2_n_0 ;
-  wire \pixel_y[7]_i_3_n_0 ;
-  wire \pixel_y[7]_i_4_n_0 ;
   wire \pixel_y[8]_i_2_n_0 ;
   wire \pixel_y[9]_i_2_n_0 ;
   wire [10:0]pixel_y_out;
@@ -7685,6 +7637,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire \pixel_y_reg_n_0_[8] ;
   wire \pixel_y_reg_n_0_[9] ;
   wire rasterizer_u0_n_10;
+  wire rasterizer_u0_n_13;
   wire rasterizer_u0_n_14;
   wire rasterizer_u0_n_15;
   wire rasterizer_u0_n_16;
@@ -7696,6 +7649,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire state1_carry__0_i_2_n_0;
   wire state1_carry__0_i_3_n_0;
   wire state1_carry__0_i_4_n_0;
+  wire state1_carry__0_n_2;
   wire state1_carry__0_n_3;
   wire state1_carry_i_1_n_0;
   wire state1_carry_i_2_n_0;
@@ -7709,6 +7663,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire state1_carry_n_1;
   wire state1_carry_n_2;
   wire state1_carry_n_3;
+  wire \state1_inferred__0/i__carry__0_n_2 ;
   wire \state1_inferred__0/i__carry__0_n_3 ;
   wire \state1_inferred__0/i__carry_n_0 ;
   wire \state1_inferred__0/i__carry_n_1 ;
@@ -7731,7 +7686,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire [1:0]sub_result_reg_1;
   wire [14:0]vertex_count;
   wire [31:0]vertex_count_reg_reg;
-  wire vertex_count_reg_reg_6_sn_1;
+  wire vertex_count_reg_reg_20_sn_1;
   wire [14:0]vertex_counter;
   wire vertex_counter0_carry__0_i_1_n_0;
   wire vertex_counter0_carry__0_i_2_n_0;
@@ -7777,12 +7732,12 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire \vertex_counter[8]_i_1_n_0 ;
   wire \vertex_counter[9]_i_1_n_0 ;
   wire \vertex_mem_rd_addr[0]_i_10_n_0 ;
-  wire \vertex_mem_rd_addr[0]_i_11_n_0 ;
-  wire \vertex_mem_rd_addr[0]_i_12_n_0 ;
+  wire \vertex_mem_rd_addr[0]_i_3_n_0 ;
   wire \vertex_mem_rd_addr[0]_i_4_n_0 ;
   wire \vertex_mem_rd_addr[0]_i_5_n_0 ;
   wire \vertex_mem_rd_addr[0]_i_6_n_0 ;
   wire \vertex_mem_rd_addr[0]_i_7_n_0 ;
+  wire \vertex_mem_rd_addr[0]_i_8_n_0 ;
   wire \vertex_mem_rd_addr[0]_i_9_n_0 ;
   wire [4:0]vertex_select;
   wire \vertex_select[1]_i_1_n_0 ;
@@ -7851,7 +7806,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
   wire [3:2]NLW_width0_carry__1_CO_UNCONNECTED;
   wire [3:3]NLW_width0_carry__1_O_UNCONNECTED;
 
-  assign vertex_count_reg_reg_6_sp_1 = vertex_count_reg_reg_6_sn_1;
+  assign vertex_count_reg_reg_20_sp_1 = vertex_count_reg_reg_20_sn_1;
   CARRY4 BB_BR_x1_carry
        (.CI(1'b0),
         .CO({BB_BR_x1_carry_n_0,BB_BR_x1_carry_n_1,BB_BR_x1_carry_n_2,BB_BR_x1_carry_n_3}),
@@ -7992,6 +7947,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I2(\FSM_onehot_state_reg_n_0_[8] ),
         .I3(\BB_BR_x_reg_n_0_[9] ),
         .O(\BB_BR_x[10]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT3 #(
     .INIT(8'hEA)) 
     \BB_BR_x[10]_i_4 
@@ -8084,7 +8040,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_x[10]_i_1_n_0 ),
         .D(BB_BR_x[0]),
         .Q(\BB_BR_x_reg_n_0_[0] ),
-        .S(Q));
+        .S(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_BR_x_reg[10] 
@@ -8092,7 +8048,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_x[10]_i_1_n_0 ),
         .D(\BB_BR_x[10]_i_2_n_0 ),
         .Q(\BB_BR_x_reg_n_0_[10] ),
-        .R(Q));
+        .R(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \BB_BR_x_reg[1] 
@@ -8100,7 +8056,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_x[10]_i_1_n_0 ),
         .D(BB_BR_x[1]),
         .Q(\BB_BR_x_reg_n_0_[1] ),
-        .S(Q));
+        .S(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \BB_BR_x_reg[2] 
@@ -8108,7 +8064,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_x[10]_i_1_n_0 ),
         .D(BB_BR_x[2]),
         .Q(\BB_BR_x_reg_n_0_[2] ),
-        .S(Q));
+        .S(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \BB_BR_x_reg[3] 
@@ -8116,7 +8072,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_x[10]_i_1_n_0 ),
         .D(BB_BR_x[3]),
         .Q(\BB_BR_x_reg_n_0_[3] ),
-        .S(Q));
+        .S(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \BB_BR_x_reg[4] 
@@ -8124,7 +8080,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_x[10]_i_1_n_0 ),
         .D(BB_BR_x[4]),
         .Q(\BB_BR_x_reg_n_0_[4] ),
-        .S(Q));
+        .S(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_BR_x_reg[5] 
@@ -8132,7 +8088,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_x[10]_i_1_n_0 ),
         .D(\BB_BR_x[5]_i_1_n_0 ),
         .Q(\BB_BR_x_reg_n_0_[5] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_BR_x_reg[6] 
@@ -8140,7 +8096,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_x[10]_i_1_n_0 ),
         .D(\BB_BR_x[6]_i_1_n_0 ),
         .Q(\BB_BR_x_reg_n_0_[6] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_BR_x_reg[7] 
@@ -8148,7 +8104,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_x[10]_i_1_n_0 ),
         .D(\BB_BR_x[7]_i_1_n_0 ),
         .Q(\BB_BR_x_reg_n_0_[7] ),
-        .R(Q));
+        .R(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \BB_BR_x_reg[8] 
@@ -8156,7 +8112,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_x[10]_i_1_n_0 ),
         .D(BB_BR_x[8]),
         .Q(\BB_BR_x_reg_n_0_[8] ),
-        .S(Q));
+        .S(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \BB_BR_x_reg[9] 
@@ -8164,7 +8120,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_x[10]_i_1_n_0 ),
         .D(BB_BR_x[9]),
         .Q(\BB_BR_x_reg_n_0_[9] ),
-        .S(Q));
+        .S(force_black));
   CARRY4 BB_BR_y1_carry
        (.CI(1'b0),
         .CO({BB_BR_y1_carry_n_0,BB_BR_y1_carry_n_1,BB_BR_y1_carry_n_2,BB_BR_y1_carry_n_3}),
@@ -8392,7 +8348,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_y[10]_i_1_n_0 ),
         .D(BB_BR_y[0]),
         .Q(\BB_BR_y_reg_n_0_[0] ),
-        .S(Q));
+        .S(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_BR_y_reg[10] 
@@ -8400,7 +8356,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_y[10]_i_1_n_0 ),
         .D(\BB_BR_y[10]_i_2_n_0 ),
         .Q(\BB_BR_y_reg_n_0_[10] ),
-        .R(Q));
+        .R(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \BB_BR_y_reg[1] 
@@ -8408,7 +8364,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_y[10]_i_1_n_0 ),
         .D(BB_BR_y[1]),
         .Q(\BB_BR_y_reg_n_0_[1] ),
-        .S(Q));
+        .S(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \BB_BR_y_reg[2] 
@@ -8416,7 +8372,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_y[10]_i_1_n_0 ),
         .D(BB_BR_y[2]),
         .Q(\BB_BR_y_reg_n_0_[2] ),
-        .S(Q));
+        .S(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_BR_y_reg[3] 
@@ -8424,7 +8380,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_y[10]_i_1_n_0 ),
         .D(\BB_BR_y[3]_i_1_n_0 ),
         .Q(\BB_BR_y_reg_n_0_[3] ),
-        .R(Q));
+        .R(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \BB_BR_y_reg[4] 
@@ -8432,7 +8388,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_y[10]_i_1_n_0 ),
         .D(BB_BR_y[4]),
         .Q(\BB_BR_y_reg_n_0_[4] ),
-        .S(Q));
+        .S(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_BR_y_reg[5] 
@@ -8440,7 +8396,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_y[10]_i_1_n_0 ),
         .D(\BB_BR_y[5]_i_1_n_0 ),
         .Q(\BB_BR_y_reg_n_0_[5] ),
-        .R(Q));
+        .R(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \BB_BR_y_reg[6] 
@@ -8448,7 +8404,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_y[10]_i_1_n_0 ),
         .D(BB_BR_y[6]),
         .Q(\BB_BR_y_reg_n_0_[6] ),
-        .S(Q));
+        .S(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_BR_y_reg[7] 
@@ -8456,7 +8412,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_y[10]_i_1_n_0 ),
         .D(\BB_BR_y[7]_i_1_n_0 ),
         .Q(\BB_BR_y_reg_n_0_[7] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_BR_y_reg[8] 
@@ -8464,7 +8420,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_y[10]_i_1_n_0 ),
         .D(\BB_BR_y[8]_i_1_n_0 ),
         .Q(\BB_BR_y_reg_n_0_[8] ),
-        .R(Q));
+        .R(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \BB_BR_y_reg[9] 
@@ -8472,7 +8428,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_BR_y[10]_i_1_n_0 ),
         .D(BB_BR_y[9]),
         .Q(\BB_BR_y_reg_n_0_[9] ),
-        .S(Q));
+        .S(force_black));
   CARRY4 BB_TL_x1_carry
        (.CI(1'b0),
         .CO({BB_TL_x1_carry_n_0,BB_TL_x1_carry_n_1,BB_TL_x1_carry_n_2,BB_TL_x1_carry_n_3}),
@@ -8613,7 +8569,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I2(\FSM_onehot_state_reg_n_0_[8] ),
         .I3(\BB_TL_x_reg_n_0_[9] ),
         .O(\BB_TL_x[10]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT3 #(
     .INIT(8'hEA)) 
     \BB_TL_x[10]_i_4 
@@ -8706,7 +8662,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_x[10]_i_1_n_0 ),
         .D(BB_TL_x[0]),
         .Q(\BB_TL_x_reg_n_0_[0] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_x_reg[10] 
@@ -8714,7 +8670,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_x[10]_i_1_n_0 ),
         .D(\BB_TL_x[10]_i_2_n_0 ),
         .Q(\BB_TL_x_reg_n_0_[10] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_x_reg[1] 
@@ -8722,7 +8678,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_x[10]_i_1_n_0 ),
         .D(BB_TL_x[1]),
         .Q(\BB_TL_x_reg_n_0_[1] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_x_reg[2] 
@@ -8730,7 +8686,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_x[10]_i_1_n_0 ),
         .D(BB_TL_x[2]),
         .Q(\BB_TL_x_reg_n_0_[2] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_x_reg[3] 
@@ -8738,7 +8694,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_x[10]_i_1_n_0 ),
         .D(BB_TL_x[3]),
         .Q(\BB_TL_x_reg_n_0_[3] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_x_reg[4] 
@@ -8746,7 +8702,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_x[10]_i_1_n_0 ),
         .D(BB_TL_x[4]),
         .Q(\BB_TL_x_reg_n_0_[4] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_x_reg[5] 
@@ -8754,7 +8710,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_x[10]_i_1_n_0 ),
         .D(\BB_TL_x[5]_i_1_n_0 ),
         .Q(\BB_TL_x_reg_n_0_[5] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_x_reg[6] 
@@ -8762,7 +8718,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_x[10]_i_1_n_0 ),
         .D(\BB_TL_x[6]_i_1_n_0 ),
         .Q(\BB_TL_x_reg_n_0_[6] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_x_reg[7] 
@@ -8770,7 +8726,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_x[10]_i_1_n_0 ),
         .D(\BB_TL_x[7]_i_1_n_0 ),
         .Q(\BB_TL_x_reg_n_0_[7] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_x_reg[8] 
@@ -8778,7 +8734,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_x[10]_i_1_n_0 ),
         .D(BB_TL_x[8]),
         .Q(\BB_TL_x_reg_n_0_[8] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_x_reg[9] 
@@ -8786,7 +8742,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_x[10]_i_1_n_0 ),
         .D(BB_TL_x[9]),
         .Q(\BB_TL_x_reg_n_0_[9] ),
-        .R(Q));
+        .R(force_black));
   CARRY4 BB_TL_y1_carry
        (.CI(1'b0),
         .CO({BB_TL_y1_carry_n_0,BB_TL_y1_carry_n_1,BB_TL_y1_carry_n_2,BB_TL_y1_carry_n_3}),
@@ -9014,7 +8970,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_y[10]_i_1_n_0 ),
         .D(BB_TL_y[0]),
         .Q(\BB_TL_y_reg_n_0_[0] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_y_reg[10] 
@@ -9022,7 +8978,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_y[10]_i_1_n_0 ),
         .D(\BB_TL_y[10]_i_2_n_0 ),
         .Q(\BB_TL_y_reg_n_0_[10] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_y_reg[1] 
@@ -9030,7 +8986,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_y[10]_i_1_n_0 ),
         .D(BB_TL_y[1]),
         .Q(\BB_TL_y_reg_n_0_[1] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_y_reg[2] 
@@ -9038,7 +8994,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_y[10]_i_1_n_0 ),
         .D(BB_TL_y[2]),
         .Q(\BB_TL_y_reg_n_0_[2] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_y_reg[3] 
@@ -9046,7 +9002,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_y[10]_i_1_n_0 ),
         .D(\BB_TL_y[3]_i_1_n_0 ),
         .Q(\BB_TL_y_reg_n_0_[3] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_y_reg[4] 
@@ -9054,7 +9010,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_y[10]_i_1_n_0 ),
         .D(BB_TL_y[4]),
         .Q(\BB_TL_y_reg_n_0_[4] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_y_reg[5] 
@@ -9062,7 +9018,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_y[10]_i_1_n_0 ),
         .D(\BB_TL_y[5]_i_1_n_0 ),
         .Q(\BB_TL_y_reg_n_0_[5] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_y_reg[6] 
@@ -9070,7 +9026,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_y[10]_i_1_n_0 ),
         .D(BB_TL_y[6]),
         .Q(\BB_TL_y_reg_n_0_[6] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_y_reg[7] 
@@ -9078,7 +9034,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_y[10]_i_1_n_0 ),
         .D(\BB_TL_y[7]_i_1_n_0 ),
         .Q(\BB_TL_y_reg_n_0_[7] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_y_reg[8] 
@@ -9086,7 +9042,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_y[10]_i_1_n_0 ),
         .D(\BB_TL_y[8]_i_1_n_0 ),
         .Q(\BB_TL_y_reg_n_0_[8] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \BB_TL_y_reg[9] 
@@ -9094,7 +9050,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\BB_TL_y[10]_i_1_n_0 ),
         .D(BB_TL_y[9]),
         .Q(\BB_TL_y_reg_n_0_[9] ),
-        .R(Q));
+        .R(force_black));
   (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT2 #(
     .INIT(4'h8)) 
@@ -9107,16 +9063,16 @@ module main_gpu_wrapper_0_0_rasterizer_control
     \FSM_onehot_state[2]_i_2 
        (.I0(\FSM_onehot_state_reg_n_0_[0] ),
         .I1(output_vertex_valid),
-        .I2(\vertex_mem_rd_addr[0]_i_4_n_0 ),
-        .I3(\vertex_mem_rd_addr[0]_i_5_n_0 ),
-        .I4(\vertex_mem_rd_addr[0]_i_6_n_0 ),
-        .I5(\vertex_mem_rd_addr[0]_i_7_n_0 ),
+        .I2(\vertex_mem_rd_addr[0]_i_3_n_0 ),
+        .I3(\vertex_mem_rd_addr[0]_i_4_n_0 ),
+        .I4(\vertex_mem_rd_addr[0]_i_5_n_0 ),
+        .I5(\vertex_mem_rd_addr[0]_i_6_n_0 ),
         .O(\FSM_onehot_state[2]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT4 #(
     .INIT(16'hFEAA)) 
     \FSM_onehot_state[3]_i_1 
-       (.I0(\FSM_onehot_state_reg[2]_0 ),
+       (.I0(\FSM_onehot_state_reg_n_0_[2] ),
         .I1(state2),
         .I2(state20_in),
         .I3(\FSM_onehot_state_reg_n_0_[9] ),
@@ -9134,34 +9090,33 @@ module main_gpu_wrapper_0_0_rasterizer_control
        (.I0(\FSM_onehot_state_reg_n_0_[4] ),
         .I1(\FSM_onehot_state[9]_i_4_n_0 ),
         .I2(\FSM_onehot_state[9]_i_5_n_0 ),
-        .I3(\FSM_onehot_state_reg_n_0_[9] ),
-        .I4(\FSM_onehot_state_reg_n_0_[8] ),
+        .I3(\FSM_onehot_state_reg_n_0_[7] ),
+        .I4(\FSM_onehot_state_reg_n_0_[6] ),
         .I5(\FSM_onehot_state_reg_n_0_[3] ),
         .O(\FSM_onehot_state[9]_i_3_n_0 ));
   LUT5 #(
-    .INIT(32'h00400000)) 
+    .INIT(32'h00000800)) 
     \FSM_onehot_state[9]_i_4 
-       (.I0(\vertex_select_reg_n_0_[2] ),
+       (.I0(\vertex_select_reg_n_0_[1] ),
         .I1(\vertex_select_reg_n_0_[0] ),
-        .I2(\vertex_select_reg_n_0_[1] ),
-        .I3(\vertex_select_reg_n_0_[4] ),
-        .I4(\vertex_select_reg_n_0_[3] ),
+        .I2(\vertex_select_reg_n_0_[4] ),
+        .I3(\vertex_select_reg_n_0_[3] ),
+        .I4(\vertex_select_reg_n_0_[2] ),
         .O(\FSM_onehot_state[9]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     \FSM_onehot_state[9]_i_5 
-       (.I0(Q),
+       (.I0(\FSM_onehot_state_reg_n_0_[8] ),
         .I1(max_temp_x),
-        .I2(\FSM_onehot_state_reg_n_0_[7] ),
-        .I3(\FSM_onehot_state_reg_n_0_[6] ),
+        .I2(force_black),
+        .I3(\FSM_onehot_state_reg_n_0_[9] ),
         .O(\FSM_onehot_state[9]_i_5_n_0 ));
   (* FSM_ENCODED_STATES = "TRIANGLE_CLIPPING_1:0000100000,TRIANGLE_CLIPPING_2:0001000000,CLEAR_SCREEN:0000000010,START:0000001000,LOAD_VERTEX:0000010000,IDLE:0000000001,TRIANGLE_CLIPPING_5:1000000000,RASTERIZE:0000000100,TRIANGLE_CLIPPING_4:0100000000,TRIANGLE_CLIPPING_3:0010000000" *) 
   FDRE #(
     .INIT(1'b1)) 
     \FSM_onehot_state_reg[0] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_8),
         .D(\FSM_onehot_state[0]_i_1_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[0] ),
         .R(1'b0));
@@ -9170,9 +9125,9 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[1] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_8),
         .D(\FSM_onehot_state_reg_n_0_[0] ),
-        .Q(Q),
+        .Q(force_black),
         .R(1'b0));
   (* FSM_ENCODED_STATES = "TRIANGLE_CLIPPING_1:0000100000,TRIANGLE_CLIPPING_2:0001000000,CLEAR_SCREEN:0000000010,START:0000001000,LOAD_VERTEX:0000010000,IDLE:0000000001,TRIANGLE_CLIPPING_5:1000000000,RASTERIZE:0000000100,TRIANGLE_CLIPPING_4:0100000000,TRIANGLE_CLIPPING_3:0010000000" *) 
   FDRE #(
@@ -9181,14 +9136,14 @@ module main_gpu_wrapper_0_0_rasterizer_control
        (.C(clk),
         .CE(1'b1),
         .D(rasterizer_u0_n_14),
-        .Q(\FSM_onehot_state_reg[2]_0 ),
+        .Q(\FSM_onehot_state_reg_n_0_[2] ),
         .R(1'b0));
   (* FSM_ENCODED_STATES = "TRIANGLE_CLIPPING_1:0000100000,TRIANGLE_CLIPPING_2:0001000000,CLEAR_SCREEN:0000000010,START:0000001000,LOAD_VERTEX:0000010000,IDLE:0000000001,TRIANGLE_CLIPPING_5:1000000000,RASTERIZE:0000000100,TRIANGLE_CLIPPING_4:0100000000,TRIANGLE_CLIPPING_3:0010000000" *) 
   FDRE #(
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[3] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_8),
         .D(\FSM_onehot_state[3]_i_1_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[3] ),
         .R(1'b0));
@@ -9197,7 +9152,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[4] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_8),
         .D(\FSM_onehot_state[4]_i_1_n_0 ),
         .Q(\FSM_onehot_state_reg_n_0_[4] ),
         .R(1'b0));
@@ -9206,7 +9161,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[5] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_8),
         .D(\FSM_onehot_state_reg_n_0_[4] ),
         .Q(max_temp_x),
         .R(1'b0));
@@ -9215,7 +9170,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[6] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_8),
         .D(max_temp_x),
         .Q(\FSM_onehot_state_reg_n_0_[6] ),
         .R(1'b0));
@@ -9224,7 +9179,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[7] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_8),
         .D(\FSM_onehot_state_reg_n_0_[6] ),
         .Q(\FSM_onehot_state_reg_n_0_[7] ),
         .R(1'b0));
@@ -9233,7 +9188,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[8] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_8),
         .D(\FSM_onehot_state_reg_n_0_[7] ),
         .Q(\FSM_onehot_state_reg_n_0_[8] ),
         .R(1'b0));
@@ -9242,7 +9197,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \FSM_onehot_state_reg[9] 
        (.C(clk),
-        .CE(rasterizer_u0_n_7),
+        .CE(rasterizer_u0_n_8),
         .D(\FSM_onehot_state_reg_n_0_[8] ),
         .Q(\FSM_onehot_state_reg_n_0_[9] ),
         .R(1'b0));
@@ -9815,26 +9770,26 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I2(\addra[13]_i_3_n_0 ),
         .I3(\FSM_onehot_state_reg_n_0_[0] ),
         .I4(output_vertex_valid),
-        .I5(vertex_count_reg_reg_6_sn_1),
+        .I5(vertex_count_reg_reg_20_sn_1),
         .O(\addra[13]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'hFFFFFF40)) 
     \addra[13]_i_2 
-       (.I0(vertex_count_reg_reg_6_sn_1),
+       (.I0(vertex_count_reg_reg_20_sn_1),
         .I1(output_vertex_valid),
         .I2(\FSM_onehot_state_reg_n_0_[0] ),
         .I3(\addra[13]_i_3_n_0 ),
         .I4(\FSM_onehot_state_reg_n_0_[3] ),
         .O(\addra[13]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hAAAAAAAAA2AAAAAA)) 
+    .INIT(64'hAA8AAAAAAAAAAAAA)) 
     \addra[13]_i_3 
        (.I0(\FSM_onehot_state_reg_n_0_[4] ),
-        .I1(\vertex_select_reg_n_0_[3] ),
-        .I2(\vertex_select_reg_n_0_[4] ),
-        .I3(\vertex_select_reg_n_0_[1] ),
+        .I1(\vertex_select_reg_n_0_[2] ),
+        .I2(\vertex_select_reg_n_0_[3] ),
+        .I3(\vertex_select_reg_n_0_[4] ),
         .I4(\vertex_select_reg_n_0_[0] ),
-        .I5(\vertex_select_reg_n_0_[2] ),
+        .I5(\vertex_select_reg_n_0_[1] ),
         .O(\addra[13]_i_3_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
@@ -9953,15 +9908,15 @@ module main_gpu_wrapper_0_0_rasterizer_control
     \color[0]_i_1 
        (.I0(color[0]),
         .O(\color[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT3 #(
     .INIT(8'h60)) 
     \color[1]_i_2 
        (.I0(color[1]),
         .I1(color[0]),
-        .I2(\FSM_onehot_state_reg[2]_0 ),
+        .I2(\FSM_onehot_state_reg_n_0_[2] ),
         .O(\color[1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \color[2]_i_1 
@@ -9969,7 +9924,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(color[1]),
         .I2(color[0]),
         .O(\color[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT4 #(
     .INIT(16'h6AAA)) 
     \color[3]_i_1 
@@ -9978,7 +9933,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I2(color[0]),
         .I3(color[1]),
         .O(\color[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     \color[4]_i_1 
@@ -9998,15 +9953,15 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(color[1]),
         .I5(color[3]),
         .O(\color[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT3 #(
     .INIT(8'h60)) 
     \color[6]_i_2 
        (.I0(\color[7]_i_4_n_0 ),
         .I1(color[6]),
-        .I2(\FSM_onehot_state_reg[2]_0 ),
+        .I2(\FSM_onehot_state_reg_n_0_[2] ),
         .O(\color[6]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \color[7]_i_3 
@@ -10028,7 +9983,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b1)) 
     \color_reg[0] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_9),
         .D(\color[0]_i_1_n_0 ),
         .Q(color[0]),
         .R(rasterizer_u0_n_6));
@@ -10044,7 +9999,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \color_reg[2] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_9),
         .D(\color[2]_i_1_n_0 ),
         .Q(color[2]),
         .R(rasterizer_u0_n_6));
@@ -10052,7 +10007,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \color_reg[3] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_9),
         .D(\color[3]_i_1_n_0 ),
         .Q(color[3]),
         .R(rasterizer_u0_n_6));
@@ -10060,7 +10015,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \color_reg[4] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_9),
         .D(\color[4]_i_1_n_0 ),
         .Q(color[4]),
         .R(rasterizer_u0_n_6));
@@ -10068,7 +10023,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \color_reg[5] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_9),
         .D(\color[5]_i_1_n_0 ),
         .Q(color[5]),
         .R(rasterizer_u0_n_6));
@@ -10084,7 +10039,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \color_reg[7] 
        (.C(clk),
-        .CE(rasterizer_u0_n_8),
+        .CE(rasterizer_u0_n_9),
         .D(\color[7]_i_3_n_0 ),
         .Q(color[7]),
         .R(rasterizer_u0_n_6));
@@ -10099,7 +10054,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .A3(1'b0),
         .CE(1'b1),
         .CLK(clk),
-        .D(force_black_reg_0),
+        .D(force_black_reg_n_0),
         .Q(\force_black_d_reg[1]_srl2_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
@@ -10114,15 +10069,15 @@ module main_gpu_wrapper_0_0_rasterizer_control
     force_black_reg
        (.C(clk),
         .CE(1'b1),
-        .D(force_black_reg_1),
-        .Q(force_black_reg_0),
+        .D(rasterizer_u0_n_13),
+        .Q(force_black_reg_n_0),
         .R(1'b0));
   LUT6 #(
     .INIT(64'hFAFFFFFFFAFF8888)) 
     frame_end_i_1
        (.I0(\FSM_onehot_state_reg_n_0_[3] ),
         .I1(frame_end_i_2_n_0),
-        .I2(vertex_count_reg_reg_6_sn_1),
+        .I2(vertex_count_reg_reg_20_sn_1),
         .I3(output_vertex_valid),
         .I4(\FSM_onehot_state_reg_n_0_[0] ),
         .I5(frame_end),
@@ -10131,28 +10086,28 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(32'h00000002)) 
     frame_end_i_2
        (.I0(frame_end_i_3_n_0),
-        .I1(vertex_counter[13]),
-        .I2(vertex_counter[6]),
-        .I3(vertex_counter[10]),
-        .I4(frame_end_i_4_n_0),
+        .I1(frame_end_i_4_n_0),
+        .I2(vertex_counter[11]),
+        .I3(vertex_counter[6]),
+        .I4(vertex_counter[7]),
         .O(frame_end_i_2_n_0));
   LUT6 #(
     .INIT(64'h0000000000000007)) 
     frame_end_i_3
        (.I0(vertex_counter[3]),
         .I1(vertex_counter[2]),
-        .I2(vertex_counter[9]),
+        .I2(vertex_counter[5]),
         .I3(vertex_counter[4]),
-        .I4(vertex_counter[7]),
-        .I5(vertex_counter[5]),
+        .I4(vertex_counter[10]),
+        .I5(vertex_counter[9]),
         .O(frame_end_i_3_n_0));
   LUT4 #(
     .INIT(16'hFFFE)) 
     frame_end_i_4
-       (.I0(vertex_counter[11]),
-        .I1(vertex_counter[12]),
+       (.I0(vertex_counter[12]),
+        .I1(vertex_counter[14]),
         .I2(vertex_counter[8]),
-        .I3(vertex_counter[14]),
+        .I3(vertex_counter[13]),
         .O(frame_end_i_4_n_0));
   FDRE #(
     .INIT(1'b0)) 
@@ -10256,7 +10211,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(height0[0]),
         .Q(height[0]),
-        .S(Q));
+        .S(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \height_reg[10] 
@@ -10264,7 +10219,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(height0[10]),
         .Q(height[10]),
-        .R(Q));
+        .R(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \height_reg[1] 
@@ -10272,7 +10227,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(height0[1]),
         .Q(height[1]),
-        .S(Q));
+        .S(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \height_reg[2] 
@@ -10280,7 +10235,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(height0[2]),
         .Q(height[2]),
-        .S(Q));
+        .S(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \height_reg[3] 
@@ -10288,7 +10243,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(height0[3]),
         .Q(height[3]),
-        .R(Q));
+        .R(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \height_reg[4] 
@@ -10296,7 +10251,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(height0[4]),
         .Q(height[4]),
-        .S(Q));
+        .S(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \height_reg[5] 
@@ -10304,7 +10259,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(height0[5]),
         .Q(height[5]),
-        .R(Q));
+        .R(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \height_reg[6] 
@@ -10312,7 +10267,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(height0[6]),
         .Q(height[6]),
-        .S(Q));
+        .S(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \height_reg[7] 
@@ -10320,7 +10275,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(height0[7]),
         .Q(height[7]),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \height_reg[8] 
@@ -10328,7 +10283,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(height0[8]),
         .Q(height[8]),
-        .R(Q));
+        .R(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \height_reg[9] 
@@ -10336,7 +10291,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(height0[9]),
         .Q(height[9]),
-        .S(Q));
+        .S(force_black));
   LUT2 #(
     .INIT(4'h2)) 
     i__carry__0_i_1
@@ -10353,10 +10308,10 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .O(i__carry__0_i_2_n_0));
   LUT2 #(
     .INIT(4'h9)) 
-    i__carry__0_i_3
+    i__carry__0_i_3__0
        (.I0(\pixel_y_reg_n_0_[10] ),
         .I1(\BB_BR_y_reg_n_0_[10] ),
-        .O(i__carry__0_i_3_n_0));
+        .O(i__carry__0_i_3__0_n_0));
   LUT4 #(
     .INIT(16'h9009)) 
     i__carry__0_i_4
@@ -10410,10 +10365,10 @@ module main_gpu_wrapper_0_0_rasterizer_control
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     i__carry_i_3__0
-       (.I0(\BB_TL_x_reg_n_0_[5] ),
-        .I1(\BB_BR_x_reg_n_0_[5] ),
-        .I2(\BB_BR_x_reg_n_0_[4] ),
-        .I3(\BB_TL_x_reg_n_0_[4] ),
+       (.I0(\BB_TL_x_reg_n_0_[4] ),
+        .I1(\BB_BR_x_reg_n_0_[4] ),
+        .I2(\BB_BR_x_reg_n_0_[5] ),
+        .I3(\BB_TL_x_reg_n_0_[5] ),
         .I4(\BB_BR_x_reg_n_0_[3] ),
         .I5(\BB_TL_x_reg_n_0_[3] ),
         .O(i__carry_i_3__0_n_0));
@@ -10573,7 +10528,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I2(\V2_x_reg_n_0_[0] ),
         .I3(\V1_x_reg_n_0_[0] ),
         .O(max_temp_x1_carry_i_8_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[0]_i_1 
@@ -10581,7 +10536,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[0] ),
         .O(\max_temp_x[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[10]_i_1 
@@ -10589,7 +10544,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[10] ),
         .O(\max_temp_x[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[1]_i_1 
@@ -10597,7 +10552,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[1] ),
         .O(\max_temp_x[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[2]_i_1 
@@ -10605,7 +10560,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[2] ),
         .O(\max_temp_x[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[3]_i_1 
@@ -10613,7 +10568,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[3] ),
         .O(\max_temp_x[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[4]_i_1 
@@ -10621,7 +10576,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[4] ),
         .O(\max_temp_x[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[5]_i_1 
@@ -10629,7 +10584,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[5] ),
         .O(\max_temp_x[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[6]_i_1 
@@ -10637,7 +10592,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[6] ),
         .O(\max_temp_x[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[7]_i_1 
@@ -10645,7 +10600,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[7] ),
         .O(\max_temp_x[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[8]_i_1 
@@ -10653,7 +10608,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V2_x_reg_n_0_[8] ),
         .O(\max_temp_x[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_x[9]_i_1 
@@ -10855,7 +10810,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I2(\V2_y_reg_n_0_[0] ),
         .I3(\V1_y_reg_n_0_[0] ),
         .O(max_temp_y1_carry_i_8_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[0]_i_1 
@@ -10863,7 +10818,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[0] ),
         .O(\max_temp_y[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[10]_i_1 
@@ -10871,7 +10826,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[10] ),
         .O(\max_temp_y[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[1]_i_1 
@@ -10879,7 +10834,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[1] ),
         .O(\max_temp_y[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[2]_i_1 
@@ -10887,7 +10842,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[2] ),
         .O(\max_temp_y[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[3]_i_1 
@@ -10903,7 +10858,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[4] ),
         .O(\max_temp_y[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[5]_i_1 
@@ -10911,7 +10866,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[5] ),
         .O(\max_temp_y[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[6]_i_1 
@@ -10919,7 +10874,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[6] ),
         .O(\max_temp_y[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[7]_i_1 
@@ -10927,7 +10882,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[7] ),
         .O(\max_temp_y[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[8]_i_1 
@@ -10935,7 +10890,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V2_y_reg_n_0_[8] ),
         .O(\max_temp_y[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \max_temp_y[9]_i_1 
@@ -11031,7 +10986,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .D(\max_temp_y[9]_i_1_n_0 ),
         .Q(max_temp_y[9]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[0]_i_1 
@@ -11039,7 +10994,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[0] ),
         .O(\min_temp_x[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[10]_i_1 
@@ -11047,7 +11002,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[10] ),
         .O(\min_temp_x[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[1]_i_1 
@@ -11055,7 +11010,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[1] ),
         .O(\min_temp_x[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[2]_i_1 
@@ -11063,7 +11018,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[2] ),
         .O(\min_temp_x[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[3]_i_1 
@@ -11071,7 +11026,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[3] ),
         .O(\min_temp_x[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[4]_i_1 
@@ -11079,7 +11034,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[4] ),
         .O(\min_temp_x[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[5]_i_1 
@@ -11087,7 +11042,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[5] ),
         .O(\min_temp_x[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[6]_i_1 
@@ -11095,7 +11050,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[6] ),
         .O(\min_temp_x[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[7]_i_1 
@@ -11103,7 +11058,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[7] ),
         .O(\min_temp_x[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[8]_i_1 
@@ -11111,7 +11066,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_x1),
         .I2(\V1_x_reg_n_0_[8] ),
         .O(\min_temp_x[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_x[9]_i_1 
@@ -11207,7 +11162,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .D(\min_temp_x[9]_i_1_n_0 ),
         .Q(min_temp_x[9]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[0]_i_1 
@@ -11215,7 +11170,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[0] ),
         .O(\min_temp_y[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[10]_i_1 
@@ -11223,7 +11178,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[10] ),
         .O(\min_temp_y[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[1]_i_1 
@@ -11231,7 +11186,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[1] ),
         .O(\min_temp_y[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[2]_i_1 
@@ -11239,7 +11194,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[2] ),
         .O(\min_temp_y[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[3]_i_1 
@@ -11255,7 +11210,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[4] ),
         .O(\min_temp_y[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[5]_i_1 
@@ -11263,7 +11218,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[5] ),
         .O(\min_temp_y[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[6]_i_1 
@@ -11271,7 +11226,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[6] ),
         .O(\min_temp_y[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[7]_i_1 
@@ -11279,7 +11234,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[7] ),
         .O(\min_temp_y[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[8]_i_1 
@@ -11287,7 +11242,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I1(max_temp_y1),
         .I2(\V1_y_reg_n_0_[8] ),
         .O(\min_temp_y[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \min_temp_y[9]_i_1 
@@ -11439,14 +11394,14 @@ module main_gpu_wrapper_0_0_rasterizer_control
        (.I0(color[7]),
         .I1(p_0_in),
         .O(output_color[7]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT5 #(
     .INIT(32'h88C8F8C8)) 
     \pixel_x[0]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
         .I1(\BB_TL_x_reg_n_0_[0] ),
-        .I2(\FSM_onehot_state_reg[2]_0 ),
-        .I3(CO),
+        .I2(\FSM_onehot_state_reg_n_0_[2] ),
+        .I3(state1_carry__0_n_2),
         .I4(\pixel_x_reg_n_0_[0] ),
         .O(pixel_x[0]));
   LUT6 #(
@@ -11454,12 +11409,12 @@ module main_gpu_wrapper_0_0_rasterizer_control
     \pixel_x[10]_i_2 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
         .I1(\BB_TL_x_reg_n_0_[10] ),
-        .I2(CO),
-        .I3(\FSM_onehot_state_reg[2]_0 ),
+        .I2(state1_carry__0_n_2),
+        .I3(\FSM_onehot_state_reg_n_0_[2] ),
         .I4(\pixel_x[10]_i_3_n_0 ),
         .I5(\pixel_x_reg_n_0_[10] ),
         .O(pixel_x[10]));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT5 #(
     .INIT(32'hF7FFFFFF)) 
     \pixel_x[10]_i_3 
@@ -11474,8 +11429,8 @@ module main_gpu_wrapper_0_0_rasterizer_control
     \pixel_x[1]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
         .I1(\BB_TL_x_reg_n_0_[1] ),
-        .I2(CO),
-        .I3(\FSM_onehot_state_reg[2]_0 ),
+        .I2(state1_carry__0_n_2),
+        .I3(\FSM_onehot_state_reg_n_0_[2] ),
         .I4(\pixel_x_reg_n_0_[1] ),
         .I5(\pixel_x_reg_n_0_[0] ),
         .O(pixel_x[1]));
@@ -11489,28 +11444,28 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(\pixel_x_reg_n_0_[0] ),
         .I5(\pixel_x_reg_n_0_[1] ),
         .O(pixel_x[2]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'h45)) 
     \pixel_x[2]_i_2 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
-        .I1(CO),
-        .I2(\FSM_onehot_state_reg[2]_0 ),
+        .I1(state1_carry__0_n_2),
+        .I2(\FSM_onehot_state_reg_n_0_[2] ),
         .O(\pixel_x[2]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT2 #(
     .INIT(4'h7)) 
     \pixel_x[2]_i_3 
-       (.I0(\FSM_onehot_state_reg[2]_0 ),
-        .I1(CO),
+       (.I0(\FSM_onehot_state_reg_n_0_[2] ),
+        .I1(state1_carry__0_n_2),
         .O(\pixel_x[2]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'hFC888C888C88FC88)) 
     \pixel_x[3]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
         .I1(\BB_TL_x_reg_n_0_[3] ),
-        .I2(CO),
-        .I3(\FSM_onehot_state_reg[2]_0 ),
+        .I2(state1_carry__0_n_2),
+        .I3(\FSM_onehot_state_reg_n_0_[2] ),
         .I4(\pixel_x_reg_n_0_[3] ),
         .I5(\pixel_x[3]_i_2_n_0 ),
         .O(pixel_x[3]));
@@ -11526,12 +11481,12 @@ module main_gpu_wrapper_0_0_rasterizer_control
     \pixel_x[4]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
         .I1(\BB_TL_x_reg_n_0_[4] ),
-        .I2(CO),
-        .I3(\FSM_onehot_state_reg[2]_0 ),
+        .I2(state1_carry__0_n_2),
+        .I3(\FSM_onehot_state_reg_n_0_[2] ),
         .I4(\pixel_x_reg_n_0_[4] ),
         .I5(\pixel_x[4]_i_2_n_0 ),
         .O(pixel_x[4]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \pixel_x[4]_i_2 
@@ -11545,12 +11500,12 @@ module main_gpu_wrapper_0_0_rasterizer_control
     \pixel_x[5]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
         .I1(\BB_TL_x_reg_n_0_[5] ),
-        .I2(CO),
-        .I3(\FSM_onehot_state_reg[2]_0 ),
+        .I2(state1_carry__0_n_2),
+        .I3(\FSM_onehot_state_reg_n_0_[2] ),
         .I4(\pixel_x_reg_n_0_[5] ),
         .I5(\pixel_x[5]_i_2_n_0 ),
         .O(pixel_x[5]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT5 #(
     .INIT(32'h7FFFFFFF)) 
     \pixel_x[5]_i_2 
@@ -11566,8 +11521,8 @@ module main_gpu_wrapper_0_0_rasterizer_control
        (.I0(\pixel_x_reg_n_0_[6] ),
         .I1(\pixel_x[6]_i_2_n_0 ),
         .I2(\FSM_onehot_state_reg_n_0_[9] ),
-        .I3(CO),
-        .I4(\FSM_onehot_state_reg[2]_0 ),
+        .I3(state1_carry__0_n_2),
+        .I4(\FSM_onehot_state_reg_n_0_[2] ),
         .I5(\BB_TL_x_reg_n_0_[6] ),
         .O(pixel_x[6]));
   LUT6 #(
@@ -11586,11 +11541,11 @@ module main_gpu_wrapper_0_0_rasterizer_control
        (.I0(\pixel_x_reg_n_0_[7] ),
         .I1(\pixel_x[7]_i_2_n_0 ),
         .I2(\FSM_onehot_state_reg_n_0_[9] ),
-        .I3(CO),
-        .I4(\FSM_onehot_state_reg[2]_0 ),
+        .I3(state1_carry__0_n_2),
+        .I4(\FSM_onehot_state_reg_n_0_[2] ),
         .I5(\BB_TL_x_reg_n_0_[7] ),
         .O(pixel_x[7]));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT2 #(
     .INIT(4'hB)) 
     \pixel_x[7]_i_2 
@@ -11603,11 +11558,11 @@ module main_gpu_wrapper_0_0_rasterizer_control
        (.I0(\pixel_x_reg_n_0_[8] ),
         .I1(\pixel_x[8]_i_2_n_0 ),
         .I2(\FSM_onehot_state_reg_n_0_[9] ),
-        .I3(CO),
-        .I4(\FSM_onehot_state_reg[2]_0 ),
+        .I3(state1_carry__0_n_2),
+        .I4(\FSM_onehot_state_reg_n_0_[2] ),
         .I5(\BB_TL_x_reg_n_0_[8] ),
         .O(pixel_x[8]));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT3 #(
     .INIT(8'hDF)) 
     \pixel_x[8]_i_2 
@@ -11621,11 +11576,11 @@ module main_gpu_wrapper_0_0_rasterizer_control
        (.I0(\pixel_x_reg_n_0_[9] ),
         .I1(\pixel_x[9]_i_2_n_0 ),
         .I2(\FSM_onehot_state_reg_n_0_[9] ),
-        .I3(CO),
-        .I4(\FSM_onehot_state_reg[2]_0 ),
+        .I3(state1_carry__0_n_2),
+        .I4(\FSM_onehot_state_reg_n_0_[2] ),
         .I5(\BB_TL_x_reg_n_0_[9] ),
         .O(pixel_x[9]));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT4 #(
     .INIT(16'hDFFF)) 
     \pixel_x[9]_i_2 
@@ -11641,7 +11596,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(rasterizer_u0_n_10),
         .D(pixel_x[0]),
         .Q(\pixel_x_reg_n_0_[0] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_x_reg[10] 
@@ -11649,7 +11604,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(rasterizer_u0_n_10),
         .D(pixel_x[10]),
         .Q(\pixel_x_reg_n_0_[10] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_x_reg[1] 
@@ -11657,7 +11612,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(rasterizer_u0_n_10),
         .D(pixel_x[1]),
         .Q(\pixel_x_reg_n_0_[1] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_x_reg[2] 
@@ -11665,7 +11620,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(rasterizer_u0_n_10),
         .D(pixel_x[2]),
         .Q(\pixel_x_reg_n_0_[2] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_x_reg[3] 
@@ -11673,7 +11628,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(rasterizer_u0_n_10),
         .D(pixel_x[3]),
         .Q(\pixel_x_reg_n_0_[3] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_x_reg[4] 
@@ -11681,7 +11636,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(rasterizer_u0_n_10),
         .D(pixel_x[4]),
         .Q(\pixel_x_reg_n_0_[4] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_x_reg[5] 
@@ -11689,7 +11644,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(rasterizer_u0_n_10),
         .D(pixel_x[5]),
         .Q(\pixel_x_reg_n_0_[5] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_x_reg[6] 
@@ -11697,7 +11652,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(rasterizer_u0_n_10),
         .D(pixel_x[6]),
         .Q(\pixel_x_reg_n_0_[6] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_x_reg[7] 
@@ -11705,7 +11660,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(rasterizer_u0_n_10),
         .D(pixel_x[7]),
         .Q(\pixel_x_reg_n_0_[7] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_x_reg[8] 
@@ -11713,7 +11668,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(rasterizer_u0_n_10),
         .D(pixel_x[8]),
         .Q(\pixel_x_reg_n_0_[8] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_x_reg[9] 
@@ -11721,15 +11676,15 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(rasterizer_u0_n_10),
         .D(pixel_x[9]),
         .Q(\pixel_x_reg_n_0_[9] ),
-        .R(Q));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+        .R(force_black));
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT5 #(
     .INIT(32'h88C8F8C8)) 
     \pixel_y[0]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
         .I1(\BB_TL_y_reg_n_0_[0] ),
-        .I2(\FSM_onehot_state_reg[2]_0 ),
-        .I3(\BB_BR_y_reg[10]_0 ),
+        .I2(\FSM_onehot_state_reg_n_0_[2] ),
+        .I3(\state1_inferred__0/i__carry__0_n_2 ),
         .I4(\pixel_y_reg_n_0_[0] ),
         .O(pixel_y[0]));
   LUT6 #(
@@ -11737,18 +11692,18 @@ module main_gpu_wrapper_0_0_rasterizer_control
     \pixel_y[10]_i_2 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
         .I1(\BB_TL_y_reg_n_0_[10] ),
-        .I2(\BB_BR_y_reg[10]_0 ),
-        .I3(\FSM_onehot_state_reg[2]_0 ),
+        .I2(\state1_inferred__0/i__carry__0_n_2 ),
+        .I3(\FSM_onehot_state_reg_n_0_[2] ),
         .I4(\pixel_y[10]_i_3_n_0 ),
         .I5(\pixel_y_reg_n_0_[10] ),
         .O(pixel_y[10]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
     .INIT(32'hF7FFFFFF)) 
     \pixel_y[10]_i_3 
        (.I0(\pixel_y_reg_n_0_[8] ),
         .I1(\pixel_y_reg_n_0_[6] ),
-        .I2(\pixel_y[7]_i_3_n_0 ),
+        .I2(\pixel_y[6]_i_2_n_0 ),
         .I3(\pixel_y_reg_n_0_[7] ),
         .I4(\pixel_y_reg_n_0_[9] ),
         .O(\pixel_y[10]_i_3_n_0 ));
@@ -11757,28 +11712,42 @@ module main_gpu_wrapper_0_0_rasterizer_control
     \pixel_y[1]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
         .I1(\BB_TL_y_reg_n_0_[1] ),
-        .I2(\BB_BR_y_reg[10]_0 ),
-        .I3(\FSM_onehot_state_reg[2]_0 ),
+        .I2(\state1_inferred__0/i__carry__0_n_2 ),
+        .I3(\FSM_onehot_state_reg_n_0_[2] ),
         .I4(\pixel_y_reg_n_0_[1] ),
         .I5(\pixel_y_reg_n_0_[0] ),
         .O(pixel_y[1]));
   LUT6 #(
     .INIT(64'h444F4F444F444F44)) 
     \pixel_y[2]_i_1 
-       (.I0(\pixel_y[7]_i_4_n_0 ),
+       (.I0(\pixel_y[2]_i_2_n_0 ),
         .I1(\BB_TL_y_reg_n_0_[2] ),
-        .I2(\pixel_y[7]_i_2_n_0 ),
+        .I2(\pixel_y[2]_i_3_n_0 ),
         .I3(\pixel_y_reg_n_0_[2] ),
         .I4(\pixel_y_reg_n_0_[0] ),
         .I5(\pixel_y_reg_n_0_[1] ),
         .O(pixel_y[2]));
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  LUT3 #(
+    .INIT(8'h45)) 
+    \pixel_y[2]_i_2 
+       (.I0(\FSM_onehot_state_reg_n_0_[9] ),
+        .I1(\state1_inferred__0/i__carry__0_n_2 ),
+        .I2(\FSM_onehot_state_reg_n_0_[2] ),
+        .O(\pixel_y[2]_i_2_n_0 ));
+  LUT2 #(
+    .INIT(4'h7)) 
+    \pixel_y[2]_i_3 
+       (.I0(\FSM_onehot_state_reg_n_0_[2] ),
+        .I1(\state1_inferred__0/i__carry__0_n_2 ),
+        .O(\pixel_y[2]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'hFC888C888C88FC88)) 
     \pixel_y[3]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
         .I1(\BB_TL_y_reg_n_0_[3] ),
-        .I2(\BB_BR_y_reg[10]_0 ),
-        .I3(\FSM_onehot_state_reg[2]_0 ),
+        .I2(\state1_inferred__0/i__carry__0_n_2 ),
+        .I3(\FSM_onehot_state_reg_n_0_[2] ),
         .I4(\pixel_y_reg_n_0_[3] ),
         .I5(\pixel_y[3]_i_2_n_0 ),
         .O(pixel_y[3]));
@@ -11794,12 +11763,12 @@ module main_gpu_wrapper_0_0_rasterizer_control
     \pixel_y[4]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
         .I1(\BB_TL_y_reg_n_0_[4] ),
-        .I2(\BB_BR_y_reg[10]_0 ),
-        .I3(\FSM_onehot_state_reg[2]_0 ),
+        .I2(\state1_inferred__0/i__carry__0_n_2 ),
+        .I3(\FSM_onehot_state_reg_n_0_[2] ),
         .I4(\pixel_y_reg_n_0_[4] ),
         .I5(\pixel_y[4]_i_2_n_0 ),
         .O(pixel_y[4]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \pixel_y[4]_i_2 
@@ -11813,12 +11782,12 @@ module main_gpu_wrapper_0_0_rasterizer_control
     \pixel_y[5]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[9] ),
         .I1(\BB_TL_y_reg_n_0_[5] ),
-        .I2(\BB_BR_y_reg[10]_0 ),
-        .I3(\FSM_onehot_state_reg[2]_0 ),
+        .I2(\state1_inferred__0/i__carry__0_n_2 ),
+        .I3(\FSM_onehot_state_reg_n_0_[2] ),
         .I4(\pixel_y_reg_n_0_[5] ),
         .I5(\pixel_y[5]_i_2_n_0 ),
         .O(pixel_y[5]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
     .INIT(32'h7FFFFFFF)) 
     \pixel_y[5]_i_2 
@@ -11829,64 +11798,58 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I4(\pixel_y_reg_n_0_[4] ),
         .O(\pixel_y[5]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hEBFFC300AAAA0000)) 
+    .INIT(64'hF9FFF0F099000000)) 
     \pixel_y[6]_i_1 
-       (.I0(\FSM_onehot_state_reg_n_0_[9] ),
-        .I1(\pixel_y_reg_n_0_[6] ),
-        .I2(\pixel_y[7]_i_3_n_0 ),
-        .I3(\BB_BR_y_reg[10]_0 ),
-        .I4(\BB_TL_y_reg_n_0_[6] ),
-        .I5(\FSM_onehot_state_reg[2]_0 ),
+       (.I0(\pixel_y_reg_n_0_[6] ),
+        .I1(\pixel_y[6]_i_2_n_0 ),
+        .I2(\FSM_onehot_state_reg_n_0_[9] ),
+        .I3(\state1_inferred__0/i__carry__0_n_2 ),
+        .I4(\FSM_onehot_state_reg_n_0_[2] ),
+        .I5(\BB_TL_y_reg_n_0_[6] ),
         .O(pixel_y[6]));
   LUT6 #(
-    .INIT(64'h4144FFFF41444144)) 
-    \pixel_y[7]_i_1 
-       (.I0(\pixel_y[7]_i_2_n_0 ),
-        .I1(\pixel_y_reg_n_0_[7] ),
-        .I2(\pixel_y[7]_i_3_n_0 ),
-        .I3(\pixel_y_reg_n_0_[6] ),
-        .I4(\pixel_y[7]_i_4_n_0 ),
-        .I5(\BB_TL_y_reg_n_0_[7] ),
-        .O(pixel_y[7]));
-  LUT2 #(
-    .INIT(4'h7)) 
-    \pixel_y[7]_i_2 
-       (.I0(\FSM_onehot_state_reg[2]_0 ),
-        .I1(\BB_BR_y_reg[10]_0 ),
-        .O(\pixel_y[7]_i_2_n_0 ));
-  LUT6 #(
     .INIT(64'h7FFFFFFFFFFFFFFF)) 
-    \pixel_y[7]_i_3 
+    \pixel_y[6]_i_2 
        (.I0(\pixel_y_reg_n_0_[4] ),
         .I1(\pixel_y_reg_n_0_[2] ),
         .I2(\pixel_y_reg_n_0_[0] ),
         .I3(\pixel_y_reg_n_0_[1] ),
         .I4(\pixel_y_reg_n_0_[3] ),
         .I5(\pixel_y_reg_n_0_[5] ),
-        .O(\pixel_y[7]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT3 #(
-    .INIT(8'h45)) 
-    \pixel_y[7]_i_4 
-       (.I0(\FSM_onehot_state_reg_n_0_[9] ),
-        .I1(\BB_BR_y_reg[10]_0 ),
-        .I2(\FSM_onehot_state_reg[2]_0 ),
-        .O(\pixel_y[7]_i_4_n_0 ));
+        .O(\pixel_y[6]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hF9FFF0F099000000)) 
+    \pixel_y[7]_i_1 
+       (.I0(\pixel_y_reg_n_0_[7] ),
+        .I1(\pixel_y[7]_i_2_n_0 ),
+        .I2(\FSM_onehot_state_reg_n_0_[9] ),
+        .I3(\state1_inferred__0/i__carry__0_n_2 ),
+        .I4(\FSM_onehot_state_reg_n_0_[2] ),
+        .I5(\BB_TL_y_reg_n_0_[7] ),
+        .O(pixel_y[7]));
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  LUT2 #(
+    .INIT(4'hB)) 
+    \pixel_y[7]_i_2 
+       (.I0(\pixel_y[6]_i_2_n_0 ),
+        .I1(\pixel_y_reg_n_0_[6] ),
+        .O(\pixel_y[7]_i_2_n_0 ));
   LUT6 #(
     .INIT(64'hF9FFF0F099000000)) 
     \pixel_y[8]_i_1 
        (.I0(\pixel_y_reg_n_0_[8] ),
         .I1(\pixel_y[8]_i_2_n_0 ),
         .I2(\FSM_onehot_state_reg_n_0_[9] ),
-        .I3(\BB_BR_y_reg[10]_0 ),
-        .I4(\FSM_onehot_state_reg[2]_0 ),
+        .I3(\state1_inferred__0/i__carry__0_n_2 ),
+        .I4(\FSM_onehot_state_reg_n_0_[2] ),
         .I5(\BB_TL_y_reg_n_0_[8] ),
         .O(pixel_y[8]));
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT3 #(
     .INIT(8'hDF)) 
     \pixel_y[8]_i_2 
        (.I0(\pixel_y_reg_n_0_[6] ),
-        .I1(\pixel_y[7]_i_3_n_0 ),
+        .I1(\pixel_y[6]_i_2_n_0 ),
         .I2(\pixel_y_reg_n_0_[7] ),
         .O(\pixel_y[8]_i_2_n_0 ));
   LUT6 #(
@@ -11895,16 +11858,16 @@ module main_gpu_wrapper_0_0_rasterizer_control
        (.I0(\pixel_y_reg_n_0_[9] ),
         .I1(\pixel_y[9]_i_2_n_0 ),
         .I2(\FSM_onehot_state_reg_n_0_[9] ),
-        .I3(\BB_BR_y_reg[10]_0 ),
-        .I4(\FSM_onehot_state_reg[2]_0 ),
+        .I3(\state1_inferred__0/i__carry__0_n_2 ),
+        .I4(\FSM_onehot_state_reg_n_0_[2] ),
         .I5(\BB_TL_y_reg_n_0_[9] ),
         .O(pixel_y[9]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT4 #(
     .INIT(16'hDFFF)) 
     \pixel_y[9]_i_2 
        (.I0(\pixel_y_reg_n_0_[7] ),
-        .I1(\pixel_y[7]_i_3_n_0 ),
+        .I1(\pixel_y[6]_i_2_n_0 ),
         .I2(\pixel_y_reg_n_0_[6] ),
         .I3(\pixel_y_reg_n_0_[8] ),
         .O(\pixel_y[9]_i_2_n_0 ));
@@ -11912,121 +11875,123 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(1'b0)) 
     \pixel_y_reg[0] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(rasterizer_u0_n_7),
         .D(pixel_y[0]),
         .Q(\pixel_y_reg_n_0_[0] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_y_reg[10] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(rasterizer_u0_n_7),
         .D(pixel_y[10]),
         .Q(\pixel_y_reg_n_0_[10] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_y_reg[1] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(rasterizer_u0_n_7),
         .D(pixel_y[1]),
         .Q(\pixel_y_reg_n_0_[1] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_y_reg[2] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(rasterizer_u0_n_7),
         .D(pixel_y[2]),
         .Q(\pixel_y_reg_n_0_[2] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_y_reg[3] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(rasterizer_u0_n_7),
         .D(pixel_y[3]),
         .Q(\pixel_y_reg_n_0_[3] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_y_reg[4] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(rasterizer_u0_n_7),
         .D(pixel_y[4]),
         .Q(\pixel_y_reg_n_0_[4] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_y_reg[5] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(rasterizer_u0_n_7),
         .D(pixel_y[5]),
         .Q(\pixel_y_reg_n_0_[5] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_y_reg[6] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(rasterizer_u0_n_7),
         .D(pixel_y[6]),
         .Q(\pixel_y_reg_n_0_[6] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_y_reg[7] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(rasterizer_u0_n_7),
         .D(pixel_y[7]),
         .Q(\pixel_y_reg_n_0_[7] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_y_reg[8] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(rasterizer_u0_n_7),
         .D(pixel_y[8]),
         .Q(\pixel_y_reg_n_0_[8] ),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \pixel_y_reg[9] 
        (.C(clk),
-        .CE(rasterizer_u0_n_9),
+        .CE(rasterizer_u0_n_7),
         .D(pixel_y[9]),
         .Q(\pixel_y_reg_n_0_[9] ),
-        .R(Q));
+        .R(force_black));
   main_gpu_wrapper_0_0_rasterizer rasterizer_u0
        (.A(A),
-        .CO(\BB_BR_y_reg[10]_0 ),
+        .CO(state1_carry__0_n_2),
         .E(V1_x),
         .\FSM_onehot_state_reg[0] (rasterizer_u0_n_6),
-        .\FSM_onehot_state_reg[0]_0 (rasterizer_u0_n_7),
+        .\FSM_onehot_state_reg[0]_0 (rasterizer_u0_n_8),
         .\FSM_onehot_state_reg[0]_1 (\FSM_onehot_state[9]_i_3_n_0 ),
-        .\FSM_onehot_state_reg[2] (rasterizer_u0_n_9),
+        .\FSM_onehot_state_reg[1] (rasterizer_u0_n_13),
+        .\FSM_onehot_state_reg[2] (rasterizer_u0_n_7),
         .\FSM_onehot_state_reg[2]_0 (rasterizer_u0_n_14),
         .\FSM_onehot_state_reg[2]_1 (\FSM_onehot_state[2]_i_2_n_0 ),
         .\FSM_onehot_state_reg[9] (rasterizer_u0_n_10),
         .Q({\pixel_x_reg_n_0_[10] ,\pixel_x_reg_n_0_[9] ,\pixel_x_reg_n_0_[8] ,\pixel_x_reg_n_0_[7] ,\pixel_x_reg_n_0_[6] ,\pixel_x_reg_n_0_[5] ,\pixel_x_reg_n_0_[4] ,\pixel_x_reg_n_0_[3] ,\pixel_x_reg_n_0_[2] ,\pixel_x_reg_n_0_[1] ,\pixel_x_reg_n_0_[0] }),
-        .SR(Q),
         .clk(clk),
         .color({color[6],color[1]}),
         .\color_reg[0] (\FSM_onehot_state_reg_n_0_[0] ),
         .\color_reg[1] (\color[1]_i_2_n_0 ),
-        .\color_reg[6] (vertex_count_reg_reg_6_sn_1),
+        .\color_reg[6] (vertex_count_reg_reg_20_sn_1),
         .\color_reg[6]_0 (\color[6]_i_2_n_0 ),
         .draw(draw),
+        .force_black(force_black),
+        .force_black_reg(\state1_inferred__0/i__carry__0_n_2 ),
+        .force_black_reg_0(force_black_reg_n_0),
         .mul1_result_reg(mul1_result_reg),
         .mul1_result_reg_0(mul1_result_reg_0),
         .mul1_result_reg_1({\V2_y_reg_n_0_[10] ,\V2_y_reg_n_0_[9] ,\V2_y_reg_n_0_[8] ,\V2_y_reg_n_0_[7] ,\V2_y_reg_n_0_[6] ,\V2_y_reg_n_0_[5] ,\V2_y_reg_n_0_[4] ,\V2_y_reg_n_0_[3] ,\V2_y_reg_n_0_[2] ,\V2_y_reg_n_0_[1] ,\V2_y_reg_n_0_[0] }),
         .mul1_result_reg_2({\V1_y_reg_n_0_[10] ,\V1_y_reg_n_0_[9] ,\V1_y_reg_n_0_[8] ,\V1_y_reg_n_0_[7] ,\V1_y_reg_n_0_[6] ,\V1_y_reg_n_0_[5] ,\V1_y_reg_n_0_[4] ,\V1_y_reg_n_0_[3] ,\V1_y_reg_n_0_[2] ,\V1_y_reg_n_0_[1] ,\V1_y_reg_n_0_[0] }),
         .mul1_result_reg_3({\V3_y_reg_n_0_[10] ,\V3_y_reg_n_0_[9] ,\V3_y_reg_n_0_[8] ,\V3_y_reg_n_0_[7] ,\V3_y_reg_n_0_[6] ,\V3_y_reg_n_0_[5] ,\V3_y_reg_n_0_[4] ,\V3_y_reg_n_0_[3] ,\V3_y_reg_n_0_[2] ,\V3_y_reg_n_0_[1] ,\V3_y_reg_n_0_[0] }),
         .out_ready(out_ready),
-        .\out_valid_d_reg[0] (\out_valid_d_reg[0] ),
-        .\out_valid_d_reg[0]_0 (\FSM_onehot_state_reg[2]_0 ),
+        .\out_valid_d_reg[0] (\FSM_onehot_state_reg_n_0_[2] ),
         .output_valid(output_valid),
         .output_vertex_valid(output_vertex_valid),
-        .output_vertex_valid_reg(rasterizer_u0_n_8),
+        .output_vertex_valid_reg(rasterizer_u0_n_9),
         .output_vertex_valid_reg_0(rasterizer_u0_n_15),
         .output_vertex_valid_reg_1(rasterizer_u0_n_16),
         .p_0_in(p_0_in),
@@ -12035,8 +12000,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .\pixel_x_reg[0]_0 (state2),
         .\pixel_x_reg[0]_1 (state20_in),
         .pixel_y_out(pixel_y_out),
-        .\pixel_y_reg[0] (CO),
-        .\pixel_y_reg[0]_0 (\width[10]_i_1_n_0 ),
+        .\pixel_y_reg[0] (\width[10]_i_1_n_0 ),
         .sub_result_reg({\pixel_y_reg_n_0_[10] ,\pixel_y_reg_n_0_[9] ,\pixel_y_reg_n_0_[8] ,\pixel_y_reg_n_0_[7] ,\pixel_y_reg_n_0_[6] ,\pixel_y_reg_n_0_[5] ,\pixel_y_reg_n_0_[4] ,\pixel_y_reg_n_0_[3] ,\pixel_y_reg_n_0_[2] ,\pixel_y_reg_n_0_[1] ,\pixel_y_reg_n_0_[0] }),
         .sub_result_reg_0(sub_result_reg),
         .sub_result_reg_1(sub_result_reg_0),
@@ -12060,7 +12024,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .S({state1_carry_i_5_n_0,state1_carry_i_6_n_0,state1_carry_i_7_n_0,state1_carry_i_8_n_0}));
   CARRY4 state1_carry__0
        (.CI(state1_carry_n_0),
-        .CO({NLW_state1_carry__0_CO_UNCONNECTED[3:2],CO,state1_carry__0_n_3}),
+        .CO({NLW_state1_carry__0_CO_UNCONNECTED[3:2],state1_carry__0_n_2,state1_carry__0_n_3}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,state1_carry__0_i_1_n_0,state1_carry__0_i_2_n_0}),
         .O(NLW_state1_carry__0_O_UNCONNECTED[3:0]),
@@ -12166,11 +12130,11 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .S({i__carry_i_5_n_0,i__carry_i_6_n_0,i__carry_i_7_n_0,i__carry_i_8_n_0}));
   CARRY4 \state1_inferred__0/i__carry__0 
        (.CI(\state1_inferred__0/i__carry_n_0 ),
-        .CO({\NLW_state1_inferred__0/i__carry__0_CO_UNCONNECTED [3:2],\BB_BR_y_reg[10]_0 ,\state1_inferred__0/i__carry__0_n_3 }),
+        .CO({\NLW_state1_inferred__0/i__carry__0_CO_UNCONNECTED [3:2],\state1_inferred__0/i__carry__0_n_2 ,\state1_inferred__0/i__carry__0_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,i__carry__0_i_1_n_0,i__carry__0_i_2_n_0}),
         .O(\NLW_state1_inferred__0/i__carry__0_O_UNCONNECTED [3:0]),
-        .S({1'b0,1'b0,i__carry__0_i_3_n_0,i__carry__0_i_4_n_0}));
+        .S({1'b0,1'b0,i__carry__0_i_3__0_n_0,i__carry__0_i_4_n_0}));
   CARRY4 state2_carry
        (.CI(1'b0),
         .CO({state2,state2_carry_n_1,state2_carry_n_2,state2_carry_n_3}),
@@ -12191,20 +12155,20 @@ module main_gpu_wrapper_0_0_rasterizer_control
     state2_carry_i_2
        (.I0(\BB_TL_y_reg_n_0_[8] ),
         .I1(\BB_BR_y_reg_n_0_[8] ),
-        .I2(\BB_BR_y_reg_n_0_[6] ),
-        .I3(\BB_TL_y_reg_n_0_[6] ),
-        .I4(\BB_BR_y_reg_n_0_[7] ),
-        .I5(\BB_TL_y_reg_n_0_[7] ),
+        .I2(\BB_BR_y_reg_n_0_[7] ),
+        .I3(\BB_TL_y_reg_n_0_[7] ),
+        .I4(\BB_BR_y_reg_n_0_[6] ),
+        .I5(\BB_TL_y_reg_n_0_[6] ),
         .O(state2_carry_i_2_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     state2_carry_i_3
        (.I0(\BB_TL_y_reg_n_0_[5] ),
         .I1(\BB_BR_y_reg_n_0_[5] ),
-        .I2(\BB_BR_y_reg_n_0_[4] ),
-        .I3(\BB_TL_y_reg_n_0_[4] ),
-        .I4(\BB_BR_y_reg_n_0_[3] ),
-        .I5(\BB_TL_y_reg_n_0_[3] ),
+        .I2(\BB_BR_y_reg_n_0_[3] ),
+        .I3(\BB_TL_y_reg_n_0_[3] ),
+        .I4(\BB_BR_y_reg_n_0_[4] ),
+        .I5(\BB_TL_y_reg_n_0_[4] ),
         .O(state2_carry_i_3_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
@@ -12365,7 +12329,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
     .INIT(16'hBAAA)) 
     \vertex_counter[14]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[4] ),
-        .I1(vertex_count_reg_reg_6_sn_1),
+        .I1(vertex_count_reg_reg_20_sn_1),
         .I2(output_vertex_valid),
         .I3(\FSM_onehot_state_reg_n_0_[0] ),
         .O(\vertex_counter[14]_i_1_n_0 ));
@@ -12579,64 +12543,64 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .O(\vertex_mem_rd_addr[0]_i_10_n_0 ));
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \vertex_mem_rd_addr[0]_i_11 
-       (.I0(vertex_count_reg_reg[19]),
-        .I1(vertex_count_reg_reg[18]),
-        .I2(vertex_count_reg_reg[17]),
-        .I3(vertex_count_reg_reg[16]),
-        .O(\vertex_mem_rd_addr[0]_i_11_n_0 ));
-  LUT4 #(
-    .INIT(16'hFFFE)) 
-    \vertex_mem_rd_addr[0]_i_12 
-       (.I0(vertex_count_reg_reg[27]),
-        .I1(vertex_count_reg_reg[26]),
-        .I2(vertex_count_reg_reg[25]),
-        .I3(vertex_count_reg_reg[24]),
-        .O(\vertex_mem_rd_addr[0]_i_12_n_0 ));
-  LUT4 #(
-    .INIT(16'hFFFE)) 
     \vertex_mem_rd_addr[0]_i_2 
-       (.I0(\vertex_mem_rd_addr[0]_i_4_n_0 ),
-        .I1(\vertex_mem_rd_addr[0]_i_5_n_0 ),
-        .I2(\vertex_mem_rd_addr[0]_i_6_n_0 ),
-        .I3(\vertex_mem_rd_addr[0]_i_7_n_0 ),
-        .O(vertex_count_reg_reg_6_sn_1));
+       (.I0(\vertex_mem_rd_addr[0]_i_3_n_0 ),
+        .I1(\vertex_mem_rd_addr[0]_i_4_n_0 ),
+        .I2(\vertex_mem_rd_addr[0]_i_5_n_0 ),
+        .I3(\vertex_mem_rd_addr[0]_i_6_n_0 ),
+        .O(vertex_count_reg_reg_20_sn_1));
+  LUT5 #(
+    .INIT(32'hFFFFFFFE)) 
+    \vertex_mem_rd_addr[0]_i_3 
+       (.I0(vertex_count_reg_reg[20]),
+        .I1(vertex_count_reg_reg[23]),
+        .I2(vertex_count_reg_reg[21]),
+        .I3(vertex_count_reg_reg[22]),
+        .I4(\vertex_mem_rd_addr[0]_i_7_n_0 ),
+        .O(\vertex_mem_rd_addr[0]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hFFFFFFFE)) 
     \vertex_mem_rd_addr[0]_i_4 
-       (.I0(vertex_count_reg_reg[6]),
-        .I1(vertex_count_reg_reg[7]),
-        .I2(vertex_count_reg_reg[4]),
-        .I3(vertex_count_reg_reg[5]),
-        .I4(\vertex_mem_rd_addr[0]_i_9_n_0 ),
+       (.I0(vertex_count_reg_reg[28]),
+        .I1(vertex_count_reg_reg[29]),
+        .I2(vertex_count_reg_reg[30]),
+        .I3(vertex_count_reg_reg[31]),
+        .I4(\vertex_mem_rd_addr[0]_i_8_n_0 ),
         .O(\vertex_mem_rd_addr[0]_i_4_n_0 ));
   LUT5 #(
     .INIT(32'hFFFFFFFE)) 
     \vertex_mem_rd_addr[0]_i_5 
+       (.I0(vertex_count_reg_reg[4]),
+        .I1(vertex_count_reg_reg[7]),
+        .I2(vertex_count_reg_reg[5]),
+        .I3(vertex_count_reg_reg[6]),
+        .I4(\vertex_mem_rd_addr[0]_i_9_n_0 ),
+        .O(\vertex_mem_rd_addr[0]_i_5_n_0 ));
+  LUT5 #(
+    .INIT(32'hFFFFFFFE)) 
+    \vertex_mem_rd_addr[0]_i_6 
        (.I0(vertex_count_reg_reg[12]),
         .I1(vertex_count_reg_reg[15]),
         .I2(vertex_count_reg_reg[13]),
         .I3(vertex_count_reg_reg[14]),
         .I4(\vertex_mem_rd_addr[0]_i_10_n_0 ),
-        .O(\vertex_mem_rd_addr[0]_i_5_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFFFFFE)) 
-    \vertex_mem_rd_addr[0]_i_6 
-       (.I0(vertex_count_reg_reg[20]),
-        .I1(vertex_count_reg_reg[21]),
-        .I2(vertex_count_reg_reg[22]),
-        .I3(vertex_count_reg_reg[23]),
-        .I4(\vertex_mem_rd_addr[0]_i_11_n_0 ),
         .O(\vertex_mem_rd_addr[0]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFFFFFE)) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
     \vertex_mem_rd_addr[0]_i_7 
-       (.I0(vertex_count_reg_reg[28]),
-        .I1(vertex_count_reg_reg[31]),
-        .I2(vertex_count_reg_reg[29]),
-        .I3(vertex_count_reg_reg[30]),
-        .I4(\vertex_mem_rd_addr[0]_i_12_n_0 ),
+       (.I0(vertex_count_reg_reg[19]),
+        .I1(vertex_count_reg_reg[18]),
+        .I2(vertex_count_reg_reg[17]),
+        .I3(vertex_count_reg_reg[16]),
         .O(\vertex_mem_rd_addr[0]_i_7_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \vertex_mem_rd_addr[0]_i_8 
+       (.I0(vertex_count_reg_reg[27]),
+        .I1(vertex_count_reg_reg[26]),
+        .I2(vertex_count_reg_reg[25]),
+        .I3(vertex_count_reg_reg[24]),
+        .O(\vertex_mem_rd_addr[0]_i_8_n_0 ));
   LUT4 #(
     .INIT(16'hFFFE)) 
     \vertex_mem_rd_addr[0]_i_9 
@@ -12645,14 +12609,14 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .I2(vertex_count_reg_reg[0]),
         .I3(vertex_count_reg_reg[1]),
         .O(\vertex_mem_rd_addr[0]_i_9_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \vertex_select[0]_i_1 
        (.I0(\FSM_onehot_state_reg_n_0_[4] ),
         .I1(\vertex_select_reg_n_0_[0] ),
         .O(vertex_select[0]));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT3 #(
     .INIT(8'h60)) 
     \vertex_select[1]_i_1 
@@ -12683,7 +12647,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
   LUT5 #(
     .INIT(32'hFFFFFF40)) 
     \vertex_select[4]_i_1 
-       (.I0(vertex_count_reg_reg_6_sn_1),
+       (.I0(vertex_count_reg_reg_20_sn_1),
         .I1(output_vertex_valid),
         .I2(\FSM_onehot_state_reg_n_0_[0] ),
         .I3(\FSM_onehot_state_reg_n_0_[3] ),
@@ -12768,14 +12732,14 @@ module main_gpu_wrapper_0_0_rasterizer_control
   LUT2 #(
     .INIT(4'h9)) 
     width0_carry__0_i_3
-       (.I0(\BB_BR_x_reg_n_0_[5] ),
-        .I1(\BB_TL_x_reg_n_0_[5] ),
+       (.I0(\BB_TL_x_reg_n_0_[5] ),
+        .I1(\BB_BR_x_reg_n_0_[5] ),
         .O(width0_carry__0_i_3_n_0));
   LUT2 #(
     .INIT(4'h9)) 
     width0_carry__0_i_4
-       (.I0(\BB_TL_x_reg_n_0_[4] ),
-        .I1(\BB_BR_x_reg_n_0_[4] ),
+       (.I0(\BB_BR_x_reg_n_0_[4] ),
+        .I1(\BB_TL_x_reg_n_0_[4] ),
         .O(width0_carry__0_i_4_n_0));
   CARRY4 width0_carry__1
        (.CI(width0_carry__0_n_0),
@@ -12840,7 +12804,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(width0[0]),
         .Q(width[0]),
-        .S(Q));
+        .S(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \width_reg[10] 
@@ -12848,7 +12812,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(width0[10]),
         .Q(width[10]),
-        .R(Q));
+        .R(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \width_reg[1] 
@@ -12856,7 +12820,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(width0[1]),
         .Q(width[1]),
-        .S(Q));
+        .S(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \width_reg[2] 
@@ -12864,7 +12828,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(width0[2]),
         .Q(width[2]),
-        .S(Q));
+        .S(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \width_reg[3] 
@@ -12872,7 +12836,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(width0[3]),
         .Q(width[3]),
-        .S(Q));
+        .S(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \width_reg[4] 
@@ -12880,7 +12844,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(width0[4]),
         .Q(width[4]),
-        .S(Q));
+        .S(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \width_reg[5] 
@@ -12888,7 +12852,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(width0[5]),
         .Q(width[5]),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \width_reg[6] 
@@ -12896,7 +12860,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(width0[6]),
         .Q(width[6]),
-        .R(Q));
+        .R(force_black));
   FDRE #(
     .INIT(1'b0)) 
     \width_reg[7] 
@@ -12904,7 +12868,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(width0[7]),
         .Q(width[7]),
-        .R(Q));
+        .R(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \width_reg[8] 
@@ -12912,7 +12876,7 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(width0[8]),
         .Q(width[8]),
-        .S(Q));
+        .S(force_black));
   FDSE #(
     .INIT(1'b0)) 
     \width_reg[9] 
@@ -12920,19 +12884,21 @@ module main_gpu_wrapper_0_0_rasterizer_control
         .CE(\width[10]_i_1_n_0 ),
         .D(width0[9]),
         .Q(width[9]),
-        .S(Q));
+        .S(force_black));
 endmodule
 
 (* ORIG_REF_NAME = "vertex_processor_rtl" *) 
 module main_gpu_wrapper_0_0_vertex_processor_rtl
    (output_vertex_valid,
+    SR,
+    start_0,
     E,
     Q,
     clk,
     rd_data,
+    start,
     reset,
     D,
-    start,
     matrix_15,
     matrix_14,
     matrix_13,
@@ -12950,13 +12916,15 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
     matrix_01,
     matrix_00);
   output output_vertex_valid;
+  output [0:0]SR;
+  output start_0;
   output [0:0]E;
   output [10:0]Q;
   input clk;
   input [17:0]rd_data;
+  input start;
   input reset;
   input [0:0]D;
-  input start;
   input [17:0]matrix_15;
   input [17:0]matrix_14;
   input [17:0]matrix_13;
@@ -12978,6 +12946,7 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
   wire [0:0]D;
   wire [0:0]E;
   wire [10:0]Q;
+  wire [0:0]SR;
   wire clk;
   wire [17:0]matrix_00;
   wire [17:0]matrix_01;
@@ -13127,6 +13096,7 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
   wire [17:0]rd_data;
   wire reset;
   wire start;
+  wire start_0;
   wire [24:0]sum_0_0_out;
   wire sum_0_0_out0_carry__0_i_10_n_0;
   wire sum_0_0_out0_carry__0_i_11_n_0;
@@ -13497,42 +13467,47 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
   wire [3:0]\NLW_sum_1_0_out_reg[24]_i_1_CO_UNCONNECTED ;
   wire [3:1]\NLW_sum_1_0_out_reg[24]_i_1_O_UNCONNECTED ;
 
+  LUT1 #(
+    .INIT(2'h1)) 
+    \input_vertex_valid_reg[5]_i_1 
+       (.I0(reset),
+        .O(SR));
   FDRE \input_vertex_valid_reg_reg[0] 
        (.C(clk),
         .CE(1'b1),
         .D(D),
         .Q(p_0_out[1]),
-        .R(reset));
+        .R(SR));
   FDRE \input_vertex_valid_reg_reg[1] 
        (.C(clk),
         .CE(1'b1),
         .D(p_0_out[1]),
         .Q(p_0_out[2]),
-        .R(reset));
+        .R(SR));
   FDRE \input_vertex_valid_reg_reg[2] 
        (.C(clk),
         .CE(1'b1),
         .D(p_0_out[2]),
         .Q(p_0_out[3]),
-        .R(reset));
+        .R(SR));
   FDRE \input_vertex_valid_reg_reg[3] 
        (.C(clk),
         .CE(1'b1),
         .D(p_0_out[3]),
         .Q(p_0_out[4]),
-        .R(reset));
+        .R(SR));
   FDRE \input_vertex_valid_reg_reg[4] 
        (.C(clk),
         .CE(1'b1),
         .D(p_0_out[4]),
         .Q(p_0_out[5]),
-        .R(reset));
+        .R(SR));
   FDRE \input_vertex_valid_reg_reg[5] 
        (.C(clk),
         .CE(1'b1),
         .D(p_0_out[5]),
         .Q(p_0_in),
-        .R(reset));
+        .R(SR));
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-12 {cell *THIS*}}" *) 
   DSP48E1 #(
     .ACASCREG(0),
@@ -15990,7 +15965,7 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
         .I5(matrix_12[1]),
         .O(transform_matrix[1]));
   LUT5 #(
-    .INIT(32'h55555554)) 
+    .INIT(32'hAAAAAAA8)) 
     \mul_3_out_reg[1]_i_2 
        (.I0(reset),
         .I1(\vertex_counter[1]_i_2_n_0 ),
@@ -16899,7 +16874,7 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
         .CE(1'b1),
         .D(p_0_in),
         .Q(output_vertex_valid),
-        .R(reset));
+        .R(SR));
   CARRY4 sum_0_0_out0_carry
        (.CI(1'b0),
         .CO({sum_0_0_out0_carry_n_0,sum_0_0_out0_carry_n_1,sum_0_0_out0_carry_n_2,sum_0_0_out0_carry_n_3}),
@@ -18861,12 +18836,21 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\NLW_sum_1_0_out_reg[24]_i_1_O_UNCONNECTED [3:1],\sum_1_0_out_reg[24]_i_1_n_7 }),
         .S({1'b0,1'b0,1'b0,\sum_1_0_out[24]_i_2_n_0 }));
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \transformed_vertex_mem_wr_data[10]_i_1 
        (.I0(output_vertex_valid),
         .I1(start),
         .O(E));
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  LUT3 #(
+    .INIT(8'h40)) 
+    transformed_vertex_mem_wr_en_i_1
+       (.I0(start),
+        .I1(output_vertex_valid),
+        .I2(reset),
+        .O(start_0));
   LUT5 #(
     .INIT(32'h0001FFFE)) 
     \vertex_counter[0]_i_1__0 
@@ -18899,13 +18883,13 @@ module main_gpu_wrapper_0_0_vertex_processor_rtl
         .CE(1'b1),
         .D(\vertex_counter[0]_i_1__0_n_0 ),
         .Q(vertex_counter[0]),
-        .R(reset));
+        .R(SR));
   FDRE \vertex_counter_reg[1] 
        (.C(clk),
         .CE(1'b1),
         .D(\vertex_counter[1]_i_1__0_n_0 ),
         .Q(vertex_counter[1]),
-        .R(reset));
+        .R(SR));
 endmodule
 `ifndef GLBL
 `define GLBL

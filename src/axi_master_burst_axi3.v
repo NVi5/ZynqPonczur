@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module axi_master_burst(
+module axi_master_burst_axi3(
     clk,
     reset, // TODO
 
@@ -74,19 +74,19 @@ output reg [31 : 0] M00_AXI_awaddr   = 32'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWLEN" *)
 output reg [3 : 0] M00_AXI_awlen   = 4'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWSIZE" *)
-output reg [2 : 0] M00_AXI_awsize;
+output reg [2 : 0] M00_AXI_awsize = 0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWBURST" *)
-output reg [1 : 0] M00_AXI_awburst;
+output reg [1 : 0] M00_AXI_awburst = 2'b1;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWLOCK" *)
-output reg [1 : 0] M00_AXI_awlock;
+output reg [1 : 0] M00_AXI_awlock = 0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWCACHE" *)
 output reg [3 : 0] M00_AXI_awcache = 4'b0111;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWPROT" *)
 output reg [2 : 0] M00_AXI_awprot = 3'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWQOS" *)
-output reg [3 : 0] M00_AXI_awqos;
+output reg [3 : 0] M00_AXI_awqos = 0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWUSER" *)
-output reg [3 : 0] M00_AXI_awuser;
+output reg [3 : 0] M00_AXI_awuser = 0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWVALID" *)
 output reg M00_AXI_awvalid = 1'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWREADY" *)
@@ -112,21 +112,21 @@ output reg M00_AXI_bready = 1'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARADDR" *)
 output reg [31 : 0] M00_AXI_araddr = 32'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARLEN" *)
-output reg [3 : 0] M00_AXI_arlen;
+output reg [3 : 0] M00_AXI_arlen = 0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARSIZE" *)
-output reg [2 : 0] M00_AXI_arsize;
+output reg [2 : 0] M00_AXI_arsize = 0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARBURST" *)
 output reg [1 : 0] M00_AXI_arburst = 2'b1;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARLOCK" *)
-output reg [1 : 0] M00_AXI_arlock;
+output reg [1 : 0] M00_AXI_arlock = 0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARCACHE" *)
-output reg [3 : 0] M00_AXI_arcache;
+output reg [3 : 0] M00_AXI_arcache = 0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARPROT" *)
 output reg [2 : 0] M00_AXI_arprot = 3'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARQOS" *)
-output reg [3 : 0] M00_AXI_arqos;
+output reg [3 : 0] M00_AXI_arqos = 0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARUSER" *)
-output reg [3 : 0] M00_AXI_aruser;
+output reg [3 : 0] M00_AXI_aruser = 0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARVALID" *)
 output reg M00_AXI_arvalid = 1'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARREADY" *)

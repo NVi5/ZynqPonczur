@@ -98,7 +98,7 @@ input  wire        out_ready;
 
 GPU_top GPU_top(
     .clk(clk),
-    .reset(reset),
+    .reset(~reset),
     .vertex_count(vertex_count),
     .start(start),
     .mem_wr_addr(mem_wr_addr),

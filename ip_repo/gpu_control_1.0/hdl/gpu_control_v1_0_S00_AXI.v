@@ -241,7 +241,7 @@
             if (slv_reg_wren) begin
                 case ( axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] ) inside
                     ['h00:'h0F]:
-                            transform_matrix[axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB]] <= S_AXI_WDATA;
+                            transform_matrix[ axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB]*(M+N)+:(M+N) ] <= S_AXI_WDATA;
                     'h10:
                             vertex_count <= S_AXI_WDATA;
                     'h11:

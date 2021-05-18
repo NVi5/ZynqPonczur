@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
--- Date        : Mon May 17 23:19:32 2021
--- Host        : RYZEN-PC running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               C:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main/ip/main_rst_ps7_0_50M_0/main_rst_ps7_0_50M_0_stub.vhdl
+-- Date        : Mon May 17 21:32:01 2021
+-- Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode synth_stub -rename_top main_rst_ps7_0_50M_0 -prefix
+--               main_rst_ps7_0_50M_0_ main_rst_ps7_0_50M_0_stub.vhdl
 -- Design      : main_rst_ps7_0_50M_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z010clg400-1

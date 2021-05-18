@@ -1,15 +1,15 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-//Date        : Mon May 17 23:34:18 2021
-//Host        : RYZEN-PC running 64-bit major release  (build 9200)
+//Date        : Tue May 18 10:10:22 2021
+//Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
 //Purpose     : IP block netlist
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=14,numReposBlks=12,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=5,da_board_cnt=1,da_clkrst_cnt=1,da_ps7_cnt=4,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
+(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=11,numReposBlks=9,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=6,da_board_cnt=1,da_clkrst_cnt=1,da_ps7_cnt=4,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
 module main
    (DDR_addr,
     DDR_ba,
@@ -78,88 +78,46 @@ module main
   wire ENET0_GMII_RX_DV_0_1;
   wire ENET0_GMII_TX_CLK_0_1;
   wire [3:0]In0_0_1;
-  wire [31:0]axi_master_0_M00_AXI_ARADDR;
-  wire [1:0]axi_master_0_M00_AXI_ARBURST;
-  wire [3:0]axi_master_0_M00_AXI_ARCACHE;
-  wire [0:0]axi_master_0_M00_AXI_ARID;
-  wire [7:0]axi_master_0_M00_AXI_ARLEN;
-  wire axi_master_0_M00_AXI_ARLOCK;
-  wire [2:0]axi_master_0_M00_AXI_ARPROT;
-  wire [3:0]axi_master_0_M00_AXI_ARQOS;
-  wire axi_master_0_M00_AXI_ARREADY;
-  wire [2:0]axi_master_0_M00_AXI_ARSIZE;
-  wire [3:0]axi_master_0_M00_AXI_ARUSER;
-  wire axi_master_0_M00_AXI_ARVALID;
-  wire [31:0]axi_master_0_M00_AXI_AWADDR;
-  wire [1:0]axi_master_0_M00_AXI_AWBURST;
-  wire [3:0]axi_master_0_M00_AXI_AWCACHE;
-  wire [0:0]axi_master_0_M00_AXI_AWID;
-  wire [7:0]axi_master_0_M00_AXI_AWLEN;
-  wire axi_master_0_M00_AXI_AWLOCK;
-  wire [2:0]axi_master_0_M00_AXI_AWPROT;
-  wire [3:0]axi_master_0_M00_AXI_AWQOS;
-  wire axi_master_0_M00_AXI_AWREADY;
-  wire [2:0]axi_master_0_M00_AXI_AWSIZE;
-  wire [3:0]axi_master_0_M00_AXI_AWUSER;
-  wire axi_master_0_M00_AXI_AWVALID;
-  wire [0:0]axi_master_0_M00_AXI_BID;
-  wire axi_master_0_M00_AXI_BREADY;
-  wire [1:0]axi_master_0_M00_AXI_BRESP;
-  wire [3:0]axi_master_0_M00_AXI_BUSER;
-  wire axi_master_0_M00_AXI_BVALID;
-  wire [31:0]axi_master_0_M00_AXI_RDATA;
-  wire [0:0]axi_master_0_M00_AXI_RID;
-  wire axi_master_0_M00_AXI_RLAST;
-  wire axi_master_0_M00_AXI_RREADY;
-  wire [1:0]axi_master_0_M00_AXI_RRESP;
-  wire [3:0]axi_master_0_M00_AXI_RUSER;
-  wire axi_master_0_M00_AXI_RVALID;
-  wire [31:0]axi_master_0_M00_AXI_WDATA;
-  wire axi_master_0_M00_AXI_WLAST;
-  wire axi_master_0_M00_AXI_WREADY;
-  wire [3:0]axi_master_0_M00_AXI_WSTRB;
-  wire [3:0]axi_master_0_M00_AXI_WUSER;
-  wire axi_master_0_M00_AXI_WVALID;
-  wire axi_master_0_pixel_ready;
-  wire [31:0]axi_smc_M00_AXI_ARADDR;
-  wire [1:0]axi_smc_M00_AXI_ARBURST;
-  wire [3:0]axi_smc_M00_AXI_ARCACHE;
-  wire [3:0]axi_smc_M00_AXI_ARLEN;
-  wire [1:0]axi_smc_M00_AXI_ARLOCK;
-  wire [2:0]axi_smc_M00_AXI_ARPROT;
-  wire [3:0]axi_smc_M00_AXI_ARQOS;
-  wire axi_smc_M00_AXI_ARREADY;
-  wire [2:0]axi_smc_M00_AXI_ARSIZE;
-  wire axi_smc_M00_AXI_ARVALID;
-  wire [31:0]axi_smc_M00_AXI_AWADDR;
-  wire [1:0]axi_smc_M00_AXI_AWBURST;
-  wire [3:0]axi_smc_M00_AXI_AWCACHE;
-  wire [3:0]axi_smc_M00_AXI_AWLEN;
-  wire [1:0]axi_smc_M00_AXI_AWLOCK;
-  wire [2:0]axi_smc_M00_AXI_AWPROT;
-  wire [3:0]axi_smc_M00_AXI_AWQOS;
-  wire axi_smc_M00_AXI_AWREADY;
-  wire [2:0]axi_smc_M00_AXI_AWSIZE;
-  wire axi_smc_M00_AXI_AWVALID;
-  wire axi_smc_M00_AXI_BREADY;
-  wire [1:0]axi_smc_M00_AXI_BRESP;
-  wire axi_smc_M00_AXI_BVALID;
-  wire [31:0]axi_smc_M00_AXI_RDATA;
-  wire axi_smc_M00_AXI_RLAST;
-  wire axi_smc_M00_AXI_RREADY;
-  wire [1:0]axi_smc_M00_AXI_RRESP;
-  wire axi_smc_M00_AXI_RVALID;
-  wire [31:0]axi_smc_M00_AXI_WDATA;
-  wire axi_smc_M00_AXI_WLAST;
-  wire axi_smc_M00_AXI_WREADY;
-  wire [3:0]axi_smc_M00_AXI_WSTRB;
-  wire axi_smc_M00_AXI_WVALID;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]gpu_control_0_address;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [13:0]gpu_control_0_mem_wr_addr;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [17:0]gpu_control_0_mem_wr_data;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire gpu_control_0_mem_wr_en;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire gpu_control_0_start;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]gpu_control_0_vertices_size;
+  wire [31:0]axi_master_burst_axi3_0_M00_AXI_ARADDR;
+  wire [1:0]axi_master_burst_axi3_0_M00_AXI_ARBURST;
+  wire [3:0]axi_master_burst_axi3_0_M00_AXI_ARCACHE;
+  wire [3:0]axi_master_burst_axi3_0_M00_AXI_ARLEN;
+  wire [1:0]axi_master_burst_axi3_0_M00_AXI_ARLOCK;
+  wire [2:0]axi_master_burst_axi3_0_M00_AXI_ARPROT;
+  wire [3:0]axi_master_burst_axi3_0_M00_AXI_ARQOS;
+  wire axi_master_burst_axi3_0_M00_AXI_ARREADY;
+  wire [2:0]axi_master_burst_axi3_0_M00_AXI_ARSIZE;
+  wire axi_master_burst_axi3_0_M00_AXI_ARVALID;
+  wire [31:0]axi_master_burst_axi3_0_M00_AXI_AWADDR;
+  wire [1:0]axi_master_burst_axi3_0_M00_AXI_AWBURST;
+  wire [3:0]axi_master_burst_axi3_0_M00_AXI_AWCACHE;
+  wire [3:0]axi_master_burst_axi3_0_M00_AXI_AWLEN;
+  wire [1:0]axi_master_burst_axi3_0_M00_AXI_AWLOCK;
+  wire [2:0]axi_master_burst_axi3_0_M00_AXI_AWPROT;
+  wire [3:0]axi_master_burst_axi3_0_M00_AXI_AWQOS;
+  wire axi_master_burst_axi3_0_M00_AXI_AWREADY;
+  wire [2:0]axi_master_burst_axi3_0_M00_AXI_AWSIZE;
+  wire axi_master_burst_axi3_0_M00_AXI_AWVALID;
+  wire axi_master_burst_axi3_0_M00_AXI_BREADY;
+  wire [1:0]axi_master_burst_axi3_0_M00_AXI_BRESP;
+  wire axi_master_burst_axi3_0_M00_AXI_BVALID;
+  wire [31:0]axi_master_burst_axi3_0_M00_AXI_RDATA;
+  wire axi_master_burst_axi3_0_M00_AXI_RLAST;
+  wire axi_master_burst_axi3_0_M00_AXI_RREADY;
+  wire [1:0]axi_master_burst_axi3_0_M00_AXI_RRESP;
+  wire axi_master_burst_axi3_0_M00_AXI_RVALID;
+  wire [31:0]axi_master_burst_axi3_0_M00_AXI_WDATA;
+  wire axi_master_burst_axi3_0_M00_AXI_WLAST;
+  wire axi_master_burst_axi3_0_M00_AXI_WREADY;
+  wire [3:0]axi_master_burst_axi3_0_M00_AXI_WSTRB;
+  wire axi_master_burst_axi3_0_M00_AXI_WVALID;
+  wire axi_master_burst_axi3_0_pixel_ready;
+  wire [31:0]gpu_control_0_address;
+  wire [13:0]gpu_control_0_mem_wr_addr;
+  wire [17:0]gpu_control_0_mem_wr_data;
+  wire gpu_control_0_mem_wr_en;
+  wire gpu_control_0_start;
+  wire [31:0]gpu_control_0_vertices_size;
   wire gpu_wrapper_0_draw;
   wire gpu_wrapper_0_frame_end;
   wire [10:0]gpu_wrapper_0_height;
@@ -251,25 +209,25 @@ module main
   wire processing_system7_0_M_AXI_GP0_WREADY;
   wire [3:0]processing_system7_0_M_AXI_GP0_WSTRB;
   wire processing_system7_0_M_AXI_GP0_WVALID;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]ps7_0_axi_periph_M00_AXI_ARADDR;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [2:0]ps7_0_axi_periph_M00_AXI_ARPROT;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_ARREADY;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_ARVALID;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]ps7_0_axi_periph_M00_AXI_AWADDR;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [2:0]ps7_0_axi_periph_M00_AXI_AWPROT;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_AWREADY;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_AWVALID;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_BREADY;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [1:0]ps7_0_axi_periph_M00_AXI_BRESP;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_BVALID;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]ps7_0_axi_periph_M00_AXI_RDATA;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_RREADY;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [1:0]ps7_0_axi_periph_M00_AXI_RRESP;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_RVALID;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [31:0]ps7_0_axi_periph_M00_AXI_WDATA;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_WREADY;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire [3:0]ps7_0_axi_periph_M00_AXI_WSTRB;
-  (* DEBUG = "true" *) (* MARK_DEBUG *) wire ps7_0_axi_periph_M00_AXI_WVALID;
+  wire [31:0]ps7_0_axi_periph_M00_AXI_ARADDR;
+  wire [2:0]ps7_0_axi_periph_M00_AXI_ARPROT;
+  wire ps7_0_axi_periph_M00_AXI_ARREADY;
+  wire ps7_0_axi_periph_M00_AXI_ARVALID;
+  wire [31:0]ps7_0_axi_periph_M00_AXI_AWADDR;
+  wire [2:0]ps7_0_axi_periph_M00_AXI_AWPROT;
+  wire ps7_0_axi_periph_M00_AXI_AWREADY;
+  wire ps7_0_axi_periph_M00_AXI_AWVALID;
+  wire ps7_0_axi_periph_M00_AXI_BREADY;
+  wire [1:0]ps7_0_axi_periph_M00_AXI_BRESP;
+  wire ps7_0_axi_periph_M00_AXI_BVALID;
+  wire [31:0]ps7_0_axi_periph_M00_AXI_RDATA;
+  wire ps7_0_axi_periph_M00_AXI_RREADY;
+  wire [1:0]ps7_0_axi_periph_M00_AXI_RRESP;
+  wire ps7_0_axi_periph_M00_AXI_RVALID;
+  wire [31:0]ps7_0_axi_periph_M00_AXI_WDATA;
+  wire ps7_0_axi_periph_M00_AXI_WREADY;
+  wire [3:0]ps7_0_axi_periph_M00_AXI_WSTRB;
+  wire ps7_0_axi_periph_M00_AXI_WVALID;
   wire [0:0]rst_ps7_0_50M_peripheral_aresetn1;
   wire [3:0]xlconcat_0_dout;
   wire [7:0]xlconcat_1_dout;
@@ -285,139 +243,52 @@ module main
   assign MDIO_ETHERNET_0_0_mdio_o = processing_system7_0_MDIO_ETHERNET_0_MDIO_O;
   assign MDIO_ETHERNET_0_0_mdio_t = processing_system7_0_MDIO_ETHERNET_0_MDIO_T;
   assign processing_system7_0_MDIO_ETHERNET_0_MDIO_I = MDIO_ETHERNET_0_0_mdio_i;
-  main_axi_master_0_0 axi_master_0
-       (.draw(gpu_wrapper_0_draw),
+  main_axi_master_burst_axi3_0_0 axi_master_burst_axi3_0
+       (.M00_AXI_araddr(axi_master_burst_axi3_0_M00_AXI_ARADDR),
+        .M00_AXI_arburst(axi_master_burst_axi3_0_M00_AXI_ARBURST),
+        .M00_AXI_arcache(axi_master_burst_axi3_0_M00_AXI_ARCACHE),
+        .M00_AXI_arlen(axi_master_burst_axi3_0_M00_AXI_ARLEN),
+        .M00_AXI_arlock(axi_master_burst_axi3_0_M00_AXI_ARLOCK),
+        .M00_AXI_arprot(axi_master_burst_axi3_0_M00_AXI_ARPROT),
+        .M00_AXI_arqos(axi_master_burst_axi3_0_M00_AXI_ARQOS),
+        .M00_AXI_arready(axi_master_burst_axi3_0_M00_AXI_ARREADY),
+        .M00_AXI_arsize(axi_master_burst_axi3_0_M00_AXI_ARSIZE),
+        .M00_AXI_arvalid(axi_master_burst_axi3_0_M00_AXI_ARVALID),
+        .M00_AXI_awaddr(axi_master_burst_axi3_0_M00_AXI_AWADDR),
+        .M00_AXI_awburst(axi_master_burst_axi3_0_M00_AXI_AWBURST),
+        .M00_AXI_awcache(axi_master_burst_axi3_0_M00_AXI_AWCACHE),
+        .M00_AXI_awlen(axi_master_burst_axi3_0_M00_AXI_AWLEN),
+        .M00_AXI_awlock(axi_master_burst_axi3_0_M00_AXI_AWLOCK),
+        .M00_AXI_awprot(axi_master_burst_axi3_0_M00_AXI_AWPROT),
+        .M00_AXI_awqos(axi_master_burst_axi3_0_M00_AXI_AWQOS),
+        .M00_AXI_awready(axi_master_burst_axi3_0_M00_AXI_AWREADY),
+        .M00_AXI_awsize(axi_master_burst_axi3_0_M00_AXI_AWSIZE),
+        .M00_AXI_awvalid(axi_master_burst_axi3_0_M00_AXI_AWVALID),
+        .M00_AXI_bready(axi_master_burst_axi3_0_M00_AXI_BREADY),
+        .M00_AXI_bresp(axi_master_burst_axi3_0_M00_AXI_BRESP),
+        .M00_AXI_buser({1'b0,1'b0,1'b0,1'b0}),
+        .M00_AXI_bvalid(axi_master_burst_axi3_0_M00_AXI_BVALID),
+        .M00_AXI_rdata(axi_master_burst_axi3_0_M00_AXI_RDATA),
+        .M00_AXI_rlast(axi_master_burst_axi3_0_M00_AXI_RLAST),
+        .M00_AXI_rready(axi_master_burst_axi3_0_M00_AXI_RREADY),
+        .M00_AXI_rresp(axi_master_burst_axi3_0_M00_AXI_RRESP),
+        .M00_AXI_rvalid(axi_master_burst_axi3_0_M00_AXI_RVALID),
+        .M00_AXI_wdata(axi_master_burst_axi3_0_M00_AXI_WDATA),
+        .M00_AXI_wlast(axi_master_burst_axi3_0_M00_AXI_WLAST),
+        .M00_AXI_wready(axi_master_burst_axi3_0_M00_AXI_WREADY),
+        .M00_AXI_wstrb(axi_master_burst_axi3_0_M00_AXI_WSTRB),
+        .M00_AXI_wvalid(axi_master_burst_axi3_0_M00_AXI_WVALID),
+        .clk(processing_system7_0_FCLK_CLK0),
+        .draw(gpu_wrapper_0_draw),
         .framebuffer_baseaddr(gpu_control_0_address),
         .height(gpu_wrapper_0_height),
-        .m00_axi_aclk(processing_system7_0_FCLK_CLK0),
-        .m00_axi_araddr(axi_master_0_M00_AXI_ARADDR),
-        .m00_axi_arburst(axi_master_0_M00_AXI_ARBURST),
-        .m00_axi_arcache(axi_master_0_M00_AXI_ARCACHE),
-        .m00_axi_aresetn(rst_ps7_0_50M_peripheral_aresetn1),
-        .m00_axi_arid(axi_master_0_M00_AXI_ARID),
-        .m00_axi_arlen(axi_master_0_M00_AXI_ARLEN),
-        .m00_axi_arlock(axi_master_0_M00_AXI_ARLOCK),
-        .m00_axi_arprot(axi_master_0_M00_AXI_ARPROT),
-        .m00_axi_arqos(axi_master_0_M00_AXI_ARQOS),
-        .m00_axi_arready(axi_master_0_M00_AXI_ARREADY),
-        .m00_axi_arsize(axi_master_0_M00_AXI_ARSIZE),
-        .m00_axi_aruser(axi_master_0_M00_AXI_ARUSER),
-        .m00_axi_arvalid(axi_master_0_M00_AXI_ARVALID),
-        .m00_axi_awaddr(axi_master_0_M00_AXI_AWADDR),
-        .m00_axi_awburst(axi_master_0_M00_AXI_AWBURST),
-        .m00_axi_awcache(axi_master_0_M00_AXI_AWCACHE),
-        .m00_axi_awid(axi_master_0_M00_AXI_AWID),
-        .m00_axi_awlen(axi_master_0_M00_AXI_AWLEN),
-        .m00_axi_awlock(axi_master_0_M00_AXI_AWLOCK),
-        .m00_axi_awprot(axi_master_0_M00_AXI_AWPROT),
-        .m00_axi_awqos(axi_master_0_M00_AXI_AWQOS),
-        .m00_axi_awready(axi_master_0_M00_AXI_AWREADY),
-        .m00_axi_awsize(axi_master_0_M00_AXI_AWSIZE),
-        .m00_axi_awuser(axi_master_0_M00_AXI_AWUSER),
-        .m00_axi_awvalid(axi_master_0_M00_AXI_AWVALID),
-        .m00_axi_bid(axi_master_0_M00_AXI_BID),
-        .m00_axi_bready(axi_master_0_M00_AXI_BREADY),
-        .m00_axi_bresp(axi_master_0_M00_AXI_BRESP),
-        .m00_axi_buser(axi_master_0_M00_AXI_BUSER),
-        .m00_axi_bvalid(axi_master_0_M00_AXI_BVALID),
-        .m00_axi_rdata(axi_master_0_M00_AXI_RDATA),
-        .m00_axi_rid(axi_master_0_M00_AXI_RID),
-        .m00_axi_rlast(axi_master_0_M00_AXI_RLAST),
-        .m00_axi_rready(axi_master_0_M00_AXI_RREADY),
-        .m00_axi_rresp(axi_master_0_M00_AXI_RRESP),
-        .m00_axi_ruser(axi_master_0_M00_AXI_RUSER),
-        .m00_axi_rvalid(axi_master_0_M00_AXI_RVALID),
-        .m00_axi_wdata(axi_master_0_M00_AXI_WDATA),
-        .m00_axi_wlast(axi_master_0_M00_AXI_WLAST),
-        .m00_axi_wready(axi_master_0_M00_AXI_WREADY),
-        .m00_axi_wstrb(axi_master_0_M00_AXI_WSTRB),
-        .m00_axi_wuser(axi_master_0_M00_AXI_WUSER),
-        .m00_axi_wvalid(axi_master_0_M00_AXI_WVALID),
         .pixel_data(gpu_wrapper_0_output_color),
-        .pixel_ready(axi_master_0_pixel_ready),
+        .pixel_ready(axi_master_burst_axi3_0_pixel_ready),
         .pixel_valid(gpu_wrapper_0_output_valid),
         .pixel_x(gpu_wrapper_0_pixel_x_out),
         .pixel_y(gpu_wrapper_0_pixel_y_out),
+        .reset(rst_ps7_0_50M_peripheral_aresetn1),
         .width(gpu_wrapper_0_width));
-  main_axi_smc_0 axi_smc
-       (.M00_AXI_araddr(axi_smc_M00_AXI_ARADDR),
-        .M00_AXI_arburst(axi_smc_M00_AXI_ARBURST),
-        .M00_AXI_arcache(axi_smc_M00_AXI_ARCACHE),
-        .M00_AXI_arlen(axi_smc_M00_AXI_ARLEN),
-        .M00_AXI_arlock(axi_smc_M00_AXI_ARLOCK),
-        .M00_AXI_arprot(axi_smc_M00_AXI_ARPROT),
-        .M00_AXI_arqos(axi_smc_M00_AXI_ARQOS),
-        .M00_AXI_arready(axi_smc_M00_AXI_ARREADY),
-        .M00_AXI_arsize(axi_smc_M00_AXI_ARSIZE),
-        .M00_AXI_arvalid(axi_smc_M00_AXI_ARVALID),
-        .M00_AXI_awaddr(axi_smc_M00_AXI_AWADDR),
-        .M00_AXI_awburst(axi_smc_M00_AXI_AWBURST),
-        .M00_AXI_awcache(axi_smc_M00_AXI_AWCACHE),
-        .M00_AXI_awlen(axi_smc_M00_AXI_AWLEN),
-        .M00_AXI_awlock(axi_smc_M00_AXI_AWLOCK),
-        .M00_AXI_awprot(axi_smc_M00_AXI_AWPROT),
-        .M00_AXI_awqos(axi_smc_M00_AXI_AWQOS),
-        .M00_AXI_awready(axi_smc_M00_AXI_AWREADY),
-        .M00_AXI_awsize(axi_smc_M00_AXI_AWSIZE),
-        .M00_AXI_awvalid(axi_smc_M00_AXI_AWVALID),
-        .M00_AXI_bready(axi_smc_M00_AXI_BREADY),
-        .M00_AXI_bresp(axi_smc_M00_AXI_BRESP),
-        .M00_AXI_buser({1'b0,1'b0,1'b0,1'b0}),
-        .M00_AXI_bvalid(axi_smc_M00_AXI_BVALID),
-        .M00_AXI_rdata(axi_smc_M00_AXI_RDATA),
-        .M00_AXI_rlast(axi_smc_M00_AXI_RLAST),
-        .M00_AXI_rready(axi_smc_M00_AXI_RREADY),
-        .M00_AXI_rresp(axi_smc_M00_AXI_RRESP),
-        .M00_AXI_rvalid(axi_smc_M00_AXI_RVALID),
-        .M00_AXI_wdata(axi_smc_M00_AXI_WDATA),
-        .M00_AXI_wlast(axi_smc_M00_AXI_WLAST),
-        .M00_AXI_wready(axi_smc_M00_AXI_WREADY),
-        .M00_AXI_wstrb(axi_smc_M00_AXI_WSTRB),
-        .M00_AXI_wvalid(axi_smc_M00_AXI_WVALID),
-        .S00_AXI_araddr(axi_master_0_M00_AXI_ARADDR),
-        .S00_AXI_arburst(axi_master_0_M00_AXI_ARBURST),
-        .S00_AXI_arcache(axi_master_0_M00_AXI_ARCACHE),
-        .S00_AXI_arid(axi_master_0_M00_AXI_ARID),
-        .S00_AXI_arlen(axi_master_0_M00_AXI_ARLEN),
-        .S00_AXI_arlock(axi_master_0_M00_AXI_ARLOCK),
-        .S00_AXI_arprot(axi_master_0_M00_AXI_ARPROT),
-        .S00_AXI_arqos(axi_master_0_M00_AXI_ARQOS),
-        .S00_AXI_arready(axi_master_0_M00_AXI_ARREADY),
-        .S00_AXI_arsize(axi_master_0_M00_AXI_ARSIZE),
-        .S00_AXI_aruser(axi_master_0_M00_AXI_ARUSER),
-        .S00_AXI_arvalid(axi_master_0_M00_AXI_ARVALID),
-        .S00_AXI_awaddr(axi_master_0_M00_AXI_AWADDR),
-        .S00_AXI_awburst(axi_master_0_M00_AXI_AWBURST),
-        .S00_AXI_awcache(axi_master_0_M00_AXI_AWCACHE),
-        .S00_AXI_awid(axi_master_0_M00_AXI_AWID),
-        .S00_AXI_awlen(axi_master_0_M00_AXI_AWLEN),
-        .S00_AXI_awlock(axi_master_0_M00_AXI_AWLOCK),
-        .S00_AXI_awprot(axi_master_0_M00_AXI_AWPROT),
-        .S00_AXI_awqos(axi_master_0_M00_AXI_AWQOS),
-        .S00_AXI_awready(axi_master_0_M00_AXI_AWREADY),
-        .S00_AXI_awsize(axi_master_0_M00_AXI_AWSIZE),
-        .S00_AXI_awuser(axi_master_0_M00_AXI_AWUSER),
-        .S00_AXI_awvalid(axi_master_0_M00_AXI_AWVALID),
-        .S00_AXI_bid(axi_master_0_M00_AXI_BID),
-        .S00_AXI_bready(axi_master_0_M00_AXI_BREADY),
-        .S00_AXI_bresp(axi_master_0_M00_AXI_BRESP),
-        .S00_AXI_buser(axi_master_0_M00_AXI_BUSER),
-        .S00_AXI_bvalid(axi_master_0_M00_AXI_BVALID),
-        .S00_AXI_rdata(axi_master_0_M00_AXI_RDATA),
-        .S00_AXI_rid(axi_master_0_M00_AXI_RID),
-        .S00_AXI_rlast(axi_master_0_M00_AXI_RLAST),
-        .S00_AXI_rready(axi_master_0_M00_AXI_RREADY),
-        .S00_AXI_rresp(axi_master_0_M00_AXI_RRESP),
-        .S00_AXI_ruser(axi_master_0_M00_AXI_RUSER),
-        .S00_AXI_rvalid(axi_master_0_M00_AXI_RVALID),
-        .S00_AXI_wdata(axi_master_0_M00_AXI_WDATA),
-        .S00_AXI_wlast(axi_master_0_M00_AXI_WLAST),
-        .S00_AXI_wready(axi_master_0_M00_AXI_WREADY),
-        .S00_AXI_wstrb(axi_master_0_M00_AXI_WSTRB),
-        .S00_AXI_wuser(axi_master_0_M00_AXI_WUSER),
-        .S00_AXI_wvalid(axi_master_0_M00_AXI_WVALID),
-        .aclk(processing_system7_0_FCLK_CLK0),
-        .aresetn(rst_ps7_0_50M_peripheral_aresetn1));
   main_gpu_control_0_0 gpu_control_0
        (.address(gpu_control_0_address),
         .matrix_00(gpu_wrapper_0_transform_matrix_matrix_00),
@@ -487,7 +358,7 @@ module main
         .mem_wr_addr(gpu_control_0_mem_wr_addr),
         .mem_wr_data(gpu_control_0_mem_wr_data),
         .mem_wr_en(gpu_control_0_mem_wr_en),
-        .out_ready(axi_master_0_pixel_ready),
+        .out_ready(axi_master_burst_axi3_0_pixel_ready),
         .output_color(gpu_wrapper_0_output_color),
         .output_valid(gpu_wrapper_0_output_valid),
         .pixel_x_out(gpu_wrapper_0_pixel_x_out),
@@ -496,35 +367,6 @@ module main
         .start(gpu_control_0_start),
         .vertex_count(gpu_control_0_vertices_size),
         .width(gpu_wrapper_0_width));
-  main_ila_0_0 ila_0
-       (.clk(processing_system7_0_FCLK_CLK0),
-        .probe0(ps7_0_axi_periph_M00_AXI_WREADY),
-        .probe1(ps7_0_axi_periph_M00_AXI_AWADDR[16:0]),
-        .probe10(ps7_0_axi_periph_M00_AXI_RDATA),
-        .probe11(ps7_0_axi_periph_M00_AXI_AWVALID),
-        .probe12(ps7_0_axi_periph_M00_AXI_AWREADY),
-        .probe13(ps7_0_axi_periph_M00_AXI_RRESP),
-        .probe14(ps7_0_axi_periph_M00_AXI_WDATA),
-        .probe15(ps7_0_axi_periph_M00_AXI_WSTRB),
-        .probe16(ps7_0_axi_periph_M00_AXI_RVALID),
-        .probe17(ps7_0_axi_periph_M00_AXI_ARPROT),
-        .probe18(ps7_0_axi_periph_M00_AXI_AWPROT),
-        .probe2(ps7_0_axi_periph_M00_AXI_BRESP),
-        .probe3(ps7_0_axi_periph_M00_AXI_BVALID),
-        .probe4(ps7_0_axi_periph_M00_AXI_BREADY),
-        .probe5(ps7_0_axi_periph_M00_AXI_ARADDR[16:0]),
-        .probe6(ps7_0_axi_periph_M00_AXI_RREADY),
-        .probe7(ps7_0_axi_periph_M00_AXI_WVALID),
-        .probe8(ps7_0_axi_periph_M00_AXI_ARVALID),
-        .probe9(ps7_0_axi_periph_M00_AXI_ARREADY));
-  main_ila_1_0 ila_1
-       (.clk(processing_system7_0_FCLK_CLK0),
-        .probe0(gpu_control_0_vertices_size),
-        .probe1(gpu_control_0_address),
-        .probe2(gpu_control_0_mem_wr_addr),
-        .probe3(gpu_control_0_mem_wr_data),
-        .probe4(gpu_control_0_mem_wr_en),
-        .probe5(gpu_control_0_start));
   main_processing_system7_0_1 processing_system7_0
        (.DDR_Addr(DDR_addr[14:0]),
         .DDR_BankAddr(DDR_ba[2:0]),
@@ -603,42 +445,42 @@ module main
         .PS_PORB(FIXED_IO_ps_porb),
         .PS_SRSTB(FIXED_IO_ps_srstb),
         .S_AXI_GP0_ACLK(processing_system7_0_FCLK_CLK0),
-        .S_AXI_GP0_ARADDR(axi_smc_M00_AXI_ARADDR),
-        .S_AXI_GP0_ARBURST(axi_smc_M00_AXI_ARBURST),
-        .S_AXI_GP0_ARCACHE(axi_smc_M00_AXI_ARCACHE),
+        .S_AXI_GP0_ARADDR(axi_master_burst_axi3_0_M00_AXI_ARADDR),
+        .S_AXI_GP0_ARBURST(axi_master_burst_axi3_0_M00_AXI_ARBURST),
+        .S_AXI_GP0_ARCACHE(axi_master_burst_axi3_0_M00_AXI_ARCACHE),
         .S_AXI_GP0_ARID({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_GP0_ARLEN(axi_smc_M00_AXI_ARLEN),
-        .S_AXI_GP0_ARLOCK(axi_smc_M00_AXI_ARLOCK),
-        .S_AXI_GP0_ARPROT(axi_smc_M00_AXI_ARPROT),
-        .S_AXI_GP0_ARQOS(axi_smc_M00_AXI_ARQOS),
-        .S_AXI_GP0_ARREADY(axi_smc_M00_AXI_ARREADY),
-        .S_AXI_GP0_ARSIZE(axi_smc_M00_AXI_ARSIZE),
-        .S_AXI_GP0_ARVALID(axi_smc_M00_AXI_ARVALID),
-        .S_AXI_GP0_AWADDR(axi_smc_M00_AXI_AWADDR),
-        .S_AXI_GP0_AWBURST(axi_smc_M00_AXI_AWBURST),
-        .S_AXI_GP0_AWCACHE(axi_smc_M00_AXI_AWCACHE),
+        .S_AXI_GP0_ARLEN(axi_master_burst_axi3_0_M00_AXI_ARLEN),
+        .S_AXI_GP0_ARLOCK(axi_master_burst_axi3_0_M00_AXI_ARLOCK),
+        .S_AXI_GP0_ARPROT(axi_master_burst_axi3_0_M00_AXI_ARPROT),
+        .S_AXI_GP0_ARQOS(axi_master_burst_axi3_0_M00_AXI_ARQOS),
+        .S_AXI_GP0_ARREADY(axi_master_burst_axi3_0_M00_AXI_ARREADY),
+        .S_AXI_GP0_ARSIZE(axi_master_burst_axi3_0_M00_AXI_ARSIZE),
+        .S_AXI_GP0_ARVALID(axi_master_burst_axi3_0_M00_AXI_ARVALID),
+        .S_AXI_GP0_AWADDR(axi_master_burst_axi3_0_M00_AXI_AWADDR),
+        .S_AXI_GP0_AWBURST(axi_master_burst_axi3_0_M00_AXI_AWBURST),
+        .S_AXI_GP0_AWCACHE(axi_master_burst_axi3_0_M00_AXI_AWCACHE),
         .S_AXI_GP0_AWID({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_GP0_AWLEN(axi_smc_M00_AXI_AWLEN),
-        .S_AXI_GP0_AWLOCK(axi_smc_M00_AXI_AWLOCK),
-        .S_AXI_GP0_AWPROT(axi_smc_M00_AXI_AWPROT),
-        .S_AXI_GP0_AWQOS(axi_smc_M00_AXI_AWQOS),
-        .S_AXI_GP0_AWREADY(axi_smc_M00_AXI_AWREADY),
-        .S_AXI_GP0_AWSIZE(axi_smc_M00_AXI_AWSIZE),
-        .S_AXI_GP0_AWVALID(axi_smc_M00_AXI_AWVALID),
-        .S_AXI_GP0_BREADY(axi_smc_M00_AXI_BREADY),
-        .S_AXI_GP0_BRESP(axi_smc_M00_AXI_BRESP),
-        .S_AXI_GP0_BVALID(axi_smc_M00_AXI_BVALID),
-        .S_AXI_GP0_RDATA(axi_smc_M00_AXI_RDATA),
-        .S_AXI_GP0_RLAST(axi_smc_M00_AXI_RLAST),
-        .S_AXI_GP0_RREADY(axi_smc_M00_AXI_RREADY),
-        .S_AXI_GP0_RRESP(axi_smc_M00_AXI_RRESP),
-        .S_AXI_GP0_RVALID(axi_smc_M00_AXI_RVALID),
-        .S_AXI_GP0_WDATA(axi_smc_M00_AXI_WDATA),
+        .S_AXI_GP0_AWLEN(axi_master_burst_axi3_0_M00_AXI_AWLEN),
+        .S_AXI_GP0_AWLOCK(axi_master_burst_axi3_0_M00_AXI_AWLOCK),
+        .S_AXI_GP0_AWPROT(axi_master_burst_axi3_0_M00_AXI_AWPROT),
+        .S_AXI_GP0_AWQOS(axi_master_burst_axi3_0_M00_AXI_AWQOS),
+        .S_AXI_GP0_AWREADY(axi_master_burst_axi3_0_M00_AXI_AWREADY),
+        .S_AXI_GP0_AWSIZE(axi_master_burst_axi3_0_M00_AXI_AWSIZE),
+        .S_AXI_GP0_AWVALID(axi_master_burst_axi3_0_M00_AXI_AWVALID),
+        .S_AXI_GP0_BREADY(axi_master_burst_axi3_0_M00_AXI_BREADY),
+        .S_AXI_GP0_BRESP(axi_master_burst_axi3_0_M00_AXI_BRESP),
+        .S_AXI_GP0_BVALID(axi_master_burst_axi3_0_M00_AXI_BVALID),
+        .S_AXI_GP0_RDATA(axi_master_burst_axi3_0_M00_AXI_RDATA),
+        .S_AXI_GP0_RLAST(axi_master_burst_axi3_0_M00_AXI_RLAST),
+        .S_AXI_GP0_RREADY(axi_master_burst_axi3_0_M00_AXI_RREADY),
+        .S_AXI_GP0_RRESP(axi_master_burst_axi3_0_M00_AXI_RRESP),
+        .S_AXI_GP0_RVALID(axi_master_burst_axi3_0_M00_AXI_RVALID),
+        .S_AXI_GP0_WDATA(axi_master_burst_axi3_0_M00_AXI_WDATA),
         .S_AXI_GP0_WID({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_GP0_WLAST(axi_smc_M00_AXI_WLAST),
-        .S_AXI_GP0_WREADY(axi_smc_M00_AXI_WREADY),
-        .S_AXI_GP0_WSTRB(axi_smc_M00_AXI_WSTRB),
-        .S_AXI_GP0_WVALID(axi_smc_M00_AXI_WVALID));
+        .S_AXI_GP0_WLAST(axi_master_burst_axi3_0_M00_AXI_WLAST),
+        .S_AXI_GP0_WREADY(axi_master_burst_axi3_0_M00_AXI_WREADY),
+        .S_AXI_GP0_WSTRB(axi_master_burst_axi3_0_M00_AXI_WSTRB),
+        .S_AXI_GP0_WVALID(axi_master_burst_axi3_0_M00_AXI_WVALID));
   main_ps7_0_axi_periph_0 ps7_0_axi_periph
        (.ACLK(processing_system7_0_FCLK_CLK0),
         .ARESETN(rst_ps7_0_50M_peripheral_aresetn1),

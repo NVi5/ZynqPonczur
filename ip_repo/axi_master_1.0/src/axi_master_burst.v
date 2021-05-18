@@ -21,7 +21,7 @@ module axi_master_burst(
     output reg  [ 3:0] axi_wstrb   = 4'b0,
     output reg  [ 1:0] axi_awbrust = 2'b1,
     output reg  [ 3:0] axi_awlen   = 4'b0,
-    output reg  [ 3:0] axi_awcache = 4'b0111,
+    output reg  [ 3:0] axi_awcache = 4'b0000,
     output reg         axi_wlast   = 1'b0,
     
     output reg         axi_awvalid = 1'b0,

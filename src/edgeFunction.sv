@@ -115,7 +115,6 @@ assign pixel_x_out = pixel_x_d[3];
 assign pixel_y_out = pixel_y_d[3];
 
 always @(posedge clk) begin 
-    isInside <= 0;
     if (ce_d[0]) begin
         P_X_minus_V1_X <= $signed(pixel_x) - V1_x;
         V2_Y_minus_V1_Y <= V2_y - V1_y;

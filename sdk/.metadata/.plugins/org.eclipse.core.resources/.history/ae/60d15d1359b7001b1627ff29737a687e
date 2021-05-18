@@ -1,0 +1,78 @@
+#include <glm/matrix.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
+
+#include <math.h>
+
+#include "xparameters.h"
+#include "netif/xadapter.h"
+#include "platform.h"
+#include "platform_config.h"
+#include "lwip/tcp.h"
+#include "xil_cache.h"
+#include "lwip/init.h"
+
+#include "websocket.h"
+
+#include <stdlib.h>
+
+#define GPU_MEM (((uint32_t*)XPAR_GPU_CONTROL_0_S00_AXI_BASEADDR)+0x14)
+uint32_t *gpu_mem = GPU_MEM-0x14;
+uint32_t write[10] = {0xffffffff, 0, 1, 2, 3, 4, 5, 6, 7, 8};
+uint32_t read[10];
+
+
+void lwip_init();
+extern "C" {
+	void tcp_fasttmr(void);
+	void tcp_slowtmr(void);
+}
+
+extern volatile int TcpFastTmrFlag;
+extern volatile int TcpSlowTmrFlag;
+static struct netif server_netif;
+struct netif *echo_netif;
+
+int main()
+{
+	Xil_DCacheDisable();
+	ip_addr_t ipaddr, netmask, gw;
+	unsigned char mac_ethernet_address[] = { 0x00, 0x0a, 0x35, 0x00, 0x01, 0x02 };
+	echo_netif = &server_netif;
+	init_platform();
+	IP4_ADDR(&ipaddr,  172, 16,   0, 10);
+	IP4_ADDR(&netmask, 255, 255, 255, 0);
+	IP4_ADDR(&gw,      172, 16,   0,  1);
+	lwip_init();
+	if (!xemac_add(echo_netif, &ipaddr, &netmask, &gw, mac_ethernet_address, PLATFORM_EMAC_BASEADDR)) {
+		return -1;
+	}
+	netif_set_default(echo_netif);
+	platform_enable_interrupts();
+	netif_set_up(echo_netif);
+
+	websocket_t *websocket = new_websocket((ip_addr_t *)IP_ADDR_ANY, 1000);
+
+	while (1) {
+		if (TcpFastTmrFlag) {
+			tcp_fasttmr();
+			TcpFastTmrFlag = 0;
+		}
+		if (TcpSlowTmrFlag) {
+			tcp_slowtmr();
+			TcpSlowTmrFlag = 0;
+		}
+		xemacif_input(echo_netif);
+
+		//GPU_MEM[0] = 0x1488;
+		//read[0] = GPU_MEM[0];
+		memcpy(GPU_MEM, write, 40);
+		memcpy(read, GPU_MEM, 40);
+		gpu_mem[0x10] = 0x12345678;
+	}
+
+
+	glm::mat4 roatation_matrix = glm::rotate(glm::mat4(1.0f), (float)M_PI_2, glm::vec3(0.0f, 1.0f, 0.0f));
+	return 0;
+}
