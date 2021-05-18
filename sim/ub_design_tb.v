@@ -35,11 +35,11 @@ module ub_design_tb();
     wire [10:0]     pixel_y_out;
     wire  [7:0]     output_color;
 
-    assign draw = ub_design_tb.ub_design_inst.main_ub_i.gpu_wrapper_0.draw;
-    assign frame_end = ub_design_tb.ub_design_inst.main_ub_i.gpu_wrapper_0.frame_end;
-    assign pixel_x_out = ub_design_tb.ub_design_inst.main_ub_i.gpu_wrapper_0.pixel_x_out;
-    assign pixel_y_out = ub_design_tb.ub_design_inst.main_ub_i.gpu_wrapper_0.pixel_y_out;
-    assign output_valid = ub_design_tb.ub_design_inst.main_ub_i.gpu_wrapper_0.out_ready;
+    assign draw         = ub_design_tb.ub_design_inst.main_ub_i.gpu_wrapper_0.draw;
+    assign frame_end    = ub_design_tb.ub_design_inst.main_ub_i.gpu_wrapper_0.frame_end;
+    assign pixel_x_out  = ub_design_tb.ub_design_inst.main_ub_i.gpu_wrapper_0.pixel_x_out;
+    assign pixel_y_out  = ub_design_tb.ub_design_inst.main_ub_i.gpu_wrapper_0.pixel_y_out;
+    assign output_valid = ub_design_tb.ub_design_inst.main_ub_i.gpu_wrapper_0.output_valid;
     assign output_color = ub_design_tb.ub_design_inst.main_ub_i.gpu_wrapper_0.output_color;
 
     always #5 clock = ~clock;
