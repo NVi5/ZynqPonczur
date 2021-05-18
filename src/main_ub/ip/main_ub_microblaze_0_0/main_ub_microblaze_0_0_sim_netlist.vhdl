@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
--- Date        : Tue May 18 16:01:03 2021
+-- Date        : Tue May 18 20:31:01 2021
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
---               c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main_ub/ip/main_ub_microblaze_0_0/main_ub_microblaze_0_0_sim_netlist.vhdl
+--               C:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main_ub/ip/main_ub_microblaze_0_0/main_ub_microblaze_0_0_sim_netlist.vhdl
 -- Design      : main_ub_microblaze_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -432,6 +432,7 @@ entity main_ub_microblaze_0_0_DAXI_interface is
     active_access_d1 : out STD_LOGIC;
     active_access : out STD_LOGIC;
     D : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    mem_daxi_exclusive_failed : out STD_LOGIC;
     MEM_DataBus_Ready : out STD_LOGIC;
     wb_databus_steered_read_data : out STD_LOGIC_VECTOR ( 7 downto 0 );
     \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg\ : out STD_LOGIC;
@@ -464,6 +465,7 @@ entity main_ub_microblaze_0_0_DAXI_interface is
     M_AXI_DP_AWVALID_i_reg_0 : in STD_LOGIC;
     M_AXI_DP_WVALID_i_reg_0 : in STD_LOGIC;
     M_AXI_DP_ARVALID_i_reg_0 : in STD_LOGIC;
+    \read_exclusive_fail__2\ : in STD_LOGIC;
     DReady : in STD_LOGIC;
     \LOCKSTEP_Out_reg[3031]\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     wb_read_msb_doublet_sel : in STD_LOGIC;
@@ -471,6 +473,8 @@ entity main_ub_microblaze_0_0_DAXI_interface is
     Q : in STD_LOGIC_VECTOR ( 31 downto 0 );
     M_AXI_DP_RVALID : in STD_LOGIC;
     M_AXI_DP_BVALID : in STD_LOGIC;
+    M_AXI_DP_BRESP : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    M_AXI_DP_ARLOCK : in STD_LOGIC;
     M_AXI_DP_RDATA : in STD_LOGIC_VECTOR ( 31 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
@@ -481,44 +485,48 @@ architecture STRUCTURE of main_ub_microblaze_0_0_DAXI_interface is
   signal MEM_DAXI_Data_Strobe : STD_LOGIC;
   signal \^active_access\ : STD_LOGIC;
   signal mem_access_completed0 : STD_LOGIC;
+  signal mem_access_failed_i_1_n_0 : STD_LOGIC;
+  signal mem_access_failed_i_3_n_0 : STD_LOGIC;
+  signal \^mem_daxi_exclusive_failed\ : STD_LOGIC;
   signal wb_databus_read_data : STD_LOGIC_VECTOR ( 0 to 31 );
   signal wb_dext_Data_Strobe : STD_LOGIC;
   signal wb_dext_read_data : STD_LOGIC_VECTOR ( 0 to 31 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[16]_INST_0_i_2\ : label is "soft_lutpair63";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[16]_INST_0_i_3\ : label is "soft_lutpair70";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[16]_INST_0_i_2\ : label is "soft_lutpair59";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[16]_INST_0_i_3\ : label is "soft_lutpair67";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[16]_INST_0_i_4\ : label is "soft_lutpair61";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[16]_INST_0_i_5\ : label is "soft_lutpair62";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[17]_INST_0_i_2\ : label is "soft_lutpair61";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[17]_INST_0_i_3\ : label is "soft_lutpair69";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[16]_INST_0_i_5\ : label is "soft_lutpair68";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[17]_INST_0_i_2\ : label is "soft_lutpair58";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[17]_INST_0_i_3\ : label is "soft_lutpair66";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[17]_INST_0_i_4\ : label is "soft_lutpair60";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[17]_INST_0_i_5\ : label is "soft_lutpair68";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[18]_INST_0_i_2\ : label is "soft_lutpair60";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[18]_INST_0_i_3\ : label is "soft_lutpair68";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[18]_INST_0_i_2\ : label is "soft_lutpair57";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[18]_INST_0_i_3\ : label is "soft_lutpair65";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[18]_INST_0_i_4\ : label is "soft_lutpair59";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[18]_INST_0_i_5\ : label is "soft_lutpair67";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[19]_INST_0_i_2\ : label is "soft_lutpair59";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[19]_INST_0_i_3\ : label is "soft_lutpair67";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[19]_INST_0_i_2\ : label is "soft_lutpair56";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[19]_INST_0_i_3\ : label is "soft_lutpair64";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[19]_INST_0_i_4\ : label is "soft_lutpair58";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[19]_INST_0_i_5\ : label is "soft_lutpair66";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[20]_INST_0_i_2\ : label is "soft_lutpair58";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[20]_INST_0_i_3\ : label is "soft_lutpair66";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[20]_INST_0_i_2\ : label is "soft_lutpair55";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[20]_INST_0_i_3\ : label is "soft_lutpair63";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[20]_INST_0_i_4\ : label is "soft_lutpair57";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[20]_INST_0_i_5\ : label is "soft_lutpair65";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[21]_INST_0_i_2\ : label is "soft_lutpair57";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[21]_INST_0_i_3\ : label is "soft_lutpair65";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[21]_INST_0_i_2\ : label is "soft_lutpair54";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[21]_INST_0_i_3\ : label is "soft_lutpair62";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[21]_INST_0_i_4\ : label is "soft_lutpair56";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[21]_INST_0_i_5\ : label is "soft_lutpair64";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[22]_INST_0_i_2\ : label is "soft_lutpair56";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[22]_INST_0_i_3\ : label is "soft_lutpair64";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[22]_INST_0_i_2\ : label is "soft_lutpair69";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[22]_INST_0_i_3\ : label is "soft_lutpair61";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[22]_INST_0_i_4\ : label is "soft_lutpair55";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[22]_INST_0_i_5\ : label is "soft_lutpair63";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[23]_INST_0_i_2\ : label is "soft_lutpair69";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[23]_INST_0_i_3\ : label is "soft_lutpair70";
-  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[23]_INST_0_i_4\ : label is "soft_lutpair55";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[23]_INST_0_i_3\ : label is "soft_lutpair60";
+  attribute SOFT_HLUTNM of \Trace_New_Reg_Value[23]_INST_0_i_4\ : label is "soft_lutpair54";
   attribute SOFT_HLUTNM of \Trace_New_Reg_Value[23]_INST_0_i_5\ : label is "soft_lutpair62";
 begin
   active_access <= \^active_access\;
+  mem_daxi_exclusive_failed <= \^mem_daxi_exclusive_failed\;
 M_AXI_DP_ARVALID_i_reg: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
@@ -1594,6 +1602,38 @@ mem_access_completed_reg: unisim.vcomponents.FDRE
       D => mem_access_completed0,
       Q => MEM_DAXI_Data_Strobe,
       R => sync_reset
+    );
+mem_access_failed_i_1: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"000000A8"
+    )
+        port map (
+      I0 => \^active_access\,
+      I1 => \read_exclusive_fail__2\,
+      I2 => mem_access_failed_i_3_n_0,
+      I3 => MEM_DAXI_Data_Strobe,
+      I4 => sync_reset,
+      O => mem_access_failed_i_1_n_0
+    );
+mem_access_failed_i_3: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"EAEEAAAA"
+    )
+        port map (
+      I0 => \^mem_daxi_exclusive_failed\,
+      I1 => M_AXI_DP_BVALID,
+      I2 => M_AXI_DP_BRESP(1),
+      I3 => M_AXI_DP_BRESP(0),
+      I4 => M_AXI_DP_ARLOCK,
+      O => mem_access_failed_i_3_n_0
+    );
+mem_access_failed_reg: unisim.vcomponents.FDRE
+     port map (
+      C => Clk,
+      CE => '1',
+      D => mem_access_failed_i_1_n_0,
+      Q => \^mem_daxi_exclusive_failed\,
+      R => '0'
     );
 end STRUCTURE;
 library IEEE;
@@ -2686,7 +2726,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity main_ub_microblaze_0_0_MB_FDR is
   port (
-    \Performance_Debug_Control.ex_dbg_pc_hit_i_reg\ : out STD_LOGIC;
+    D24_out : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
     Clk : in STD_LOGIC;
     \Using_FPGA.Native_0\ : in STD_LOGIC;
@@ -2702,7 +2742,7 @@ entity main_ub_microblaze_0_0_MB_FDR is
 end main_ub_microblaze_0_0_MB_FDR;
 
 architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDR is
-  signal \Using_FPGA.Native_i_1__95_n_0\ : STD_LOGIC;
+  signal \Using_FPGA.Native_i_1__96_n_0\ : STD_LOGIC;
   signal \of_clear_MSR_BIP__0\ : STD_LOGIC;
   signal of_clear_MSR_BIP_hold_s : STD_LOGIC;
   signal of_set_MSR_EE1 : STD_LOGIC;
@@ -2718,7 +2758,7 @@ begin
         port map (
       C => Clk,
       CE => '1',
-      D => \Using_FPGA.Native_i_1__95_n_0\,
+      D => \Using_FPGA.Native_i_1__96_n_0\,
       Q => of_clear_MSR_BIP_hold_s,
       R => sync_reset
     );
@@ -2733,18 +2773,18 @@ begin
       I3 => \Using_FPGA.Native_2\,
       I4 => I0,
       I5 => of_clear_MSR_BIP_hold_s,
-      O => \Performance_Debug_Control.ex_dbg_pc_hit_i_reg\
+      O => D24_out
     );
-\Using_FPGA.Native_i_1__95\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__96\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"00EA"
     )
         port map (
       I0 => of_clear_MSR_BIP_hold_s,
-      I1 => \of_clear_MSR_BIP__0\,
-      I2 => E(0),
+      I1 => E(0),
+      I2 => \of_clear_MSR_BIP__0\,
       I3 => \Using_FPGA.Native_3\,
-      O => \Using_FPGA.Native_i_1__95_n_0\
+      O => \Using_FPGA.Native_i_1__96_n_0\
     );
 \Using_FPGA.Native_i_2__23\: unisim.vcomponents.LUT5
     generic map(
@@ -4671,21 +4711,26 @@ use UNISIM.VCOMPONENTS.ALL;
 entity main_ub_microblaze_0_0_MB_FDRE_70 is
   port (
     \Using_FPGA.Native_0\ : out STD_LOGIC;
+    \Using_FPGA.Native_1\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     mem_is_multi_or_load_instr0 : out STD_LOGIC;
-    ex_Sel_SPR_PVR_reg : out STD_LOGIC;
+    ex_Sel_SPR_FSR_reg : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
-    \Using_FPGA.Native_1\ : in STD_LOGIC;
     \Using_FPGA.Native_2\ : in STD_LOGIC;
+    \Using_FPGA.Native_3\ : in STD_LOGIC;
     Clk : in STD_LOGIC;
+    ex_load_store_instr_s : in STD_LOGIC;
+    ex_reservation : in STD_LOGIC;
+    ex_is_swx_instr_s : in STD_LOGIC;
+    p_238_in : in STD_LOGIC;
     ex_is_multi_instr2 : in STD_LOGIC;
-    ex_Sel_SPR_PVR : in STD_LOGIC;
-    ex_Sel_SPR_BTR : in STD_LOGIC;
-    ex_Sel_SPR_EDR : in STD_LOGIC;
-    ex_Sel_SPR_ESR : in STD_LOGIC;
     ex_Sel_SPR_FSR : in STD_LOGIC;
-    ex_Sel_SPR_SLR : in STD_LOGIC;
+    ex_Sel_SPR_PVR : in STD_LOGIC;
     ex_Sel_SPR_SHR : in STD_LOGIC;
-    ex_Sel_SPR_EAR : in STD_LOGIC
+    ex_Sel_SPR_ESR : in STD_LOGIC;
+    ex_Sel_SPR_EAR : in STD_LOGIC;
+    ex_Sel_SPR_BTR : in STD_LOGIC;
+    ex_Sel_SPR_SLR : in STD_LOGIC;
+    ex_Sel_SPR_EDR : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_ub_microblaze_0_0_MB_FDRE_70 : entity is "MB_FDRE";
@@ -4695,10 +4740,10 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDRE_70 is
   signal MEM_Sel_MEM_Res_I_i_2_n_0 : STD_LOGIC;
   signal \^using_fpga.native_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of MEM_Sel_MEM_Res_I_i_2 : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of MEM_Sel_MEM_Res_I_i_2 : label is "soft_lutpair21";
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native\ : label is "PRIMITIVE";
-  attribute SOFT_HLUTNM of mem_is_multi_or_load_instr_i_1 : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of mem_is_multi_or_load_instr_i_1 : label is "soft_lutpair21";
 begin
   \Using_FPGA.Native_0\ <= \^using_fpga.native_0\;
 MEM_Sel_MEM_Res_I_i_1: unisim.vcomponents.LUT6
@@ -4706,23 +4751,23 @@ MEM_Sel_MEM_Res_I_i_1: unisim.vcomponents.LUT6
       INIT => X"0000000000000001"
     )
         port map (
-      I0 => ex_Sel_SPR_PVR,
-      I1 => ex_Sel_SPR_BTR,
+      I0 => ex_Sel_SPR_FSR,
+      I1 => ex_Sel_SPR_PVR,
       I2 => MEM_Sel_MEM_Res_I_i_2_n_0,
-      I3 => ex_Sel_SPR_EDR,
+      I3 => ex_Sel_SPR_SHR,
       I4 => ex_Sel_SPR_ESR,
-      I5 => ex_Sel_SPR_FSR,
-      O => ex_Sel_SPR_PVR_reg
+      I5 => ex_Sel_SPR_EAR,
+      O => ex_Sel_SPR_FSR_reg
     );
 MEM_Sel_MEM_Res_I_i_2: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFFE"
     )
         port map (
-      I0 => ex_Sel_SPR_SLR,
+      I0 => ex_Sel_SPR_BTR,
       I1 => \^using_fpga.native_0\,
-      I2 => ex_Sel_SPR_SHR,
-      I3 => ex_Sel_SPR_EAR,
+      I2 => ex_Sel_SPR_SLR,
+      I3 => ex_Sel_SPR_EDR,
       O => MEM_Sel_MEM_Res_I_i_2_n_0
     );
 \Using_FPGA.Native\: unisim.vcomponents.FDRE
@@ -4734,10 +4779,22 @@ MEM_Sel_MEM_Res_I_i_2: unisim.vcomponents.LUT4
     )
         port map (
       C => Clk,
-      CE => \Using_FPGA.Native_1\,
-      D => \Using_FPGA.Native_2\,
+      CE => \Using_FPGA.Native_2\,
+      D => \Using_FPGA.Native_3\,
       Q => \^using_fpga.native_0\,
       R => sync_reset
+    );
+Write_Strobe_INST_0: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"40440000"
+    )
+        port map (
+      I0 => \^using_fpga.native_0\,
+      I1 => ex_load_store_instr_s,
+      I2 => ex_reservation,
+      I3 => ex_is_swx_instr_s,
+      I4 => p_238_in,
+      O => \Using_FPGA.Native_1\(0)
     );
 mem_is_multi_or_load_instr_i_1: unisim.vcomponents.LUT2
     generic map(
@@ -4755,30 +4812,38 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity main_ub_microblaze_0_0_MB_FDRE_71 is
   port (
-    ex_MSR_Load_LWX_SWX_C : out STD_LOGIC;
+    ex_is_lwx_instr_s : out STD_LOGIC;
+    p_122_out : out STD_LOGIC;
     \Using_LWX_SWX_instr.ex_reservation_reg\ : out STD_LOGIC;
+    \Using_LWX_SWX_instr_MEM.MEM_LWX_SWX_Carry_Hold_reg\ : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
     \Using_FPGA.Native_0\ : in STD_LOGIC;
-    \Using_FPGA.Native_1\ : in STD_LOGIC;
+    D236_out : in STD_LOGIC;
     Clk : in STD_LOGIC;
-    ex_is_swx_instr_s : in STD_LOGIC;
-    \Using_FPGA.Native_i_2__21\ : in STD_LOGIC;
-    wb_exception : in STD_LOGIC;
-    p_232_in : in STD_LOGIC;
-    ex_load_store_instr_s : in STD_LOGIC;
     ex_reservation : in STD_LOGIC;
-    p_228_in : in STD_LOGIC;
-    \Using_LWX_SWX_instr.ex_reservation_reg_0\ : in STD_LOGIC
+    ex_is_swx_instr_s : in STD_LOGIC;
+    p_231_in : in STD_LOGIC;
+    mem_Exception_Taken : in STD_LOGIC;
+    wb_exception : in STD_LOGIC;
+    p_238_in : in STD_LOGIC;
+    ex_load_store_instr_s : in STD_LOGIC;
+    \Using_LWX_SWX_instr.ex_reservation_reg_0\ : in STD_LOGIC;
+    mem_LWX_SWX_Carry_Hold : in STD_LOGIC;
+    \Using_FPGA.Native_1\ : in STD_LOGIC;
+    \Using_FPGA.Native_2\ : in STD_LOGIC;
+    ex_load_shift_carry : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_ub_microblaze_0_0_MB_FDRE_71 : entity is "MB_FDRE";
 end main_ub_microblaze_0_0_MB_FDRE_71;
 
 architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDRE_71 is
-  signal ex_is_lwx_instr_s : STD_LOGIC;
+  signal ex_MSR_Load_LWX_SWX_C : STD_LOGIC;
+  signal \^ex_is_lwx_instr_s\ : STD_LOGIC;
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native\ : label is "PRIMITIVE";
 begin
+  ex_is_lwx_instr_s <= \^ex_is_lwx_instr_s\;
 \Using_FPGA.Native\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0',
@@ -4789,20 +4854,33 @@ begin
         port map (
       C => Clk,
       CE => \Using_FPGA.Native_0\,
-      D => \Using_FPGA.Native_1\,
-      Q => ex_is_lwx_instr_s,
+      D => D236_out,
+      Q => \^ex_is_lwx_instr_s\,
       R => sync_reset
     );
-\Using_FPGA.Native_i_6\: unisim.vcomponents.LUT6
+\Using_FPGA.Native_i_3__31\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000000000F8F8F8"
+    )
+        port map (
+      I0 => mem_LWX_SWX_Carry_Hold,
+      I1 => \Using_FPGA.Native_1\,
+      I2 => \Using_FPGA.Native_2\,
+      I3 => p_238_in,
+      I4 => ex_load_shift_carry,
+      I5 => ex_MSR_Load_LWX_SWX_C,
+      O => \Using_LWX_SWX_instr_MEM.MEM_LWX_SWX_Carry_Hold_reg\
+    );
+\Using_FPGA.Native_i_7\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"000E000000000000"
     )
         port map (
-      I0 => ex_is_lwx_instr_s,
+      I0 => \^ex_is_lwx_instr_s\,
       I1 => ex_is_swx_instr_s,
-      I2 => \Using_FPGA.Native_i_2__21\,
+      I2 => mem_Exception_Taken,
       I3 => wb_exception,
-      I4 => p_232_in,
+      I4 => p_238_in,
       I5 => ex_load_store_instr_s,
       O => ex_MSR_Load_LWX_SWX_C
     );
@@ -4812,11 +4890,22 @@ begin
     )
         port map (
       I0 => ex_reservation,
-      I1 => ex_is_lwx_instr_s,
-      I2 => p_228_in,
+      I1 => \^ex_is_lwx_instr_s\,
+      I2 => p_231_in,
       I3 => \Using_LWX_SWX_instr.ex_reservation_reg_0\,
       I4 => sync_reset,
       O => \Using_LWX_SWX_instr.ex_reservation_reg\
+    );
+\Using_LWX_SWX_instr_MEM.mem_msr_load_lwx_swx_c_1_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EA00"
+    )
+        port map (
+      I0 => \^ex_is_lwx_instr_s\,
+      I1 => ex_reservation,
+      I2 => ex_is_swx_instr_s,
+      I3 => p_231_in,
+      O => p_122_out
     );
 end STRUCTURE;
 library IEEE;
@@ -4827,50 +4916,55 @@ entity main_ub_microblaze_0_0_MB_FDRE_72 is
   port (
     ex_is_swx_instr_s : out STD_LOGIC;
     MEM_DataBus_Access_reg : out STD_LOGIC;
-    \ex_swx_access__0\ : out STD_LOGIC;
+    \Using_FPGA.Native_0\ : out STD_LOGIC;
     SRI : out STD_LOGIC;
     wb_exception_i_reg : out STD_LOGIC;
-    \Using_LWX_SWX_instr.ex_reservation_reg\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_FPGA.Native_1\ : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
-    \Using_FPGA.Native_0\ : in STD_LOGIC;
-    D225_out : in STD_LOGIC;
+    \Using_FPGA.Native_2\ : in STD_LOGIC;
+    D234_out : in STD_LOGIC;
     Clk : in STD_LOGIC;
     MEM_DataBus_Access_reg_0 : in STD_LOGIC;
-    p_228_in : in STD_LOGIC;
+    p_231_in : in STD_LOGIC;
     MEM_DataBus_Access_reg_1 : in STD_LOGIC;
     E : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_FPGA.Native_3\ : in STD_LOGIC;
+    ex_MSR_Load_ALU_C : in STD_LOGIC;
+    LO : in STD_LOGIC;
+    ex_MSR : in STD_LOGIC_VECTOR ( 0 to 0 );
     ex_reservation : in STD_LOGIC;
-    ex_load_store_instr_s : in STD_LOGIC;
-    p_232_in : in STD_LOGIC;
     wb_exception : in STD_LOGIC;
-    D_AS : in STD_LOGIC;
-    \Using_LWX_SWX_instr.ex_reservation_reg_0\ : in STD_LOGIC;
+    \Using_LWX_SWX_instr.ex_reservation_reg\ : in STD_LOGIC;
     ex_MSR_Set_SW_BIP : in STD_LOGIC;
-    ex_is_load_instr_s : in STD_LOGIC
+    ex_is_lwx_instr_s : in STD_LOGIC;
+    \Using_FPGA.Native_4\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    ex_MSR_Load_Shift_C : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_ub_microblaze_0_0_MB_FDRE_72 : entity is "MB_FDRE";
 end main_ub_microblaze_0_0_MB_FDRE_72;
 
 architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDRE_72 is
+  signal \Using_FPGA.Native_i_2__117_n_0\ : STD_LOGIC;
   signal \^ex_is_swx_instr_s\ : STD_LOGIC;
-  signal \^ex_swx_access__0\ : STD_LOGIC;
+  signal \ex_swx_access__0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of MEM_DataBus_Access_i_2 : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of MEM_DataBus_Access_i_2 : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of MEM_DataBus_Exclusive_i_1 : label is "soft_lutpair23";
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native\ : label is "PRIMITIVE";
-  attribute SOFT_HLUTNM of Write_Strobe_INST_0 : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__4\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_2__117\ : label is "soft_lutpair22";
 begin
   ex_is_swx_instr_s <= \^ex_is_swx_instr_s\;
-  \ex_swx_access__0\ <= \^ex_swx_access__0\;
 MEM_DataBus_Access_i_1: unisim.vcomponents.LUT6
     generic map(
       INIT => X"00000000C0C000AA"
     )
         port map (
       I0 => MEM_DataBus_Access_reg_0,
-      I1 => \^ex_swx_access__0\,
-      I2 => p_228_in,
+      I1 => \ex_swx_access__0\,
+      I2 => p_231_in,
       I3 => MEM_DataBus_Access_reg_1,
       I4 => E(0),
       I5 => sync_reset,
@@ -4883,7 +4977,16 @@ MEM_DataBus_Access_i_2: unisim.vcomponents.LUT2
         port map (
       I0 => ex_reservation,
       I1 => \^ex_is_swx_instr_s\,
-      O => \^ex_swx_access__0\
+      O => \ex_swx_access__0\
+    );
+MEM_DataBus_Exclusive_i_1: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"E"
+    )
+        port map (
+      I0 => \^ex_is_swx_instr_s\,
+      I1 => ex_is_lwx_instr_s,
+      O => \Using_FPGA.Native_1\
     );
 \Using_FPGA.Native\: unisim.vcomponents.FDRE
     generic map(
@@ -4894,48 +4997,58 @@ MEM_DataBus_Access_i_2: unisim.vcomponents.LUT2
     )
         port map (
       C => Clk,
-      CE => \Using_FPGA.Native_0\,
-      D => D225_out,
+      CE => \Using_FPGA.Native_2\,
+      D => D234_out,
       Q => \^ex_is_swx_instr_s\,
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__4\: unisim.vcomponents.LUT6
+\Using_FPGA.Native_i_1__3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFFFFFF4FFF"
+      INIT => X"FE0EFFFFFE0E0000"
+    )
+        port map (
+      I0 => \Using_FPGA.Native_i_2__117_n_0\,
+      I1 => \Using_FPGA.Native_3\,
+      I2 => ex_MSR_Load_ALU_C,
+      I3 => LO,
+      I4 => E(0),
+      I5 => ex_MSR(0),
+      O => \Using_FPGA.Native_0\
+    );
+\Using_FPGA.Native_i_1__4\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"4F"
     )
         port map (
       I0 => ex_reservation,
       I1 => \^ex_is_swx_instr_s\,
-      I2 => ex_load_store_instr_s,
-      I3 => p_232_in,
-      I4 => wb_exception,
-      I5 => D_AS,
+      I2 => p_231_in,
       O => SRI
     );
-\Using_LWX_SWX_instr.ex_reservation_i_3\: unisim.vcomponents.LUT6
+\Using_FPGA.Native_i_2__117\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"A3A0A0A0"
+    )
+        port map (
+      I0 => \Using_FPGA.Native_4\(0),
+      I1 => ex_reservation,
+      I2 => ex_MSR_Load_Shift_C,
+      I3 => \^ex_is_swx_instr_s\,
+      I4 => p_231_in,
+      O => \Using_FPGA.Native_i_2__117_n_0\
+    );
+\Using_LWX_SWX_instr.ex_reservation_i_2\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"FFF2F2F2F2F2F2F2"
     )
         port map (
       I0 => wb_exception,
-      I1 => \Using_LWX_SWX_instr.ex_reservation_reg_0\,
+      I1 => \Using_LWX_SWX_instr.ex_reservation_reg\,
       I2 => ex_MSR_Set_SW_BIP,
       I3 => \^ex_is_swx_instr_s\,
       I4 => E(0),
-      I5 => p_228_in,
+      I5 => p_231_in,
       O => wb_exception_i_reg
-    );
-Write_Strobe_INST_0: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"00008A00"
-    )
-        port map (
-      I0 => p_232_in,
-      I1 => ex_reservation,
-      I2 => \^ex_is_swx_instr_s\,
-      I3 => ex_load_store_instr_s,
-      I4 => ex_is_load_instr_s,
-      O => \Using_LWX_SWX_instr.ex_reservation_reg\(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -4945,13 +5058,13 @@ use UNISIM.VCOMPONENTS.ALL;
 entity main_ub_microblaze_0_0_MB_FDRE_73 is
   port (
     ex_load_store_instr_s : out STD_LOGIC;
-    p_228_in : out STD_LOGIC;
+    p_231_in : out STD_LOGIC;
     \Using_FPGA.Native_0\ : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
     \Using_FPGA.Native_1\ : in STD_LOGIC;
     \Using_FPGA.Native_2\ : in STD_LOGIC;
     Clk : in STD_LOGIC;
-    p_232_in : in STD_LOGIC;
+    p_238_in : in STD_LOGIC;
     wb_exception : in STD_LOGIC;
     mem_exception_from_ex : in STD_LOGIC;
     mem_valid_instr : in STD_LOGIC;
@@ -4985,17 +5098,17 @@ begin
       Q => \^ex_load_store_instr_s\,
       R => sync_reset
     );
-\Using_LWX_SWX_instr.ex_reservation_i_2\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_2__21\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"00080808"
     )
         port map (
       I0 => \^ex_load_store_instr_s\,
-      I1 => p_232_in,
+      I1 => p_238_in,
       I2 => wb_exception,
       I3 => mem_exception_from_ex,
       I4 => mem_valid_instr,
-      O => p_228_in
+      O => p_231_in
     );
 mem_load_store_access_i_1: unisim.vcomponents.LUT6
     generic map(
@@ -5055,11 +5168,11 @@ entity main_ub_microblaze_0_0_MB_FDRE_75 is
     ex_set_bip_reg : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
     \Using_FPGA.Native_0\ : in STD_LOGIC;
-    \Using_FPGA.Native_1\ : in STD_LOGIC;
+    D24_out : in STD_LOGIC;
     Clk : in STD_LOGIC;
+    \Using_FPGA.Native_1\ : in STD_LOGIC;
+    p_238_in : in STD_LOGIC;
     \Using_FPGA.Native_2\ : in STD_LOGIC;
-    p_232_in : in STD_LOGIC;
-    \Using_FPGA.Native_3\ : in STD_LOGIC;
     E : in STD_LOGIC_VECTOR ( 0 to 0 );
     ex_MSR : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
@@ -5082,7 +5195,7 @@ begin
         port map (
       C => Clk,
       CE => \Using_FPGA.Native_0\,
-      D => \Using_FPGA.Native_1\,
+      D => D24_out,
       Q => ex_clear_MSR_BIP_instr_s,
       R => sync_reset
     );
@@ -5091,10 +5204,10 @@ begin
       INIT => X"BFA0FFFFBFA00000"
     )
         port map (
-      I0 => \Using_FPGA.Native_2\,
+      I0 => \Using_FPGA.Native_1\,
       I1 => ex_clear_MSR_BIP_instr_s,
-      I2 => p_232_in,
-      I3 => \Using_FPGA.Native_3\,
+      I2 => p_238_in,
+      I3 => \Using_FPGA.Native_2\,
       I4 => E(0),
       I5 => ex_MSR(0),
       O => ex_set_bip_reg
@@ -5804,7 +5917,7 @@ entity main_ub_microblaze_0_0_MB_FDR_119 is
     ex_jump : in STD_LOGIC;
     EX_CMP_Op_reg : in STD_LOGIC;
     EX_Unsigned_Op_reg : in STD_LOGIC;
-    \EX_ALU_Op1143_out__0\ : in STD_LOGIC;
+    \EX_ALU_Op1149_out__0\ : in STD_LOGIC;
     EX_Unsigned_Op_reg_0 : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
@@ -5819,8 +5932,8 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDR_119 is
   attribute XILINX_LEGACY_PRIM of \Using_FPGA.Native\ : label is "FDR";
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native\ : label is "PRIMITIVE";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__102\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__96\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__103\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__97\ : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of \Using_FPGA.Native_i_4__1\ : label is "soft_lutpair5";
 begin
   \Using_FPGA.Native_0\ <= \^using_fpga.native_0\;
@@ -5833,7 +5946,7 @@ EX_CMP_Op_i_1: unisim.vcomponents.LUT5
       I1 => \Using_FPGA.Native_7\,
       I2 => EX_CMP_Op_reg,
       I3 => EX_Unsigned_Op_reg,
-      I4 => \EX_ALU_Op1143_out__0\,
+      I4 => \EX_ALU_Op1149_out__0\,
       O => \Using_FPGA.Native_2\
     );
 EX_Unsigned_Op_i_1: unisim.vcomponents.LUT5
@@ -5845,7 +5958,7 @@ EX_Unsigned_Op_i_1: unisim.vcomponents.LUT5
       I1 => \Using_FPGA.Native_7\,
       I2 => EX_Unsigned_Op_reg_0,
       I3 => EX_Unsigned_Op_reg,
-      I4 => \EX_ALU_Op1143_out__0\,
+      I4 => \EX_ALU_Op1149_out__0\,
       O => \Using_FPGA.Native_3\
     );
 EX_Use_Carry_i_1: unisim.vcomponents.LUT4
@@ -5856,7 +5969,7 @@ EX_Use_Carry_i_1: unisim.vcomponents.LUT4
       I0 => \^using_fpga.native_0\,
       I1 => \Using_FPGA.Native_7\,
       I2 => EX_Use_Carry_reg,
-      I3 => \EX_ALU_Op1143_out__0\,
+      I3 => \EX_ALU_Op1149_out__0\,
       O => \Using_FPGA.Native_4\
     );
 \Using_FPGA.Native\: unisim.vcomponents.FDRE
@@ -5870,7 +5983,7 @@ EX_Use_Carry_i_1: unisim.vcomponents.LUT4
       Q => \^using_fpga.native_0\,
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__102\: unisim.vcomponents.LUT3
+\Using_FPGA.Native_i_1__103\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"08"
     )
@@ -5880,7 +5993,7 @@ EX_Use_Carry_i_1: unisim.vcomponents.LUT4
       I2 => \Using_FPGA.Native_6\,
       O => \Using_FPGA.Native_5\
     );
-\Using_FPGA.Native_i_1__96\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__97\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"0888"
     )
@@ -6043,7 +6156,7 @@ entity main_ub_microblaze_0_0_MB_FDR_125 is
   port (
     \Using_FPGA.Native_0\ : out STD_LOGIC;
     \Using_FPGA.Native_1\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    \EX_ALU_Op1143_out__0\ : out STD_LOGIC;
+    \EX_ALU_Op1149_out__0\ : out STD_LOGIC;
     \Using_FPGA.Native_2\ : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
     of_instr_ii_30 : in STD_LOGIC;
@@ -6055,28 +6168,28 @@ entity main_ub_microblaze_0_0_MB_FDR_125 is
     ex_enable_alu_i_reg_1 : in STD_LOGIC;
     ex_enable_alu_i_reg_2 : in STD_LOGIC;
     ex_enable_alu_i_reg_3 : in STD_LOGIC;
-    p_28_in : in STD_LOGIC
+    p_30_in : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_ub_microblaze_0_0_MB_FDR_125 : entity is "MB_FDR";
 end main_ub_microblaze_0_0_MB_FDR_125;
 
 architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDR_125 is
-  signal \^ex_alu_op1143_out__0\ : STD_LOGIC;
+  signal \^ex_alu_op1149_out__0\ : STD_LOGIC;
   signal \^using_fpga.native_0\ : STD_LOGIC;
   attribute XILINX_LEGACY_PRIM : string;
   attribute XILINX_LEGACY_PRIM of \Using_FPGA.Native\ : label is "FDR";
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native\ : label is "PRIMITIVE";
 begin
-  \EX_ALU_Op1143_out__0\ <= \^ex_alu_op1143_out__0\;
+  \EX_ALU_Op1149_out__0\ <= \^ex_alu_op1149_out__0\;
   \Using_FPGA.Native_0\ <= \^using_fpga.native_0\;
 \EX_ALU_Op[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"AAAAAAAEAEAEAEEE"
     )
         port map (
-      I0 => \^ex_alu_op1143_out__0\,
+      I0 => \^ex_alu_op1149_out__0\,
       I1 => \EX_ALU_Op_reg[1]\,
       I2 => ex_enable_alu_i_reg,
       I3 => \EX_ALU_Op_reg[1]_0\,
@@ -6090,8 +6203,8 @@ EX_CMP_Op_i_2: unisim.vcomponents.LUT2
     )
         port map (
       I0 => \^using_fpga.native_0\,
-      I1 => p_28_in,
-      O => \^ex_alu_op1143_out__0\
+      I1 => p_30_in,
+      O => \^ex_alu_op1149_out__0\
     );
 \Using_FPGA.Native\: unisim.vcomponents.FDRE
     generic map(
@@ -6109,7 +6222,7 @@ ex_enable_alu_i_i_1: unisim.vcomponents.LUT6
       INIT => X"FFFFFFFFFFEBFFFF"
     )
         port map (
-      I0 => \^ex_alu_op1143_out__0\,
+      I0 => \^ex_alu_op1149_out__0\,
       I1 => ex_enable_alu_i_reg_1,
       I2 => ex_enable_alu_i_reg,
       I3 => ex_enable_alu_i_reg_2,
@@ -6162,7 +6275,7 @@ entity main_ub_microblaze_0_0_MB_FDR_129 is
     sync_reset : in STD_LOGIC;
     of_instr_ii_28 : in STD_LOGIC;
     Clk : in STD_LOGIC;
-    p_1_in26_in : in STD_LOGIC;
+    p_1_in28_in : in STD_LOGIC;
     ex_mbar_decode_reg : in STD_LOGIC;
     ex_mbar_decode : in STD_LOGIC;
     E : in STD_LOGIC_VECTOR ( 0 to 0 )
@@ -6196,7 +6309,7 @@ ex_mbar_decode_cmb_inferred_i_1: unisim.vcomponents.LUT5
     )
         port map (
       I0 => \^using_fpga.native_0\(0),
-      I1 => p_1_in26_in,
+      I1 => p_1_in28_in,
       I2 => ex_mbar_decode_reg,
       I3 => ex_mbar_decode,
       I4 => E(0),
@@ -6663,7 +6776,7 @@ entity main_ub_microblaze_0_0_MB_FDR_141 is
     \Using_FPGA.Native_0\ : out STD_LOGIC;
     ex_gpr_write_reg : out STD_LOGIC;
     \Using_FPGA.Native_1\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    p_28_in : out STD_LOGIC;
+    p_30_in : out STD_LOGIC;
     mem_is_multi_or_load_instr_reg : out STD_LOGIC;
     \Using_FPGA.Native_2\ : out STD_LOGIC;
     of_op2_sel_imm : out STD_LOGIC;
@@ -6681,8 +6794,8 @@ entity main_ub_microblaze_0_0_MB_FDR_141 is
     \EX_ALU_Op_reg[0]\ : in STD_LOGIC;
     ex_set_bip_reg_0 : in STD_LOGIC;
     ex_set_bip_reg_1 : in STD_LOGIC;
-    \EX_ALU_Op1143_out__0\ : in STD_LOGIC;
-    p_0_in30_in : in STD_LOGIC;
+    \EX_ALU_Op1149_out__0\ : in STD_LOGIC;
+    p_0_in32_in : in STD_LOGIC;
     ex_gpr_write_dbg_reg : in STD_LOGIC;
     ex_gpr_write_dbg_reg_0 : in STD_LOGIC;
     ex_gpr_write_i_2_0 : in STD_LOGIC;
@@ -6708,7 +6821,7 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDR_141 is
   signal ex_gpr_write : STD_LOGIC;
   signal ex_gpr_write_dbg109_in : STD_LOGIC;
   signal ex_gpr_write_i_5_n_0 : STD_LOGIC;
-  signal \^p_28_in\ : STD_LOGIC;
+  signal \^p_30_in\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
   attribute SOFT_HLUTNM of EX_CMP_Op_i_3 : label is "soft_lutpair8";
   attribute XILINX_LEGACY_PRIM : string;
@@ -6719,7 +6832,7 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDR_141 is
 begin
   \Using_FPGA.Native_0\ <= \^using_fpga.native_0\;
   \Using_FPGA.Native_2\ <= \^using_fpga.native_2\;
-  p_28_in <= \^p_28_in\;
+  p_30_in <= \^p_30_in\;
 \EX_ALU_Op[0]_i_1\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"00000000FFFFFFF9"
@@ -6730,7 +6843,7 @@ begin
       I2 => \EX_ALU_Op_reg[0]\,
       I3 => ex_set_bip_reg_0,
       I4 => ex_set_bip_reg_1,
-      I5 => \EX_ALU_Op1143_out__0\,
+      I5 => \EX_ALU_Op1149_out__0\,
       O => \Using_FPGA.Native_1\(0)
     );
 EX_CMP_Op_i_3: unisim.vcomponents.LUT5
@@ -6743,7 +6856,7 @@ EX_CMP_Op_i_3: unisim.vcomponents.LUT5
       I2 => ex_set_bip_reg_1,
       I3 => ex_set_bip_reg,
       I4 => ex_set_bip_reg_2,
-      O => \^p_28_in\
+      O => \^p_30_in\
     );
 \EX_Op2[0]_i_5\: unisim.vcomponents.LUT6
     generic map(
@@ -6780,7 +6893,7 @@ EX_CMP_Op_i_3: unisim.vcomponents.LUT5
       I3 => of_read_mem_write_op2_conflict_part1,
       O => mem_is_multi_or_load_instr_reg
     );
-\Using_FPGA.Native_i_2__117\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_2__118\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"33332333"
     )
@@ -6800,7 +6913,7 @@ ex_alu_sel_logic_i_i_1: unisim.vcomponents.LUT4
       I0 => \^using_fpga.native_0\,
       I1 => ex_set_bip_reg,
       I2 => ex_set_bip_reg_1,
-      I3 => \EX_ALU_Op1143_out__0\,
+      I3 => \EX_ALU_Op1149_out__0\,
       O => \Using_FPGA.Native_3\
     );
 ex_gpr_write_dbg_i_1: unisim.vcomponents.LUT6
@@ -6835,7 +6948,7 @@ ex_gpr_write_i_2: unisim.vcomponents.LUT4
     )
         port map (
       I0 => ex_gpr_write_dbg109_in,
-      I1 => p_0_in30_in,
+      I1 => p_0_in32_in,
       I2 => ex_gpr_write_dbg_reg,
       I3 => ex_gpr_write_dbg_reg_0,
       O => ex_gpr_write
@@ -6846,7 +6959,7 @@ ex_gpr_write_i_4: unisim.vcomponents.LUT6
     )
         port map (
       I0 => ex_gpr_write_i_2_0,
-      I1 => \^p_28_in\,
+      I1 => \^p_30_in\,
       I2 => ex_gpr_write_i_2_1,
       I3 => ex_gpr_write_i_2_2,
       I4 => ex_gpr_write_i_5_n_0,
@@ -6899,7 +7012,7 @@ entity main_ub_microblaze_0_0_MB_FDR_143 is
     \Performance_Debug_Control.ex_dbg_pc_hit_i_i_2\ : in STD_LOGIC;
     \Performance_Debug_Control.ex_dbg_pc_hit_i_i_2_0\ : in STD_LOGIC;
     \ex_set_bip0__1\ : in STD_LOGIC;
-    p_1_in26_in : in STD_LOGIC;
+    p_1_in28_in : in STD_LOGIC;
     of_Imm180 : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
@@ -6934,7 +7047,7 @@ begin
       I1 => \Performance_Debug_Control.ex_dbg_pc_hit_i_i_2\,
       I2 => \Performance_Debug_Control.ex_dbg_pc_hit_i_i_2_0\,
       I3 => \ex_set_bip0__1\,
-      I4 => p_1_in26_in,
+      I4 => p_1_in28_in,
       I5 => of_Imm180,
       O => \Using_FPGA.Native_2\
     );
@@ -6969,12 +7082,20 @@ entity main_ub_microblaze_0_0_MB_FDR_145 is
   port (
     \Using_FPGA.Native_0\ : out STD_LOGIC;
     \Using_FPGA.Native_1\ : out STD_LOGIC;
+    ex_sel_alu_i0 : out STD_LOGIC;
+    D234_out : out STD_LOGIC;
     \Using_FPGA.Native_2\ : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
     of_instr_ii_21 : in STD_LOGIC;
     Clk : in STD_LOGIC;
     of_op2_sel_imm : in STD_LOGIC;
     GPR_Op2 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    ex_sel_alu_i_reg : in STD_LOGIC;
+    ex_sel_alu_i_reg_0 : in STD_LOGIC;
+    ex_sel_alu_i_reg_1 : in STD_LOGIC;
+    \Using_FPGA.Native_3\ : in STD_LOGIC;
+    \Using_FPGA.Native_4\ : in STD_LOGIC;
+    \Using_FPGA.Native_5\ : in STD_LOGIC;
     \Performance_Debug_Control.ex_brki_hit_reg\ : in STD_LOGIC;
     \Performance_Debug_Control.ex_brki_hit_reg_0\ : in STD_LOGIC;
     \Performance_Debug_Control.ex_brki_hit_reg_1\ : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -7025,6 +7146,28 @@ begin
       Q => \^using_fpga.native_0\,
       R => sync_reset
     );
+\Using_FPGA.Native_i_1__44\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"8000"
+    )
+        port map (
+      I0 => \^using_fpga.native_0\,
+      I1 => \Using_FPGA.Native_3\,
+      I2 => \Using_FPGA.Native_4\,
+      I3 => \Using_FPGA.Native_5\,
+      O => D234_out
+    );
+ex_sel_alu_i_i_1: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"0DFF"
+    )
+        port map (
+      I0 => \^using_fpga.native_0\,
+      I1 => ex_sel_alu_i_reg,
+      I2 => ex_sel_alu_i_reg_0,
+      I3 => ex_sel_alu_i_reg_1,
+      O => ex_sel_alu_i0
+    );
 end STRUCTURE;
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -7054,7 +7197,7 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDR_147 is
   attribute XILINX_LEGACY_PRIM of \Using_FPGA.Native\ : label is "FDR";
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native\ : label is "PRIMITIVE";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__103\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__104\ : label is "soft_lutpair9";
 begin
   \Using_FPGA.Native_0\ <= \^using_fpga.native_0\;
 \EX_Op2[22]_i_2\: unisim.vcomponents.LUT3
@@ -7078,7 +7221,7 @@ begin
       Q => \^using_fpga.native_0\,
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__103\: unisim.vcomponents.LUT2
+\Using_FPGA.Native_i_1__104\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"2"
     )
@@ -7329,7 +7472,7 @@ entity main_ub_microblaze_0_0_MB_FDR_157 is
     \Performance_Debug_Control.ex_brki_hit_reg_1\ : in STD_LOGIC;
     \Performance_Debug_Control.ex_brki_hit_reg_2\ : in STD_LOGIC;
     \Performance_Debug_Control.ex_brki_hit_reg_3\ : in STD_LOGIC;
-    p_1_in26_in : in STD_LOGIC;
+    p_1_in28_in : in STD_LOGIC;
     \Performance_Debug_Control.ex_brki_hit_reg_4\ : in STD_LOGIC;
     \Performance_Debug_Control.ex_brki_hit_reg_5\ : in STD_LOGIC;
     \Performance_Debug_Control.ex_brki_hit_reg_6\ : in STD_LOGIC;
@@ -7382,7 +7525,7 @@ begin
     )
         port map (
       I0 => \^of_imm180\,
-      I1 => p_1_in26_in,
+      I1 => p_1_in28_in,
       I2 => \Performance_Debug_Control.ex_brki_hit_reg_4\,
       I3 => \Performance_Debug_Control.ex_brki_hit_reg_5\,
       I4 => \Performance_Debug_Control.ex_brki_hit_reg_6\,
@@ -7535,7 +7678,7 @@ entity main_ub_microblaze_0_0_MB_FDR_163 is
   port (
     \Using_FPGA.Native_0\ : out STD_LOGIC;
     \Using_FPGA.Native_1\ : out STD_LOGIC;
-    p_1_in26_in : out STD_LOGIC;
+    p_1_in28_in : out STD_LOGIC;
     \Using_FPGA.Native_2\ : out STD_LOGIC;
     \Using_FPGA.Native_3\ : out STD_LOGIC;
     \Using_FPGA.Native_4\ : out STD_LOGIC;
@@ -7630,7 +7773,7 @@ ex_mbar_decode_cmb_inferred_i_2: unisim.vcomponents.LUT6
       I3 => \Using_FPGA.Native_6\,
       I4 => ex_mbar_decode_reg_0,
       I5 => ex_mbar_decode_reg_1,
-      O => p_1_in26_in
+      O => p_1_in28_in
     );
 end STRUCTURE;
 library IEEE;
@@ -7749,7 +7892,7 @@ entity main_ub_microblaze_0_0_MB_FDR_169 is
   port (
     \Using_FPGA.Native_0\ : out STD_LOGIC;
     mem_gpr_write_reg : out STD_LOGIC;
-    ex_valid_reg : out STD_LOGIC;
+    \of_read_ex_write_op3_conflict__1\ : out STD_LOGIC;
     wb_gpr_write_i_reg : out STD_LOGIC;
     \Using_FPGA.Native_1\ : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
@@ -7757,8 +7900,11 @@ entity main_ub_microblaze_0_0_MB_FDR_169 is
     Clk : in STD_LOGIC;
     mem_gpr_write : in STD_LOGIC;
     mem_valid_instr : in STD_LOGIC;
-    \EX_Op3[0]_i_6\ : in STD_LOGIC;
-    \EX_Op3[0]_i_6_0\ : in STD_LOGIC;
+    p_222_in : in STD_LOGIC;
+    \EX_Op3[0]_i_3\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \EX_Op3[0]_i_3_0\ : in STD_LOGIC;
+    \EX_Op3[0]_i_3_1\ : in STD_LOGIC;
+    \EX_Op3[0]_i_3_2\ : in STD_LOGIC;
     wb_gpr_write_i : in STD_LOGIC;
     wb_exception : in STD_LOGIC;
     \EX_Op3[0]_i_5\ : in STD_LOGIC;
@@ -7773,9 +7919,6 @@ end main_ub_microblaze_0_0_MB_FDR_169;
 
 architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDR_169 is
   signal \^using_fpga.native_0\ : STD_LOGIC;
-  attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \EX_Op3[0]_i_12\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \EX_Op3[0]_i_8\ : label is "soft_lutpair13";
   attribute XILINX_LEGACY_PRIM : string;
   attribute XILINX_LEGACY_PRIM of \Using_FPGA.Native\ : label is "FDR";
   attribute box_type : string;
@@ -7794,15 +7937,18 @@ begin
       I4 => \^using_fpga.native_0\,
       O => wb_gpr_write_i_reg
     );
-\EX_Op3[0]_i_12\: unisim.vcomponents.LUT3
+\EX_Op3[0]_i_6\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"80"
+      INIT => X"8008000000000000"
     )
         port map (
-      I0 => \EX_Op3[0]_i_6\,
-      I1 => \EX_Op3[0]_i_6_0\,
-      I2 => \^using_fpga.native_0\,
-      O => ex_valid_reg
+      I0 => p_222_in,
+      I1 => \^using_fpga.native_0\,
+      I2 => \EX_Op3[0]_i_3\(0),
+      I3 => \EX_Op3[0]_i_3_0\,
+      I4 => \EX_Op3[0]_i_3_1\,
+      I5 => \EX_Op3[0]_i_3_2\,
+      O => \of_read_ex_write_op3_conflict__1\
     );
 \EX_Op3[0]_i_8\: unisim.vcomponents.LUT3
     generic map(
@@ -7825,7 +7971,7 @@ begin
       Q => \^using_fpga.native_0\,
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__55\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__56\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"7FFF"
     )
@@ -7910,12 +8056,13 @@ entity main_ub_microblaze_0_0_MB_FDR_171 is
     \Using_FPGA.Native_i_5__0_0\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \Using_FPGA.Native_i_5__0_1\ : in STD_LOGIC;
     \Using_FPGA.Native_i_5__0_2\ : in STD_LOGIC;
-    p_214_in : in STD_LOGIC;
-    \Using_FPGA.Native_i_5__0_3\ : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    p_219_in : in STD_LOGIC;
+    \Using_FPGA.Native_i_5__0_3\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \Using_FPGA.Native_i_5__0_4\ : in STD_LOGIC;
-    \Using_FPGA.Native_i_5__0_5\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \Using_FPGA.Native_i_5__0_6\ : in STD_LOGIC;
-    p_217_in : in STD_LOGIC
+    \Using_FPGA.Native_i_5__0_5\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_FPGA.Native_i_5__0_6\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \Using_FPGA.Native_i_5__0_7\ : in STD_LOGIC;
+    p_222_in : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_ub_microblaze_0_0_MB_FDR_171 : entity is "MB_FDR";
@@ -8380,7 +8527,7 @@ begin
       I2 => \of_read_ex_write_op1_conflict__0\,
       O => of_op1_sel(1)
     );
-\Using_FPGA.Native_i_7\: unisim.vcomponents.LUT6
+\Using_FPGA.Native_i_7__0\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9000009000000000"
     )
@@ -8390,20 +8537,20 @@ begin
       I2 => \Using_FPGA.Native_i_5__0_1\,
       I3 => \Using_FPGA.Native_i_5__0_2\,
       I4 => \Using_FPGA.Native_i_5__0_0\(0),
-      I5 => p_214_in,
+      I5 => p_219_in,
       O => \of_read_mem_write_op1_conflict__0\
     );
 \Using_FPGA.Native_i_8\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"8200000000008200"
+      INIT => X"9000009000000000"
     )
         port map (
-      I0 => \Using_FPGA.Native_i_5__0_3\(2),
-      I1 => \Using_FPGA.Native_i_5__0_3\(1),
-      I2 => \^using_fpga.native_0\,
-      I3 => \Using_FPGA.Native_i_5__0_4\,
-      I4 => \Using_FPGA.Native_i_5__0_2\,
-      I5 => \Using_FPGA.Native_i_5__0_3\(0),
+      I0 => \Using_FPGA.Native_i_5__0_3\(1),
+      I1 => \^using_fpga.native_0\,
+      I2 => \Using_FPGA.Native_i_5__0_4\,
+      I3 => \Using_FPGA.Native_i_5__0_2\,
+      I4 => \Using_FPGA.Native_i_5__0_3\(0),
+      I5 => \Using_FPGA.Native_i_5__0_5\(0),
       O => \of_read_wb_write_op1_conflict__0\
     );
 \Using_FPGA.Native_i_9\: unisim.vcomponents.LUT6
@@ -8411,12 +8558,12 @@ begin
       INIT => X"9000009000000000"
     )
         port map (
-      I0 => \Using_FPGA.Native_i_5__0_5\(1),
+      I0 => \Using_FPGA.Native_i_5__0_6\(1),
       I1 => \^using_fpga.native_0\,
-      I2 => \Using_FPGA.Native_i_5__0_6\,
+      I2 => \Using_FPGA.Native_i_5__0_7\,
       I3 => \Using_FPGA.Native_i_5__0_2\,
-      I4 => \Using_FPGA.Native_i_5__0_5\(0),
-      I5 => p_217_in,
+      I4 => \Using_FPGA.Native_i_5__0_6\(0),
+      I5 => p_222_in,
       O => \of_read_ex_write_op1_conflict__0\
     );
 end STRUCTURE;
@@ -8532,9 +8679,9 @@ entity main_ub_microblaze_0_0_MB_FDR_179 is
     sync_reset : in STD_LOGIC;
     of_instr_ii_5 : in STD_LOGIC;
     Clk : in STD_LOGIC;
-    \Using_FPGA.Native_i_7\ : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    \Using_FPGA.Native_i_7_0\ : in STD_LOGIC;
-    \Using_FPGA.Native_i_7_1\ : in STD_LOGIC;
+    \Using_FPGA.Native_i_7__0\ : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    \Using_FPGA.Native_i_7__0_0\ : in STD_LOGIC;
+    \Using_FPGA.Native_i_7__0_1\ : in STD_LOGIC;
     \Using_FPGA.Native_i_8\ : in STD_LOGIC_VECTOR ( 2 downto 0 );
     \Using_FPGA.Native_i_9\ : in STD_LOGIC;
     I4 : in STD_LOGIC;
@@ -8568,12 +8715,12 @@ begin
       INIT => X"9009000000009009"
     )
         port map (
-      I0 => \Using_FPGA.Native_i_7\(0),
+      I0 => \Using_FPGA.Native_i_7__0\(0),
       I1 => \^using_fpga.native_0\,
-      I2 => \Using_FPGA.Native_i_7_0\,
-      I3 => \Using_FPGA.Native_i_7\(2),
-      I4 => \Using_FPGA.Native_i_7_1\,
-      I5 => \Using_FPGA.Native_i_7\(1),
+      I2 => \Using_FPGA.Native_i_7__0_0\,
+      I3 => \Using_FPGA.Native_i_7__0\(2),
+      I4 => \Using_FPGA.Native_i_7__0_1\,
+      I5 => \Using_FPGA.Native_i_7__0\(1),
       O => \mem_gpr_write_addr_reg[4]\
     );
 \Using_FPGA.Native_i_12\: unisim.vcomponents.LUT6
@@ -8583,9 +8730,9 @@ begin
         port map (
       I0 => \Using_FPGA.Native_i_8\(0),
       I1 => \^using_fpga.native_0\,
-      I2 => \Using_FPGA.Native_i_7_0\,
+      I2 => \Using_FPGA.Native_i_7__0_0\,
       I3 => \Using_FPGA.Native_i_8\(2),
-      I4 => \Using_FPGA.Native_i_7_1\,
+      I4 => \Using_FPGA.Native_i_7__0_1\,
       I5 => \Using_FPGA.Native_i_8\(1),
       O => \wb_gpr_write_addr_reg[4]\
     );
@@ -8596,9 +8743,9 @@ begin
         port map (
       I0 => \Using_FPGA.Native_i_9\,
       I1 => \^using_fpga.native_0\,
-      I2 => \Using_FPGA.Native_i_7_0\,
+      I2 => \Using_FPGA.Native_i_7__0_0\,
       I3 => I4,
-      I4 => \Using_FPGA.Native_i_7_1\,
+      I4 => \Using_FPGA.Native_i_7__0_1\,
       I5 => I0,
       O => \ex_gpr_write_addr_reg[4]\
     );
@@ -8708,12 +8855,13 @@ entity main_ub_microblaze_0_0_MB_FDR_181 is
     \EX_Op2[0]_i_3_0\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \EX_Op2[0]_i_3_1\ : in STD_LOGIC;
     \EX_Op2[0]_i_3_2\ : in STD_LOGIC;
-    p_214_in : in STD_LOGIC;
+    p_219_in : in STD_LOGIC;
     \EX_Op2[0]_i_3_3\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \EX_Op2[0]_i_3_4\ : in STD_LOGIC;
-    p_217_in : in STD_LOGIC;
-    \EX_Op2[0]_i_3_5\ : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    \EX_Op2[0]_i_3_6\ : in STD_LOGIC
+    p_222_in : in STD_LOGIC;
+    \EX_Op2[0]_i_3_5\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \EX_Op2[0]_i_3_6\ : in STD_LOGIC;
+    \EX_Op2[0]_i_3_7\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_ub_microblaze_0_0_MB_FDR_181 : entity is "MB_FDR";
@@ -8768,15 +8916,15 @@ begin
     );
 \EX_Op2[0]_i_6\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"8200000000008200"
+      INIT => X"9000009000000000"
     )
         port map (
-      I0 => \EX_Op2[0]_i_3_5\(2),
-      I1 => \EX_Op2[0]_i_3_5\(1),
-      I2 => \^using_fpga.native_0\,
-      I3 => \EX_Op2[0]_i_3_6\,
-      I4 => \EX_Op2[0]_i_3_2\,
-      I5 => \EX_Op2[0]_i_3_5\(0),
+      I0 => \EX_Op2[0]_i_3_5\(1),
+      I1 => \^using_fpga.native_0\,
+      I2 => \EX_Op2[0]_i_3_6\,
+      I3 => \EX_Op2[0]_i_3_2\,
+      I4 => \EX_Op2[0]_i_3_5\(0),
+      I5 => \EX_Op2[0]_i_3_7\(0),
       O => \of_read_wb_write_op2_conflict__0\
     );
 \EX_Op2[0]_i_7\: unisim.vcomponents.LUT6
@@ -8789,7 +8937,7 @@ begin
       I2 => \EX_Op2[0]_i_3_1\,
       I3 => \EX_Op2[0]_i_3_2\,
       I4 => \EX_Op2[0]_i_3_0\(0),
-      I5 => p_214_in,
+      I5 => p_219_in,
       O => \of_read_mem_write_op2_conflict__0\
     );
 \EX_Op2[0]_i_8\: unisim.vcomponents.LUT6
@@ -8802,7 +8950,7 @@ begin
       I2 => \EX_Op2[0]_i_3_4\,
       I3 => \EX_Op2[0]_i_3_2\,
       I4 => \EX_Op2[0]_i_3_3\(0),
-      I5 => p_217_in,
+      I5 => p_222_in,
       O => \of_read_ex_write_op2_conflict__0\
     );
 \EX_Op2[10]_i_1\: unisim.vcomponents.LUT6
@@ -9269,7 +9417,6 @@ entity main_ub_microblaze_0_0_MB_FDR_185 is
     force_Val10_out : out STD_LOGIC;
     use_Reg_Neg_S3_out : out STD_LOGIC;
     force12_out : out STD_LOGIC;
-    ex_sel_alu_i0 : out STD_LOGIC;
     \Using_FPGA.Native_4\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     ex_enable_sext_shift_i0 : out STD_LOGIC;
     \Using_FPGA.Native_5\ : out STD_LOGIC;
@@ -9288,12 +9435,11 @@ entity main_ub_microblaze_0_0_MB_FDR_185 is
     force2_reg_1 : in STD_LOGIC;
     force2_reg_2 : in STD_LOGIC;
     \EX_Sext_Op_reg[0]\ : in STD_LOGIC;
-    ex_sel_alu_i_reg : in STD_LOGIC;
     \EX_Sext_Op_reg[0]_0\ : in STD_LOGIC;
     \EX_Sext_Op_reg[0]_1\ : in STD_LOGIC;
     ex_branch_with_delayslot_reg : in STD_LOGIC;
     ex_branch_with_delayslot_reg_0 : in STD_LOGIC;
-    \EX_ALU_Op1143_out__0\ : in STD_LOGIC
+    \EX_ALU_Op1149_out__0\ : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_ub_microblaze_0_0_MB_FDR_185 : entity is "MB_FDR";
@@ -9309,16 +9455,14 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDR_185 is
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native\ : label is "PRIMITIVE";
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_2__83\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of ex_branch_with_delayslot_i_1 : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of ex_enable_sext_shift_i_i_1 : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of ex_load_alu_carry_i_1 : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of ex_op1_cmp_eq_n_i_1 : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of ex_sel_alu_i_i_1 : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of force2_i_1 : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of force_Val1_i_1 : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of use_Reg_Neg_DI_i_1 : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of use_Reg_Neg_S_i_1 : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of ex_branch_with_delayslot_i_1 : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of ex_enable_sext_shift_i_i_1 : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of ex_load_alu_carry_i_1 : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of ex_op1_cmp_eq_n_i_1 : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of force2_i_1 : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of force_Val1_i_1 : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of use_Reg_Neg_DI_i_1 : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of use_Reg_Neg_S_i_1 : label is "soft_lutpair16";
 begin
   \Using_FPGA.Native_0\ <= \^using_fpga.native_0\;
   \Using_FPGA.Native_1\ <= \^using_fpga.native_1\;
@@ -9411,7 +9555,7 @@ ex_load_alu_carry_i_1: unisim.vcomponents.LUT4
       I0 => \^using_fpga.native_0\,
       I1 => force2_reg,
       I2 => force2_reg_1,
-      I3 => \EX_ALU_Op1143_out__0\,
+      I3 => \EX_ALU_Op1149_out__0\,
       O => \Using_FPGA.Native_6\
     );
 ex_op1_cmp_eq_n_i_1: unisim.vcomponents.LUT4
@@ -9424,17 +9568,6 @@ ex_op1_cmp_eq_n_i_1: unisim.vcomponents.LUT4
       I2 => ex_op1_cmp_eq_n_reg_0,
       I3 => ex_op1_cmp_eq_n_reg_1,
       O => ex_op1_cmp_eq_n5_out
-    );
-ex_sel_alu_i_i_1: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"51FF"
-    )
-        port map (
-      I0 => \^using_fpga.native_0\,
-      I1 => ex_sel_alu_i_reg,
-      I2 => \EX_Sext_Op_reg[0]\,
-      I3 => force2_reg,
-      O => ex_sel_alu_i0
     );
 force1_i_1: unisim.vcomponents.LUT3
     generic map(
@@ -9667,10 +9800,10 @@ entity main_ub_microblaze_0_0_MB_FDR_193 is
     p_9_in : out STD_LOGIC;
     \Using_FPGA.Native_3\ : out STD_LOGIC;
     ex_load_shift_carry0 : out STD_LOGIC;
-    p_0_in30_in : out STD_LOGIC;
-    \Using_FPGA.Native_4\ : out STD_LOGIC;
-    D225_out : out STD_LOGIC;
-    \Using_FPGA.Native_5\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    p_0_in32_in : out STD_LOGIC;
+    D236_out : out STD_LOGIC;
+    \Using_FPGA.Native_4\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_FPGA.Native_5\ : out STD_LOGIC;
     \Using_FPGA.Native_6\ : out STD_LOGIC;
     \Using_FPGA.Native_7\ : out STD_LOGIC;
     \Using_FPGA.Native_8\ : out STD_LOGIC;
@@ -9702,7 +9835,6 @@ entity main_ub_microblaze_0_0_MB_FDR_193 is
     \Using_FPGA.Native_34\ : out STD_LOGIC;
     \Using_FPGA.Native_35\ : out STD_LOGIC;
     \Using_FPGA.Native_36\ : out STD_LOGIC;
-    \Using_FPGA.Native_37\ : out STD_LOGIC;
     I1_0 : out STD_LOGIC;
     of_Sel_SPR_MSR88_out : out STD_LOGIC;
     ex_is_multi_or_load_instr0 : out STD_LOGIC;
@@ -9713,16 +9845,15 @@ entity main_ub_microblaze_0_0_MB_FDR_193 is
     Clk : in STD_LOGIC;
     ex_is_multi_instr2_reg : in STD_LOGIC;
     Dbg_Clean_Stop_reg : in STD_LOGIC;
-    \Using_FPGA.Native_38\ : in STD_LOGIC;
+    \Using_FPGA.Native_37\ : in STD_LOGIC;
     EX_SWAP_Instr_reg : in STD_LOGIC;
     EX_SWAP_Instr_reg_0 : in STD_LOGIC;
     EX_SWAP_Instr_reg_1 : in STD_LOGIC;
     EX_SWAP_Instr_reg_2 : in STD_LOGIC;
     ex_is_multi_or_load_instr_reg : in STD_LOGIC;
     ex_is_multi_or_load_instr_reg_0 : in STD_LOGIC;
+    \Using_FPGA.Native_38\ : in STD_LOGIC;
     \Using_FPGA.Native_39\ : in STD_LOGIC;
-    \Using_FPGA.Native_40\ : in STD_LOGIC;
-    \Using_FPGA.Native_41\ : in STD_LOGIC;
     \EX_Sext_Op_reg[1]\ : in STD_LOGIC;
     ex_load_shift_carry_reg : in STD_LOGIC;
     ex_is_multi_or_load_instr_reg_1 : in STD_LOGIC;
@@ -9743,23 +9874,21 @@ end main_ub_microblaze_0_0_MB_FDR_193;
 architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDR_193 is
   signal \^using_fpga.native_0\ : STD_LOGIC;
   signal \^using_fpga.native_1\ : STD_LOGIC;
-  signal \^p_0_in30_in\ : STD_LOGIC;
+  signal \^p_0_in32_in\ : STD_LOGIC;
   signal \^p_9_in\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of Dbg_Clean_Stop_i_1 : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of Dbg_Clean_Stop_i_1 : label is "soft_lutpair18";
   attribute XILINX_LEGACY_PRIM : string;
   attribute XILINX_LEGACY_PRIM of \Using_FPGA.Native\ : label is "FDR";
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native\ : label is "PRIMITIVE";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__44\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__47\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of ex_is_multi_instr2_i_1 : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of ex_is_multi_or_load_instr_i_1 : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \imm_reg[0]_i_1\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of ex_is_multi_instr2_i_1 : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of ex_is_multi_or_load_instr_i_1 : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \imm_reg[0]_i_1\ : label is "soft_lutpair18";
 begin
   \Using_FPGA.Native_0\ <= \^using_fpga.native_0\;
   \Using_FPGA.Native_1\ <= \^using_fpga.native_1\;
-  p_0_in30_in <= \^p_0_in30_in\;
+  p_0_in32_in <= \^p_0_in32_in\;
   p_9_in <= \^p_9_in\;
 Dbg_Clean_Stop_i_1: unisim.vcomponents.LUT5
     generic map(
@@ -9781,7 +9910,7 @@ Dbg_Clean_Stop_i_2: unisim.vcomponents.LUT6
       I0 => \^using_fpga.native_0\,
       I1 => ex_load_shift_carry_reg,
       I2 => ex_is_multi_or_load_instr_reg_0,
-      I3 => \Using_FPGA.Native_38\,
+      I3 => \Using_FPGA.Native_37\,
       I4 => ex_is_multi_or_load_instr_reg_1,
       I5 => ex_is_multi_or_load_instr_reg,
       O => \^p_9_in\
@@ -9792,7 +9921,7 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
     )
         port map (
       I0 => \^using_fpga.native_0\,
-      I1 => \Using_FPGA.Native_38\,
+      I1 => \Using_FPGA.Native_37\,
       I2 => EX_SWAP_Instr_reg,
       I3 => EX_SWAP_Instr_reg_0,
       I4 => EX_SWAP_Instr_reg_1,
@@ -9805,12 +9934,12 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
     )
         port map (
       I0 => \^using_fpga.native_0\,
-      I1 => \Using_FPGA.Native_38\,
+      I1 => \Using_FPGA.Native_37\,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => EX_SWAP_Instr_reg_0,
       I4 => EX_SWAP_Instr_reg_1,
       I5 => EX_SWAP_Instr_reg_2,
-      O => \Using_FPGA.Native_5\(0)
+      O => \Using_FPGA.Native_4\(0)
     );
 \Using_FPGA.Native\: unisim.vcomponents.FDRE
     generic map(
@@ -9823,7 +9952,7 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       Q => \^using_fpga.native_0\,
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__179\: unisim.vcomponents.LUT3
+\Using_FPGA.Native_i_1__180\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"F2"
     )
@@ -9841,20 +9970,9 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I0 => \^using_fpga.native_0\,
       I1 => ex_is_multi_or_load_instr_reg,
       I2 => ex_is_multi_or_load_instr_reg_0,
-      I3 => \Using_FPGA.Native_39\,
-      I4 => \Using_FPGA.Native_40\,
-      O => \Using_FPGA.Native_4\
-    );
-\Using_FPGA.Native_i_1__44\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"8000"
-    )
-        port map (
-      I0 => \^using_fpga.native_0\,
-      I1 => \Using_FPGA.Native_41\,
-      I2 => ex_is_multi_or_load_instr_reg,
-      I3 => \Using_FPGA.Native_40\,
-      O => D225_out
+      I3 => \Using_FPGA.Native_38\,
+      I4 => \Using_FPGA.Native_39\,
+      O => D236_out
     );
 \Using_FPGA.Native_i_1__47\: unisim.vcomponents.LUT2
     generic map(
@@ -9862,10 +9980,10 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
     )
         port map (
       I0 => \^using_fpga.native_0\,
-      I1 => \Using_FPGA.Native_38\,
-      O => \Using_FPGA.Native_6\
+      I1 => \Using_FPGA.Native_37\,
+      O => \Using_FPGA.Native_5\
     );
-\Using_FPGA.Native_i_2__118\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_2__119\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"FF020000"
     )
@@ -9875,20 +9993,7 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
       I4 => \EX_Op1_reg[0]\(0),
-      O => \Using_FPGA.Native_7\
-    );
-\Using_FPGA.Native_i_2__119\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFF00FDFF020000"
-    )
-        port map (
-      I0 => \^using_fpga.native_1\,
-      I1 => ex_is_multi_instr2_reg,
-      I2 => \EX_Sext_Op_reg[1]\,
-      I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(1),
-      I5 => ex_MSR(0),
-      O => \Using_FPGA.Native_8\
+      O => \Using_FPGA.Native_6\
     );
 \Using_FPGA.Native_i_2__120\: unisim.vcomponents.LUT6
     generic map(
@@ -9899,9 +10004,9 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(2),
-      I5 => ex_MSR(1),
-      O => \Using_FPGA.Native_9\
+      I4 => \EX_Op1_reg[0]\(1),
+      I5 => ex_MSR(0),
+      O => \Using_FPGA.Native_7\
     );
 \Using_FPGA.Native_i_2__121\: unisim.vcomponents.LUT6
     generic map(
@@ -9912,21 +10017,22 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(3),
-      I5 => ex_MSR(2),
-      O => \Using_FPGA.Native_10\
+      I4 => \EX_Op1_reg[0]\(2),
+      I5 => ex_MSR(1),
+      O => \Using_FPGA.Native_8\
     );
-\Using_FPGA.Native_i_2__122\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_2__122\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FF020000"
+      INIT => X"FFFF00FDFF020000"
     )
         port map (
       I0 => \^using_fpga.native_1\,
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(4),
-      O => \Using_FPGA.Native_11\
+      I4 => \EX_Op1_reg[0]\(3),
+      I5 => ex_MSR(2),
+      O => \Using_FPGA.Native_9\
     );
 \Using_FPGA.Native_i_2__123\: unisim.vcomponents.LUT5
     generic map(
@@ -9937,8 +10043,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(5),
-      O => \Using_FPGA.Native_12\
+      I4 => \EX_Op1_reg[0]\(4),
+      O => \Using_FPGA.Native_10\
     );
 \Using_FPGA.Native_i_2__124\: unisim.vcomponents.LUT5
     generic map(
@@ -9949,8 +10055,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(6),
-      O => \Using_FPGA.Native_13\
+      I4 => \EX_Op1_reg[0]\(5),
+      O => \Using_FPGA.Native_11\
     );
 \Using_FPGA.Native_i_2__125\: unisim.vcomponents.LUT5
     generic map(
@@ -9961,8 +10067,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(7),
-      O => \Using_FPGA.Native_14\
+      I4 => \EX_Op1_reg[0]\(6),
+      O => \Using_FPGA.Native_12\
     );
 \Using_FPGA.Native_i_2__126\: unisim.vcomponents.LUT5
     generic map(
@@ -9973,8 +10079,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(8),
-      O => \Using_FPGA.Native_15\
+      I4 => \EX_Op1_reg[0]\(7),
+      O => \Using_FPGA.Native_13\
     );
 \Using_FPGA.Native_i_2__127\: unisim.vcomponents.LUT5
     generic map(
@@ -9985,8 +10091,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(9),
-      O => \Using_FPGA.Native_16\
+      I4 => \EX_Op1_reg[0]\(8),
+      O => \Using_FPGA.Native_14\
     );
 \Using_FPGA.Native_i_2__128\: unisim.vcomponents.LUT5
     generic map(
@@ -9997,8 +10103,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(10),
-      O => \Using_FPGA.Native_17\
+      I4 => \EX_Op1_reg[0]\(9),
+      O => \Using_FPGA.Native_15\
     );
 \Using_FPGA.Native_i_2__129\: unisim.vcomponents.LUT5
     generic map(
@@ -10009,8 +10115,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(11),
-      O => \Using_FPGA.Native_18\
+      I4 => \EX_Op1_reg[0]\(10),
+      O => \Using_FPGA.Native_16\
     );
 \Using_FPGA.Native_i_2__130\: unisim.vcomponents.LUT5
     generic map(
@@ -10021,8 +10127,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(12),
-      O => \Using_FPGA.Native_19\
+      I4 => \EX_Op1_reg[0]\(11),
+      O => \Using_FPGA.Native_17\
     );
 \Using_FPGA.Native_i_2__131\: unisim.vcomponents.LUT5
     generic map(
@@ -10033,8 +10139,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(13),
-      O => \Using_FPGA.Native_20\
+      I4 => \EX_Op1_reg[0]\(12),
+      O => \Using_FPGA.Native_18\
     );
 \Using_FPGA.Native_i_2__132\: unisim.vcomponents.LUT5
     generic map(
@@ -10045,8 +10151,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(14),
-      O => \Using_FPGA.Native_21\
+      I4 => \EX_Op1_reg[0]\(13),
+      O => \Using_FPGA.Native_19\
     );
 \Using_FPGA.Native_i_2__133\: unisim.vcomponents.LUT5
     generic map(
@@ -10057,8 +10163,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(15),
-      O => \Using_FPGA.Native_22\
+      I4 => \EX_Op1_reg[0]\(14),
+      O => \Using_FPGA.Native_20\
     );
 \Using_FPGA.Native_i_2__134\: unisim.vcomponents.LUT5
     generic map(
@@ -10069,8 +10175,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(16),
-      O => \Using_FPGA.Native_23\
+      I4 => \EX_Op1_reg[0]\(15),
+      O => \Using_FPGA.Native_21\
     );
 \Using_FPGA.Native_i_2__135\: unisim.vcomponents.LUT5
     generic map(
@@ -10081,8 +10187,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(17),
-      O => \Using_FPGA.Native_24\
+      I4 => \EX_Op1_reg[0]\(16),
+      O => \Using_FPGA.Native_22\
     );
 \Using_FPGA.Native_i_2__136\: unisim.vcomponents.LUT5
     generic map(
@@ -10093,8 +10199,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(18),
-      O => \Using_FPGA.Native_25\
+      I4 => \EX_Op1_reg[0]\(17),
+      O => \Using_FPGA.Native_23\
     );
 \Using_FPGA.Native_i_2__137\: unisim.vcomponents.LUT5
     generic map(
@@ -10105,8 +10211,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(19),
-      O => \Using_FPGA.Native_26\
+      I4 => \EX_Op1_reg[0]\(18),
+      O => \Using_FPGA.Native_24\
     );
 \Using_FPGA.Native_i_2__138\: unisim.vcomponents.LUT5
     generic map(
@@ -10117,8 +10223,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(20),
-      O => \Using_FPGA.Native_27\
+      I4 => \EX_Op1_reg[0]\(19),
+      O => \Using_FPGA.Native_25\
     );
 \Using_FPGA.Native_i_2__139\: unisim.vcomponents.LUT5
     generic map(
@@ -10129,8 +10235,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(21),
-      O => \Using_FPGA.Native_28\
+      I4 => \EX_Op1_reg[0]\(20),
+      O => \Using_FPGA.Native_26\
     );
 \Using_FPGA.Native_i_2__140\: unisim.vcomponents.LUT5
     generic map(
@@ -10141,8 +10247,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(22),
-      O => \Using_FPGA.Native_29\
+      I4 => \EX_Op1_reg[0]\(21),
+      O => \Using_FPGA.Native_27\
     );
 \Using_FPGA.Native_i_2__141\: unisim.vcomponents.LUT5
     generic map(
@@ -10153,8 +10259,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(23),
-      O => \Using_FPGA.Native_30\
+      I4 => \EX_Op1_reg[0]\(22),
+      O => \Using_FPGA.Native_28\
     );
 \Using_FPGA.Native_i_2__142\: unisim.vcomponents.LUT5
     generic map(
@@ -10165,8 +10271,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(24),
-      O => \Using_FPGA.Native_31\
+      I4 => \EX_Op1_reg[0]\(23),
+      O => \Using_FPGA.Native_29\
     );
 \Using_FPGA.Native_i_2__143\: unisim.vcomponents.LUT5
     generic map(
@@ -10177,8 +10283,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(25),
-      O => \Using_FPGA.Native_32\
+      I4 => \EX_Op1_reg[0]\(24),
+      O => \Using_FPGA.Native_30\
     );
 \Using_FPGA.Native_i_2__144\: unisim.vcomponents.LUT5
     generic map(
@@ -10189,8 +10295,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(26),
-      O => \Using_FPGA.Native_33\
+      I4 => \EX_Op1_reg[0]\(25),
+      O => \Using_FPGA.Native_31\
     );
 \Using_FPGA.Native_i_2__145\: unisim.vcomponents.LUT5
     generic map(
@@ -10201,8 +10307,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(27),
-      O => \Using_FPGA.Native_34\
+      I4 => \EX_Op1_reg[0]\(26),
+      O => \Using_FPGA.Native_32\
     );
 \Using_FPGA.Native_i_2__146\: unisim.vcomponents.LUT5
     generic map(
@@ -10213,8 +10319,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(28),
-      O => \Using_FPGA.Native_35\
+      I4 => \EX_Op1_reg[0]\(27),
+      O => \Using_FPGA.Native_33\
     );
 \Using_FPGA.Native_i_2__147\: unisim.vcomponents.LUT5
     generic map(
@@ -10225,8 +10331,8 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
-      I4 => \EX_Op1_reg[0]\(29),
-      O => \Using_FPGA.Native_36\
+      I4 => \EX_Op1_reg[0]\(28),
+      O => \Using_FPGA.Native_34\
     );
 \Using_FPGA.Native_i_2__148\: unisim.vcomponents.LUT5
     generic map(
@@ -10237,8 +10343,20 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT6
       I1 => ex_is_multi_instr2_reg,
       I2 => \EX_Sext_Op_reg[1]\,
       I3 => \OF_Op1_Sel_SPR_PC0__0\,
+      I4 => \EX_Op1_reg[0]\(29),
+      O => \Using_FPGA.Native_35\
+    );
+\Using_FPGA.Native_i_2__149\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FF020000"
+    )
+        port map (
+      I0 => \^using_fpga.native_1\,
+      I1 => ex_is_multi_instr2_reg,
+      I2 => \EX_Sext_Op_reg[1]\,
+      I3 => \OF_Op1_Sel_SPR_PC0__0\,
       I4 => \EX_Op1_reg[0]\(30),
-      O => \Using_FPGA.Native_37\
+      O => \Using_FPGA.Native_36\
     );
 \Using_FPGA.Native_i_3__32\: unisim.vcomponents.LUT6
     generic map(
@@ -10279,7 +10397,7 @@ ex_load_shift_carry_i_1: unisim.vcomponents.LUT3
       INIT => X"2A"
     )
         port map (
-      I0 => \^p_0_in30_in\,
+      I0 => \^p_0_in32_in\,
       I1 => EX_SWAP_Instr_reg_0,
       I2 => EX_SWAP_Instr_reg_1,
       O => ex_load_shift_carry0
@@ -10292,10 +10410,10 @@ ex_load_shift_carry_i_2: unisim.vcomponents.LUT6
       I0 => \^using_fpga.native_0\,
       I1 => ex_is_multi_or_load_instr_reg_0,
       I2 => ex_is_multi_or_load_instr_reg_1,
-      I3 => \Using_FPGA.Native_38\,
+      I3 => \Using_FPGA.Native_37\,
       I4 => ex_load_shift_carry_reg,
       I5 => ex_is_multi_or_load_instr_reg,
-      O => \^p_0_in30_in\
+      O => \^p_0_in32_in\
     );
 ex_mfsmsr_i_i_1: unisim.vcomponents.LUT6
     generic map(
@@ -10318,7 +10436,7 @@ ex_move_to_MSR_instr_i_2: unisim.vcomponents.LUT6
       I0 => \^using_fpga.native_0\,
       I1 => ex_load_shift_carry_reg,
       I2 => ex_is_multi_or_load_instr_reg_0,
-      I3 => \Using_FPGA.Native_38\,
+      I3 => \Using_FPGA.Native_37\,
       I4 => ex_is_multi_or_load_instr_reg_1,
       I5 => ex_is_multi_or_load_instr_reg,
       O => \^using_fpga.native_1\
@@ -10365,8 +10483,8 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDR_195 is
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native\ : label is "PRIMITIVE";
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__48\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of ex_is_div_instr_I_i_2 : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__48\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of ex_is_div_instr_I_i_2 : label is "soft_lutpair19";
 begin
   \Using_FPGA.Native_0\ <= \^using_fpga.native_0\;
 \Using_FPGA.Native\: unisim.vcomponents.FDRE
@@ -10422,6 +10540,7 @@ entity main_ub_microblaze_0_0_MB_FDR_197 is
   port (
     \Using_FPGA.Native_0\ : out STD_LOGIC;
     ex_sel_alu_i_reg : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    \Using_FPGA.Native_1\ : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
     of_instr_ii_36 : in STD_LOGIC;
     Clk : in STD_LOGIC;
@@ -10484,6 +10603,7 @@ entity main_ub_microblaze_0_0_MB_FDR_197 is
     \EX_Op3_reg[30]_0\ : in STD_LOGIC;
     \EX_Op3_reg[31]\ : in STD_LOGIC;
     \EX_Op3_reg[31]_0\ : in STD_LOGIC;
+    \of_read_ex_write_op3_conflict__1\ : in STD_LOGIC;
     \EX_Op3[0]_i_2_0\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \EX_Op3[0]_i_2_1\ : in STD_LOGIC;
     \EX_Op3[0]_i_2_2\ : in STD_LOGIC;
@@ -10491,9 +10611,7 @@ entity main_ub_microblaze_0_0_MB_FDR_197 is
     \EX_Op3[0]_i_2_4\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \EX_Op3[0]_i_2_5\ : in STD_LOGIC;
     \EX_Op3[0]_i_2_6\ : in STD_LOGIC;
-    \EX_Op3[0]_i_2_7\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \EX_Op3[0]_i_2_8\ : in STD_LOGIC;
-    \EX_Op3[0]_i_2_9\ : in STD_LOGIC
+    \EX_Op3[0]_i_6\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_ub_microblaze_0_0_MB_FDR_197 : entity is "MB_FDR";
@@ -10502,7 +10620,6 @@ end main_ub_microblaze_0_0_MB_FDR_197;
 architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDR_197 is
   signal \^using_fpga.native_0\ : STD_LOGIC;
   signal of_op3_sel : STD_LOGIC_VECTOR ( 0 to 1 );
-  signal \of_read_ex_write_op3_conflict__1\ : STD_LOGIC;
   signal \of_read_mem_write_op3_conflict__1\ : STD_LOGIC;
   signal \of_read_wb_write_op3_conflict__1\ : STD_LOGIC;
   attribute XILINX_LEGACY_PRIM : string;
@@ -10523,6 +10640,15 @@ begin
       I4 => of_op3_sel(1),
       I5 => MEM_Fwd(0),
       O => ex_sel_alu_i_reg(31)
+    );
+\EX_Op3[0]_i_12\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"9"
+    )
+        port map (
+      I0 => \^using_fpga.native_0\,
+      I1 => \EX_Op3[0]_i_6\(0),
+      O => \Using_FPGA.Native_1\
     );
 \EX_Op3[0]_i_2\: unisim.vcomponents.LUT3
     generic map(
@@ -10562,26 +10688,13 @@ begin
       INIT => X"9000009000000000"
     )
         port map (
-      I0 => \EX_Op3[0]_i_2_7\(1),
-      I1 => \^using_fpga.native_0\,
-      I2 => \EX_Op3[0]_i_2_8\,
-      I3 => \EX_Op3[0]_i_2_2\,
-      I4 => \EX_Op3[0]_i_2_7\(0),
-      I5 => \EX_Op3[0]_i_2_9\,
-      O => \of_read_wb_write_op3_conflict__1\
-    );
-\EX_Op3[0]_i_6\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"9000009000000000"
-    )
-        port map (
       I0 => \EX_Op3[0]_i_2_4\(1),
       I1 => \^using_fpga.native_0\,
       I2 => \EX_Op3[0]_i_2_5\,
       I3 => \EX_Op3[0]_i_2_2\,
       I4 => \EX_Op3[0]_i_2_4\(0),
       I5 => \EX_Op3[0]_i_2_6\,
-      O => \of_read_ex_write_op3_conflict__1\
+      O => \of_read_wb_write_op3_conflict__1\
     );
 \EX_Op3[10]_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -11200,7 +11313,7 @@ begin
       Q => \^using_fpga.native_0\,
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__100\: unisim.vcomponents.LUT3
+\Using_FPGA.Native_i_1__101\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"0D"
     )
@@ -11210,15 +11323,15 @@ begin
       I2 => ex_jump_q,
       O => ex_branch_with_delayslot_reg
     );
-\Using_FPGA.Native_i_1__101\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__102\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"2AAA"
     )
         port map (
       I0 => \^using_fpga.native_0\,
-      I1 => wb_exception,
-      I2 => Q(0),
-      I3 => Q(1),
+      I1 => Q(0),
+      I2 => Q(1),
+      I3 => wb_exception,
       O => \Using_FPGA.Native_1\
     );
 ex_valid_i_1: unisim.vcomponents.LUT6
@@ -11299,7 +11412,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__127\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__128\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -11349,7 +11462,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__137\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__138\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -11399,7 +11512,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__138\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__139\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -11449,7 +11562,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__139\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__140\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -11499,7 +11612,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__140\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__141\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -11549,7 +11662,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__141\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__142\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -11599,7 +11712,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__142\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__143\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -11649,7 +11762,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__143\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__144\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -11699,7 +11812,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__144\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__145\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -11749,7 +11862,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__145\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__146\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -11799,7 +11912,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__146\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__147\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -11849,7 +11962,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__128\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__129\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -11899,7 +12012,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__147\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__148\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -11949,7 +12062,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__148\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__149\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -11999,7 +12112,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__149\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__150\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12049,7 +12162,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__150\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__151\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12099,7 +12212,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__151\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__152\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12149,7 +12262,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__152\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__153\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12199,7 +12312,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__153\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__154\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12249,7 +12362,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__154\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__155\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12299,7 +12412,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__155\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__156\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12349,7 +12462,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__156\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__157\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12399,7 +12512,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__129\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__130\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12449,7 +12562,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__157\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__158\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12499,7 +12612,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__158\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__159\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12549,7 +12662,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__130\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__131\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12599,7 +12712,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__131\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__132\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12649,7 +12762,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__132\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__133\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12699,7 +12812,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__133\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__134\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12749,7 +12862,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__134\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__135\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12799,7 +12912,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__135\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__136\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12849,7 +12962,7 @@ begin
       Q => \^d\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__136\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__137\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -12915,10 +13028,10 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity main_ub_microblaze_0_0_MB_FDR_302 is
   port (
-    mem_MSR : out STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_FPGA.Native_0\ : out STD_LOGIC;
     MEM_Fwd : out STD_LOGIC_VECTOR ( 1 downto 0 );
     sync_reset : in STD_LOGIC;
-    \Using_FPGA.Native_0\ : in STD_LOGIC;
+    \Using_FPGA.Native_1\ : in STD_LOGIC;
     Clk : in STD_LOGIC;
     mem_sel_msr : in STD_LOGIC;
     \WB_MEM_Result_reg[0]\ : in STD_LOGIC_VECTOR ( 1 downto 0 )
@@ -12928,7 +13041,7 @@ entity main_ub_microblaze_0_0_MB_FDR_302 is
 end main_ub_microblaze_0_0_MB_FDR_302;
 
 architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDR_302 is
-  signal \^mem_msr\ : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal \^using_fpga.native_0\ : STD_LOGIC;
   attribute XILINX_LEGACY_PRIM : string;
   attribute XILINX_LEGACY_PRIM of \Using_FPGA.Native\ : label is "FDR";
   attribute box_type : string;
@@ -12937,7 +13050,7 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MB_FDR_302 is
   attribute SOFT_HLUTNM of \WB_MEM_Result[0]_i_2\ : label is "soft_lutpair3";
   attribute SOFT_HLUTNM of \WB_MEM_Result[29]_i_1\ : label is "soft_lutpair3";
 begin
-  mem_MSR(0) <= \^mem_msr\(0);
+  \Using_FPGA.Native_0\ <= \^using_fpga.native_0\;
 \Using_FPGA.Native\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
@@ -12945,8 +13058,8 @@ begin
         port map (
       C => Clk,
       CE => '1',
-      D => \Using_FPGA.Native_0\,
-      Q => \^mem_msr\(0),
+      D => \Using_FPGA.Native_1\,
+      Q => \^using_fpga.native_0\,
       R => sync_reset
     );
 \WB_MEM_Result[0]_i_2\: unisim.vcomponents.LUT3
@@ -12954,7 +13067,7 @@ begin
       INIT => X"B8"
     )
         port map (
-      I0 => \^mem_msr\(0),
+      I0 => \^using_fpga.native_0\,
       I1 => mem_sel_msr,
       I2 => \WB_MEM_Result_reg[0]\(1),
       O => MEM_Fwd(1)
@@ -12964,7 +13077,7 @@ begin
       INIT => X"B8"
     )
         port map (
-      I0 => \^mem_msr\(0),
+      I0 => \^using_fpga.native_0\,
       I1 => mem_sel_msr,
       I2 => \WB_MEM_Result_reg[0]\(0),
       O => MEM_Fwd(0)
@@ -13055,7 +13168,7 @@ begin
       Q => \^ex_msr\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__93\: unisim.vcomponents.LUT3
+\Using_FPGA.Native_i_1__94\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"B8"
     )
@@ -13077,8 +13190,11 @@ entity main_ub_microblaze_0_0_MB_FDR_305 is
     sync_reset : in STD_LOGIC;
     \Using_FPGA.Native_1\ : in STD_LOGIC;
     Clk : in STD_LOGIC;
-    \Using_FPGA.Native_2\ : in STD_LOGIC;
-    mem_MSR : in STD_LOGIC_VECTOR ( 0 to 0 )
+    \Using_FPGA.Native_i_3__31\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    mem_MSR_Load_LWX_SWX_C_Hold : in STD_LOGIC;
+    mem_daxi_exclusive_failed : in STD_LOGIC;
+    ex_MTS_MSR : in STD_LOGIC;
+    mem_MSR_Load_LWX_SWX_C : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_ub_microblaze_0_0_MB_FDR_305 : entity is "MB_FDR";
@@ -13103,14 +13219,17 @@ begin
       Q => \^ex_msr\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__92\: unisim.vcomponents.LUT3
+\Using_FPGA.Native_i_6\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"B8"
+      INIT => X"0C0C0F000C0C0A0A"
     )
         port map (
       I0 => \^ex_msr\(0),
-      I1 => \Using_FPGA.Native_2\,
-      I2 => mem_MSR(0),
+      I1 => \Using_FPGA.Native_i_3__31\(0),
+      I2 => mem_MSR_Load_LWX_SWX_C_Hold,
+      I3 => mem_daxi_exclusive_failed,
+      I4 => ex_MTS_MSR,
+      I5 => mem_MSR_Load_LWX_SWX_C,
       O => \Using_FPGA.Native_0\
     );
 end STRUCTURE;
@@ -13151,7 +13270,7 @@ begin
       Q => \^ex_msr\(0),
       R => sync_reset
     );
-\Using_FPGA.Native_i_1__91\: unisim.vcomponents.LUT3
+\Using_FPGA.Native_i_1__93\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"B8"
     )
@@ -13258,7 +13377,7 @@ begin
       Q => \^using_fpga.native_0\,
       S => sync_reset
     );
-\Using_FPGA.Native_i_1__104\: unisim.vcomponents.LUT6
+\Using_FPGA.Native_i_1__105\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"F870707070707070"
     )
@@ -13271,7 +13390,7 @@ begin
       I5 => \in\(28),
       O => I041_out
     );
-\Using_FPGA.Native_i_1__105\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__106\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13282,7 +13401,7 @@ begin
       I3 => \in\(10),
       O => I045_out
     );
-\Using_FPGA.Native_i_1__106\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__107\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13293,7 +13412,7 @@ begin
       I3 => \in\(11),
       O => I049_out
     );
-\Using_FPGA.Native_i_1__107\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__108\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13304,7 +13423,7 @@ begin
       I3 => \in\(12),
       O => I053_out
     );
-\Using_FPGA.Native_i_1__108\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__109\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13315,7 +13434,7 @@ begin
       I3 => \in\(13),
       O => I057_out
     );
-\Using_FPGA.Native_i_1__109\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__110\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13326,7 +13445,7 @@ begin
       I3 => \in\(14),
       O => I061_out
     );
-\Using_FPGA.Native_i_1__110\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__111\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13337,7 +13456,7 @@ begin
       I3 => \in\(15),
       O => I065_out
     );
-\Using_FPGA.Native_i_1__111\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__112\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13348,7 +13467,7 @@ begin
       I3 => \in\(16),
       O => I069_out
     );
-\Using_FPGA.Native_i_1__112\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__113\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13359,7 +13478,7 @@ begin
       I3 => \in\(17),
       O => I073_out
     );
-\Using_FPGA.Native_i_1__113\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__114\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13370,7 +13489,7 @@ begin
       I3 => \in\(18),
       O => I077_out
     );
-\Using_FPGA.Native_i_1__114\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__115\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13381,7 +13500,7 @@ begin
       I3 => \in\(19),
       O => I081_out
     );
-\Using_FPGA.Native_i_1__115\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__116\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13392,7 +13511,7 @@ begin
       I3 => \in\(20),
       O => I085_out
     );
-\Using_FPGA.Native_i_1__116\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__117\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13403,7 +13522,7 @@ begin
       I3 => \in\(21),
       O => I0129_out
     );
-\Using_FPGA.Native_i_1__117\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__118\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13414,7 +13533,7 @@ begin
       I3 => \in\(22),
       O => I0133_out
     );
-\Using_FPGA.Native_i_1__118\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__119\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13425,7 +13544,7 @@ begin
       I3 => \in\(23),
       O => I0137_out
     );
-\Using_FPGA.Native_i_1__119\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__120\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13436,7 +13555,7 @@ begin
       I3 => \in\(24),
       O => I0141_out
     );
-\Using_FPGA.Native_i_1__120\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__121\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13447,7 +13566,7 @@ begin
       I3 => \in\(25),
       O => I0145_out
     );
-\Using_FPGA.Native_i_1__121\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__122\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13458,7 +13577,7 @@ begin
       I3 => \in\(26),
       O => I0149_out
     );
-\Using_FPGA.Native_i_1__122\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__123\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13469,7 +13588,7 @@ begin
       I3 => \in\(27),
       O => I0153_out
     );
-\Using_FPGA.Native_i_1__123\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__124\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13480,7 +13599,7 @@ begin
       I3 => \in\(28),
       O => I0157_out
     );
-\Using_FPGA.Native_i_1__124\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__125\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13491,7 +13610,7 @@ begin
       I3 => \in\(29),
       O => I0161_out
     );
-\Using_FPGA.Native_i_1__125\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__126\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13502,7 +13621,7 @@ begin
       I3 => \in\(30),
       O => I0165_out
     );
-\Using_FPGA.Native_i_1__126\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__127\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13513,7 +13632,7 @@ begin
       I3 => \in\(31),
       O => I0169_out
     );
-\Using_FPGA.Native_i_1__159\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__160\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13524,7 +13643,7 @@ begin
       I3 => \in\(9),
       O => I0125_out
     );
-\Using_FPGA.Native_i_1__160\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__161\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13535,7 +13654,7 @@ begin
       I3 => \in\(8),
       O => I0121_out
     );
-\Using_FPGA.Native_i_1__161\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__162\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13546,7 +13665,7 @@ begin
       I3 => \in\(7),
       O => I0117_out
     );
-\Using_FPGA.Native_i_1__162\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__163\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13557,7 +13676,7 @@ begin
       I3 => \in\(6),
       O => I0113_out
     );
-\Using_FPGA.Native_i_1__163\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__164\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13568,7 +13687,7 @@ begin
       I3 => \in\(5),
       O => I0109_out
     );
-\Using_FPGA.Native_i_1__164\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__165\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13579,7 +13698,7 @@ begin
       I3 => \in\(4),
       O => I0105_out
     );
-\Using_FPGA.Native_i_1__165\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__166\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13590,7 +13709,7 @@ begin
       I3 => \in\(3),
       O => I0101_out
     );
-\Using_FPGA.Native_i_1__166\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__167\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13601,7 +13720,7 @@ begin
       I3 => \in\(2),
       O => I097_out
     );
-\Using_FPGA.Native_i_1__167\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__168\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13612,7 +13731,7 @@ begin
       I3 => \in\(1),
       O => I093_out
     );
-\Using_FPGA.Native_i_1__168\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__169\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13623,7 +13742,7 @@ begin
       I3 => \in\(0),
       O => I089_out
     );
-\Using_FPGA.Native_i_1__169\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__170\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13634,7 +13753,7 @@ begin
       I3 => \in\(9),
       O => I037_out
     );
-\Using_FPGA.Native_i_1__170\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__171\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13645,7 +13764,7 @@ begin
       I3 => \in\(8),
       O => I033_out
     );
-\Using_FPGA.Native_i_1__171\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__172\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13656,7 +13775,7 @@ begin
       I3 => \in\(7),
       O => I029_out
     );
-\Using_FPGA.Native_i_1__172\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__173\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13667,7 +13786,7 @@ begin
       I3 => \in\(6),
       O => I025_out
     );
-\Using_FPGA.Native_i_1__173\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__174\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13678,7 +13797,7 @@ begin
       I3 => \in\(5),
       O => I021_out
     );
-\Using_FPGA.Native_i_1__174\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__175\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13689,7 +13808,7 @@ begin
       I3 => \in\(4),
       O => I017_out
     );
-\Using_FPGA.Native_i_1__175\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__176\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13700,7 +13819,7 @@ begin
       I3 => \in\(3),
       O => I013_out
     );
-\Using_FPGA.Native_i_1__176\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__177\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13711,7 +13830,7 @@ begin
       I3 => \in\(2),
       O => I09_out
     );
-\Using_FPGA.Native_i_1__177\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__178\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -13722,7 +13841,7 @@ begin
       I3 => \in\(1),
       O => I05_out
     );
-\Using_FPGA.Native_i_1__178\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__179\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"F870"
     )
@@ -15061,7 +15180,9 @@ use UNISIM.VCOMPONENTS.ALL;
 entity \main_ub_microblaze_0_0_MB_LUT6_2__parameterized1\ is
   port (
     muxcy_di : out STD_LOGIC;
-    muxcy_sel : out STD_LOGIC
+    muxcy_sel : out STD_LOGIC;
+    mem_daxi_exclusive_failed : in STD_LOGIC;
+    mem_MSR_Load_LWX_SWX_C : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \main_ub_microblaze_0_0_MB_LUT6_2__parameterized1\ : entity is "MB_LUT6_2";
@@ -15076,10 +15197,10 @@ begin
       INIT => X"00FF00FFFEFEFEFE"
     )
         port map (
-      I0 => '0',
+      I0 => mem_daxi_exclusive_failed,
       I1 => '0',
       I2 => '0',
-      I3 => '0',
+      I3 => mem_MSR_Load_LWX_SWX_C,
       I4 => '0',
       I5 => '1',
       O5 => muxcy_di,
@@ -16806,8 +16927,8 @@ entity \main_ub_microblaze_0_0_MB_LUT6__parameterized10\ is
     I0 : in STD_LOGIC;
     of_predecode : in STD_LOGIC_VECTOR ( 1 downto 0 );
     D : in STD_LOGIC_VECTOR ( 0 to 0 );
-    \Using_FPGA.Native_i_1__58_0\ : in STD_LOGIC;
-    \Using_FPGA.Native_i_1__58_1\ : in STD_LOGIC;
+    \Using_FPGA.Native_i_1__59_0\ : in STD_LOGIC;
+    \Using_FPGA.Native_i_1__59_1\ : in STD_LOGIC;
     O : in STD_LOGIC;
     ex_is_multi_or_load_instr : in STD_LOGIC
   );
@@ -16829,11 +16950,11 @@ begin
       I1 => of_predecode(1),
       I2 => D(0),
       I3 => of_predecode(0),
-      I4 => \Using_FPGA.Native_i_1__58_0\,
-      I5 => \Using_FPGA.Native_i_1__58_1\,
+      I4 => \Using_FPGA.Native_i_1__59_0\,
+      I5 => \Using_FPGA.Native_i_1__59_1\,
       O => of_read_ex_write_op1_conflict_part2
     );
-\Using_FPGA.Native_i_1__58\: unisim.vcomponents.LUT3
+\Using_FPGA.Native_i_1__59\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"7F"
     )
@@ -16887,11 +17008,11 @@ entity \main_ub_microblaze_0_0_MB_LUT6__parameterized10_79\ is
   port (
     of_read_ex_write_op3_conflict_part2 : out STD_LOGIC;
     I0 : in STD_LOGIC;
-    \Using_FPGA.Native_i_1__56\ : in STD_LOGIC;
+    \Using_FPGA.Native_i_1__57\ : in STD_LOGIC;
     D : in STD_LOGIC_VECTOR ( 0 to 0 );
-    \Using_FPGA.Native_i_1__56_0\ : in STD_LOGIC;
-    \Using_FPGA.Native_i_1__56_1\ : in STD_LOGIC;
-    \Using_FPGA.Native_i_1__56_2\ : in STD_LOGIC
+    \Using_FPGA.Native_i_1__57_0\ : in STD_LOGIC;
+    \Using_FPGA.Native_i_1__57_1\ : in STD_LOGIC;
+    \Using_FPGA.Native_i_1__57_2\ : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \main_ub_microblaze_0_0_MB_LUT6__parameterized10_79\ : entity is "MB_LUT6";
@@ -16907,11 +17028,11 @@ begin
     )
         port map (
       I0 => I0,
-      I1 => \Using_FPGA.Native_i_1__56\,
+      I1 => \Using_FPGA.Native_i_1__57\,
       I2 => D(0),
-      I3 => \Using_FPGA.Native_i_1__56_0\,
-      I4 => \Using_FPGA.Native_i_1__56_1\,
-      I5 => \Using_FPGA.Native_i_1__56_2\,
+      I3 => \Using_FPGA.Native_i_1__57_0\,
+      I4 => \Using_FPGA.Native_i_1__57_1\,
+      I5 => \Using_FPGA.Native_i_1__57_2\,
       O => of_read_ex_write_op3_conflict_part2
     );
 end STRUCTURE;
@@ -16951,7 +17072,7 @@ begin
       I5 => mem_valid_instr,
       O => of_read_mem_write_op1_conflict_part2
     );
-\Using_FPGA.Native_i_1__57\: unisim.vcomponents.LUT3
+\Using_FPGA.Native_i_1__58\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"7F"
     )
@@ -17004,8 +17125,8 @@ entity \main_ub_microblaze_0_0_MB_LUT6__parameterized10_85\ is
   port (
     of_read_mem_write_op3_conflict_part2 : out STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \Using_FPGA.Native_i_1__55\ : in STD_LOGIC;
-    \Using_FPGA.Native_i_1__55_0\ : in STD_LOGIC;
+    \Using_FPGA.Native_i_1__56\ : in STD_LOGIC;
+    \Using_FPGA.Native_i_1__56_0\ : in STD_LOGIC;
     mem_gpr_write : in STD_LOGIC;
     mem_valid_instr : in STD_LOGIC
   );
@@ -17023,9 +17144,9 @@ begin
     )
         port map (
       I0 => Q(1),
-      I1 => \Using_FPGA.Native_i_1__55\,
+      I1 => \Using_FPGA.Native_i_1__56\,
       I2 => Q(0),
-      I3 => \Using_FPGA.Native_i_1__55_0\,
+      I3 => \Using_FPGA.Native_i_1__56_0\,
       I4 => mem_gpr_write,
       I5 => mem_valid_instr,
       O => of_read_mem_write_op3_conflict_part2
@@ -17261,8 +17382,8 @@ entity \main_ub_microblaze_0_0_MB_LUT6__parameterized8_78\ is
   port (
     ex_is_multi_or_load_instr_reg : out STD_LOGIC;
     D : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    \Using_FPGA.Native_i_1__56_0\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \Using_FPGA.Native_i_1__56_1\ : in STD_LOGIC;
+    \Using_FPGA.Native_i_1__57_0\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \Using_FPGA.Native_i_1__57_1\ : in STD_LOGIC;
     of_read_ex_write_op3_conflict_part2 : in STD_LOGIC;
     ex_is_multi_or_load_instr : in STD_LOGIC;
     of_predecode : in STD_LOGIC_VECTOR ( 0 to 0 )
@@ -17282,14 +17403,14 @@ begin
     )
         port map (
       I0 => D(2),
-      I1 => \Using_FPGA.Native_i_1__56_0\(1),
+      I1 => \Using_FPGA.Native_i_1__57_0\(1),
       I2 => D(1),
-      I3 => \Using_FPGA.Native_i_1__56_0\(0),
+      I3 => \Using_FPGA.Native_i_1__57_0\(0),
       I4 => D(0),
-      I5 => \Using_FPGA.Native_i_1__56_1\,
+      I5 => \Using_FPGA.Native_i_1__57_1\,
       O => of_read_ex_write_op3_conflict_part1
     );
-\Using_FPGA.Native_i_1__56\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__57\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"7FFF"
     )
@@ -17374,7 +17495,7 @@ entity \main_ub_microblaze_0_0_MB_LUT6__parameterized8_84\ is
     of_read_mem_write_op3_conflict_part1 : out STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 2 downto 0 );
     D : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \Using_FPGA.Native_i_1__55\ : in STD_LOGIC
+    \Using_FPGA.Native_i_1__56\ : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \main_ub_microblaze_0_0_MB_LUT6__parameterized8_84\ : entity is "MB_LUT6";
@@ -17394,7 +17515,7 @@ begin
       I2 => Q(1),
       I3 => D(0),
       I4 => Q(0),
-      I5 => \Using_FPGA.Native_i_1__55\,
+      I5 => \Using_FPGA.Native_i_1__56\,
       O => of_read_mem_write_op3_conflict_part1
     );
 end STRUCTURE;
@@ -17747,14 +17868,14 @@ use UNISIM.VCOMPONENTS.ALL;
 entity main_ub_microblaze_0_0_MB_MUXCY_107 is
   port (
     \Using_FPGA.Native_0\ : out STD_LOGIC;
-    \wb_exception_kind_i_reg[28]\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    wb_exception_i_reg : out STD_LOGIC_VECTOR ( 0 to 0 );
     in0 : out STD_LOGIC;
     ex_Write_ICache_i_reg : out STD_LOGIC;
     mem_gpr_write_dbg_reg : out STD_LOGIC;
     mem_gpr_write_reg : out STD_LOGIC;
     of_PipeRun_carry_9 : in STD_LOGIC;
-    Q : in STD_LOGIC_VECTOR ( 1 downto 0 );
     wb_exception : in STD_LOGIC;
+    Q : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \mem_pc_i_reg[0]\ : in STD_LOGIC;
     ex_Write_DCache_decode_reg : in STD_LOGIC;
     ex_write_dcache_instr : in STD_LOGIC;
@@ -17799,8 +17920,8 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MB_MUXCY_107 is
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native_CARRY4\ : label is "PRIMITIVE";
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of ex_Write_DCache_decode_cmb_inferred_i_1 : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of ex_Write_ICache_i_cmb_inferred_i_1 : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of ex_Write_DCache_decode_cmb_inferred_i_1 : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of ex_Write_ICache_i_cmb_inferred_i_1 : label is "soft_lutpair20";
 begin
   \Using_FPGA.Native_0\ <= \^using_fpga.native_0\;
   \^lopt_2\ <= lopt_1;
@@ -17879,12 +18000,12 @@ mem_gpr_write_i_1: unisim.vcomponents.LUT5
       INIT => X"007F0000"
     )
         port map (
-      I0 => Q(1),
-      I1 => Q(0),
-      I2 => wb_exception,
+      I0 => wb_exception,
+      I1 => Q(1),
+      I2 => Q(0),
       I3 => \mem_pc_i_reg[0]\,
       I4 => \^using_fpga.native_0\,
-      O => \wb_exception_kind_i_reg[28]\(0)
+      O => wb_exception_i_reg(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -18105,7 +18226,7 @@ entity main_ub_microblaze_0_0_MB_MUXCY_299 is
     ex_pre_alu_carry : out STD_LOGIC;
     muxcy_sel : in STD_LOGIC;
     muxcy_di : in STD_LOGIC;
-    \Using_FPGA.Native_0\ : in STD_LOGIC;
+    ex_MSR : in STD_LOGIC_VECTOR ( 0 to 0 );
     lopt : out STD_LOGIC;
     lopt_1 : in STD_LOGIC;
     lopt_2 : in STD_LOGIC;
@@ -18159,7 +18280,7 @@ begin
       CO(2) => \^lopt_4\,
       CO(1) => \^lopt_1\,
       CO(0) => ex_pre_alu_carry,
-      CYINIT => \Using_FPGA.Native_0\,
+      CYINIT => ex_MSR(0),
       DI(3) => \^lopt_8\,
       DI(2) => \^lopt_5\,
       DI(1) => \^lopt_2\,
@@ -18179,32 +18300,20 @@ use UNISIM.VCOMPONENTS.ALL;
 entity main_ub_microblaze_0_0_MB_MUXCY_300 is
   port (
     ex_alu_carryin : out STD_LOGIC;
+    S : in STD_LOGIC;
+    mem_LWX_SWX_Carry_Hold : in STD_LOGIC;
     ex_pre_alu_carry : in STD_LOGIC;
-    lopt : in STD_LOGIC;
-    lopt_1 : out STD_LOGIC;
-    lopt_2 : out STD_LOGIC
+    lopt : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_ub_microblaze_0_0_MB_MUXCY_300 : entity is "MB_MUXCY";
 end main_ub_microblaze_0_0_MB_MUXCY_300;
 
 architecture STRUCTURE of main_ub_microblaze_0_0_MB_MUXCY_300 is
-  signal \<const0>\ : STD_LOGIC;
-  signal \<const1>\ : STD_LOGIC;
   signal \^ex_alu_carryin\ : STD_LOGIC;
 begin
   \^ex_alu_carryin\ <= lopt;
   ex_alu_carryin <= \^ex_alu_carryin\;
-  lopt_1 <= \<const0>\;
-  lopt_2 <= \<const1>\;
-GND: unisim.vcomponents.GND
-     port map (
-      G => \<const0>\
-    );
-VCC: unisim.vcomponents.VCC
-     port map (
-      P => \<const1>\
-    );
 end STRUCTURE;
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -18945,7 +19054,7 @@ entity main_ub_microblaze_0_0_MB_MUXCY_90 is
 end main_ub_microblaze_0_0_MB_MUXCY_90;
 
 architecture STRUCTURE of main_ub_microblaze_0_0_MB_MUXCY_90 is
-  signal \Using_FPGA.Native_i_1__98_n_0\ : STD_LOGIC;
+  signal \Using_FPGA.Native_i_1__99_n_0\ : STD_LOGIC;
   signal \^lopt_1\ : STD_LOGIC;
   signal \^lopt_2\ : STD_LOGIC;
   signal \^lopt_3\ : STD_LOGIC;
@@ -18990,9 +19099,9 @@ begin
       S(3) => lopt_9,
       S(2) => \^lopt_6\,
       S(1) => \^lopt_3\,
-      S(0) => \Using_FPGA.Native_i_1__98_n_0\
+      S(0) => \Using_FPGA.Native_i_1__99_n_0\
     );
-\Using_FPGA.Native_i_1__98\: unisim.vcomponents.LUT3
+\Using_FPGA.Native_i_1__99\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"E0"
     )
@@ -19000,7 +19109,7 @@ begin
       I0 => mem_load_store_access,
       I1 => mem_Write_DCache,
       I2 => mem_valid_instr,
-      O => \Using_FPGA.Native_i_1__98_n_0\
+      O => \Using_FPGA.Native_i_1__99_n_0\
     );
 end STRUCTURE;
 library IEEE;
@@ -19014,6 +19123,8 @@ entity main_ub_microblaze_0_0_MB_MUXCY_91 is
     wb_valid_reg : out STD_LOGIC;
     wb_gpr_write_dbg0 : out STD_LOGIC;
     wb_gpr_write_i0 : out STD_LOGIC;
+    mem_access_failed_reg : out STD_LOGIC;
+    \Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_reg\ : out STD_LOGIC;
     mem_wait_on_ready_N : in STD_LOGIC;
     mem_valid_instr : in STD_LOGIC;
     mem_exception_from_ex : in STD_LOGIC;
@@ -19026,6 +19137,12 @@ entity main_ub_microblaze_0_0_MB_MUXCY_91 is
     wb_exception : in STD_LOGIC;
     mem_gpr_write_dbg : in STD_LOGIC;
     mem_gpr_write : in STD_LOGIC;
+    mem_daxi_exclusive_failed : in STD_LOGIC;
+    mem_MSR_Load_LWX_SWX_C : in STD_LOGIC;
+    ex_MSR : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_FPGA.Native_1\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_reg_0\ : in STD_LOGIC;
+    ex_MTS_MSR : in STD_LOGIC;
     lopt : in STD_LOGIC;
     lopt_1 : out STD_LOGIC;
     lopt_2 : out STD_LOGIC
@@ -19039,8 +19156,8 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MB_MUXCY_91 is
   signal \<const1>\ : STD_LOGIC;
   signal \^using_fpga.native_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of wb_gpr_write_dbg_i_1 : label is "soft_lutpair44";
-  attribute SOFT_HLUTNM of wb_gpr_write_i_i_1 : label is "soft_lutpair44";
+  attribute SOFT_HLUTNM of wb_gpr_write_dbg_i_1 : label is "soft_lutpair42";
+  attribute SOFT_HLUTNM of wb_gpr_write_i_i_1 : label is "soft_lutpair42";
 begin
   \Using_FPGA.Native_0\ <= \^using_fpga.native_0\;
   \^using_fpga.native_0\ <= lopt;
@@ -19049,6 +19166,31 @@ begin
 GND: unisim.vcomponents.GND
      port map (
       G => \<const0>\
+    );
+\Using_FPGA.Native_i_1__92\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8FFB800"
+    )
+        port map (
+      I0 => mem_daxi_exclusive_failed,
+      I1 => mem_MSR_Load_LWX_SWX_C,
+      I2 => ex_MSR(0),
+      I3 => \^using_fpga.native_0\,
+      I4 => \Using_FPGA.Native_1\(0),
+      O => mem_access_failed_reg
+    );
+\Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000000000002E22"
+    )
+        port map (
+      I0 => \Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_reg_0\,
+      I1 => \^using_fpga.native_0\,
+      I2 => ex_MTS_MSR,
+      I3 => mem_MSR_Load_LWX_SWX_C,
+      I4 => E(0),
+      I5 => sync_reset,
+      O => \Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_reg\
     );
 VCC: unisim.vcomponents.VCC
      port map (
@@ -19248,7 +19390,7 @@ GND: unisim.vcomponents.GND
      port map (
       G => \<const0>\
     );
-\Using_FPGA.Native_i_1__97\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__98\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"55DF"
     )
@@ -19330,25 +19472,24 @@ entity main_ub_microblaze_0_0_MB_MUXCY_97 is
   port (
     ex_mbar_stall_no_sleep_1_reg : out STD_LOGIC;
     I5 : out STD_LOGIC;
-    ex_jump_hold_reg : out STD_LOGIC;
     ex_delayslot_Instr0 : out STD_LOGIC;
     keep_jump_taken_with_ds_reg : out STD_LOGIC;
     mem_jump_taken0 : out STD_LOGIC;
     \if_pc_reg[0]\ : out STD_LOGIC_VECTOR ( 31 downto 0 );
     if_missed_fetch_reg : out STD_LOGIC;
+    ex_jump_hold_reg : out STD_LOGIC;
     ex_jump_q_reg : out STD_LOGIC;
     jump_carry5 : in STD_LOGIC;
-    wb_exception : in STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    ex_jump_hold : in STD_LOGIC;
-    E : in STD_LOGIC_VECTOR ( 0 to 0 );
-    sync_reset : in STD_LOGIC;
+    wb_exception : in STD_LOGIC;
     ex_mbar_stall_no_sleep_1 : in STD_LOGIC;
     ex_first_cycle : in STD_LOGIC;
     ex_mbar_decode : in STD_LOGIC;
+    ex_jump_hold : in STD_LOGIC;
     ex_mbar_sleep : in STD_LOGIC;
     keep_jump_taken_with_ds : in STD_LOGIC;
     ex_branch_with_delayslot : in STD_LOGIC;
+    sync_reset : in STD_LOGIC;
     keep_jump_taken_with_ds_reg_0 : in STD_LOGIC;
     D : in STD_LOGIC_VECTOR ( 31 downto 0 );
     \if_pc_reg[30]\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -19386,6 +19527,7 @@ entity main_ub_microblaze_0_0_MB_MUXCY_97 is
     if_missed_fetch_reg_0 : in STD_LOGIC_VECTOR ( 0 to 0 );
     IB_Ready : in STD_LOGIC;
     LOCKSTEP_Master_Out : in STD_LOGIC_VECTOR ( 0 to 0 );
+    E : in STD_LOGIC_VECTOR ( 0 to 0 );
     ex_jump_q : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
@@ -19400,37 +19542,37 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MB_MUXCY_97 is
   signal \NLW_Using_FPGA.Native_CARRY4_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \NLW_Using_FPGA.Native_CARRY4_S_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 1 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Instr_Addr[0]_INST_0\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \Instr_Addr[10]_INST_0\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \Instr_Addr[11]_INST_0\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \Instr_Addr[12]_INST_0\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \Instr_Addr[13]_INST_0\ : label is "soft_lutpair35";
-  attribute SOFT_HLUTNM of \Instr_Addr[14]_INST_0\ : label is "soft_lutpair35";
-  attribute SOFT_HLUTNM of \Instr_Addr[15]_INST_0\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \Instr_Addr[16]_INST_0\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \Instr_Addr[17]_INST_0\ : label is "soft_lutpair37";
-  attribute SOFT_HLUTNM of \Instr_Addr[18]_INST_0\ : label is "soft_lutpair37";
-  attribute SOFT_HLUTNM of \Instr_Addr[19]_INST_0\ : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of \Instr_Addr[1]_INST_0\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \Instr_Addr[20]_INST_0\ : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of \Instr_Addr[21]_INST_0\ : label is "soft_lutpair39";
-  attribute SOFT_HLUTNM of \Instr_Addr[22]_INST_0\ : label is "soft_lutpair39";
-  attribute SOFT_HLUTNM of \Instr_Addr[23]_INST_0\ : label is "soft_lutpair40";
-  attribute SOFT_HLUTNM of \Instr_Addr[24]_INST_0\ : label is "soft_lutpair40";
-  attribute SOFT_HLUTNM of \Instr_Addr[25]_INST_0\ : label is "soft_lutpair41";
-  attribute SOFT_HLUTNM of \Instr_Addr[27]_INST_0\ : label is "soft_lutpair43";
-  attribute SOFT_HLUTNM of \Instr_Addr[28]_INST_0\ : label is "soft_lutpair43";
-  attribute SOFT_HLUTNM of \Instr_Addr[29]_INST_0\ : label is "soft_lutpair42";
-  attribute SOFT_HLUTNM of \Instr_Addr[2]_INST_0\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \Instr_Addr[30]_INST_0\ : label is "soft_lutpair42";
-  attribute SOFT_HLUTNM of \Instr_Addr[31]_INST_0\ : label is "soft_lutpair41";
-  attribute SOFT_HLUTNM of \Instr_Addr[3]_INST_0\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \Instr_Addr[4]_INST_0\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \Instr_Addr[5]_INST_0\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \Instr_Addr[6]_INST_0\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \Instr_Addr[7]_INST_0\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \Instr_Addr[8]_INST_0\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \Instr_Addr[9]_INST_0\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \Instr_Addr[0]_INST_0\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \Instr_Addr[10]_INST_0\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \Instr_Addr[11]_INST_0\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \Instr_Addr[12]_INST_0\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \Instr_Addr[13]_INST_0\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \Instr_Addr[14]_INST_0\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \Instr_Addr[15]_INST_0\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \Instr_Addr[16]_INST_0\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \Instr_Addr[17]_INST_0\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \Instr_Addr[18]_INST_0\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \Instr_Addr[19]_INST_0\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \Instr_Addr[1]_INST_0\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \Instr_Addr[20]_INST_0\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \Instr_Addr[21]_INST_0\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \Instr_Addr[22]_INST_0\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \Instr_Addr[23]_INST_0\ : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of \Instr_Addr[24]_INST_0\ : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of \Instr_Addr[25]_INST_0\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \Instr_Addr[26]_INST_0\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \Instr_Addr[28]_INST_0\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \Instr_Addr[29]_INST_0\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \Instr_Addr[2]_INST_0\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \Instr_Addr[30]_INST_0\ : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of \Instr_Addr[31]_INST_0\ : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of \Instr_Addr[3]_INST_0\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \Instr_Addr[4]_INST_0\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \Instr_Addr[5]_INST_0\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \Instr_Addr[6]_INST_0\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \Instr_Addr[7]_INST_0\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \Instr_Addr[8]_INST_0\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \Instr_Addr[9]_INST_0\ : label is "soft_lutpair31";
   attribute OPT_MODIFIED : string;
   attribute OPT_MODIFIED of \Using_FPGA.Native_CARRY4\ : label is "MLO ";
   attribute XILINX_LEGACY_PRIM : string;
@@ -19439,11 +19581,11 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MB_MUXCY_97 is
   attribute XILINX_TRANSFORM_PINMAP of \Using_FPGA.Native_CARRY4\ : label is "LO:O";
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native_CARRY4\ : label is "PRIMITIVE";
-  attribute SOFT_HLUTNM of ex_delayslot_Instr_i_1 : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of ex_jump_hold_i_1 : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of ex_jump_q_i_1 : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of keep_jump_taken_with_ds_i_1 : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of mem_jump_taken_i_1 : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of ex_delayslot_Instr_i_1 : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of ex_jump_hold_i_1 : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of ex_jump_q_i_1 : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of keep_jump_taken_with_ds_i_1 : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of mem_jump_taken_i_1 : label is "soft_lutpair25";
 begin
   ex_mbar_stall_no_sleep_1_reg <= \^ex_mbar_stall_no_sleep_1_reg\;
 \Instr_Addr[0]_INST_0\: unisim.vcomponents.LUT3
@@ -19796,9 +19938,9 @@ begin
     )
         port map (
       I0 => \^ex_mbar_stall_no_sleep_1_reg\,
-      I1 => wb_exception,
-      I2 => Q(0),
-      I3 => Q(1),
+      I1 => Q(0),
+      I2 => Q(1),
+      I3 => wb_exception,
       O => I5
     );
 ex_delayslot_Instr_i_1: unisim.vcomponents.LUT3
@@ -24194,8 +24336,8 @@ entity main_ub_microblaze_0_0_MB_MUXF7 is
     sel_input_iii_0 : in STD_LOGIC;
     sel_input_delayslot : in STD_LOGIC;
     ex_branch_with_delayslot_i : in STD_LOGIC;
-    wb_exception : in STD_LOGIC;
-    Q : in STD_LOGIC_VECTOR ( 1 downto 0 )
+    Q : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    wb_exception : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_ub_microblaze_0_0_MB_MUXF7 : entity is "MB_MUXF7";
@@ -24220,9 +24362,9 @@ begin
     )
         port map (
       I0 => ex_branch_with_delayslot_i,
-      I1 => wb_exception,
-      I2 => Q(0),
-      I3 => Q(1),
+      I1 => Q(0),
+      I2 => Q(1),
+      I3 => wb_exception,
       O => \^i4_0\
     );
 end STRUCTURE;
@@ -31031,8 +31173,8 @@ architecture STRUCTURE of \main_ub_microblaze_0_0_mb_sync_bit__parameterized4_30
   signal p_49_out : STD_LOGIC;
   signal \^trig_out_0_synced\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Performance_Debug_Control.dbg_stop_i_i_2\ : label is "soft_lutpair71";
-  attribute SOFT_HLUTNM of \Performance_Debug_Control.trig_ack_out_0_i_1\ : label is "soft_lutpair71";
+  attribute SOFT_HLUTNM of \Performance_Debug_Control.dbg_stop_i_i_2\ : label is "soft_lutpair70";
+  attribute SOFT_HLUTNM of \Performance_Debug_Control.trig_ack_out_0_i_1\ : label is "soft_lutpair70";
 begin
   trig_out_0_synced <= \^trig_out_0_synced\;
 \Performance_Debug_Control.dbg_stop_i_i_1\: unisim.vcomponents.LUT6
@@ -33455,9 +33597,8 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity main_ub_microblaze_0_0_Operand_Select_gti is
   port (
-    ex_load_alu_carry_reg : out STD_LOGIC;
-    Q : out STD_LOGIC_VECTOR ( 31 downto 0 );
     \EX_Op1_reg[30]_0\ : out STD_LOGIC;
+    Q : out STD_LOGIC_VECTOR ( 31 downto 0 );
     \EX_Op1_reg[28]_0\ : out STD_LOGIC;
     S : out STD_LOGIC;
     \EX_Op2_reg[0]_0\ : out STD_LOGIC_VECTOR ( 31 downto 0 );
@@ -33507,26 +33648,19 @@ entity main_ub_microblaze_0_0_Operand_Select_gti is
     \EX_Op1_reg[29]_0\ : in STD_LOGIC;
     \EX_Op1_reg[30]_1\ : in STD_LOGIC;
     \EX_Op1_reg[31]_0\ : in STD_LOGIC;
-    p_232_in : in STD_LOGIC;
+    p_238_in : in STD_LOGIC;
+    ex_move_to_MSR_instr : in STD_LOGIC;
     \Using_FPGA.Native_2\ : in STD_LOGIC;
-    LO : in STD_LOGIC;
+    ex_MSR : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \Using_FPGA.Native_3\ : in STD_LOGIC;
     \Using_FPGA.Native_4\ : in STD_LOGIC;
-    ex_MSR_Load_ALU_C : in STD_LOGIC;
-    \ex_swx_access__0\ : in STD_LOGIC;
-    ex_MSR_Load_Shift_C : in STD_LOGIC;
-    ex_MSR_Load_LWX_SWX_C : in STD_LOGIC;
-    ex_move_to_MSR_instr : in STD_LOGIC;
-    ex_MSR : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \Using_FPGA.Native_5\ : in STD_LOGIC;
-    \Using_FPGA.Native_6\ : in STD_LOGIC;
     ex_valid : in STD_LOGIC;
     ex_cmp_op : in STD_LOGIC;
     EX_ALU_Sel_Logic : in STD_LOGIC;
     ex_reverse_mem_access : in STD_LOGIC;
     ex_byte_access : in STD_LOGIC;
     ex_doublet_access : in STD_LOGIC;
-    \Using_FPGA.Native_i_3__31\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \Using_FPGA.Native_i_3__30\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     ex_swap_byte_instr : in STD_LOGIC;
     sync_reset : in STD_LOGIC;
     E : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -33577,8 +33711,6 @@ architecture STRUCTURE of main_ub_microblaze_0_0_Operand_Select_gti is
   signal O9_out : STD_LOGIC;
   signal \^q\ : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal \^using_fpga.native_0\ : STD_LOGIC;
-  signal \Using_FPGA.Native_i_2__21_n_0\ : STD_LOGIC;
-  signal \Using_FPGA.Native_i_3_n_0\ : STD_LOGIC;
   signal ex_branch_cmp_op1 : STD_LOGIC_VECTOR ( 30 to 31 );
   attribute SOFT_HLUTNM : string;
   attribute SOFT_HLUTNM of \Byte_Enable[0]_INST_0_i_1\ : label is "soft_lutpair1";
@@ -35149,28 +35281,15 @@ begin
       of_op1_sel_spr => of_op1_sel_spr,
       swap_result(0) => swap_result(22)
     );
-\Using_FPGA.Native_i_1__3\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"EAAAFFFFEAAA0000"
-    )
-        port map (
-      I0 => \Using_FPGA.Native_i_2__21_n_0\,
-      I1 => p_232_in,
-      I2 => \Using_FPGA.Native_2\,
-      I3 => LO,
-      I4 => \Using_FPGA.Native_3\,
-      I5 => \Using_FPGA.Native_4\,
-      O => ex_load_alu_carry_reg
-    );
 \Using_FPGA.Native_i_1__5\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"BFFF8000"
     )
         port map (
       I0 => \^q\(1),
-      I1 => p_232_in,
+      I1 => p_238_in,
       I2 => ex_move_to_MSR_instr,
-      I3 => \Using_FPGA.Native_3\,
+      I3 => \Using_FPGA.Native_2\,
       I4 => ex_MSR(0),
       O => \EX_Op1_reg[30]_0\
     );
@@ -35204,7 +35323,7 @@ begin
       I2 => ex_cmp_op,
       O => I2
     );
-\Using_FPGA.Native_i_1__94\: unisim.vcomponents.LUT2
+\Using_FPGA.Native_i_1__95\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"1"
     )
@@ -35213,44 +35332,18 @@ begin
       I1 => ex_branch_cmp_op1(31),
       O => \EX_Branch_CMP_Op1_reg[30]_0\
     );
-\Using_FPGA.Native_i_2__21\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"3030003330302222"
-    )
-        port map (
-      I0 => \Using_FPGA.Native_i_3_n_0\,
-      I1 => ex_MSR_Load_ALU_C,
-      I2 => \^q\(0),
-      I3 => \ex_swx_access__0\,
-      I4 => ex_MSR_Load_Shift_C,
-      I5 => ex_MSR_Load_LWX_SWX_C,
-      O => \Using_FPGA.Native_i_2__21_n_0\
-    );
 \Using_FPGA.Native_i_2__22\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"AEFFFFFFA2000000"
     )
         port map (
       I0 => \^q\(3),
-      I1 => \Using_FPGA.Native_5\,
-      I2 => \Using_FPGA.Native_6\,
+      I1 => \Using_FPGA.Native_3\,
+      I2 => \Using_FPGA.Native_4\,
       I3 => ex_valid,
       I4 => ex_move_to_MSR_instr,
       I5 => ex_MSR(1),
       O => \EX_Op1_reg[28]_0\
-    );
-\Using_FPGA.Native_i_3\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"AEFFFFFFA2000000"
-    )
-        port map (
-      I0 => \^q\(2),
-      I1 => \Using_FPGA.Native_5\,
-      I2 => \Using_FPGA.Native_6\,
-      I3 => ex_valid,
-      I4 => ex_move_to_MSR_instr,
-      I5 => \Using_FPGA.Native_4\,
-      O => \Using_FPGA.Native_i_3_n_0\
     );
 \imm_reg_reg[0]\: unisim.vcomponents.FDRE
      port map (
@@ -35396,9 +35489,9 @@ sign_doublet_inferred_i_1: unisim.vcomponents.LUT4
     )
         port map (
       I0 => \^q\(7),
-      I1 => \Using_FPGA.Native_i_3__31\(0),
+      I1 => \Using_FPGA.Native_i_3__30\(0),
       I2 => \^q\(15),
-      I3 => \Using_FPGA.Native_i_3__31\(1),
+      I3 => \Using_FPGA.Native_i_3__30\(1),
       O => in0
     );
 end STRUCTURE;
@@ -35447,8 +35540,8 @@ entity main_ub_microblaze_0_0_PC_Module_gti is
     Clk : in STD_LOGIC;
     if_missed_fetch_reg : in STD_LOGIC;
     if_missed_fetch_reg_0 : in STD_LOGIC;
-    wb_exception : in STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    wb_exception : in STD_LOGIC;
     IReady : in STD_LOGIC;
     \Using_FPGA.Native\ : in STD_LOGIC;
     if_sel_input : in STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -35740,9 +35833,9 @@ I_AS_INST_0_i_1: unisim.vcomponents.LUT6
         port map (
       I0 => if_missed_fetch_reg,
       I1 => if_missed_fetch_reg_0,
-      I2 => wb_exception,
-      I3 => Q(0),
-      I4 => Q(1),
+      I2 => Q(0),
+      I3 => Q(1),
+      I4 => wb_exception,
       I5 => IReady,
       O => IB_Ready
     );
@@ -38203,25 +38296,26 @@ entity main_ub_microblaze_0_0_PreFetch_Buffer_gti is
     ex_load_shift_carry0 : out STD_LOGIC;
     ex_mbar_is_sleep_cmb : out STD_LOGIC;
     ex_mbar_decode_cmb : out STD_LOGIC;
-    \Using_FPGA.Native_15\ : out STD_LOGIC;
-    D225_out : out STD_LOGIC;
+    D236_out : out STD_LOGIC;
+    D234_out : out STD_LOGIC;
     p_2_in : out STD_LOGIC;
-    \Using_FPGA.Native_16\ : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    \Using_FPGA.Native_15\ : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    \Using_FPGA.Native_16\ : out STD_LOGIC;
     \Using_FPGA.Native_17\ : out STD_LOGIC;
-    \Using_FPGA.Native_18\ : out STD_LOGIC;
     \Serial_Dbg_Intf.control_reg_reg[8]\ : out STD_LOGIC;
     ex_enable_sext_shift_i0 : out STD_LOGIC;
-    \Using_FPGA.Native_19\ : out STD_LOGIC;
+    \Using_FPGA.Native_18\ : out STD_LOGIC;
     if_fetch_in_progress_reg : out STD_LOGIC;
     wb_exception_i_reg : out STD_LOGIC;
     ex_valid_jump_reg : out STD_LOGIC;
     ex_valid_reg : out STD_LOGIC;
+    \Using_FPGA.Native_19\ : out STD_LOGIC;
     \Using_FPGA.Native_20\ : out STD_LOGIC;
     \Using_FPGA.Native_21\ : out STD_LOGIC;
     \Using_FPGA.Native_22\ : out STD_LOGIC;
     \Using_FPGA.Native_23\ : out STD_LOGIC;
-    \Using_FPGA.Native_24\ : out STD_LOGIC;
     ex_branch_with_delayslot_reg : out STD_LOGIC;
+    \Using_FPGA.Native_24\ : out STD_LOGIC;
     \Using_FPGA.Native_25\ : out STD_LOGIC;
     \Using_FPGA.Native_26\ : out STD_LOGIC;
     \Using_FPGA.Native_27\ : out STD_LOGIC;
@@ -38257,14 +38351,13 @@ entity main_ub_microblaze_0_0_PreFetch_Buffer_gti is
     \Using_FPGA.Native_57\ : out STD_LOGIC;
     \Using_FPGA.Native_58\ : out STD_LOGIC;
     \Using_FPGA.Native_59\ : out STD_LOGIC;
-    \Using_FPGA.Native_60\ : out STD_LOGIC;
     I1_0 : out STD_LOGIC;
     of_Sel_SPR_MSR88_out : out STD_LOGIC;
     ex_is_multi_or_load_instr0 : out STD_LOGIC;
     of_op1_sel_spr : out STD_LOGIC;
     Dbg_Clean_Stop0 : out STD_LOGIC;
     ex_set_bip : out STD_LOGIC;
-    \Using_FPGA.Native_61\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_FPGA.Native_60\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     ex_valid_jump_reg_0 : in STD_LOGIC;
     I5 : in STD_LOGIC;
     sync_reset : in STD_LOGIC;
@@ -38350,12 +38443,12 @@ entity main_ub_microblaze_0_0_PreFetch_Buffer_gti is
     \Using_FPGA.Native_i_5__0\ : in STD_LOGIC_VECTOR ( 4 downto 0 );
     mem_gpr_write : in STD_LOGIC;
     mem_valid_instr : in STD_LOGIC;
-    p_214_in : in STD_LOGIC;
+    p_219_in : in STD_LOGIC;
     GPR_Op1 : in STD_LOGIC_VECTOR ( 0 to 31 );
-    if_fetch_in_progress_reg_0 : in STD_LOGIC_VECTOR ( 6 downto 0 );
-    \Using_FPGA.Native_i_5__0_0\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    ex_valid_reg_0 : in STD_LOGIC;
-    p_217_in : in STD_LOGIC;
+    \Using_FPGA.Native_i_5__0_0\ : in STD_LOGIC_VECTOR ( 4 downto 0 );
+    if_fetch_in_progress_reg_0 : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    p_222_in : in STD_LOGIC;
+    \Using_FPGA.Native_i_5__0_1\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     ex_mbar_is_sleep : in STD_LOGIC;
     ex_mbar_decode : in STD_LOGIC;
     \Performance_Debug_Control.ex_brki_hit_reg\ : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -38370,12 +38463,13 @@ entity main_ub_microblaze_0_0_PreFetch_Buffer_gti is
     if_fetch_in_progress_reg_1 : in STD_LOGIC;
     \ex_gpr_write_dbg__0\ : in STD_LOGIC;
     ex_valid_jump_reg_1 : in STD_LOGIC;
+    ex_valid_reg_0 : in STD_LOGIC;
     ex_Exception_Taken : in STD_LOGIC;
     mem_exception_from_ex : in STD_LOGIC;
     ex_jump_nodelay : in STD_LOGIC;
     IReady : in STD_LOGIC;
+    \Using_FPGA.Native_61\ : in STD_LOGIC;
     \Using_FPGA.Native_62\ : in STD_LOGIC;
-    \Using_FPGA.Native_63\ : in STD_LOGIC;
     if_missed_fetch : in STD_LOGIC;
     ex_branch_with_delayslot : in STD_LOGIC;
     ex_jump_q : in STD_LOGIC;
@@ -38388,7 +38482,7 @@ end main_ub_microblaze_0_0_PreFetch_Buffer_gti;
 
 architecture STRUCTURE of main_ub_microblaze_0_0_PreFetch_Buffer_gti is
   signal \^d\ : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal \EX_ALU_Op1143_out__0\ : STD_LOGIC;
+  signal \EX_ALU_Op1149_out__0\ : STD_LOGIC;
   signal I0101_out : STD_LOGIC;
   signal I0105_out : STD_LOGIC;
   signal I0109_out : STD_LOGIC;
@@ -38502,7 +38596,7 @@ architecture STRUCTURE of main_ub_microblaze_0_0_PreFetch_Buffer_gti is
   signal \Instruction_Prefetch_Mux[19].Gen_Instr_DFF_n_1\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[20].Gen_Instr_DFF_n_1\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[21].Gen_Instr_DFF_n_1\ : STD_LOGIC;
-  signal \Instruction_Prefetch_Mux[21].Gen_Instr_DFF_n_2\ : STD_LOGIC;
+  signal \Instruction_Prefetch_Mux[21].Gen_Instr_DFF_n_4\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[22].Gen_Instr_DFF_n_1\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[23].Gen_Instr_DFF_n_1\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[24].Gen_Instr_DFF_n_1\ : STD_LOGIC;
@@ -38520,22 +38614,22 @@ architecture STRUCTURE of main_ub_microblaze_0_0_PreFetch_Buffer_gti is
   signal \Instruction_Prefetch_Mux[30].Gen_Instr_DFF_n_1\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[31].Gen_Instr_DFF_n_1\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[32].Gen_Instr_DFF_n_1\ : STD_LOGIC;
-  signal \Instruction_Prefetch_Mux[32].Gen_Instr_DFF_n_2\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[32].Gen_Instr_DFF_n_3\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[37].Gen_Instr_DFF_n_1\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[37].Gen_Instr_DFF_n_2\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[37].Gen_Instr_DFF_n_3\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[3].Gen_Instr_DFF_n_1\ : STD_LOGIC;
-  signal \Instruction_Prefetch_Mux[3].Gen_Instr_DFF_n_13\ : STD_LOGIC;
+  signal \Instruction_Prefetch_Mux[3].Gen_Instr_DFF_n_12\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[42].Gen_Instr_DFF_n_1\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[42].Gen_Instr_DFF_n_2\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[42].Gen_Instr_DFF_n_3\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[4].Gen_Instr_DFF_n_2\ : STD_LOGIC;
+  signal \Instruction_Prefetch_Mux[6].Gen_Instr_DFF_n_33\ : STD_LOGIC;
   signal \OF_Op1_Sel_SPR_PC0__0\ : STD_LOGIC;
   signal \^using_fpga.native\ : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal \^using_fpga.native_0\ : STD_LOGIC;
   signal \^using_fpga.native_1\ : STD_LOGIC;
-  signal \^using_fpga.native_17\ : STD_LOGIC;
+  signal \^using_fpga.native_16\ : STD_LOGIC;
   signal \^using_fpga.native_2\ : STD_LOGIC;
   signal \^using_fpga.native_3\ : STD_LOGIC;
   signal \^using_fpga.native_4\ : STD_LOGIC_VECTOR ( 20 downto 0 );
@@ -38595,9 +38689,10 @@ architecture STRUCTURE of main_ub_microblaze_0_0_PreFetch_Buffer_gti is
   signal of_instr_ii_9 : STD_LOGIC;
   signal of_op2_sel_imm : STD_LOGIC;
   signal \^of_predecode\ : STD_LOGIC_VECTOR ( 0 to 10 );
+  signal \of_read_ex_write_op3_conflict__1\ : STD_LOGIC;
   signal \^of_use_op2_s\ : STD_LOGIC;
   signal \^of_valid\ : STD_LOGIC;
-  signal p_0_in30_in : STD_LOGIC;
+  signal p_0_in32_in : STD_LOGIC;
   signal p_1_in104_in : STD_LOGIC;
   signal p_1_in109_in : STD_LOGIC;
   signal p_1_in114_in : STD_LOGIC;
@@ -38623,7 +38718,7 @@ architecture STRUCTURE of main_ub_microblaze_0_0_PreFetch_Buffer_gti is
   signal p_1_in204_in : STD_LOGIC;
   signal p_1_in209_in : STD_LOGIC;
   signal p_1_in24_in : STD_LOGIC;
-  signal p_1_in26_in : STD_LOGIC;
+  signal p_1_in28_in : STD_LOGIC;
   signal p_1_in29_in : STD_LOGIC;
   signal p_1_in34_in : STD_LOGIC;
   signal p_1_in39_in : STD_LOGIC;
@@ -38640,7 +38735,7 @@ architecture STRUCTURE of main_ub_microblaze_0_0_PreFetch_Buffer_gti is
   signal p_1_in94_in : STD_LOGIC;
   signal p_1_in99_in : STD_LOGIC;
   signal p_1_in9_in : STD_LOGIC;
-  signal p_28_in : STD_LOGIC;
+  signal p_30_in : STD_LOGIC;
   signal sel_input_delayslot : STD_LOGIC;
   signal sel_input_i_0 : STD_LOGIC;
   signal sel_input_i_1 : STD_LOGIC;
@@ -38742,7 +38837,7 @@ begin
   \Using_FPGA.Native\(1 downto 0) <= \^using_fpga.native\(1 downto 0);
   \Using_FPGA.Native_0\ <= \^using_fpga.native_0\;
   \Using_FPGA.Native_1\ <= \^using_fpga.native_1\;
-  \Using_FPGA.Native_17\ <= \^using_fpga.native_17\;
+  \Using_FPGA.Native_16\ <= \^using_fpga.native_16\;
   \Using_FPGA.Native_2\ <= \^using_fpga.native_2\;
   \Using_FPGA.Native_3\ <= \^using_fpga.native_3\;
   \Using_FPGA.Native_4\(20 downto 0) <= \^using_fpga.native_4\(20 downto 0);
@@ -38783,7 +38878,7 @@ begin
       if_fetch_in_progress => if_fetch_in_progress,
       if_fetch_in_progress_reg => if_fetch_in_progress_reg,
       if_fetch_in_progress_reg_0 => if_fetch_in_progress_reg_1,
-      if_fetch_in_progress_reg_1(0) => if_fetch_in_progress_reg_0(6),
+      if_fetch_in_progress_reg_1(0) => if_fetch_in_progress_reg_0(1),
       if_sel_input(0) => if_sel_input(1),
       in0 => in0,
       \out\ => \out\,
@@ -38943,18 +39038,18 @@ begin
 \Instruction_Prefetch_Mux[0].Gen_Instr_DFF\: entity work.main_ub_microblaze_0_0_MB_FDR_119
      port map (
       Clk => Clk,
-      \EX_ALU_Op1143_out__0\ => \EX_ALU_Op1143_out__0\,
+      \EX_ALU_Op1149_out__0\ => \EX_ALU_Op1149_out__0\,
       EX_CMP_Op_reg => \^using_fpga.native_4\(0),
       EX_Unsigned_Op_reg => \^of_instr\(3),
       EX_Unsigned_Op_reg_0 => \^using_fpga.native_4\(1),
       EX_Use_Carry_reg => \^of_instr\(1),
       \OF_Op1_Sel_SPR_PC0__0\ => \OF_Op1_Sel_SPR_PC0__0\,
       \Using_FPGA.Native_0\ => \^of_instr\(5),
-      \Using_FPGA.Native_1\ => \Using_FPGA.Native_20\,
-      \Using_FPGA.Native_2\ => \Using_FPGA.Native_21\,
-      \Using_FPGA.Native_3\ => \Using_FPGA.Native_22\,
-      \Using_FPGA.Native_4\ => \Using_FPGA.Native_23\,
-      \Using_FPGA.Native_5\ => \Using_FPGA.Native_27\,
+      \Using_FPGA.Native_1\ => \Using_FPGA.Native_19\,
+      \Using_FPGA.Native_2\ => \Using_FPGA.Native_20\,
+      \Using_FPGA.Native_3\ => \Using_FPGA.Native_21\,
+      \Using_FPGA.Native_4\ => \Using_FPGA.Native_22\,
+      \Using_FPGA.Native_5\ => \Using_FPGA.Native_26\,
       \Using_FPGA.Native_6\ => \^of_instr\(2),
       \Using_FPGA.Native_7\ => \^of_instr\(4),
       ex_jump => ex_jump,
@@ -38973,7 +39068,7 @@ begin
      port map (
       Clk => Clk,
       \EX_Op3[0]_i_4\(2 downto 0) => \Using_FPGA.Native_i_5__0\(2 downto 0),
-      \EX_Op3[0]_i_5\(2 downto 0) => if_fetch_in_progress_reg_0(2 downto 0),
+      \EX_Op3[0]_i_5\(2 downto 0) => \Using_FPGA.Native_i_5__0_0\(2 downto 0),
       \EX_Op3[0]_i_6\ => \^using_fpga.native_1\,
       \EX_Op3[0]_i_6_0\ => \^using_fpga.native_2\,
       \EX_Op3[0]_i_6_1\ => \EX_Op3[0]_i_6\,
@@ -39013,7 +39108,7 @@ begin
 \Instruction_Prefetch_Mux[12].Gen_Instr_DFF\: entity work.main_ub_microblaze_0_0_MB_FDR_125
      port map (
       Clk => Clk,
-      \EX_ALU_Op1143_out__0\ => \EX_ALU_Op1143_out__0\,
+      \EX_ALU_Op1149_out__0\ => \EX_ALU_Op1149_out__0\,
       \EX_ALU_Op_reg[1]\ => \^of_instr\(0),
       \EX_ALU_Op_reg[1]_0\ => \Instruction_Prefetch_Mux[2].Gen_Instr_DFF_n_4\,
       \Using_FPGA.Native_0\ => \^using_fpga.native_4\(19),
@@ -39025,7 +39120,7 @@ begin
       ex_enable_alu_i_reg_2 => \^of_instr\(3),
       ex_enable_alu_i_reg_3 => \^using_fpga.native_4\(10),
       of_instr_ii_30 => of_instr_ii_30,
-      p_28_in => p_28_in,
+      p_30_in => p_30_in,
       sync_reset => sync_reset
     );
 \Instruction_Prefetch_Mux[12].Instr_Mux_MUXF7\: entity work.main_ub_microblaze_0_0_MB_MUXF7_126
@@ -39058,7 +39153,7 @@ begin
       ex_mbar_decode => ex_mbar_decode,
       ex_mbar_decode_reg => ex_valid_jump_reg_0,
       of_instr_ii_28 => of_instr_ii_28,
-      p_1_in26_in => p_1_in26_in,
+      p_1_in28_in => p_1_in28_in,
       sync_reset => sync_reset
     );
 \Instruction_Prefetch_Mux[14].Instr_Mux_MUXF7\: entity work.main_ub_microblaze_0_0_MB_MUXF7_130
@@ -39191,13 +39286,13 @@ begin
      port map (
       Clk => Clk,
       E(0) => E(0),
-      \EX_ALU_Op1143_out__0\ => \EX_ALU_Op1143_out__0\,
+      \EX_ALU_Op1149_out__0\ => \EX_ALU_Op1149_out__0\,
       \EX_ALU_Op_reg[0]\ => \Instruction_Prefetch_Mux[2].Gen_Instr_DFF_n_4\,
       \EX_Op2[0]_i_2\ => \^of_instr\(3),
       \Using_FPGA.Native_0\ => \^of_instr\(4),
       \Using_FPGA.Native_1\(0) => \Using_FPGA.Native_11\(1),
       \Using_FPGA.Native_2\ => \^of_use_op2_s\,
-      \Using_FPGA.Native_3\ => \Using_FPGA.Native_29\,
+      \Using_FPGA.Native_3\ => \Using_FPGA.Native_28\,
       \ex_gpr_write112_out__0\ => \ex_gpr_write112_out__0\,
       \ex_gpr_write_dbg__0\ => \ex_gpr_write_dbg__0\,
       ex_gpr_write_dbg_reg => \^using_fpga.native_4\(3),
@@ -39221,8 +39316,8 @@ begin
       of_op2_sel_imm => of_op2_sel_imm,
       of_read_mem_write_op2_conflict_part1 => of_read_mem_write_op2_conflict_part1,
       of_read_mem_write_op2_conflict_part2 => of_read_mem_write_op2_conflict_part2,
-      p_0_in30_in => p_0_in30_in,
-      p_28_in => p_28_in,
+      p_0_in32_in => p_0_in32_in,
+      p_30_in => p_30_in,
       sync_reset => sync_reset,
       wb_exception => wb_exception,
       wb_exception_i_reg => wb_exception_i_reg
@@ -39245,12 +39340,12 @@ begin
       \Performance_Debug_Control.ex_dbg_pc_hit_i_i_3_2\ => \^using_fpga.native_4\(10),
       \Using_FPGA.Native_0\ => \^using_fpga.native_4\(11),
       \Using_FPGA.Native_1\ => \Instruction_Prefetch_Mux[20].Gen_Instr_DFF_n_1\,
-      \Using_FPGA.Native_2\ => \Using_FPGA.Native_26\,
+      \Using_FPGA.Native_2\ => \Using_FPGA.Native_25\,
       \ex_set_bip0__1\ => \ex_set_bip0__1\,
       of_Imm180 => of_Imm180,
       of_instr_ii_22 => of_instr_ii_22,
       of_op2_sel_imm => of_op2_sel_imm,
-      p_1_in26_in => p_1_in26_in,
+      p_1_in28_in => p_1_in28_in,
       sync_reset => sync_reset
     );
 \Instruction_Prefetch_Mux[20].Instr_Mux_MUXF7\: entity work.main_ub_microblaze_0_0_MB_MUXF7_144
@@ -39263,6 +39358,7 @@ begin
 \Instruction_Prefetch_Mux[21].Gen_Instr_DFF\: entity work.main_ub_microblaze_0_0_MB_FDR_145
      port map (
       Clk => Clk,
+      D234_out => D234_out,
       GPR_Op2(0) => GPR_Op2(21),
       \Performance_Debug_Control.ex_brki_hit_reg\ => \^using_fpga.native_4\(9),
       \Performance_Debug_Control.ex_brki_hit_reg_0\ => \^using_fpga.native_4\(12),
@@ -39270,7 +39366,14 @@ begin
       \Performance_Debug_Control.ex_brki_hit_reg_2\ => \Instruction_Prefetch_Mux[24].Gen_Instr_DFF_n_2\,
       \Using_FPGA.Native_0\ => \^using_fpga.native_4\(10),
       \Using_FPGA.Native_1\ => \Instruction_Prefetch_Mux[21].Gen_Instr_DFF_n_1\,
-      \Using_FPGA.Native_2\ => \Instruction_Prefetch_Mux[21].Gen_Instr_DFF_n_2\,
+      \Using_FPGA.Native_2\ => \Instruction_Prefetch_Mux[21].Gen_Instr_DFF_n_4\,
+      \Using_FPGA.Native_3\ => \^of_instr\(1),
+      \Using_FPGA.Native_4\ => \Instruction_Prefetch_Mux[3].Gen_Instr_DFF_n_12\,
+      \Using_FPGA.Native_5\ => \^of_instr\(4),
+      ex_sel_alu_i0 => ex_sel_alu_i0,
+      ex_sel_alu_i_reg => \^of_instr\(3),
+      ex_sel_alu_i_reg_0 => \^of_instr\(2),
+      ex_sel_alu_i_reg_1 => \^of_instr\(5),
       of_instr_ii_21 => of_instr_ii_21,
       of_op2_sel_imm => of_op2_sel_imm,
       sync_reset => sync_reset
@@ -39288,7 +39391,7 @@ begin
       GPR_Op2(0) => GPR_Op2(22),
       \Using_FPGA.Native_0\ => \^using_fpga.native_4\(9),
       \Using_FPGA.Native_1\ => \Instruction_Prefetch_Mux[22].Gen_Instr_DFF_n_1\,
-      \Using_FPGA.Native_2\ => \Using_FPGA.Native_28\,
+      \Using_FPGA.Native_2\ => \Using_FPGA.Native_27\,
       \Using_FPGA.Native_3\ => \^of_instr\(3),
       of_instr_ii_20 => of_instr_ii_20,
       of_op2_sel_imm => of_op2_sel_imm,
@@ -39383,7 +39486,7 @@ begin
       \Performance_Debug_Control.ex_brki_hit_reg_0\ => \^using_fpga.native_4\(15),
       \Performance_Debug_Control.ex_brki_hit_reg_1\ => \^using_fpga.native_4\(13),
       \Performance_Debug_Control.ex_brki_hit_reg_2\ => \^using_fpga.native_4\(14),
-      \Performance_Debug_Control.ex_brki_hit_reg_3\ => \Instruction_Prefetch_Mux[21].Gen_Instr_DFF_n_2\,
+      \Performance_Debug_Control.ex_brki_hit_reg_3\ => \Instruction_Prefetch_Mux[21].Gen_Instr_DFF_n_4\,
       \Performance_Debug_Control.ex_brki_hit_reg_4\ => \^using_fpga.native_4\(20),
       \Performance_Debug_Control.ex_brki_hit_reg_5\ => \^using_fpga.native_4\(18),
       \Performance_Debug_Control.ex_brki_hit_reg_6\ => \^using_fpga.native_4\(19),
@@ -39397,7 +39500,7 @@ begin
       of_Imm180 => of_Imm180,
       of_instr_ii_15 => of_instr_ii_15,
       of_op2_sel_imm => of_op2_sel_imm,
-      p_1_in26_in => p_1_in26_in,
+      p_1_in28_in => p_1_in28_in,
       sync_reset => sync_reset
     );
 \Instruction_Prefetch_Mux[27].Instr_Mux_MUXF7\: entity work.main_ub_microblaze_0_0_MB_MUXF7_158
@@ -39462,7 +39565,7 @@ begin
       ex_mbar_decode_reg_0 => \^of_instr\(1),
       ex_mbar_decode_reg_1 => \^of_instr\(4),
       of_instr_ii_40 => of_instr_ii_40,
-      p_1_in26_in => p_1_in26_in,
+      p_1_in28_in => p_1_in28_in,
       sync_reset => sync_reset
     );
 \Instruction_Prefetch_Mux[2].Instr_Mux_MUXF7\: entity work.main_ub_microblaze_0_0_MB_MUXF7_164
@@ -39510,19 +39613,22 @@ begin
 \Instruction_Prefetch_Mux[32].Gen_Instr_DFF\: entity work.main_ub_microblaze_0_0_MB_FDR_169
      port map (
       Clk => Clk,
+      \EX_Op3[0]_i_3\(0) => \Using_FPGA.Native_i_5__0_1\(0),
+      \EX_Op3[0]_i_3_0\ => \^d\(0),
+      \EX_Op3[0]_i_3_1\ => \Instruction_Prefetch_Mux[10].Gen_Instr_DFF_n_3\,
+      \EX_Op3[0]_i_3_2\ => \Instruction_Prefetch_Mux[6].Gen_Instr_DFF_n_33\,
       \EX_Op3[0]_i_5\ => \EX_Op3[0]_i_5\,
-      \EX_Op3[0]_i_6\ => ex_valid_reg_0,
-      \EX_Op3[0]_i_6_0\ => ex_gpr_write_reg_0,
       \Using_FPGA.Native_0\ => \^of_predecode\(0),
-      \Using_FPGA.Native_1\ => \Using_FPGA.Native_19\,
-      ex_valid_reg => \Instruction_Prefetch_Mux[32].Gen_Instr_DFF_n_2\,
+      \Using_FPGA.Native_1\ => \Using_FPGA.Native_18\,
       mem_gpr_write => mem_gpr_write,
       mem_gpr_write_reg => \Instruction_Prefetch_Mux[32].Gen_Instr_DFF_n_1\,
       mem_is_multi_or_load_instr => mem_is_multi_or_load_instr,
       mem_valid_instr => mem_valid_instr,
       of_instr_ii_10 => of_instr_ii_10,
+      \of_read_ex_write_op3_conflict__1\ => \of_read_ex_write_op3_conflict__1\,
       of_read_mem_write_op3_conflict_part1 => of_read_mem_write_op3_conflict_part1,
       of_read_mem_write_op3_conflict_part2 => of_read_mem_write_op3_conflict_part2,
+      p_222_in => p_222_in,
       sync_reset => sync_reset,
       wb_exception => wb_exception,
       wb_gpr_write_i => wb_gpr_write_i,
@@ -39602,14 +39708,15 @@ begin
       \Using_FPGA.Native_i_5__0_0\(1 downto 0) => \Using_FPGA.Native_i_5__0\(4 downto 3),
       \Using_FPGA.Native_i_5__0_1\ => \Instruction_Prefetch_Mux[37].Gen_Instr_DFF_n_1\,
       \Using_FPGA.Native_i_5__0_2\ => \^of_predecode\(2),
-      \Using_FPGA.Native_i_5__0_3\(2 downto 0) => if_fetch_in_progress_reg_0(5 downto 3),
+      \Using_FPGA.Native_i_5__0_3\(1 downto 0) => \Using_FPGA.Native_i_5__0_0\(4 downto 3),
       \Using_FPGA.Native_i_5__0_4\ => \Instruction_Prefetch_Mux[37].Gen_Instr_DFF_n_2\,
-      \Using_FPGA.Native_i_5__0_5\(1 downto 0) => \Using_FPGA.Native_i_5__0_0\(1 downto 0),
-      \Using_FPGA.Native_i_5__0_6\ => \Instruction_Prefetch_Mux[37].Gen_Instr_DFF_n_3\,
+      \Using_FPGA.Native_i_5__0_5\(0) => if_fetch_in_progress_reg_0(0),
+      \Using_FPGA.Native_i_5__0_6\(1 downto 0) => \Using_FPGA.Native_i_5__0_1\(1 downto 0),
+      \Using_FPGA.Native_i_5__0_7\ => \Instruction_Prefetch_Mux[37].Gen_Instr_DFF_n_3\,
       ex_sel_alu_i_reg(31 downto 0) => ex_sel_alu_i_reg_1(31 downto 0),
       of_instr_ii_9 => of_instr_ii_9,
-      p_214_in => p_214_in,
-      p_217_in => p_217_in,
+      p_219_in => p_219_in,
+      p_222_in => p_222_in,
       sync_reset => sync_reset
     );
 \Instruction_Prefetch_Mux[33].Instr_Mux_MUXF7\: entity work.main_ub_microblaze_0_0_MB_MUXF7_172
@@ -39667,10 +39774,10 @@ begin
       I0 => I0,
       I4 => I4,
       \Using_FPGA.Native_0\ => \^of_predecode\(5),
-      \Using_FPGA.Native_i_7\(2 downto 0) => \Using_FPGA.Native_i_5__0\(2 downto 0),
-      \Using_FPGA.Native_i_7_0\ => \^of_predecode\(3),
-      \Using_FPGA.Native_i_7_1\ => \^of_predecode\(4),
-      \Using_FPGA.Native_i_8\(2 downto 0) => if_fetch_in_progress_reg_0(2 downto 0),
+      \Using_FPGA.Native_i_7__0\(2 downto 0) => \Using_FPGA.Native_i_5__0\(2 downto 0),
+      \Using_FPGA.Native_i_7__0_0\ => \^of_predecode\(3),
+      \Using_FPGA.Native_i_7__0_1\ => \^of_predecode\(4),
+      \Using_FPGA.Native_i_8\(2 downto 0) => \Using_FPGA.Native_i_5__0_0\(2 downto 0),
       \Using_FPGA.Native_i_9\ => \EX_Op3[0]_i_6\,
       \ex_gpr_write_addr_reg[4]\ => \Instruction_Prefetch_Mux[37].Gen_Instr_DFF_n_3\,
       \mem_gpr_write_addr_reg[4]\ => \Instruction_Prefetch_Mux[37].Gen_Instr_DFF_n_1\,
@@ -39691,10 +39798,11 @@ begin
       \EX_Op2[0]_i_3_0\(1 downto 0) => \Using_FPGA.Native_i_5__0\(4 downto 3),
       \EX_Op2[0]_i_3_1\ => \Instruction_Prefetch_Mux[42].Gen_Instr_DFF_n_1\,
       \EX_Op2[0]_i_3_2\ => \^of_predecode\(7),
-      \EX_Op2[0]_i_3_3\(1 downto 0) => \Using_FPGA.Native_i_5__0_0\(1 downto 0),
+      \EX_Op2[0]_i_3_3\(1 downto 0) => \Using_FPGA.Native_i_5__0_1\(1 downto 0),
       \EX_Op2[0]_i_3_4\ => \Instruction_Prefetch_Mux[42].Gen_Instr_DFF_n_3\,
-      \EX_Op2[0]_i_3_5\(2 downto 0) => if_fetch_in_progress_reg_0(5 downto 3),
+      \EX_Op2[0]_i_3_5\(1 downto 0) => \Using_FPGA.Native_i_5__0_0\(4 downto 3),
       \EX_Op2[0]_i_3_6\ => \Instruction_Prefetch_Mux[42].Gen_Instr_DFF_n_2\,
+      \EX_Op2[0]_i_3_7\(0) => if_fetch_in_progress_reg_0(0),
       \EX_Op2_reg[0]\ => \EX_Op3_reg[0]\,
       \EX_Op2_reg[0]_0\ => \Instruction_Prefetch_Mux[16].Gen_Instr_DFF_n_17\,
       \EX_Op2_reg[0]_1\ => \EX_Op3_reg[0]_0\,
@@ -39789,8 +39897,8 @@ begin
       ex_sel_alu_i_reg(31 downto 0) => ex_sel_alu_i_reg(31 downto 0),
       of_instr_ii_4 => of_instr_ii_4,
       of_use_op2_s => \^of_use_op2_s\,
-      p_214_in => p_214_in,
-      p_217_in => p_217_in,
+      p_219_in => p_219_in,
+      p_222_in => p_222_in,
       sync_reset => sync_reset
     );
 \Instruction_Prefetch_Mux[38].Instr_Mux_MUXF7\: entity work.main_ub_microblaze_0_0_MB_MUXF7_182
@@ -39817,17 +39925,17 @@ begin
 \Instruction_Prefetch_Mux[3].Gen_Instr_DFF\: entity work.main_ub_microblaze_0_0_MB_FDR_185
      port map (
       Clk => Clk,
-      \EX_ALU_Op1143_out__0\ => \EX_ALU_Op1143_out__0\,
+      \EX_ALU_Op1149_out__0\ => \EX_ALU_Op1149_out__0\,
       \EX_Sext_Op_reg[0]\ => \^of_instr\(3),
       \EX_Sext_Op_reg[0]_0\ => \Instruction_Prefetch_Mux[26].Gen_Instr_DFF_n_2\,
-      \EX_Sext_Op_reg[0]_1\ => \^using_fpga.native_17\,
+      \EX_Sext_Op_reg[0]_1\ => \^using_fpga.native_16\,
       \Using_FPGA.Native_0\ => \^of_instr\(2),
       \Using_FPGA.Native_1\ => \^using_fpga.native_5\,
       \Using_FPGA.Native_2\ => \^ex_op1_cmp_eq1\,
       \Using_FPGA.Native_3\ => \Using_FPGA.Native_10\,
-      \Using_FPGA.Native_4\(0) => \Using_FPGA.Native_16\(1),
-      \Using_FPGA.Native_5\ => \Instruction_Prefetch_Mux[3].Gen_Instr_DFF_n_13\,
-      \Using_FPGA.Native_6\ => \Using_FPGA.Native_24\,
+      \Using_FPGA.Native_4\(0) => \Using_FPGA.Native_15\(1),
+      \Using_FPGA.Native_5\ => \Instruction_Prefetch_Mux[3].Gen_Instr_DFF_n_12\,
+      \Using_FPGA.Native_6\ => \Using_FPGA.Native_23\,
       ex_branch_with_delayslot_i => ex_branch_with_delayslot_i,
       ex_branch_with_delayslot_i_reg => \Instruction_Prefetch_Mux[3].Gen_Instr_DFF_n_1\,
       ex_branch_with_delayslot_i_reg_0 => ex_valid_jump_reg_0,
@@ -39839,8 +39947,6 @@ begin
       ex_op1_cmp_eq_n_reg => \^using_fpga.native_2\,
       ex_op1_cmp_eq_n_reg_0 => \^using_fpga.native_3\,
       ex_op1_cmp_eq_n_reg_1 => \^using_fpga.native_1\,
-      ex_sel_alu_i0 => ex_sel_alu_i0,
-      ex_sel_alu_i_reg => \^using_fpga.native_4\(10),
       force12_out => force12_out,
       force2_reg => \^of_instr\(5),
       force2_reg_0 => \^of_instr\(0),
@@ -39890,7 +39996,7 @@ begin
 \Instruction_Prefetch_Mux[42].Gen_Instr_DFF\: entity work.main_ub_microblaze_0_0_MB_FDR_191
      port map (
       Clk => Clk,
-      \EX_Op2[0]_i_6\(2 downto 0) => if_fetch_in_progress_reg_0(2 downto 0),
+      \EX_Op2[0]_i_6\(2 downto 0) => \Using_FPGA.Native_i_5__0_0\(2 downto 0),
       \EX_Op2[0]_i_7\(2 downto 0) => \Using_FPGA.Native_i_5__0\(2 downto 0),
       \EX_Op2[0]_i_7_0\ => \^of_predecode\(8),
       \EX_Op2[0]_i_7_1\ => \^of_predecode\(9),
@@ -39912,15 +40018,15 @@ begin
       IReady_0 => \^iready_0\,
       \Using_FPGA.Native_0\ => ex_valid_jump_reg_0,
       \Using_FPGA.Native_1\ => ex_branch_with_delayslot_i_reg_0,
-      \Using_FPGA.Native_2\ => \Using_FPGA.Native_62\,
-      \Using_FPGA.Native_3\ => \Using_FPGA.Native_63\,
+      \Using_FPGA.Native_2\ => \Using_FPGA.Native_61\,
+      \Using_FPGA.Native_3\ => \Using_FPGA.Native_62\,
       if_missed_fetch => if_missed_fetch,
       of_instr_ii_0 => of_instr_ii_0
     );
 \Instruction_Prefetch_Mux[4].Gen_Instr_DFF\: entity work.main_ub_microblaze_0_0_MB_FDR_193
      port map (
       Clk => Clk,
-      D225_out => D225_out,
+      D236_out => D236_out,
       Dbg_Clean_Stop0 => Dbg_Clean_Stop0,
       Dbg_Clean_Stop_reg => \^of_valid\,
       Dbg_Clean_Stop_reg_0 => \^using_fpga.native_5\,
@@ -39963,14 +40069,12 @@ begin
       \Using_FPGA.Native_34\ => \Using_FPGA.Native_57\,
       \Using_FPGA.Native_35\ => \Using_FPGA.Native_58\,
       \Using_FPGA.Native_36\ => \Using_FPGA.Native_59\,
-      \Using_FPGA.Native_37\ => \Using_FPGA.Native_60\,
-      \Using_FPGA.Native_38\ => \^of_instr\(0),
-      \Using_FPGA.Native_39\ => \Instruction_Prefetch_Mux[2].Gen_Instr_DFF_n_3\,
-      \Using_FPGA.Native_4\ => \Using_FPGA.Native_15\,
-      \Using_FPGA.Native_40\ => \^using_fpga.native_4\(10),
-      \Using_FPGA.Native_41\ => \Instruction_Prefetch_Mux[3].Gen_Instr_DFF_n_13\,
-      \Using_FPGA.Native_5\(0) => \Using_FPGA.Native_16\(0),
-      \Using_FPGA.Native_6\ => \^using_fpga.native_17\,
+      \Using_FPGA.Native_37\ => \^of_instr\(0),
+      \Using_FPGA.Native_38\ => \Instruction_Prefetch_Mux[2].Gen_Instr_DFF_n_3\,
+      \Using_FPGA.Native_39\ => \^using_fpga.native_4\(10),
+      \Using_FPGA.Native_4\(0) => \Using_FPGA.Native_15\(0),
+      \Using_FPGA.Native_5\ => \^using_fpga.native_16\,
+      \Using_FPGA.Native_6\ => \Using_FPGA.Native_29\,
       \Using_FPGA.Native_7\ => \Using_FPGA.Native_30\,
       \Using_FPGA.Native_8\ => \Using_FPGA.Native_31\,
       \Using_FPGA.Native_9\ => \Using_FPGA.Native_32\,
@@ -39991,7 +40095,7 @@ begin
       of_Sel_SPR_MSR88_out => of_Sel_SPR_MSR88_out,
       of_instr_ii_38 => of_instr_ii_38,
       of_op1_sel_spr => of_op1_sel_spr,
-      p_0_in30_in => p_0_in30_in,
+      p_0_in32_in => p_0_in32_in,
       p_9_in => p_9_in,
       sync_reset => sync_reset
     );
@@ -40008,7 +40112,7 @@ begin
       E(0) => E(0),
       EX_Is_Div_Instr => EX_Is_Div_Instr,
       \Using_FPGA.Native_0\ => \^of_instr\(0),
-      \Using_FPGA.Native_1\ => \Using_FPGA.Native_18\,
+      \Using_FPGA.Native_1\ => \Using_FPGA.Native_17\,
       \Using_FPGA.Native_2\ => \^of_instr\(1),
       ex_is_div_instr_I_reg => ex_is_div_instr_I_reg,
       ex_is_div_instr_I_reg_0 => ex_valid_jump_reg_0,
@@ -40032,12 +40136,10 @@ begin
       \EX_Op3[0]_i_2_1\ => \Instruction_Prefetch_Mux[10].Gen_Instr_DFF_n_1\,
       \EX_Op3[0]_i_2_2\ => \^d\(0),
       \EX_Op3[0]_i_2_3\ => \Instruction_Prefetch_Mux[32].Gen_Instr_DFF_n_1\,
-      \EX_Op3[0]_i_2_4\(1 downto 0) => \Using_FPGA.Native_i_5__0_0\(1 downto 0),
-      \EX_Op3[0]_i_2_5\ => \Instruction_Prefetch_Mux[10].Gen_Instr_DFF_n_3\,
-      \EX_Op3[0]_i_2_6\ => \Instruction_Prefetch_Mux[32].Gen_Instr_DFF_n_2\,
-      \EX_Op3[0]_i_2_7\(1 downto 0) => if_fetch_in_progress_reg_0(4 downto 3),
-      \EX_Op3[0]_i_2_8\ => \Instruction_Prefetch_Mux[10].Gen_Instr_DFF_n_2\,
-      \EX_Op3[0]_i_2_9\ => \Instruction_Prefetch_Mux[32].Gen_Instr_DFF_n_3\,
+      \EX_Op3[0]_i_2_4\(1 downto 0) => \Using_FPGA.Native_i_5__0_0\(4 downto 3),
+      \EX_Op3[0]_i_2_5\ => \Instruction_Prefetch_Mux[10].Gen_Instr_DFF_n_2\,
+      \EX_Op3[0]_i_2_6\ => \Instruction_Prefetch_Mux[32].Gen_Instr_DFF_n_3\,
+      \EX_Op3[0]_i_6\(0) => \Using_FPGA.Native_i_5__0_1\(1),
       \EX_Op3_reg[0]\ => \EX_Op3_reg[0]\,
       \EX_Op3_reg[0]_0\ => \EX_Op3_reg[0]_0\,
       \EX_Op3_reg[10]\ => \EX_Op3_reg[10]\,
@@ -40098,8 +40200,10 @@ begin
       GPR_Op3(0 to 31) => GPR_Op3(0 to 31),
       MEM_Fwd(0 to 31) => MEM_Fwd(0 to 31),
       \Using_FPGA.Native_0\ => \^d\(1),
+      \Using_FPGA.Native_1\ => \Instruction_Prefetch_Mux[6].Gen_Instr_DFF_n_33\,
       ex_sel_alu_i_reg(31 downto 0) => ex_sel_alu_i_reg_0(31 downto 0),
       of_instr_ii_36 => of_instr_ii_36,
+      \of_read_ex_write_op3_conflict__1\ => \of_read_ex_write_op3_conflict__1\,
       sync_reset => sync_reset
     );
 \Instruction_Prefetch_Mux[6].Instr_Mux_MUXF7\: entity work.main_ub_microblaze_0_0_MB_MUXF7_198
@@ -40259,7 +40363,7 @@ OF_Valid_DFF: entity work.main_ub_microblaze_0_0_MB_FDR_205
       E(0) => E(0),
       Q(1 downto 0) => Q(1 downto 0),
       \Using_FPGA.Native_0\ => \^of_valid\,
-      \Using_FPGA.Native_1\ => \Using_FPGA.Native_25\,
+      \Using_FPGA.Native_1\ => \Using_FPGA.Native_24\,
       ex_Exception_Taken => ex_Exception_Taken,
       ex_branch_with_delayslot => ex_branch_with_delayslot,
       ex_branch_with_delayslot_reg => ex_branch_with_delayslot_reg,
@@ -40647,7 +40751,7 @@ ex_branch_with_delayslot_i_reg: unisim.vcomponents.FDRE
       CE => \^iready_0\,
       CLK => Clk,
       D => \in\(10),
-      Q => \Using_FPGA.Native_61\(0)
+      Q => \Using_FPGA.Native_60\(0)
     );
 \ibuffer_reg[3][33]_srl4\: unisim.vcomponents.SRL16E
     generic map(
@@ -41771,14 +41875,14 @@ use UNISIM.VCOMPONENTS.ALL;
 entity main_ub_microblaze_0_0_carry_and_60 is
   port (
     E : out STD_LOGIC_VECTOR ( 0 to 0 );
-    \wb_exception_kind_i_reg[28]\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    wb_exception_i_reg : out STD_LOGIC_VECTOR ( 0 to 0 );
     in0 : out STD_LOGIC;
     ex_Write_ICache_i_cmb : out STD_LOGIC;
     mem_gpr_write_dbg_reg : out STD_LOGIC;
     mem_gpr_write_reg : out STD_LOGIC;
     of_PipeRun_carry_9 : in STD_LOGIC;
-    Q : in STD_LOGIC_VECTOR ( 1 downto 0 );
     wb_exception : in STD_LOGIC;
+    Q : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \mem_pc_i_reg[0]\ : in STD_LOGIC;
     ex_Write_DCache_decode_reg : in STD_LOGIC;
     ex_write_dcache_instr : in STD_LOGIC;
@@ -41832,7 +41936,7 @@ MUXCY_I: entity work.main_ub_microblaze_0_0_MB_MUXCY_107
       of_PipeRun_carry_9 => of_PipeRun_carry_9,
       sync_reset => sync_reset,
       wb_exception => wb_exception,
-      \wb_exception_kind_i_reg[28]\(0) => \wb_exception_kind_i_reg[28]\(0)
+      wb_exception_i_reg(0) => wb_exception_i_reg(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -42117,6 +42221,8 @@ entity main_ub_microblaze_0_0_carry_and_89 is
     wb_valid_reg : out STD_LOGIC;
     wb_gpr_write_dbg0 : out STD_LOGIC;
     wb_gpr_write_i0 : out STD_LOGIC;
+    mem_access_failed_reg : out STD_LOGIC;
+    \Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_reg\ : out STD_LOGIC;
     mem_wait_on_ready_N : in STD_LOGIC;
     mem_valid_instr : in STD_LOGIC;
     mem_exception_from_ex : in STD_LOGIC;
@@ -42129,6 +42235,12 @@ entity main_ub_microblaze_0_0_carry_and_89 is
     wb_exception : in STD_LOGIC;
     mem_gpr_write_dbg : in STD_LOGIC;
     mem_gpr_write : in STD_LOGIC;
+    mem_daxi_exclusive_failed : in STD_LOGIC;
+    mem_MSR_Load_LWX_SWX_C : in STD_LOGIC;
+    ex_MSR : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_FPGA.Native_0\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_reg_0\ : in STD_LOGIC;
+    ex_MTS_MSR : in STD_LOGIC;
     lopt : in STD_LOGIC;
     lopt_1 : out STD_LOGIC;
     lopt_2 : out STD_LOGIC
@@ -42143,10 +42255,18 @@ MUXCY_I: entity work.main_ub_microblaze_0_0_MB_MUXCY_91
      port map (
       E(0) => E(0),
       \Using_FPGA.Native_0\ => \Using_FPGA.Native\,
+      \Using_FPGA.Native_1\(0) => \Using_FPGA.Native_0\(0),
+      \Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_reg\ => \Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_reg\,
+      \Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_reg_0\ => \Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_reg_0\,
+      ex_MSR(0) => ex_MSR(0),
+      ex_MTS_MSR => ex_MTS_MSR,
       flush_pipe => flush_pipe,
       lopt => lopt,
       lopt_1 => lopt_1,
       lopt_2 => lopt_2,
+      mem_MSR_Load_LWX_SWX_C => mem_MSR_Load_LWX_SWX_C,
+      mem_access_failed_reg => mem_access_failed_reg,
+      mem_daxi_exclusive_failed => mem_daxi_exclusive_failed,
       mem_exception_from_ex => mem_exception_from_ex,
       mem_gpr_write => mem_gpr_write,
       mem_gpr_write_dbg => mem_gpr_write_dbg,
@@ -43475,12 +43595,12 @@ entity main_ub_microblaze_0_0_jump_logic is
     ex_op1_cmp_equal_n : out STD_LOGIC;
     ex_jump_q : out STD_LOGIC;
     I5 : out STD_LOGIC;
-    ex_jump_hold_reg : out STD_LOGIC;
     ex_delayslot_Instr0 : out STD_LOGIC;
     keep_jump_taken_with_ds_reg : out STD_LOGIC;
     mem_jump_taken0 : out STD_LOGIC;
     \if_pc_reg[0]\ : out STD_LOGIC_VECTOR ( 31 downto 0 );
     if_missed_fetch_reg : out STD_LOGIC;
+    ex_jump_hold_reg : out STD_LOGIC;
     \Using_FPGA.Native\ : out STD_LOGIC;
     ex_op1_zero : in STD_LOGIC;
     \Using_FPGA.Native_0\ : in STD_LOGIC;
@@ -43497,14 +43617,13 @@ entity main_ub_microblaze_0_0_jump_logic is
     use_Reg_Neg_S3_out : in STD_LOGIC;
     force12_out : in STD_LOGIC;
     \Using_FPGA.Native_2\ : in STD_LOGIC_VECTOR ( 0 to 0 );
-    wb_exception : in STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    wb_exception : in STD_LOGIC;
     \out\ : in STD_LOGIC;
-    ex_jump_hold : in STD_LOGIC;
-    E : in STD_LOGIC_VECTOR ( 0 to 0 );
     ex_mbar_stall_no_sleep_1 : in STD_LOGIC;
     ex_first_cycle : in STD_LOGIC;
     ex_mbar_decode : in STD_LOGIC;
+    ex_jump_hold : in STD_LOGIC;
     ex_mbar_sleep : in STD_LOGIC;
     keep_jump_taken_with_ds : in STD_LOGIC;
     ex_branch_with_delayslot : in STD_LOGIC;
@@ -43544,6 +43663,7 @@ entity main_ub_microblaze_0_0_jump_logic is
     if_missed_fetch_reg_0 : in STD_LOGIC_VECTOR ( 0 to 0 );
     IB_Ready : in STD_LOGIC;
     LOCKSTEP_Master_Out : in STD_LOGIC_VECTOR ( 0 to 0 );
+    E : in STD_LOGIC_VECTOR ( 0 to 0 );
     of_valid : in STD_LOGIC;
     \EX_MBAR_Stall__2\ : in STD_LOGIC;
     lopt : in STD_LOGIC;
@@ -43962,17 +44082,25 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity main_ub_microblaze_0_0_msr_reg_gti is
   port (
+    \Using_FPGA.Native\ : out STD_LOGIC;
     ex_MSR : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    \Using_FPGA.Native_0\ : out STD_LOGIC;
     MEM_Fwd : out STD_LOGIC_VECTOR ( 3 downto 0 );
     \wb_MSR_i_reg[28]_0\ : out STD_LOGIC_VECTOR ( 2 downto 0 );
     sync_reset : in STD_LOGIC;
     Clk : in STD_LOGIC;
-    \Using_FPGA.Native\ : in STD_LOGIC;
-    \Using_FPGA.Native_0\ : in STD_LOGIC;
     \Using_FPGA.Native_1\ : in STD_LOGIC;
+    \Using_FPGA.Native_2\ : in STD_LOGIC;
+    \Using_FPGA.Native_3\ : in STD_LOGIC;
+    \Using_FPGA.Native_4\ : in STD_LOGIC;
+    \Using_FPGA.Native_i_3__31\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    mem_MSR_Load_LWX_SWX_C_Hold : in STD_LOGIC;
+    mem_daxi_exclusive_failed : in STD_LOGIC;
+    ex_MTS_MSR : in STD_LOGIC;
+    mem_MSR_Load_LWX_SWX_C : in STD_LOGIC;
     mem_sel_msr : in STD_LOGIC;
     \WB_MEM_Result_reg[0]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    \Using_FPGA.Native_2\ : in STD_LOGIC;
+    \Using_FPGA.Native_5\ : in STD_LOGIC;
     wb_piperun : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
@@ -43981,8 +44109,8 @@ end main_ub_microblaze_0_0_msr_reg_gti;
 
 architecture STRUCTURE of main_ub_microblaze_0_0_msr_reg_gti is
   signal \OF_EX_MSR_Bits[28].Using_FDR.MSR_ex_I_n_1\ : STD_LOGIC;
-  signal \OF_EX_MSR_Bits[29].Using_FDR.MSR_ex_I_n_1\ : STD_LOGIC;
   signal \OF_EX_MSR_Bits[30].Using_FDR.MSR_ex_I_n_1\ : STD_LOGIC;
+  signal \^using_fpga.native\ : STD_LOGIC;
   signal mem_MSR : STD_LOGIC_VECTOR ( 28 to 30 );
   signal \wb_MSR_i[28]_i_1_n_0\ : STD_LOGIC;
   signal \wb_MSR_i[29]_i_1_n_0\ : STD_LOGIC;
@@ -43992,6 +44120,7 @@ architecture STRUCTURE of main_ub_microblaze_0_0_msr_reg_gti is
   attribute SOFT_HLUTNM of \wb_MSR_i[28]_i_1\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \wb_MSR_i[29]_i_1\ : label is "soft_lutpair4";
 begin
+  \Using_FPGA.Native\ <= \^using_fpga.native\;
   \wb_MSR_i_reg[28]_0\(2 downto 0) <= \^wb_msr_i_reg[28]_0\(2 downto 0);
 \MEM_MSR_Bits[28].Using_FDR.MSR_I\: entity work.main_ub_microblaze_0_0_MB_FDR_301
      port map (
@@ -44008,10 +44137,10 @@ begin
       Clk => Clk,
       MEM_Fwd(1) => MEM_Fwd(3),
       MEM_Fwd(0) => MEM_Fwd(1),
-      \Using_FPGA.Native_0\ => \OF_EX_MSR_Bits[29].Using_FDR.MSR_ex_I_n_1\,
+      \Using_FPGA.Native_0\ => \^using_fpga.native\,
+      \Using_FPGA.Native_1\ => \Using_FPGA.Native_1\,
       \WB_MEM_Result_reg[0]\(1) => \WB_MEM_Result_reg[0]\(3),
       \WB_MEM_Result_reg[0]\(0) => \WB_MEM_Result_reg[0]\(1),
-      mem_MSR(0) => mem_MSR(29),
       mem_sel_msr => mem_sel_msr,
       sync_reset => sync_reset
     );
@@ -44029,8 +44158,8 @@ begin
      port map (
       Clk => Clk,
       \Using_FPGA.Native_0\ => \OF_EX_MSR_Bits[28].Using_FDR.MSR_ex_I_n_1\,
-      \Using_FPGA.Native_1\ => \Using_FPGA.Native\,
-      \Using_FPGA.Native_2\ => \Using_FPGA.Native_2\,
+      \Using_FPGA.Native_1\ => \Using_FPGA.Native_2\,
+      \Using_FPGA.Native_2\ => \Using_FPGA.Native_5\,
       ex_MSR(0) => ex_MSR(2),
       mem_MSR(0) => mem_MSR(28),
       sync_reset => sync_reset
@@ -44038,19 +44167,22 @@ begin
 \OF_EX_MSR_Bits[29].Using_FDR.MSR_ex_I\: entity work.main_ub_microblaze_0_0_MB_FDR_305
      port map (
       Clk => Clk,
-      \Using_FPGA.Native_0\ => \OF_EX_MSR_Bits[29].Using_FDR.MSR_ex_I_n_1\,
-      \Using_FPGA.Native_1\ => \Using_FPGA.Native_0\,
-      \Using_FPGA.Native_2\ => \Using_FPGA.Native_2\,
+      \Using_FPGA.Native_0\ => \Using_FPGA.Native_0\,
+      \Using_FPGA.Native_1\ => \Using_FPGA.Native_3\,
+      \Using_FPGA.Native_i_3__31\(0) => \Using_FPGA.Native_i_3__31\(0),
       ex_MSR(0) => ex_MSR(1),
-      mem_MSR(0) => mem_MSR(29),
+      ex_MTS_MSR => ex_MTS_MSR,
+      mem_MSR_Load_LWX_SWX_C => mem_MSR_Load_LWX_SWX_C,
+      mem_MSR_Load_LWX_SWX_C_Hold => mem_MSR_Load_LWX_SWX_C_Hold,
+      mem_daxi_exclusive_failed => mem_daxi_exclusive_failed,
       sync_reset => sync_reset
     );
 \OF_EX_MSR_Bits[30].Using_FDR.MSR_ex_I\: entity work.main_ub_microblaze_0_0_MB_FDR_306
      port map (
       Clk => Clk,
       \Using_FPGA.Native_0\ => \OF_EX_MSR_Bits[30].Using_FDR.MSR_ex_I_n_1\,
-      \Using_FPGA.Native_1\ => \Using_FPGA.Native_1\,
-      \Using_FPGA.Native_2\ => \Using_FPGA.Native_2\,
+      \Using_FPGA.Native_1\ => \Using_FPGA.Native_4\,
+      \Using_FPGA.Native_2\ => \Using_FPGA.Native_5\,
       ex_MSR(0) => ex_MSR(0),
       mem_MSR(0) => mem_MSR(30),
       sync_reset => sync_reset
@@ -44070,7 +44202,7 @@ begin
       INIT => X"B8"
     )
         port map (
-      I0 => mem_MSR(29),
+      I0 => \^using_fpga.native\,
       I1 => wb_piperun,
       I2 => \^wb_msr_i_reg[28]_0\(1),
       O => \wb_MSR_i[29]_i_1_n_0\
@@ -45032,10 +45164,11 @@ entity main_ub_microblaze_0_0_Debug is
     Dbg_Trig_Ack_Out : out STD_LOGIC_VECTOR ( 1 downto 0 );
     \Performance_Debug_Control.dbg_stop_if_delay_i_reg_0\ : out STD_LOGIC;
     \Performance_Debug_Control.ex_dbg_pc_hit_i_reg_0\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    ex_MTS_MSR : out STD_LOGIC;
     ex_MSR_Load_Shift_C : out STD_LOGIC;
     ex_MSR_Load_ALU_C : out STD_LOGIC;
     ex_MSR_Set_SW_BIP : out STD_LOGIC;
-    p_232_in : out STD_LOGIC;
+    p_238_in : out STD_LOGIC;
     ex_Exception_Taken : out STD_LOGIC;
     ex_exception_no_load_store_mask : out STD_LOGIC;
     \Performance_Debug_Control.dbg_stop_if_delay_i_reg_1\ : out STD_LOGIC;
@@ -45065,9 +45198,10 @@ entity main_ub_microblaze_0_0_Debug is
     executing_reg_0 : in STD_LOGIC;
     ex_valid : in STD_LOGIC;
     ex_is_load_instr_s : in STD_LOGIC;
+    ex_move_to_MSR_instr : in STD_LOGIC;
     ex_load_shift_carry : in STD_LOGIC;
-    \Using_FPGA.Native_i_2__21\ : in STD_LOGIC;
-    \Using_LWX_SWX_instr.ex_reservation_i_3\ : in STD_LOGIC;
+    \Using_FPGA.Native\ : in STD_LOGIC;
+    \Using_LWX_SWX_instr.ex_reservation_i_2\ : in STD_LOGIC;
     \p_4_out__0\ : in STD_LOGIC;
     Reset_Mode : in STD_LOGIC_VECTOR ( 0 to 1 );
     wb_pc_valid : in STD_LOGIC;
@@ -45385,34 +45519,34 @@ architecture STRUCTURE of main_ub_microblaze_0_0_Debug is
   signal wb_brki_hit : STD_LOGIC;
   signal wb_dbg_hit : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of Dbg_TDO_INST_0_i_10 : label is "soft_lutpair74";
+  attribute SOFT_HLUTNM of Dbg_TDO_INST_0_i_10 : label is "soft_lutpair73";
   attribute SOFT_HLUTNM of Dbg_TDO_INST_0_i_15 : label is "soft_lutpair80";
   attribute SOFT_HLUTNM of Dbg_TDO_INST_0_i_18 : label is "soft_lutpair73";
   attribute SOFT_HLUTNM of Dbg_TDO_INST_0_i_29 : label is "soft_lutpair74";
-  attribute SOFT_HLUTNM of Dbg_TDO_INST_0_i_31 : label is "soft_lutpair82";
-  attribute SOFT_HLUTNM of \Performance_Debug_Control.dbg_freeze_nohalt_i_3\ : label is "soft_lutpair72";
-  attribute SOFT_HLUTNM of \Performance_Debug_Control.dbg_stop_instr_fetch_nohalt_i_4\ : label is "soft_lutpair72";
-  attribute SOFT_HLUTNM of Read_Strobe_INST_0 : label is "soft_lutpair83";
+  attribute SOFT_HLUTNM of Dbg_TDO_INST_0_i_31 : label is "soft_lutpair81";
+  attribute SOFT_HLUTNM of \Performance_Debug_Control.dbg_freeze_nohalt_i_3\ : label is "soft_lutpair71";
+  attribute SOFT_HLUTNM of \Performance_Debug_Control.dbg_stop_instr_fetch_nohalt_i_4\ : label is "soft_lutpair71";
+  attribute SOFT_HLUTNM of Read_Strobe_INST_0 : label is "soft_lutpair82";
   attribute SOFT_HLUTNM of \Serial_Dbg_Intf.New_Dbg_Instr_TCK_i_1\ : label is "soft_lutpair80";
-  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.New_Dbg_Instr_TCK_i_2\ : label is "soft_lutpair75";
-  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.shift_count[0]_i_1\ : label is "soft_lutpair84";
-  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.shift_count[1]_i_1\ : label is "soft_lutpair84";
-  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.shift_count[2]_i_1\ : label is "soft_lutpair82";
-  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.shift_count[3]_i_1\ : label is "soft_lutpair73";
-  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.shift_count[5]_i_2\ : label is "soft_lutpair75";
-  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.shift_count[6]_i_1\ : label is "soft_lutpair81";
-  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.shift_count[7]_i_1\ : label is "soft_lutpair81";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__8\ : label is "soft_lutpair83";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_4\ : label is "soft_lutpair78";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_5\ : label is "soft_lutpair78";
-  attribute SOFT_HLUTNM of \Using_LWX_SWX_instr.ex_reservation_i_4\ : label is "soft_lutpair79";
-  attribute SOFT_HLUTNM of \data_rd_reg[32]_i_2\ : label is "soft_lutpair85";
-  attribute SOFT_HLUTNM of \data_rd_reg[32]_i_3\ : label is "soft_lutpair85";
+  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.New_Dbg_Instr_TCK_i_2\ : label is "soft_lutpair72";
+  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.shift_count[0]_i_1\ : label is "soft_lutpair83";
+  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.shift_count[1]_i_1\ : label is "soft_lutpair83";
+  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.shift_count[2]_i_1\ : label is "soft_lutpair81";
+  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.shift_count[3]_i_1\ : label is "soft_lutpair74";
+  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.shift_count[5]_i_2\ : label is "soft_lutpair72";
+  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.shift_count[6]_i_1\ : label is "soft_lutpair77";
+  attribute SOFT_HLUTNM of \Serial_Dbg_Intf.shift_count[7]_i_1\ : label is "soft_lutpair77";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_4\ : label is "soft_lutpair75";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_5\ : label is "soft_lutpair79";
+  attribute SOFT_HLUTNM of \Using_LWX_SWX_instr.ex_reservation_i_3\ : label is "soft_lutpair79";
+  attribute SOFT_HLUTNM of \Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_i_2\ : label is "soft_lutpair75";
+  attribute SOFT_HLUTNM of \data_rd_reg[32]_i_2\ : label is "soft_lutpair84";
+  attribute SOFT_HLUTNM of \data_rd_reg[32]_i_3\ : label is "soft_lutpair84";
   attribute SOFT_HLUTNM of dbg_continue_i_i_2 : label is "soft_lutpair76";
   attribute SOFT_HLUTNM of dbg_halt_reset_mode_i_2 : label is "soft_lutpair76";
-  attribute SOFT_HLUTNM of mem_exception_from_ex_i_1 : label is "soft_lutpair79";
-  attribute SOFT_HLUTNM of saved_reset_mode_sleep_i_1 : label is "soft_lutpair77";
-  attribute SOFT_HLUTNM of sleep_reset_mode_i_2 : label is "soft_lutpair77";
+  attribute SOFT_HLUTNM of mem_exception_from_ex_i_1 : label is "soft_lutpair82";
+  attribute SOFT_HLUTNM of saved_reset_mode_dbg_halt_i_1 : label is "soft_lutpair78";
+  attribute SOFT_HLUTNM of sleep_reset_mode_i_2 : label is "soft_lutpair78";
 begin
   Dbg_Reg_En_0_sp_1 <= Dbg_Reg_En_0_sn_1;
   Dbg_Trig_Ack_Out(1 downto 0) <= \^dbg_trig_ack_out\(1 downto 0);
@@ -48351,7 +48485,7 @@ Read_Strobe_INST_0: unisim.vcomponents.LUT4
       I0 => \^lockstep_master_out\(35),
       I1 => \^lockstep_master_out\(32),
       I2 => ex_valid,
-      I3 => \Using_FPGA.Native_i_2__21\,
+      I3 => \Using_FPGA.Native\,
       O => ex_MSR_Load_ALU_C
     );
 \Using_FPGA.Native_i_5\: unisim.vcomponents.LUT4
@@ -48365,7 +48499,7 @@ Read_Strobe_INST_0: unisim.vcomponents.LUT4
       I3 => ex_load_shift_carry,
       O => ex_MSR_Load_Shift_C
     );
-\Using_LWX_SWX_instr.ex_reservation_i_4\: unisim.vcomponents.LUT4
+\Using_LWX_SWX_instr.ex_reservation_i_3\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"D000"
     )
@@ -48373,8 +48507,19 @@ Read_Strobe_INST_0: unisim.vcomponents.LUT4
       I0 => \^lockstep_master_out\(35),
       I1 => \^lockstep_master_out\(32),
       I2 => ex_valid,
-      I3 => \Using_LWX_SWX_instr.ex_reservation_i_3\,
+      I3 => \Using_LWX_SWX_instr.ex_reservation_i_2\,
       O => ex_MSR_Set_SW_BIP
+    );
+\Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_i_2\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"D000"
+    )
+        port map (
+      I0 => \^lockstep_master_out\(35),
+      I1 => \^lockstep_master_out\(32),
+      I2 => ex_valid,
+      I3 => ex_move_to_MSR_instr,
+      O => ex_MTS_MSR
     );
 \Using_PC_Breakpoints.All_PC_Brks[0].Serial_Interface_1.address_hit_I\: entity work.main_ub_microblaze_0_0_address_hit
      port map (
@@ -48408,7 +48553,7 @@ Write_Strobe_INST_0_i_1: unisim.vcomponents.LUT3
       I0 => ex_valid,
       I1 => \^lockstep_master_out\(32),
       I2 => \^lockstep_master_out\(35),
-      O => p_232_in
+      O => p_238_in
     );
 command_reg_clear_i_1: unisim.vcomponents.LUT2
     generic map(
@@ -49111,6 +49256,7 @@ entity main_ub_microblaze_0_0_Decode_gti is
     mem_Exception_Taken : out STD_LOGIC;
     Pause_Ack : out STD_LOGIC;
     ex_set_bip_reg_0 : out STD_LOGIC;
+    M_AXI_DP_ARLOCK : out STD_LOGIC;
     mem_databus_read : out STD_LOGIC;
     mem_databus_write : out STD_LOGIC;
     \Performance_Debug_Control.dbg_state_nohalt_reg\ : out STD_LOGIC_VECTOR ( 159 downto 0 );
@@ -49127,6 +49273,8 @@ entity main_ub_microblaze_0_0_Decode_gti is
     ex_load_alu_carry_reg_0 : out STD_LOGIC;
     ex_load_shift_carry : out STD_LOGIC;
     ex_move_to_MSR_instr : out STD_LOGIC;
+    mem_MSR_Load_LWX_SWX_C : out STD_LOGIC;
+    mem_LWX_SWX_Carry_Hold : out STD_LOGIC;
     mem_sel_msr : out STD_LOGIC;
     wb_gpr_wr_dbg : out STD_LOGIC;
     wb_read_imm_reg : out STD_LOGIC;
@@ -49139,9 +49287,9 @@ entity main_ub_microblaze_0_0_Decode_gti is
     Sleep_Decode : out STD_LOGIC;
     mem_databus_access : out STD_LOGIC;
     wb_valid_reg_0 : out STD_LOGIC;
+    mem_MSR_Load_LWX_SWX_C_Hold : out STD_LOGIC;
     wb_Halted : out STD_LOGIC;
-    \ex_swx_access__0\ : out STD_LOGIC;
-    ex_MSR_Load_LWX_SWX_C : out STD_LOGIC;
+    \Using_FPGA.Native_2\ : out STD_LOGIC;
     SRI : out STD_LOGIC;
     ex_set_bip_reg_1 : out STD_LOGIC;
     LOCKSTEP_Master_Out : out STD_LOGIC_VECTOR ( 2 downto 0 );
@@ -49154,6 +49302,7 @@ entity main_ub_microblaze_0_0_Decode_gti is
     SR : out STD_LOGIC_VECTOR ( 0 to 0 );
     R : out STD_LOGIC;
     I1 : out STD_LOGIC;
+    S : out STD_LOGIC;
     M_AXI_DP_BVALID_0 : out STD_LOGIC;
     MEM_DataBus_Write_reg_0 : out STD_LOGIC;
     MEM_DataBus_Write_reg_1 : out STD_LOGIC;
@@ -49167,9 +49316,10 @@ entity main_ub_microblaze_0_0_Decode_gti is
     \EX_ALU_Op_reg[0]_0\ : out STD_LOGIC_VECTOR ( 1 downto 0 );
     \EX_Sext_Op_reg[0]_0\ : out STD_LOGIC_VECTOR ( 1 downto 0 );
     in0 : out STD_LOGIC;
+    mem_access_failed_reg : out STD_LOGIC;
+    \read_exclusive_fail__2\ : out STD_LOGIC;
     \Performance_Debug_Control.dbg_stop_instr_fetch_nohalt_reg\ : out STD_LOGIC;
     \Performance_Debug_Control.dbg_freeze_nohalt_reg\ : out STD_LOGIC;
-    \Using_FPGA.Native_2\ : out STD_LOGIC;
     \Using_FPGA.Native_3\ : out STD_LOGIC;
     \Using_FPGA.Native_4\ : out STD_LOGIC;
     \Using_FPGA.Native_5\ : out STD_LOGIC;
@@ -49201,29 +49351,33 @@ entity main_ub_microblaze_0_0_Decode_gti is
     \Using_FPGA.Native_31\ : out STD_LOGIC;
     \Using_FPGA.Native_32\ : out STD_LOGIC;
     \Using_FPGA.Native_33\ : out STD_LOGIC;
+    \Using_FPGA.Native_34\ : out STD_LOGIC;
     I1_0 : out STD_LOGIC;
     of_op1_sel_spr : out STD_LOGIC;
-    \Using_FPGA.Native_34\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_FPGA.Native_35\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     \mem_pc_i_reg[0]\ : out STD_LOGIC_VECTOR ( 31 downto 0 );
     sync_reset : in STD_LOGIC;
     Clk : in STD_LOGIC;
     I139_out : in STD_LOGIC;
     ex_op1_zero : in STD_LOGIC;
-    \Using_FPGA.Native_35\ : in STD_LOGIC;
-    MEM_DataBus_Ready : in STD_LOGIC;
     \Using_FPGA.Native_36\ : in STD_LOGIC;
+    MEM_DataBus_Ready : in STD_LOGIC;
+    \Using_FPGA.Native_37\ : in STD_LOGIC;
     ex_exception_no_load_store_mask : in STD_LOGIC;
     ex_Exception_Taken : in STD_LOGIC;
     \MEM_DataBus_Addr_reg[0]_0\ : in STD_LOGIC_VECTOR ( 68 downto 0 );
+    mem_daxi_exclusive_failed : in STD_LOGIC;
     Pause : in STD_LOGIC;
-    \Using_FPGA.Native_37\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_FPGA.Native_38\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     Y : in STD_LOGIC_VECTOR ( 0 to 31 );
-    p_232_in : in STD_LOGIC;
-    ex_MSR_Set_SW_BIP : in STD_LOGIC;
-    \Using_FPGA.Native_38\ : in STD_LOGIC;
+    p_238_in : in STD_LOGIC;
+    ex_MSR_Load_ALU_C : in STD_LOGIC;
+    LO : in STD_LOGIC;
     ex_MSR : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    ex_MSR_Set_SW_BIP : in STD_LOGIC;
     \Using_FPGA.Native_39\ : in STD_LOGIC;
     \Using_FPGA.Native_40\ : in STD_LOGIC;
+    \Using_FPGA.Native_41\ : in STD_LOGIC;
     mb_halted_1_reg : in STD_LOGIC;
     if_fetch_in_progress_reg_0 : in STD_LOGIC;
     MEM_Fwd : in STD_LOGIC_VECTOR ( 0 to 31 );
@@ -49261,7 +49415,7 @@ entity main_ub_microblaze_0_0_Decode_gti is
     \Performance_Debug_Control.dbg_stop_instr_fetch_nohalt_reg_0\ : in STD_LOGIC;
     active_access_reg : in STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 0 to 0 );
-    \Using_FPGA.Native_41\ : in STD_LOGIC;
+    \Using_FPGA.Native_42\ : in STD_LOGIC;
     IReady : in STD_LOGIC;
     DReady : in STD_LOGIC;
     DWait : in STD_LOGIC;
@@ -49271,12 +49425,17 @@ entity main_ub_microblaze_0_0_Decode_gti is
     wb_databus_steered_read_data : in STD_LOGIC_VECTOR ( 7 downto 0 );
     \MEM_DataBus_Addr_reg[30]_0\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     swap_result : in STD_LOGIC_VECTOR ( 23 downto 0 );
-    \Using_FPGA.Native_42\ : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    \Using_FPGA.Native_43\ : in STD_LOGIC_VECTOR ( 31 downto 0 );
     \out\ : in STD_LOGIC;
-    \Using_FPGA.Native_43\ : in STD_LOGIC;
+    \Using_FPGA.Native_44\ : in STD_LOGIC;
     swap_result_reg : in STD_LOGIC_VECTOR ( 0 to 7 );
     \MEM_DataBus_Write_Data_reg[0]\ : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    \Using_FPGA.Native_45\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    M_AXI_DP_RRESP : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    ex_MSR_Load_Shift_C : in STD_LOGIC;
     exception_reg : in STD_LOGIC_VECTOR ( 0 to 0 );
+    ex_MTS_MSR : in STD_LOGIC;
+    \Using_FPGA.Native_46\ : in STD_LOGIC;
     \in\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     lopt : in STD_LOGIC;
     lopt_1 : out STD_LOGIC;
@@ -49289,7 +49448,9 @@ end main_ub_microblaze_0_0_Decode_gti;
 architecture STRUCTURE of main_ub_microblaze_0_0_Decode_gti is
   signal A : STD_LOGIC;
   signal \^d\ : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal D225_out : STD_LOGIC;
+  signal D234_out : STD_LOGIC;
+  signal D236_out : STD_LOGIC;
+  signal D24_out : STD_LOGIC;
   signal \Data_Flow_I/Shift_Logic_Module_I/O\ : STD_LOGIC;
   signal \Data_Flow_I/Shift_Logic_Module_I/O0_out\ : STD_LOGIC;
   signal \Data_Flow_I/Shift_Logic_Module_I/O10_out\ : STD_LOGIC;
@@ -49337,6 +49498,7 @@ architecture STRUCTURE of main_ub_microblaze_0_0_Decode_gti is
   signal IF_PC_Write : STD_LOGIC;
   signal \^lockstep_master_out\ : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal MEM_Sel_MEM_Res : STD_LOGIC;
+  signal \^m_axi_dp_arlock\ : STD_LOGIC;
   signal O : STD_LOGIC;
   signal O31_out : STD_LOGIC;
   signal O33_out : STD_LOGIC;
@@ -49373,7 +49535,6 @@ architecture STRUCTURE of main_ub_microblaze_0_0_Decode_gti is
   signal \^performance_debug_control.dbg_state_nohalt_reg\ : STD_LOGIC_VECTOR ( 159 downto 0 );
   signal PreFetch_Buffer_I1_n_101 : STD_LOGIC;
   signal PreFetch_Buffer_I1_n_170 : STD_LOGIC;
-  signal PreFetch_Buffer_I1_n_174 : STD_LOGIC;
   signal PreFetch_Buffer_I1_n_177 : STD_LOGIC;
   signal PreFetch_Buffer_I1_n_178 : STD_LOGIC;
   signal PreFetch_Buffer_I1_n_179 : STD_LOGIC;
@@ -49415,12 +49576,13 @@ architecture STRUCTURE of main_ub_microblaze_0_0_Decode_gti is
   signal \^using_fpga.native_0\ : STD_LOGIC;
   signal \^using_fpga.native_1\ : STD_LOGIC;
   signal \Using_FPGA.Native_i_5__1_n_0\ : STD_LOGIC;
-  signal \Using_FPGA_2.ex_is_load_instr_Inst_n_2\ : STD_LOGIC;
-  signal \Using_FPGA_2.ex_is_lwx_instr_Inst_n_1\ : STD_LOGIC;
+  signal \Using_FPGA_2.ex_is_load_instr_Inst_n_3\ : STD_LOGIC;
+  signal \Using_FPGA_2.ex_is_lwx_instr_Inst_n_2\ : STD_LOGIC;
+  signal \Using_FPGA_2.ex_is_lwx_instr_Inst_n_3\ : STD_LOGIC;
   signal \Using_FPGA_2.ex_is_swx_instr_Inst_n_1\ : STD_LOGIC;
   signal \Using_FPGA_2.ex_is_swx_instr_Inst_n_4\ : STD_LOGIC;
+  signal \Using_FPGA_2.ex_is_swx_instr_Inst_n_5\ : STD_LOGIC;
   signal \Using_FPGA_2.ex_load_store_instr_Inst_n_2\ : STD_LOGIC;
-  signal \Using_FPGA_3.of_clear_MSR_BIP_hold_Inst_n_0\ : STD_LOGIC;
   signal \Using_FPGA_4.of_read_ex_write_op2_conflict_INST1_n_0\ : STD_LOGIC;
   signal \Using_FPGA_4.of_read_ex_write_op3_conflict_INST1_n_0\ : STD_LOGIC;
   signal \Using_FPGA_4.of_read_mem_write_op1_conflict_INST2_n_0\ : STD_LOGIC;
@@ -49483,7 +49645,7 @@ architecture STRUCTURE of main_ub_microblaze_0_0_Decode_gti is
   signal \ex_instr_reg_n_0_[5]\ : STD_LOGIC;
   signal \ex_instr_reg_n_0_[8]\ : STD_LOGIC;
   signal \ex_instr_reg_n_0_[9]\ : STD_LOGIC;
-  signal \^ex_is_load_instr_s\ : STD_LOGIC;
+  signal ex_is_lwx_instr_s : STD_LOGIC;
   signal ex_is_multi_instr2 : STD_LOGIC;
   signal ex_is_multi_or_load_instr : STD_LOGIC;
   signal ex_is_multi_or_load_instr0 : STD_LOGIC;
@@ -49492,6 +49654,7 @@ architecture STRUCTURE of main_ub_microblaze_0_0_Decode_gti is
   signal ex_jump_hold : STD_LOGIC;
   signal ex_jump_nodelay : STD_LOGIC;
   signal ex_jump_q : STD_LOGIC;
+  signal \^ex_load_shift_carry\ : STD_LOGIC;
   signal ex_load_shift_carry0 : STD_LOGIC;
   signal ex_load_store_instr_s : STD_LOGIC;
   signal ex_mbar_decode : STD_LOGIC;
@@ -49543,10 +49706,10 @@ architecture STRUCTURE of main_ub_microblaze_0_0_Decode_gti is
   signal if_pc_incr_carry3 : STD_LOGIC;
   signal if_pre_buffer_addr : STD_LOGIC_VECTOR ( 1 to 1 );
   signal if_sel_input : STD_LOGIC_VECTOR ( 0 to 4 );
+  signal jump_logic_I1_n_40 : STD_LOGIC;
   signal jump_logic_I1_n_41 : STD_LOGIC;
   signal jump_logic_I1_n_42 : STD_LOGIC;
-  signal jump_logic_I1_n_5 : STD_LOGIC;
-  signal jump_logic_I1_n_7 : STD_LOGIC;
+  signal jump_logic_I1_n_6 : STD_LOGIC;
   signal keep_jump_taken_with_ds : STD_LOGIC;
   signal lopt_10 : STD_LOGIC;
   signal lopt_11 : STD_LOGIC;
@@ -49577,8 +49740,12 @@ architecture STRUCTURE of main_ub_microblaze_0_0_Decode_gti is
   signal lopt_8 : STD_LOGIC;
   signal lopt_9 : STD_LOGIC;
   signal \^mem_exception_taken\ : STD_LOGIC;
+  signal \^mem_lwx_swx_carry_hold\ : STD_LOGIC;
+  signal \^mem_msr_load_lwx_swx_c\ : STD_LOGIC;
+  signal \^mem_msr_load_lwx_swx_c_hold\ : STD_LOGIC;
   signal mem_PipeRun_carry_and_n_1 : STD_LOGIC;
   signal mem_PipeRun_carry_and_n_2 : STD_LOGIC;
+  signal mem_PipeRun_carry_and_n_6 : STD_LOGIC;
   signal mem_Write_DCache : STD_LOGIC;
   signal mem_Write_DCache_i_1_n_0 : STD_LOGIC;
   signal \^mem_byte_access\ : STD_LOGIC;
@@ -49650,13 +49817,14 @@ architecture STRUCTURE of main_ub_microblaze_0_0_Decode_gti is
   signal of_read_mem_write_op3_conflict_part2 : STD_LOGIC;
   signal of_use_op2_s : STD_LOGIC;
   signal of_valid : STD_LOGIC;
-  signal p_0_in124_in : STD_LOGIC;
-  signal p_1_in125_in : STD_LOGIC;
+  signal p_0_in130_in : STD_LOGIC;
+  signal p_122_out : STD_LOGIC;
+  signal p_1_in131_in : STD_LOGIC;
   signal p_1_in3_in : STD_LOGIC;
-  signal p_214_in : STD_LOGIC;
-  signal p_217_in : STD_LOGIC;
-  signal p_228_in : STD_LOGIC;
-  signal p_233_in : STD_LOGIC;
+  signal p_219_in : STD_LOGIC;
+  signal p_222_in : STD_LOGIC;
+  signal p_231_in : STD_LOGIC;
+  signal p_239_in : STD_LOGIC;
   signal p_2_in : STD_LOGIC;
   signal p_9_in : STD_LOGIC;
   signal reset_bool_for_rst : STD_LOGIC;
@@ -49676,30 +49844,32 @@ architecture STRUCTURE of main_ub_microblaze_0_0_Decode_gti is
   signal wb_reset : STD_LOGIC;
   signal \^wb_valid_reg_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \LOCKSTEP_Master_Out[1]_INST_0\ : label is "soft_lutpair54";
-  attribute SOFT_HLUTNM of \LOCKSTEP_Master_Out[5]_INST_0\ : label is "soft_lutpair45";
-  attribute SOFT_HLUTNM of \LOCKSTEP_Master_Out[7]_INST_0\ : label is "soft_lutpair46";
-  attribute SOFT_HLUTNM of M_AXI_DP_AWVALID_i_i_2 : label is "soft_lutpair54";
-  attribute SOFT_HLUTNM of Pause_Ack_i_1 : label is "soft_lutpair53";
-  attribute SOFT_HLUTNM of \Performance_Debug_Control.dbg_freeze_nohalt_i_2\ : label is "soft_lutpair49";
-  attribute SOFT_HLUTNM of \Performance_Debug_Control.dbg_stop_i_i_3\ : label is "soft_lutpair50";
-  attribute SOFT_HLUTNM of Trace_Exception_Taken_INST_0 : label is "soft_lutpair49";
-  attribute SOFT_HLUTNM of Trace_MB_Halted_INST_0 : label is "soft_lutpair45";
-  attribute SOFT_HLUTNM of Trace_Valid_Instr_INST_0 : label is "soft_lutpair52";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_14\ : label is "soft_lutpair51";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__99\ : label is "soft_lutpair50";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_3__6\ : label is "soft_lutpair47";
-  attribute SOFT_HLUTNM of ex_mbar_sleep_i_2 : label is "soft_lutpair51";
-  attribute SOFT_HLUTNM of ex_mbar_stall_no_sleep_1_i_1 : label is "soft_lutpair53";
-  attribute SOFT_HLUTNM of ex_read_imm_reg_i_1 : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of \LOCKSTEP_Master_Out[1]_INST_0\ : label is "soft_lutpair52";
+  attribute SOFT_HLUTNM of \LOCKSTEP_Master_Out[5]_INST_0\ : label is "soft_lutpair43";
+  attribute SOFT_HLUTNM of \LOCKSTEP_Master_Out[7]_INST_0\ : label is "soft_lutpair44";
+  attribute SOFT_HLUTNM of M_AXI_DP_AWVALID_i_i_2 : label is "soft_lutpair52";
+  attribute SOFT_HLUTNM of Pause_Ack_i_1 : label is "soft_lutpair51";
+  attribute SOFT_HLUTNM of \Performance_Debug_Control.dbg_freeze_nohalt_i_2\ : label is "soft_lutpair47";
+  attribute SOFT_HLUTNM of \Performance_Debug_Control.dbg_stop_i_i_3\ : label is "soft_lutpair48";
+  attribute SOFT_HLUTNM of Trace_Exception_Taken_INST_0 : label is "soft_lutpair47";
+  attribute SOFT_HLUTNM of Trace_MB_Halted_INST_0 : label is "soft_lutpair43";
+  attribute SOFT_HLUTNM of Trace_Valid_Instr_INST_0 : label is "soft_lutpair50";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_14\ : label is "soft_lutpair49";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__100\ : label is "soft_lutpair48";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__53\ : label is "soft_lutpair50";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_3__5\ : label is "soft_lutpair45";
+  attribute SOFT_HLUTNM of \WB_MEM_Result[0]_i_1\ : label is "soft_lutpair53";
+  attribute SOFT_HLUTNM of ex_mbar_sleep_i_2 : label is "soft_lutpair49";
+  attribute SOFT_HLUTNM of ex_mbar_stall_no_sleep_1_i_1 : label is "soft_lutpair51";
+  attribute SOFT_HLUTNM of ex_read_imm_reg_i_1 : label is "soft_lutpair44";
   attribute KEEP : string;
   attribute KEEP of ex_valid_jump_reg : label is "yes";
   attribute equivalent_register_removal : string;
   attribute equivalent_register_removal of ex_valid_jump_reg : label is "no";
-  attribute SOFT_HLUTNM of mem_Write_DCache_i_1 : label is "soft_lutpair48";
-  attribute SOFT_HLUTNM of mem_valid_i_2 : label is "soft_lutpair52";
-  attribute SOFT_HLUTNM of sign_byte_inferred_i_1 : label is "soft_lutpair47";
-  attribute SOFT_HLUTNM of wb_exception_i_i_1 : label is "soft_lutpair48";
+  attribute SOFT_HLUTNM of mem_Write_DCache_i_1 : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of mem_valid_i_2 : label is "soft_lutpair53";
+  attribute SOFT_HLUTNM of sign_byte_inferred_i_1 : label is "soft_lutpair45";
+  attribute SOFT_HLUTNM of wb_exception_i_i_1 : label is "soft_lutpair46";
 begin
   D(31 downto 0) <= \^d\(31 downto 0);
   \EX_ALU_Op_reg[0]_0\(1 downto 0) <= \^ex_alu_op_reg[0]_0\(1 downto 0);
@@ -49708,6 +49878,7 @@ begin
   \EX_Sext_Op_reg[0]_0\(1 downto 0) <= \^ex_sext_op_reg[0]_0\(1 downto 0);
   Hibernate <= \^hibernate\;
   LOCKSTEP_Master_Out(2 downto 0) <= \^lockstep_master_out\(2 downto 0);
+  M_AXI_DP_ARLOCK <= \^m_axi_dp_arlock\;
   \Performance_Debug_Control.dbg_state_nohalt_reg\(159 downto 0) <= \^performance_debug_control.dbg_state_nohalt_reg\(159 downto 0);
   Sleep_Decode <= \^sleep_decode\;
   Suspend <= \^suspend\;
@@ -49716,12 +49887,15 @@ begin
   \Using_FPGA.Native_1\ <= \^using_fpga.native_1\;
   ex_byte_access <= \^ex_byte_access\;
   ex_doublet_access <= \^ex_doublet_access\;
-  ex_is_load_instr_s <= \^ex_is_load_instr_s\;
+  ex_load_shift_carry <= \^ex_load_shift_carry\;
   ex_reverse_mem_access <= \^ex_reverse_mem_access\;
   ex_set_bip_reg_0 <= \^ex_set_bip_reg_0\;
   ex_use_carry <= \^ex_use_carry\;
   ex_valid <= \^ex_valid\;
   mem_Exception_Taken <= \^mem_exception_taken\;
+  mem_LWX_SWX_Carry_Hold <= \^mem_lwx_swx_carry_hold\;
+  mem_MSR_Load_LWX_SWX_C <= \^mem_msr_load_lwx_swx_c\;
+  mem_MSR_Load_LWX_SWX_C_Hold <= \^mem_msr_load_lwx_swx_c_hold\;
   mem_byte_access <= \^mem_byte_access\;
   mem_databus_access <= \^mem_databus_access\;
   mem_databus_write <= \^mem_databus_write\;
@@ -49855,7 +50029,7 @@ IFetch_INST_0_i_2: unisim.vcomponents.LUT5
       I1 => ex_mbar_stall_no_sleep_1,
       I2 => ex_jump_hold,
       I3 => ex_mbar_decode,
-      I4 => p_232_in,
+      I4 => p_238_in,
       O => \ex_mbar_stall_no_sleep__1\
     );
 \LOCKSTEP_Master_Out[1]_INST_0\: unisim.vcomponents.LUT2
@@ -49873,9 +50047,9 @@ IFetch_INST_0_i_2: unisim.vcomponents.LUT5
     )
         port map (
       I0 => if_fetch_in_progress_reg_0,
-      I1 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
-      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
-      I3 => wb_exception,
+      I1 => wb_exception,
+      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I3 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
       I4 => mb_halted_1_reg,
       O => \^lockstep_master_out\(1)
     );
@@ -49885,9 +50059,9 @@ IFetch_INST_0_i_2: unisim.vcomponents.LUT5
     )
         port map (
       I0 => \mem_pc_i_reg[0]_0\,
-      I1 => wb_exception,
-      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
-      I3 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I1 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
+      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I3 => wb_exception,
       O => \^lockstep_master_out\(0)
     );
 MEM_DataBus_Access_reg: unisim.vcomponents.FDRE
@@ -50154,6 +50328,14 @@ MEM_DataBus_Access_reg: unisim.vcomponents.FDRE
       Q => \^performance_debug_control.dbg_state_nohalt_reg\(90),
       R => reset_bool_for_rst
     );
+MEM_DataBus_Exclusive_reg: unisim.vcomponents.FDRE
+     port map (
+      C => Clk,
+      CE => \^using_fpga.native_1\,
+      D => \Using_FPGA_2.ex_is_swx_instr_Inst_n_5\,
+      Q => \^m_axi_dp_arlock\,
+      R => reset_bool_for_rst
+    );
 MEM_DataBus_Read_reg: unisim.vcomponents.FDRE
      port map (
       C => Clk,
@@ -50174,7 +50356,7 @@ MEM_Sel_MEM_Res_I_reg: unisim.vcomponents.FDSE
      port map (
       C => Clk,
       CE => \^using_fpga.native_1\,
-      D => \Using_FPGA_2.ex_is_load_instr_Inst_n_2\,
+      D => \Using_FPGA_2.ex_is_load_instr_Inst_n_3\,
       Q => MEM_Sel_MEM_Res,
       S => reset_bool_for_rst
     );
@@ -50239,7 +50421,7 @@ PC_Module_I: entity work.main_ub_microblaze_0_0_PC_Module_gti
       \Using_FPGA.Native\ => \^using_fpga.native\(0),
       \Using_FPGA.Native_0\ => PreFetch_Buffer_I1_n_3,
       \ex_pc_i_reg[31]_0\ => of_PipeRun_for_ce,
-      if_missed_fetch_reg => \Using_FPGA.Native_41\,
+      if_missed_fetch_reg => \Using_FPGA.Native_42\,
       if_missed_fetch_reg_0 => \mem_pc_i_reg[0]_0\,
       \if_pc_reg[0]_0\(0) => IF_PC_Write,
       \if_pc_reg[0]_1\(31 downto 0) => \^performance_debug_control.dbg_state_nohalt_reg\(156 downto 125),
@@ -50307,9 +50489,9 @@ Pause_Ack_reg: unisim.vcomponents.FDRE
       INIT => X"80"
     )
         port map (
-      I0 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
-      I1 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
-      I2 => wb_exception,
+      I0 => wb_exception,
+      I1 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
       O => \^wb_halted\
     );
 \Performance_Debug_Control.dbg_freeze_nohalt_i_2\: unisim.vcomponents.LUT4
@@ -50317,9 +50499,9 @@ Pause_Ack_reg: unisim.vcomponents.FDRE
       INIT => X"FF80"
     )
         port map (
-      I0 => wb_exception,
-      I1 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
-      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I0 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
+      I1 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I2 => wb_exception,
       I3 => \Performance_Debug_Control.dbg_stop_instr_fetch_nohalt_reg_0\,
       O => \p_4_out__0\
     );
@@ -50328,9 +50510,9 @@ Pause_Ack_reg: unisim.vcomponents.FDRE
       INIT => X"FF80"
     )
         port map (
-      I0 => wb_exception,
-      I1 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
-      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I0 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
+      I1 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I2 => wb_exception,
       I3 => reset_bool_for_rst,
       O => dbg_stop_i
     );
@@ -50351,7 +50533,8 @@ PreFetch_Buffer_I1: entity work.main_ub_microblaze_0_0_PreFetch_Buffer_gti
       Clk => Clk,
       D(1) => \^of_gpr_op3_rd_addr\(0),
       D(0) => \^of_gpr_op3_rd_addr\(1),
-      D225_out => D225_out,
+      D234_out => D234_out,
+      D236_out => D236_out,
       Dbg_Clean_Stop0 => Dbg_Clean_Stop0,
       E(0) => \^using_fpga.native_1\,
       EX_Is_Div_Instr => EX_Is_Div_Instr,
@@ -50442,34 +50625,34 @@ PreFetch_Buffer_I1: entity work.main_ub_microblaze_0_0_PreFetch_Buffer_gti
       \Using_FPGA.Native_12\ => PreFetch_Buffer_I1_n_66,
       \Using_FPGA.Native_13\(0) => E(0),
       \Using_FPGA.Native_14\ => PreFetch_Buffer_I1_n_170,
-      \Using_FPGA.Native_15\ => PreFetch_Buffer_I1_n_174,
-      \Using_FPGA.Native_16\(1) => PreFetch_Buffer_I1_n_177,
-      \Using_FPGA.Native_16\(0) => PreFetch_Buffer_I1_n_178,
-      \Using_FPGA.Native_17\ => PreFetch_Buffer_I1_n_179,
-      \Using_FPGA.Native_18\ => PreFetch_Buffer_I1_n_180,
-      \Using_FPGA.Native_19\ => PreFetch_Buffer_I1_n_183,
+      \Using_FPGA.Native_15\(1) => PreFetch_Buffer_I1_n_177,
+      \Using_FPGA.Native_15\(0) => PreFetch_Buffer_I1_n_178,
+      \Using_FPGA.Native_16\ => PreFetch_Buffer_I1_n_179,
+      \Using_FPGA.Native_17\ => PreFetch_Buffer_I1_n_180,
+      \Using_FPGA.Native_18\ => PreFetch_Buffer_I1_n_183,
+      \Using_FPGA.Native_19\ => PreFetch_Buffer_I1_n_188,
       \Using_FPGA.Native_2\ => \^of_gpr_op3_rd_addr\(3),
-      \Using_FPGA.Native_20\ => PreFetch_Buffer_I1_n_188,
-      \Using_FPGA.Native_21\ => PreFetch_Buffer_I1_n_189,
-      \Using_FPGA.Native_22\ => PreFetch_Buffer_I1_n_190,
-      \Using_FPGA.Native_23\ => PreFetch_Buffer_I1_n_191,
-      \Using_FPGA.Native_24\ => PreFetch_Buffer_I1_n_192,
-      \Using_FPGA.Native_25\ => PreFetch_Buffer_I1_n_194,
-      \Using_FPGA.Native_26\ => \Using_FPGA.Native_2\,
-      \Using_FPGA.Native_27\ => PreFetch_Buffer_I1_n_196,
-      \Using_FPGA.Native_28\ => PreFetch_Buffer_I1_n_197,
-      \Using_FPGA.Native_29\ => PreFetch_Buffer_I1_n_198,
+      \Using_FPGA.Native_20\ => PreFetch_Buffer_I1_n_189,
+      \Using_FPGA.Native_21\ => PreFetch_Buffer_I1_n_190,
+      \Using_FPGA.Native_22\ => PreFetch_Buffer_I1_n_191,
+      \Using_FPGA.Native_23\ => PreFetch_Buffer_I1_n_192,
+      \Using_FPGA.Native_24\ => PreFetch_Buffer_I1_n_194,
+      \Using_FPGA.Native_25\ => \Using_FPGA.Native_3\,
+      \Using_FPGA.Native_26\ => PreFetch_Buffer_I1_n_196,
+      \Using_FPGA.Native_27\ => PreFetch_Buffer_I1_n_197,
+      \Using_FPGA.Native_28\ => PreFetch_Buffer_I1_n_198,
+      \Using_FPGA.Native_29\ => \Using_FPGA.Native_4\,
       \Using_FPGA.Native_3\ => \^of_gpr_op3_rd_addr\(4),
-      \Using_FPGA.Native_30\ => \Using_FPGA.Native_3\,
-      \Using_FPGA.Native_31\ => \Using_FPGA.Native_4\,
-      \Using_FPGA.Native_32\ => \Using_FPGA.Native_5\,
-      \Using_FPGA.Native_33\ => \Using_FPGA.Native_6\,
-      \Using_FPGA.Native_34\ => \Using_FPGA.Native_7\,
-      \Using_FPGA.Native_35\ => \Using_FPGA.Native_8\,
-      \Using_FPGA.Native_36\ => \Using_FPGA.Native_9\,
-      \Using_FPGA.Native_37\ => \Using_FPGA.Native_10\,
-      \Using_FPGA.Native_38\ => \Using_FPGA.Native_11\,
-      \Using_FPGA.Native_39\ => \Using_FPGA.Native_12\,
+      \Using_FPGA.Native_30\ => \Using_FPGA.Native_5\,
+      \Using_FPGA.Native_31\ => \Using_FPGA.Native_6\,
+      \Using_FPGA.Native_32\ => \Using_FPGA.Native_7\,
+      \Using_FPGA.Native_33\ => \Using_FPGA.Native_8\,
+      \Using_FPGA.Native_34\ => \Using_FPGA.Native_9\,
+      \Using_FPGA.Native_35\ => \Using_FPGA.Native_10\,
+      \Using_FPGA.Native_36\ => \Using_FPGA.Native_11\,
+      \Using_FPGA.Native_37\ => \Using_FPGA.Native_12\,
+      \Using_FPGA.Native_38\ => \Using_FPGA.Native_13\,
+      \Using_FPGA.Native_39\ => \Using_FPGA.Native_14\,
       \Using_FPGA.Native_4\(20) => \^of_gpr_op1_rd_addr\(0),
       \Using_FPGA.Native_4\(19) => \^of_gpr_op1_rd_addr\(1),
       \Using_FPGA.Native_4\(18) => \^of_gpr_op1_rd_addr\(2),
@@ -50491,32 +50674,31 @@ PreFetch_Buffer_I1: entity work.main_ub_microblaze_0_0_PreFetch_Buffer_gti
       \Using_FPGA.Native_4\(2) => \^of_imm_data\(13),
       \Using_FPGA.Native_4\(1) => \^of_imm_data\(14),
       \Using_FPGA.Native_4\(0) => \^of_imm_data\(15),
-      \Using_FPGA.Native_40\ => \Using_FPGA.Native_13\,
-      \Using_FPGA.Native_41\ => \Using_FPGA.Native_14\,
-      \Using_FPGA.Native_42\ => \Using_FPGA.Native_15\,
-      \Using_FPGA.Native_43\ => \Using_FPGA.Native_16\,
-      \Using_FPGA.Native_44\ => \Using_FPGA.Native_17\,
-      \Using_FPGA.Native_45\ => \Using_FPGA.Native_18\,
-      \Using_FPGA.Native_46\ => \Using_FPGA.Native_19\,
-      \Using_FPGA.Native_47\ => \Using_FPGA.Native_20\,
-      \Using_FPGA.Native_48\ => \Using_FPGA.Native_21\,
-      \Using_FPGA.Native_49\ => \Using_FPGA.Native_22\,
+      \Using_FPGA.Native_40\ => \Using_FPGA.Native_15\,
+      \Using_FPGA.Native_41\ => \Using_FPGA.Native_16\,
+      \Using_FPGA.Native_42\ => \Using_FPGA.Native_17\,
+      \Using_FPGA.Native_43\ => \Using_FPGA.Native_18\,
+      \Using_FPGA.Native_44\ => \Using_FPGA.Native_19\,
+      \Using_FPGA.Native_45\ => \Using_FPGA.Native_20\,
+      \Using_FPGA.Native_46\ => \Using_FPGA.Native_21\,
+      \Using_FPGA.Native_47\ => \Using_FPGA.Native_22\,
+      \Using_FPGA.Native_48\ => \Using_FPGA.Native_23\,
+      \Using_FPGA.Native_49\ => \Using_FPGA.Native_24\,
       \Using_FPGA.Native_5\ => PreFetch_Buffer_I1_n_48,
-      \Using_FPGA.Native_50\ => \Using_FPGA.Native_23\,
-      \Using_FPGA.Native_51\ => \Using_FPGA.Native_24\,
-      \Using_FPGA.Native_52\ => \Using_FPGA.Native_25\,
-      \Using_FPGA.Native_53\ => \Using_FPGA.Native_26\,
-      \Using_FPGA.Native_54\ => \Using_FPGA.Native_27\,
-      \Using_FPGA.Native_55\ => \Using_FPGA.Native_28\,
-      \Using_FPGA.Native_56\ => \Using_FPGA.Native_29\,
-      \Using_FPGA.Native_57\ => \Using_FPGA.Native_30\,
-      \Using_FPGA.Native_58\ => \Using_FPGA.Native_31\,
-      \Using_FPGA.Native_59\ => \Using_FPGA.Native_32\,
+      \Using_FPGA.Native_50\ => \Using_FPGA.Native_25\,
+      \Using_FPGA.Native_51\ => \Using_FPGA.Native_26\,
+      \Using_FPGA.Native_52\ => \Using_FPGA.Native_27\,
+      \Using_FPGA.Native_53\ => \Using_FPGA.Native_28\,
+      \Using_FPGA.Native_54\ => \Using_FPGA.Native_29\,
+      \Using_FPGA.Native_55\ => \Using_FPGA.Native_30\,
+      \Using_FPGA.Native_56\ => \Using_FPGA.Native_31\,
+      \Using_FPGA.Native_57\ => \Using_FPGA.Native_32\,
+      \Using_FPGA.Native_58\ => \Using_FPGA.Native_33\,
+      \Using_FPGA.Native_59\ => \Using_FPGA.Native_34\,
       \Using_FPGA.Native_6\(0) => IF_PC_Write,
-      \Using_FPGA.Native_60\ => \Using_FPGA.Native_33\,
-      \Using_FPGA.Native_61\(0) => \Using_FPGA.Native_34\(0),
-      \Using_FPGA.Native_62\ => \mem_pc_i_reg[0]_0\,
-      \Using_FPGA.Native_63\ => \Using_FPGA.Native_41\,
+      \Using_FPGA.Native_60\(0) => \Using_FPGA.Native_35\(0),
+      \Using_FPGA.Native_61\ => \mem_pc_i_reg[0]_0\,
+      \Using_FPGA.Native_62\ => \Using_FPGA.Native_42\,
       \Using_FPGA.Native_7\ => \^performance_debug_control.dbg_state_nohalt_reg\(157),
       \Using_FPGA.Native_8\(0) => \^performance_debug_control.dbg_state_nohalt_reg\(158),
       \Using_FPGA.Native_9\ => PreFetch_Buffer_I1_n_56,
@@ -50525,8 +50707,9 @@ PreFetch_Buffer_I1: entity work.main_ub_microblaze_0_0_PreFetch_Buffer_gti
       \Using_FPGA.Native_i_5__0\(2) => mem_gpr_write_addr(2),
       \Using_FPGA.Native_i_5__0\(1) => mem_gpr_write_addr(3),
       \Using_FPGA.Native_i_5__0\(0) => mem_gpr_write_addr(4),
-      \Using_FPGA.Native_i_5__0_0\(1) => \ex_gpr_write_addr_reg_n_0_[0]\,
-      \Using_FPGA.Native_i_5__0_0\(0) => I2,
+      \Using_FPGA.Native_i_5__0_0\(4 downto 0) => \^performance_debug_control.dbg_state_nohalt_reg\(33 downto 29),
+      \Using_FPGA.Native_i_5__0_1\(1) => \ex_gpr_write_addr_reg_n_0_[0]\,
+      \Using_FPGA.Native_i_5__0_1\(0) => I2,
       ex_Exception_Taken => ex_Exception_Taken,
       ex_MSR(2 downto 0) => ex_MSR(2 downto 0),
       ex_branch_with_delayslot => ex_branch_with_delayslot,
@@ -50564,8 +50747,8 @@ PreFetch_Buffer_I1: entity work.main_ub_microblaze_0_0_PreFetch_Buffer_gti
       if_fetch_for_timing_optimization1 => if_fetch_for_timing_optimization1,
       if_fetch_in_progress => if_fetch_in_progress,
       if_fetch_in_progress_reg => PreFetch_Buffer_I1_n_184,
-      if_fetch_in_progress_reg_0(6) => \^performance_debug_control.dbg_state_nohalt_reg\(159),
-      if_fetch_in_progress_reg_0(5 downto 0) => \^performance_debug_control.dbg_state_nohalt_reg\(34 downto 29),
+      if_fetch_in_progress_reg_0(1) => \^performance_debug_control.dbg_state_nohalt_reg\(159),
+      if_fetch_in_progress_reg_0(0) => \^performance_debug_control.dbg_state_nohalt_reg\(34),
       if_fetch_in_progress_reg_1 => if_fetch_in_progress_reg_0,
       if_missed_fetch => if_missed_fetch,
       if_pre_buffer_addr(0) => if_pre_buffer_addr(1),
@@ -50625,8 +50808,8 @@ PreFetch_Buffer_I1: entity work.main_ub_microblaze_0_0_PreFetch_Buffer_gti
       of_use_op2_s => of_use_op2_s,
       of_valid => of_valid,
       \out\ => if_fetch_without_full_or_jump,
-      p_214_in => p_214_in,
-      p_217_in => p_217_in,
+      p_219_in => p_219_in,
+      p_222_in => p_222_in,
       p_2_in => p_2_in,
       p_9_in => p_9_in,
       sync_reset => reset_bool_for_rst,
@@ -50662,9 +50845,9 @@ Trace_MB_Halted_INST_0: unisim.vcomponents.LUT4
     )
         port map (
       I0 => mb_halted_1_reg,
-      I1 => wb_exception,
-      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
-      I3 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I1 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
+      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I3 => wb_exception,
       O => \^performance_debug_control.dbg_state_nohalt_reg\(159)
     );
 \Trace_New_Reg_Value[0]_INST_0\: unisim.vcomponents.LUT6
@@ -50996,9 +51179,9 @@ Trace_Valid_Instr_INST_0: unisim.vcomponents.LUT4
     )
         port map (
       I0 => \^wb_valid_reg_0\,
-      I1 => wb_exception,
-      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
-      I3 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I1 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
+      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I3 => wb_exception,
       O => \^performance_debug_control.dbg_state_nohalt_reg\(35)
     );
 Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
@@ -51086,7 +51269,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       of_PipeRun_carry_9 => of_PipeRun_carry_9,
       sync_reset => reset_bool_for_rst,
       wb_exception => wb_exception,
-      \wb_exception_kind_i_reg[28]\(0) => \Use_MuxCy[3].OF_Piperun_Stage_n_1\
+      wb_exception_i_reg(0) => \Use_MuxCy[3].OF_Piperun_Stage_n_1\
     );
 \Use_MuxCy[4].OF_Piperun_Stage\: entity work.main_ub_microblaze_0_0_carry_and_61
      port map (
@@ -51168,7 +51351,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
         port map (
       I0 => mem_valid_instr,
       I1 => mem_gpr_write,
-      O => p_214_in
+      O => p_219_in
     );
 \Using_FPGA.Native_i_14\: unisim.vcomponents.LUT2
     generic map(
@@ -51177,7 +51360,18 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
         port map (
       I0 => ex_gpr_write_reg_n_0,
       I1 => \^ex_valid\,
-      O => p_217_in
+      O => p_222_in
+    );
+\Using_FPGA.Native_i_1__100\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"1555"
+    )
+        port map (
+      I0 => \mem_pc_i_reg[0]_0\,
+      I1 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
+      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I3 => wb_exception,
+      O => \Performance_Debug_Control.dbg_freeze_nohalt_reg\
     );
 \Using_FPGA.Native_i_1__52\: unisim.vcomponents.LUT2
     generic map(
@@ -51196,7 +51390,15 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I0 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
       O => I1
     );
-\Using_FPGA.Native_i_1__59\: unisim.vcomponents.LUT4
+\Using_FPGA.Native_i_1__55\: unisim.vcomponents.LUT1
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => \^mem_msr_load_lwx_swx_c_hold\,
+      O => S
+    );
+\Using_FPGA.Native_i_1__60\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"0020"
     )
@@ -51207,7 +51409,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I3 => \^ex_use_carry\,
       O => DI
     );
-\Using_FPGA.Native_i_1__60\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__61\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51219,7 +51421,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O\,
       O => \^ex_fwd\(31)
     );
-\Using_FPGA.Native_i_1__61\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__62\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51231,7 +51433,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O31_out\,
       O => \^ex_fwd\(30)
     );
-\Using_FPGA.Native_i_1__62\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__63\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51243,7 +51445,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O30_out\,
       O => \^ex_fwd\(29)
     );
-\Using_FPGA.Native_i_1__63\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__64\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51255,7 +51457,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O29_out\,
       O => \^ex_fwd\(28)
     );
-\Using_FPGA.Native_i_1__64\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__65\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51267,7 +51469,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O28_out\,
       O => \^ex_fwd\(27)
     );
-\Using_FPGA.Native_i_1__65\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__66\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51279,7 +51481,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O27_out\,
       O => \^ex_fwd\(26)
     );
-\Using_FPGA.Native_i_1__66\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__67\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51291,7 +51493,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O26_out\,
       O => \^ex_fwd\(25)
     );
-\Using_FPGA.Native_i_1__67\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__68\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51303,7 +51505,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O24_out\,
       O => \^ex_fwd\(24)
     );
-\Using_FPGA.Native_i_1__68\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__69\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51315,7 +51517,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O23_out\,
       O => \^ex_fwd\(23)
     );
-\Using_FPGA.Native_i_1__69\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__70\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51327,7 +51529,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O22_out\,
       O => \^ex_fwd\(22)
     );
-\Using_FPGA.Native_i_1__70\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__71\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51339,7 +51541,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O21_out\,
       O => \^ex_fwd\(21)
     );
-\Using_FPGA.Native_i_1__71\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__72\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51351,7 +51553,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O20_out\,
       O => \^ex_fwd\(20)
     );
-\Using_FPGA.Native_i_1__72\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__73\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51363,7 +51565,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O19_out\,
       O => \^ex_fwd\(19)
     );
-\Using_FPGA.Native_i_1__73\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__74\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51375,7 +51577,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O18_out\,
       O => \^ex_fwd\(18)
     );
-\Using_FPGA.Native_i_1__74\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__75\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51387,7 +51589,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O17_out\,
       O => \^ex_fwd\(17)
     );
-\Using_FPGA.Native_i_1__75\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__76\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51399,7 +51601,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O15_out\,
       O => \^ex_fwd\(16)
     );
-\Using_FPGA.Native_i_1__76\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__77\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51411,7 +51613,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O14_out\,
       O => \^ex_fwd\(15)
     );
-\Using_FPGA.Native_i_1__77\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__78\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51423,7 +51625,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O13_out\,
       O => \^ex_fwd\(14)
     );
-\Using_FPGA.Native_i_1__78\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__79\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51435,7 +51637,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O12_out\,
       O => \^ex_fwd\(13)
     );
-\Using_FPGA.Native_i_1__79\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__80\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51447,7 +51649,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O11_out\,
       O => \^ex_fwd\(12)
     );
-\Using_FPGA.Native_i_1__80\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__81\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51459,7 +51661,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O10_out\,
       O => \^ex_fwd\(11)
     );
-\Using_FPGA.Native_i_1__81\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__82\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51471,7 +51673,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O9_out\,
       O => \^ex_fwd\(10)
     );
-\Using_FPGA.Native_i_1__82\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__83\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51483,7 +51685,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O8_out\,
       O => \^ex_fwd\(9)
     );
-\Using_FPGA.Native_i_1__83\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__84\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51495,7 +51697,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O7_out\,
       O => \^ex_fwd\(8)
     );
-\Using_FPGA.Native_i_1__84\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__85\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51507,7 +51709,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O6_out\,
       O => \^ex_fwd\(7)
     );
-\Using_FPGA.Native_i_1__85\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__86\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51519,7 +51721,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O5_out\,
       O => \^ex_fwd\(6)
     );
-\Using_FPGA.Native_i_1__86\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__87\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51531,7 +51733,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O4_out\,
       O => \^ex_fwd\(5)
     );
-\Using_FPGA.Native_i_1__87\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__88\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51543,7 +51745,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O3_out\,
       O => \^ex_fwd\(4)
     );
-\Using_FPGA.Native_i_1__88\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__89\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51555,7 +51757,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O2_out\,
       O => \^ex_fwd\(3)
     );
-\Using_FPGA.Native_i_1__89\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__90\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51567,7 +51769,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O1_out\,
       O => \^ex_fwd\(2)
     );
-\Using_FPGA.Native_i_1__90\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_1__91\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"B8BBB888"
     )
@@ -51579,17 +51781,6 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I4 => \Data_Flow_I/Shift_Logic_Module_I/O0_out\,
       O => \^ex_fwd\(1)
     );
-\Using_FPGA.Native_i_1__99\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"1555"
-    )
-        port map (
-      I0 => \mem_pc_i_reg[0]_0\,
-      I1 => wb_exception,
-      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
-      I3 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
-      O => \Performance_Debug_Control.dbg_freeze_nohalt_reg\
-    );
 \Using_FPGA.Native_i_2__85\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"B8"
@@ -51600,17 +51791,29 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I2 => ex_shift_logic_result(0),
       O => \^ex_fwd\(0)
     );
+\Using_FPGA.Native_i_3\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"A8880888"
+    )
+        port map (
+      I0 => ex_Enable_Sext_Shift,
+      I1 => \Using_FPGA.Native_43\(0),
+      I2 => \^ex_sext_op_reg[0]_0\(1),
+      I3 => \^ex_sext_op_reg[0]_0\(0),
+      I4 => \Using_FPGA.Native_43\(1),
+      O => \Data_Flow_I/Shift_Logic_Module_I/O\
+    );
 \Using_FPGA.Native_i_3__0\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"A8880888"
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(0),
+      I1 => \Using_FPGA.Native_43\(1),
       I2 => \^ex_sext_op_reg[0]_0\(1),
       I3 => \^ex_sext_op_reg[0]_0\(0),
-      I4 => \Using_FPGA.Native_42\(1),
-      O => \Data_Flow_I/Shift_Logic_Module_I/O\
+      I4 => \Using_FPGA.Native_43\(2),
+      O => \Data_Flow_I/Shift_Logic_Module_I/O31_out\
     );
 \Using_FPGA.Native_i_3__1\: unisim.vcomponents.LUT5
     generic map(
@@ -51618,11 +51821,11 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(1),
+      I1 => \Using_FPGA.Native_43\(2),
       I2 => \^ex_sext_op_reg[0]_0\(1),
       I3 => \^ex_sext_op_reg[0]_0\(0),
-      I4 => \Using_FPGA.Native_42\(2),
-      O => \Data_Flow_I/Shift_Logic_Module_I/O31_out\
+      I4 => \Using_FPGA.Native_43\(3),
+      O => \Data_Flow_I/Shift_Logic_Module_I/O30_out\
     );
 \Using_FPGA.Native_i_3__10\: unisim.vcomponents.LUT6
     generic map(
@@ -51630,12 +51833,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(10),
+      I1 => \Using_FPGA.Native_43\(11),
       I2 => \^ex_sext_op_reg[0]_0\(0),
       I3 => \^ex_sext_op_reg[0]_0\(1),
-      I4 => \Using_FPGA.Native_42\(11),
+      I4 => \Using_FPGA.Native_43\(12),
       I5 => \out\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O21_out\
+      O => \Data_Flow_I/Shift_Logic_Module_I/O20_out\
     );
 \Using_FPGA.Native_i_3__11\: unisim.vcomponents.LUT6
     generic map(
@@ -51643,12 +51846,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(11),
+      I1 => \Using_FPGA.Native_43\(12),
       I2 => \^ex_sext_op_reg[0]_0\(0),
       I3 => \^ex_sext_op_reg[0]_0\(1),
-      I4 => \Using_FPGA.Native_42\(12),
+      I4 => \Using_FPGA.Native_43\(13),
       I5 => \out\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O20_out\
+      O => \Data_Flow_I/Shift_Logic_Module_I/O19_out\
     );
 \Using_FPGA.Native_i_3__12\: unisim.vcomponents.LUT6
     generic map(
@@ -51656,12 +51859,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(12),
+      I1 => \Using_FPGA.Native_43\(13),
       I2 => \^ex_sext_op_reg[0]_0\(0),
       I3 => \^ex_sext_op_reg[0]_0\(1),
-      I4 => \Using_FPGA.Native_42\(13),
+      I4 => \Using_FPGA.Native_43\(14),
       I5 => \out\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O19_out\
+      O => \Data_Flow_I/Shift_Logic_Module_I/O18_out\
     );
 \Using_FPGA.Native_i_3__13\: unisim.vcomponents.LUT6
     generic map(
@@ -51669,12 +51872,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(13),
+      I1 => \Using_FPGA.Native_43\(14),
       I2 => \^ex_sext_op_reg[0]_0\(0),
       I3 => \^ex_sext_op_reg[0]_0\(1),
-      I4 => \Using_FPGA.Native_42\(14),
+      I4 => \Using_FPGA.Native_43\(15),
       I5 => \out\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O18_out\
+      O => \Data_Flow_I/Shift_Logic_Module_I/O17_out\
     );
 \Using_FPGA.Native_i_3__14\: unisim.vcomponents.LUT6
     generic map(
@@ -51682,25 +51885,25 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(14),
+      I1 => \Using_FPGA.Native_43\(15),
       I2 => \^ex_sext_op_reg[0]_0\(0),
       I3 => \^ex_sext_op_reg[0]_0\(1),
-      I4 => \Using_FPGA.Native_42\(15),
+      I4 => \Using_FPGA.Native_43\(16),
       I5 => \out\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O17_out\
+      O => \Data_Flow_I/Shift_Logic_Module_I/O15_out\
     );
 \Using_FPGA.Native_i_3__15\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"A88A088AA8800880"
+      INIT => X"8A80AAAA8A800000"
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(15),
+      I1 => \Using_FPGA.Native_43\(17),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \^ex_sext_op_reg[0]_0\(1),
-      I4 => \Using_FPGA.Native_42\(16),
-      I5 => \out\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O15_out\
+      I3 => \Using_FPGA.Native_43\(16),
+      I4 => \^ex_sext_op_reg[0]_0\(1),
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O14_out\
     );
 \Using_FPGA.Native_i_3__16\: unisim.vcomponents.LUT6
     generic map(
@@ -51708,12 +51911,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(17),
+      I1 => \Using_FPGA.Native_43\(18),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(16),
+      I3 => \Using_FPGA.Native_43\(17),
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O14_out\
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O13_out\
     );
 \Using_FPGA.Native_i_3__17\: unisim.vcomponents.LUT6
     generic map(
@@ -51721,12 +51924,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(18),
+      I1 => \Using_FPGA.Native_43\(19),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(17),
+      I3 => \Using_FPGA.Native_43\(18),
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O13_out\
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O12_out\
     );
 \Using_FPGA.Native_i_3__18\: unisim.vcomponents.LUT6
     generic map(
@@ -51734,12 +51937,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(19),
+      I1 => \Using_FPGA.Native_43\(20),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(18),
+      I3 => \Using_FPGA.Native_43\(19),
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O12_out\
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O11_out\
     );
 \Using_FPGA.Native_i_3__19\: unisim.vcomponents.LUT6
     generic map(
@@ -51747,12 +51950,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(20),
+      I1 => \Using_FPGA.Native_43\(21),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(19),
+      I3 => \Using_FPGA.Native_43\(20),
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O11_out\
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O10_out\
     );
 \Using_FPGA.Native_i_3__2\: unisim.vcomponents.LUT5
     generic map(
@@ -51760,11 +51963,11 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(2),
+      I1 => \Using_FPGA.Native_43\(3),
       I2 => \^ex_sext_op_reg[0]_0\(1),
       I3 => \^ex_sext_op_reg[0]_0\(0),
-      I4 => \Using_FPGA.Native_42\(3),
-      O => \Data_Flow_I/Shift_Logic_Module_I/O30_out\
+      I4 => \Using_FPGA.Native_43\(4),
+      O => \Data_Flow_I/Shift_Logic_Module_I/O29_out\
     );
 \Using_FPGA.Native_i_3__20\: unisim.vcomponents.LUT6
     generic map(
@@ -51772,12 +51975,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(21),
+      I1 => \Using_FPGA.Native_43\(22),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(20),
+      I3 => \Using_FPGA.Native_43\(21),
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O10_out\
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O9_out\
     );
 \Using_FPGA.Native_i_3__21\: unisim.vcomponents.LUT6
     generic map(
@@ -51785,12 +51988,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(22),
+      I1 => \Using_FPGA.Native_43\(23),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(21),
+      I3 => \Using_FPGA.Native_43\(22),
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O9_out\
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O8_out\
     );
 \Using_FPGA.Native_i_3__22\: unisim.vcomponents.LUT6
     generic map(
@@ -51798,12 +52001,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(23),
+      I1 => \Using_FPGA.Native_43\(24),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(22),
+      I3 => \Using_FPGA.Native_43\(23),
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O8_out\
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O7_out\
     );
 \Using_FPGA.Native_i_3__23\: unisim.vcomponents.LUT6
     generic map(
@@ -51811,12 +52014,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(24),
+      I1 => \Using_FPGA.Native_43\(25),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(23),
+      I3 => \Using_FPGA.Native_43\(24),
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O7_out\
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O6_out\
     );
 \Using_FPGA.Native_i_3__24\: unisim.vcomponents.LUT6
     generic map(
@@ -51824,12 +52027,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(25),
+      I1 => \Using_FPGA.Native_43\(26),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(24),
+      I3 => \Using_FPGA.Native_43\(25),
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O6_out\
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O5_out\
     );
 \Using_FPGA.Native_i_3__25\: unisim.vcomponents.LUT6
     generic map(
@@ -51837,12 +52040,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(26),
+      I1 => \Using_FPGA.Native_43\(27),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(25),
+      I3 => \Using_FPGA.Native_43\(26),
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O5_out\
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O4_out\
     );
 \Using_FPGA.Native_i_3__26\: unisim.vcomponents.LUT6
     generic map(
@@ -51850,12 +52053,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(27),
+      I1 => \Using_FPGA.Native_43\(28),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(26),
+      I3 => \Using_FPGA.Native_43\(27),
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O4_out\
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O3_out\
     );
 \Using_FPGA.Native_i_3__27\: unisim.vcomponents.LUT6
     generic map(
@@ -51863,12 +52066,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(28),
+      I1 => \Using_FPGA.Native_43\(29),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(27),
+      I3 => \Using_FPGA.Native_43\(28),
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O3_out\
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O2_out\
     );
 \Using_FPGA.Native_i_3__28\: unisim.vcomponents.LUT6
     generic map(
@@ -51876,12 +52079,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(29),
+      I1 => \Using_FPGA.Native_43\(30),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(28),
+      I3 => \Using_FPGA.Native_43\(29),
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O2_out\
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O1_out\
     );
 \Using_FPGA.Native_i_3__29\: unisim.vcomponents.LUT6
     generic map(
@@ -51889,12 +52092,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(30),
+      I1 => \Using_FPGA.Native_43\(31),
       I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(29),
+      I3 => \Using_FPGA.Native_43\(30),
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O1_out\
+      I5 => \Using_FPGA.Native_44\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O0_out\
     );
 \Using_FPGA.Native_i_3__3\: unisim.vcomponents.LUT5
     generic map(
@@ -51902,26 +52105,13 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(3),
+      I1 => \Using_FPGA.Native_43\(4),
       I2 => \^ex_sext_op_reg[0]_0\(1),
       I3 => \^ex_sext_op_reg[0]_0\(0),
-      I4 => \Using_FPGA.Native_42\(4),
-      O => \Data_Flow_I/Shift_Logic_Module_I/O29_out\
+      I4 => \Using_FPGA.Native_43\(5),
+      O => \Data_Flow_I/Shift_Logic_Module_I/O28_out\
     );
 \Using_FPGA.Native_i_3__30\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"8A80AAAA8A800000"
-    )
-        port map (
-      I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(31),
-      I2 => \^ex_sext_op_reg[0]_0\(0),
-      I3 => \Using_FPGA.Native_42\(30),
-      I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O0_out\
-    );
-\Using_FPGA.Native_i_3__31\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"B888B8B8B8888888"
     )
@@ -51931,7 +52121,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I2 => ex_Enable_Sext_Shift,
       I3 => \Using_FPGA.Native_i_5__1_n_0\,
       I4 => \^ex_sext_op_reg[0]_0\(1),
-      I5 => \Using_FPGA.Native_43\,
+      I5 => \Using_FPGA.Native_44\,
       O => ex_shift_logic_result(0)
     );
 \Using_FPGA.Native_i_3__4\: unisim.vcomponents.LUT5
@@ -51940,11 +52130,11 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(4),
+      I1 => \Using_FPGA.Native_43\(5),
       I2 => \^ex_sext_op_reg[0]_0\(1),
       I3 => \^ex_sext_op_reg[0]_0\(0),
-      I4 => \Using_FPGA.Native_42\(5),
-      O => \Data_Flow_I/Shift_Logic_Module_I/O28_out\
+      I4 => \Using_FPGA.Native_43\(6),
+      O => \Data_Flow_I/Shift_Logic_Module_I/O27_out\
     );
 \Using_FPGA.Native_i_3__5\: unisim.vcomponents.LUT5
     generic map(
@@ -51952,11 +52142,11 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(5),
+      I1 => \Using_FPGA.Native_43\(6),
       I2 => \^ex_sext_op_reg[0]_0\(1),
       I3 => \^ex_sext_op_reg[0]_0\(0),
-      I4 => \Using_FPGA.Native_42\(6),
-      O => \Data_Flow_I/Shift_Logic_Module_I/O27_out\
+      I4 => \Using_FPGA.Native_43\(7),
+      O => \Data_Flow_I/Shift_Logic_Module_I/O26_out\
     );
 \Using_FPGA.Native_i_3__6\: unisim.vcomponents.LUT5
     generic map(
@@ -51964,23 +52154,24 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(6),
+      I1 => \Using_FPGA.Native_43\(7),
       I2 => \^ex_sext_op_reg[0]_0\(1),
       I3 => \^ex_sext_op_reg[0]_0\(0),
-      I4 => \Using_FPGA.Native_42\(7),
-      O => \Data_Flow_I/Shift_Logic_Module_I/O26_out\
+      I4 => \Using_FPGA.Native_43\(8),
+      O => \Data_Flow_I/Shift_Logic_Module_I/O24_out\
     );
-\Using_FPGA.Native_i_3__7\: unisim.vcomponents.LUT5
+\Using_FPGA.Native_i_3__7\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"A8880888"
+      INIT => X"A88A088AA8800880"
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(7),
-      I2 => \^ex_sext_op_reg[0]_0\(1),
-      I3 => \^ex_sext_op_reg[0]_0\(0),
-      I4 => \Using_FPGA.Native_42\(8),
-      O => \Data_Flow_I/Shift_Logic_Module_I/O24_out\
+      I1 => \Using_FPGA.Native_43\(8),
+      I2 => \^ex_sext_op_reg[0]_0\(0),
+      I3 => \^ex_sext_op_reg[0]_0\(1),
+      I4 => \Using_FPGA.Native_43\(9),
+      I5 => \out\,
+      O => \Data_Flow_I/Shift_Logic_Module_I/O23_out\
     );
 \Using_FPGA.Native_i_3__8\: unisim.vcomponents.LUT6
     generic map(
@@ -51988,12 +52179,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(8),
+      I1 => \Using_FPGA.Native_43\(9),
       I2 => \^ex_sext_op_reg[0]_0\(0),
       I3 => \^ex_sext_op_reg[0]_0\(1),
-      I4 => \Using_FPGA.Native_42\(9),
+      I4 => \Using_FPGA.Native_43\(10),
       I5 => \out\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O23_out\
+      O => \Data_Flow_I/Shift_Logic_Module_I/O22_out\
     );
 \Using_FPGA.Native_i_3__9\: unisim.vcomponents.LUT6
     generic map(
@@ -52001,12 +52192,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => ex_Enable_Sext_Shift,
-      I1 => \Using_FPGA.Native_42\(9),
+      I1 => \Using_FPGA.Native_43\(10),
       I2 => \^ex_sext_op_reg[0]_0\(0),
       I3 => \^ex_sext_op_reg[0]_0\(1),
-      I4 => \Using_FPGA.Native_42\(10),
+      I4 => \Using_FPGA.Native_43\(11),
       I5 => \out\,
-      O => \Data_Flow_I/Shift_Logic_Module_I/O22_out\
+      O => \Data_Flow_I/Shift_Logic_Module_I/O21_out\
     );
 \Using_FPGA.Native_i_5__1\: unisim.vcomponents.LUT5
     generic map(
@@ -52017,7 +52208,7 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       I1 => ex_MSR(1),
       I2 => ex_shift_op(0),
       I3 => \^ex_sext_op_reg[0]_0\(0),
-      I4 => \Using_FPGA.Native_42\(31),
+      I4 => \Using_FPGA.Native_43\(31),
       O => \Using_FPGA.Native_i_5__1_n_0\
     );
 \Using_FPGA_2.ex_byte_access_i_Inst\: entity work.main_ub_microblaze_0_0_MB_FDRE_68
@@ -52043,60 +52234,74 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
 \Using_FPGA_2.ex_is_load_instr_Inst\: entity work.main_ub_microblaze_0_0_MB_FDRE_70
      port map (
       Clk => Clk,
-      \Using_FPGA.Native_0\ => \^ex_is_load_instr_s\,
-      \Using_FPGA.Native_1\ => of_PipeRun_for_ce,
-      \Using_FPGA.Native_2\ => PreFetch_Buffer_I1_n_196,
+      \Using_FPGA.Native_0\ => ex_is_load_instr_s,
+      \Using_FPGA.Native_1\(0) => \^performance_debug_control.dbg_state_nohalt_reg\(100),
+      \Using_FPGA.Native_2\ => of_PipeRun_for_ce,
+      \Using_FPGA.Native_3\ => PreFetch_Buffer_I1_n_196,
       ex_Sel_SPR_BTR => ex_Sel_SPR_BTR,
       ex_Sel_SPR_EAR => ex_Sel_SPR_EAR,
       ex_Sel_SPR_EDR => ex_Sel_SPR_EDR,
       ex_Sel_SPR_ESR => ex_Sel_SPR_ESR,
       ex_Sel_SPR_FSR => ex_Sel_SPR_FSR,
+      ex_Sel_SPR_FSR_reg => \Using_FPGA_2.ex_is_load_instr_Inst_n_3\,
       ex_Sel_SPR_PVR => ex_Sel_SPR_PVR,
-      ex_Sel_SPR_PVR_reg => \Using_FPGA_2.ex_is_load_instr_Inst_n_2\,
       ex_Sel_SPR_SHR => ex_Sel_SPR_SHR,
       ex_Sel_SPR_SLR => ex_Sel_SPR_SLR,
       ex_is_multi_instr2 => ex_is_multi_instr2,
+      ex_is_swx_instr_s => ex_is_swx_instr_s,
+      ex_load_store_instr_s => ex_load_store_instr_s,
+      ex_reservation => ex_reservation,
       mem_is_multi_or_load_instr0 => mem_is_multi_or_load_instr0,
+      p_238_in => p_238_in,
       sync_reset => reset_bool_for_rst
     );
 \Using_FPGA_2.ex_is_lwx_instr_Inst\: entity work.main_ub_microblaze_0_0_MB_FDRE_71
      port map (
       Clk => Clk,
+      D236_out => D236_out,
       \Using_FPGA.Native_0\ => of_PipeRun_for_ce,
-      \Using_FPGA.Native_1\ => PreFetch_Buffer_I1_n_174,
-      \Using_FPGA.Native_i_2__21\ => \^mem_exception_taken\,
-      \Using_LWX_SWX_instr.ex_reservation_reg\ => \Using_FPGA_2.ex_is_lwx_instr_Inst_n_1\,
+      \Using_FPGA.Native_1\ => \^mem_msr_load_lwx_swx_c_hold\,
+      \Using_FPGA.Native_2\ => \Using_FPGA.Native_46\,
+      \Using_LWX_SWX_instr.ex_reservation_reg\ => \Using_FPGA_2.ex_is_lwx_instr_Inst_n_2\,
       \Using_LWX_SWX_instr.ex_reservation_reg_0\ => \Using_FPGA_2.ex_is_swx_instr_Inst_n_4\,
-      ex_MSR_Load_LWX_SWX_C => ex_MSR_Load_LWX_SWX_C,
+      \Using_LWX_SWX_instr_MEM.MEM_LWX_SWX_Carry_Hold_reg\ => \Using_FPGA_2.ex_is_lwx_instr_Inst_n_3\,
+      ex_is_lwx_instr_s => ex_is_lwx_instr_s,
       ex_is_swx_instr_s => ex_is_swx_instr_s,
+      ex_load_shift_carry => \^ex_load_shift_carry\,
       ex_load_store_instr_s => ex_load_store_instr_s,
       ex_reservation => ex_reservation,
-      p_228_in => p_228_in,
-      p_232_in => p_232_in,
+      mem_Exception_Taken => \^mem_exception_taken\,
+      mem_LWX_SWX_Carry_Hold => \^mem_lwx_swx_carry_hold\,
+      p_122_out => p_122_out,
+      p_231_in => p_231_in,
+      p_238_in => p_238_in,
       sync_reset => reset_bool_for_rst,
       wb_exception => wb_exception
     );
 \Using_FPGA_2.ex_is_swx_instr_Inst\: entity work.main_ub_microblaze_0_0_MB_FDRE_72
      port map (
       Clk => Clk,
-      D225_out => D225_out,
-      D_AS => \^mem_exception_taken\,
+      D234_out => D234_out,
       E(0) => \^using_fpga.native_1\,
+      LO => LO,
       MEM_DataBus_Access_reg => \Using_FPGA_2.ex_is_swx_instr_Inst_n_1\,
       MEM_DataBus_Access_reg_0 => \^mem_databus_access\,
       MEM_DataBus_Access_reg_1 => \^using_fpga.native_0\,
       SRI => SRI,
-      \Using_FPGA.Native_0\ => of_PipeRun_for_ce,
-      \Using_LWX_SWX_instr.ex_reservation_reg\(0) => \^performance_debug_control.dbg_state_nohalt_reg\(100),
-      \Using_LWX_SWX_instr.ex_reservation_reg_0\ => \^wb_halted\,
+      \Using_FPGA.Native_0\ => \Using_FPGA.Native_2\,
+      \Using_FPGA.Native_1\ => \Using_FPGA_2.ex_is_swx_instr_Inst_n_5\,
+      \Using_FPGA.Native_2\ => of_PipeRun_for_ce,
+      \Using_FPGA.Native_3\ => \Using_FPGA_2.ex_is_lwx_instr_Inst_n_3\,
+      \Using_FPGA.Native_4\(0) => \Using_FPGA.Native_43\(0),
+      \Using_LWX_SWX_instr.ex_reservation_reg\ => \^wb_halted\,
+      ex_MSR(0) => ex_MSR(1),
+      ex_MSR_Load_ALU_C => ex_MSR_Load_ALU_C,
+      ex_MSR_Load_Shift_C => ex_MSR_Load_Shift_C,
       ex_MSR_Set_SW_BIP => ex_MSR_Set_SW_BIP,
-      ex_is_load_instr_s => \^ex_is_load_instr_s\,
+      ex_is_lwx_instr_s => ex_is_lwx_instr_s,
       ex_is_swx_instr_s => ex_is_swx_instr_s,
-      ex_load_store_instr_s => ex_load_store_instr_s,
       ex_reservation => ex_reservation,
-      \ex_swx_access__0\ => \ex_swx_access__0\,
-      p_228_in => p_228_in,
-      p_232_in => p_232_in,
+      p_231_in => p_231_in,
       sync_reset => reset_bool_for_rst,
       wb_exception => wb_exception,
       wb_exception_i_reg => \Using_FPGA_2.ex_is_swx_instr_Inst_n_4\
@@ -52111,12 +52316,12 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       ex_load_store_instr_s => ex_load_store_instr_s,
       ex_reservation => ex_reservation,
       mem_exception_from_ex => mem_exception_from_ex,
-      mem_load_store_access_reg => \Using_FPGA.Native_40\,
-      mem_load_store_access_reg_0 => \Using_FPGA.Native_39\,
+      mem_load_store_access_reg => \Using_FPGA.Native_41\,
+      mem_load_store_access_reg_0 => \Using_FPGA.Native_40\,
       mem_load_store_access_reg_1 => \^ex_valid\,
       mem_valid_instr => mem_valid_instr,
-      p_228_in => p_228_in,
-      p_232_in => p_232_in,
+      p_231_in => p_231_in,
+      p_238_in => p_238_in,
       sync_reset => reset_bool_for_rst,
       wb_exception => wb_exception
     );
@@ -52131,30 +52336,30 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
 \Using_FPGA_3.ex_clear_MSR_BIP_instr_Inst\: entity work.main_ub_microblaze_0_0_MB_FDRE_75
      port map (
       Clk => Clk,
+      D24_out => D24_out,
       E(0) => \^using_fpga.native_1\,
       \Using_FPGA.Native_0\ => of_PipeRun_for_ce,
-      \Using_FPGA.Native_1\ => \Using_FPGA_3.of_clear_MSR_BIP_hold_Inst_n_0\,
-      \Using_FPGA.Native_2\ => \^ex_set_bip_reg_0\,
-      \Using_FPGA.Native_3\ => \Using_FPGA.Native_38\,
+      \Using_FPGA.Native_1\ => \^ex_set_bip_reg_0\,
+      \Using_FPGA.Native_2\ => \Using_FPGA.Native_39\,
       ex_MSR(0) => ex_MSR(2),
       ex_set_bip_reg => ex_set_bip_reg_1,
-      p_232_in => p_232_in,
+      p_238_in => p_238_in,
       sync_reset => reset_bool_for_rst
     );
 \Using_FPGA_3.of_clear_MSR_BIP_hold_Inst\: entity work.main_ub_microblaze_0_0_MB_FDR
      port map (
       Clk => Clk,
+      D24_out => D24_out,
       E(0) => \^using_fpga.native_1\,
       I0 => I0,
-      \Performance_Debug_Control.ex_dbg_pc_hit_i_reg\ => \Using_FPGA_3.of_clear_MSR_BIP_hold_Inst_n_0\,
       Q(5) => ex_opcode(0),
       Q(4) => ex_opcode(1),
       Q(3) => ex_opcode(2),
       Q(2) => ex_opcode(3),
       Q(1) => ex_opcode(4),
       Q(0) => ex_opcode(5),
-      \Using_FPGA.Native_0\ => \Using_FPGA.Native_39\,
-      \Using_FPGA.Native_1\ => \Using_FPGA.Native_40\,
+      \Using_FPGA.Native_0\ => \Using_FPGA.Native_40\,
+      \Using_FPGA.Native_1\ => \Using_FPGA.Native_41\,
       \Using_FPGA.Native_2\ => \^ex_valid\,
       \Using_FPGA.Native_3\ => of_PipeRun_for_ce,
       sync_reset => reset_bool_for_rst
@@ -52175,8 +52380,8 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       D(0) => \ex_gpr_write_addr_reg_n_0_[4]\,
       I0 => I0,
       O => O,
-      \Using_FPGA.Native_i_1__58_0\ => ex_gpr_write_reg_n_0,
-      \Using_FPGA.Native_i_1__58_1\ => \^ex_valid\,
+      \Using_FPGA.Native_i_1__59_0\ => ex_gpr_write_reg_n_0,
+      \Using_FPGA.Native_i_1__59_1\ => \^ex_valid\,
       ex_is_multi_or_load_instr => ex_is_multi_or_load_instr,
       of_predecode(1) => of_predecode(4),
       of_predecode(0) => of_predecode(5)
@@ -52209,9 +52414,9 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       D(2) => \ex_gpr_write_addr_reg_n_0_[0]\,
       D(1) => I2,
       D(0) => I4,
-      \Using_FPGA.Native_i_1__56_0\(1) => \^of_gpr_op3_rd_addr\(0),
-      \Using_FPGA.Native_i_1__56_0\(0) => \^of_gpr_op3_rd_addr\(1),
-      \Using_FPGA.Native_i_1__56_1\ => \^of_gpr_op3_rd_addr\(2),
+      \Using_FPGA.Native_i_1__57_0\(1) => \^of_gpr_op3_rd_addr\(0),
+      \Using_FPGA.Native_i_1__57_0\(0) => \^of_gpr_op3_rd_addr\(1),
+      \Using_FPGA.Native_i_1__57_1\ => \^of_gpr_op3_rd_addr\(2),
       ex_is_multi_or_load_instr => ex_is_multi_or_load_instr,
       ex_is_multi_or_load_instr_reg => \Using_FPGA_4.of_read_ex_write_op3_conflict_INST1_n_0\,
       of_predecode(0) => of_predecode(0),
@@ -52221,10 +52426,10 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
      port map (
       D(0) => \ex_gpr_write_addr_reg_n_0_[4]\,
       I0 => I0,
-      \Using_FPGA.Native_i_1__56\ => \^of_gpr_op3_rd_addr\(3),
-      \Using_FPGA.Native_i_1__56_0\ => \^of_gpr_op3_rd_addr\(4),
-      \Using_FPGA.Native_i_1__56_1\ => ex_gpr_write_reg_n_0,
-      \Using_FPGA.Native_i_1__56_2\ => \^ex_valid\,
+      \Using_FPGA.Native_i_1__57\ => \^of_gpr_op3_rd_addr\(3),
+      \Using_FPGA.Native_i_1__57_0\ => \^of_gpr_op3_rd_addr\(4),
+      \Using_FPGA.Native_i_1__57_1\ => ex_gpr_write_reg_n_0,
+      \Using_FPGA.Native_i_1__57_2\ => \^ex_valid\,
       of_read_ex_write_op3_conflict_part2 => of_read_ex_write_op3_conflict_part2
     );
 \Using_FPGA_4.of_read_mem_write_op1_conflict_INST1\: entity work.\main_ub_microblaze_0_0_MB_LUT6__parameterized8_80\
@@ -52276,15 +52481,15 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
       Q(2) => mem_gpr_write_addr(0),
       Q(1) => mem_gpr_write_addr(1),
       Q(0) => mem_gpr_write_addr(2),
-      \Using_FPGA.Native_i_1__55\ => \^of_gpr_op3_rd_addr\(2),
+      \Using_FPGA.Native_i_1__56\ => \^of_gpr_op3_rd_addr\(2),
       of_read_mem_write_op3_conflict_part1 => of_read_mem_write_op3_conflict_part1
     );
 \Using_FPGA_4.of_read_mem_write_op3_conflict_INST2\: entity work.\main_ub_microblaze_0_0_MB_LUT6__parameterized10_85\
      port map (
       Q(1) => mem_gpr_write_addr(3),
       Q(0) => mem_gpr_write_addr(4),
-      \Using_FPGA.Native_i_1__55\ => \^of_gpr_op3_rd_addr\(3),
-      \Using_FPGA.Native_i_1__55_0\ => \^of_gpr_op3_rd_addr\(4),
+      \Using_FPGA.Native_i_1__56\ => \^of_gpr_op3_rd_addr\(3),
+      \Using_FPGA.Native_i_1__56_0\ => \^of_gpr_op3_rd_addr\(4),
       mem_gpr_write => mem_gpr_write,
       mem_valid_instr => mem_valid_instr,
       of_read_mem_write_op3_conflict_part2 => of_read_mem_write_op3_conflict_part2
@@ -52293,13 +52498,37 @@ Trace_WB_Jump_Taken_reg: unisim.vcomponents.FDRE
      port map (
       C => Clk,
       CE => '1',
-      D => \Using_FPGA_2.ex_is_lwx_instr_Inst_n_1\,
+      D => \Using_FPGA_2.ex_is_lwx_instr_Inst_n_2\,
       Q => ex_reservation,
       R => '0'
     );
+\Using_LWX_SWX_instr_MEM.MEM_LWX_SWX_Carry_Hold_reg\: unisim.vcomponents.FDRE
+     port map (
+      C => Clk,
+      CE => \^using_fpga.native_0\,
+      D => mem_daxi_exclusive_failed,
+      Q => \^mem_lwx_swx_carry_hold\,
+      R => reset_bool_for_rst
+    );
+\Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_reg\: unisim.vcomponents.FDRE
+     port map (
+      C => Clk,
+      CE => '1',
+      D => mem_PipeRun_carry_and_n_6,
+      Q => \^mem_msr_load_lwx_swx_c_hold\,
+      R => '0'
+    );
+\Using_LWX_SWX_instr_MEM.mem_msr_load_lwx_swx_c_1_reg\: unisim.vcomponents.FDRE
+     port map (
+      C => Clk,
+      CE => \^using_fpga.native_1\,
+      D => p_122_out,
+      Q => \^mem_msr_load_lwx_swx_c\,
+      R => reset_bool_for_rst
+    );
 \Using_PC_Incr_Dbg_or_Prot.if_pc_incr_carry_and_1\: entity work.main_ub_microblaze_0_0_carry_and_86
      port map (
-      \Using_FPGA.Native\ => \Using_FPGA.Native_36\,
+      \Using_FPGA.Native\ => \Using_FPGA.Native_37\,
       if_pc_incr_carry0 => if_pc_incr_carry0,
       if_pc_incr_carry1 => if_pc_incr_carry1,
       lopt => lopt_3,
@@ -52877,7 +53106,7 @@ ex_hibernate_i_i_1: unisim.vcomponents.LUT5
         port map (
       I0 => \^hibernate\,
       I1 => ex_sleep_i0,
-      I2 => p_1_in125_in,
+      I2 => p_1_in131_in,
       I3 => reset_bool_for_rst,
       I4 => active_wakeup,
       O => ex_hibernate_i_i_1_n_0
@@ -52888,7 +53117,7 @@ ex_hibernate_i_i_2: unisim.vcomponents.LUT6
     )
         port map (
       I0 => ex_mbar_sleep,
-      I1 => p_232_in,
+      I1 => p_238_in,
       I2 => ex_mbar_decode,
       I3 => ex_jump_hold,
       I4 => ex_mbar_stall_no_sleep_1,
@@ -53219,7 +53448,7 @@ ex_hibernate_i_reg: unisim.vcomponents.FDRE
       C => Clk,
       CE => of_PipeRun_for_ce,
       D => \^of_gpr_op3_rd_addr\(0),
-      Q => p_1_in125_in,
+      Q => p_1_in131_in,
       R => '0'
     );
 \ex_instr_reg[7]\: unisim.vcomponents.FDRE
@@ -53230,7 +53459,7 @@ ex_hibernate_i_reg: unisim.vcomponents.FDRE
       C => Clk,
       CE => of_PipeRun_for_ce,
       D => \^of_gpr_op3_rd_addr\(1),
-      Q => p_0_in124_in,
+      Q => p_0_in130_in,
       R => '0'
     );
 \ex_instr_reg[8]\: unisim.vcomponents.FDRE
@@ -53283,7 +53512,7 @@ ex_jump_hold_reg: unisim.vcomponents.FDRE
      port map (
       C => Clk,
       CE => '1',
-      D => jump_logic_I1_n_5,
+      D => jump_logic_I1_n_41,
       Q => ex_jump_hold,
       R => '0'
     );
@@ -53308,7 +53537,7 @@ ex_load_shift_carry_reg: unisim.vcomponents.FDRE
       C => Clk,
       CE => of_PipeRun_for_ce,
       D => ex_load_shift_carry0,
-      Q => ex_load_shift_carry,
+      Q => \^ex_load_shift_carry\,
       R => reset_bool_for_rst
     );
 ex_mbar_decode_reg: unisim.vcomponents.FDRE
@@ -53334,7 +53563,7 @@ ex_mbar_sleep_i_1: unisim.vcomponents.LUT6
         port map (
       I0 => ex_mbar_sleep,
       I1 => ex_mbar_is_sleep,
-      I2 => p_233_in,
+      I2 => p_239_in,
       I3 => ex_first_cycle,
       I4 => active_wakeup,
       I5 => reset_bool_for_rst,
@@ -53346,10 +53575,10 @@ ex_mbar_sleep_i_2: unisim.vcomponents.LUT4
     )
         port map (
       I0 => ex_mbar_decode,
-      I1 => \Using_FPGA.Native_39\,
-      I2 => \Using_FPGA.Native_40\,
+      I1 => \Using_FPGA.Native_40\,
+      I2 => \Using_FPGA.Native_41\,
       I3 => \^ex_valid\,
-      O => p_233_in
+      O => p_239_in
     );
 ex_mbar_sleep_reg: unisim.vcomponents.FDRE
      port map (
@@ -53456,9 +53685,9 @@ ex_read_imm_reg_i_1: unisim.vcomponents.LUT5
     )
         port map (
       I0 => of_read_imm_reg_ii,
-      I1 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
-      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
-      I3 => wb_exception,
+      I1 => wb_exception,
+      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I3 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
       I4 => \mem_pc_i_reg[0]_0\,
       O => ex_read_imm_reg_i_1_n_0
     );
@@ -53493,7 +53722,7 @@ ex_sleep_i_i_1: unisim.vcomponents.LUT5
         port map (
       I0 => \^sleep_decode\,
       I1 => ex_sleep_i0,
-      I2 => p_0_in124_in,
+      I2 => p_0_in130_in,
       I3 => reset_bool_for_rst,
       I4 => active_wakeup,
       O => ex_sleep_i_i_1_n_0
@@ -53513,8 +53742,8 @@ ex_suspend_i_i_1: unisim.vcomponents.LUT6
         port map (
       I0 => \^suspend\,
       I1 => ex_sleep_i0,
-      I2 => p_1_in125_in,
-      I3 => p_0_in124_in,
+      I2 => p_1_in131_in,
+      I3 => p_0_in130_in,
       I4 => reset_bool_for_rst,
       I5 => active_wakeup,
       O => ex_suspend_i_i_1_n_0
@@ -53545,14 +53774,14 @@ ex_valid_reg: unisim.vcomponents.FDRE
     );
 exception_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"F3B3B3B300808080"
+      INIT => X"FBBB333308880000"
     )
         port map (
       I0 => if_fetch_in_progress_reg_0,
       I1 => \^wb_valid_reg_0\,
-      I2 => wb_exception,
-      I3 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
-      I4 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I2 => \^performance_debug_control.dbg_state_nohalt_reg\(2),
+      I3 => \^performance_debug_control.dbg_state_nohalt_reg\(3),
+      I4 => wb_exception,
       I5 => exception_reg(0),
       O => \Performance_Debug_Control.dbg_stop_instr_fetch_nohalt_reg\
     );
@@ -53570,7 +53799,7 @@ i_1: unisim.vcomponents.LUT1
     )
         port map (
       I0 => '0',
-      O => of_Sel_SPR_SHR
+      O => of_Sel_SPR_SLR
     );
 i_10: unisim.vcomponents.LUT1
     generic map(
@@ -53594,7 +53823,7 @@ i_2: unisim.vcomponents.LUT1
     )
         port map (
       I0 => '0',
-      O => of_Sel_SPR_EAR
+      O => of_Sel_SPR_EDR
     );
 i_3: unisim.vcomponents.LUT1
     generic map(
@@ -53602,7 +53831,7 @@ i_3: unisim.vcomponents.LUT1
     )
         port map (
       I0 => '0',
-      O => of_Sel_SPR_SLR
+      O => of_Sel_SPR_BTR
     );
 i_4: unisim.vcomponents.LUT1
     generic map(
@@ -53610,7 +53839,7 @@ i_4: unisim.vcomponents.LUT1
     )
         port map (
       I0 => '0',
-      O => of_Sel_SPR_EDR
+      O => of_Sel_SPR_EAR
     );
 i_5: unisim.vcomponents.LUT1
     generic map(
@@ -53618,7 +53847,7 @@ i_5: unisim.vcomponents.LUT1
     )
         port map (
       I0 => '0',
-      O => of_Sel_SPR_ESR
+      O => of_Sel_SPR_SHR
     );
 i_6: unisim.vcomponents.LUT1
     generic map(
@@ -53626,7 +53855,7 @@ i_6: unisim.vcomponents.LUT1
     )
         port map (
       I0 => '0',
-      O => of_Sel_SPR_PVR
+      O => of_Sel_SPR_ESR
     );
 i_7: unisim.vcomponents.LUT1
     generic map(
@@ -53634,7 +53863,7 @@ i_7: unisim.vcomponents.LUT1
     )
         port map (
       I0 => '0',
-      O => of_Sel_SPR_BTR
+      O => of_Sel_SPR_PVR
     );
 i_8: unisim.vcomponents.LUT1
     generic map(
@@ -53664,7 +53893,7 @@ if_missed_fetch_reg: unisim.vcomponents.FDRE
      port map (
       C => Clk,
       CE => '1',
-      D => jump_logic_I1_n_41,
+      D => jump_logic_I1_n_40,
       Q => if_missed_fetch,
       R => '0'
     );
@@ -53674,7 +53903,7 @@ if_pc_incr_carry_and_0: entity work.main_ub_microblaze_0_0_carry_and_87
       if_pc_incr_carry0 => if_pc_incr_carry0,
       lopt => lopt_3,
       lopt_1 => lopt_4,
-      lopt_2 => \Using_FPGA.Native_36\,
+      lopt_2 => \Using_FPGA.Native_37\,
       lopt_3 => lopt_5,
       lopt_4 => lopt_6,
       lopt_5 => if_fetch_for_timing_optimization1,
@@ -53705,15 +53934,15 @@ jump_logic_I1: entity work.main_ub_microblaze_0_0_jump_logic
       O56_out => O56_out,
       Q(1 downto 0) => \^performance_debug_control.dbg_state_nohalt_reg\(3 downto 2),
       \Using_FPGA.Native\ => jump_logic_I1_n_42,
-      \Using_FPGA.Native_0\ => \Using_FPGA.Native_35\,
+      \Using_FPGA.Native_0\ => \Using_FPGA.Native_36\,
       \Using_FPGA.Native_1\ => PreFetch_Buffer_I1_n_193,
-      \Using_FPGA.Native_2\(0) => \Using_FPGA.Native_37\(0),
+      \Using_FPGA.Native_2\(0) => \Using_FPGA.Native_38\(0),
       ex_branch_with_delayslot => ex_branch_with_delayslot,
       ex_delayslot_Instr0 => ex_delayslot_Instr0,
       ex_first_cycle => ex_first_cycle,
       ex_jump => ex_jump,
       ex_jump_hold => ex_jump_hold,
-      ex_jump_hold_reg => jump_logic_I1_n_5,
+      ex_jump_hold_reg => jump_logic_I1_n_41,
       ex_jump_q => ex_jump_q,
       ex_mbar_decode => ex_mbar_decode,
       ex_mbar_sleep => ex_mbar_sleep,
@@ -53728,7 +53957,7 @@ jump_logic_I1: entity work.main_ub_microblaze_0_0_jump_logic
       force_Val10_out => force_Val10_out,
       force_Val2_N_reg_0 => PreFetch_Buffer_I1_n_59,
       if_missed_fetch => if_missed_fetch,
-      if_missed_fetch_reg => jump_logic_I1_n_41,
+      if_missed_fetch_reg => jump_logic_I1_n_40,
       if_missed_fetch_reg_0(0) => \^performance_debug_control.dbg_state_nohalt_reg\(157),
       \if_pc_reg[0]\(31 downto 0) => \^performance_debug_control.dbg_state_nohalt_reg\(156 downto 125),
       \if_pc_reg[10]\ => O49_out,
@@ -53762,7 +53991,7 @@ jump_logic_I1: entity work.main_ub_microblaze_0_0_jump_logic
       \if_pc_reg[8]\ => O45_out,
       \if_pc_reg[9]\ => O47_out,
       keep_jump_taken_with_ds => keep_jump_taken_with_ds,
-      keep_jump_taken_with_ds_reg => jump_logic_I1_n_7,
+      keep_jump_taken_with_ds_reg => jump_logic_I1_n_6,
       lopt => lopt,
       lopt_1 => lopt_1,
       lopt_2 => lopt_2,
@@ -53779,7 +54008,7 @@ keep_jump_taken_with_ds_reg: unisim.vcomponents.FDRE
      port map (
       C => Clk,
       CE => '1',
-      D => jump_logic_I1_n_7,
+      D => jump_logic_I1_n_6,
       Q => keep_jump_taken_with_ds,
       R => '0'
     );
@@ -53787,10 +54016,18 @@ mem_PipeRun_carry_and: entity work.main_ub_microblaze_0_0_carry_and_89
      port map (
       E(0) => \^using_fpga.native_1\,
       \Using_FPGA.Native\ => \^using_fpga.native_0\,
+      \Using_FPGA.Native_0\(0) => \Using_FPGA.Native_45\(0),
+      \Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_reg\ => mem_PipeRun_carry_and_n_6,
+      \Using_LWX_SWX_instr_MEM.MEM_MSR_Load_LWX_SWX_C_Hold_reg_0\ => \^mem_msr_load_lwx_swx_c_hold\,
+      ex_MSR(0) => ex_MSR(1),
+      ex_MTS_MSR => ex_MTS_MSR,
       flush_pipe => flush_pipe,
       lopt => lopt_11,
       lopt_1 => lopt_12,
       lopt_2 => lopt_13,
+      mem_MSR_Load_LWX_SWX_C => \^mem_msr_load_lwx_swx_c\,
+      mem_access_failed_reg => mem_access_failed_reg,
+      mem_daxi_exclusive_failed => mem_daxi_exclusive_failed,
       mem_exception_from_ex => mem_exception_from_ex,
       mem_gpr_write => mem_gpr_write,
       mem_gpr_write_dbg => mem_gpr_write_dbg,
@@ -53811,7 +54048,7 @@ mem_Write_DCache_i_1: unisim.vcomponents.LUT5
       INIT => X"00202020"
     )
         port map (
-      I0 => p_232_in,
+      I0 => p_238_in,
       I1 => wb_exception,
       I2 => ex_write_dcache_instr,
       I3 => mem_exception_from_ex,
@@ -53825,6 +54062,17 @@ mem_Write_DCache_reg: unisim.vcomponents.FDRE
       D => mem_Write_DCache_i_1_n_0,
       Q => mem_Write_DCache,
       R => reset_bool_for_rst
+    );
+mem_access_failed_i_2: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"A200"
+    )
+        port map (
+      I0 => \^m_axi_dp_arlock\,
+      I1 => M_AXI_DP_RRESP(0),
+      I2 => M_AXI_DP_RRESP(1),
+      I3 => M_AXI_DP_RVALID,
+      O => \read_exclusive_fail__2\
     );
 mem_byte_access_i_reg: unisim.vcomponents.FDRE
      port map (
@@ -54229,7 +54477,7 @@ mem_gpr_write_reg: unisim.vcomponents.FDRE
         port map (
       C => Clk,
       CE => \^using_fpga.native_1\,
-      D => p_1_in125_in,
+      D => p_1_in131_in,
       Q => mem_instr(6),
       R => '0'
     );
@@ -54240,7 +54488,7 @@ mem_gpr_write_reg: unisim.vcomponents.FDRE
         port map (
       C => Clk,
       CE => \^using_fpga.native_1\,
-      D => p_0_in124_in,
+      D => p_0_in130_in,
       Q => mem_instr(7),
       R => '0'
     );
@@ -54382,7 +54630,7 @@ sign_byte_inferred_i_1: unisim.vcomponents.LUT3
       INIT => X"02"
     )
         port map (
-      I0 => \Using_FPGA.Native_42\(7),
+      I0 => \Using_FPGA.Native_43\(7),
       I1 => \^ex_sext_op_reg[0]_0\(0),
       I2 => \^ex_sext_op_reg[0]_0\(1),
       O => in0
@@ -54897,9 +55145,9 @@ entity main_ub_microblaze_0_0_Data_Flow_gti is
     \out\ : out STD_LOGIC;
     \EX_Op1_reg[24]\ : out STD_LOGIC;
     ex_op1_zero : out STD_LOGIC;
+    \Using_FPGA.Native\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     ex_MSR : out STD_LOGIC_VECTOR ( 2 downto 0 );
     DI : out STD_LOGIC;
-    \Using_FPGA.Native\ : out STD_LOGIC;
     \Using_FPGA.Native_0\ : out STD_LOGIC;
     \Using_FPGA.Native_1\ : out STD_LOGIC;
     \Using_FPGA.Native_2\ : out STD_LOGIC;
@@ -54929,11 +55177,13 @@ entity main_ub_microblaze_0_0_Data_Flow_gti is
     \Using_FPGA.Native_26\ : out STD_LOGIC;
     \Using_FPGA.Native_27\ : out STD_LOGIC;
     \Using_FPGA.Native_28\ : out STD_LOGIC;
+    \Using_FPGA.Native_29\ : out STD_LOGIC;
     \EX_Op2_reg[0]\ : out STD_LOGIC_VECTOR ( 91 downto 0 );
-    \Using_FPGA.Native_29\ : out STD_LOGIC_VECTOR ( 23 downto 0 );
+    \Using_FPGA.Native_30\ : out STD_LOGIC_VECTOR ( 23 downto 0 );
     \No_Long.Reverse_Mem_Accesses.wb_read_lsb_1_sel_reg[0]\ : out STD_LOGIC;
     wb_read_msb_doublet_sel : out STD_LOGIC;
     \EX_Branch_CMP_Op1_reg[0]\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_FPGA.Native_31\ : out STD_LOGIC;
     \EX_Op1_reg[28]\ : out STD_LOGIC;
     wb_gpr_write_dbg_reg : out STD_LOGIC_VECTOR ( 7 downto 0 );
     \WB_MEM_Result_reg[0]\ : out STD_LOGIC_VECTOR ( 23 downto 0 );
@@ -54944,6 +55194,7 @@ entity main_ub_microblaze_0_0_Data_Flow_gti is
     GPR_Op1 : out STD_LOGIC_VECTOR ( 0 to 31 );
     GPR_Op2 : out STD_LOGIC_VECTOR ( 0 to 31 );
     GPR_Op3 : out STD_LOGIC_VECTOR ( 0 to 31 );
+    LO : out STD_LOGIC;
     \imm_reg_reg[0]\ : out STD_LOGIC_VECTOR ( 15 downto 0 );
     \No_Long.Reverse_Mem_Accesses.wb_read_lsb_sel_reg[0]\ : out STD_LOGIC_VECTOR ( 1 downto 0 );
     \EX_Op2_reg[30]\ : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -54991,26 +55242,29 @@ entity main_ub_microblaze_0_0_Data_Flow_gti is
     ex_op1_cmp_equal : in STD_LOGIC;
     ex_op1_cmp_equal_n : in STD_LOGIC;
     R : in STD_LOGIC;
-    \Using_FPGA.Native_30\ : in STD_LOGIC;
+    \Using_FPGA.Native_32\ : in STD_LOGIC;
     EX_Fwd : in STD_LOGIC_VECTOR ( 0 to 31 );
     Clk : in STD_LOGIC;
     sync_reset : in STD_LOGIC;
-    \Using_FPGA.Native_31\ : in STD_LOGIC;
-    \Using_FPGA.Native_32\ : in STD_LOGIC_VECTOR ( 0 to 0 );
-    \Using_FPGA.Native_33\ : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    \Using_FPGA.Native_33\ : in STD_LOGIC;
     \Using_FPGA.Native_34\ : in STD_LOGIC;
     \Using_FPGA.Native_35\ : in STD_LOGIC;
-    I1_1 : in STD_LOGIC;
-    ex_reverse_mem_access : in STD_LOGIC;
-    p_232_in : in STD_LOGIC;
-    \Using_FPGA.Native_36\ : in STD_LOGIC;
-    ex_MSR_Load_ALU_C : in STD_LOGIC;
-    \ex_swx_access__0\ : in STD_LOGIC;
-    ex_MSR_Load_Shift_C : in STD_LOGIC;
-    ex_MSR_Load_LWX_SWX_C : in STD_LOGIC;
-    ex_move_to_MSR_instr : in STD_LOGIC;
-    \Using_FPGA.Native_37\ : in STD_LOGIC;
+    \Using_FPGA.Native_36\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_FPGA.Native_37\ : in STD_LOGIC_VECTOR ( 31 downto 0 );
     \Using_FPGA.Native_38\ : in STD_LOGIC;
+    \Using_FPGA.Native_39\ : in STD_LOGIC;
+    I1_1 : in STD_LOGIC;
+    mem_daxi_exclusive_failed : in STD_LOGIC;
+    mem_MSR_Load_LWX_SWX_C : in STD_LOGIC;
+    S : in STD_LOGIC;
+    mem_LWX_SWX_Carry_Hold : in STD_LOGIC;
+    ex_reverse_mem_access : in STD_LOGIC;
+    p_238_in : in STD_LOGIC;
+    ex_move_to_MSR_instr : in STD_LOGIC;
+    mem_MSR_Load_LWX_SWX_C_Hold : in STD_LOGIC;
+    ex_MTS_MSR : in STD_LOGIC;
+    \Using_FPGA.Native_40\ : in STD_LOGIC;
+    \Using_FPGA.Native_41\ : in STD_LOGIC;
     ex_valid : in STD_LOGIC;
     ex_cmp_op : in STD_LOGIC;
     ex_byte_access : in STD_LOGIC;
@@ -55028,7 +55282,7 @@ entity main_ub_microblaze_0_0_Data_Flow_gti is
     \LOCKSTEP_Out_reg[3027]\ : in STD_LOGIC;
     \LOCKSTEP_Out_reg[3025]\ : in STD_LOGIC;
     \LOCKSTEP_Out_reg[3023]\ : in STD_LOGIC;
-    \Using_FPGA.Native_i_3__31\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \Using_FPGA.Native_i_3__30\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     ex_swap_byte_instr : in STD_LOGIC;
     mem_sel_msr : in STD_LOGIC;
     WB_GPR_Wr : in STD_LOGIC;
@@ -55084,27 +55338,24 @@ architecture STRUCTURE of main_ub_microblaze_0_0_Data_Flow_gti is
   signal MEM_EX_Result : STD_LOGIC_VECTOR ( 0 to 30 );
   signal \^mem_fwd\ : STD_LOGIC_VECTOR ( 0 to 31 );
   signal Operand_Select_I_n_0 : STD_LOGIC;
-  signal Operand_Select_I_n_150 : STD_LOGIC;
-  signal Operand_Select_I_n_181 : STD_LOGIC;
-  signal Operand_Select_I_n_33 : STD_LOGIC;
+  signal Operand_Select_I_n_149 : STD_LOGIC;
+  signal Operand_Select_I_n_180 : STD_LOGIC;
+  signal Operand_Select_I_n_63 : STD_LOGIC;
   signal Operand_Select_I_n_64 : STD_LOGIC;
   signal Operand_Select_I_n_65 : STD_LOGIC;
   signal Operand_Select_I_n_66 : STD_LOGIC;
-  signal Operand_Select_I_n_67 : STD_LOGIC;
-  signal Operand_Select_I_n_83 : STD_LOGIC;
-  signal Operand_Select_I_n_85 : STD_LOGIC;
+  signal Operand_Select_I_n_82 : STD_LOGIC;
+  signal Operand_Select_I_n_84 : STD_LOGIC;
   signal \Using_FPGA.ALL_Bits[0].ALU_Bit_I1/I0\ : STD_LOGIC;
   signal \Using_FPGA.ALL_Bits[0].ALU_Bit_I1/I2\ : STD_LOGIC;
   signal \Using_FPGA.ALL_Bits[0].ALU_Bit_I1/S\ : STD_LOGIC;
   signal \^ex_msr\ : STD_LOGIC_VECTOR ( 2 downto 0 );
-  signal ex_alu_carry_32 : STD_LOGIC;
   signal ex_alu_carryin : STD_LOGIC;
   signal ex_branch_cmp_op1 : STD_LOGIC_VECTOR ( 1 to 29 );
   signal ex_op2 : STD_LOGIC_VECTOR ( 0 to 27 );
   signal ex_pre_alu_carry : STD_LOGIC;
   signal \^lopt\ : STD_LOGIC;
   signal \^lopt_1\ : STD_LOGIC;
-  signal lopt_10 : STD_LOGIC;
   signal \^lopt_2\ : STD_LOGIC;
   signal lopt_3 : STD_LOGIC;
   signal lopt_4 : STD_LOGIC;
@@ -55112,7 +55363,6 @@ architecture STRUCTURE of main_ub_microblaze_0_0_Data_Flow_gti is
   signal lopt_6 : STD_LOGIC;
   signal lopt_7 : STD_LOGIC;
   signal lopt_8 : STD_LOGIC;
-  signal lopt_9 : STD_LOGIC;
   signal muxcy_di : STD_LOGIC;
   signal muxcy_sel : STD_LOGIC;
   signal wb_mem_result : STD_LOGIC_VECTOR ( 16 to 23 );
@@ -55122,9 +55372,9 @@ begin
   \EX_Op2_reg[0]\(91 downto 0) <= \^ex_op2_reg[0]\(91 downto 0);
   MEM_Fwd(0 to 31) <= \^mem_fwd\(0 to 31);
   ex_MSR(2 downto 0) <= \^ex_msr\(2 downto 0);
-  lopt <= lopt_8;
-  lopt_10 <= lopt_2;
-  lopt_9 <= lopt_1;
+  lopt <= lopt_6;
+  lopt_7 <= lopt_1;
+  lopt_8 <= lopt_2;
 ALU_I: entity work.main_ub_microblaze_0_0_ALU
      port map (
       DI_0 => DI_0,
@@ -55134,7 +55384,7 @@ ALU_I: entity work.main_ub_microblaze_0_0_ALU
       \EX_Op2_reg[30]\(1 downto 0) => \EX_Op2_reg[30]\(1 downto 0),
       I0 => \Using_FPGA.ALL_Bits[0].ALU_Bit_I1/I0\,
       I2 => \Using_FPGA.ALL_Bits[0].ALU_Bit_I1/I2\,
-      LO => ex_alu_carry_32,
+      LO => LO,
       \MEM_DataBus_Addr_reg[9]\(1 downto 0) => Q(1 downto 0),
       Q(31) => ex_op2(0),
       Q(30) => ex_op2(1),
@@ -55164,20 +55414,20 @@ ALU_I: entity work.main_ub_microblaze_0_0_ALU
       Q(6) => ex_op2(25),
       Q(5) => ex_op2(26),
       Q(4) => ex_op2(27),
-      Q(3) => Operand_Select_I_n_64,
-      Q(2) => Operand_Select_I_n_65,
-      Q(1) => Operand_Select_I_n_66,
-      Q(0) => Operand_Select_I_n_67,
+      Q(3) => Operand_Select_I_n_63,
+      Q(2) => Operand_Select_I_n_64,
+      Q(1) => Operand_Select_I_n_65,
+      Q(0) => Operand_Select_I_n_66,
       S => \Using_FPGA.ALL_Bits[0].ALU_Bit_I1/S\,
       \Using_FPGA.Native\(31 downto 0) => \^ex_op1_reg[0]\(31 downto 0),
       ex_alu_carryin => ex_alu_carryin,
       ex_unsigned_op => ex_unsigned_op,
       ex_use_carry => ex_use_carry,
-      lopt => lopt_3,
-      lopt_1 => lopt_4,
-      lopt_2 => lopt_5,
-      lopt_3 => lopt_6,
-      lopt_4 => lopt_7
+      lopt => \^lopt_1\,
+      lopt_1 => \^lopt_2\,
+      lopt_2 => lopt_3,
+      lopt_3 => lopt_4,
+      lopt_4 => lopt_5
     );
 Byte_Doublet_Handle_gti_I: entity work.main_ub_microblaze_0_0_Byte_Doublet_Handle_gti
      port map (
@@ -55189,13 +55439,13 @@ Byte_Doublet_Handle_gti_I: entity work.main_ub_microblaze_0_0_Byte_Doublet_Handl
       \MEM_DataBus_Write_Data_reg[0]_0\(35 downto 0) => \^ex_op2_reg[0]\(47 downto 12),
       \No_Long.Reverse_Mem_Accesses.wb_read_lsb_1_sel_reg[0]_0\ => \No_Long.Reverse_Mem_Accesses.wb_read_lsb_1_sel_reg[0]\,
       \No_Long.Reverse_Mem_Accesses.wb_read_lsb_sel_reg[0]_0\(1 downto 0) => \No_Long.Reverse_Mem_Accesses.wb_read_lsb_sel_reg[0]\(1 downto 0),
-      \No_Long.Reverse_Mem_Accesses.wb_read_lsb_sel_reg[1]_0\ => \Using_FPGA.Native_35\,
+      \No_Long.Reverse_Mem_Accesses.wb_read_lsb_sel_reg[1]_0\ => \Using_FPGA.Native_39\,
       ex_reverse_mem_access => ex_reverse_mem_access,
       mem_byte_access => mem_byte_access,
-      \mem_byte_selects_reg[0]_0\ => Operand_Select_I_n_83,
-      \mem_byte_selects_reg[1]_0\(0) => Operand_Select_I_n_181,
+      \mem_byte_selects_reg[0]_0\ => Operand_Select_I_n_82,
+      \mem_byte_selects_reg[1]_0\(0) => Operand_Select_I_n_180,
       mem_doublet_access => mem_doublet_access,
-      mem_reverse_byteorder_reg_0 => \Using_FPGA.Native_30\,
+      mem_reverse_byteorder_reg_0 => \Using_FPGA.Native_32\,
       sync_reset => sync_reset,
       wb_read_msb_doublet_sel => wb_read_msb_doublet_sel
     );
@@ -55247,8 +55497,8 @@ Data_Flow_Logic_I: entity work.main_ub_microblaze_0_0_Data_Flow_Logic
       \Using_FPGA.Native\(2) => MEM_EX_Result(28),
       \Using_FPGA.Native\(1) => MEM_EX_Result(29),
       \Using_FPGA.Native\(0) => MEM_EX_Result(30),
-      \Using_FPGA.Native_0\ => \Using_FPGA.Native_30\,
-      \WB_MEM_Result_reg[0]_0\ => \Using_FPGA.Native_35\,
+      \Using_FPGA.Native_0\ => \Using_FPGA.Native_32\,
+      \WB_MEM_Result_reg[0]_0\ => \Using_FPGA.Native_39\,
       \WB_MEM_Result_reg[0]_1\(3) => \^mem_fwd\(0),
       \WB_MEM_Result_reg[0]_1\(2) => \^mem_fwd\(28),
       \WB_MEM_Result_reg[0]_1\(1) => \^mem_fwd\(29),
@@ -55291,7 +55541,7 @@ Operand_Select_I: entity work.main_ub_microblaze_0_0_Operand_Select_gti
       \EX_Branch_CMP_Op1_reg[0]_0\(2) => ex_branch_cmp_op1(27),
       \EX_Branch_CMP_Op1_reg[0]_0\(1) => ex_branch_cmp_op1(28),
       \EX_Branch_CMP_Op1_reg[0]_0\(0) => ex_branch_cmp_op1(29),
-      \EX_Branch_CMP_Op1_reg[30]_0\ => Operand_Select_I_n_150,
+      \EX_Branch_CMP_Op1_reg[30]_0\ => Operand_Select_I_n_149,
       \EX_Op1_reg[10]_0\ => \EX_Op1_reg[10]\,
       \EX_Op1_reg[11]_0\ => \EX_Op1_reg[11]\,
       \EX_Op1_reg[12]_0\ => \EX_Op1_reg[12]\,
@@ -55315,7 +55565,7 @@ Operand_Select_I: entity work.main_ub_microblaze_0_0_Operand_Select_gti
       \EX_Op1_reg[28]_1\ => \EX_Op1_reg[28]_0\,
       \EX_Op1_reg[29]_0\ => \EX_Op1_reg[29]\,
       \EX_Op1_reg[2]_0\ => \EX_Op1_reg[2]\,
-      \EX_Op1_reg[30]_0\ => Operand_Select_I_n_33,
+      \EX_Op1_reg[30]_0\ => Operand_Select_I_n_0,
       \EX_Op1_reg[30]_1\ => \EX_Op1_reg[30]\,
       \EX_Op1_reg[31]_0\ => \EX_Op1_reg[31]\,
       \EX_Op1_reg[3]_0\ => \EX_Op1_reg[3]\,
@@ -55353,10 +55603,10 @@ Operand_Select_I: entity work.main_ub_microblaze_0_0_Operand_Select_gti
       \EX_Op2_reg[0]_0\(6) => ex_op2(25),
       \EX_Op2_reg[0]_0\(5) => ex_op2(26),
       \EX_Op2_reg[0]_0\(4) => ex_op2(27),
-      \EX_Op2_reg[0]_0\(3) => Operand_Select_I_n_64,
-      \EX_Op2_reg[0]_0\(2) => Operand_Select_I_n_65,
-      \EX_Op2_reg[0]_0\(1) => Operand_Select_I_n_66,
-      \EX_Op2_reg[0]_0\(0) => Operand_Select_I_n_67,
+      \EX_Op2_reg[0]_0\(3) => Operand_Select_I_n_63,
+      \EX_Op2_reg[0]_0\(2) => Operand_Select_I_n_64,
+      \EX_Op2_reg[0]_0\(1) => Operand_Select_I_n_65,
+      \EX_Op2_reg[0]_0\(0) => Operand_Select_I_n_66,
       \EX_Op2_reg[0]_1\(31 downto 0) => \EX_Op2_reg[0]_0\(31 downto 0),
       \EX_Op3_reg[0]_0\(31 downto 0) => \EX_Op3_reg[0]\(31 downto 0),
       \EX_Op3_reg[0]_1\(31 downto 0) => \EX_Op3_reg[0]_0\(31 downto 0),
@@ -55364,37 +55614,29 @@ Operand_Select_I: entity work.main_ub_microblaze_0_0_Operand_Select_gti
       I0 => \Using_FPGA.ALL_Bits[0].ALU_Bit_I1/I0\,
       I1 => I1,
       I2 => \Using_FPGA.ALL_Bits[0].ALU_Bit_I1/I2\,
-      LO => ex_alu_carry_32,
       Q(31 downto 0) => \^ex_op1_reg[0]\(31 downto 0),
       S => \Using_FPGA.ALL_Bits[0].ALU_Bit_I1/S\,
       \Using_FPGA.Native\(13 downto 0) => \^ex_op2_reg[0]\(61 downto 48),
-      \Using_FPGA.Native_0\ => Operand_Select_I_n_83,
-      \Using_FPGA.Native_1\(0) => Operand_Select_I_n_181,
-      \Using_FPGA.Native_2\ => \Using_FPGA.Native_36\,
-      \Using_FPGA.Native_3\ => \Using_FPGA.Native_30\,
-      \Using_FPGA.Native_4\ => \^ex_msr\(1),
-      \Using_FPGA.Native_5\ => \Using_FPGA.Native_37\,
-      \Using_FPGA.Native_6\ => \Using_FPGA.Native_38\,
-      \Using_FPGA.Native_i_3__31\(1 downto 0) => \Using_FPGA.Native_i_3__31\(1 downto 0),
+      \Using_FPGA.Native_0\ => Operand_Select_I_n_82,
+      \Using_FPGA.Native_1\(0) => Operand_Select_I_n_180,
+      \Using_FPGA.Native_2\ => \Using_FPGA.Native_32\,
+      \Using_FPGA.Native_3\ => \Using_FPGA.Native_40\,
+      \Using_FPGA.Native_4\ => \Using_FPGA.Native_41\,
+      \Using_FPGA.Native_i_3__30\(1 downto 0) => \Using_FPGA.Native_i_3__30\(1 downto 0),
       ex_MSR(1) => \^ex_msr\(2),
       ex_MSR(0) => \^ex_msr\(0),
-      ex_MSR_Load_ALU_C => ex_MSR_Load_ALU_C,
-      ex_MSR_Load_LWX_SWX_C => ex_MSR_Load_LWX_SWX_C,
-      ex_MSR_Load_Shift_C => ex_MSR_Load_Shift_C,
       ex_byte_access => ex_byte_access,
       ex_cmp_op => ex_cmp_op,
       ex_doublet_access => ex_doublet_access,
-      ex_load_alu_carry_reg => Operand_Select_I_n_0,
       ex_move_to_MSR_instr => ex_move_to_MSR_instr,
       ex_reverse_mem_access => ex_reverse_mem_access,
       ex_swap_byte_instr => ex_swap_byte_instr,
-      \ex_swx_access__0\ => \ex_swx_access__0\,
       ex_valid => ex_valid,
       \imm_reg_reg[0]_0\(15 downto 0) => \imm_reg_reg[0]\(15 downto 0),
-      in0 => Operand_Select_I_n_85,
+      in0 => Operand_Select_I_n_84,
       of_imm_data(0 to 15) => of_imm_data(0 to 15),
       of_op1_sel_spr => of_op1_sel_spr,
-      p_232_in => p_232_in,
+      p_238_in => p_238_in,
       swap_result(23 downto 0) => swap_result(23 downto 0),
       swap_result_reg(0 to 7) => swap_result_reg(0 to 7),
       sync_reset => sync_reset
@@ -55446,43 +55688,45 @@ Register_File_I: entity work.main_ub_microblaze_0_0_Register_File_gti
 Shift_Logic_Module_I: entity work.main_ub_microblaze_0_0_Shift_Logic_Module_gti
      port map (
       \EX_Op1_reg[24]\ => \EX_Op1_reg[24]\,
-      \Using_FPGA.Native\ => Operand_Select_I_n_85,
+      \Using_FPGA.Native\ => Operand_Select_I_n_84,
       in0 => in0,
       \out\ => \out\
     );
 \Using_DAXI_ALU_Carry.Direct_MUXCY_I\: entity work.main_ub_microblaze_0_0_MB_MUXCY_299
      port map (
-      \Using_FPGA.Native_0\ => \^ex_msr\(1),
+      ex_MSR(0) => \^ex_msr\(1),
       ex_pre_alu_carry => ex_pre_alu_carry,
       lopt => \^lopt\,
-      lopt_1 => \^lopt_1\,
-      lopt_2 => \^lopt_2\,
-      lopt_3 => lopt_3,
+      lopt_1 => mem_LWX_SWX_Carry_Hold,
+      lopt_2 => S,
+      lopt_3 => \^lopt_1\,
       lopt_4 => DI_0,
       lopt_5 => ex_use_carry,
-      lopt_6 => lopt_4,
-      lopt_7 => lopt_5,
-      lopt_8 => lopt_6,
-      lopt_9 => lopt_7,
+      lopt_6 => \^lopt_2\,
+      lopt_7 => lopt_3,
+      lopt_8 => lopt_4,
+      lopt_9 => lopt_5,
       muxcy_di => muxcy_di,
       muxcy_sel => muxcy_sel
     );
 \Using_DAXI_ALU_Carry.Post_MUXCY_I\: entity work.main_ub_microblaze_0_0_MB_MUXCY_300
      port map (
+      S => S,
       ex_alu_carryin => ex_alu_carryin,
       ex_pre_alu_carry => ex_pre_alu_carry,
       lopt => \^lopt\,
-      lopt_1 => \^lopt_1\,
-      lopt_2 => \^lopt_2\
+      mem_LWX_SWX_Carry_Hold => mem_LWX_SWX_Carry_Hold
     );
 \Using_DAXI_ALU_Carry.direct_lut_INST\: entity work.\main_ub_microblaze_0_0_MB_LUT6_2__parameterized1\
      port map (
+      mem_MSR_Load_LWX_SWX_C => mem_MSR_Load_LWX_SWX_C,
+      mem_daxi_exclusive_failed => mem_daxi_exclusive_failed,
       muxcy_di => muxcy_di,
       muxcy_sel => muxcy_sel
     );
 Zero_Detect_I: entity work.main_ub_microblaze_0_0_Zero_Detect_gti
      port map (
-      \Using_FPGA.Native\ => Operand_Select_I_n_150,
+      \Using_FPGA.Native\ => Operand_Select_I_n_149,
       \Using_FPGA.Native_0\(29) => \^ex_branch_cmp_op1_reg[0]\(0),
       \Using_FPGA.Native_0\(28) => ex_branch_cmp_op1(1),
       \Using_FPGA.Native_0\(27) => ex_branch_cmp_op1(2),
@@ -55516,9 +55760,9 @@ Zero_Detect_I: entity work.main_ub_microblaze_0_0_Zero_Detect_gti
       ex_op1_cmp_equal => ex_op1_cmp_equal,
       ex_op1_cmp_equal_n => ex_op1_cmp_equal_n,
       ex_op1_zero => ex_op1_zero,
-      lopt => lopt_8,
-      lopt_1 => lopt_9,
-      lopt_2 => lopt_10
+      lopt => lopt_6,
+      lopt_1 => lopt_7,
+      lopt_2 => lopt_8
     );
 exception_registers_I1: entity work.main_ub_microblaze_0_0_exception_registers_gti
      port map (
@@ -55542,43 +55786,43 @@ exception_registers_I1: entity work.main_ub_microblaze_0_0_exception_registers_g
       Q(2) => wb_mem_result(21),
       Q(1) => wb_mem_result(22),
       Q(0) => wb_mem_result(23),
-      \Using_FPGA.Native\ => \Using_FPGA.Native\,
-      \Using_FPGA.Native_0\ => \Using_FPGA.Native_0\,
-      \Using_FPGA.Native_1\ => \Using_FPGA.Native_1\,
-      \Using_FPGA.Native_10\ => \Using_FPGA.Native_10\,
-      \Using_FPGA.Native_11\ => \Using_FPGA.Native_11\,
-      \Using_FPGA.Native_12\ => \Using_FPGA.Native_12\,
-      \Using_FPGA.Native_13\ => \Using_FPGA.Native_13\,
-      \Using_FPGA.Native_14\ => \Using_FPGA.Native_14\,
-      \Using_FPGA.Native_15\ => \Using_FPGA.Native_15\,
-      \Using_FPGA.Native_16\ => \Using_FPGA.Native_16\,
-      \Using_FPGA.Native_17\ => \Using_FPGA.Native_17\,
-      \Using_FPGA.Native_18\ => \Using_FPGA.Native_18\,
-      \Using_FPGA.Native_19\ => \Using_FPGA.Native_19\,
-      \Using_FPGA.Native_2\ => \Using_FPGA.Native_2\,
-      \Using_FPGA.Native_20\ => \Using_FPGA.Native_20\,
-      \Using_FPGA.Native_21\ => \Using_FPGA.Native_21\,
-      \Using_FPGA.Native_22\ => \Using_FPGA.Native_22\,
-      \Using_FPGA.Native_23\ => \Using_FPGA.Native_23\,
-      \Using_FPGA.Native_24\ => \Using_FPGA.Native_24\,
-      \Using_FPGA.Native_25\ => \Using_FPGA.Native_25\,
-      \Using_FPGA.Native_26\ => \Using_FPGA.Native_26\,
-      \Using_FPGA.Native_27\ => \Using_FPGA.Native_27\,
-      \Using_FPGA.Native_28\ => \Using_FPGA.Native_28\,
+      \Using_FPGA.Native\ => \Using_FPGA.Native_0\,
+      \Using_FPGA.Native_0\ => \Using_FPGA.Native_1\,
+      \Using_FPGA.Native_1\ => \Using_FPGA.Native_2\,
+      \Using_FPGA.Native_10\ => \Using_FPGA.Native_11\,
+      \Using_FPGA.Native_11\ => \Using_FPGA.Native_12\,
+      \Using_FPGA.Native_12\ => \Using_FPGA.Native_13\,
+      \Using_FPGA.Native_13\ => \Using_FPGA.Native_14\,
+      \Using_FPGA.Native_14\ => \Using_FPGA.Native_15\,
+      \Using_FPGA.Native_15\ => \Using_FPGA.Native_16\,
+      \Using_FPGA.Native_16\ => \Using_FPGA.Native_17\,
+      \Using_FPGA.Native_17\ => \Using_FPGA.Native_18\,
+      \Using_FPGA.Native_18\ => \Using_FPGA.Native_19\,
+      \Using_FPGA.Native_19\ => \Using_FPGA.Native_20\,
+      \Using_FPGA.Native_2\ => \Using_FPGA.Native_3\,
+      \Using_FPGA.Native_20\ => \Using_FPGA.Native_21\,
+      \Using_FPGA.Native_21\ => \Using_FPGA.Native_22\,
+      \Using_FPGA.Native_22\ => \Using_FPGA.Native_23\,
+      \Using_FPGA.Native_23\ => \Using_FPGA.Native_24\,
+      \Using_FPGA.Native_24\ => \Using_FPGA.Native_25\,
+      \Using_FPGA.Native_25\ => \Using_FPGA.Native_26\,
+      \Using_FPGA.Native_26\ => \Using_FPGA.Native_27\,
+      \Using_FPGA.Native_27\ => \Using_FPGA.Native_28\,
+      \Using_FPGA.Native_28\ => \Using_FPGA.Native_29\,
       \Using_FPGA.Native_29\(8) => \^ex_op2_reg[0]\(11),
       \Using_FPGA.Native_29\(7 downto 0) => \^ex_op2_reg[0]\(7 downto 0),
-      \Using_FPGA.Native_3\ => \Using_FPGA.Native_3\,
-      \Using_FPGA.Native_30\(23 downto 0) => \Using_FPGA.Native_29\(23 downto 0),
-      \Using_FPGA.Native_31\(0) => \Using_FPGA.Native_32\(0),
-      \Using_FPGA.Native_32\(31 downto 0) => \Using_FPGA.Native_33\(31 downto 0),
-      \Using_FPGA.Native_33\ => \Using_FPGA.Native_34\,
-      \Using_FPGA.Native_34\ => \Using_FPGA.Native_35\,
-      \Using_FPGA.Native_4\ => \Using_FPGA.Native_4\,
-      \Using_FPGA.Native_5\ => \Using_FPGA.Native_5\,
-      \Using_FPGA.Native_6\ => \Using_FPGA.Native_6\,
-      \Using_FPGA.Native_7\ => \Using_FPGA.Native_7\,
-      \Using_FPGA.Native_8\ => \Using_FPGA.Native_8\,
-      \Using_FPGA.Native_9\ => \Using_FPGA.Native_9\,
+      \Using_FPGA.Native_3\ => \Using_FPGA.Native_4\,
+      \Using_FPGA.Native_30\(23 downto 0) => \Using_FPGA.Native_30\(23 downto 0),
+      \Using_FPGA.Native_31\(0) => \Using_FPGA.Native_36\(0),
+      \Using_FPGA.Native_32\(31 downto 0) => \Using_FPGA.Native_37\(31 downto 0),
+      \Using_FPGA.Native_33\ => \Using_FPGA.Native_38\,
+      \Using_FPGA.Native_34\ => \Using_FPGA.Native_39\,
+      \Using_FPGA.Native_4\ => \Using_FPGA.Native_5\,
+      \Using_FPGA.Native_5\ => \Using_FPGA.Native_6\,
+      \Using_FPGA.Native_6\ => \Using_FPGA.Native_7\,
+      \Using_FPGA.Native_7\ => \Using_FPGA.Native_8\,
+      \Using_FPGA.Native_8\ => \Using_FPGA.Native_9\,
+      \Using_FPGA.Native_9\ => \Using_FPGA.Native_10\,
       \data_rd_reg_reg[23]\ => \data_rd_reg_reg[23]\,
       \data_rd_reg_reg[23]_0\ => \data_rd_reg_reg[23]_0\,
       wb_byte_access => wb_byte_access,
@@ -55592,15 +55836,23 @@ msr_reg_i: entity work.main_ub_microblaze_0_0_msr_reg_gti
       MEM_Fwd(2) => \^mem_fwd\(28),
       MEM_Fwd(1) => \^mem_fwd\(29),
       MEM_Fwd(0) => \^mem_fwd\(30),
-      \Using_FPGA.Native\ => \Using_FPGA.Native_31\,
-      \Using_FPGA.Native_0\ => Operand_Select_I_n_0,
-      \Using_FPGA.Native_1\ => Operand_Select_I_n_33,
-      \Using_FPGA.Native_2\ => \Using_FPGA.Native_35\,
+      \Using_FPGA.Native\ => \Using_FPGA.Native\(0),
+      \Using_FPGA.Native_0\ => \Using_FPGA.Native_31\,
+      \Using_FPGA.Native_1\ => \Using_FPGA.Native_33\,
+      \Using_FPGA.Native_2\ => \Using_FPGA.Native_34\,
+      \Using_FPGA.Native_3\ => \Using_FPGA.Native_35\,
+      \Using_FPGA.Native_4\ => Operand_Select_I_n_0,
+      \Using_FPGA.Native_5\ => \Using_FPGA.Native_39\,
+      \Using_FPGA.Native_i_3__31\(0) => \^ex_op1_reg[0]\(2),
       \WB_MEM_Result_reg[0]\(3) => MEM_EX_Result(0),
       \WB_MEM_Result_reg[0]\(2) => MEM_EX_Result(28),
       \WB_MEM_Result_reg[0]\(1) => MEM_EX_Result(29),
       \WB_MEM_Result_reg[0]\(0) => MEM_EX_Result(30),
       ex_MSR(2 downto 0) => \^ex_msr\(2 downto 0),
+      ex_MTS_MSR => ex_MTS_MSR,
+      mem_MSR_Load_LWX_SWX_C => mem_MSR_Load_LWX_SWX_C,
+      mem_MSR_Load_LWX_SWX_C_Hold => mem_MSR_Load_LWX_SWX_C_Hold,
+      mem_daxi_exclusive_failed => mem_daxi_exclusive_failed,
       mem_sel_msr => mem_sel_msr,
       sync_reset => sync_reset,
       \wb_MSR_i_reg[28]_0\(2 downto 0) => \^ex_op2_reg[0]\(10 downto 8),
@@ -55617,6 +55869,7 @@ entity main_ub_microblaze_0_0_MicroBlaze_GTi is
     \Using_FPGA.Native\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     \Using_FPGA.Native_0\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     Pause_Ack : out STD_LOGIC;
+    M_AXI_DP_ARLOCK : out STD_LOGIC;
     D : out STD_LOGIC_VECTOR ( 358 downto 0 );
     Sleep : out STD_LOGIC;
     LOCKSTEP_Master_Out : out STD_LOGIC_VECTOR ( 40 downto 0 );
@@ -55649,6 +55902,8 @@ entity main_ub_microblaze_0_0_MicroBlaze_GTi is
     DWait : in STD_LOGIC;
     Dbg_Reg_En : in STD_LOGIC_VECTOR ( 0 to 7 );
     wakeup_i : in STD_LOGIC_VECTOR ( 0 to 1 );
+    M_AXI_DP_RRESP : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    M_AXI_DP_BRESP : in STD_LOGIC_VECTOR ( 1 downto 0 );
     Status_Reg_En : in STD_LOGIC;
     Scan_Reset_Sel : in STD_LOGIC;
     Scan_Reset : in STD_LOGIC;
@@ -55676,8 +55931,7 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze_GTi is
   signal Data_Flow_I_n_16 : STD_LOGIC;
   signal Data_Flow_I_n_17 : STD_LOGIC;
   signal Data_Flow_I_n_18 : STD_LOGIC;
-  signal Data_Flow_I_n_185 : STD_LOGIC;
-  signal Data_Flow_I_n_188 : STD_LOGIC;
+  signal Data_Flow_I_n_186 : STD_LOGIC;
   signal Data_Flow_I_n_189 : STD_LOGIC;
   signal Data_Flow_I_n_19 : STD_LOGIC;
   signal Data_Flow_I_n_190 : STD_LOGIC;
@@ -55687,6 +55941,8 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze_GTi is
   signal Data_Flow_I_n_194 : STD_LOGIC;
   signal Data_Flow_I_n_195 : STD_LOGIC;
   signal Data_Flow_I_n_196 : STD_LOGIC;
+  signal Data_Flow_I_n_197 : STD_LOGIC;
+  signal Data_Flow_I_n_198 : STD_LOGIC;
   signal Data_Flow_I_n_2 : STD_LOGIC;
   signal Data_Flow_I_n_20 : STD_LOGIC;
   signal Data_Flow_I_n_21 : STD_LOGIC;
@@ -55703,8 +55959,8 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze_GTi is
   signal Data_Flow_I_n_31 : STD_LOGIC;
   signal Data_Flow_I_n_33 : STD_LOGIC;
   signal Data_Flow_I_n_4 : STD_LOGIC;
-  signal Data_Flow_I_n_429 : STD_LOGIC;
-  signal Data_Flow_I_n_430 : STD_LOGIC;
+  signal Data_Flow_I_n_432 : STD_LOGIC;
+  signal Data_Flow_I_n_433 : STD_LOGIC;
   signal Data_Flow_I_n_5 : STD_LOGIC;
   signal Data_Flow_I_n_6 : STD_LOGIC;
   signal Data_Flow_I_n_7 : STD_LOGIC;
@@ -55713,12 +55969,10 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze_GTi is
   signal \Data_Flow_Logic_I/R\ : STD_LOGIC;
   signal \Data_Flow_Logic_I/WB_MEM_Result0\ : STD_LOGIC;
   signal Dbg_Reg_En_0_sn_1 : STD_LOGIC;
-  signal Decode_I_n_244 : STD_LOGIC;
-  signal Decode_I_n_258 : STD_LOGIC;
-  signal Decode_I_n_263 : STD_LOGIC;
-  signal Decode_I_n_364 : STD_LOGIC;
-  signal Decode_I_n_365 : STD_LOGIC;
-  signal Decode_I_n_366 : STD_LOGIC;
+  signal Decode_I_n_245 : STD_LOGIC;
+  signal Decode_I_n_261 : STD_LOGIC;
+  signal Decode_I_n_264 : STD_LOGIC;
+  signal Decode_I_n_266 : STD_LOGIC;
   signal Decode_I_n_367 : STD_LOGIC;
   signal Decode_I_n_368 : STD_LOGIC;
   signal Decode_I_n_369 : STD_LOGIC;
@@ -55747,9 +56001,9 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze_GTi is
   signal Decode_I_n_392 : STD_LOGIC;
   signal Decode_I_n_393 : STD_LOGIC;
   signal Decode_I_n_394 : STD_LOGIC;
+  signal Decode_I_n_395 : STD_LOGIC;
   signal Decode_I_n_396 : STD_LOGIC;
   signal Decode_I_n_397 : STD_LOGIC;
-  signal Decode_I_n_398 : STD_LOGIC;
   signal Decode_I_n_399 : STD_LOGIC;
   signal Decode_I_n_400 : STD_LOGIC;
   signal Decode_I_n_401 : STD_LOGIC;
@@ -55771,19 +56025,17 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze_GTi is
   signal Decode_I_n_417 : STD_LOGIC;
   signal Decode_I_n_418 : STD_LOGIC;
   signal Decode_I_n_419 : STD_LOGIC;
-  signal Decode_I_n_423 : STD_LOGIC;
-  signal Decode_I_n_424 : STD_LOGIC;
-  signal Decode_I_n_425 : STD_LOGIC;
-  signal Decode_I_n_426 : STD_LOGIC;
+  signal Decode_I_n_420 : STD_LOGIC;
+  signal Decode_I_n_421 : STD_LOGIC;
+  signal Decode_I_n_422 : STD_LOGIC;
   signal Decode_I_n_427 : STD_LOGIC;
+  signal Decode_I_n_428 : STD_LOGIC;
+  signal Decode_I_n_429 : STD_LOGIC;
   signal Decode_I_n_430 : STD_LOGIC;
-  signal Decode_I_n_437 : STD_LOGIC;
-  signal Decode_I_n_438 : STD_LOGIC;
-  signal Decode_I_n_439 : STD_LOGIC;
-  signal Decode_I_n_440 : STD_LOGIC;
+  signal Decode_I_n_431 : STD_LOGIC;
+  signal Decode_I_n_434 : STD_LOGIC;
   signal Decode_I_n_441 : STD_LOGIC;
   signal Decode_I_n_442 : STD_LOGIC;
-  signal Decode_I_n_443 : STD_LOGIC;
   signal Decode_I_n_444 : STD_LOGIC;
   signal Decode_I_n_445 : STD_LOGIC;
   signal Decode_I_n_446 : STD_LOGIC;
@@ -55812,6 +56064,12 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze_GTi is
   signal Decode_I_n_469 : STD_LOGIC;
   signal Decode_I_n_470 : STD_LOGIC;
   signal Decode_I_n_471 : STD_LOGIC;
+  signal Decode_I_n_472 : STD_LOGIC;
+  signal Decode_I_n_473 : STD_LOGIC;
+  signal Decode_I_n_474 : STD_LOGIC;
+  signal Decode_I_n_475 : STD_LOGIC;
+  signal Decode_I_n_476 : STD_LOGIC;
+  signal Decode_I_n_477 : STD_LOGIC;
   signal Decode_I_n_71 : STD_LOGIC;
   signal \^e\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal EX_ALU_Sel_Logic : STD_LOGIC;
@@ -55822,17 +56080,18 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze_GTi is
   signal MEM_DataBus_Ready : STD_LOGIC;
   signal MEM_Fwd : STD_LOGIC_VECTOR ( 0 to 31 );
   signal MEM_PC : STD_LOGIC_VECTOR ( 0 to 31 );
+  signal \^m_axi_dp_arlock\ : STD_LOGIC;
   signal \Operand_Select_I/I0\ : STD_LOGIC;
   signal \Operand_Select_I/I1\ : STD_LOGIC;
   signal \PreFetch_Buffer_I1/I139_out\ : STD_LOGIC;
   signal \PreFetch_Buffer_I1/if_predecode\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \PreFetch_Buffer_I1/p_1_in49_in\ : STD_LOGIC;
+  signal S : STD_LOGIC;
   signal SRI : STD_LOGIC;
   signal \Shift_Logic_Module_I/I4\ : STD_LOGIC;
   signal \^sleep\ : STD_LOGIC;
   signal Sleep_Decode : STD_LOGIC;
   signal Sleep_Out : STD_LOGIC;
-  signal \Use_DBUS.DAXI_Interface_I1_n_14\ : STD_LOGIC;
   signal \Use_DBUS.DAXI_Interface_I1_n_15\ : STD_LOGIC;
   signal \Use_DBUS.DAXI_Interface_I1_n_16\ : STD_LOGIC;
   signal \Use_DBUS.DAXI_Interface_I1_n_17\ : STD_LOGIC;
@@ -55856,6 +56115,7 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze_GTi is
   signal \Use_DBUS.DAXI_Interface_I1_n_35\ : STD_LOGIC;
   signal \Use_DBUS.DAXI_Interface_I1_n_36\ : STD_LOGIC;
   signal \Use_DBUS.DAXI_Interface_I1_n_37\ : STD_LOGIC;
+  signal \Use_DBUS.DAXI_Interface_I1_n_38\ : STD_LOGIC;
   signal \Use_Debug_Logic.Master_Core.Debug_Perf_n_38\ : STD_LOGIC;
   signal \Use_Debug_Logic.Master_Core.Debug_Perf_n_39\ : STD_LOGIC;
   signal \Use_Debug_Logic.Master_Core.Debug_Perf_n_40\ : STD_LOGIC;
@@ -55863,8 +56123,8 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze_GTi is
   signal \Use_Debug_Logic.Master_Core.Debug_Perf_n_43\ : STD_LOGIC;
   signal \Use_Debug_Logic.Master_Core.Debug_Perf_n_44\ : STD_LOGIC;
   signal \Use_Debug_Logic.Master_Core.Debug_Perf_n_50\ : STD_LOGIC;
-  signal \Use_Debug_Logic.Master_Core.Debug_Perf_n_58\ : STD_LOGIC;
   signal \Use_Debug_Logic.Master_Core.Debug_Perf_n_59\ : STD_LOGIC;
+  signal \Use_Debug_Logic.Master_Core.Debug_Perf_n_60\ : STD_LOGIC;
   signal \^using_fpga.native\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \^using_fpga.native_0\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal active_access : STD_LOGIC;
@@ -55874,9 +56134,10 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze_GTi is
   signal ex_Exception_Taken : STD_LOGIC;
   signal ex_MSR : STD_LOGIC_VECTOR ( 28 to 30 );
   signal ex_MSR_Load_ALU_C : STD_LOGIC;
-  signal ex_MSR_Load_LWX_SWX_C : STD_LOGIC;
   signal ex_MSR_Load_Shift_C : STD_LOGIC;
   signal ex_MSR_Set_SW_BIP : STD_LOGIC;
+  signal ex_MTS_MSR : STD_LOGIC;
+  signal ex_alu_carry_32 : STD_LOGIC;
   signal ex_alu_op : STD_LOGIC_VECTOR ( 0 to 1 );
   signal ex_byte_access : STD_LOGIC;
   signal ex_cmp_op : STD_LOGIC;
@@ -55893,7 +56154,6 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze_GTi is
   signal ex_reverse_mem_access : STD_LOGIC;
   signal ex_sext_op : STD_LOGIC_VECTOR ( 0 to 1 );
   signal ex_swap_byte_instr : STD_LOGIC;
-  signal \ex_swx_access__0\ : STD_LOGIC;
   signal ex_unsigned_op : STD_LOGIC;
   signal ex_use_carry : STD_LOGIC;
   signal ex_valid : STD_LOGIC;
@@ -55909,10 +56169,15 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze_GTi is
   signal lopt_1 : STD_LOGIC;
   signal lopt_2 : STD_LOGIC;
   signal mem_Exception_Taken : STD_LOGIC;
+  signal mem_LWX_SWX_Carry_Hold : STD_LOGIC;
+  signal mem_MSR : STD_LOGIC_VECTOR ( 29 to 29 );
+  signal mem_MSR_Load_LWX_SWX_C : STD_LOGIC;
+  signal mem_MSR_Load_LWX_SWX_C_Hold : STD_LOGIC;
   signal mem_byte_access : STD_LOGIC;
   signal mem_databus_access : STD_LOGIC;
   signal mem_databus_read : STD_LOGIC;
   signal mem_databus_write : STD_LOGIC;
+  signal mem_daxi_exclusive_failed : STD_LOGIC;
   signal mem_doublet_access : STD_LOGIC;
   signal mem_sel_msr : STD_LOGIC;
   signal of_gpr_op1_rd_addr : STD_LOGIC_VECTOR ( 0 to 4 );
@@ -55925,8 +56190,9 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze_GTi is
   signal of_pc : STD_LOGIC_VECTOR ( 0 to 31 );
   signal of_write_imm_reg : STD_LOGIC;
   signal p_1_out : STD_LOGIC;
-  signal p_232_in : STD_LOGIC;
+  signal p_238_in : STD_LOGIC;
   signal \p_4_out__0\ : STD_LOGIC;
+  signal \read_exclusive_fail__2\ : STD_LOGIC;
   signal swap_result : STD_LOGIC_VECTOR ( 8 to 31 );
   signal swap_result_reg : STD_LOGIC_VECTOR ( 0 to 7 );
   signal wb_Halted : STD_LOGIC;
@@ -55946,6 +56212,7 @@ begin
   Dbg_Reg_En_0_sp_1 <= Dbg_Reg_En_0_sn_1;
   E(0) <= \^e\(0);
   LOCKSTEP_Master_Out(40 downto 0) <= \^lockstep_master_out\(40 downto 0);
+  M_AXI_DP_ARLOCK <= \^m_axi_dp_arlock\;
   Sleep <= \^sleep\;
   \Using_FPGA.Native\(0) <= \^using_fpga.native\(0);
   \Using_FPGA.Native_0\(0) <= \^using_fpga.native_0\(0);
@@ -55953,37 +56220,37 @@ Data_Flow_I: entity work.main_ub_microblaze_0_0_Data_Flow_gti
      port map (
       Clk => Clk,
       D(31) => \Operand_Select_I/I0\,
-      D(30) => Decode_I_n_364,
-      D(29) => Decode_I_n_365,
-      D(28) => Decode_I_n_366,
-      D(27) => Decode_I_n_367,
-      D(26) => Decode_I_n_368,
-      D(25) => Decode_I_n_369,
-      D(24) => Decode_I_n_370,
-      D(23) => Decode_I_n_371,
-      D(22) => Decode_I_n_372,
-      D(21) => Decode_I_n_373,
-      D(20) => Decode_I_n_374,
-      D(19) => Decode_I_n_375,
-      D(18) => Decode_I_n_376,
-      D(17) => Decode_I_n_377,
-      D(16) => Decode_I_n_378,
-      D(15) => Decode_I_n_379,
-      D(14) => Decode_I_n_380,
-      D(13) => Decode_I_n_381,
-      D(12) => Decode_I_n_382,
-      D(11) => Decode_I_n_383,
-      D(10) => Decode_I_n_384,
-      D(9) => Decode_I_n_385,
-      D(8) => Decode_I_n_386,
-      D(7) => Decode_I_n_387,
-      D(6) => Decode_I_n_388,
-      D(5) => Decode_I_n_389,
-      D(4) => Decode_I_n_390,
-      D(3) => Decode_I_n_391,
-      D(2) => Decode_I_n_392,
-      D(1) => Decode_I_n_393,
-      D(0) => Decode_I_n_394,
+      D(30) => Decode_I_n_367,
+      D(29) => Decode_I_n_368,
+      D(28) => Decode_I_n_369,
+      D(27) => Decode_I_n_370,
+      D(26) => Decode_I_n_371,
+      D(25) => Decode_I_n_372,
+      D(24) => Decode_I_n_373,
+      D(23) => Decode_I_n_374,
+      D(22) => Decode_I_n_375,
+      D(21) => Decode_I_n_376,
+      D(20) => Decode_I_n_377,
+      D(19) => Decode_I_n_378,
+      D(18) => Decode_I_n_379,
+      D(17) => Decode_I_n_380,
+      D(16) => Decode_I_n_381,
+      D(15) => Decode_I_n_382,
+      D(14) => Decode_I_n_383,
+      D(13) => Decode_I_n_384,
+      D(12) => Decode_I_n_385,
+      D(11) => Decode_I_n_386,
+      D(10) => Decode_I_n_387,
+      D(9) => Decode_I_n_388,
+      D(8) => Decode_I_n_389,
+      D(7) => Decode_I_n_390,
+      D(6) => Decode_I_n_391,
+      D(5) => Decode_I_n_392,
+      D(4) => Decode_I_n_393,
+      D(3) => Decode_I_n_394,
+      D(2) => Decode_I_n_395,
+      D(1) => Decode_I_n_396,
+      D(0) => Decode_I_n_397,
       DI => \^d\(117),
       DI_0 => \ALU_I/DI\,
       E(0) => of_write_imm_reg,
@@ -56048,39 +56315,39 @@ Data_Flow_I: entity work.main_ub_microblaze_0_0_Data_Flow_gti
       \EX_Op1_reg[0]\(2) => Data_Flow_I_n_29,
       \EX_Op1_reg[0]\(1) => Data_Flow_I_n_30,
       \EX_Op1_reg[0]\(0) => Data_Flow_I_n_31,
-      \EX_Op1_reg[10]\ => Decode_I_n_462,
-      \EX_Op1_reg[11]\ => Decode_I_n_461,
-      \EX_Op1_reg[12]\ => Decode_I_n_460,
-      \EX_Op1_reg[13]\ => Decode_I_n_459,
-      \EX_Op1_reg[14]\ => Decode_I_n_458,
-      \EX_Op1_reg[15]\ => Decode_I_n_457,
-      \EX_Op1_reg[16]\ => Decode_I_n_456,
-      \EX_Op1_reg[17]\ => Decode_I_n_455,
-      \EX_Op1_reg[18]\ => Decode_I_n_454,
-      \EX_Op1_reg[19]\ => Decode_I_n_453,
-      \EX_Op1_reg[1]\ => Decode_I_n_471,
-      \EX_Op1_reg[20]\ => Decode_I_n_452,
-      \EX_Op1_reg[21]\ => Decode_I_n_451,
-      \EX_Op1_reg[22]\ => Decode_I_n_450,
-      \EX_Op1_reg[23]\ => Decode_I_n_449,
+      \EX_Op1_reg[10]\ => Decode_I_n_468,
+      \EX_Op1_reg[11]\ => Decode_I_n_467,
+      \EX_Op1_reg[12]\ => Decode_I_n_466,
+      \EX_Op1_reg[13]\ => Decode_I_n_465,
+      \EX_Op1_reg[14]\ => Decode_I_n_464,
+      \EX_Op1_reg[15]\ => Decode_I_n_463,
+      \EX_Op1_reg[16]\ => Decode_I_n_462,
+      \EX_Op1_reg[17]\ => Decode_I_n_461,
+      \EX_Op1_reg[18]\ => Decode_I_n_460,
+      \EX_Op1_reg[19]\ => Decode_I_n_459,
+      \EX_Op1_reg[1]\ => Decode_I_n_477,
+      \EX_Op1_reg[20]\ => Decode_I_n_458,
+      \EX_Op1_reg[21]\ => Decode_I_n_457,
+      \EX_Op1_reg[22]\ => Decode_I_n_456,
+      \EX_Op1_reg[23]\ => Decode_I_n_455,
       \EX_Op1_reg[24]\ => Data_Flow_I_n_33,
-      \EX_Op1_reg[24]_0\ => Decode_I_n_448,
-      \EX_Op1_reg[25]\ => Decode_I_n_447,
-      \EX_Op1_reg[26]\ => Decode_I_n_446,
-      \EX_Op1_reg[27]\ => Decode_I_n_445,
-      \EX_Op1_reg[28]\ => Data_Flow_I_n_188,
-      \EX_Op1_reg[28]_0\ => Decode_I_n_444,
-      \EX_Op1_reg[29]\ => Decode_I_n_443,
-      \EX_Op1_reg[2]\ => Decode_I_n_470,
-      \EX_Op1_reg[30]\ => Decode_I_n_442,
-      \EX_Op1_reg[31]\ => Decode_I_n_441,
-      \EX_Op1_reg[3]\ => Decode_I_n_469,
-      \EX_Op1_reg[4]\ => Decode_I_n_468,
-      \EX_Op1_reg[5]\ => Decode_I_n_467,
-      \EX_Op1_reg[6]\ => Decode_I_n_466,
-      \EX_Op1_reg[7]\ => Decode_I_n_465,
-      \EX_Op1_reg[8]\ => Decode_I_n_464,
-      \EX_Op1_reg[9]\ => Decode_I_n_463,
+      \EX_Op1_reg[24]_0\ => Decode_I_n_454,
+      \EX_Op1_reg[25]\ => Decode_I_n_453,
+      \EX_Op1_reg[26]\ => Decode_I_n_452,
+      \EX_Op1_reg[27]\ => Decode_I_n_451,
+      \EX_Op1_reg[28]\ => Data_Flow_I_n_190,
+      \EX_Op1_reg[28]_0\ => Decode_I_n_450,
+      \EX_Op1_reg[29]\ => Decode_I_n_449,
+      \EX_Op1_reg[2]\ => Decode_I_n_476,
+      \EX_Op1_reg[30]\ => Decode_I_n_448,
+      \EX_Op1_reg[31]\ => Decode_I_n_447,
+      \EX_Op1_reg[3]\ => Decode_I_n_475,
+      \EX_Op1_reg[4]\ => Decode_I_n_474,
+      \EX_Op1_reg[5]\ => Decode_I_n_473,
+      \EX_Op1_reg[6]\ => Decode_I_n_472,
+      \EX_Op1_reg[7]\ => Decode_I_n_471,
+      \EX_Op1_reg[8]\ => Decode_I_n_470,
+      \EX_Op1_reg[9]\ => Decode_I_n_469,
       \EX_Op2_reg[0]\(91 downto 60) => \^d\(323 downto 292),
       \EX_Op2_reg[0]\(59 downto 52) => \^d\(275 downto 268),
       \EX_Op2_reg[0]\(51 downto 48) => \^d\(256 downto 253),
@@ -56192,121 +56459,126 @@ Data_Flow_I: entity work.main_ub_microblaze_0_0_Data_Flow_gti
       GPR_Op3(0 to 31) => gpr_op3(0 to 31),
       I1 => \Operand_Select_I/I1\,
       I1_1 => \exception_registers_I1/I1\,
-      \LOCKSTEP_Out_reg[3023]\ => \Use_DBUS.DAXI_Interface_I1_n_14\,
-      \LOCKSTEP_Out_reg[3024]\ => \Use_DBUS.DAXI_Interface_I1_n_15\,
-      \LOCKSTEP_Out_reg[3025]\ => \Use_DBUS.DAXI_Interface_I1_n_16\,
-      \LOCKSTEP_Out_reg[3026]\ => \Use_DBUS.DAXI_Interface_I1_n_17\,
-      \LOCKSTEP_Out_reg[3027]\ => \Use_DBUS.DAXI_Interface_I1_n_18\,
-      \LOCKSTEP_Out_reg[3028]\ => \Use_DBUS.DAXI_Interface_I1_n_19\,
-      \LOCKSTEP_Out_reg[3029]\ => \Use_DBUS.DAXI_Interface_I1_n_20\,
+      LO => ex_alu_carry_32,
+      \LOCKSTEP_Out_reg[3023]\ => \Use_DBUS.DAXI_Interface_I1_n_15\,
+      \LOCKSTEP_Out_reg[3024]\ => \Use_DBUS.DAXI_Interface_I1_n_16\,
+      \LOCKSTEP_Out_reg[3025]\ => \Use_DBUS.DAXI_Interface_I1_n_17\,
+      \LOCKSTEP_Out_reg[3026]\ => \Use_DBUS.DAXI_Interface_I1_n_18\,
+      \LOCKSTEP_Out_reg[3027]\ => \Use_DBUS.DAXI_Interface_I1_n_19\,
+      \LOCKSTEP_Out_reg[3028]\ => \Use_DBUS.DAXI_Interface_I1_n_20\,
+      \LOCKSTEP_Out_reg[3029]\ => \Use_DBUS.DAXI_Interface_I1_n_21\,
       \LOCKSTEP_Out_reg[3030]\ => \^d\(75),
-      \LOCKSTEP_Out_reg[3030]_0\ => \Use_DBUS.DAXI_Interface_I1_n_21\,
+      \LOCKSTEP_Out_reg[3030]_0\ => \Use_DBUS.DAXI_Interface_I1_n_22\,
       \MEM_DataBus_Write_Data_reg[0]\(23 downto 8) => \^d\(291 downto 276),
       \MEM_DataBus_Write_Data_reg[0]\(7 downto 0) => \^d\(267 downto 260),
       MEM_Fwd(0 to 31) => MEM_Fwd(0 to 31),
-      \No_Long.Reverse_Mem_Accesses.wb_read_lsb_1_sel_reg[0]\ => Data_Flow_I_n_185,
-      \No_Long.Reverse_Mem_Accesses.wb_read_lsb_sel_reg[0]\(1) => Data_Flow_I_n_429,
-      \No_Long.Reverse_Mem_Accesses.wb_read_lsb_sel_reg[0]\(0) => Data_Flow_I_n_430,
+      \No_Long.Reverse_Mem_Accesses.wb_read_lsb_1_sel_reg[0]\ => Data_Flow_I_n_186,
+      \No_Long.Reverse_Mem_Accesses.wb_read_lsb_sel_reg[0]\(1) => Data_Flow_I_n_432,
+      \No_Long.Reverse_Mem_Accesses.wb_read_lsb_sel_reg[0]\(0) => Data_Flow_I_n_433,
       Q(1) => ex_alu_op(0),
       Q(0) => ex_alu_op(1),
       R => \Data_Flow_Logic_I/R\,
+      S => S,
       SR(0) => \Data_Flow_Logic_I/WB_MEM_Result0\,
-      \Using_FPGA.Native\ => \^d\(118),
-      \Using_FPGA.Native_0\ => \^d\(119),
-      \Using_FPGA.Native_1\ => \^d\(120),
-      \Using_FPGA.Native_10\ => \^d\(129),
-      \Using_FPGA.Native_11\ => \^d\(130),
-      \Using_FPGA.Native_12\ => \^d\(131),
-      \Using_FPGA.Native_13\ => \^d\(132),
-      \Using_FPGA.Native_14\ => \^d\(133),
-      \Using_FPGA.Native_15\ => \^d\(134),
-      \Using_FPGA.Native_16\ => \^d\(135),
-      \Using_FPGA.Native_17\ => \^d\(136),
-      \Using_FPGA.Native_18\ => \^d\(137),
-      \Using_FPGA.Native_19\ => \^d\(138),
-      \Using_FPGA.Native_2\ => \^d\(121),
-      \Using_FPGA.Native_20\ => \^d\(139),
-      \Using_FPGA.Native_21\ => \^d\(140),
-      \Using_FPGA.Native_22\ => \^d\(141),
-      \Using_FPGA.Native_23\ => \^d\(142),
-      \Using_FPGA.Native_24\ => \^d\(143),
-      \Using_FPGA.Native_25\ => \^d\(144),
-      \Using_FPGA.Native_26\ => \^d\(145),
-      \Using_FPGA.Native_27\ => \^d\(146),
-      \Using_FPGA.Native_28\ => \^d\(147),
-      \Using_FPGA.Native_29\(23) => wb_excep_return_addr(0),
-      \Using_FPGA.Native_29\(22) => wb_excep_return_addr(1),
-      \Using_FPGA.Native_29\(21) => wb_excep_return_addr(2),
-      \Using_FPGA.Native_29\(20) => wb_excep_return_addr(3),
-      \Using_FPGA.Native_29\(19) => wb_excep_return_addr(4),
-      \Using_FPGA.Native_29\(18) => wb_excep_return_addr(5),
-      \Using_FPGA.Native_29\(17) => wb_excep_return_addr(6),
-      \Using_FPGA.Native_29\(16) => wb_excep_return_addr(7),
-      \Using_FPGA.Native_29\(15) => wb_excep_return_addr(8),
-      \Using_FPGA.Native_29\(14) => wb_excep_return_addr(9),
-      \Using_FPGA.Native_29\(13) => wb_excep_return_addr(10),
-      \Using_FPGA.Native_29\(12) => wb_excep_return_addr(11),
-      \Using_FPGA.Native_29\(11) => wb_excep_return_addr(12),
-      \Using_FPGA.Native_29\(10) => wb_excep_return_addr(13),
-      \Using_FPGA.Native_29\(9) => wb_excep_return_addr(14),
-      \Using_FPGA.Native_29\(8) => wb_excep_return_addr(15),
-      \Using_FPGA.Native_29\(7) => wb_excep_return_addr(24),
-      \Using_FPGA.Native_29\(6) => wb_excep_return_addr(25),
-      \Using_FPGA.Native_29\(5) => wb_excep_return_addr(26),
-      \Using_FPGA.Native_29\(4) => wb_excep_return_addr(27),
-      \Using_FPGA.Native_29\(3) => wb_excep_return_addr(28),
-      \Using_FPGA.Native_29\(2) => wb_excep_return_addr(29),
-      \Using_FPGA.Native_29\(1) => wb_excep_return_addr(30),
-      \Using_FPGA.Native_29\(0) => wb_excep_return_addr(31),
-      \Using_FPGA.Native_3\ => \^d\(122),
-      \Using_FPGA.Native_30\ => \^using_fpga.native_0\(0),
-      \Using_FPGA.Native_31\ => Decode_I_n_263,
-      \Using_FPGA.Native_32\(0) => \^d\(74),
-      \Using_FPGA.Native_33\(31) => MEM_PC(0),
-      \Using_FPGA.Native_33\(30) => MEM_PC(1),
-      \Using_FPGA.Native_33\(29) => MEM_PC(2),
-      \Using_FPGA.Native_33\(28) => MEM_PC(3),
-      \Using_FPGA.Native_33\(27) => MEM_PC(4),
-      \Using_FPGA.Native_33\(26) => MEM_PC(5),
-      \Using_FPGA.Native_33\(25) => MEM_PC(6),
-      \Using_FPGA.Native_33\(24) => MEM_PC(7),
-      \Using_FPGA.Native_33\(23) => MEM_PC(8),
-      \Using_FPGA.Native_33\(22) => MEM_PC(9),
-      \Using_FPGA.Native_33\(21) => MEM_PC(10),
-      \Using_FPGA.Native_33\(20) => MEM_PC(11),
-      \Using_FPGA.Native_33\(19) => MEM_PC(12),
-      \Using_FPGA.Native_33\(18) => MEM_PC(13),
-      \Using_FPGA.Native_33\(17) => MEM_PC(14),
-      \Using_FPGA.Native_33\(16) => MEM_PC(15),
-      \Using_FPGA.Native_33\(15) => MEM_PC(16),
-      \Using_FPGA.Native_33\(14) => MEM_PC(17),
-      \Using_FPGA.Native_33\(13) => MEM_PC(18),
-      \Using_FPGA.Native_33\(12) => MEM_PC(19),
-      \Using_FPGA.Native_33\(11) => MEM_PC(20),
-      \Using_FPGA.Native_33\(10) => MEM_PC(21),
-      \Using_FPGA.Native_33\(9) => MEM_PC(22),
-      \Using_FPGA.Native_33\(8) => MEM_PC(23),
-      \Using_FPGA.Native_33\(7) => MEM_PC(24),
-      \Using_FPGA.Native_33\(6) => MEM_PC(25),
-      \Using_FPGA.Native_33\(5) => MEM_PC(26),
-      \Using_FPGA.Native_33\(4) => MEM_PC(27),
-      \Using_FPGA.Native_33\(3) => MEM_PC(28),
-      \Using_FPGA.Native_33\(2) => MEM_PC(29),
-      \Using_FPGA.Native_33\(1) => MEM_PC(30),
-      \Using_FPGA.Native_33\(0) => MEM_PC(31),
-      \Using_FPGA.Native_34\ => Decode_I_n_439,
-      \Using_FPGA.Native_35\ => \^using_fpga.native\(0),
-      \Using_FPGA.Native_36\ => Decode_I_n_244,
-      \Using_FPGA.Native_37\ => \^lockstep_master_out\(36),
-      \Using_FPGA.Native_38\ => \^lockstep_master_out\(32),
-      \Using_FPGA.Native_4\ => \^d\(123),
-      \Using_FPGA.Native_5\ => \^d\(124),
-      \Using_FPGA.Native_6\ => \^d\(125),
-      \Using_FPGA.Native_7\ => \^d\(126),
-      \Using_FPGA.Native_8\ => \^d\(127),
-      \Using_FPGA.Native_9\ => \^d\(128),
-      \Using_FPGA.Native_i_3__31\(1) => ex_sext_op(0),
-      \Using_FPGA.Native_i_3__31\(0) => ex_sext_op(1),
+      \Using_FPGA.Native\(0) => mem_MSR(29),
+      \Using_FPGA.Native_0\ => \^d\(118),
+      \Using_FPGA.Native_1\ => \^d\(119),
+      \Using_FPGA.Native_10\ => \^d\(128),
+      \Using_FPGA.Native_11\ => \^d\(129),
+      \Using_FPGA.Native_12\ => \^d\(130),
+      \Using_FPGA.Native_13\ => \^d\(131),
+      \Using_FPGA.Native_14\ => \^d\(132),
+      \Using_FPGA.Native_15\ => \^d\(133),
+      \Using_FPGA.Native_16\ => \^d\(134),
+      \Using_FPGA.Native_17\ => \^d\(135),
+      \Using_FPGA.Native_18\ => \^d\(136),
+      \Using_FPGA.Native_19\ => \^d\(137),
+      \Using_FPGA.Native_2\ => \^d\(120),
+      \Using_FPGA.Native_20\ => \^d\(138),
+      \Using_FPGA.Native_21\ => \^d\(139),
+      \Using_FPGA.Native_22\ => \^d\(140),
+      \Using_FPGA.Native_23\ => \^d\(141),
+      \Using_FPGA.Native_24\ => \^d\(142),
+      \Using_FPGA.Native_25\ => \^d\(143),
+      \Using_FPGA.Native_26\ => \^d\(144),
+      \Using_FPGA.Native_27\ => \^d\(145),
+      \Using_FPGA.Native_28\ => \^d\(146),
+      \Using_FPGA.Native_29\ => \^d\(147),
+      \Using_FPGA.Native_3\ => \^d\(121),
+      \Using_FPGA.Native_30\(23) => wb_excep_return_addr(0),
+      \Using_FPGA.Native_30\(22) => wb_excep_return_addr(1),
+      \Using_FPGA.Native_30\(21) => wb_excep_return_addr(2),
+      \Using_FPGA.Native_30\(20) => wb_excep_return_addr(3),
+      \Using_FPGA.Native_30\(19) => wb_excep_return_addr(4),
+      \Using_FPGA.Native_30\(18) => wb_excep_return_addr(5),
+      \Using_FPGA.Native_30\(17) => wb_excep_return_addr(6),
+      \Using_FPGA.Native_30\(16) => wb_excep_return_addr(7),
+      \Using_FPGA.Native_30\(15) => wb_excep_return_addr(8),
+      \Using_FPGA.Native_30\(14) => wb_excep_return_addr(9),
+      \Using_FPGA.Native_30\(13) => wb_excep_return_addr(10),
+      \Using_FPGA.Native_30\(12) => wb_excep_return_addr(11),
+      \Using_FPGA.Native_30\(11) => wb_excep_return_addr(12),
+      \Using_FPGA.Native_30\(10) => wb_excep_return_addr(13),
+      \Using_FPGA.Native_30\(9) => wb_excep_return_addr(14),
+      \Using_FPGA.Native_30\(8) => wb_excep_return_addr(15),
+      \Using_FPGA.Native_30\(7) => wb_excep_return_addr(24),
+      \Using_FPGA.Native_30\(6) => wb_excep_return_addr(25),
+      \Using_FPGA.Native_30\(5) => wb_excep_return_addr(26),
+      \Using_FPGA.Native_30\(4) => wb_excep_return_addr(27),
+      \Using_FPGA.Native_30\(3) => wb_excep_return_addr(28),
+      \Using_FPGA.Native_30\(2) => wb_excep_return_addr(29),
+      \Using_FPGA.Native_30\(1) => wb_excep_return_addr(30),
+      \Using_FPGA.Native_30\(0) => wb_excep_return_addr(31),
+      \Using_FPGA.Native_31\ => Data_Flow_I_n_189,
+      \Using_FPGA.Native_32\ => \^using_fpga.native_0\(0),
+      \Using_FPGA.Native_33\ => Decode_I_n_442,
+      \Using_FPGA.Native_34\ => Decode_I_n_266,
+      \Using_FPGA.Native_35\ => Decode_I_n_264,
+      \Using_FPGA.Native_36\(0) => \^d\(74),
+      \Using_FPGA.Native_37\(31) => MEM_PC(0),
+      \Using_FPGA.Native_37\(30) => MEM_PC(1),
+      \Using_FPGA.Native_37\(29) => MEM_PC(2),
+      \Using_FPGA.Native_37\(28) => MEM_PC(3),
+      \Using_FPGA.Native_37\(27) => MEM_PC(4),
+      \Using_FPGA.Native_37\(26) => MEM_PC(5),
+      \Using_FPGA.Native_37\(25) => MEM_PC(6),
+      \Using_FPGA.Native_37\(24) => MEM_PC(7),
+      \Using_FPGA.Native_37\(23) => MEM_PC(8),
+      \Using_FPGA.Native_37\(22) => MEM_PC(9),
+      \Using_FPGA.Native_37\(21) => MEM_PC(10),
+      \Using_FPGA.Native_37\(20) => MEM_PC(11),
+      \Using_FPGA.Native_37\(19) => MEM_PC(12),
+      \Using_FPGA.Native_37\(18) => MEM_PC(13),
+      \Using_FPGA.Native_37\(17) => MEM_PC(14),
+      \Using_FPGA.Native_37\(16) => MEM_PC(15),
+      \Using_FPGA.Native_37\(15) => MEM_PC(16),
+      \Using_FPGA.Native_37\(14) => MEM_PC(17),
+      \Using_FPGA.Native_37\(13) => MEM_PC(18),
+      \Using_FPGA.Native_37\(12) => MEM_PC(19),
+      \Using_FPGA.Native_37\(11) => MEM_PC(20),
+      \Using_FPGA.Native_37\(10) => MEM_PC(21),
+      \Using_FPGA.Native_37\(9) => MEM_PC(22),
+      \Using_FPGA.Native_37\(8) => MEM_PC(23),
+      \Using_FPGA.Native_37\(7) => MEM_PC(24),
+      \Using_FPGA.Native_37\(6) => MEM_PC(25),
+      \Using_FPGA.Native_37\(5) => MEM_PC(26),
+      \Using_FPGA.Native_37\(4) => MEM_PC(27),
+      \Using_FPGA.Native_37\(3) => MEM_PC(28),
+      \Using_FPGA.Native_37\(2) => MEM_PC(29),
+      \Using_FPGA.Native_37\(1) => MEM_PC(30),
+      \Using_FPGA.Native_37\(0) => MEM_PC(31),
+      \Using_FPGA.Native_38\ => Decode_I_n_445,
+      \Using_FPGA.Native_39\ => \^using_fpga.native\(0),
+      \Using_FPGA.Native_4\ => \^d\(122),
+      \Using_FPGA.Native_40\ => \^lockstep_master_out\(36),
+      \Using_FPGA.Native_41\ => \^lockstep_master_out\(32),
+      \Using_FPGA.Native_5\ => \^d\(123),
+      \Using_FPGA.Native_6\ => \^d\(124),
+      \Using_FPGA.Native_7\ => \^d\(125),
+      \Using_FPGA.Native_8\ => \^d\(126),
+      \Using_FPGA.Native_9\ => \^d\(127),
+      \Using_FPGA.Native_i_3__30\(1) => ex_sext_op(0),
+      \Using_FPGA.Native_i_3__30\(0) => ex_sext_op(1),
       WB_GPR_Wr => \^d\(116),
       \WB_MEM_Result_reg[0]\(23) => wb_mem_result(0),
       \WB_MEM_Result_reg[0]\(22) => wb_mem_result(1),
@@ -56337,9 +56609,7 @@ Data_Flow_I: entity work.main_ub_microblaze_0_0_Data_Flow_gti
       ex_MSR(2) => ex_MSR(28),
       ex_MSR(1) => ex_MSR(29),
       ex_MSR(0) => ex_MSR(30),
-      ex_MSR_Load_ALU_C => ex_MSR_Load_ALU_C,
-      ex_MSR_Load_LWX_SWX_C => ex_MSR_Load_LWX_SWX_C,
-      ex_MSR_Load_Shift_C => ex_MSR_Load_Shift_C,
+      ex_MTS_MSR => ex_MTS_MSR,
       ex_byte_access => ex_byte_access,
       ex_cmp_op => ex_cmp_op,
       ex_doublet_access => ex_doublet_access,
@@ -56349,7 +56619,6 @@ Data_Flow_I: entity work.main_ub_microblaze_0_0_Data_Flow_gti
       ex_op1_zero => ex_op1_zero,
       ex_reverse_mem_access => ex_reverse_mem_access,
       ex_swap_byte_instr => ex_swap_byte_instr,
-      \ex_swx_access__0\ => \ex_swx_access__0\,
       ex_unsigned_op => ex_unsigned_op,
       ex_use_carry => ex_use_carry,
       ex_valid => ex_valid,
@@ -56369,11 +56638,15 @@ Data_Flow_I: entity work.main_ub_microblaze_0_0_Data_Flow_gti
       \imm_reg_reg[0]\(2) => imm_reg(13),
       \imm_reg_reg[0]\(1) => imm_reg(14),
       \imm_reg_reg[0]\(0) => imm_reg(15),
-      in0 => Decode_I_n_437,
+      in0 => Decode_I_n_441,
       lopt => lopt,
       lopt_1 => lopt_1,
       lopt_2 => lopt_2,
+      mem_LWX_SWX_Carry_Hold => mem_LWX_SWX_Carry_Hold,
+      mem_MSR_Load_LWX_SWX_C => mem_MSR_Load_LWX_SWX_C,
+      mem_MSR_Load_LWX_SWX_C_Hold => mem_MSR_Load_LWX_SWX_C_Hold,
       mem_byte_access => mem_byte_access,
+      mem_daxi_exclusive_failed => mem_daxi_exclusive_failed,
       mem_doublet_access => mem_doublet_access,
       mem_sel_msr => mem_sel_msr,
       of_gpr_op1_rd_addr(0 to 4) => of_gpr_op1_rd_addr(0 to 4),
@@ -56381,7 +56654,7 @@ Data_Flow_I: entity work.main_ub_microblaze_0_0_Data_Flow_gti
       of_imm_data(0 to 15) => of_imm_data(0 to 15),
       of_op1_sel_spr => of_op1_sel_spr,
       \out\ => \Shift_Logic_Module_I/I4\,
-      p_232_in => p_232_in,
+      p_238_in => p_238_in,
       swap_result(23) => swap_result(8),
       swap_result(22) => swap_result(9),
       swap_result(21) => swap_result(10),
@@ -56410,14 +56683,14 @@ Data_Flow_I: entity work.main_ub_microblaze_0_0_Data_Flow_gti
       sync_reset => sync_reset,
       wb_byte_access => wb_byte_access,
       wb_gpr_wr_dbg => wb_gpr_wr_dbg,
-      wb_gpr_write_dbg_reg(7) => Data_Flow_I_n_189,
-      wb_gpr_write_dbg_reg(6) => Data_Flow_I_n_190,
-      wb_gpr_write_dbg_reg(5) => Data_Flow_I_n_191,
-      wb_gpr_write_dbg_reg(4) => Data_Flow_I_n_192,
-      wb_gpr_write_dbg_reg(3) => Data_Flow_I_n_193,
-      wb_gpr_write_dbg_reg(2) => Data_Flow_I_n_194,
-      wb_gpr_write_dbg_reg(1) => Data_Flow_I_n_195,
-      wb_gpr_write_dbg_reg(0) => Data_Flow_I_n_196,
+      wb_gpr_write_dbg_reg(7) => Data_Flow_I_n_191,
+      wb_gpr_write_dbg_reg(6) => Data_Flow_I_n_192,
+      wb_gpr_write_dbg_reg(5) => Data_Flow_I_n_193,
+      wb_gpr_write_dbg_reg(4) => Data_Flow_I_n_194,
+      wb_gpr_write_dbg_reg(3) => Data_Flow_I_n_195,
+      wb_gpr_write_dbg_reg(2) => Data_Flow_I_n_196,
+      wb_gpr_write_dbg_reg(1) => Data_Flow_I_n_197,
+      wb_gpr_write_dbg_reg(0) => Data_Flow_I_n_198,
       wb_piperun => wb_piperun,
       wb_read_msb_doublet_sel => wb_read_msb_doublet_sel
     );
@@ -56491,6 +56764,7 @@ Decode_I: entity work.main_ub_microblaze_0_0_Decode_gti
       I139_out => \PreFetch_Buffer_I1/I139_out\,
       I1_0 => \Operand_Select_I/I1\,
       IReady => IReady,
+      LO => ex_alu_carry_32,
       LOCKSTEP_Master_Out(2) => \^lockstep_master_out\(40),
       LOCKSTEP_Master_Out(1) => \^lockstep_master_out\(37),
       LOCKSTEP_Master_Out(0) => \^lockstep_master_out\(35),
@@ -56518,7 +56792,7 @@ Decode_I: entity work.main_ub_microblaze_0_0_Decode_gti
       \LOCKSTEP_Out_reg[3007]\(2) => wb_excep_return_addr(29),
       \LOCKSTEP_Out_reg[3007]\(1) => wb_excep_return_addr(30),
       \LOCKSTEP_Out_reg[3007]\(0) => wb_excep_return_addr(31),
-      \LOCKSTEP_Out_reg[3007]_0\ => \Use_DBUS.DAXI_Interface_I1_n_37\,
+      \LOCKSTEP_Out_reg[3007]_0\ => \Use_DBUS.DAXI_Interface_I1_n_38\,
       \LOCKSTEP_Out_reg[3007]_1\(23) => wb_mem_result(0),
       \LOCKSTEP_Out_reg[3007]_1\(22) => wb_mem_result(1),
       \LOCKSTEP_Out_reg[3007]_1\(21) => wb_mem_result(2),
@@ -56543,21 +56817,21 @@ Decode_I: entity work.main_ub_microblaze_0_0_Decode_gti
       \LOCKSTEP_Out_reg[3007]_1\(2) => wb_mem_result(29),
       \LOCKSTEP_Out_reg[3007]_1\(1) => wb_mem_result(30),
       \LOCKSTEP_Out_reg[3007]_1\(0) => wb_mem_result(31),
-      \LOCKSTEP_Out_reg[3008]\ => \Use_DBUS.DAXI_Interface_I1_n_36\,
-      \LOCKSTEP_Out_reg[3009]\ => \Use_DBUS.DAXI_Interface_I1_n_35\,
-      \LOCKSTEP_Out_reg[3010]\ => \Use_DBUS.DAXI_Interface_I1_n_34\,
-      \LOCKSTEP_Out_reg[3011]\ => \Use_DBUS.DAXI_Interface_I1_n_33\,
-      \LOCKSTEP_Out_reg[3012]\ => \Use_DBUS.DAXI_Interface_I1_n_32\,
-      \LOCKSTEP_Out_reg[3013]\ => \Use_DBUS.DAXI_Interface_I1_n_31\,
-      \LOCKSTEP_Out_reg[3014]\ => \Use_DBUS.DAXI_Interface_I1_n_30\,
-      \LOCKSTEP_Out_reg[3015]\ => \Use_DBUS.DAXI_Interface_I1_n_29\,
-      \LOCKSTEP_Out_reg[3016]\ => \Use_DBUS.DAXI_Interface_I1_n_28\,
-      \LOCKSTEP_Out_reg[3017]\ => \Use_DBUS.DAXI_Interface_I1_n_27\,
-      \LOCKSTEP_Out_reg[3018]\ => \Use_DBUS.DAXI_Interface_I1_n_26\,
-      \LOCKSTEP_Out_reg[3019]\ => \Use_DBUS.DAXI_Interface_I1_n_25\,
-      \LOCKSTEP_Out_reg[3020]\ => \Use_DBUS.DAXI_Interface_I1_n_24\,
-      \LOCKSTEP_Out_reg[3021]\ => \Use_DBUS.DAXI_Interface_I1_n_23\,
-      \LOCKSTEP_Out_reg[3022]\ => \Use_DBUS.DAXI_Interface_I1_n_22\,
+      \LOCKSTEP_Out_reg[3008]\ => \Use_DBUS.DAXI_Interface_I1_n_37\,
+      \LOCKSTEP_Out_reg[3009]\ => \Use_DBUS.DAXI_Interface_I1_n_36\,
+      \LOCKSTEP_Out_reg[3010]\ => \Use_DBUS.DAXI_Interface_I1_n_35\,
+      \LOCKSTEP_Out_reg[3011]\ => \Use_DBUS.DAXI_Interface_I1_n_34\,
+      \LOCKSTEP_Out_reg[3012]\ => \Use_DBUS.DAXI_Interface_I1_n_33\,
+      \LOCKSTEP_Out_reg[3013]\ => \Use_DBUS.DAXI_Interface_I1_n_32\,
+      \LOCKSTEP_Out_reg[3014]\ => \Use_DBUS.DAXI_Interface_I1_n_31\,
+      \LOCKSTEP_Out_reg[3015]\ => \Use_DBUS.DAXI_Interface_I1_n_30\,
+      \LOCKSTEP_Out_reg[3016]\ => \Use_DBUS.DAXI_Interface_I1_n_29\,
+      \LOCKSTEP_Out_reg[3017]\ => \Use_DBUS.DAXI_Interface_I1_n_28\,
+      \LOCKSTEP_Out_reg[3018]\ => \Use_DBUS.DAXI_Interface_I1_n_27\,
+      \LOCKSTEP_Out_reg[3019]\ => \Use_DBUS.DAXI_Interface_I1_n_26\,
+      \LOCKSTEP_Out_reg[3020]\ => \Use_DBUS.DAXI_Interface_I1_n_25\,
+      \LOCKSTEP_Out_reg[3021]\ => \Use_DBUS.DAXI_Interface_I1_n_24\,
+      \LOCKSTEP_Out_reg[3022]\ => \Use_DBUS.DAXI_Interface_I1_n_23\,
       \MEM_DataBus_Addr_reg[0]_0\(68 downto 39) => \^d\(323 downto 294),
       \MEM_DataBus_Addr_reg[0]_0\(38) => \^d\(258),
       \MEM_DataBus_Addr_reg[0]_0\(37) => \^d\(220),
@@ -56601,19 +56875,21 @@ Decode_I: entity work.main_ub_microblaze_0_0_Decode_gti
       \MEM_DataBus_Write_Data_reg[0]\(2) => EX_Op3(29),
       \MEM_DataBus_Write_Data_reg[0]\(1) => EX_Op3(30),
       \MEM_DataBus_Write_Data_reg[0]\(0) => EX_Op3(31),
-      MEM_DataBus_Write_reg_0 => Decode_I_n_424,
-      MEM_DataBus_Write_reg_1 => Decode_I_n_425,
-      MEM_DataBus_Write_reg_2 => Decode_I_n_426,
+      MEM_DataBus_Write_reg_0 => Decode_I_n_428,
+      MEM_DataBus_Write_reg_1 => Decode_I_n_429,
+      MEM_DataBus_Write_reg_2 => Decode_I_n_430,
       MEM_Fwd(0 to 31) => MEM_Fwd(0 to 31),
+      M_AXI_DP_ARLOCK => \^m_axi_dp_arlock\,
       M_AXI_DP_ARREADY => M_AXI_DP_ARREADY,
       M_AXI_DP_AWREADY => M_AXI_DP_AWREADY,
       M_AXI_DP_BVALID => M_AXI_DP_BVALID,
-      M_AXI_DP_BVALID_0 => Decode_I_n_423,
+      M_AXI_DP_BVALID_0 => Decode_I_n_427,
+      M_AXI_DP_RRESP(1 downto 0) => M_AXI_DP_RRESP(1 downto 0),
       M_AXI_DP_RVALID => M_AXI_DP_RVALID,
       M_AXI_DP_WREADY => M_AXI_DP_WREADY,
       Pause => Pause,
       Pause_Ack => Pause_Ack,
-      \Performance_Debug_Control.dbg_freeze_nohalt_reg\ => Decode_I_n_439,
+      \Performance_Debug_Control.dbg_freeze_nohalt_reg\ => Decode_I_n_445,
       \Performance_Debug_Control.dbg_state_nohalt_reg\(159 downto 125) => \^d\(358 downto 324),
       \Performance_Debug_Control.dbg_state_nohalt_reg\(124 downto 109) => \^d\(291 downto 276),
       \Performance_Debug_Control.dbg_state_nohalt_reg\(108 downto 101) => \^d\(267 downto 260),
@@ -56623,14 +56899,15 @@ Decode_I: entity work.main_ub_microblaze_0_0_Decode_gti
       \Performance_Debug_Control.dbg_state_nohalt_reg\(34 downto 29) => \^d\(116 downto 111),
       \Performance_Debug_Control.dbg_state_nohalt_reg\(28 downto 13) => \^d\(107 downto 92),
       \Performance_Debug_Control.dbg_state_nohalt_reg\(12 downto 0) => \^d\(83 downto 71),
-      \Performance_Debug_Control.dbg_stop_instr_fetch_nohalt_reg\ => Decode_I_n_438,
+      \Performance_Debug_Control.dbg_stop_instr_fetch_nohalt_reg\ => Decode_I_n_444,
       \Performance_Debug_Control.dbg_stop_instr_fetch_nohalt_reg_0\ => \Use_Debug_Logic.Master_Core.Debug_Perf_n_42\,
-      Q(0) => \Use_Debug_Logic.Master_Core.Debug_Perf_n_59\,
+      Q(0) => \Use_Debug_Logic.Master_Core.Debug_Perf_n_60\,
       R => \Data_Flow_Logic_I/R\,
       Reset_Mode(0 to 1) => Reset_Mode(0 to 1),
+      S => S,
       SR(0) => \Data_Flow_Logic_I/WB_MEM_Result0\,
       SRI => SRI,
-      \Serial_Dbg_Intf.control_reg_reg[8]\ => Decode_I_n_430,
+      \Serial_Dbg_Intf.control_reg_reg[8]\ => Decode_I_n_434,
       Sleep => \^sleep\,
       Sleep_Decode => Sleep_Decode,
       Sleep_Out => Sleep_Out,
@@ -56638,99 +56915,104 @@ Decode_I: entity work.main_ub_microblaze_0_0_Decode_gti
       \Using_FPGA.Native\(0) => if_sel_input(3),
       \Using_FPGA.Native_0\ => \^using_fpga.native\(0),
       \Using_FPGA.Native_1\ => \^using_fpga.native_0\(0),
-      \Using_FPGA.Native_10\ => Decode_I_n_448,
-      \Using_FPGA.Native_11\ => Decode_I_n_449,
-      \Using_FPGA.Native_12\ => Decode_I_n_450,
-      \Using_FPGA.Native_13\ => Decode_I_n_451,
-      \Using_FPGA.Native_14\ => Decode_I_n_452,
-      \Using_FPGA.Native_15\ => Decode_I_n_453,
-      \Using_FPGA.Native_16\ => Decode_I_n_454,
-      \Using_FPGA.Native_17\ => Decode_I_n_455,
-      \Using_FPGA.Native_18\ => Decode_I_n_456,
-      \Using_FPGA.Native_19\ => Decode_I_n_457,
-      \Using_FPGA.Native_2\ => Decode_I_n_440,
-      \Using_FPGA.Native_20\ => Decode_I_n_458,
-      \Using_FPGA.Native_21\ => Decode_I_n_459,
-      \Using_FPGA.Native_22\ => Decode_I_n_460,
-      \Using_FPGA.Native_23\ => Decode_I_n_461,
-      \Using_FPGA.Native_24\ => Decode_I_n_462,
-      \Using_FPGA.Native_25\ => Decode_I_n_463,
-      \Using_FPGA.Native_26\ => Decode_I_n_464,
-      \Using_FPGA.Native_27\ => Decode_I_n_465,
-      \Using_FPGA.Native_28\ => Decode_I_n_466,
-      \Using_FPGA.Native_29\ => Decode_I_n_467,
-      \Using_FPGA.Native_3\ => Decode_I_n_441,
-      \Using_FPGA.Native_30\ => Decode_I_n_468,
-      \Using_FPGA.Native_31\ => Decode_I_n_469,
-      \Using_FPGA.Native_32\ => Decode_I_n_470,
-      \Using_FPGA.Native_33\ => Decode_I_n_471,
-      \Using_FPGA.Native_34\(0) => \PreFetch_Buffer_I1/p_1_in49_in\,
-      \Using_FPGA.Native_35\ => \Use_Debug_Logic.Master_Core.Debug_Perf_n_50\,
-      \Using_FPGA.Native_36\ => \Use_Debug_Logic.Master_Core.Debug_Perf_n_58\,
-      \Using_FPGA.Native_37\(0) => ex_op1_neg,
-      \Using_FPGA.Native_38\ => Data_Flow_I_n_188,
-      \Using_FPGA.Native_39\ => \^lockstep_master_out\(36),
-      \Using_FPGA.Native_4\ => Decode_I_n_442,
-      \Using_FPGA.Native_40\ => \^lockstep_master_out\(32),
-      \Using_FPGA.Native_41\ => \^lockstep_master_out\(38),
-      \Using_FPGA.Native_42\(31) => Data_Flow_I_n_0,
-      \Using_FPGA.Native_42\(30) => Data_Flow_I_n_1,
-      \Using_FPGA.Native_42\(29) => Data_Flow_I_n_2,
-      \Using_FPGA.Native_42\(28) => Data_Flow_I_n_3,
-      \Using_FPGA.Native_42\(27) => Data_Flow_I_n_4,
-      \Using_FPGA.Native_42\(26) => Data_Flow_I_n_5,
-      \Using_FPGA.Native_42\(25) => Data_Flow_I_n_6,
-      \Using_FPGA.Native_42\(24) => Data_Flow_I_n_7,
-      \Using_FPGA.Native_42\(23) => Data_Flow_I_n_8,
-      \Using_FPGA.Native_42\(22) => Data_Flow_I_n_9,
-      \Using_FPGA.Native_42\(21) => Data_Flow_I_n_10,
-      \Using_FPGA.Native_42\(20) => Data_Flow_I_n_11,
-      \Using_FPGA.Native_42\(19) => Data_Flow_I_n_12,
-      \Using_FPGA.Native_42\(18) => Data_Flow_I_n_13,
-      \Using_FPGA.Native_42\(17) => Data_Flow_I_n_14,
-      \Using_FPGA.Native_42\(16) => Data_Flow_I_n_15,
-      \Using_FPGA.Native_42\(15) => Data_Flow_I_n_16,
-      \Using_FPGA.Native_42\(14) => Data_Flow_I_n_17,
-      \Using_FPGA.Native_42\(13) => Data_Flow_I_n_18,
-      \Using_FPGA.Native_42\(12) => Data_Flow_I_n_19,
-      \Using_FPGA.Native_42\(11) => Data_Flow_I_n_20,
-      \Using_FPGA.Native_42\(10) => Data_Flow_I_n_21,
-      \Using_FPGA.Native_42\(9) => Data_Flow_I_n_22,
-      \Using_FPGA.Native_42\(8) => Data_Flow_I_n_23,
-      \Using_FPGA.Native_42\(7) => Data_Flow_I_n_24,
-      \Using_FPGA.Native_42\(6) => Data_Flow_I_n_25,
-      \Using_FPGA.Native_42\(5) => Data_Flow_I_n_26,
-      \Using_FPGA.Native_42\(4) => Data_Flow_I_n_27,
-      \Using_FPGA.Native_42\(3) => Data_Flow_I_n_28,
-      \Using_FPGA.Native_42\(2) => Data_Flow_I_n_29,
-      \Using_FPGA.Native_42\(1) => Data_Flow_I_n_30,
-      \Using_FPGA.Native_42\(0) => Data_Flow_I_n_31,
-      \Using_FPGA.Native_43\ => Data_Flow_I_n_33,
-      \Using_FPGA.Native_5\ => Decode_I_n_443,
-      \Using_FPGA.Native_6\ => Decode_I_n_444,
-      \Using_FPGA.Native_7\ => Decode_I_n_445,
-      \Using_FPGA.Native_8\ => Decode_I_n_446,
-      \Using_FPGA.Native_9\ => Decode_I_n_447,
+      \Using_FPGA.Native_10\ => Decode_I_n_453,
+      \Using_FPGA.Native_11\ => Decode_I_n_454,
+      \Using_FPGA.Native_12\ => Decode_I_n_455,
+      \Using_FPGA.Native_13\ => Decode_I_n_456,
+      \Using_FPGA.Native_14\ => Decode_I_n_457,
+      \Using_FPGA.Native_15\ => Decode_I_n_458,
+      \Using_FPGA.Native_16\ => Decode_I_n_459,
+      \Using_FPGA.Native_17\ => Decode_I_n_460,
+      \Using_FPGA.Native_18\ => Decode_I_n_461,
+      \Using_FPGA.Native_19\ => Decode_I_n_462,
+      \Using_FPGA.Native_2\ => Decode_I_n_264,
+      \Using_FPGA.Native_20\ => Decode_I_n_463,
+      \Using_FPGA.Native_21\ => Decode_I_n_464,
+      \Using_FPGA.Native_22\ => Decode_I_n_465,
+      \Using_FPGA.Native_23\ => Decode_I_n_466,
+      \Using_FPGA.Native_24\ => Decode_I_n_467,
+      \Using_FPGA.Native_25\ => Decode_I_n_468,
+      \Using_FPGA.Native_26\ => Decode_I_n_469,
+      \Using_FPGA.Native_27\ => Decode_I_n_470,
+      \Using_FPGA.Native_28\ => Decode_I_n_471,
+      \Using_FPGA.Native_29\ => Decode_I_n_472,
+      \Using_FPGA.Native_3\ => Decode_I_n_446,
+      \Using_FPGA.Native_30\ => Decode_I_n_473,
+      \Using_FPGA.Native_31\ => Decode_I_n_474,
+      \Using_FPGA.Native_32\ => Decode_I_n_475,
+      \Using_FPGA.Native_33\ => Decode_I_n_476,
+      \Using_FPGA.Native_34\ => Decode_I_n_477,
+      \Using_FPGA.Native_35\(0) => \PreFetch_Buffer_I1/p_1_in49_in\,
+      \Using_FPGA.Native_36\ => \Use_Debug_Logic.Master_Core.Debug_Perf_n_50\,
+      \Using_FPGA.Native_37\ => \Use_Debug_Logic.Master_Core.Debug_Perf_n_59\,
+      \Using_FPGA.Native_38\(0) => ex_op1_neg,
+      \Using_FPGA.Native_39\ => Data_Flow_I_n_190,
+      \Using_FPGA.Native_4\ => Decode_I_n_447,
+      \Using_FPGA.Native_40\ => \^lockstep_master_out\(36),
+      \Using_FPGA.Native_41\ => \^lockstep_master_out\(32),
+      \Using_FPGA.Native_42\ => \^lockstep_master_out\(38),
+      \Using_FPGA.Native_43\(31) => Data_Flow_I_n_0,
+      \Using_FPGA.Native_43\(30) => Data_Flow_I_n_1,
+      \Using_FPGA.Native_43\(29) => Data_Flow_I_n_2,
+      \Using_FPGA.Native_43\(28) => Data_Flow_I_n_3,
+      \Using_FPGA.Native_43\(27) => Data_Flow_I_n_4,
+      \Using_FPGA.Native_43\(26) => Data_Flow_I_n_5,
+      \Using_FPGA.Native_43\(25) => Data_Flow_I_n_6,
+      \Using_FPGA.Native_43\(24) => Data_Flow_I_n_7,
+      \Using_FPGA.Native_43\(23) => Data_Flow_I_n_8,
+      \Using_FPGA.Native_43\(22) => Data_Flow_I_n_9,
+      \Using_FPGA.Native_43\(21) => Data_Flow_I_n_10,
+      \Using_FPGA.Native_43\(20) => Data_Flow_I_n_11,
+      \Using_FPGA.Native_43\(19) => Data_Flow_I_n_12,
+      \Using_FPGA.Native_43\(18) => Data_Flow_I_n_13,
+      \Using_FPGA.Native_43\(17) => Data_Flow_I_n_14,
+      \Using_FPGA.Native_43\(16) => Data_Flow_I_n_15,
+      \Using_FPGA.Native_43\(15) => Data_Flow_I_n_16,
+      \Using_FPGA.Native_43\(14) => Data_Flow_I_n_17,
+      \Using_FPGA.Native_43\(13) => Data_Flow_I_n_18,
+      \Using_FPGA.Native_43\(12) => Data_Flow_I_n_19,
+      \Using_FPGA.Native_43\(11) => Data_Flow_I_n_20,
+      \Using_FPGA.Native_43\(10) => Data_Flow_I_n_21,
+      \Using_FPGA.Native_43\(9) => Data_Flow_I_n_22,
+      \Using_FPGA.Native_43\(8) => Data_Flow_I_n_23,
+      \Using_FPGA.Native_43\(7) => Data_Flow_I_n_24,
+      \Using_FPGA.Native_43\(6) => Data_Flow_I_n_25,
+      \Using_FPGA.Native_43\(5) => Data_Flow_I_n_26,
+      \Using_FPGA.Native_43\(4) => Data_Flow_I_n_27,
+      \Using_FPGA.Native_43\(3) => Data_Flow_I_n_28,
+      \Using_FPGA.Native_43\(2) => Data_Flow_I_n_29,
+      \Using_FPGA.Native_43\(1) => Data_Flow_I_n_30,
+      \Using_FPGA.Native_43\(0) => Data_Flow_I_n_31,
+      \Using_FPGA.Native_44\ => Data_Flow_I_n_33,
+      \Using_FPGA.Native_45\(0) => mem_MSR(29),
+      \Using_FPGA.Native_46\ => Data_Flow_I_n_189,
+      \Using_FPGA.Native_5\ => Decode_I_n_448,
+      \Using_FPGA.Native_6\ => Decode_I_n_449,
+      \Using_FPGA.Native_7\ => Decode_I_n_450,
+      \Using_FPGA.Native_8\ => Decode_I_n_451,
+      \Using_FPGA.Native_9\ => Decode_I_n_452,
       Y(0 to 31) => ib_data(0 to 31),
       active_access => active_access,
       active_access_d1 => active_access_d1,
       active_access_reg => \Use_Debug_Logic.Master_Core.Debug_Perf_n_38\,
       \data_rd_reg_reg[0]\ => \Use_Debug_Logic.Master_Core.Debug_Perf_n_39\,
       dbg_clean_stop => dbg_clean_stop,
-      dbg_halt_reset_mode_reg => Decode_I_n_427,
+      dbg_halt_reset_mode_reg => Decode_I_n_431,
       dbg_stop_i => dbg_stop_i,
       ex_Exception_Taken => ex_Exception_Taken,
       ex_MSR(2) => ex_MSR(28),
       ex_MSR(1) => ex_MSR(29),
       ex_MSR(0) => ex_MSR(30),
-      ex_MSR_Load_LWX_SWX_C => ex_MSR_Load_LWX_SWX_C,
+      ex_MSR_Load_ALU_C => ex_MSR_Load_ALU_C,
+      ex_MSR_Load_Shift_C => ex_MSR_Load_Shift_C,
       ex_MSR_Set_SW_BIP => ex_MSR_Set_SW_BIP,
+      ex_MTS_MSR => ex_MTS_MSR,
       ex_byte_access => ex_byte_access,
       ex_cmp_op => ex_cmp_op,
       ex_doublet_access => ex_doublet_access,
       ex_exception_no_load_store_mask => ex_exception_no_load_store_mask,
       ex_is_load_instr_s => ex_is_load_instr_s,
-      ex_load_alu_carry_reg_0 => Decode_I_n_244,
+      ex_load_alu_carry_reg_0 => Decode_I_n_245,
       ex_load_shift_carry => ex_load_shift_carry,
       ex_move_to_MSR_instr => ex_move_to_MSR_instr,
       ex_op1_cmp_equal => ex_op1_cmp_equal,
@@ -56802,57 +57084,61 @@ Decode_I: entity work.main_ub_microblaze_0_0_Decode_gti
       ex_sel_alu_i_reg_1(1) => of_op3(30),
       ex_sel_alu_i_reg_1(0) => of_op3(31),
       ex_sel_alu_i_reg_2(31) => \Operand_Select_I/I0\,
-      ex_sel_alu_i_reg_2(30) => Decode_I_n_364,
-      ex_sel_alu_i_reg_2(29) => Decode_I_n_365,
-      ex_sel_alu_i_reg_2(28) => Decode_I_n_366,
-      ex_sel_alu_i_reg_2(27) => Decode_I_n_367,
-      ex_sel_alu_i_reg_2(26) => Decode_I_n_368,
-      ex_sel_alu_i_reg_2(25) => Decode_I_n_369,
-      ex_sel_alu_i_reg_2(24) => Decode_I_n_370,
-      ex_sel_alu_i_reg_2(23) => Decode_I_n_371,
-      ex_sel_alu_i_reg_2(22) => Decode_I_n_372,
-      ex_sel_alu_i_reg_2(21) => Decode_I_n_373,
-      ex_sel_alu_i_reg_2(20) => Decode_I_n_374,
-      ex_sel_alu_i_reg_2(19) => Decode_I_n_375,
-      ex_sel_alu_i_reg_2(18) => Decode_I_n_376,
-      ex_sel_alu_i_reg_2(17) => Decode_I_n_377,
-      ex_sel_alu_i_reg_2(16) => Decode_I_n_378,
-      ex_sel_alu_i_reg_2(15) => Decode_I_n_379,
-      ex_sel_alu_i_reg_2(14) => Decode_I_n_380,
-      ex_sel_alu_i_reg_2(13) => Decode_I_n_381,
-      ex_sel_alu_i_reg_2(12) => Decode_I_n_382,
-      ex_sel_alu_i_reg_2(11) => Decode_I_n_383,
-      ex_sel_alu_i_reg_2(10) => Decode_I_n_384,
-      ex_sel_alu_i_reg_2(9) => Decode_I_n_385,
-      ex_sel_alu_i_reg_2(8) => Decode_I_n_386,
-      ex_sel_alu_i_reg_2(7) => Decode_I_n_387,
-      ex_sel_alu_i_reg_2(6) => Decode_I_n_388,
-      ex_sel_alu_i_reg_2(5) => Decode_I_n_389,
-      ex_sel_alu_i_reg_2(4) => Decode_I_n_390,
-      ex_sel_alu_i_reg_2(3) => Decode_I_n_391,
-      ex_sel_alu_i_reg_2(2) => Decode_I_n_392,
-      ex_sel_alu_i_reg_2(1) => Decode_I_n_393,
-      ex_sel_alu_i_reg_2(0) => Decode_I_n_394,
+      ex_sel_alu_i_reg_2(30) => Decode_I_n_367,
+      ex_sel_alu_i_reg_2(29) => Decode_I_n_368,
+      ex_sel_alu_i_reg_2(28) => Decode_I_n_369,
+      ex_sel_alu_i_reg_2(27) => Decode_I_n_370,
+      ex_sel_alu_i_reg_2(26) => Decode_I_n_371,
+      ex_sel_alu_i_reg_2(25) => Decode_I_n_372,
+      ex_sel_alu_i_reg_2(24) => Decode_I_n_373,
+      ex_sel_alu_i_reg_2(23) => Decode_I_n_374,
+      ex_sel_alu_i_reg_2(22) => Decode_I_n_375,
+      ex_sel_alu_i_reg_2(21) => Decode_I_n_376,
+      ex_sel_alu_i_reg_2(20) => Decode_I_n_377,
+      ex_sel_alu_i_reg_2(19) => Decode_I_n_378,
+      ex_sel_alu_i_reg_2(18) => Decode_I_n_379,
+      ex_sel_alu_i_reg_2(17) => Decode_I_n_380,
+      ex_sel_alu_i_reg_2(16) => Decode_I_n_381,
+      ex_sel_alu_i_reg_2(15) => Decode_I_n_382,
+      ex_sel_alu_i_reg_2(14) => Decode_I_n_383,
+      ex_sel_alu_i_reg_2(13) => Decode_I_n_384,
+      ex_sel_alu_i_reg_2(12) => Decode_I_n_385,
+      ex_sel_alu_i_reg_2(11) => Decode_I_n_386,
+      ex_sel_alu_i_reg_2(10) => Decode_I_n_387,
+      ex_sel_alu_i_reg_2(9) => Decode_I_n_388,
+      ex_sel_alu_i_reg_2(8) => Decode_I_n_389,
+      ex_sel_alu_i_reg_2(7) => Decode_I_n_390,
+      ex_sel_alu_i_reg_2(6) => Decode_I_n_391,
+      ex_sel_alu_i_reg_2(5) => Decode_I_n_392,
+      ex_sel_alu_i_reg_2(4) => Decode_I_n_393,
+      ex_sel_alu_i_reg_2(3) => Decode_I_n_394,
+      ex_sel_alu_i_reg_2(2) => Decode_I_n_395,
+      ex_sel_alu_i_reg_2(1) => Decode_I_n_396,
+      ex_sel_alu_i_reg_2(0) => Decode_I_n_397,
       ex_set_bip_reg_0 => Decode_I_n_71,
-      ex_set_bip_reg_1 => Decode_I_n_263,
+      ex_set_bip_reg_1 => Decode_I_n_266,
       ex_swap_byte_instr => ex_swap_byte_instr,
-      \ex_swx_access__0\ => \ex_swx_access__0\,
       ex_unsigned_op => ex_unsigned_op,
       ex_use_carry => ex_use_carry,
       ex_valid => ex_valid,
       exception_reg(0) => instr_rd_reg(1),
       if_fetch_in_progress_reg_0 => \Use_Debug_Logic.Master_Core.Debug_Perf_n_40\,
       \in\(0) => \PreFetch_Buffer_I1/if_predecode\(0),
-      in0 => Decode_I_n_437,
+      in0 => Decode_I_n_441,
       lopt => lopt,
       lopt_1 => lopt_1,
       lopt_2 => lopt_2,
       mb_halted_1_reg => \Use_Debug_Logic.Master_Core.Debug_Perf_n_43\,
       mem_Exception_Taken => mem_Exception_Taken,
+      mem_LWX_SWX_Carry_Hold => mem_LWX_SWX_Carry_Hold,
+      mem_MSR_Load_LWX_SWX_C => mem_MSR_Load_LWX_SWX_C,
+      mem_MSR_Load_LWX_SWX_C_Hold => mem_MSR_Load_LWX_SWX_C_Hold,
+      mem_access_failed_reg => Decode_I_n_442,
       mem_byte_access => mem_byte_access,
       mem_databus_access => mem_databus_access,
       mem_databus_read => mem_databus_read,
       mem_databus_write => mem_databus_write,
+      mem_daxi_exclusive_failed => mem_daxi_exclusive_failed,
       mem_doublet_access => mem_doublet_access,
       \mem_pc_i_reg[0]\(31) => MEM_PC(0),
       \mem_pc_i_reg[0]\(30) => MEM_PC(1),
@@ -56895,8 +57181,9 @@ Decode_I: entity work.main_ub_microblaze_0_0_Decode_gti
       of_pause => of_pause,
       of_pause_reg_0 => \^e\(0),
       \out\ => \Shift_Logic_Module_I/I4\,
-      p_232_in => p_232_in,
+      p_238_in => p_238_in,
       \p_4_out__0\ => \p_4_out__0\,
+      \read_exclusive_fail__2\ => \read_exclusive_fail__2\,
       swap_result(23) => swap_result(8),
       swap_result(22) => swap_result(9),
       swap_result(21) => swap_result(10),
@@ -56935,35 +57222,35 @@ Decode_I: entity work.main_ub_microblaze_0_0_Decode_gti
       wb_databus_steered_read_data(1) => wb_databus_steered_read_data(30),
       wb_databus_steered_read_data(0) => wb_databus_steered_read_data(31),
       wb_gpr_wr_dbg => wb_gpr_wr_dbg,
-      wb_gpr_write_dbg_reg_0(23) => Decode_I_n_396,
-      wb_gpr_write_dbg_reg_0(22) => Decode_I_n_397,
-      wb_gpr_write_dbg_reg_0(21) => Decode_I_n_398,
-      wb_gpr_write_dbg_reg_0(20) => Decode_I_n_399,
-      wb_gpr_write_dbg_reg_0(19) => Decode_I_n_400,
-      wb_gpr_write_dbg_reg_0(18) => Decode_I_n_401,
-      wb_gpr_write_dbg_reg_0(17) => Decode_I_n_402,
-      wb_gpr_write_dbg_reg_0(16) => Decode_I_n_403,
-      wb_gpr_write_dbg_reg_0(15) => Decode_I_n_404,
-      wb_gpr_write_dbg_reg_0(14) => Decode_I_n_405,
-      wb_gpr_write_dbg_reg_0(13) => Decode_I_n_406,
-      wb_gpr_write_dbg_reg_0(12) => Decode_I_n_407,
-      wb_gpr_write_dbg_reg_0(11) => Decode_I_n_408,
-      wb_gpr_write_dbg_reg_0(10) => Decode_I_n_409,
-      wb_gpr_write_dbg_reg_0(9) => Decode_I_n_410,
-      wb_gpr_write_dbg_reg_0(8) => Decode_I_n_411,
-      wb_gpr_write_dbg_reg_0(7) => Decode_I_n_412,
-      wb_gpr_write_dbg_reg_0(6) => Decode_I_n_413,
-      wb_gpr_write_dbg_reg_0(5) => Decode_I_n_414,
-      wb_gpr_write_dbg_reg_0(4) => Decode_I_n_415,
-      wb_gpr_write_dbg_reg_0(3) => Decode_I_n_416,
-      wb_gpr_write_dbg_reg_0(2) => Decode_I_n_417,
-      wb_gpr_write_dbg_reg_0(1) => Decode_I_n_418,
-      wb_gpr_write_dbg_reg_0(0) => Decode_I_n_419,
+      wb_gpr_write_dbg_reg_0(23) => Decode_I_n_399,
+      wb_gpr_write_dbg_reg_0(22) => Decode_I_n_400,
+      wb_gpr_write_dbg_reg_0(21) => Decode_I_n_401,
+      wb_gpr_write_dbg_reg_0(20) => Decode_I_n_402,
+      wb_gpr_write_dbg_reg_0(19) => Decode_I_n_403,
+      wb_gpr_write_dbg_reg_0(18) => Decode_I_n_404,
+      wb_gpr_write_dbg_reg_0(17) => Decode_I_n_405,
+      wb_gpr_write_dbg_reg_0(16) => Decode_I_n_406,
+      wb_gpr_write_dbg_reg_0(15) => Decode_I_n_407,
+      wb_gpr_write_dbg_reg_0(14) => Decode_I_n_408,
+      wb_gpr_write_dbg_reg_0(13) => Decode_I_n_409,
+      wb_gpr_write_dbg_reg_0(12) => Decode_I_n_410,
+      wb_gpr_write_dbg_reg_0(11) => Decode_I_n_411,
+      wb_gpr_write_dbg_reg_0(10) => Decode_I_n_412,
+      wb_gpr_write_dbg_reg_0(9) => Decode_I_n_413,
+      wb_gpr_write_dbg_reg_0(8) => Decode_I_n_414,
+      wb_gpr_write_dbg_reg_0(7) => Decode_I_n_415,
+      wb_gpr_write_dbg_reg_0(6) => Decode_I_n_416,
+      wb_gpr_write_dbg_reg_0(5) => Decode_I_n_417,
+      wb_gpr_write_dbg_reg_0(4) => Decode_I_n_418,
+      wb_gpr_write_dbg_reg_0(3) => Decode_I_n_419,
+      wb_gpr_write_dbg_reg_0(2) => Decode_I_n_420,
+      wb_gpr_write_dbg_reg_0(1) => Decode_I_n_421,
+      wb_gpr_write_dbg_reg_0(0) => Decode_I_n_422,
       wb_pc_valid => wb_pc_valid,
       wb_piperun => wb_piperun,
       wb_read_imm_reg => wb_read_imm_reg,
       wb_read_imm_reg_1 => wb_read_imm_reg_1,
-      wb_valid_reg_0 => Decode_I_n_258
+      wb_valid_reg_0 => Decode_I_n_261
     );
 \Use_DBUS.DAXI_Interface_I1\: entity work.main_ub_microblaze_0_0_DAXI_interface
      port map (
@@ -56971,24 +57258,26 @@ Decode_I: entity work.main_ub_microblaze_0_0_Decode_gti
       D(2) => \^d\(220),
       D(1 downto 0) => \^d\(183 downto 182),
       DReady => DReady,
-      \LOCKSTEP_Out_reg[3023]\ => Data_Flow_I_n_185,
-      \LOCKSTEP_Out_reg[3031]\(1) => Data_Flow_I_n_429,
-      \LOCKSTEP_Out_reg[3031]\(0) => Data_Flow_I_n_430,
+      \LOCKSTEP_Out_reg[3023]\ => Data_Flow_I_n_186,
+      \LOCKSTEP_Out_reg[3031]\(1) => Data_Flow_I_n_432,
+      \LOCKSTEP_Out_reg[3031]\(0) => Data_Flow_I_n_433,
       MEM_DataBus_Ready => MEM_DataBus_Ready,
-      M_AXI_DP_ARVALID_i_reg_0 => Decode_I_n_426,
-      M_AXI_DP_AWVALID_i_reg_0 => Decode_I_n_425,
+      M_AXI_DP_ARLOCK => \^m_axi_dp_arlock\,
+      M_AXI_DP_ARVALID_i_reg_0 => Decode_I_n_430,
+      M_AXI_DP_AWVALID_i_reg_0 => Decode_I_n_429,
+      M_AXI_DP_BRESP(1 downto 0) => M_AXI_DP_BRESP(1 downto 0),
       M_AXI_DP_BVALID => M_AXI_DP_BVALID,
       M_AXI_DP_RDATA(31 downto 0) => M_AXI_DP_RDATA(31 downto 0),
       M_AXI_DP_RVALID => M_AXI_DP_RVALID,
-      M_AXI_DP_WVALID_i_reg_0 => Decode_I_n_424,
-      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg\ => \Use_DBUS.DAXI_Interface_I1_n_14\,
-      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg_0\ => \Use_DBUS.DAXI_Interface_I1_n_15\,
-      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg_1\ => \Use_DBUS.DAXI_Interface_I1_n_16\,
-      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg_2\ => \Use_DBUS.DAXI_Interface_I1_n_17\,
-      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg_3\ => \Use_DBUS.DAXI_Interface_I1_n_18\,
-      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg_4\ => \Use_DBUS.DAXI_Interface_I1_n_19\,
-      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg_5\ => \Use_DBUS.DAXI_Interface_I1_n_20\,
-      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg_6\ => \Use_DBUS.DAXI_Interface_I1_n_21\,
+      M_AXI_DP_WVALID_i_reg_0 => Decode_I_n_428,
+      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg\ => \Use_DBUS.DAXI_Interface_I1_n_15\,
+      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg_0\ => \Use_DBUS.DAXI_Interface_I1_n_16\,
+      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg_1\ => \Use_DBUS.DAXI_Interface_I1_n_17\,
+      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg_2\ => \Use_DBUS.DAXI_Interface_I1_n_18\,
+      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg_3\ => \Use_DBUS.DAXI_Interface_I1_n_19\,
+      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg_4\ => \Use_DBUS.DAXI_Interface_I1_n_20\,
+      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg_5\ => \Use_DBUS.DAXI_Interface_I1_n_21\,
+      \No_Long.Reverse_Mem_Accesses.wb_read_msb_doublet_sel_reg_6\ => \Use_DBUS.DAXI_Interface_I1_n_22\,
       Q(31) => wb_dlmb_valid_read_data(0),
       Q(30) => wb_dlmb_valid_read_data(1),
       Q(29) => wb_dlmb_valid_read_data(2),
@@ -57021,25 +57310,27 @@ Decode_I: entity work.main_ub_microblaze_0_0_Decode_gti
       Q(2) => wb_dlmb_valid_read_data(29),
       Q(1) => wb_dlmb_valid_read_data(30),
       Q(0) => wb_dlmb_valid_read_data(31),
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[16]\ => \Use_DBUS.DAXI_Interface_I1_n_29\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[17]\ => \Use_DBUS.DAXI_Interface_I1_n_28\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[18]\ => \Use_DBUS.DAXI_Interface_I1_n_27\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[19]\ => \Use_DBUS.DAXI_Interface_I1_n_26\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[20]\ => \Use_DBUS.DAXI_Interface_I1_n_25\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[21]\ => \Use_DBUS.DAXI_Interface_I1_n_24\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[22]\ => \Use_DBUS.DAXI_Interface_I1_n_23\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[23]\ => \Use_DBUS.DAXI_Interface_I1_n_22\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[24]\ => \Use_DBUS.DAXI_Interface_I1_n_37\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[25]\ => \Use_DBUS.DAXI_Interface_I1_n_36\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[26]\ => \Use_DBUS.DAXI_Interface_I1_n_35\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[27]\ => \Use_DBUS.DAXI_Interface_I1_n_34\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[28]\ => \Use_DBUS.DAXI_Interface_I1_n_33\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[29]\ => \Use_DBUS.DAXI_Interface_I1_n_32\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[30]\ => \Use_DBUS.DAXI_Interface_I1_n_31\,
-      \Use_DLMB.wb_dlmb_valid_read_data_reg[31]\ => \Use_DBUS.DAXI_Interface_I1_n_30\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[16]\ => \Use_DBUS.DAXI_Interface_I1_n_30\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[17]\ => \Use_DBUS.DAXI_Interface_I1_n_29\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[18]\ => \Use_DBUS.DAXI_Interface_I1_n_28\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[19]\ => \Use_DBUS.DAXI_Interface_I1_n_27\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[20]\ => \Use_DBUS.DAXI_Interface_I1_n_26\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[21]\ => \Use_DBUS.DAXI_Interface_I1_n_25\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[22]\ => \Use_DBUS.DAXI_Interface_I1_n_24\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[23]\ => \Use_DBUS.DAXI_Interface_I1_n_23\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[24]\ => \Use_DBUS.DAXI_Interface_I1_n_38\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[25]\ => \Use_DBUS.DAXI_Interface_I1_n_37\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[26]\ => \Use_DBUS.DAXI_Interface_I1_n_36\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[27]\ => \Use_DBUS.DAXI_Interface_I1_n_35\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[28]\ => \Use_DBUS.DAXI_Interface_I1_n_34\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[29]\ => \Use_DBUS.DAXI_Interface_I1_n_33\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[30]\ => \Use_DBUS.DAXI_Interface_I1_n_32\,
+      \Use_DLMB.wb_dlmb_valid_read_data_reg[31]\ => \Use_DBUS.DAXI_Interface_I1_n_31\,
       active_access => active_access,
       active_access_d1 => active_access_d1,
-      active_access_reg_0 => Decode_I_n_423,
+      active_access_reg_0 => Decode_I_n_427,
+      mem_daxi_exclusive_failed => mem_daxi_exclusive_failed,
+      \read_exclusive_fail__2\ => \read_exclusive_fail__2\,
       sync_reset => sync_reset,
       wb_databus_steered_read_data(7) => wb_databus_steered_read_data(24),
       wb_databus_steered_read_data(6) => wb_databus_steered_read_data(25),
@@ -57350,15 +57641,15 @@ Decode_I: entity work.main_ub_microblaze_0_0_Decode_gti
       \Performance_Debug_Control.dbg_freeze_nohalt_reg_0\ => \Use_Debug_Logic.Master_Core.Debug_Perf_n_44\,
       \Performance_Debug_Control.dbg_state_nohalt_reg_0\ => \Use_Debug_Logic.Master_Core.Debug_Perf_n_43\,
       \Performance_Debug_Control.dbg_stop_if_delay_i_reg_0\ => \Use_Debug_Logic.Master_Core.Debug_Perf_n_50\,
-      \Performance_Debug_Control.dbg_stop_if_delay_i_reg_1\ => \Use_Debug_Logic.Master_Core.Debug_Perf_n_58\,
+      \Performance_Debug_Control.dbg_stop_if_delay_i_reg_1\ => \Use_Debug_Logic.Master_Core.Debug_Perf_n_59\,
       \Performance_Debug_Control.dbg_stop_instr_fetch_nohalt_reg_0\ => \Use_Debug_Logic.Master_Core.Debug_Perf_n_40\,
-      \Performance_Debug_Control.dbg_stop_instr_fetch_nohalt_reg_1\ => Decode_I_n_427,
-      \Performance_Debug_Control.ex_brki_hit_reg_0\ => Decode_I_n_430,
+      \Performance_Debug_Control.dbg_stop_instr_fetch_nohalt_reg_1\ => Decode_I_n_431,
+      \Performance_Debug_Control.ex_brki_hit_reg_0\ => Decode_I_n_434,
       \Performance_Debug_Control.ex_dbg_pc_hit_i_reg_0\(0) => \^d\(258),
-      \Performance_Debug_Control.ex_dbg_pc_hit_i_reg_1\ => Decode_I_n_440,
+      \Performance_Debug_Control.ex_dbg_pc_hit_i_reg_1\ => Decode_I_n_446,
       \Performance_Debug_Control.m0_dbg_hit_reg[0]_0\ => \^using_fpga.native_0\(0),
       \Performance_Debug_Control.wb_dbg_hit_reg[0]_0\ => \^using_fpga.native\(0),
-      Q(0) => \Use_Debug_Logic.Master_Core.Debug_Perf_n_59\,
+      Q(0) => \Use_Debug_Logic.Master_Core.Debug_Perf_n_60\,
       Reset_Mode(0 to 1) => Reset_Mode(0 to 1),
       Scan_En => Scan_En,
       Scan_Reset => Scan_Reset,
@@ -57369,40 +57660,40 @@ Decode_I: entity work.main_ub_microblaze_0_0_Decode_gti
       Sleep_Decode => Sleep_Decode,
       Sleep_Out => Sleep_Out,
       Status_Reg_En => Status_Reg_En,
-      \Using_FPGA.Native_i_2__21\ => Decode_I_n_244,
-      \Using_LWX_SWX_instr.ex_reservation_i_3\ => Decode_I_n_71,
-      \data_rd_reg_reg[0]_0\(31) => Decode_I_n_396,
-      \data_rd_reg_reg[0]_0\(30) => Decode_I_n_397,
-      \data_rd_reg_reg[0]_0\(29) => Decode_I_n_398,
-      \data_rd_reg_reg[0]_0\(28) => Decode_I_n_399,
-      \data_rd_reg_reg[0]_0\(27) => Decode_I_n_400,
-      \data_rd_reg_reg[0]_0\(26) => Decode_I_n_401,
-      \data_rd_reg_reg[0]_0\(25) => Decode_I_n_402,
-      \data_rd_reg_reg[0]_0\(24) => Decode_I_n_403,
-      \data_rd_reg_reg[0]_0\(23) => Decode_I_n_404,
-      \data_rd_reg_reg[0]_0\(22) => Decode_I_n_405,
-      \data_rd_reg_reg[0]_0\(21) => Decode_I_n_406,
-      \data_rd_reg_reg[0]_0\(20) => Decode_I_n_407,
-      \data_rd_reg_reg[0]_0\(19) => Decode_I_n_408,
-      \data_rd_reg_reg[0]_0\(18) => Decode_I_n_409,
-      \data_rd_reg_reg[0]_0\(17) => Decode_I_n_410,
-      \data_rd_reg_reg[0]_0\(16) => Decode_I_n_411,
-      \data_rd_reg_reg[0]_0\(15) => Data_Flow_I_n_189,
-      \data_rd_reg_reg[0]_0\(14) => Data_Flow_I_n_190,
-      \data_rd_reg_reg[0]_0\(13) => Data_Flow_I_n_191,
-      \data_rd_reg_reg[0]_0\(12) => Data_Flow_I_n_192,
-      \data_rd_reg_reg[0]_0\(11) => Data_Flow_I_n_193,
-      \data_rd_reg_reg[0]_0\(10) => Data_Flow_I_n_194,
-      \data_rd_reg_reg[0]_0\(9) => Data_Flow_I_n_195,
-      \data_rd_reg_reg[0]_0\(8) => Data_Flow_I_n_196,
-      \data_rd_reg_reg[0]_0\(7) => Decode_I_n_412,
-      \data_rd_reg_reg[0]_0\(6) => Decode_I_n_413,
-      \data_rd_reg_reg[0]_0\(5) => Decode_I_n_414,
-      \data_rd_reg_reg[0]_0\(4) => Decode_I_n_415,
-      \data_rd_reg_reg[0]_0\(3) => Decode_I_n_416,
-      \data_rd_reg_reg[0]_0\(2) => Decode_I_n_417,
-      \data_rd_reg_reg[0]_0\(1) => Decode_I_n_418,
-      \data_rd_reg_reg[0]_0\(0) => Decode_I_n_419,
+      \Using_FPGA.Native\ => Decode_I_n_245,
+      \Using_LWX_SWX_instr.ex_reservation_i_2\ => Decode_I_n_71,
+      \data_rd_reg_reg[0]_0\(31) => Decode_I_n_399,
+      \data_rd_reg_reg[0]_0\(30) => Decode_I_n_400,
+      \data_rd_reg_reg[0]_0\(29) => Decode_I_n_401,
+      \data_rd_reg_reg[0]_0\(28) => Decode_I_n_402,
+      \data_rd_reg_reg[0]_0\(27) => Decode_I_n_403,
+      \data_rd_reg_reg[0]_0\(26) => Decode_I_n_404,
+      \data_rd_reg_reg[0]_0\(25) => Decode_I_n_405,
+      \data_rd_reg_reg[0]_0\(24) => Decode_I_n_406,
+      \data_rd_reg_reg[0]_0\(23) => Decode_I_n_407,
+      \data_rd_reg_reg[0]_0\(22) => Decode_I_n_408,
+      \data_rd_reg_reg[0]_0\(21) => Decode_I_n_409,
+      \data_rd_reg_reg[0]_0\(20) => Decode_I_n_410,
+      \data_rd_reg_reg[0]_0\(19) => Decode_I_n_411,
+      \data_rd_reg_reg[0]_0\(18) => Decode_I_n_412,
+      \data_rd_reg_reg[0]_0\(17) => Decode_I_n_413,
+      \data_rd_reg_reg[0]_0\(16) => Decode_I_n_414,
+      \data_rd_reg_reg[0]_0\(15) => Data_Flow_I_n_191,
+      \data_rd_reg_reg[0]_0\(14) => Data_Flow_I_n_192,
+      \data_rd_reg_reg[0]_0\(13) => Data_Flow_I_n_193,
+      \data_rd_reg_reg[0]_0\(12) => Data_Flow_I_n_194,
+      \data_rd_reg_reg[0]_0\(11) => Data_Flow_I_n_195,
+      \data_rd_reg_reg[0]_0\(10) => Data_Flow_I_n_196,
+      \data_rd_reg_reg[0]_0\(9) => Data_Flow_I_n_197,
+      \data_rd_reg_reg[0]_0\(8) => Data_Flow_I_n_198,
+      \data_rd_reg_reg[0]_0\(7) => Decode_I_n_415,
+      \data_rd_reg_reg[0]_0\(6) => Decode_I_n_416,
+      \data_rd_reg_reg[0]_0\(5) => Decode_I_n_417,
+      \data_rd_reg_reg[0]_0\(4) => Decode_I_n_418,
+      \data_rd_reg_reg[0]_0\(3) => Decode_I_n_419,
+      \data_rd_reg_reg[0]_0\(2) => Decode_I_n_420,
+      \data_rd_reg_reg[0]_0\(1) => Decode_I_n_421,
+      \data_rd_reg_reg[0]_0\(0) => Decode_I_n_422,
       dbg_clean_stop => dbg_clean_stop,
       dbg_halt_reset_mode_reg_0 => \Use_Debug_Logic.Master_Core.Debug_Perf_n_42\,
       dbg_stop_i => dbg_stop_i,
@@ -57410,16 +57701,18 @@ Decode_I: entity work.main_ub_microblaze_0_0_Decode_gti
       ex_MSR_Load_ALU_C => ex_MSR_Load_ALU_C,
       ex_MSR_Load_Shift_C => ex_MSR_Load_Shift_C,
       ex_MSR_Set_SW_BIP => ex_MSR_Set_SW_BIP,
+      ex_MTS_MSR => ex_MTS_MSR,
       ex_exception_no_load_store_mask => ex_exception_no_load_store_mask,
       ex_is_load_instr_s => ex_is_load_instr_s,
       ex_load_shift_carry => ex_load_shift_carry,
+      ex_move_to_MSR_instr => ex_move_to_MSR_instr,
       ex_valid => ex_valid,
       exception_reg_0(0) => instr_rd_reg(1),
-      exception_reg_1 => Decode_I_n_438,
-      executing_reg_0 => Decode_I_n_258,
+      exception_reg_1 => Decode_I_n_444,
+      executing_reg_0 => Decode_I_n_261,
       mem_Exception_Taken => mem_Exception_Taken,
       of_pause => of_pause,
-      p_232_in => p_232_in,
+      p_238_in => p_238_in,
       \p_4_out__0\ => \p_4_out__0\,
       read_register_MSR_1_reg_0 => \Use_Debug_Logic.Master_Core.Debug_Perf_n_39\,
       single_Step_N_reg_0 => \^e\(0),
@@ -58021,6 +58314,7 @@ entity main_ub_microblaze_0_0_MicroBlaze_Core is
     \Using_FPGA.Native\ : out STD_LOGIC;
     \Using_FPGA.Native_0\ : out STD_LOGIC;
     Pause_Ack : out STD_LOGIC;
+    M_AXI_DP_ARLOCK : out STD_LOGIC;
     D : out STD_LOGIC_VECTOR ( 358 downto 0 );
     Sleep : out STD_LOGIC;
     LOCKSTEP_Master_Out : out STD_LOGIC_VECTOR ( 40 downto 0 );
@@ -58054,6 +58348,8 @@ entity main_ub_microblaze_0_0_MicroBlaze_Core is
     DReady : in STD_LOGIC;
     DWait : in STD_LOGIC;
     Dbg_Reg_En : in STD_LOGIC_VECTOR ( 0 to 7 );
+    M_AXI_DP_RRESP : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    M_AXI_DP_BRESP : in STD_LOGIC_VECTOR ( 1 downto 0 );
     Status_Reg_En : in STD_LOGIC;
     Scan_Reset_Sel : in STD_LOGIC;
     Scan_Reset : in STD_LOGIC;
@@ -58103,10 +58399,13 @@ begin
       IReady => IReady,
       Instr(0 to 31) => Instr(0 to 31),
       LOCKSTEP_Master_Out(40 downto 0) => LOCKSTEP_Master_Out(40 downto 0),
+      M_AXI_DP_ARLOCK => M_AXI_DP_ARLOCK,
       M_AXI_DP_ARREADY => M_AXI_DP_ARREADY,
       M_AXI_DP_AWREADY => M_AXI_DP_AWREADY,
+      M_AXI_DP_BRESP(1 downto 0) => M_AXI_DP_BRESP(1 downto 0),
       M_AXI_DP_BVALID => M_AXI_DP_BVALID,
       M_AXI_DP_RDATA(31 downto 0) => M_AXI_DP_RDATA(31 downto 0),
+      M_AXI_DP_RRESP(1 downto 0) => M_AXI_DP_RRESP(1 downto 0),
       M_AXI_DP_RVALID => M_AXI_DP_RVALID,
       M_AXI_DP_WREADY => M_AXI_DP_WREADY,
       Pause => Pause,
@@ -58808,7 +59107,7 @@ entity main_ub_microblaze_0_0_MicroBlaze is
   attribute C_M_AXI_DP_DATA_WIDTH : integer;
   attribute C_M_AXI_DP_DATA_WIDTH of main_ub_microblaze_0_0_MicroBlaze : entity is 32;
   attribute C_M_AXI_DP_EXCLUSIVE_ACCESS : integer;
-  attribute C_M_AXI_DP_EXCLUSIVE_ACCESS of main_ub_microblaze_0_0_MicroBlaze : entity is 0;
+  attribute C_M_AXI_DP_EXCLUSIVE_ACCESS of main_ub_microblaze_0_0_MicroBlaze : entity is 1;
   attribute C_M_AXI_DP_THREAD_ID_WIDTH : integer;
   attribute C_M_AXI_DP_THREAD_ID_WIDTH of main_ub_microblaze_0_0_MicroBlaze : entity is 1;
   attribute C_M_AXI_D_BUS_EXCEPTION : integer;
@@ -58970,12 +59269,13 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze is
   signal \^lockstep_master_out\ : STD_LOGIC_VECTOR ( 1 to 46 );
   signal \^lockstep_out\ : STD_LOGIC_VECTOR ( 2 to 3228 );
   signal \^m_axi_dp_araddr\ : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal \^m_axi_dp_arlock\ : STD_LOGIC;
   signal \^m_axi_dp_arvalid\ : STD_LOGIC;
   signal \^m_axi_dp_awvalid\ : STD_LOGIC;
   signal \^m_axi_dp_wdata\ : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal \^m_axi_dp_wstrb\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \^m_axi_dp_wvalid\ : STD_LOGIC;
-  signal MicroBlaze_Core_I_n_411 : STD_LOGIC;
+  signal MicroBlaze_Core_I_n_412 : STD_LOGIC;
   signal \Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Status_Reg_En\ : STD_LOGIC;
   signal \^read_strobe\ : STD_LOGIC;
   signal \^trace_data_access\ : STD_LOGIC;
@@ -59000,8 +59300,8 @@ architecture STRUCTURE of main_ub_microblaze_0_0_MicroBlaze is
   signal \^trace_valid_instr\ : STD_LOGIC;
   signal \^write_strobe\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of Dbg_TDO_INST_0_i_11 : label is "soft_lutpair86";
-  attribute SOFT_HLUTNM of Dbg_TDO_INST_0_i_26 : label is "soft_lutpair86";
+  attribute SOFT_HLUTNM of Dbg_TDO_INST_0_i_11 : label is "soft_lutpair85";
+  attribute SOFT_HLUTNM of Dbg_TDO_INST_0_i_26 : label is "soft_lutpair85";
   attribute mark_debug : string;
   attribute mark_debug of Trace_DCache_Hit : signal is "false";
   attribute mark_debug of Trace_DCache_Rdy : signal is "false";
@@ -63609,7 +63909,7 @@ begin
   LOCKSTEP_Out(540) <= \<const0>\;
   LOCKSTEP_Out(541) <= \<const0>\;
   LOCKSTEP_Out(542) <= \^lockstep_out\(542);
-  LOCKSTEP_Out(543) <= \<const0>\;
+  LOCKSTEP_Out(543) <= \^lockstep_out\(709);
   LOCKSTEP_Out(544) <= \<const0>\;
   LOCKSTEP_Out(545) <= \<const0>\;
   LOCKSTEP_Out(546) <= \^lockstep_out\(542);
@@ -63709,7 +64009,7 @@ begin
   LOCKSTEP_Out(706) <= \<const0>\;
   LOCKSTEP_Out(707) <= \<const0>\;
   LOCKSTEP_Out(708) <= \^lockstep_out\(542);
-  LOCKSTEP_Out(709) <= \<const0>\;
+  LOCKSTEP_Out(709) <= \^lockstep_out\(709);
   LOCKSTEP_Out(710) <= \<const0>\;
   LOCKSTEP_Out(711) <= \<const0>\;
   LOCKSTEP_Out(712) <= \^lockstep_out\(542);
@@ -67710,7 +68010,7 @@ begin
   M_AXI_DP_ARLEN(2) <= \<const0>\;
   M_AXI_DP_ARLEN(1) <= \<const0>\;
   M_AXI_DP_ARLEN(0) <= \<const0>\;
-  M_AXI_DP_ARLOCK <= \<const0>\;
+  M_AXI_DP_ARLOCK <= \^m_axi_dp_arlock\;
   M_AXI_DP_ARPROT(2) <= \<const0>\;
   M_AXI_DP_ARPROT(1) <= \<const0>\;
   M_AXI_DP_ARPROT(0) <= \<const0>\;
@@ -67738,7 +68038,7 @@ begin
   M_AXI_DP_AWLEN(2) <= \<const0>\;
   M_AXI_DP_AWLEN(1) <= \<const0>\;
   M_AXI_DP_AWLEN(0) <= \<const0>\;
-  M_AXI_DP_AWLOCK <= \<const0>\;
+  M_AXI_DP_AWLOCK <= \^m_axi_dp_arlock\;
   M_AXI_DP_AWPROT(2) <= \<const0>\;
   M_AXI_DP_AWPROT(1) <= \<const0>\;
   M_AXI_DP_AWPROT(0) <= \<const0>\;
@@ -68474,7 +68774,7 @@ Dbg_TDO_INST_0_i_1: unisim.vcomponents.LUT5
       INIT => X"00000040"
     )
         port map (
-      I0 => MicroBlaze_Core_I_n_411,
+      I0 => MicroBlaze_Core_I_n_412,
       I1 => Dbg_Reg_En(6),
       I2 => Dbg_Reg_En(7),
       I3 => Dbg_Reg_En(4),
@@ -70827,6 +71127,14 @@ GND: unisim.vcomponents.GND
       Q => \^lockstep_out\(542),
       R => Reset
     );
+\LOCKSTEP_Out_reg[543]\: unisim.vcomponents.FDRE
+     port map (
+      C => Clk,
+      CE => '1',
+      D => \^m_axi_dp_arlock\,
+      Q => \^lockstep_out\(709),
+      R => Reset
+    );
 \LOCKSTEP_Out_reg[555]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
@@ -71740,7 +72048,7 @@ MicroBlaze_Core_I: entity work.main_ub_microblaze_0_0_MicroBlaze_Core
       Dbg_Capture => Dbg_Capture,
       Dbg_Clk => Dbg_Clk,
       Dbg_Reg_En(0 to 7) => Dbg_Reg_En(0 to 7),
-      Dbg_Reg_En_0_sp_1 => MicroBlaze_Core_I_n_411,
+      Dbg_Reg_En_0_sp_1 => MicroBlaze_Core_I_n_412,
       Dbg_Shift => Dbg_Shift,
       Dbg_Stop => Dbg_Stop,
       Dbg_TDI => Dbg_TDI,
@@ -71799,10 +72107,13 @@ MicroBlaze_Core_I: entity work.main_ub_microblaze_0_0_MicroBlaze_Core
       LOCKSTEP_Master_Out(2) => \^lockstep_master_out\(44),
       LOCKSTEP_Master_Out(1) => \^lockstep_master_out\(45),
       LOCKSTEP_Master_Out(0) => \^lockstep_master_out\(46),
+      M_AXI_DP_ARLOCK => \^m_axi_dp_arlock\,
       M_AXI_DP_ARREADY => M_AXI_DP_ARREADY,
       M_AXI_DP_AWREADY => M_AXI_DP_AWREADY,
+      M_AXI_DP_BRESP(1 downto 0) => M_AXI_DP_BRESP(1 downto 0),
       M_AXI_DP_BVALID => M_AXI_DP_BVALID,
       M_AXI_DP_RDATA(31 downto 0) => M_AXI_DP_RDATA(31 downto 0),
+      M_AXI_DP_RRESP(1 downto 0) => M_AXI_DP_RRESP(1 downto 0),
       M_AXI_DP_RVALID => M_AXI_DP_RVALID,
       M_AXI_DP_WREADY => M_AXI_DP_WREADY,
       Mb_Reset => Mb_Reset,
@@ -71857,22 +72168,36 @@ entity main_ub_microblaze_0_0 is
     DUE : in STD_LOGIC;
     Byte_Enable : out STD_LOGIC_VECTOR ( 0 to 3 );
     M_AXI_DP_AWADDR : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    M_AXI_DP_AWLEN : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    M_AXI_DP_AWSIZE : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    M_AXI_DP_AWBURST : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    M_AXI_DP_AWLOCK : out STD_LOGIC;
+    M_AXI_DP_AWCACHE : out STD_LOGIC_VECTOR ( 3 downto 0 );
     M_AXI_DP_AWPROT : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    M_AXI_DP_AWQOS : out STD_LOGIC_VECTOR ( 3 downto 0 );
     M_AXI_DP_AWVALID : out STD_LOGIC;
     M_AXI_DP_AWREADY : in STD_LOGIC;
     M_AXI_DP_WDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
     M_AXI_DP_WSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M_AXI_DP_WLAST : out STD_LOGIC;
     M_AXI_DP_WVALID : out STD_LOGIC;
     M_AXI_DP_WREADY : in STD_LOGIC;
     M_AXI_DP_BRESP : in STD_LOGIC_VECTOR ( 1 downto 0 );
     M_AXI_DP_BVALID : in STD_LOGIC;
     M_AXI_DP_BREADY : out STD_LOGIC;
     M_AXI_DP_ARADDR : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    M_AXI_DP_ARLEN : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    M_AXI_DP_ARSIZE : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    M_AXI_DP_ARBURST : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    M_AXI_DP_ARLOCK : out STD_LOGIC;
+    M_AXI_DP_ARCACHE : out STD_LOGIC_VECTOR ( 3 downto 0 );
     M_AXI_DP_ARPROT : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    M_AXI_DP_ARQOS : out STD_LOGIC_VECTOR ( 3 downto 0 );
     M_AXI_DP_ARVALID : out STD_LOGIC;
     M_AXI_DP_ARREADY : in STD_LOGIC;
     M_AXI_DP_RDATA : in STD_LOGIC_VECTOR ( 31 downto 0 );
     M_AXI_DP_RRESP : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    M_AXI_DP_RLAST : in STD_LOGIC;
     M_AXI_DP_RVALID : in STD_LOGIC;
     M_AXI_DP_RREADY : out STD_LOGIC;
     Dbg_Clk : in STD_LOGIC;
@@ -71954,9 +72279,6 @@ architecture STRUCTURE of main_ub_microblaze_0_0 is
   signal NLW_U0_M_AXI_DC_WACK_UNCONNECTED : STD_LOGIC;
   signal NLW_U0_M_AXI_DC_WLAST_UNCONNECTED : STD_LOGIC;
   signal NLW_U0_M_AXI_DC_WVALID_UNCONNECTED : STD_LOGIC;
-  signal NLW_U0_M_AXI_DP_ARLOCK_UNCONNECTED : STD_LOGIC;
-  signal NLW_U0_M_AXI_DP_AWLOCK_UNCONNECTED : STD_LOGIC;
-  signal NLW_U0_M_AXI_DP_WLAST_UNCONNECTED : STD_LOGIC;
   signal NLW_U0_M_AXI_IC_ACREADY_UNCONNECTED : STD_LOGIC;
   signal NLW_U0_M_AXI_IC_ARLOCK_UNCONNECTED : STD_LOGIC;
   signal NLW_U0_M_AXI_IC_ARVALID_UNCONNECTED : STD_LOGIC;
@@ -72071,18 +72393,8 @@ architecture STRUCTURE of main_ub_microblaze_0_0 is
   signal NLW_U0_M_AXI_DC_WDATA_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal NLW_U0_M_AXI_DC_WSTRB_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_U0_M_AXI_DC_WUSER_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal NLW_U0_M_AXI_DP_ARBURST_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal NLW_U0_M_AXI_DP_ARCACHE_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_U0_M_AXI_DP_ARID_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal NLW_U0_M_AXI_DP_ARLEN_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal NLW_U0_M_AXI_DP_ARQOS_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal NLW_U0_M_AXI_DP_ARSIZE_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
-  signal NLW_U0_M_AXI_DP_AWBURST_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal NLW_U0_M_AXI_DP_AWCACHE_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_U0_M_AXI_DP_AWID_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal NLW_U0_M_AXI_DP_AWLEN_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal NLW_U0_M_AXI_DP_AWQOS_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal NLW_U0_M_AXI_DP_AWSIZE_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal NLW_U0_M_AXI_IC_ARADDR_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal NLW_U0_M_AXI_IC_ARBAR_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_U0_M_AXI_IC_ARBURST_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -72336,7 +72648,7 @@ architecture STRUCTURE of main_ub_microblaze_0_0 is
   attribute C_M_AXI_DP_DATA_WIDTH : integer;
   attribute C_M_AXI_DP_DATA_WIDTH of U0 : label is 32;
   attribute C_M_AXI_DP_EXCLUSIVE_ACCESS : integer;
-  attribute C_M_AXI_DP_EXCLUSIVE_ACCESS of U0 : label is 0;
+  attribute C_M_AXI_DP_EXCLUSIVE_ACCESS of U0 : label is 1;
   attribute C_M_AXI_DP_THREAD_ID_WIDTH : integer;
   attribute C_M_AXI_DP_THREAD_ID_WIDTH of U0 : label is 1;
   attribute C_M_AXI_D_BUS_EXCEPTION : integer;
@@ -72497,14 +72809,18 @@ architecture STRUCTURE of main_ub_microblaze_0_0 is
   attribute x_interface_info of I_AS : signal is "xilinx.com:interface:lmb:1.0 ILMB ADDRSTROBE";
   attribute x_interface_info of Interrupt : signal is "xilinx.com:interface:mbinterrupt:1.0 INTERRUPT INTERRUPT";
   attribute x_interface_parameter of Interrupt : signal is "XIL_INTERFACENAME INTERRUPT, SENSITIVITY LEVEL_HIGH, LOW_LATENCY 0";
+  attribute x_interface_info of M_AXI_DP_ARLOCK : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP ARLOCK";
   attribute x_interface_info of M_AXI_DP_ARREADY : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP ARREADY";
   attribute x_interface_info of M_AXI_DP_ARVALID : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP ARVALID";
+  attribute x_interface_info of M_AXI_DP_AWLOCK : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP AWLOCK";
   attribute x_interface_info of M_AXI_DP_AWREADY : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP AWREADY";
   attribute x_interface_info of M_AXI_DP_AWVALID : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP AWVALID";
   attribute x_interface_info of M_AXI_DP_BREADY : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP BREADY";
   attribute x_interface_info of M_AXI_DP_BVALID : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP BVALID";
+  attribute x_interface_info of M_AXI_DP_RLAST : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP RLAST";
   attribute x_interface_info of M_AXI_DP_RREADY : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP RREADY";
   attribute x_interface_info of M_AXI_DP_RVALID : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP RVALID";
+  attribute x_interface_info of M_AXI_DP_WLAST : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP WLAST";
   attribute x_interface_info of M_AXI_DP_WREADY : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP WREADY";
   attribute x_interface_info of M_AXI_DP_WVALID : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP WVALID";
   attribute x_interface_info of Read_Strobe : signal is "xilinx.com:interface:lmb:1.0 DLMB READSTROBE";
@@ -72523,10 +72839,20 @@ architecture STRUCTURE of main_ub_microblaze_0_0 is
   attribute x_interface_info of Interrupt_Ack : signal is "xilinx.com:interface:mbinterrupt:1.0 INTERRUPT ACK";
   attribute x_interface_info of Interrupt_Address : signal is "xilinx.com:interface:mbinterrupt:1.0 INTERRUPT ADDRESS";
   attribute x_interface_info of M_AXI_DP_ARADDR : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP ARADDR";
+  attribute x_interface_info of M_AXI_DP_ARBURST : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP ARBURST";
+  attribute x_interface_info of M_AXI_DP_ARCACHE : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP ARCACHE";
+  attribute x_interface_info of M_AXI_DP_ARLEN : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP ARLEN";
   attribute x_interface_info of M_AXI_DP_ARPROT : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP ARPROT";
+  attribute x_interface_info of M_AXI_DP_ARQOS : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP ARQOS";
+  attribute x_interface_info of M_AXI_DP_ARSIZE : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP ARSIZE";
   attribute x_interface_info of M_AXI_DP_AWADDR : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP AWADDR";
-  attribute x_interface_parameter of M_AXI_DP_AWADDR : signal is "XIL_INTERFACENAME M_AXI_DP, ID_WIDTH 0, READ_WRITE_MODE READ_WRITE, SUPPORTS_NARROW_BURST 0, HAS_BURST 0, HAS_LOCK 0, DATA_WIDTH 32, ADDR_WIDTH 32, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, MAX_BURST_LENGTH 1, PROTOCOL AXI4LITE, FREQ_HZ 100000000, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, PHASE 0.0, CLK_DOMAIN /clk_wiz_1_clk_out1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
+  attribute x_interface_parameter of M_AXI_DP_AWADDR : signal is "XIL_INTERFACENAME M_AXI_DP, ID_WIDTH 0, READ_WRITE_MODE READ_WRITE, SUPPORTS_NARROW_BURST 0, HAS_BURST 0, HAS_LOCK 1, DATA_WIDTH 32, ADDR_WIDTH 32, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, MAX_BURST_LENGTH 1, PROTOCOL AXI4, FREQ_HZ 100000000, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, PHASE 0.0, CLK_DOMAIN /clk_wiz_1_clk_out1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
+  attribute x_interface_info of M_AXI_DP_AWBURST : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP AWBURST";
+  attribute x_interface_info of M_AXI_DP_AWCACHE : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP AWCACHE";
+  attribute x_interface_info of M_AXI_DP_AWLEN : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP AWLEN";
   attribute x_interface_info of M_AXI_DP_AWPROT : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP AWPROT";
+  attribute x_interface_info of M_AXI_DP_AWQOS : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP AWQOS";
+  attribute x_interface_info of M_AXI_DP_AWSIZE : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP AWSIZE";
   attribute x_interface_info of M_AXI_DP_BRESP : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP BRESP";
   attribute x_interface_info of M_AXI_DP_RDATA : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP RDATA";
   attribute x_interface_info of M_AXI_DP_RRESP : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP RRESP";
@@ -72731,26 +73057,26 @@ U0: entity work.main_ub_microblaze_0_0_MicroBlaze
       M_AXI_DC_WUSER(0) => NLW_U0_M_AXI_DC_WUSER_UNCONNECTED(0),
       M_AXI_DC_WVALID => NLW_U0_M_AXI_DC_WVALID_UNCONNECTED,
       M_AXI_DP_ARADDR(31 downto 0) => M_AXI_DP_ARADDR(31 downto 0),
-      M_AXI_DP_ARBURST(1 downto 0) => NLW_U0_M_AXI_DP_ARBURST_UNCONNECTED(1 downto 0),
-      M_AXI_DP_ARCACHE(3 downto 0) => NLW_U0_M_AXI_DP_ARCACHE_UNCONNECTED(3 downto 0),
+      M_AXI_DP_ARBURST(1 downto 0) => M_AXI_DP_ARBURST(1 downto 0),
+      M_AXI_DP_ARCACHE(3 downto 0) => M_AXI_DP_ARCACHE(3 downto 0),
       M_AXI_DP_ARID(0) => NLW_U0_M_AXI_DP_ARID_UNCONNECTED(0),
-      M_AXI_DP_ARLEN(7 downto 0) => NLW_U0_M_AXI_DP_ARLEN_UNCONNECTED(7 downto 0),
-      M_AXI_DP_ARLOCK => NLW_U0_M_AXI_DP_ARLOCK_UNCONNECTED,
+      M_AXI_DP_ARLEN(7 downto 0) => M_AXI_DP_ARLEN(7 downto 0),
+      M_AXI_DP_ARLOCK => M_AXI_DP_ARLOCK,
       M_AXI_DP_ARPROT(2 downto 0) => M_AXI_DP_ARPROT(2 downto 0),
-      M_AXI_DP_ARQOS(3 downto 0) => NLW_U0_M_AXI_DP_ARQOS_UNCONNECTED(3 downto 0),
+      M_AXI_DP_ARQOS(3 downto 0) => M_AXI_DP_ARQOS(3 downto 0),
       M_AXI_DP_ARREADY => M_AXI_DP_ARREADY,
-      M_AXI_DP_ARSIZE(2 downto 0) => NLW_U0_M_AXI_DP_ARSIZE_UNCONNECTED(2 downto 0),
+      M_AXI_DP_ARSIZE(2 downto 0) => M_AXI_DP_ARSIZE(2 downto 0),
       M_AXI_DP_ARVALID => M_AXI_DP_ARVALID,
       M_AXI_DP_AWADDR(31 downto 0) => M_AXI_DP_AWADDR(31 downto 0),
-      M_AXI_DP_AWBURST(1 downto 0) => NLW_U0_M_AXI_DP_AWBURST_UNCONNECTED(1 downto 0),
-      M_AXI_DP_AWCACHE(3 downto 0) => NLW_U0_M_AXI_DP_AWCACHE_UNCONNECTED(3 downto 0),
+      M_AXI_DP_AWBURST(1 downto 0) => M_AXI_DP_AWBURST(1 downto 0),
+      M_AXI_DP_AWCACHE(3 downto 0) => M_AXI_DP_AWCACHE(3 downto 0),
       M_AXI_DP_AWID(0) => NLW_U0_M_AXI_DP_AWID_UNCONNECTED(0),
-      M_AXI_DP_AWLEN(7 downto 0) => NLW_U0_M_AXI_DP_AWLEN_UNCONNECTED(7 downto 0),
-      M_AXI_DP_AWLOCK => NLW_U0_M_AXI_DP_AWLOCK_UNCONNECTED,
+      M_AXI_DP_AWLEN(7 downto 0) => M_AXI_DP_AWLEN(7 downto 0),
+      M_AXI_DP_AWLOCK => M_AXI_DP_AWLOCK,
       M_AXI_DP_AWPROT(2 downto 0) => M_AXI_DP_AWPROT(2 downto 0),
-      M_AXI_DP_AWQOS(3 downto 0) => NLW_U0_M_AXI_DP_AWQOS_UNCONNECTED(3 downto 0),
+      M_AXI_DP_AWQOS(3 downto 0) => M_AXI_DP_AWQOS(3 downto 0),
       M_AXI_DP_AWREADY => M_AXI_DP_AWREADY,
-      M_AXI_DP_AWSIZE(2 downto 0) => NLW_U0_M_AXI_DP_AWSIZE_UNCONNECTED(2 downto 0),
+      M_AXI_DP_AWSIZE(2 downto 0) => M_AXI_DP_AWSIZE(2 downto 0),
       M_AXI_DP_AWVALID => M_AXI_DP_AWVALID,
       M_AXI_DP_BID(0) => '0',
       M_AXI_DP_BREADY => M_AXI_DP_BREADY,
@@ -72758,12 +73084,12 @@ U0: entity work.main_ub_microblaze_0_0_MicroBlaze
       M_AXI_DP_BVALID => M_AXI_DP_BVALID,
       M_AXI_DP_RDATA(31 downto 0) => M_AXI_DP_RDATA(31 downto 0),
       M_AXI_DP_RID(0) => '0',
-      M_AXI_DP_RLAST => '0',
+      M_AXI_DP_RLAST => M_AXI_DP_RLAST,
       M_AXI_DP_RREADY => M_AXI_DP_RREADY,
       M_AXI_DP_RRESP(1 downto 0) => M_AXI_DP_RRESP(1 downto 0),
       M_AXI_DP_RVALID => M_AXI_DP_RVALID,
       M_AXI_DP_WDATA(31 downto 0) => M_AXI_DP_WDATA(31 downto 0),
-      M_AXI_DP_WLAST => NLW_U0_M_AXI_DP_WLAST_UNCONNECTED,
+      M_AXI_DP_WLAST => M_AXI_DP_WLAST,
       M_AXI_DP_WREADY => M_AXI_DP_WREADY,
       M_AXI_DP_WSTRB(3 downto 0) => M_AXI_DP_WSTRB(3 downto 0),
       M_AXI_DP_WVALID => M_AXI_DP_WVALID,

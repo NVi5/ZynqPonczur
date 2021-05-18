@@ -1,0 +1,56 @@
+#include "xparameters.h"
+#include "netif/xadapter.h"
+#include "platform.h"
+#include "platform_config.h"
+#include "lwip/tcp.h"
+#include "xil_cache.h"
+#include "lwip/init.h"
+XPAR_GPU_CONTROL_0_S00_AXI_BASEADDR
+
+#define GPU_MEM ((uint32_t*)XPAR_GPU_CONTROL_0_S00_AXI_BASEADDR)
+
+int main()
+{
+	Xil_DCacheDisable();
+	ip_addr_t ipaddr, netmask, gw;
+	unsigned char mac_ethernet_address[] = { 0x00, 0x0a, 0x35, 0x00, 0x01, 0x02 };
+	echo_netif = &server_netif;
+	init_platform();
+	IP4_ADDR(&ipaddr,  172, 16,   0, 10);
+	IP4_ADDR(&netmask, 255, 255, 255, 0);
+	IP4_ADDR(&gw,      172, 16,   0,  1);
+	lwip_init();
+	if (!xemac_add(echo_netif, &ipaddr, &netmask, &gw, mac_ethernet_address, PLATFORM_EMAC_BASEADDR)) {
+		return -1;
+	}
+	netif_set_default(echo_netif);
+	platform_enable_interrupts();
+	netif_set_up(echo_netif);
+
+	websocket_t *xd = new_websocket(&ipaddr, 1000);
+	xd->onopen = (websocket_onopen_fn)onOpen;
+	xd->onmessage = (websocket_onmessage_fn)onMessage;
+	xd->onclose = (websocket_onclose_fn)onClose;
+
+
+	for (unsigned int i = 0; i < len; i++) {
+		test[i] = test[i] << 7;
+	}
+
+	int current_framebuffer = 0;
+
+	memcpy(GPU_MEM, test, len*sizeof(test[0]));
+	gpu_mem[0x10] = len;
+	gpu_mem[0x11] = (uint32_t)framebuffer[current_framebuffer];
+
+	#define N_PONCZUR 5
+	int data_size = 0;
+	unsigned int buffer_pos = 0;
+
+	while (1) {
+
+		
+	}
+
+	return 0;
+}

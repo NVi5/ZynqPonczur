@@ -2,48 +2,39 @@
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 non-TLS
 #  -string -flagsOSRD
-preplace port clock -pg 1 -y -30 -defaultsOSRD
-preplace port reset -pg 1 -y 30 -defaultsOSRD
-preplace inst axi_master_burst_axi3_0 -pg 1 -lvl 2 -y 120 -defaultsOSRD
-preplace inst microblaze_0_axi_periph -pg 1 -lvl 4 -y -10 -defaultsOSRD
-preplace inst gpu_control_0 -pg 1 -lvl 1 -y -180 -defaultsOSRD
-preplace inst mdm_1 -pg 1 -lvl 2 -y -80 -defaultsOSRD
-preplace inst microblaze_0 -pg 1 -lvl 2 -y -340 -defaultsOSRD
-preplace inst rst_clk_wiz_1_100M -pg 1 -lvl 3 -y 30 -defaultsOSRD
-preplace inst clk_wiz_1 -pg 1 -lvl 2 -y -200 -defaultsOSRD
-preplace inst microblaze_0_local_memory -pg 1 -lvl 3 -y -150 -defaultsOSRD
-preplace inst gpu_wrapper_0 -pg 1 -lvl 1 -y 150 -defaultsOSRD
-preplace netloc gpu_wrapper_0_pixel_y_out 1 1 1 440
-preplace netloc gpu_wrapper_0_output_color 1 1 1 380
-preplace netloc microblaze_0_Clk 1 0 4 -30 -320 460 -440 1010 -250 1390
-preplace netloc gpu_control_0_mem_wr_en 1 0 2 -10 -60 370
-preplace netloc microblaze_0_axi_periph_M00_AXI 1 0 5 0 -460 NJ -460 NJ -460 NJ -460 1700
-preplace netloc microblaze_0_M_AXI_DP 1 2 2 NJ -320 1400
-preplace netloc microblaze_0_ilmb_1 1 2 1 1000
-preplace netloc axi_master_burst_axi3_0_M00_AXI 1 2 2 1000 -70 1400J
-preplace netloc gpu_wrapper_0_width 1 1 1 470
-preplace netloc rst_clk_wiz_1_100M_bus_struct_reset 1 2 2 1030 -240 1370J
-preplace netloc gpu_control_0_address 1 1 1 410
-preplace netloc gpu_control_0_mem_wr_addr 1 0 2 0 -70 380
-preplace netloc rst_clk_wiz_1_100M_peripheral_aresetn 1 0 4 20 10 430J 270 NJ 270 1400
-preplace netloc rst_clk_wiz_1_100M_mb_reset 1 1 3 470J -450 NJ -450 1380
-preplace netloc clk_wiz_1_locked 1 2 1 990
-preplace netloc clock_1 1 0 2 N -30 430
-preplace netloc microblaze_0_dlmb_1 1 2 1 1020
-preplace netloc gpu_wrapper_0_draw 1 1 1 480
-preplace netloc gpu_control_0_mem_wr_data 1 0 2 10 -40 390
-preplace netloc gpu_control_0_vertex_count 1 0 2 -20 -300 370
-preplace netloc microblaze_0_debug 1 1 2 480J -430 980J
-preplace netloc reset_1 1 0 3 -50 0 450 280 1020
-preplace netloc mdm_1_debug_sys_rst 1 2 1 980
-preplace netloc gpu_wrapper_0_transform_matrix 1 0 2 30 -50 370
-preplace netloc axi_master_burst_axi3_0_pixel_ready 1 0 3 30 290 NJ 290 990
-preplace netloc gpu_wrapper_0_frame_end 1 0 2 20 -290 400
-preplace netloc gpu_wrapper_0_output_valid 1 1 1 410
-preplace netloc gpu_wrapper_0_height 1 1 1 480
-preplace netloc gpu_wrapper_0_pixel_x_out 1 1 1 420
-preplace netloc gpu_control_0_start 1 0 2 -40 -310 380
-levelinfo -pg 1 -70 200 740 1200 1550 1720 -top -480 -bot 430
+preplace port clock -pg 1 -y 720 -defaultsOSRD
+preplace port reset -pg 1 -y 640 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 2 -y 210 -defaultsOSRD
+preplace inst microblaze_0_axi_periph -pg 1 -lvl 3 -y 620 -defaultsOSRD
+preplace inst gpu_control_0 -pg 1 -lvl 4 -y 430 -defaultsOSRD
+preplace inst mdm_1 -pg 1 -lvl 1 -y 830 -defaultsOSRD
+preplace inst microblaze_0 -pg 1 -lvl 2 -y 830 -defaultsOSRD
+preplace inst rst_clk_wiz_1_100M -pg 1 -lvl 2 -y 1030 -defaultsOSRD
+preplace inst clk_wiz_1 -pg 1 -lvl 1 -y 710 -defaultsOSRD
+preplace inst microblaze_0_local_memory -pg 1 -lvl 3 -y 840 -defaultsOSRD
+preplace inst gpu_wrapper_0 -pg 1 -lvl 3 -y 140 -defaultsOSRD
+preplace netloc microblaze_0_Clk 1 1 3 270 700 770 450 NJ
+preplace netloc gpu_control_0_mem_wr_en 1 2 3 830 290 NJ 290 1530
+preplace netloc microblaze_0_ilmb_1 1 2 1 N
+preplace netloc microblaze_0_M_AXI_DP 1 2 1 760
+preplace netloc microblaze_0_axi_periph_M00_AXI 1 3 1 1180
+preplace netloc xlconstant_0_dout 1 2 1 N
+preplace netloc rst_clk_wiz_1_100M_bus_struct_reset 1 2 1 820
+preplace netloc gpu_control_0_mem_wr_addr 1 2 3 800 500 1170J 540 1510
+preplace netloc rst_clk_wiz_1_100M_peripheral_aresetn 1 2 2 780 470 NJ
+preplace netloc rst_clk_wiz_1_100M_mb_reset 1 1 2 280 920 760
+preplace netloc clk_wiz_1_locked 1 1 1 250
+preplace netloc clock_1 1 0 1 NJ
+preplace netloc microblaze_0_dlmb_1 1 2 1 N
+preplace netloc gpu_control_0_mem_wr_data 1 2 3 820 280 NJ 280 1540
+preplace netloc gpu_control_0_vertex_count 1 2 3 790 310 NJ 310 1510
+preplace netloc microblaze_0_debug 1 1 1 N
+preplace netloc reset_1 1 0 2 20 640 260
+preplace netloc mdm_1_debug_sys_rst 1 1 1 240
+preplace netloc gpu_wrapper_0_transform_matrix 1 3 1 1190
+preplace netloc gpu_wrapper_0_frame_end 1 3 1 1170
+preplace netloc gpu_control_0_start 1 2 3 810 300 NJ 300 1520
+levelinfo -pg 1 0 130 520 1000 1350 1570 -top 0 -bot 1130
 "
 }
 {

@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="36">
   <CompositeFile CompositeFileTopName="main_ub" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="RESET" Timestamp="1621347732"/>
-    <Generation Name="IMPLEMENTATION" State="RESET" Timestamp="1621347732"/>
-    <Generation Name="SIMULATION" State="RESET" Timestamp="1621347732"/>
-    <Generation Name="HW_HANDOFF" State="RESET" Timestamp="1621347732"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1621366566"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1621366566"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1621366566"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1621366566"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip\main_ub_microblaze_0_0\main_ub_microblaze_0_0.xci" Type="IP">
         <Instance HierarchyPath="microblaze_0"/>
@@ -87,14 +87,6 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\main_ub_xbar_0\main_ub_xbar_0.xci" Type="IP">
-        <Instance HierarchyPath="microblaze_0_axi_periph/xbar"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
       <File Name="ip\main_ub_microblaze_0_axi_periph_0\main_ub_microblaze_0_axi_periph_0.xci" Type="IP">
         <Instance HierarchyPath="microblaze_0_axi_periph"/>
         <Properties IsEditable="false" IsVisible="false" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
@@ -105,14 +97,6 @@
       </File>
       <File Name="ip\main_ub_gpu_wrapper_0_0\main_ub_gpu_wrapper_0_0.xci" Type="IP">
         <Instance HierarchyPath="gpu_wrapper_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\main_ub_axi_master_burst_axi3_0_0\main_ub_axi_master_burst_axi3_0_0.xci" Type="IP">
-        <Instance HierarchyPath="axi_master_burst_axi3_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -130,8 +114,16 @@
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SIMULATION"/>
       </File>
+      <File Name="ip\main_ub_xlconstant_0_0\main_ub_xlconstant_0_0.xci" Type="IP">
+        <Instance HierarchyPath="xlconstant_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
       <File Name="ip\main_ub_auto_pc_0\main_ub_auto_pc_0.xci" Type="IP">
-        <Instance HierarchyPath="microblaze_0_axi_periph/s01_couplers/auto_pc"/>
+        <Instance HierarchyPath="microblaze_0_axi_periph/s00_couplers/auto_pc"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>

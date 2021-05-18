@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
 -- Date        : Tue May 18 16:00:52 2021
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main_ub/ip/main_ub_clk_wiz_1_0/main_ub_clk_wiz_1_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top main_ub_clk_wiz_1_0 -prefix
+--               main_ub_clk_wiz_1_0_ main_ub_clk_wiz_1_0_sim_netlist.vhdl
 -- Design      : main_ub_clk_wiz_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -21,8 +21,6 @@ entity main_ub_clk_wiz_1_0_main_ub_clk_wiz_1_0_clk_wiz is
     locked : out STD_LOGIC;
     clk_in1 : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ub_clk_wiz_1_0_main_ub_clk_wiz_1_0_clk_wiz : entity is "main_ub_clk_wiz_1_0_clk_wiz";
 end main_ub_clk_wiz_1_0_main_ub_clk_wiz_1_0_clk_wiz;
 
 architecture STRUCTURE of main_ub_clk_wiz_1_0_main_ub_clk_wiz_1_0_clk_wiz is

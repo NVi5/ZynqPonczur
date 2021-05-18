@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
--- Date        : Tue May 18 16:01:12 2021
+-- Date        : Tue May 18 19:13:07 2021
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               c:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main_ub/ip/main_ub_lmb_bram_0/main_ub_lmb_bram_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top main_ub_lmb_bram_0 -prefix
+--               main_ub_lmb_bram_0_ main_ub_lmb_bram_0_stub.vhdl
 -- Design      : main_ub_lmb_bram_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z010clg400-1
