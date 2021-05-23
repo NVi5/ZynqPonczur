@@ -183,10 +183,6 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  set_property -dict [ list \
-   CONFIG.POLARITY {ACTIVE_HIGH} \
- ] [get_bd_pins /axi_master_burst_axi3_0/reset]
-
   # Create instance: gpu_control_0, and set properties
   set gpu_control_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:gpu_control:1.0 gpu_control_0 ]
   set_property -dict [ list \

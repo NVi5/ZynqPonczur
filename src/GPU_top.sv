@@ -146,6 +146,7 @@ reg  rasterize_end_d;
 
 rasterizer_control rasterizer_control(
     .clk(clk),
+    .reset(reset),
     .vertex_count(vertex_count),
     .start(transform_end),
 

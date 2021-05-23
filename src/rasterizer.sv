@@ -18,6 +18,7 @@ module rasterizer (
     input wire signed [10:0] V3_y,
 
     input wire clk,
+    input wire reset,
 
     output wire [10:0] pixel_x_out,
     output wire [10:0] pixel_y_out,
@@ -34,6 +35,7 @@ edgeFunction ef1(
     .inValid(inValid),
     .inReady(inReady),
     .clk(clk),
+    .reset(reset),
     .pixel_x(pixel_x),
     .pixel_y(pixel_y),
     .V1_x(V1_x),
@@ -51,6 +53,7 @@ edgeFunction ef2(
     .inValid(inValid),
     .inReady(),
     .clk(clk),
+    .reset(reset),
     .pixel_x(pixel_x),
     .pixel_y(pixel_y),
     .V1_x(V2_x),
@@ -68,6 +71,7 @@ edgeFunction ef3(
     .inValid(inValid),
     .inReady(),
     .clk(clk),
+    .reset(reset),
     .pixel_x(pixel_x),
     .pixel_y(pixel_y),
     .V1_x(V3_x),

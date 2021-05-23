@@ -2,7 +2,7 @@
 
 module axi_master_burst_axi3(
     clk,
-    reset, // TODO
+    reset,
 
     framebuffer_baseaddr,
     pixel_x,
@@ -67,38 +67,38 @@ input  wire [10:0] height;
 input  wire [ 7:0] pixel_data;
 input  wire        pixel_valid;
 input  wire        draw;
-output reg         pixel_ready = 1'b0;
+output reg         pixel_ready;
 
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWADDR" *)
-output reg [31 : 0] M00_AXI_awaddr   = 32'b0;
+output reg [31 : 0] M00_AXI_awaddr;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWLEN" *)
-output reg [3 : 0] M00_AXI_awlen   = 4'b0;
+output reg [3 : 0] M00_AXI_awlen;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWSIZE" *)
-output reg [2 : 0] M00_AXI_awsize = 0;
+output reg [2 : 0] M00_AXI_awsize = 3'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWBURST" *)
 output reg [1 : 0] M00_AXI_awburst = 2'b1;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWLOCK" *)
-output reg [1 : 0] M00_AXI_awlock = 0;
+output reg [1 : 0] M00_AXI_awlock = 2'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWCACHE" *)
 output reg [3 : 0] M00_AXI_awcache = 4'b0111;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWPROT" *)
 output reg [2 : 0] M00_AXI_awprot = 3'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWQOS" *)
-output reg [3 : 0] M00_AXI_awqos = 0;
+output reg [3 : 0] M00_AXI_awqos = 4'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWUSER" *)
-output reg [3 : 0] M00_AXI_awuser = 0;
+output reg [3 : 0] M00_AXI_awuser = 4'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWVALID" *)
-output reg M00_AXI_awvalid = 1'b0;
+output reg M00_AXI_awvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWREADY" *)
 input wire M00_AXI_awready;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI WDATA" *)
-output reg [31 : 0] M00_AXI_wdata   = 32'b0;
+output reg [31 : 0] M00_AXI_wdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI WSTRB" *)
-output reg [3 : 0] M00_AXI_wstrb   = 4'b0;
+output reg [3 : 0] M00_AXI_wstrb;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI WLAST" *)
-output reg M00_AXI_wlast   = 1'b0;
+output reg M00_AXI_wlast;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI WVALID" *)
-output reg M00_AXI_wvalid = 1'b0;
+output reg M00_AXI_wvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI WREADY" *)
 input wire M00_AXI_wready;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI BRESP" *)
@@ -108,25 +108,25 @@ input wire [3 : 0] M00_AXI_buser;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI BVALID" *)
 input wire M00_AXI_bvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI BREADY" *)
-output reg M00_AXI_bready = 1'b0;
+output reg M00_AXI_bready;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARADDR" *)
 output reg [31 : 0] M00_AXI_araddr = 32'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARLEN" *)
-output reg [3 : 0] M00_AXI_arlen = 0;
+output reg [3 : 0] M00_AXI_arlen = 4'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARSIZE" *)
-output reg [2 : 0] M00_AXI_arsize = 0;
+output reg [2 : 0] M00_AXI_arsize = 3'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARBURST" *)
 output reg [1 : 0] M00_AXI_arburst = 2'b1;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARLOCK" *)
-output reg [1 : 0] M00_AXI_arlock = 0;
+output reg [1 : 0] M00_AXI_arlock = 2'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARCACHE" *)
-output reg [3 : 0] M00_AXI_arcache = 0;
+output reg [3 : 0] M00_AXI_arcache = 4'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARPROT" *)
 output reg [2 : 0] M00_AXI_arprot = 3'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARQOS" *)
-output reg [3 : 0] M00_AXI_arqos = 0;
+output reg [3 : 0] M00_AXI_arqos = 4'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARUSER" *)
-output reg [3 : 0] M00_AXI_aruser = 0;
+output reg [3 : 0] M00_AXI_aruser = 4'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARVALID" *)
 output reg M00_AXI_arvalid = 1'b0;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI ARREADY" *)
@@ -153,14 +153,14 @@ assign pixel_addr = framebuffer_baseaddr + pixel_y * 800 + pixel_x;
 wire [6:0] width_div16;
 wire [3:0] width_remainder;
 
-reg  [6:0] width_div16_reg = 7'b0;
-reg  [10:0] height_reg = 11'b0;
-reg  [10:0] width_reg  = 11'b0;
+// reg  [6:0] width_div16_reg = 7'b0;
+reg  [10:0] height_reg;
+reg  [10:0] width_reg;
 assign width_div16 = width >> 4;
 assign width_remainder = width[3:0];
 
 localparam IDLE = 0, BURST = 1, BURST_VALID = 2, NEXT_BURST = 3, DATA_ACCEPTED = 4, ADDRESS_ACCEPTED = 5;
-reg [3:0] state = IDLE;
+reg [3:0] state;
 
 always @* begin
     pixel_ready = (M00_AXI_wready & M00_AXI_wvalid);
@@ -187,137 +187,151 @@ assign height_int = height;
 reg last_line = 0;
 
 always @(posedge clk) begin
+    if (reset) begin
+        state <= IDLE;
+        pixel_ready <= 0;
+        height_reg <= 0;
+        width_reg <= 0;
+        M00_AXI_awaddr <= 0;
+        M00_AXI_awlen <= 0;
+        M00_AXI_awvalid <= 0;
+        M00_AXI_wdata <= 0;
+        M00_AXI_wstrb <= 0;
+        M00_AXI_wlast <= 0;
+        M00_AXI_wvalid <= 0;
+        M00_AXI_bready <= 0;
+    end
+    else begin
+        M00_AXI_wlast <= 0;
+        M00_AXI_bready <= 1;
+        // pixel_ready <= 0;
 
+        // M00_AXI_wdata <= {24'b0,pixel_data} << (8 * pixel_addr[1:0]);
+        // M00_AXI_awaddr <= {pixel_addr[31:2],2'b0};
+        // M00_AXI_wstrb <= (4'b1 << pixel_addr[1:0]) & {4{|pixel_data}};
 
-    M00_AXI_wlast <= 1'b0;
-    M00_AXI_bready  <= 1;
-    //pixel_ready <= 0;
-
-//    M00_AXI_wdata <= {24'b0,pixel_data} << (8 * pixel_addr[1:0]);
-//    M00_AXI_awaddr <= {pixel_addr[31:2],2'b0};
-//    M00_AXI_wstrb <= (4'b1 << pixel_addr[1:0]) & {4{|pixel_data}};
-
-    case (state)
-        IDLE: begin
-            //pixel_ready <= 1;
-            if (pixel_valid) begin
-                M00_AXI_wvalid  <= 1;
-                M00_AXI_awvalid <= 1;
-                state <= BURST;
-                if (width_int > 11'd16) begin
-                    M00_AXI_awlen <= 4'd15;
-                    width_reg <= width_int - 11'd16;
-                    height_reg <= height_int;
-                end
-                else if (width_int == 1) begin
-                    M00_AXI_awlen <= 0;
-                    M00_AXI_wlast <= 1;
-                    width_reg <= width_int;
-                    height_reg <= height_int - 1;
-                end
-                else begin
-                    M00_AXI_awlen <= width_int - 1;
-                    width_reg <= width_int;
-                    height_reg <= height_int - 1;
-                end
-            end
-        end
-        BURST: begin
-            if (M00_AXI_awready) begin
-                M00_AXI_awvalid <= 0;
-                M00_AXI_wvalid  <= 1;
-            end
-            if (M00_AXI_wlast) begin
-                M00_AXI_wvalid <= 0;
-                M00_AXI_awvalid <= 0;
-                state <= BURST_VALID;
-            end
-            else if (M00_AXI_wready) begin
+        case (state)
+            IDLE: begin
+                //pixel_ready <= 1;
                 if (pixel_valid) begin
-//                    if (M00_AXI_wlast) begin
-//                        M00_AXI_wvalid <= 0;
-//                        M00_AXI_awvalid <= 0;
-//                        state <= BURST_VALID;
-//                    end
-                    if (M00_AXI_awlen == 4'd1) begin
-                        M00_AXI_awlen <= M00_AXI_awlen - 1;
-                        M00_AXI_wvalid <= 1;
-                        ///M00_AXI_awvalid <= 1;
-                        M00_AXI_wlast <= 1;
-                    end
-                    else begin
-                        M00_AXI_awlen <= M00_AXI_awlen - 1;
-                        M00_AXI_wvalid  <= 1;
-                        //M00_AXI_awvalid <= 1;
-                        M00_AXI_wlast <= 0;
-                        //pixel_ready <= 1;
-                    end
-                end
-                else begin
-                    M00_AXI_wvalid  <= 0;
-                    M00_AXI_awvalid <= 0;
-                end
-            end
-            else begin
-                M00_AXI_wvalid  <= 1;
-                //M00_AXI_awvalid <= 1;
-            end
-        end
-        BURST_VALID: begin
-            M00_AXI_wvalid  <= 0;
-            M00_AXI_awvalid <= 0;
-            M00_AXI_wlast <= 1'b0;
-            //pixel_ready <= 1;
-            if (M00_AXI_bvalid) begin
-                state <= NEXT_BURST;
-            end
-        end
-        NEXT_BURST: begin
-            if (width_reg == 0 && height_reg == 0) begin
-                state <= IDLE;
-            end
-            else begin
-                if (pixel_valid) begin
-                    //pixel_ready <= 1;
                     M00_AXI_wvalid  <= 1;
                     M00_AXI_awvalid <= 1;
                     state <= BURST;
-                    if (width_reg > 11'd16) begin
+                    if (width_int > 11'd16) begin
                         M00_AXI_awlen <= 4'd15;
-                        width_reg <= width_reg - 11'd16;
-                        height_reg <= height_reg;
+                        width_reg <= width_int - 11'd16;
+                        height_reg <= height_int;
                     end
-                    else if (width_reg == 1) begin
+                    else if (width_int == 1) begin
                         M00_AXI_awlen <= 0;
                         M00_AXI_wlast <= 1;
-                        if (height_reg) begin
-                            width_reg <= width_int;
-                            height_reg <= height_reg - 1;
+                        width_reg <= width_int;
+                        height_reg <= height_int - 1;
+                    end
+                    else begin
+                        M00_AXI_awlen <= width_int - 1;
+                        width_reg <= width_int;
+                        height_reg <= height_int - 1;
+                    end
+                end
+            end
+            BURST: begin
+                if (M00_AXI_awready) begin
+                    M00_AXI_awvalid <= 0;
+                    M00_AXI_wvalid  <= 1;
+                end
+                if (M00_AXI_wlast) begin
+                    M00_AXI_wvalid <= 0;
+                    M00_AXI_awvalid <= 0;
+                    state <= BURST_VALID;
+                end
+                else if (M00_AXI_wready) begin
+                    if (pixel_valid) begin
+    //                    if (M00_AXI_wlast) begin
+    //                        M00_AXI_wvalid <= 0;
+    //                        M00_AXI_awvalid <= 0;
+    //                        state <= BURST_VALID;
+    //                    end
+                        if (M00_AXI_awlen == 4'd1) begin
+                            M00_AXI_awlen <= M00_AXI_awlen - 1;
+                            M00_AXI_wvalid <= 1;
+                            ///M00_AXI_awvalid <= 1;
+                            M00_AXI_wlast <= 1;
                         end
                         else begin
-                            height_reg <= 0;
-                            width_reg <= 0;
+                            M00_AXI_awlen <= M00_AXI_awlen - 1;
+                            M00_AXI_wvalid  <= 1;
+                            //M00_AXI_awvalid <= 1;
+                            M00_AXI_wlast <= 0;
+                            //pixel_ready <= 1;
                         end
                     end
                     else begin
-                        M00_AXI_awlen <= width_reg - 1;
-                        if (height_reg) begin
-                            width_reg <= width_int;
-                            height_reg <= height_reg - 1;
-                        end
-                        else begin
-                            height_reg <= 0;
-                            width_reg <= 0;
-                        end
+                        M00_AXI_wvalid  <= 0;
+                        M00_AXI_awvalid <= 0;
                     end
                 end
                 else begin
-                    M00_AXI_wvalid  <= 0;
-                    M00_AXI_awvalid <= 0;
+                    M00_AXI_wvalid  <= 1;
+                    //M00_AXI_awvalid <= 1;
                 end
             end
-        end
-    endcase
+            BURST_VALID: begin
+                M00_AXI_wvalid  <= 0;
+                M00_AXI_awvalid <= 0;
+                M00_AXI_wlast <= 1'b0;
+                //pixel_ready <= 1;
+                if (M00_AXI_bvalid) begin
+                    state <= NEXT_BURST;
+                end
+            end
+            NEXT_BURST: begin
+                if (width_reg == 0 && height_reg == 0) begin
+                    state <= IDLE;
+                end
+                else begin
+                    if (pixel_valid) begin
+                        //pixel_ready <= 1;
+                        M00_AXI_wvalid  <= 1;
+                        M00_AXI_awvalid <= 1;
+                        state <= BURST;
+                        if (width_reg > 11'd16) begin
+                            M00_AXI_awlen <= 4'd15;
+                            width_reg <= width_reg - 11'd16;
+                            height_reg <= height_reg;
+                        end
+                        else if (width_reg == 1) begin
+                            M00_AXI_awlen <= 0;
+                            M00_AXI_wlast <= 1;
+                            if (height_reg) begin
+                                width_reg <= width_int;
+                                height_reg <= height_reg - 1;
+                            end
+                            else begin
+                                height_reg <= 0;
+                                width_reg <= 0;
+                            end
+                        end
+                        else begin
+                            M00_AXI_awlen <= width_reg - 1;
+                            if (height_reg) begin
+                                width_reg <= width_int;
+                                height_reg <= height_reg - 1;
+                            end
+                            else begin
+                                height_reg <= 0;
+                                width_reg <= 0;
+                            end
+                        end
+                    end
+                    else begin
+                        M00_AXI_wvalid  <= 0;
+                        M00_AXI_awvalid <= 0;
+                    end
+                end
+            end
+        endcase
+    end
 end
 
 endmodule

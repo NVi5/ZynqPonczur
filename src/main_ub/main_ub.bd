@@ -203,18 +203,6 @@
               "dlmb_v10/LMB_M"
             ]
           },
-          "microblaze_0_ilmb_cntlr": {
-            "interface_ports": [
-              "ilmb_bram_if_cntlr/BRAM_PORT",
-              "lmb_bram/BRAM_PORTB"
-            ]
-          },
-          "microblaze_0_ilmb_bus": {
-            "interface_ports": [
-              "ilmb_v10/LMB_Sl_0",
-              "ilmb_bram_if_cntlr/SLMB"
-            ]
-          },
           "microblaze_0_dlmb_bus": {
             "interface_ports": [
               "dlmb_v10/LMB_Sl_0",
@@ -225,6 +213,18 @@
             "interface_ports": [
               "dlmb_bram_if_cntlr/BRAM_PORT",
               "lmb_bram/BRAM_PORTA"
+            ]
+          },
+          "microblaze_0_ilmb_bus": {
+            "interface_ports": [
+              "ilmb_v10/LMB_Sl_0",
+              "ilmb_bram_if_cntlr/SLMB"
+            ]
+          },
+          "microblaze_0_ilmb_cntlr": {
+            "interface_ports": [
+              "ilmb_bram_if_cntlr/BRAM_PORT",
+              "lmb_bram/BRAM_PORTB"
             ]
           }
         },
@@ -692,18 +692,6 @@
       }
     },
     "interface_nets": {
-      "microblaze_0_axi_periph_M00_AXI": {
-        "interface_ports": [
-          "gpu_control_0/S00_AXI",
-          "microblaze_0_axi_periph/M00_AXI"
-        ]
-      },
-      "gpu_wrapper_vhdl_0_user_transform_matrix": {
-        "interface_ports": [
-          "gpu_wrapper_vhdl_0/user_transform_matrix",
-          "gpu_control_0/transform_matrix"
-        ]
-      },
       "microblaze_0_ilmb_1": {
         "interface_ports": [
           "microblaze_0/ILMB",
@@ -716,16 +704,28 @@
           "microblaze_0_axi_periph/S00_AXI"
         ]
       },
-      "microblaze_0_debug": {
+      "gpu_wrapper_vhdl_0_user_transform_matrix": {
         "interface_ports": [
-          "mdm_1/MBDEBUG_0",
-          "microblaze_0/DEBUG"
+          "gpu_wrapper_vhdl_0/user_transform_matrix",
+          "gpu_control_0/transform_matrix"
         ]
       },
       "microblaze_0_dlmb_1": {
         "interface_ports": [
           "microblaze_0/DLMB",
           "microblaze_0_local_memory/DLMB"
+        ]
+      },
+      "microblaze_0_debug": {
+        "interface_ports": [
+          "mdm_1/MBDEBUG_0",
+          "microblaze_0/DEBUG"
+        ]
+      },
+      "microblaze_0_axi_periph_M00_AXI": {
+        "interface_ports": [
+          "gpu_control_0/S00_AXI",
+          "microblaze_0_axi_periph/M00_AXI"
         ]
       }
     },

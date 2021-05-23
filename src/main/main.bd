@@ -18,11 +18,11 @@
       "xlconcat_1": "",
       "xlconstant_0": "",
       "rst_ps7_0_50M": "",
-      "axi_master_burst_axi3_0": "",
       "gpu_control_0": "",
       "util_vector_logic_0": "",
+      "xlslice_0": "",
       "gpu_wrapper_vhdl_0": "",
-      "xlslice_0": ""
+      "axi_master_burst_axi3_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -641,6 +641,235 @@
         "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
         "xci_name": "main_rst_ps7_0_50M_0"
       },
+      "gpu_control_0": {
+        "vlnv": "xilinx.com:user:gpu_control:1.0",
+        "xci_name": "main_gpu_control_0_0"
+      },
+      "util_vector_logic_0": {
+        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+        "xci_name": "main_util_vector_logic_0_0",
+        "parameters": {
+          "C_OPERATION": {
+            "value": "not"
+          },
+          "C_SIZE": {
+            "value": "1"
+          }
+        }
+      },
+      "xlslice_0": {
+        "vlnv": "xilinx.com:ip:xlslice:1.0",
+        "xci_name": "main_xlslice_0_0",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "3"
+          },
+          "DIN_TO": {
+            "value": "0"
+          },
+          "DIN_WIDTH": {
+            "value": "8"
+          },
+          "DOUT_WIDTH": {
+            "value": "4"
+          }
+        }
+      },
+      "gpu_wrapper_vhdl_0": {
+        "vlnv": "xilinx.com:module_ref:gpu_wrapper_vhdl:1.0",
+        "xci_name": "main_gpu_wrapper_vhdl_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "gpu_wrapper_vhdl",
+          "boundary_crc": "0x0"
+        },
+        "interface_ports": {
+          "user_transform_matrix": {
+            "mode": "Master",
+            "vlnv": "xilinx.com:user:transform_matrix_rtl:1.0",
+            "port_maps": {
+              "matrix_00": {
+                "physical_name": "matrix_00",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_01": {
+                "physical_name": "matrix_01",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_02": {
+                "physical_name": "matrix_02",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_03": {
+                "physical_name": "matrix_03",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_04": {
+                "physical_name": "matrix_04",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_05": {
+                "physical_name": "matrix_05",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_06": {
+                "physical_name": "matrix_06",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_07": {
+                "physical_name": "matrix_07",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_08": {
+                "physical_name": "matrix_08",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_09": {
+                "physical_name": "matrix_09",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_10": {
+                "physical_name": "matrix_10",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_11": {
+                "physical_name": "matrix_11",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_12": {
+                "physical_name": "matrix_12",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_13": {
+                "physical_name": "matrix_13",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_14": {
+                "physical_name": "matrix_14",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              },
+              "matrix_15": {
+                "physical_name": "matrix_15",
+                "direction": "I",
+                "left": "17",
+                "right": "0"
+              }
+            }
+          }
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "main_processing_system7_0_1_FCLK_CLK0",
+                "value_src": "default_prop"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              }
+            }
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "vertex_count": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "start": {
+            "direction": "I"
+          },
+          "mem_wr_addr": {
+            "direction": "I",
+            "left": "13",
+            "right": "0"
+          },
+          "mem_wr_data": {
+            "direction": "I",
+            "left": "17",
+            "right": "0"
+          },
+          "mem_wr_en": {
+            "direction": "I"
+          },
+          "output_color": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "output_valid": {
+            "direction": "O"
+          },
+          "pixel_x_out": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "pixel_y_out": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "width": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "height": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "frame_end": {
+            "direction": "O"
+          },
+          "draw": {
+            "direction": "O"
+          },
+          "out_ready": {
+            "direction": "I"
+          }
+        }
+      },
       "axi_master_burst_axi3_0": {
         "vlnv": "xilinx.com:module_ref:axi_master_burst_axi3:1.0",
         "xci_name": "main_axi_master_burst_axi3_0_0",
@@ -723,17 +952,33 @@
                 "value": "0",
                 "value_src": "constant"
               },
+              "INSERT_VIP": {
+                "value": "0",
+                "value_src": "constant"
+              },
               "MAX_BURST_LENGTH": {
                 "value": "16",
-                "value_src": "auto"
+                "value_src": "constant"
               },
               "NUM_READ_OUTSTANDING": {
                 "value": "2",
-                "value_src": "auto"
+                "value_src": "constant"
+              },
+              "NUM_READ_THREADS": {
+                "value": "1",
+                "value_src": "constant"
               },
               "NUM_WRITE_OUTSTANDING": {
                 "value": "2",
-                "value_src": "auto"
+                "value_src": "constant"
+              },
+              "NUM_WRITE_THREADS": {
+                "value": "1",
+                "value_src": "constant"
+              },
+              "PHASE": {
+                "value": "0.000",
+                "value_src": "constant"
               },
               "PROTOCOL": {
                 "value": "AXI3",
@@ -743,13 +988,21 @@
                 "value": "READ_WRITE",
                 "value_src": "constant"
               },
+              "RUSER_BITS_PER_BYTE": {
+                "value": "0",
+                "value_src": "constant"
+              },
               "RUSER_WIDTH": {
                 "value": "0",
                 "value_src": "constant"
               },
               "SUPPORTS_NARROW_BURST": {
-                "value": "1",
-                "value_src": "auto"
+                "value": "0",
+                "value_src": "constant"
+              },
+              "WUSER_BITS_PER_BYTE": {
+                "value": "0",
+                "value_src": "constant"
               },
               "WUSER_WIDTH": {
                 "value": "0",
@@ -977,12 +1230,7 @@
           },
           "reset": {
             "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "POLARITY": {
-                "value": "ACTIVE_HIGH"
-              }
-            }
+            "direction": "I"
           },
           "framebuffer_baseaddr": {
             "direction": "I",
@@ -1032,238 +1280,15 @@
             }
           }
         }
-      },
-      "gpu_control_0": {
-        "vlnv": "xilinx.com:user:gpu_control:1.0",
-        "xci_name": "main_gpu_control_0_0"
-      },
-      "util_vector_logic_0": {
-        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
-        "xci_name": "main_util_vector_logic_0_0",
-        "parameters": {
-          "C_OPERATION": {
-            "value": "not"
-          },
-          "C_SIZE": {
-            "value": "1"
-          }
-        }
-      },
-      "gpu_wrapper_vhdl_0": {
-        "vlnv": "xilinx.com:module_ref:gpu_wrapper_vhdl:1.0",
-        "xci_name": "main_gpu_wrapper_vhdl_0_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "gpu_wrapper_vhdl",
-          "boundary_crc": "0x0"
-        },
-        "interface_ports": {
-          "user_transform_matrix": {
-            "mode": "Master",
-            "vlnv": "xilinx.com:user:transform_matrix_rtl:1.0",
-            "port_maps": {
-              "matrix_00": {
-                "physical_name": "matrix_00",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_01": {
-                "physical_name": "matrix_01",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_02": {
-                "physical_name": "matrix_02",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_03": {
-                "physical_name": "matrix_03",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_04": {
-                "physical_name": "matrix_04",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_05": {
-                "physical_name": "matrix_05",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_06": {
-                "physical_name": "matrix_06",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_07": {
-                "physical_name": "matrix_07",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_08": {
-                "physical_name": "matrix_08",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_09": {
-                "physical_name": "matrix_09",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_10": {
-                "physical_name": "matrix_10",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_11": {
-                "physical_name": "matrix_11",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_12": {
-                "physical_name": "matrix_12",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_13": {
-                "physical_name": "matrix_13",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_14": {
-                "physical_name": "matrix_14",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              },
-              "matrix_15": {
-                "physical_name": "matrix_15",
-                "direction": "I",
-                "left": "17",
-                "right": "0"
-              }
-            }
-          }
-        },
-        "ports": {
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "reset",
-                "value_src": "constant"
-              },
-              "CLK_DOMAIN": {
-                "value": "main_processing_system7_0_1_FCLK_CLK0",
-                "value_src": "default_prop"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "user_prop"
-              }
-            }
-          },
-          "reset": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "vertex_count": {
-            "direction": "I",
-            "left": "31",
-            "right": "0"
-          },
-          "start": {
-            "direction": "I"
-          },
-          "mem_wr_addr": {
-            "direction": "I",
-            "left": "13",
-            "right": "0"
-          },
-          "mem_wr_data": {
-            "direction": "I",
-            "left": "17",
-            "right": "0"
-          },
-          "mem_wr_en": {
-            "direction": "I"
-          },
-          "output_color": {
-            "direction": "O",
-            "left": "7",
-            "right": "0"
-          },
-          "output_valid": {
-            "direction": "O"
-          },
-          "pixel_x_out": {
-            "direction": "O",
-            "left": "10",
-            "right": "0"
-          },
-          "pixel_y_out": {
-            "direction": "O",
-            "left": "10",
-            "right": "0"
-          },
-          "width": {
-            "direction": "O",
-            "left": "10",
-            "right": "0"
-          },
-          "height": {
-            "direction": "O",
-            "left": "10",
-            "right": "0"
-          },
-          "frame_end": {
-            "direction": "O"
-          },
-          "draw": {
-            "direction": "O"
-          },
-          "out_ready": {
-            "direction": "I"
-          }
-        }
-      },
-      "xlslice_0": {
-        "vlnv": "xilinx.com:ip:xlslice:1.0",
-        "xci_name": "main_xlslice_0_0",
-        "parameters": {
-          "DIN_FROM": {
-            "value": "3"
-          },
-          "DIN_TO": {
-            "value": "0"
-          },
-          "DIN_WIDTH": {
-            "value": "8"
-          },
-          "DOUT_WIDTH": {
-            "value": "4"
-          }
-        }
       }
     },
     "interface_nets": {
+      "processing_system7_0_DDR": {
+        "interface_ports": [
+          "DDR",
+          "processing_system7_0/DDR"
+        ]
+      },
       "gpu_wrapper_vhdl_0_user_transform_matrix": {
         "interface_ports": [
           "gpu_wrapper_vhdl_0/user_transform_matrix",
@@ -1276,22 +1301,16 @@
           "ps7_0_axi_periph/S00_AXI"
         ]
       },
-      "processing_system7_0_DDR": {
-        "interface_ports": [
-          "DDR",
-          "processing_system7_0/DDR"
-        ]
-      },
-      "ps7_0_axi_periph_M00_AXI": {
-        "interface_ports": [
-          "ps7_0_axi_periph/M00_AXI",
-          "gpu_control_0/S00_AXI"
-        ]
-      },
       "axi_master_burst_axi3_0_M00_AXI": {
         "interface_ports": [
           "axi_master_burst_axi3_0/M00_AXI",
           "processing_system7_0/S_AXI_GP0"
+        ]
+      },
+      "processing_system7_0_FIXED_IO": {
+        "interface_ports": [
+          "FIXED_IO",
+          "processing_system7_0/FIXED_IO"
         ]
       },
       "processing_system7_0_MDIO_ETHERNET_0": {
@@ -1300,10 +1319,10 @@
           "processing_system7_0/MDIO_ETHERNET_0"
         ]
       },
-      "processing_system7_0_FIXED_IO": {
+      "ps7_0_axi_periph_M00_AXI": {
         "interface_ports": [
-          "FIXED_IO",
-          "processing_system7_0/FIXED_IO"
+          "ps7_0_axi_periph/M00_AXI",
+          "gpu_control_0/S00_AXI"
         ]
       }
     },
@@ -1317,9 +1336,9 @@
           "ps7_0_axi_periph/ACLK",
           "processing_system7_0/S_AXI_GP0_ACLK",
           "rst_ps7_0_50M/slowest_sync_clk",
-          "axi_master_burst_axi3_0/clk",
           "gpu_control_0/s00_axi_aclk",
-          "gpu_wrapper_vhdl_0/clk"
+          "gpu_wrapper_vhdl_0/clk",
+          "axi_master_burst_axi3_0/clk"
         ]
       },
       "gpu_control_0_vertices_size": {
@@ -1473,8 +1492,8 @@
       "util_vector_logic_0_Res": {
         "ports": [
           "util_vector_logic_0/Res",
-          "axi_master_burst_axi3_0/reset",
-          "gpu_wrapper_vhdl_0/reset"
+          "gpu_wrapper_vhdl_0/reset",
+          "axi_master_burst_axi3_0/reset"
         ]
       },
       "processing_system7_0_ENET0_GMII_TXD": {

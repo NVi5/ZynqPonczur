@@ -2,10 +2,11 @@
 
 module rasterizer_control (
     input  wire        clk,
+    input  wire        reset,
     input  wire [31:0] vertex_count,
     input  wire        start,
 
-    output reg  [$clog2(16384)-1:0] addra = 0,
+    output reg  [$clog2(16384)-1:0] addra,
     input  wire [10:0] douta,
 
     output wire  [7:0] out_data,
@@ -15,21 +16,21 @@ module rasterizer_control (
     output wire [10:0] pixel_x_out,
     output wire [10:0] pixel_y_out,
 
-    output reg  [10:0] width          = 11'b0,
-    output reg  [10:0] height         = 11'b0,
+    output reg  [10:0] width,
+    output reg  [10:0] height,
 
-    output reg         rasterize_end  =  1'b0,
+    output reg         rasterize_end,
     output wire        draw
 );
 
-reg         [10:0] pixel_x    = 0;
-reg         [10:0] pixel_y    = 0;
-reg  signed [10:0] V1_x       = 0;
-reg  signed [10:0] V1_y       = 0;
-reg  signed [10:0] V2_x       = 0;
-reg  signed [10:0] V2_y       = 0;
-reg  signed [10:0] V3_x       = 0;
-reg  signed [10:0] V3_y       = 0;
+reg         [10:0] pixel_x;
+reg         [10:0] pixel_y;
+reg  signed [10:0] V1_x;
+reg  signed [10:0] V1_y;
+reg  signed [10:0] V2_x;
+reg  signed [10:0] V2_y;
+reg  signed [10:0] V3_x;
+reg  signed [10:0] V3_y;
 wire               isInside;
 
 wire in_ready;
@@ -49,6 +50,7 @@ rasterizer rasterizer_u0(
     .V3_x(V3_x),
     .V3_y(V3_y),
     .clk(clk),
+    .reset(reset),
     .pixel_x_out(pixel_x_out),
     .pixel_y_out(pixel_y_out),
     .outReady(out_ready),
@@ -56,25 +58,25 @@ rasterizer rasterizer_u0(
     .isInside(isInside)
 );
 
-reg [14:0] vertex_counter = 0;
-reg [4:0]  vertex_select = 0;
+reg [14:0] vertex_counter;
+reg [4:0]  vertex_select;
 
-reg [7:0] color = 1;
+reg [7:0] color;
 
-reg signed [10:0] BB_TL_x = 0;
-reg signed [10:0] BB_TL_y = 0;
+reg signed [10:0] BB_TL_x;
+reg signed [10:0] BB_TL_y;
 
-reg signed [10:0] BB_BR_x = 0;
-reg signed [10:0] BB_BR_y = 0;
+reg signed [10:0] BB_BR_x;
+reg signed [10:0] BB_BR_y;
 
-reg signed [10:0] max_temp_x = 0;
-reg signed [10:0] min_temp_x = 0;
+reg signed [10:0] max_temp_x;
+reg signed [10:0] min_temp_x;
 
-reg signed [10:0] max_temp_y = 0;
-reg signed [10:0] min_temp_y = 0;
+reg signed [10:0] max_temp_y;
+reg signed [10:0] min_temp_y;
 
-reg force_black = 0;
-reg [3:0] force_black_d = 0;
+reg force_black;
+reg [3:0] force_black_d;
 always @(posedge clk) begin
     force_black_d[0] <= force_black;
     force_black_d[1] <= force_black_d[0];
@@ -89,11 +91,36 @@ localparam IDLE = 0, LOAD_VERTEX = 1, CHECK_ZERO_SIZE = 2, TRIANGLE_CLIPPING_1 =
            TRIANGLE_CLIPPING_2 = 4, TRIANGLE_CLIPPING_3 = 5, TRIANGLE_CLIPPING_4 = 6,
            TRIANGLE_CLIPPING_5 = 7, RASTERIZE = 8, RASTERIZATION_END = 9, START = 10,
            CLEAR_SCREEN = 11;
-reg [3:0] state = IDLE;
+reg [3:0] state;
 
 assign in_valid = in_ready & (state == RASTERIZE);
 
 always @(posedge clk) begin
+    if (reset) begin
+        force_black_d <= '{0};
+        force_black <= 0;
+        pixel_x <= 0;
+        pixel_y <= 0;
+        BB_TL_x <= 0;
+        BB_TL_y <= 0;
+        BB_BR_x <= 0;
+        BB_BR_y <= 0;
+        width <= 0;
+        height <= 0;
+        state <= IDLE;
+        vertex_counter <= 0;
+        vertex_select <= 0;
+        rasterize_end <= 0;
+        addra <= 0;
+        color <= 0;
+        V1_x <= 0;
+        V1_y <= 0;
+        V2_x <= 0;
+        V2_y <= 0;
+        V3_x <= 0;
+        V3_y <= 0;
+    end
+    else
     case (state)
         IDLE: begin
            rasterize_end <= 1;

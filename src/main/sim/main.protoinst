@@ -10,7 +10,7 @@
 						"ARADDR": { "actual": "M00_AXI_araddr"},
 						"ARBURST": { "actual": "M00_AXI_arburst"},
 						"ARCACHE": { "actual": "M00_AXI_arcache"},
-						"ARESET": { "actual": "reset"},
+						"ARESETN": { "actual": "reset"},
 						"ARLEN": { "actual": "M00_AXI_arlen"},
 						"ARLOCK": { "actual": "M00_AXI_arlock"},
 						"ARPROT": { "actual": "M00_AXI_arprot"},
