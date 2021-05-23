@@ -148,7 +148,9 @@ output reg M00_AXI_rready = 1'b0;
 //reg [3:0] axi_state = AXI_IDLE;
 
 wire [31:0] pixel_addr;
-assign pixel_addr = framebuffer_baseaddr + pixel_y * 800 + pixel_x;
+wire [31:0] pixel_multiplied;
+assign pixel_multiplied = (pixel_y << 5) + (pixel_y << 8) + (pixel_y << 9); // pixel_y * 800
+assign pixel_addr = framebuffer_baseaddr + pixel_multiplied + pixel_x;
 
 wire [6:0] width_div16;
 wire [3:0] width_remainder;

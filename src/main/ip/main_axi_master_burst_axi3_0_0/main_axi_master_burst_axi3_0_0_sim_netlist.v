@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Sun May 23 23:34:43 2021
+// Date        : Sun May 23 23:53:12 2021
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               C:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main/ip/main_axi_master_burst_axi3_0_0/main_axi_master_burst_axi3_0_0_sim_netlist.v
@@ -260,11 +260,11 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     M00_AXI_awvalid,
     pixel_valid,
     width,
+    pixel_y,
     pixel_data,
     reset,
     M00_AXI_bvalid,
     clk,
-    pixel_y,
     M00_AXI_wready,
     height,
     M00_AXI_awready,
@@ -282,11 +282,11 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   output M00_AXI_awvalid;
   input pixel_valid;
   input [10:0]width;
+  input [10:0]pixel_y;
   input [7:0]pixel_data;
   input reset;
   input M00_AXI_bvalid;
   input clk;
-  input [10:0]pixel_y;
   input M00_AXI_wready;
   input [10:0]height;
   input M00_AXI_awready;
@@ -445,132 +445,180 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire i__carry_i_3_n_0;
   wire i__carry_i_4_n_0;
   wire [10:0]p_1_in;
-  wire pixel_addr1_n_100;
-  wire pixel_addr1_n_101;
-  wire pixel_addr1_n_102;
-  wire pixel_addr1_n_103;
-  wire pixel_addr1_n_104;
-  wire pixel_addr1_n_105;
-  wire pixel_addr1_n_85;
-  wire pixel_addr1_n_86;
-  wire pixel_addr1_n_87;
-  wire pixel_addr1_n_88;
-  wire pixel_addr1_n_89;
-  wire pixel_addr1_n_90;
-  wire pixel_addr1_n_91;
-  wire pixel_addr1_n_92;
-  wire pixel_addr1_n_93;
-  wire pixel_addr1_n_94;
-  wire pixel_addr1_n_95;
-  wire pixel_addr1_n_96;
-  wire pixel_addr1_n_97;
-  wire pixel_addr1_n_98;
-  wire pixel_addr1_n_99;
-  wire pixel_addr__0_carry__0_i_1_n_0;
-  wire pixel_addr__0_carry__0_i_2_n_0;
-  wire pixel_addr__0_carry__0_i_3_n_0;
-  wire pixel_addr__0_carry__0_i_4_n_0;
-  wire pixel_addr__0_carry__0_i_5_n_0;
-  wire pixel_addr__0_carry__0_i_6_n_0;
-  wire pixel_addr__0_carry__0_i_7_n_0;
-  wire pixel_addr__0_carry__0_i_8_n_0;
-  wire pixel_addr__0_carry__0_n_0;
-  wire pixel_addr__0_carry__0_n_1;
-  wire pixel_addr__0_carry__0_n_2;
-  wire pixel_addr__0_carry__0_n_3;
-  wire pixel_addr__0_carry__0_n_4;
-  wire pixel_addr__0_carry__0_n_5;
-  wire pixel_addr__0_carry__0_n_6;
-  wire pixel_addr__0_carry__0_n_7;
-  wire pixel_addr__0_carry__1_i_1_n_0;
-  wire pixel_addr__0_carry__1_i_2_n_0;
-  wire pixel_addr__0_carry__1_i_3_n_0;
-  wire pixel_addr__0_carry__1_i_4_n_0;
-  wire pixel_addr__0_carry__1_i_5_n_0;
-  wire pixel_addr__0_carry__1_i_6_n_0;
-  wire pixel_addr__0_carry__1_i_7_n_0;
-  wire pixel_addr__0_carry__1_i_8_n_0;
-  wire pixel_addr__0_carry__1_n_0;
-  wire pixel_addr__0_carry__1_n_1;
-  wire pixel_addr__0_carry__1_n_2;
-  wire pixel_addr__0_carry__1_n_3;
-  wire pixel_addr__0_carry__1_n_4;
-  wire pixel_addr__0_carry__1_n_5;
-  wire pixel_addr__0_carry__1_n_6;
-  wire pixel_addr__0_carry__1_n_7;
-  wire pixel_addr__0_carry__2_i_1_n_0;
-  wire pixel_addr__0_carry__2_i_2_n_0;
-  wire pixel_addr__0_carry__2_i_3_n_0;
-  wire pixel_addr__0_carry__2_i_4_n_0;
-  wire pixel_addr__0_carry__2_i_5_n_0;
-  wire pixel_addr__0_carry__2_i_6_n_0;
-  wire pixel_addr__0_carry__2_i_7_n_0;
-  wire pixel_addr__0_carry__2_i_8_n_0;
-  wire pixel_addr__0_carry__2_n_0;
-  wire pixel_addr__0_carry__2_n_1;
-  wire pixel_addr__0_carry__2_n_2;
-  wire pixel_addr__0_carry__2_n_3;
-  wire pixel_addr__0_carry__2_n_4;
-  wire pixel_addr__0_carry__2_n_5;
-  wire pixel_addr__0_carry__2_n_6;
-  wire pixel_addr__0_carry__2_n_7;
-  wire pixel_addr__0_carry__3_i_1_n_0;
-  wire pixel_addr__0_carry__3_i_2_n_0;
-  wire pixel_addr__0_carry__3_i_3_n_0;
-  wire pixel_addr__0_carry__3_i_4_n_0;
-  wire pixel_addr__0_carry__3_i_5_n_0;
-  wire pixel_addr__0_carry__3_i_6_n_0;
-  wire pixel_addr__0_carry__3_i_7_n_0;
-  wire pixel_addr__0_carry__3_i_8_n_0;
-  wire pixel_addr__0_carry__3_n_0;
-  wire pixel_addr__0_carry__3_n_1;
-  wire pixel_addr__0_carry__3_n_2;
-  wire pixel_addr__0_carry__3_n_3;
-  wire pixel_addr__0_carry__3_n_4;
-  wire pixel_addr__0_carry__3_n_5;
-  wire pixel_addr__0_carry__3_n_6;
-  wire pixel_addr__0_carry__3_n_7;
-  wire pixel_addr__0_carry__4_i_1_n_0;
-  wire pixel_addr__0_carry__4_i_2_n_0;
-  wire pixel_addr__0_carry__4_i_3_n_0;
-  wire pixel_addr__0_carry__4_n_0;
-  wire pixel_addr__0_carry__4_n_1;
-  wire pixel_addr__0_carry__4_n_2;
-  wire pixel_addr__0_carry__4_n_3;
-  wire pixel_addr__0_carry__4_n_4;
-  wire pixel_addr__0_carry__4_n_5;
-  wire pixel_addr__0_carry__4_n_6;
-  wire pixel_addr__0_carry__4_n_7;
-  wire pixel_addr__0_carry__5_n_0;
-  wire pixel_addr__0_carry__5_n_1;
-  wire pixel_addr__0_carry__5_n_2;
-  wire pixel_addr__0_carry__5_n_3;
-  wire pixel_addr__0_carry__5_n_4;
-  wire pixel_addr__0_carry__5_n_5;
-  wire pixel_addr__0_carry__5_n_6;
-  wire pixel_addr__0_carry__5_n_7;
-  wire pixel_addr__0_carry__6_n_1;
-  wire pixel_addr__0_carry__6_n_2;
-  wire pixel_addr__0_carry__6_n_3;
-  wire pixel_addr__0_carry__6_n_4;
-  wire pixel_addr__0_carry__6_n_5;
-  wire pixel_addr__0_carry__6_n_6;
-  wire pixel_addr__0_carry__6_n_7;
-  wire pixel_addr__0_carry_i_1_n_0;
-  wire pixel_addr__0_carry_i_2_n_0;
-  wire pixel_addr__0_carry_i_3_n_0;
-  wire pixel_addr__0_carry_i_4_n_0;
-  wire pixel_addr__0_carry_i_5_n_0;
-  wire pixel_addr__0_carry_i_6_n_0;
-  wire pixel_addr__0_carry_i_7_n_0;
-  wire pixel_addr__0_carry_n_0;
-  wire pixel_addr__0_carry_n_1;
-  wire pixel_addr__0_carry_n_2;
-  wire pixel_addr__0_carry_n_3;
-  wire pixel_addr__0_carry_n_4;
-  wire pixel_addr__0_carry_n_5;
-  wire pixel_addr__0_carry_n_6;
-  wire pixel_addr__0_carry_n_7;
+  wire pixel_addr__1_carry__0_i_1_n_0;
+  wire pixel_addr__1_carry__0_i_2_n_0;
+  wire pixel_addr__1_carry__0_i_3_n_0;
+  wire pixel_addr__1_carry__0_i_4_n_0;
+  wire pixel_addr__1_carry__0_i_5_n_0;
+  wire pixel_addr__1_carry__0_i_6_n_0;
+  wire pixel_addr__1_carry__0_n_0;
+  wire pixel_addr__1_carry__0_n_1;
+  wire pixel_addr__1_carry__0_n_2;
+  wire pixel_addr__1_carry__0_n_3;
+  wire pixel_addr__1_carry__0_n_4;
+  wire pixel_addr__1_carry__0_n_5;
+  wire pixel_addr__1_carry__0_n_6;
+  wire pixel_addr__1_carry__0_n_7;
+  wire pixel_addr__1_carry__1_i_1_n_0;
+  wire pixel_addr__1_carry__1_i_2_n_0;
+  wire pixel_addr__1_carry__1_i_3_n_0;
+  wire pixel_addr__1_carry__1_i_4_n_0;
+  wire pixel_addr__1_carry__1_i_5_n_0;
+  wire pixel_addr__1_carry__1_i_6_n_0;
+  wire pixel_addr__1_carry__1_i_7_n_0;
+  wire pixel_addr__1_carry__1_i_8_n_0;
+  wire pixel_addr__1_carry__1_n_0;
+  wire pixel_addr__1_carry__1_n_1;
+  wire pixel_addr__1_carry__1_n_2;
+  wire pixel_addr__1_carry__1_n_3;
+  wire pixel_addr__1_carry__1_n_4;
+  wire pixel_addr__1_carry__1_n_5;
+  wire pixel_addr__1_carry__1_n_6;
+  wire pixel_addr__1_carry__1_n_7;
+  wire pixel_addr__1_carry__2_i_1_n_0;
+  wire pixel_addr__1_carry__2_i_2_n_0;
+  wire pixel_addr__1_carry__2_i_3_n_0;
+  wire pixel_addr__1_carry__2_i_4_n_0;
+  wire pixel_addr__1_carry__2_i_5_n_0;
+  wire pixel_addr__1_carry__2_i_6_n_0;
+  wire pixel_addr__1_carry__2_i_7_n_0;
+  wire pixel_addr__1_carry__2_i_8_n_0;
+  wire pixel_addr__1_carry__2_n_0;
+  wire pixel_addr__1_carry__2_n_1;
+  wire pixel_addr__1_carry__2_n_2;
+  wire pixel_addr__1_carry__2_n_3;
+  wire pixel_addr__1_carry__2_n_4;
+  wire pixel_addr__1_carry__2_n_5;
+  wire pixel_addr__1_carry__2_n_6;
+  wire pixel_addr__1_carry__2_n_7;
+  wire pixel_addr__1_carry__3_i_1_n_0;
+  wire pixel_addr__1_carry__3_n_0;
+  wire pixel_addr__1_carry__3_n_1;
+  wire pixel_addr__1_carry__3_n_2;
+  wire pixel_addr__1_carry__3_n_3;
+  wire pixel_addr__1_carry__3_n_4;
+  wire pixel_addr__1_carry__3_n_5;
+  wire pixel_addr__1_carry__3_n_6;
+  wire pixel_addr__1_carry__3_n_7;
+  wire pixel_addr__1_carry__4_n_0;
+  wire pixel_addr__1_carry__4_n_1;
+  wire pixel_addr__1_carry__4_n_2;
+  wire pixel_addr__1_carry__4_n_3;
+  wire pixel_addr__1_carry__4_n_4;
+  wire pixel_addr__1_carry__4_n_5;
+  wire pixel_addr__1_carry__4_n_6;
+  wire pixel_addr__1_carry__4_n_7;
+  wire pixel_addr__1_carry__5_n_0;
+  wire pixel_addr__1_carry__5_n_1;
+  wire pixel_addr__1_carry__5_n_2;
+  wire pixel_addr__1_carry__5_n_3;
+  wire pixel_addr__1_carry__5_n_4;
+  wire pixel_addr__1_carry__5_n_5;
+  wire pixel_addr__1_carry__5_n_6;
+  wire pixel_addr__1_carry__5_n_7;
+  wire pixel_addr__1_carry__6_n_1;
+  wire pixel_addr__1_carry__6_n_2;
+  wire pixel_addr__1_carry__6_n_3;
+  wire pixel_addr__1_carry__6_n_4;
+  wire pixel_addr__1_carry__6_n_5;
+  wire pixel_addr__1_carry__6_n_6;
+  wire pixel_addr__1_carry__6_n_7;
+  wire pixel_addr__1_carry_i_1_n_0;
+  wire pixel_addr__1_carry_i_2_n_0;
+  wire pixel_addr__1_carry_i_3_n_0;
+  wire pixel_addr__1_carry_i_4_n_0;
+  wire pixel_addr__1_carry_n_0;
+  wire pixel_addr__1_carry_n_1;
+  wire pixel_addr__1_carry_n_2;
+  wire pixel_addr__1_carry_n_3;
+  wire pixel_addr__1_carry_n_4;
+  wire pixel_addr__1_carry_n_5;
+  wire pixel_addr__1_carry_n_6;
+  wire pixel_addr__1_carry_n_7;
+  wire pixel_addr__82_carry__0_i_1_n_0;
+  wire pixel_addr__82_carry__0_i_2_n_0;
+  wire pixel_addr__82_carry__0_i_3_n_0;
+  wire pixel_addr__82_carry__0_i_4_n_0;
+  wire pixel_addr__82_carry__0_i_5_n_0;
+  wire pixel_addr__82_carry__0_i_6_n_0;
+  wire pixel_addr__82_carry__0_i_7_n_0;
+  wire pixel_addr__82_carry__0_i_8_n_0;
+  wire pixel_addr__82_carry__0_n_0;
+  wire pixel_addr__82_carry__0_n_1;
+  wire pixel_addr__82_carry__0_n_2;
+  wire pixel_addr__82_carry__0_n_3;
+  wire pixel_addr__82_carry__0_n_4;
+  wire pixel_addr__82_carry__0_n_5;
+  wire pixel_addr__82_carry__0_n_6;
+  wire pixel_addr__82_carry__0_n_7;
+  wire pixel_addr__82_carry__1_i_1_n_0;
+  wire pixel_addr__82_carry__1_i_2_n_0;
+  wire pixel_addr__82_carry__1_i_3_n_0;
+  wire pixel_addr__82_carry__1_i_4_n_0;
+  wire pixel_addr__82_carry__1_i_5_n_0;
+  wire pixel_addr__82_carry__1_i_6_n_0;
+  wire pixel_addr__82_carry__1_i_7_n_0;
+  wire pixel_addr__82_carry__1_i_8_n_0;
+  wire pixel_addr__82_carry__1_n_0;
+  wire pixel_addr__82_carry__1_n_1;
+  wire pixel_addr__82_carry__1_n_2;
+  wire pixel_addr__82_carry__1_n_3;
+  wire pixel_addr__82_carry__1_n_4;
+  wire pixel_addr__82_carry__1_n_5;
+  wire pixel_addr__82_carry__1_n_6;
+  wire pixel_addr__82_carry__1_n_7;
+  wire pixel_addr__82_carry__2_i_1_n_0;
+  wire pixel_addr__82_carry__2_i_2_n_0;
+  wire pixel_addr__82_carry__2_i_3_n_0;
+  wire pixel_addr__82_carry__2_i_4_n_0;
+  wire pixel_addr__82_carry__2_i_5_n_0;
+  wire pixel_addr__82_carry__2_i_6_n_0;
+  wire pixel_addr__82_carry__2_n_0;
+  wire pixel_addr__82_carry__2_n_1;
+  wire pixel_addr__82_carry__2_n_2;
+  wire pixel_addr__82_carry__2_n_3;
+  wire pixel_addr__82_carry__2_n_4;
+  wire pixel_addr__82_carry__2_n_5;
+  wire pixel_addr__82_carry__2_n_6;
+  wire pixel_addr__82_carry__2_n_7;
+  wire pixel_addr__82_carry__3_i_1_n_0;
+  wire pixel_addr__82_carry__3_i_2_n_0;
+  wire pixel_addr__82_carry__3_i_3_n_0;
+  wire pixel_addr__82_carry__3_i_4_n_0;
+  wire pixel_addr__82_carry__3_n_0;
+  wire pixel_addr__82_carry__3_n_1;
+  wire pixel_addr__82_carry__3_n_2;
+  wire pixel_addr__82_carry__3_n_3;
+  wire pixel_addr__82_carry__3_n_4;
+  wire pixel_addr__82_carry__3_n_5;
+  wire pixel_addr__82_carry__3_n_6;
+  wire pixel_addr__82_carry__3_n_7;
+  wire pixel_addr__82_carry__4_i_1_n_0;
+  wire pixel_addr__82_carry__4_i_2_n_0;
+  wire pixel_addr__82_carry__4_i_3_n_0;
+  wire pixel_addr__82_carry__4_i_4_n_0;
+  wire pixel_addr__82_carry__4_n_1;
+  wire pixel_addr__82_carry__4_n_2;
+  wire pixel_addr__82_carry__4_n_3;
+  wire pixel_addr__82_carry__4_n_4;
+  wire pixel_addr__82_carry__4_n_5;
+  wire pixel_addr__82_carry__4_n_6;
+  wire pixel_addr__82_carry__4_n_7;
+  wire pixel_addr__82_carry_i_1_n_0;
+  wire pixel_addr__82_carry_i_2_n_0;
+  wire pixel_addr__82_carry_i_3_n_0;
+  wire pixel_addr__82_carry_i_4_n_0;
+  wire pixel_addr__82_carry_i_5_n_0;
+  wire pixel_addr__82_carry_i_6_n_0;
+  wire pixel_addr__82_carry_i_7_n_0;
+  wire pixel_addr__82_carry_n_0;
+  wire pixel_addr__82_carry_n_1;
+  wire pixel_addr__82_carry_n_2;
+  wire pixel_addr__82_carry_n_3;
+  wire pixel_addr__82_carry_n_4;
+  wire pixel_addr__82_carry_n_5;
+  wire pixel_addr__82_carry_n_6;
+  wire pixel_addr__82_carry_n_7;
   wire [7:0]pixel_data;
   wire pixel_ready;
   wire pixel_ready0;
@@ -614,18 +662,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire \width_reg_reg_n_0_[9] ;
   wire [3:2]\NLW_height_reg0_inferred__0/i__carry__1_CO_UNCONNECTED ;
   wire [3:3]\NLW_height_reg0_inferred__0/i__carry__1_O_UNCONNECTED ;
-  wire NLW_pixel_addr1_CARRYCASCOUT_UNCONNECTED;
-  wire NLW_pixel_addr1_MULTSIGNOUT_UNCONNECTED;
-  wire NLW_pixel_addr1_OVERFLOW_UNCONNECTED;
-  wire NLW_pixel_addr1_PATTERNBDETECT_UNCONNECTED;
-  wire NLW_pixel_addr1_PATTERNDETECT_UNCONNECTED;
-  wire NLW_pixel_addr1_UNDERFLOW_UNCONNECTED;
-  wire [29:0]NLW_pixel_addr1_ACOUT_UNCONNECTED;
-  wire [17:0]NLW_pixel_addr1_BCOUT_UNCONNECTED;
-  wire [3:0]NLW_pixel_addr1_CARRYOUT_UNCONNECTED;
-  wire [47:21]NLW_pixel_addr1_P_UNCONNECTED;
-  wire [47:0]NLW_pixel_addr1_PCOUT_UNCONNECTED;
-  wire [3:3]NLW_pixel_addr__0_carry__6_CO_UNCONNECTED;
+  wire [3:3]NLW_pixel_addr__1_carry__6_CO_UNCONNECTED;
+  wire [3:3]NLW_pixel_addr__82_carry__4_CO_UNCONNECTED;
 
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -634,7 +672,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[0] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry_n_7),
+        .D(pixel_addr__1_carry_n_7),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[0]));
@@ -645,7 +683,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[10] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__1_n_5),
+        .D(pixel_addr__82_carry_n_5),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[10]));
@@ -656,7 +694,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[11] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__1_n_4),
+        .D(pixel_addr__82_carry_n_4),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[11]));
@@ -667,7 +705,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[12] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__2_n_7),
+        .D(pixel_addr__82_carry__0_n_7),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[12]));
@@ -678,7 +716,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[13] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__2_n_6),
+        .D(pixel_addr__82_carry__0_n_6),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[13]));
@@ -689,7 +727,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[14] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__2_n_5),
+        .D(pixel_addr__82_carry__0_n_5),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[14]));
@@ -700,7 +738,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[15] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__2_n_4),
+        .D(pixel_addr__82_carry__0_n_4),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[15]));
@@ -711,7 +749,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[16] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__3_n_7),
+        .D(pixel_addr__82_carry__1_n_7),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[16]));
@@ -722,7 +760,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[17] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__3_n_6),
+        .D(pixel_addr__82_carry__1_n_6),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[17]));
@@ -733,7 +771,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[18] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__3_n_5),
+        .D(pixel_addr__82_carry__1_n_5),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[18]));
@@ -744,7 +782,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[19] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__3_n_4),
+        .D(pixel_addr__82_carry__1_n_4),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[19]));
@@ -755,7 +793,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[1] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry_n_6),
+        .D(pixel_addr__1_carry_n_6),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[1]));
@@ -766,7 +804,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[20] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__4_n_7),
+        .D(pixel_addr__82_carry__2_n_7),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[20]));
@@ -777,7 +815,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[21] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__4_n_6),
+        .D(pixel_addr__82_carry__2_n_6),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[21]));
@@ -788,7 +826,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[22] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__4_n_5),
+        .D(pixel_addr__82_carry__2_n_5),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[22]));
@@ -799,7 +837,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[23] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__4_n_4),
+        .D(pixel_addr__82_carry__2_n_4),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[23]));
@@ -810,7 +848,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[24] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__5_n_7),
+        .D(pixel_addr__82_carry__3_n_7),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[24]));
@@ -821,7 +859,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[25] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__5_n_6),
+        .D(pixel_addr__82_carry__3_n_6),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[25]));
@@ -832,7 +870,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[26] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__5_n_5),
+        .D(pixel_addr__82_carry__3_n_5),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[26]));
@@ -843,7 +881,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[27] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__5_n_4),
+        .D(pixel_addr__82_carry__3_n_4),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[27]));
@@ -854,7 +892,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[28] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__6_n_7),
+        .D(pixel_addr__82_carry__4_n_7),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[28]));
@@ -865,7 +903,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[29] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__6_n_6),
+        .D(pixel_addr__82_carry__4_n_6),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[29]));
@@ -876,7 +914,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[2] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry_n_5),
+        .D(pixel_addr__1_carry_n_5),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[2]));
@@ -887,7 +925,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[30] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__6_n_5),
+        .D(pixel_addr__82_carry__4_n_5),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[30]));
@@ -898,7 +936,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[31] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__6_n_4),
+        .D(pixel_addr__82_carry__4_n_4),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[31]));
@@ -909,7 +947,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[3] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry_n_4),
+        .D(pixel_addr__1_carry_n_4),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[3]));
@@ -920,7 +958,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[4] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__0_n_7),
+        .D(pixel_addr__1_carry__0_n_7),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[4]));
@@ -931,7 +969,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[5] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__0_n_6),
+        .D(pixel_addr__1_carry__0_n_6),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[5]));
@@ -942,7 +980,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[6] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__0_n_5),
+        .D(pixel_addr__1_carry__0_n_5),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[6]));
@@ -953,7 +991,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[7] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__0_n_4),
+        .D(pixel_addr__1_carry__0_n_4),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[7]));
@@ -964,7 +1002,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[8] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__1_n_7),
+        .D(pixel_addr__82_carry_n_7),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[8]));
@@ -975,7 +1013,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .IS_G_INVERTED(1'b1)) 
     \M00_AXI_awaddr_reg[9] 
        (.CLR(reset),
-        .D(pixel_addr__0_carry__1_n_6),
+        .D(pixel_addr__82_carry_n_6),
         .G(reset),
         .GE(1'b1),
         .Q(M00_AXI_awaddr[9]));
@@ -1232,9 +1270,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h04)) 
     \M00_AXI_wdata_reg[0]_i_1 
-       (.I0(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_7),
         .I1(pixel_data[0]),
-        .I2(pixel_addr__0_carry_n_6),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[0]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1252,8 +1290,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .INIT(8'h08)) 
     \M00_AXI_wdata_reg[10]_i_1 
        (.I0(pixel_data[2]),
-        .I1(pixel_addr__0_carry_n_7),
-        .I2(pixel_addr__0_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[10]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1271,8 +1309,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .INIT(8'h08)) 
     \M00_AXI_wdata_reg[11]_i_1 
        (.I0(pixel_data[3]),
-        .I1(pixel_addr__0_carry_n_7),
-        .I2(pixel_addr__0_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[11]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1290,8 +1328,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .INIT(8'h08)) 
     \M00_AXI_wdata_reg[12]_i_1 
        (.I0(pixel_data[4]),
-        .I1(pixel_addr__0_carry_n_7),
-        .I2(pixel_addr__0_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[12]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1309,8 +1347,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .INIT(8'h08)) 
     \M00_AXI_wdata_reg[13]_i_1 
        (.I0(pixel_data[5]),
-        .I1(pixel_addr__0_carry_n_7),
-        .I2(pixel_addr__0_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[13]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1328,8 +1366,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .INIT(8'h08)) 
     \M00_AXI_wdata_reg[14]_i_1 
        (.I0(pixel_data[6]),
-        .I1(pixel_addr__0_carry_n_7),
-        .I2(pixel_addr__0_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[14]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1347,8 +1385,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .INIT(8'h08)) 
     \M00_AXI_wdata_reg[15]_i_1 
        (.I0(pixel_data[7]),
-        .I1(pixel_addr__0_carry_n_7),
-        .I2(pixel_addr__0_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[15]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1365,8 +1403,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h20)) 
     \M00_AXI_wdata_reg[16]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
-        .I1(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
         .I2(pixel_data[0]),
         .O(\M00_AXI_wdata_reg[16]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
@@ -1384,8 +1422,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h20)) 
     \M00_AXI_wdata_reg[17]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
-        .I1(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
         .I2(pixel_data[1]),
         .O(\M00_AXI_wdata_reg[17]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
@@ -1403,8 +1441,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h20)) 
     \M00_AXI_wdata_reg[18]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
-        .I1(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
         .I2(pixel_data[2]),
         .O(\M00_AXI_wdata_reg[18]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
@@ -1422,8 +1460,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h20)) 
     \M00_AXI_wdata_reg[19]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
-        .I1(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
         .I2(pixel_data[3]),
         .O(\M00_AXI_wdata_reg[19]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
@@ -1441,9 +1479,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h04)) 
     \M00_AXI_wdata_reg[1]_i_1 
-       (.I0(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_7),
         .I1(pixel_data[1]),
-        .I2(pixel_addr__0_carry_n_6),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[1]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1460,8 +1498,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h20)) 
     \M00_AXI_wdata_reg[20]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
-        .I1(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
         .I2(pixel_data[4]),
         .O(\M00_AXI_wdata_reg[20]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
@@ -1479,8 +1517,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h20)) 
     \M00_AXI_wdata_reg[21]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
-        .I1(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
         .I2(pixel_data[5]),
         .O(\M00_AXI_wdata_reg[21]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
@@ -1498,8 +1536,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h20)) 
     \M00_AXI_wdata_reg[22]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
-        .I1(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
         .I2(pixel_data[6]),
         .O(\M00_AXI_wdata_reg[22]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
@@ -1517,8 +1555,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h20)) 
     \M00_AXI_wdata_reg[23]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
-        .I1(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
         .I2(pixel_data[7]),
         .O(\M00_AXI_wdata_reg[23]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
@@ -1536,9 +1574,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h80)) 
     \M00_AXI_wdata_reg[24]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
+       (.I0(pixel_addr__1_carry_n_6),
         .I1(pixel_data[0]),
-        .I2(pixel_addr__0_carry_n_7),
+        .I2(pixel_addr__1_carry_n_7),
         .O(\M00_AXI_wdata_reg[24]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1555,9 +1593,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h80)) 
     \M00_AXI_wdata_reg[25]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
+       (.I0(pixel_addr__1_carry_n_6),
         .I1(pixel_data[1]),
-        .I2(pixel_addr__0_carry_n_7),
+        .I2(pixel_addr__1_carry_n_7),
         .O(\M00_AXI_wdata_reg[25]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1574,9 +1612,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h80)) 
     \M00_AXI_wdata_reg[26]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
+       (.I0(pixel_addr__1_carry_n_6),
         .I1(pixel_data[2]),
-        .I2(pixel_addr__0_carry_n_7),
+        .I2(pixel_addr__1_carry_n_7),
         .O(\M00_AXI_wdata_reg[26]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1593,9 +1631,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h80)) 
     \M00_AXI_wdata_reg[27]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
+       (.I0(pixel_addr__1_carry_n_6),
         .I1(pixel_data[3]),
-        .I2(pixel_addr__0_carry_n_7),
+        .I2(pixel_addr__1_carry_n_7),
         .O(\M00_AXI_wdata_reg[27]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1612,9 +1650,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h80)) 
     \M00_AXI_wdata_reg[28]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
+       (.I0(pixel_addr__1_carry_n_6),
         .I1(pixel_data[4]),
-        .I2(pixel_addr__0_carry_n_7),
+        .I2(pixel_addr__1_carry_n_7),
         .O(\M00_AXI_wdata_reg[28]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1631,9 +1669,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h80)) 
     \M00_AXI_wdata_reg[29]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
+       (.I0(pixel_addr__1_carry_n_6),
         .I1(pixel_data[5]),
-        .I2(pixel_addr__0_carry_n_7),
+        .I2(pixel_addr__1_carry_n_7),
         .O(\M00_AXI_wdata_reg[29]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1650,9 +1688,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h04)) 
     \M00_AXI_wdata_reg[2]_i_1 
-       (.I0(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_7),
         .I1(pixel_data[2]),
-        .I2(pixel_addr__0_carry_n_6),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[2]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1669,9 +1707,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h80)) 
     \M00_AXI_wdata_reg[30]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
+       (.I0(pixel_addr__1_carry_n_6),
         .I1(pixel_data[6]),
-        .I2(pixel_addr__0_carry_n_7),
+        .I2(pixel_addr__1_carry_n_7),
         .O(\M00_AXI_wdata_reg[30]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1688,9 +1726,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h80)) 
     \M00_AXI_wdata_reg[31]_i_1 
-       (.I0(pixel_addr__0_carry_n_6),
+       (.I0(pixel_addr__1_carry_n_6),
         .I1(pixel_data[7]),
-        .I2(pixel_addr__0_carry_n_7),
+        .I2(pixel_addr__1_carry_n_7),
         .O(\M00_AXI_wdata_reg[31]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1707,9 +1745,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h04)) 
     \M00_AXI_wdata_reg[3]_i_1 
-       (.I0(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_7),
         .I1(pixel_data[3]),
-        .I2(pixel_addr__0_carry_n_6),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[3]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1726,9 +1764,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h04)) 
     \M00_AXI_wdata_reg[4]_i_1 
-       (.I0(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_7),
         .I1(pixel_data[4]),
-        .I2(pixel_addr__0_carry_n_6),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[4]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1745,9 +1783,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h04)) 
     \M00_AXI_wdata_reg[5]_i_1 
-       (.I0(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_7),
         .I1(pixel_data[5]),
-        .I2(pixel_addr__0_carry_n_6),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[5]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1764,9 +1802,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h04)) 
     \M00_AXI_wdata_reg[6]_i_1 
-       (.I0(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_7),
         .I1(pixel_data[6]),
-        .I2(pixel_addr__0_carry_n_6),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[6]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1783,9 +1821,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   LUT3 #(
     .INIT(8'h04)) 
     \M00_AXI_wdata_reg[7]_i_1 
-       (.I0(pixel_addr__0_carry_n_7),
+       (.I0(pixel_addr__1_carry_n_7),
         .I1(pixel_data[7]),
-        .I2(pixel_addr__0_carry_n_6),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[7]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1803,8 +1841,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .INIT(8'h08)) 
     \M00_AXI_wdata_reg[8]_i_1 
        (.I0(pixel_data[0]),
-        .I1(pixel_addr__0_carry_n_7),
-        .I2(pixel_addr__0_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[8]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1822,8 +1860,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .INIT(8'h08)) 
     \M00_AXI_wdata_reg[9]_i_1 
        (.I0(pixel_data[1]),
-        .I1(pixel_addr__0_carry_n_7),
-        .I2(pixel_addr__0_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wdata_reg[9]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFF1010FF10)) 
@@ -1954,8 +1992,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .INIT(8'h02)) 
     \M00_AXI_wstrb_reg[0]_i_1 
        (.I0(draw),
-        .I1(pixel_addr__0_carry_n_7),
-        .I2(pixel_addr__0_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wstrb_reg[0]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1973,8 +2011,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .INIT(8'h20)) 
     \M00_AXI_wstrb_reg[1]_i_1 
        (.I0(draw),
-        .I1(pixel_addr__0_carry_n_6),
-        .I2(pixel_addr__0_carry_n_7),
+        .I1(pixel_addr__1_carry_n_6),
+        .I2(pixel_addr__1_carry_n_7),
         .O(\M00_AXI_wstrb_reg[1]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -1992,8 +2030,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .INIT(8'h20)) 
     \M00_AXI_wstrb_reg[2]_i_1 
        (.I0(draw),
-        .I1(pixel_addr__0_carry_n_7),
-        .I2(pixel_addr__0_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wstrb_reg[2]_i_1_n_0 ));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
@@ -2011,8 +2049,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .INIT(8'h80)) 
     \M00_AXI_wstrb_reg[3]_i_1 
        (.I0(draw),
-        .I1(pixel_addr__0_carry_n_7),
-        .I2(pixel_addr__0_carry_n_6),
+        .I1(pixel_addr__1_carry_n_7),
+        .I2(pixel_addr__1_carry_n_6),
         .O(\M00_AXI_wstrb_reg[3]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'hF5C50F0F05C50C0C)) 
@@ -2381,465 +2419,579 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
        (.I0(height[0]),
         .I1(\M00_AXI_awlen[3]_i_6_n_0 ),
         .O(i__carry_i_4_n_0));
-  (* METHODOLOGY_DRC_VIOS = "{SYNTH-13 {cell *THIS*}}" *) 
-  DSP48E1 #(
-    .ACASCREG(0),
-    .ADREG(1),
-    .ALUMODEREG(0),
-    .AREG(0),
-    .AUTORESET_PATDET("NO_RESET"),
-    .A_INPUT("DIRECT"),
-    .BCASCREG(0),
-    .BREG(0),
-    .B_INPUT("DIRECT"),
-    .CARRYINREG(0),
-    .CARRYINSELREG(0),
-    .CREG(1),
-    .DREG(1),
-    .INMODEREG(0),
-    .MASK(48'h3FFFFFFFFFFF),
-    .MREG(0),
-    .OPMODEREG(0),
-    .PATTERN(48'h000000000000),
-    .PREG(0),
-    .SEL_MASK("MASK"),
-    .SEL_PATTERN("PATTERN"),
-    .USE_DPORT("FALSE"),
-    .USE_MULT("MULTIPLY"),
-    .USE_PATTERN_DETECT("NO_PATDET"),
-    .USE_SIMD("ONE48")) 
-    pixel_addr1
-       (.A({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,pixel_y}),
-        .ACIN({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .ACOUT(NLW_pixel_addr1_ACOUT_UNCONNECTED[29:0]),
-        .ALUMODE({1'b0,1'b0,1'b0,1'b0}),
-        .B({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b1,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .BCIN({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .BCOUT(NLW_pixel_addr1_BCOUT_UNCONNECTED[17:0]),
-        .C({1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1}),
-        .CARRYCASCIN(1'b0),
-        .CARRYCASCOUT(NLW_pixel_addr1_CARRYCASCOUT_UNCONNECTED),
-        .CARRYIN(1'b0),
-        .CARRYINSEL({1'b0,1'b0,1'b0}),
-        .CARRYOUT(NLW_pixel_addr1_CARRYOUT_UNCONNECTED[3:0]),
-        .CEA1(1'b0),
-        .CEA2(1'b0),
-        .CEAD(1'b0),
-        .CEALUMODE(1'b0),
-        .CEB1(1'b0),
-        .CEB2(1'b0),
-        .CEC(1'b0),
-        .CECARRYIN(1'b0),
-        .CECTRL(1'b0),
-        .CED(1'b0),
-        .CEINMODE(1'b0),
-        .CEM(1'b0),
-        .CEP(1'b0),
-        .CLK(1'b0),
-        .D({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .INMODE({1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .MULTSIGNIN(1'b0),
-        .MULTSIGNOUT(NLW_pixel_addr1_MULTSIGNOUT_UNCONNECTED),
-        .OPMODE({1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b1}),
-        .OVERFLOW(NLW_pixel_addr1_OVERFLOW_UNCONNECTED),
-        .P({NLW_pixel_addr1_P_UNCONNECTED[47:21],pixel_addr1_n_85,pixel_addr1_n_86,pixel_addr1_n_87,pixel_addr1_n_88,pixel_addr1_n_89,pixel_addr1_n_90,pixel_addr1_n_91,pixel_addr1_n_92,pixel_addr1_n_93,pixel_addr1_n_94,pixel_addr1_n_95,pixel_addr1_n_96,pixel_addr1_n_97,pixel_addr1_n_98,pixel_addr1_n_99,pixel_addr1_n_100,pixel_addr1_n_101,pixel_addr1_n_102,pixel_addr1_n_103,pixel_addr1_n_104,pixel_addr1_n_105}),
-        .PATTERNBDETECT(NLW_pixel_addr1_PATTERNBDETECT_UNCONNECTED),
-        .PATTERNDETECT(NLW_pixel_addr1_PATTERNDETECT_UNCONNECTED),
-        .PCIN({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .PCOUT(NLW_pixel_addr1_PCOUT_UNCONNECTED[47:0]),
-        .RSTA(1'b0),
-        .RSTALLCARRYIN(1'b0),
-        .RSTALUMODE(1'b0),
-        .RSTB(1'b0),
-        .RSTC(1'b0),
-        .RSTCTRL(1'b0),
-        .RSTD(1'b0),
-        .RSTINMODE(1'b0),
-        .RSTM(1'b0),
-        .RSTP(1'b0),
-        .UNDERFLOW(NLW_pixel_addr1_UNDERFLOW_UNCONNECTED));
-  CARRY4 pixel_addr__0_carry
+  CARRY4 pixel_addr__1_carry
        (.CI(1'b0),
-        .CO({pixel_addr__0_carry_n_0,pixel_addr__0_carry_n_1,pixel_addr__0_carry_n_2,pixel_addr__0_carry_n_3}),
+        .CO({pixel_addr__1_carry_n_0,pixel_addr__1_carry_n_1,pixel_addr__1_carry_n_2,pixel_addr__1_carry_n_3}),
         .CYINIT(1'b0),
-        .DI({pixel_addr__0_carry_i_1_n_0,pixel_addr__0_carry_i_2_n_0,pixel_addr__0_carry_i_3_n_0,1'b0}),
-        .O({pixel_addr__0_carry_n_4,pixel_addr__0_carry_n_5,pixel_addr__0_carry_n_6,pixel_addr__0_carry_n_7}),
-        .S({pixel_addr__0_carry_i_4_n_0,pixel_addr__0_carry_i_5_n_0,pixel_addr__0_carry_i_6_n_0,pixel_addr__0_carry_i_7_n_0}));
-  CARRY4 pixel_addr__0_carry__0
-       (.CI(pixel_addr__0_carry_n_0),
-        .CO({pixel_addr__0_carry__0_n_0,pixel_addr__0_carry__0_n_1,pixel_addr__0_carry__0_n_2,pixel_addr__0_carry__0_n_3}),
+        .DI(framebuffer_baseaddr[3:0]),
+        .O({pixel_addr__1_carry_n_4,pixel_addr__1_carry_n_5,pixel_addr__1_carry_n_6,pixel_addr__1_carry_n_7}),
+        .S({pixel_addr__1_carry_i_1_n_0,pixel_addr__1_carry_i_2_n_0,pixel_addr__1_carry_i_3_n_0,pixel_addr__1_carry_i_4_n_0}));
+  CARRY4 pixel_addr__1_carry__0
+       (.CI(pixel_addr__1_carry_n_0),
+        .CO({pixel_addr__1_carry__0_n_0,pixel_addr__1_carry__0_n_1,pixel_addr__1_carry__0_n_2,pixel_addr__1_carry__0_n_3}),
         .CYINIT(1'b0),
-        .DI({pixel_addr__0_carry__0_i_1_n_0,pixel_addr__0_carry__0_i_2_n_0,pixel_addr__0_carry__0_i_3_n_0,pixel_addr__0_carry__0_i_4_n_0}),
-        .O({pixel_addr__0_carry__0_n_4,pixel_addr__0_carry__0_n_5,pixel_addr__0_carry__0_n_6,pixel_addr__0_carry__0_n_7}),
-        .S({pixel_addr__0_carry__0_i_5_n_0,pixel_addr__0_carry__0_i_6_n_0,pixel_addr__0_carry__0_i_7_n_0,pixel_addr__0_carry__0_i_8_n_0}));
-  (* HLUTNM = "lutpair6" *) 
-  LUT3 #(
-    .INIT(8'hE8)) 
-    pixel_addr__0_carry__0_i_1
-       (.I0(pixel_addr1_n_99),
-        .I1(pixel_x[6]),
-        .I2(framebuffer_baseaddr[6]),
-        .O(pixel_addr__0_carry__0_i_1_n_0));
-  (* HLUTNM = "lutpair5" *) 
-  LUT3 #(
-    .INIT(8'hE8)) 
-    pixel_addr__0_carry__0_i_2
-       (.I0(pixel_addr1_n_100),
-        .I1(pixel_x[5]),
-        .I2(framebuffer_baseaddr[5]),
-        .O(pixel_addr__0_carry__0_i_2_n_0));
-  (* HLUTNM = "lutpair4" *) 
-  LUT3 #(
-    .INIT(8'hE8)) 
-    pixel_addr__0_carry__0_i_3
-       (.I0(pixel_addr1_n_101),
-        .I1(pixel_x[4]),
-        .I2(framebuffer_baseaddr[4]),
-        .O(pixel_addr__0_carry__0_i_3_n_0));
-  (* HLUTNM = "lutpair3" *) 
-  LUT3 #(
-    .INIT(8'hE8)) 
-    pixel_addr__0_carry__0_i_4
-       (.I0(pixel_addr1_n_102),
-        .I1(pixel_x[3]),
-        .I2(framebuffer_baseaddr[3]),
-        .O(pixel_addr__0_carry__0_i_4_n_0));
-  (* HLUTNM = "lutpair7" *) 
-  LUT4 #(
-    .INIT(16'h6996)) 
-    pixel_addr__0_carry__0_i_5
-       (.I0(pixel_addr1_n_98),
-        .I1(pixel_x[7]),
-        .I2(framebuffer_baseaddr[7]),
-        .I3(pixel_addr__0_carry__0_i_1_n_0),
-        .O(pixel_addr__0_carry__0_i_5_n_0));
-  (* HLUTNM = "lutpair6" *) 
-  LUT4 #(
-    .INIT(16'h6996)) 
-    pixel_addr__0_carry__0_i_6
-       (.I0(pixel_addr1_n_99),
-        .I1(pixel_x[6]),
-        .I2(framebuffer_baseaddr[6]),
-        .I3(pixel_addr__0_carry__0_i_2_n_0),
-        .O(pixel_addr__0_carry__0_i_6_n_0));
-  (* HLUTNM = "lutpair5" *) 
-  LUT4 #(
-    .INIT(16'h6996)) 
-    pixel_addr__0_carry__0_i_7
-       (.I0(pixel_addr1_n_100),
-        .I1(pixel_x[5]),
-        .I2(framebuffer_baseaddr[5]),
-        .I3(pixel_addr__0_carry__0_i_3_n_0),
-        .O(pixel_addr__0_carry__0_i_7_n_0));
-  (* HLUTNM = "lutpair4" *) 
-  LUT4 #(
-    .INIT(16'h6996)) 
-    pixel_addr__0_carry__0_i_8
-       (.I0(pixel_addr1_n_101),
-        .I1(pixel_x[4]),
-        .I2(framebuffer_baseaddr[4]),
-        .I3(pixel_addr__0_carry__0_i_4_n_0),
-        .O(pixel_addr__0_carry__0_i_8_n_0));
-  CARRY4 pixel_addr__0_carry__1
-       (.CI(pixel_addr__0_carry__0_n_0),
-        .CO({pixel_addr__0_carry__1_n_0,pixel_addr__0_carry__1_n_1,pixel_addr__0_carry__1_n_2,pixel_addr__0_carry__1_n_3}),
-        .CYINIT(1'b0),
-        .DI({pixel_addr__0_carry__1_i_1_n_0,pixel_addr__0_carry__1_i_2_n_0,pixel_addr__0_carry__1_i_3_n_0,pixel_addr__0_carry__1_i_4_n_0}),
-        .O({pixel_addr__0_carry__1_n_4,pixel_addr__0_carry__1_n_5,pixel_addr__0_carry__1_n_6,pixel_addr__0_carry__1_n_7}),
-        .S({pixel_addr__0_carry__1_i_5_n_0,pixel_addr__0_carry__1_i_6_n_0,pixel_addr__0_carry__1_i_7_n_0,pixel_addr__0_carry__1_i_8_n_0}));
-  LUT3 #(
-    .INIT(8'hE8)) 
-    pixel_addr__0_carry__1_i_1
-       (.I0(pixel_addr1_n_95),
-        .I1(pixel_x[10]),
-        .I2(framebuffer_baseaddr[10]),
-        .O(pixel_addr__0_carry__1_i_1_n_0));
-  (* HLUTNM = "lutpair9" *) 
-  LUT3 #(
-    .INIT(8'hE8)) 
-    pixel_addr__0_carry__1_i_2
-       (.I0(pixel_addr1_n_96),
-        .I1(pixel_x[9]),
-        .I2(framebuffer_baseaddr[9]),
-        .O(pixel_addr__0_carry__1_i_2_n_0));
-  (* HLUTNM = "lutpair8" *) 
-  LUT3 #(
-    .INIT(8'hE8)) 
-    pixel_addr__0_carry__1_i_3
-       (.I0(pixel_addr1_n_97),
-        .I1(pixel_x[8]),
-        .I2(framebuffer_baseaddr[8]),
-        .O(pixel_addr__0_carry__1_i_3_n_0));
-  (* HLUTNM = "lutpair7" *) 
-  LUT3 #(
-    .INIT(8'hE8)) 
-    pixel_addr__0_carry__1_i_4
-       (.I0(pixel_addr1_n_98),
-        .I1(pixel_x[7]),
-        .I2(framebuffer_baseaddr[7]),
-        .O(pixel_addr__0_carry__1_i_4_n_0));
-  LUT5 #(
-    .INIT(32'hE81717E8)) 
-    pixel_addr__0_carry__1_i_5
-       (.I0(framebuffer_baseaddr[10]),
-        .I1(pixel_x[10]),
-        .I2(pixel_addr1_n_95),
-        .I3(pixel_addr1_n_94),
-        .I4(framebuffer_baseaddr[11]),
-        .O(pixel_addr__0_carry__1_i_5_n_0));
-  LUT4 #(
-    .INIT(16'h6996)) 
-    pixel_addr__0_carry__1_i_6
-       (.I0(pixel_addr__0_carry__1_i_2_n_0),
-        .I1(pixel_x[10]),
-        .I2(pixel_addr1_n_95),
-        .I3(framebuffer_baseaddr[10]),
-        .O(pixel_addr__0_carry__1_i_6_n_0));
-  (* HLUTNM = "lutpair9" *) 
-  LUT4 #(
-    .INIT(16'h6996)) 
-    pixel_addr__0_carry__1_i_7
-       (.I0(pixel_addr1_n_96),
-        .I1(pixel_x[9]),
-        .I2(framebuffer_baseaddr[9]),
-        .I3(pixel_addr__0_carry__1_i_3_n_0),
-        .O(pixel_addr__0_carry__1_i_7_n_0));
-  (* HLUTNM = "lutpair8" *) 
-  LUT4 #(
-    .INIT(16'h6996)) 
-    pixel_addr__0_carry__1_i_8
-       (.I0(pixel_addr1_n_97),
-        .I1(pixel_x[8]),
-        .I2(framebuffer_baseaddr[8]),
-        .I3(pixel_addr__0_carry__1_i_4_n_0),
-        .O(pixel_addr__0_carry__1_i_8_n_0));
-  CARRY4 pixel_addr__0_carry__2
-       (.CI(pixel_addr__0_carry__1_n_0),
-        .CO({pixel_addr__0_carry__2_n_0,pixel_addr__0_carry__2_n_1,pixel_addr__0_carry__2_n_2,pixel_addr__0_carry__2_n_3}),
-        .CYINIT(1'b0),
-        .DI({pixel_addr__0_carry__2_i_1_n_0,pixel_addr__0_carry__2_i_2_n_0,pixel_addr__0_carry__2_i_3_n_0,pixel_addr__0_carry__2_i_4_n_0}),
-        .O({pixel_addr__0_carry__2_n_4,pixel_addr__0_carry__2_n_5,pixel_addr__0_carry__2_n_6,pixel_addr__0_carry__2_n_7}),
-        .S({pixel_addr__0_carry__2_i_5_n_0,pixel_addr__0_carry__2_i_6_n_0,pixel_addr__0_carry__2_i_7_n_0,pixel_addr__0_carry__2_i_8_n_0}));
-  LUT2 #(
-    .INIT(4'h8)) 
-    pixel_addr__0_carry__2_i_1
-       (.I0(pixel_addr1_n_91),
-        .I1(framebuffer_baseaddr[14]),
-        .O(pixel_addr__0_carry__2_i_1_n_0));
-  LUT2 #(
-    .INIT(4'h8)) 
-    pixel_addr__0_carry__2_i_2
-       (.I0(pixel_addr1_n_92),
-        .I1(framebuffer_baseaddr[13]),
-        .O(pixel_addr__0_carry__2_i_2_n_0));
-  LUT2 #(
-    .INIT(4'h8)) 
-    pixel_addr__0_carry__2_i_3
-       (.I0(pixel_addr1_n_93),
-        .I1(framebuffer_baseaddr[12]),
-        .O(pixel_addr__0_carry__2_i_3_n_0));
-  LUT2 #(
-    .INIT(4'h8)) 
-    pixel_addr__0_carry__2_i_4
-       (.I0(pixel_addr1_n_94),
-        .I1(framebuffer_baseaddr[11]),
-        .O(pixel_addr__0_carry__2_i_4_n_0));
-  LUT4 #(
-    .INIT(16'h8778)) 
-    pixel_addr__0_carry__2_i_5
-       (.I0(framebuffer_baseaddr[14]),
-        .I1(pixel_addr1_n_91),
-        .I2(pixel_addr1_n_90),
-        .I3(framebuffer_baseaddr[15]),
-        .O(pixel_addr__0_carry__2_i_5_n_0));
-  LUT4 #(
-    .INIT(16'h8778)) 
-    pixel_addr__0_carry__2_i_6
-       (.I0(framebuffer_baseaddr[13]),
-        .I1(pixel_addr1_n_92),
-        .I2(pixel_addr1_n_91),
-        .I3(framebuffer_baseaddr[14]),
-        .O(pixel_addr__0_carry__2_i_6_n_0));
-  LUT4 #(
-    .INIT(16'h8778)) 
-    pixel_addr__0_carry__2_i_7
-       (.I0(framebuffer_baseaddr[12]),
-        .I1(pixel_addr1_n_93),
-        .I2(pixel_addr1_n_92),
-        .I3(framebuffer_baseaddr[13]),
-        .O(pixel_addr__0_carry__2_i_7_n_0));
-  LUT4 #(
-    .INIT(16'h8778)) 
-    pixel_addr__0_carry__2_i_8
-       (.I0(framebuffer_baseaddr[11]),
-        .I1(pixel_addr1_n_94),
-        .I2(pixel_addr1_n_93),
-        .I3(framebuffer_baseaddr[12]),
-        .O(pixel_addr__0_carry__2_i_8_n_0));
-  CARRY4 pixel_addr__0_carry__3
-       (.CI(pixel_addr__0_carry__2_n_0),
-        .CO({pixel_addr__0_carry__3_n_0,pixel_addr__0_carry__3_n_1,pixel_addr__0_carry__3_n_2,pixel_addr__0_carry__3_n_3}),
-        .CYINIT(1'b0),
-        .DI({pixel_addr__0_carry__3_i_1_n_0,pixel_addr__0_carry__3_i_2_n_0,pixel_addr__0_carry__3_i_3_n_0,pixel_addr__0_carry__3_i_4_n_0}),
-        .O({pixel_addr__0_carry__3_n_4,pixel_addr__0_carry__3_n_5,pixel_addr__0_carry__3_n_6,pixel_addr__0_carry__3_n_7}),
-        .S({pixel_addr__0_carry__3_i_5_n_0,pixel_addr__0_carry__3_i_6_n_0,pixel_addr__0_carry__3_i_7_n_0,pixel_addr__0_carry__3_i_8_n_0}));
-  LUT2 #(
-    .INIT(4'h8)) 
-    pixel_addr__0_carry__3_i_1
-       (.I0(pixel_addr1_n_87),
-        .I1(framebuffer_baseaddr[18]),
-        .O(pixel_addr__0_carry__3_i_1_n_0));
-  LUT2 #(
-    .INIT(4'h8)) 
-    pixel_addr__0_carry__3_i_2
-       (.I0(pixel_addr1_n_88),
-        .I1(framebuffer_baseaddr[17]),
-        .O(pixel_addr__0_carry__3_i_2_n_0));
-  LUT2 #(
-    .INIT(4'h8)) 
-    pixel_addr__0_carry__3_i_3
-       (.I0(pixel_addr1_n_89),
-        .I1(framebuffer_baseaddr[16]),
-        .O(pixel_addr__0_carry__3_i_3_n_0));
-  LUT2 #(
-    .INIT(4'h8)) 
-    pixel_addr__0_carry__3_i_4
-       (.I0(pixel_addr1_n_90),
-        .I1(framebuffer_baseaddr[15]),
-        .O(pixel_addr__0_carry__3_i_4_n_0));
-  LUT4 #(
-    .INIT(16'h8778)) 
-    pixel_addr__0_carry__3_i_5
-       (.I0(framebuffer_baseaddr[18]),
-        .I1(pixel_addr1_n_87),
-        .I2(pixel_addr1_n_86),
-        .I3(framebuffer_baseaddr[19]),
-        .O(pixel_addr__0_carry__3_i_5_n_0));
-  LUT4 #(
-    .INIT(16'h8778)) 
-    pixel_addr__0_carry__3_i_6
-       (.I0(framebuffer_baseaddr[17]),
-        .I1(pixel_addr1_n_88),
-        .I2(pixel_addr1_n_87),
-        .I3(framebuffer_baseaddr[18]),
-        .O(pixel_addr__0_carry__3_i_6_n_0));
-  LUT4 #(
-    .INIT(16'h8778)) 
-    pixel_addr__0_carry__3_i_7
-       (.I0(framebuffer_baseaddr[16]),
-        .I1(pixel_addr1_n_89),
-        .I2(pixel_addr1_n_88),
-        .I3(framebuffer_baseaddr[17]),
-        .O(pixel_addr__0_carry__3_i_7_n_0));
-  LUT4 #(
-    .INIT(16'h8778)) 
-    pixel_addr__0_carry__3_i_8
-       (.I0(framebuffer_baseaddr[15]),
-        .I1(pixel_addr1_n_90),
-        .I2(pixel_addr1_n_89),
-        .I3(framebuffer_baseaddr[16]),
-        .O(pixel_addr__0_carry__3_i_8_n_0));
-  CARRY4 pixel_addr__0_carry__4
-       (.CI(pixel_addr__0_carry__3_n_0),
-        .CO({pixel_addr__0_carry__4_n_0,pixel_addr__0_carry__4_n_1,pixel_addr__0_carry__4_n_2,pixel_addr__0_carry__4_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,framebuffer_baseaddr[21],pixel_addr__0_carry__4_i_1_n_0}),
-        .O({pixel_addr__0_carry__4_n_4,pixel_addr__0_carry__4_n_5,pixel_addr__0_carry__4_n_6,pixel_addr__0_carry__4_n_7}),
-        .S({framebuffer_baseaddr[23:22],pixel_addr__0_carry__4_i_2_n_0,pixel_addr__0_carry__4_i_3_n_0}));
-  LUT2 #(
-    .INIT(4'h8)) 
-    pixel_addr__0_carry__4_i_1
-       (.I0(pixel_addr1_n_86),
-        .I1(framebuffer_baseaddr[19]),
-        .O(pixel_addr__0_carry__4_i_1_n_0));
-  LUT3 #(
-    .INIT(8'h78)) 
-    pixel_addr__0_carry__4_i_2
-       (.I0(framebuffer_baseaddr[20]),
-        .I1(pixel_addr1_n_85),
-        .I2(framebuffer_baseaddr[21]),
-        .O(pixel_addr__0_carry__4_i_2_n_0));
-  LUT4 #(
-    .INIT(16'h8778)) 
-    pixel_addr__0_carry__4_i_3
-       (.I0(framebuffer_baseaddr[19]),
-        .I1(pixel_addr1_n_86),
-        .I2(pixel_addr1_n_85),
-        .I3(framebuffer_baseaddr[20]),
-        .O(pixel_addr__0_carry__4_i_3_n_0));
-  CARRY4 pixel_addr__0_carry__5
-       (.CI(pixel_addr__0_carry__4_n_0),
-        .CO({pixel_addr__0_carry__5_n_0,pixel_addr__0_carry__5_n_1,pixel_addr__0_carry__5_n_2,pixel_addr__0_carry__5_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({pixel_addr__0_carry__5_n_4,pixel_addr__0_carry__5_n_5,pixel_addr__0_carry__5_n_6,pixel_addr__0_carry__5_n_7}),
-        .S(framebuffer_baseaddr[27:24]));
-  CARRY4 pixel_addr__0_carry__6
-       (.CI(pixel_addr__0_carry__5_n_0),
-        .CO({NLW_pixel_addr__0_carry__6_CO_UNCONNECTED[3],pixel_addr__0_carry__6_n_1,pixel_addr__0_carry__6_n_2,pixel_addr__0_carry__6_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({pixel_addr__0_carry__6_n_4,pixel_addr__0_carry__6_n_5,pixel_addr__0_carry__6_n_6,pixel_addr__0_carry__6_n_7}),
-        .S(framebuffer_baseaddr[31:28]));
-  (* HLUTNM = "lutpair2" *) 
-  LUT3 #(
-    .INIT(8'hE8)) 
-    pixel_addr__0_carry_i_1
-       (.I0(pixel_addr1_n_103),
-        .I1(pixel_x[2]),
-        .I2(framebuffer_baseaddr[2]),
-        .O(pixel_addr__0_carry_i_1_n_0));
-  (* HLUTNM = "lutpair1" *) 
-  LUT3 #(
-    .INIT(8'hE8)) 
-    pixel_addr__0_carry_i_2
-       (.I0(pixel_addr1_n_104),
-        .I1(pixel_x[1]),
-        .I2(framebuffer_baseaddr[1]),
-        .O(pixel_addr__0_carry_i_2_n_0));
+        .DI({pixel_addr__1_carry__0_i_1_n_0,pixel_addr__1_carry__0_i_2_n_0,framebuffer_baseaddr[5:4]}),
+        .O({pixel_addr__1_carry__0_n_4,pixel_addr__1_carry__0_n_5,pixel_addr__1_carry__0_n_6,pixel_addr__1_carry__0_n_7}),
+        .S({pixel_addr__1_carry__0_i_3_n_0,pixel_addr__1_carry__0_i_4_n_0,pixel_addr__1_carry__0_i_5_n_0,pixel_addr__1_carry__0_i_6_n_0}));
   (* HLUTNM = "lutpair0" *) 
   LUT3 #(
     .INIT(8'hE8)) 
-    pixel_addr__0_carry_i_3
-       (.I0(pixel_addr1_n_105),
-        .I1(pixel_x[0]),
-        .I2(framebuffer_baseaddr[0]),
-        .O(pixel_addr__0_carry_i_3_n_0));
-  (* HLUTNM = "lutpair3" *) 
-  LUT4 #(
-    .INIT(16'h6996)) 
-    pixel_addr__0_carry_i_4
-       (.I0(pixel_addr1_n_102),
-        .I1(pixel_x[3]),
-        .I2(framebuffer_baseaddr[3]),
-        .I3(pixel_addr__0_carry_i_1_n_0),
-        .O(pixel_addr__0_carry_i_4_n_0));
-  (* HLUTNM = "lutpair2" *) 
-  LUT4 #(
-    .INIT(16'h6996)) 
-    pixel_addr__0_carry_i_5
-       (.I0(pixel_addr1_n_103),
-        .I1(pixel_x[2]),
-        .I2(framebuffer_baseaddr[2]),
-        .I3(pixel_addr__0_carry_i_2_n_0),
-        .O(pixel_addr__0_carry_i_5_n_0));
-  (* HLUTNM = "lutpair1" *) 
-  LUT4 #(
-    .INIT(16'h6996)) 
-    pixel_addr__0_carry_i_6
-       (.I0(pixel_addr1_n_104),
-        .I1(pixel_x[1]),
-        .I2(framebuffer_baseaddr[1]),
-        .I3(pixel_addr__0_carry_i_3_n_0),
-        .O(pixel_addr__0_carry_i_6_n_0));
-  (* HLUTNM = "lutpair0" *) 
+    pixel_addr__1_carry__0_i_1
+       (.I0(pixel_y[1]),
+        .I1(pixel_x[6]),
+        .I2(framebuffer_baseaddr[6]),
+        .O(pixel_addr__1_carry__0_i_1_n_0));
   LUT3 #(
     .INIT(8'h96)) 
-    pixel_addr__0_carry_i_7
-       (.I0(pixel_addr1_n_105),
+    pixel_addr__1_carry__0_i_2
+       (.I0(framebuffer_baseaddr[6]),
+        .I1(pixel_y[1]),
+        .I2(pixel_x[6]),
+        .O(pixel_addr__1_carry__0_i_2_n_0));
+  (* HLUTNM = "lutpair1" *) 
+  LUT4 #(
+    .INIT(16'h6996)) 
+    pixel_addr__1_carry__0_i_3
+       (.I0(pixel_y[2]),
+        .I1(pixel_x[7]),
+        .I2(framebuffer_baseaddr[7]),
+        .I3(pixel_addr__1_carry__0_i_1_n_0),
+        .O(pixel_addr__1_carry__0_i_3_n_0));
+  (* HLUTNM = "lutpair0" *) 
+  LUT5 #(
+    .INIT(32'h69969696)) 
+    pixel_addr__1_carry__0_i_4
+       (.I0(pixel_y[1]),
+        .I1(pixel_x[6]),
+        .I2(framebuffer_baseaddr[6]),
+        .I3(pixel_x[5]),
+        .I4(pixel_y[0]),
+        .O(pixel_addr__1_carry__0_i_4_n_0));
+  LUT3 #(
+    .INIT(8'h96)) 
+    pixel_addr__1_carry__0_i_5
+       (.I0(pixel_y[0]),
+        .I1(pixel_x[5]),
+        .I2(framebuffer_baseaddr[5]),
+        .O(pixel_addr__1_carry__0_i_5_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    pixel_addr__1_carry__0_i_6
+       (.I0(framebuffer_baseaddr[4]),
+        .I1(pixel_x[4]),
+        .O(pixel_addr__1_carry__0_i_6_n_0));
+  CARRY4 pixel_addr__1_carry__1
+       (.CI(pixel_addr__1_carry__0_n_0),
+        .CO({pixel_addr__1_carry__1_n_0,pixel_addr__1_carry__1_n_1,pixel_addr__1_carry__1_n_2,pixel_addr__1_carry__1_n_3}),
+        .CYINIT(1'b0),
+        .DI({pixel_addr__1_carry__1_i_1_n_0,pixel_addr__1_carry__1_i_2_n_0,pixel_addr__1_carry__1_i_3_n_0,pixel_addr__1_carry__1_i_4_n_0}),
+        .O({pixel_addr__1_carry__1_n_4,pixel_addr__1_carry__1_n_5,pixel_addr__1_carry__1_n_6,pixel_addr__1_carry__1_n_7}),
+        .S({pixel_addr__1_carry__1_i_5_n_0,pixel_addr__1_carry__1_i_6_n_0,pixel_addr__1_carry__1_i_7_n_0,pixel_addr__1_carry__1_i_8_n_0}));
+  LUT3 #(
+    .INIT(8'hE8)) 
+    pixel_addr__1_carry__1_i_1
+       (.I0(pixel_y[5]),
+        .I1(pixel_x[10]),
+        .I2(framebuffer_baseaddr[10]),
+        .O(pixel_addr__1_carry__1_i_1_n_0));
+  (* HLUTNM = "lutpair3" *) 
+  LUT3 #(
+    .INIT(8'hE8)) 
+    pixel_addr__1_carry__1_i_2
+       (.I0(pixel_y[4]),
+        .I1(pixel_x[9]),
+        .I2(framebuffer_baseaddr[9]),
+        .O(pixel_addr__1_carry__1_i_2_n_0));
+  (* HLUTNM = "lutpair2" *) 
+  LUT3 #(
+    .INIT(8'hE8)) 
+    pixel_addr__1_carry__1_i_3
+       (.I0(pixel_y[3]),
+        .I1(pixel_x[8]),
+        .I2(framebuffer_baseaddr[8]),
+        .O(pixel_addr__1_carry__1_i_3_n_0));
+  (* HLUTNM = "lutpair1" *) 
+  LUT3 #(
+    .INIT(8'hE8)) 
+    pixel_addr__1_carry__1_i_4
+       (.I0(pixel_y[2]),
+        .I1(pixel_x[7]),
+        .I2(framebuffer_baseaddr[7]),
+        .O(pixel_addr__1_carry__1_i_4_n_0));
+  LUT5 #(
+    .INIT(32'hE81717E8)) 
+    pixel_addr__1_carry__1_i_5
+       (.I0(framebuffer_baseaddr[10]),
+        .I1(pixel_x[10]),
+        .I2(pixel_y[5]),
+        .I3(pixel_y[6]),
+        .I4(framebuffer_baseaddr[11]),
+        .O(pixel_addr__1_carry__1_i_5_n_0));
+  LUT4 #(
+    .INIT(16'h6996)) 
+    pixel_addr__1_carry__1_i_6
+       (.I0(pixel_addr__1_carry__1_i_2_n_0),
+        .I1(pixel_x[10]),
+        .I2(pixel_y[5]),
+        .I3(framebuffer_baseaddr[10]),
+        .O(pixel_addr__1_carry__1_i_6_n_0));
+  (* HLUTNM = "lutpair3" *) 
+  LUT4 #(
+    .INIT(16'h6996)) 
+    pixel_addr__1_carry__1_i_7
+       (.I0(pixel_y[4]),
+        .I1(pixel_x[9]),
+        .I2(framebuffer_baseaddr[9]),
+        .I3(pixel_addr__1_carry__1_i_3_n_0),
+        .O(pixel_addr__1_carry__1_i_7_n_0));
+  (* HLUTNM = "lutpair2" *) 
+  LUT4 #(
+    .INIT(16'h6996)) 
+    pixel_addr__1_carry__1_i_8
+       (.I0(pixel_y[3]),
+        .I1(pixel_x[8]),
+        .I2(framebuffer_baseaddr[8]),
+        .I3(pixel_addr__1_carry__1_i_4_n_0),
+        .O(pixel_addr__1_carry__1_i_8_n_0));
+  CARRY4 pixel_addr__1_carry__2
+       (.CI(pixel_addr__1_carry__1_n_0),
+        .CO({pixel_addr__1_carry__2_n_0,pixel_addr__1_carry__2_n_1,pixel_addr__1_carry__2_n_2,pixel_addr__1_carry__2_n_3}),
+        .CYINIT(1'b0),
+        .DI({pixel_addr__1_carry__2_i_1_n_0,pixel_addr__1_carry__2_i_2_n_0,pixel_addr__1_carry__2_i_3_n_0,pixel_addr__1_carry__2_i_4_n_0}),
+        .O({pixel_addr__1_carry__2_n_4,pixel_addr__1_carry__2_n_5,pixel_addr__1_carry__2_n_6,pixel_addr__1_carry__2_n_7}),
+        .S({pixel_addr__1_carry__2_i_5_n_0,pixel_addr__1_carry__2_i_6_n_0,pixel_addr__1_carry__2_i_7_n_0,pixel_addr__1_carry__2_i_8_n_0}));
+  LUT2 #(
+    .INIT(4'h8)) 
+    pixel_addr__1_carry__2_i_1
+       (.I0(pixel_y[9]),
+        .I1(framebuffer_baseaddr[14]),
+        .O(pixel_addr__1_carry__2_i_1_n_0));
+  LUT2 #(
+    .INIT(4'h8)) 
+    pixel_addr__1_carry__2_i_2
+       (.I0(pixel_y[8]),
+        .I1(framebuffer_baseaddr[13]),
+        .O(pixel_addr__1_carry__2_i_2_n_0));
+  LUT2 #(
+    .INIT(4'h8)) 
+    pixel_addr__1_carry__2_i_3
+       (.I0(pixel_y[7]),
+        .I1(framebuffer_baseaddr[12]),
+        .O(pixel_addr__1_carry__2_i_3_n_0));
+  LUT2 #(
+    .INIT(4'h8)) 
+    pixel_addr__1_carry__2_i_4
+       (.I0(pixel_y[6]),
+        .I1(framebuffer_baseaddr[11]),
+        .O(pixel_addr__1_carry__2_i_4_n_0));
+  LUT4 #(
+    .INIT(16'h8778)) 
+    pixel_addr__1_carry__2_i_5
+       (.I0(framebuffer_baseaddr[14]),
+        .I1(pixel_y[9]),
+        .I2(pixel_y[10]),
+        .I3(framebuffer_baseaddr[15]),
+        .O(pixel_addr__1_carry__2_i_5_n_0));
+  LUT4 #(
+    .INIT(16'h8778)) 
+    pixel_addr__1_carry__2_i_6
+       (.I0(framebuffer_baseaddr[13]),
+        .I1(pixel_y[8]),
+        .I2(pixel_y[9]),
+        .I3(framebuffer_baseaddr[14]),
+        .O(pixel_addr__1_carry__2_i_6_n_0));
+  LUT4 #(
+    .INIT(16'h8778)) 
+    pixel_addr__1_carry__2_i_7
+       (.I0(framebuffer_baseaddr[12]),
+        .I1(pixel_y[7]),
+        .I2(pixel_y[8]),
+        .I3(framebuffer_baseaddr[13]),
+        .O(pixel_addr__1_carry__2_i_7_n_0));
+  LUT4 #(
+    .INIT(16'h8778)) 
+    pixel_addr__1_carry__2_i_8
+       (.I0(framebuffer_baseaddr[11]),
+        .I1(pixel_y[6]),
+        .I2(pixel_y[7]),
+        .I3(framebuffer_baseaddr[12]),
+        .O(pixel_addr__1_carry__2_i_8_n_0));
+  CARRY4 pixel_addr__1_carry__3
+       (.CI(pixel_addr__1_carry__2_n_0),
+        .CO({pixel_addr__1_carry__3_n_0,pixel_addr__1_carry__3_n_1,pixel_addr__1_carry__3_n_2,pixel_addr__1_carry__3_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,framebuffer_baseaddr[16]}),
+        .O({pixel_addr__1_carry__3_n_4,pixel_addr__1_carry__3_n_5,pixel_addr__1_carry__3_n_6,pixel_addr__1_carry__3_n_7}),
+        .S({framebuffer_baseaddr[19:17],pixel_addr__1_carry__3_i_1_n_0}));
+  LUT3 #(
+    .INIT(8'h78)) 
+    pixel_addr__1_carry__3_i_1
+       (.I0(framebuffer_baseaddr[15]),
+        .I1(pixel_y[10]),
+        .I2(framebuffer_baseaddr[16]),
+        .O(pixel_addr__1_carry__3_i_1_n_0));
+  CARRY4 pixel_addr__1_carry__4
+       (.CI(pixel_addr__1_carry__3_n_0),
+        .CO({pixel_addr__1_carry__4_n_0,pixel_addr__1_carry__4_n_1,pixel_addr__1_carry__4_n_2,pixel_addr__1_carry__4_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({pixel_addr__1_carry__4_n_4,pixel_addr__1_carry__4_n_5,pixel_addr__1_carry__4_n_6,pixel_addr__1_carry__4_n_7}),
+        .S(framebuffer_baseaddr[23:20]));
+  CARRY4 pixel_addr__1_carry__5
+       (.CI(pixel_addr__1_carry__4_n_0),
+        .CO({pixel_addr__1_carry__5_n_0,pixel_addr__1_carry__5_n_1,pixel_addr__1_carry__5_n_2,pixel_addr__1_carry__5_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({pixel_addr__1_carry__5_n_4,pixel_addr__1_carry__5_n_5,pixel_addr__1_carry__5_n_6,pixel_addr__1_carry__5_n_7}),
+        .S(framebuffer_baseaddr[27:24]));
+  CARRY4 pixel_addr__1_carry__6
+       (.CI(pixel_addr__1_carry__5_n_0),
+        .CO({NLW_pixel_addr__1_carry__6_CO_UNCONNECTED[3],pixel_addr__1_carry__6_n_1,pixel_addr__1_carry__6_n_2,pixel_addr__1_carry__6_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({pixel_addr__1_carry__6_n_4,pixel_addr__1_carry__6_n_5,pixel_addr__1_carry__6_n_6,pixel_addr__1_carry__6_n_7}),
+        .S(framebuffer_baseaddr[31:28]));
+  LUT2 #(
+    .INIT(4'h6)) 
+    pixel_addr__1_carry_i_1
+       (.I0(framebuffer_baseaddr[3]),
+        .I1(pixel_x[3]),
+        .O(pixel_addr__1_carry_i_1_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    pixel_addr__1_carry_i_2
+       (.I0(framebuffer_baseaddr[2]),
+        .I1(pixel_x[2]),
+        .O(pixel_addr__1_carry_i_2_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    pixel_addr__1_carry_i_3
+       (.I0(framebuffer_baseaddr[1]),
+        .I1(pixel_x[1]),
+        .O(pixel_addr__1_carry_i_3_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    pixel_addr__1_carry_i_4
+       (.I0(framebuffer_baseaddr[0]),
         .I1(pixel_x[0]),
-        .I2(framebuffer_baseaddr[0]),
-        .O(pixel_addr__0_carry_i_7_n_0));
+        .O(pixel_addr__1_carry_i_4_n_0));
+  CARRY4 pixel_addr__82_carry
+       (.CI(1'b0),
+        .CO({pixel_addr__82_carry_n_0,pixel_addr__82_carry_n_1,pixel_addr__82_carry_n_2,pixel_addr__82_carry_n_3}),
+        .CYINIT(1'b0),
+        .DI({pixel_addr__82_carry_i_1_n_0,pixel_addr__82_carry_i_2_n_0,pixel_addr__82_carry_i_3_n_0,1'b0}),
+        .O({pixel_addr__82_carry_n_4,pixel_addr__82_carry_n_5,pixel_addr__82_carry_n_6,pixel_addr__82_carry_n_7}),
+        .S({pixel_addr__82_carry_i_4_n_0,pixel_addr__82_carry_i_5_n_0,pixel_addr__82_carry_i_6_n_0,pixel_addr__82_carry_i_7_n_0}));
+  CARRY4 pixel_addr__82_carry__0
+       (.CI(pixel_addr__82_carry_n_0),
+        .CO({pixel_addr__82_carry__0_n_0,pixel_addr__82_carry__0_n_1,pixel_addr__82_carry__0_n_2,pixel_addr__82_carry__0_n_3}),
+        .CYINIT(1'b0),
+        .DI({pixel_addr__82_carry__0_i_1_n_0,pixel_addr__82_carry__0_i_2_n_0,pixel_addr__82_carry__0_i_3_n_0,pixel_addr__82_carry__0_i_4_n_0}),
+        .O({pixel_addr__82_carry__0_n_4,pixel_addr__82_carry__0_n_5,pixel_addr__82_carry__0_n_6,pixel_addr__82_carry__0_n_7}),
+        .S({pixel_addr__82_carry__0_i_5_n_0,pixel_addr__82_carry__0_i_6_n_0,pixel_addr__82_carry__0_i_7_n_0,pixel_addr__82_carry__0_i_8_n_0}));
+  LUT3 #(
+    .INIT(8'hD4)) 
+    pixel_addr__82_carry__0_i_1
+       (.I0(pixel_y[6]),
+        .I1(pixel_addr__1_carry__2_n_5),
+        .I2(pixel_y[4]),
+        .O(pixel_addr__82_carry__0_i_1_n_0));
+  LUT3 #(
+    .INIT(8'hD4)) 
+    pixel_addr__82_carry__0_i_2
+       (.I0(pixel_y[5]),
+        .I1(pixel_addr__1_carry__2_n_6),
+        .I2(pixel_y[3]),
+        .O(pixel_addr__82_carry__0_i_2_n_0));
+  LUT3 #(
+    .INIT(8'hD4)) 
+    pixel_addr__82_carry__0_i_3
+       (.I0(pixel_y[4]),
+        .I1(pixel_addr__1_carry__2_n_7),
+        .I2(pixel_y[2]),
+        .O(pixel_addr__82_carry__0_i_3_n_0));
+  LUT3 #(
+    .INIT(8'hD4)) 
+    pixel_addr__82_carry__0_i_4
+       (.I0(pixel_y[3]),
+        .I1(pixel_addr__1_carry__1_n_4),
+        .I2(pixel_y[1]),
+        .O(pixel_addr__82_carry__0_i_4_n_0));
+  LUT6 #(
+    .INIT(64'h8E71718E718E8E71)) 
+    pixel_addr__82_carry__0_i_5
+       (.I0(pixel_y[4]),
+        .I1(pixel_addr__1_carry__2_n_5),
+        .I2(pixel_y[6]),
+        .I3(pixel_y[7]),
+        .I4(pixel_addr__1_carry__2_n_4),
+        .I5(pixel_y[5]),
+        .O(pixel_addr__82_carry__0_i_5_n_0));
+  LUT6 #(
+    .INIT(64'h8E71718E718E8E71)) 
+    pixel_addr__82_carry__0_i_6
+       (.I0(pixel_y[3]),
+        .I1(pixel_addr__1_carry__2_n_6),
+        .I2(pixel_y[5]),
+        .I3(pixel_y[6]),
+        .I4(pixel_addr__1_carry__2_n_5),
+        .I5(pixel_y[4]),
+        .O(pixel_addr__82_carry__0_i_6_n_0));
+  LUT6 #(
+    .INIT(64'h8E71718E718E8E71)) 
+    pixel_addr__82_carry__0_i_7
+       (.I0(pixel_y[2]),
+        .I1(pixel_addr__1_carry__2_n_7),
+        .I2(pixel_y[4]),
+        .I3(pixel_y[5]),
+        .I4(pixel_addr__1_carry__2_n_6),
+        .I5(pixel_y[3]),
+        .O(pixel_addr__82_carry__0_i_7_n_0));
+  LUT6 #(
+    .INIT(64'h8E71718E718E8E71)) 
+    pixel_addr__82_carry__0_i_8
+       (.I0(pixel_y[1]),
+        .I1(pixel_addr__1_carry__1_n_4),
+        .I2(pixel_y[3]),
+        .I3(pixel_y[4]),
+        .I4(pixel_addr__1_carry__2_n_7),
+        .I5(pixel_y[2]),
+        .O(pixel_addr__82_carry__0_i_8_n_0));
+  CARRY4 pixel_addr__82_carry__1
+       (.CI(pixel_addr__82_carry__0_n_0),
+        .CO({pixel_addr__82_carry__1_n_0,pixel_addr__82_carry__1_n_1,pixel_addr__82_carry__1_n_2,pixel_addr__82_carry__1_n_3}),
+        .CYINIT(1'b0),
+        .DI({pixel_addr__82_carry__1_i_1_n_0,pixel_addr__82_carry__1_i_2_n_0,pixel_addr__82_carry__1_i_3_n_0,pixel_addr__82_carry__1_i_4_n_0}),
+        .O({pixel_addr__82_carry__1_n_4,pixel_addr__82_carry__1_n_5,pixel_addr__82_carry__1_n_6,pixel_addr__82_carry__1_n_7}),
+        .S({pixel_addr__82_carry__1_i_5_n_0,pixel_addr__82_carry__1_i_6_n_0,pixel_addr__82_carry__1_i_7_n_0,pixel_addr__82_carry__1_i_8_n_0}));
+  LUT3 #(
+    .INIT(8'hD4)) 
+    pixel_addr__82_carry__1_i_1
+       (.I0(pixel_y[10]),
+        .I1(pixel_addr__1_carry__3_n_5),
+        .I2(pixel_y[8]),
+        .O(pixel_addr__82_carry__1_i_1_n_0));
+  LUT3 #(
+    .INIT(8'hD4)) 
+    pixel_addr__82_carry__1_i_2
+       (.I0(pixel_y[9]),
+        .I1(pixel_addr__1_carry__3_n_6),
+        .I2(pixel_y[7]),
+        .O(pixel_addr__82_carry__1_i_2_n_0));
+  LUT3 #(
+    .INIT(8'hD4)) 
+    pixel_addr__82_carry__1_i_3
+       (.I0(pixel_y[8]),
+        .I1(pixel_addr__1_carry__3_n_7),
+        .I2(pixel_y[6]),
+        .O(pixel_addr__82_carry__1_i_3_n_0));
+  LUT3 #(
+    .INIT(8'hD4)) 
+    pixel_addr__82_carry__1_i_4
+       (.I0(pixel_y[7]),
+        .I1(pixel_addr__1_carry__2_n_4),
+        .I2(pixel_y[5]),
+        .O(pixel_addr__82_carry__1_i_4_n_0));
+  LUT5 #(
+    .INIT(32'h718E8E71)) 
+    pixel_addr__82_carry__1_i_5
+       (.I0(pixel_y[8]),
+        .I1(pixel_addr__1_carry__3_n_5),
+        .I2(pixel_y[10]),
+        .I3(pixel_addr__1_carry__3_n_4),
+        .I4(pixel_y[9]),
+        .O(pixel_addr__82_carry__1_i_5_n_0));
+  LUT6 #(
+    .INIT(64'h8E71718E718E8E71)) 
+    pixel_addr__82_carry__1_i_6
+       (.I0(pixel_y[7]),
+        .I1(pixel_addr__1_carry__3_n_6),
+        .I2(pixel_y[9]),
+        .I3(pixel_y[10]),
+        .I4(pixel_addr__1_carry__3_n_5),
+        .I5(pixel_y[8]),
+        .O(pixel_addr__82_carry__1_i_6_n_0));
+  LUT6 #(
+    .INIT(64'h8E71718E718E8E71)) 
+    pixel_addr__82_carry__1_i_7
+       (.I0(pixel_y[6]),
+        .I1(pixel_addr__1_carry__3_n_7),
+        .I2(pixel_y[8]),
+        .I3(pixel_y[9]),
+        .I4(pixel_addr__1_carry__3_n_6),
+        .I5(pixel_y[7]),
+        .O(pixel_addr__82_carry__1_i_7_n_0));
+  LUT6 #(
+    .INIT(64'h8E71718E718E8E71)) 
+    pixel_addr__82_carry__1_i_8
+       (.I0(pixel_y[5]),
+        .I1(pixel_addr__1_carry__2_n_4),
+        .I2(pixel_y[7]),
+        .I3(pixel_y[8]),
+        .I4(pixel_addr__1_carry__3_n_7),
+        .I5(pixel_y[6]),
+        .O(pixel_addr__82_carry__1_i_8_n_0));
+  CARRY4 pixel_addr__82_carry__2
+       (.CI(pixel_addr__82_carry__1_n_0),
+        .CO({pixel_addr__82_carry__2_n_0,pixel_addr__82_carry__2_n_1,pixel_addr__82_carry__2_n_2,pixel_addr__82_carry__2_n_3}),
+        .CYINIT(1'b0),
+        .DI({pixel_addr__1_carry__4_n_5,pixel_addr__1_carry__4_n_6,pixel_addr__82_carry__2_i_1_n_0,pixel_addr__82_carry__2_i_2_n_0}),
+        .O({pixel_addr__82_carry__2_n_4,pixel_addr__82_carry__2_n_5,pixel_addr__82_carry__2_n_6,pixel_addr__82_carry__2_n_7}),
+        .S({pixel_addr__82_carry__2_i_3_n_0,pixel_addr__82_carry__2_i_4_n_0,pixel_addr__82_carry__2_i_5_n_0,pixel_addr__82_carry__2_i_6_n_0}));
+  LUT2 #(
+    .INIT(4'hE)) 
+    pixel_addr__82_carry__2_i_1
+       (.I0(pixel_y[10]),
+        .I1(pixel_addr__1_carry__4_n_7),
+        .O(pixel_addr__82_carry__2_i_1_n_0));
+  LUT2 #(
+    .INIT(4'hE)) 
+    pixel_addr__82_carry__2_i_2
+       (.I0(pixel_y[9]),
+        .I1(pixel_addr__1_carry__3_n_4),
+        .O(pixel_addr__82_carry__2_i_2_n_0));
+  LUT2 #(
+    .INIT(4'h9)) 
+    pixel_addr__82_carry__2_i_3
+       (.I0(pixel_addr__1_carry__4_n_5),
+        .I1(pixel_addr__1_carry__4_n_4),
+        .O(pixel_addr__82_carry__2_i_3_n_0));
+  LUT2 #(
+    .INIT(4'h9)) 
+    pixel_addr__82_carry__2_i_4
+       (.I0(pixel_addr__1_carry__4_n_6),
+        .I1(pixel_addr__1_carry__4_n_5),
+        .O(pixel_addr__82_carry__2_i_4_n_0));
+  LUT3 #(
+    .INIT(8'hE1)) 
+    pixel_addr__82_carry__2_i_5
+       (.I0(pixel_addr__1_carry__4_n_7),
+        .I1(pixel_y[10]),
+        .I2(pixel_addr__1_carry__4_n_6),
+        .O(pixel_addr__82_carry__2_i_5_n_0));
+  LUT4 #(
+    .INIT(16'h1EE1)) 
+    pixel_addr__82_carry__2_i_6
+       (.I0(pixel_addr__1_carry__3_n_4),
+        .I1(pixel_y[9]),
+        .I2(pixel_addr__1_carry__4_n_7),
+        .I3(pixel_y[10]),
+        .O(pixel_addr__82_carry__2_i_6_n_0));
+  CARRY4 pixel_addr__82_carry__3
+       (.CI(pixel_addr__82_carry__2_n_0),
+        .CO({pixel_addr__82_carry__3_n_0,pixel_addr__82_carry__3_n_1,pixel_addr__82_carry__3_n_2,pixel_addr__82_carry__3_n_3}),
+        .CYINIT(1'b0),
+        .DI({pixel_addr__1_carry__5_n_5,pixel_addr__1_carry__5_n_6,pixel_addr__1_carry__5_n_7,pixel_addr__1_carry__4_n_4}),
+        .O({pixel_addr__82_carry__3_n_4,pixel_addr__82_carry__3_n_5,pixel_addr__82_carry__3_n_6,pixel_addr__82_carry__3_n_7}),
+        .S({pixel_addr__82_carry__3_i_1_n_0,pixel_addr__82_carry__3_i_2_n_0,pixel_addr__82_carry__3_i_3_n_0,pixel_addr__82_carry__3_i_4_n_0}));
+  LUT2 #(
+    .INIT(4'h9)) 
+    pixel_addr__82_carry__3_i_1
+       (.I0(pixel_addr__1_carry__5_n_5),
+        .I1(pixel_addr__1_carry__5_n_4),
+        .O(pixel_addr__82_carry__3_i_1_n_0));
+  LUT2 #(
+    .INIT(4'h9)) 
+    pixel_addr__82_carry__3_i_2
+       (.I0(pixel_addr__1_carry__5_n_6),
+        .I1(pixel_addr__1_carry__5_n_5),
+        .O(pixel_addr__82_carry__3_i_2_n_0));
+  LUT2 #(
+    .INIT(4'h9)) 
+    pixel_addr__82_carry__3_i_3
+       (.I0(pixel_addr__1_carry__5_n_7),
+        .I1(pixel_addr__1_carry__5_n_6),
+        .O(pixel_addr__82_carry__3_i_3_n_0));
+  LUT2 #(
+    .INIT(4'h9)) 
+    pixel_addr__82_carry__3_i_4
+       (.I0(pixel_addr__1_carry__4_n_4),
+        .I1(pixel_addr__1_carry__5_n_7),
+        .O(pixel_addr__82_carry__3_i_4_n_0));
+  CARRY4 pixel_addr__82_carry__4
+       (.CI(pixel_addr__82_carry__3_n_0),
+        .CO({NLW_pixel_addr__82_carry__4_CO_UNCONNECTED[3],pixel_addr__82_carry__4_n_1,pixel_addr__82_carry__4_n_2,pixel_addr__82_carry__4_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,pixel_addr__1_carry__6_n_6,pixel_addr__1_carry__6_n_7,pixel_addr__1_carry__5_n_4}),
+        .O({pixel_addr__82_carry__4_n_4,pixel_addr__82_carry__4_n_5,pixel_addr__82_carry__4_n_6,pixel_addr__82_carry__4_n_7}),
+        .S({pixel_addr__82_carry__4_i_1_n_0,pixel_addr__82_carry__4_i_2_n_0,pixel_addr__82_carry__4_i_3_n_0,pixel_addr__82_carry__4_i_4_n_0}));
+  LUT2 #(
+    .INIT(4'h9)) 
+    pixel_addr__82_carry__4_i_1
+       (.I0(pixel_addr__1_carry__6_n_5),
+        .I1(pixel_addr__1_carry__6_n_4),
+        .O(pixel_addr__82_carry__4_i_1_n_0));
+  LUT2 #(
+    .INIT(4'h9)) 
+    pixel_addr__82_carry__4_i_2
+       (.I0(pixel_addr__1_carry__6_n_6),
+        .I1(pixel_addr__1_carry__6_n_5),
+        .O(pixel_addr__82_carry__4_i_2_n_0));
+  LUT2 #(
+    .INIT(4'h9)) 
+    pixel_addr__82_carry__4_i_3
+       (.I0(pixel_addr__1_carry__6_n_7),
+        .I1(pixel_addr__1_carry__6_n_6),
+        .O(pixel_addr__82_carry__4_i_3_n_0));
+  LUT2 #(
+    .INIT(4'h9)) 
+    pixel_addr__82_carry__4_i_4
+       (.I0(pixel_addr__1_carry__5_n_4),
+        .I1(pixel_addr__1_carry__6_n_7),
+        .O(pixel_addr__82_carry__4_i_4_n_0));
+  LUT3 #(
+    .INIT(8'hD4)) 
+    pixel_addr__82_carry_i_1
+       (.I0(pixel_y[2]),
+        .I1(pixel_addr__1_carry__1_n_5),
+        .I2(pixel_y[0]),
+        .O(pixel_addr__82_carry_i_1_n_0));
+  LUT3 #(
+    .INIT(8'h69)) 
+    pixel_addr__82_carry_i_2
+       (.I0(pixel_y[2]),
+        .I1(pixel_addr__1_carry__1_n_5),
+        .I2(pixel_y[0]),
+        .O(pixel_addr__82_carry_i_2_n_0));
+  LUT2 #(
+    .INIT(4'hB)) 
+    pixel_addr__82_carry_i_3
+       (.I0(pixel_addr__1_carry__1_n_7),
+        .I1(pixel_y[0]),
+        .O(pixel_addr__82_carry_i_3_n_0));
+  LUT6 #(
+    .INIT(64'h8E71718E718E8E71)) 
+    pixel_addr__82_carry_i_4
+       (.I0(pixel_y[0]),
+        .I1(pixel_addr__1_carry__1_n_5),
+        .I2(pixel_y[2]),
+        .I3(pixel_y[3]),
+        .I4(pixel_addr__1_carry__1_n_4),
+        .I5(pixel_y[1]),
+        .O(pixel_addr__82_carry_i_4_n_0));
+  LUT5 #(
+    .INIT(32'h69966969)) 
+    pixel_addr__82_carry_i_5
+       (.I0(pixel_y[2]),
+        .I1(pixel_addr__1_carry__1_n_5),
+        .I2(pixel_y[0]),
+        .I3(pixel_y[1]),
+        .I4(pixel_addr__1_carry__1_n_6),
+        .O(pixel_addr__82_carry_i_5_n_0));
+  LUT4 #(
+    .INIT(16'h2DD2)) 
+    pixel_addr__82_carry_i_6
+       (.I0(pixel_y[0]),
+        .I1(pixel_addr__1_carry__1_n_7),
+        .I2(pixel_addr__1_carry__1_n_6),
+        .I3(pixel_y[1]),
+        .O(pixel_addr__82_carry_i_6_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    pixel_addr__82_carry_i_7
+       (.I0(pixel_y[0]),
+        .I1(pixel_addr__1_carry__1_n_7),
+        .O(pixel_addr__82_carry_i_7_n_0));
   (* OPT_MODIFIED = "MLO " *) 
   (* XILINX_LEGACY_PRIM = "LDC" *) 
   LDCE #(
