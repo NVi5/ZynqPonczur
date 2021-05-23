@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="36">
   <CompositeFile CompositeFileTopName="main_ub" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="STALE" Timestamp="1621802920"/>
-    <Generation Name="IMPLEMENTATION" State="STALE" Timestamp="1621802920"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1621802921"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1621802921"/>
+    <Generation Name="SYNTHESIS" State="RESET" Timestamp="1621805996"/>
+    <Generation Name="IMPLEMENTATION" State="RESET" Timestamp="1621805996"/>
+    <Generation Name="SIMULATION" State="RESET" Timestamp="1621805996"/>
+    <Generation Name="HW_HANDOFF" State="RESET" Timestamp="1621805996"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip\main_ub_microblaze_0_0\main_ub_microblaze_0_0.xci" Type="IP">
         <Instance HierarchyPath="microblaze_0"/>

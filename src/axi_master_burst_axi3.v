@@ -163,19 +163,27 @@ localparam IDLE = 0, BURST = 1, BURST_VALID = 2, NEXT_BURST = 3, DATA_ACCEPTED =
 reg [3:0] state;
 
 always @* begin
-    pixel_ready = (M00_AXI_wready & M00_AXI_wvalid);
+    if (reset) begin
+        pixel_ready <= 0;
+        M00_AXI_wdata <= 0;
+        M00_AXI_awaddr <= 0;
+        M00_AXI_wstrb <= 0;
+    end
+    else begin
+        pixel_ready = (M00_AXI_wready & M00_AXI_wvalid);
 
-    //pixel_ready = ((state == BURST) & M00_AXI_wready) | (state == IDLE);
-    //pixel_ready = ((state == BURST) & M00_AXI_wready);
+        //pixel_ready = ((state == BURST) & M00_AXI_wready) | (state == IDLE);
+        //pixel_ready = ((state == BURST) & M00_AXI_wready);
 
-    M00_AXI_wdata = {24'b0,pixel_data} << (8 * pixel_addr[1:0]);
-    M00_AXI_awaddr = pixel_addr;
-    //M00_AXI_wstrb = (pixel_data != 8'h00) ? (4'b0001 << pixel_addr[1:0]) : 4'b0;
-    M00_AXI_wstrb = (draw) ? (4'b0001 << pixel_addr[1:0]) : 4'b0;
-//        M00_AXI_awaddr = {pixel_addr[31:2],2'b0};
-//    M00_AXI_wdata = {24'b0,pixel_data};
-//    M00_AXI_awaddr = pixel_addr;
-//    M00_AXI_wstrb = (pixel_data != 8'h00) ? (4'b0001) : 4'b0;
+        M00_AXI_wdata = {24'b0,pixel_data} << (8 * pixel_addr[1:0]);
+        M00_AXI_awaddr = pixel_addr;
+        //M00_AXI_wstrb = (pixel_data != 8'h00) ? (4'b0001 << pixel_addr[1:0]) : 4'b0;
+        M00_AXI_wstrb = (draw) ? (4'b0001 << pixel_addr[1:0]) : 4'b0;
+    //        M00_AXI_awaddr = {pixel_addr[31:2],2'b0};
+    //    M00_AXI_wdata = {24'b0,pixel_data};
+    //    M00_AXI_awaddr = pixel_addr;
+    //    M00_AXI_wstrb = (pixel_data != 8'h00) ? (4'b0001) : 4'b0;
+    end
 end
 
 
@@ -189,14 +197,10 @@ reg last_line = 0;
 always @(posedge clk) begin
     if (reset) begin
         state <= IDLE;
-        pixel_ready <= 0;
         height_reg <= 0;
         width_reg <= 0;
-        M00_AXI_awaddr <= 0;
         M00_AXI_awlen <= 0;
         M00_AXI_awvalid <= 0;
-        M00_AXI_wdata <= 0;
-        M00_AXI_wstrb <= 0;
         M00_AXI_wlast <= 0;
         M00_AXI_wvalid <= 0;
         M00_AXI_bready <= 0;

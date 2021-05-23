@@ -89,25 +89,35 @@ reg [3:0][10:0] pixel_x_d;
 reg [3:0][10:0] pixel_y_d;
 
 always @(posedge clk) begin
-    if (ce_d[0]) begin
-        out_valid_d[0] <= inValid;
+    if (reset) begin
+        out_valid_d <= 4'b0;
     end
-    if (ce_d[1]) begin
-        out_valid_d[1] <= out_valid_d[0];
-    end
-    if (ce_d[2]) begin
-        out_valid_d[2] <= out_valid_d[1];
-    end
-    if (ce_d[3]) begin
-        out_valid_d[3] <= out_valid_d[2];
+    else begin
+        if (ce_d[0]) begin
+            out_valid_d[0] <= inValid;
+        end
+        if (ce_d[1]) begin
+            out_valid_d[1] <= out_valid_d[0];
+        end
+        if (ce_d[2]) begin
+            out_valid_d[2] <= out_valid_d[1];
+        end
+        if (ce_d[3]) begin
+            out_valid_d[3] <= out_valid_d[2];
+        end
     end
 end
 
 always @* begin
-    ce_d[3] = ~out_valid_d[3] | outReady;
-    ce_d[2] = ~out_valid_d[2] | ce_d[3];
-    ce_d[1] = ~out_valid_d[1] | ce_d[2];
-    ce_d[0] = ~out_valid_d[0] | ce_d[1];
+    if (reset) begin
+        ce_d <= 4'b0;
+    end
+    else begin
+        ce_d[3] = ~out_valid_d[3] | outReady;
+        ce_d[2] = ~out_valid_d[2] | ce_d[3];
+        ce_d[1] = ~out_valid_d[1] | ce_d[2];
+        ce_d[0] = ~out_valid_d[0] | ce_d[1];
+    end
 end
 
 assign outValid = out_valid_d[3];
@@ -127,9 +137,6 @@ always @(posedge clk) begin
         mul2_result <= 0;
 
         sub_result <= 0;
-
-        out_valid_d <= 4'b0;
-        ce_d <= 4'b0;
 
         pixel_x_d <= {4{11'b0}};
         pixel_y_d <= {4{11'b0}};

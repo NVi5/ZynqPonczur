@@ -78,9 +78,14 @@ reg signed [10:0] min_temp_y;
 reg force_black;
 reg [3:0] force_black_d;
 always @(posedge clk) begin
-    force_black_d[0] <= force_black;
-    force_black_d[1] <= force_black_d[0];
-    force_black_d[2] <= force_black_d[1];
+    if (reset) begin
+        force_black_d <= '{0};
+    end
+    else begin
+        force_black_d[0] <= force_black;
+        force_black_d[1] <= force_black_d[0];
+        force_black_d[2] <= force_black_d[1];
+    end
 end
 
 assign draw      = force_black_d[2] || isInside;
@@ -97,7 +102,6 @@ assign in_valid = in_ready & (state == RASTERIZE);
 
 always @(posedge clk) begin
     if (reset) begin
-        force_black_d <= '{0};
         force_black <= 0;
         pixel_x <= 0;
         pixel_y <= 0;
