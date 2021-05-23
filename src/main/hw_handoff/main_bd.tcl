@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# axi_master_burst_axi3, gpu_wrapper
+# axi_master_burst_axi3, gpu_wrapper_vhdl
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -183,19 +183,23 @@ proc create_root_design { parentCell } {
      return 1
    }
   
+  set_property -dict [ list \
+   CONFIG.POLARITY {ACTIVE_HIGH} \
+ ] [get_bd_pins /axi_master_burst_axi3_0/reset]
+
   # Create instance: gpu_control_0, and set properties
   set gpu_control_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:gpu_control:1.0 gpu_control_0 ]
   set_property -dict [ list \
    CONFIG.C_S00_AXI_ADDR_WIDTH {17} \
  ] $gpu_control_0
 
-  # Create instance: gpu_wrapper_0, and set properties
-  set block_name gpu_wrapper
-  set block_cell_name gpu_wrapper_0
-  if { [catch {set gpu_wrapper_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+  # Create instance: gpu_wrapper_vhdl_0, and set properties
+  set block_name gpu_wrapper_vhdl
+  set block_cell_name gpu_wrapper_vhdl_0
+  if { [catch {set gpu_wrapper_vhdl_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
      catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
-   } elseif { $gpu_wrapper_0 eq "" } {
+   } elseif { $gpu_wrapper_vhdl_0 eq "" } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
@@ -351,12 +355,13 @@ proc create_root_design { parentCell } {
   # Create instance: rst_ps7_0_50M, and set properties
   set rst_ps7_0_50M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_ps7_0_50M ]
 
-  # Create instance: xlconcat_0, and set properties
-  set xlconcat_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0 ]
+  # Create instance: util_vector_logic_0, and set properties
+  set util_vector_logic_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_0 ]
   set_property -dict [ list \
-   CONFIG.IN0_WIDTH {4} \
-   CONFIG.NUM_PORTS {1} \
- ] $xlconcat_0
+   CONFIG.C_OPERATION {not} \
+   CONFIG.C_SIZE {1} \
+   CONFIG.LOGO_FILE {data/sym_notgate.png} \
+ ] $util_vector_logic_0
 
   # Create instance: xlconcat_1, and set properties
   set xlconcat_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_1 ]
@@ -372,9 +377,18 @@ proc create_root_design { parentCell } {
    CONFIG.CONST_WIDTH {4} \
  ] $xlconstant_0
 
+  # Create instance: xlslice_0, and set properties
+  set xlslice_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 xlslice_0 ]
+  set_property -dict [ list \
+   CONFIG.DIN_FROM {3} \
+   CONFIG.DIN_TO {0} \
+   CONFIG.DIN_WIDTH {8} \
+   CONFIG.DOUT_WIDTH {4} \
+ ] $xlslice_0
+
   # Create interface connections
   connect_bd_intf_net -intf_net axi_master_burst_axi3_0_M00_AXI [get_bd_intf_pins axi_master_burst_axi3_0/M00_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_GP0]
-  connect_bd_intf_net -intf_net gpu_wrapper_0_transform_matrix [get_bd_intf_pins gpu_control_0/transform_matrix] [get_bd_intf_pins gpu_wrapper_0/transform_matrix]
+  connect_bd_intf_net -intf_net gpu_wrapper_vhdl_0_user_transform_matrix [get_bd_intf_pins gpu_control_0/transform_matrix] [get_bd_intf_pins gpu_wrapper_vhdl_0/user_transform_matrix]
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
   connect_bd_intf_net -intf_net processing_system7_0_MDIO_ETHERNET_0 [get_bd_intf_ports MDIO_ETHERNET_0_0] [get_bd_intf_pins processing_system7_0/MDIO_ETHERNET_0]
@@ -386,29 +400,30 @@ proc create_root_design { parentCell } {
   connect_bd_net -net ENET0_GMII_RX_DV_0_1 [get_bd_ports ENET0_GMII_RX_DV_0] [get_bd_pins processing_system7_0/ENET0_GMII_RX_DV]
   connect_bd_net -net ENET0_GMII_TX_CLK_0_1 [get_bd_ports ENET0_GMII_TX_CLK_0] [get_bd_pins processing_system7_0/ENET0_GMII_TX_CLK]
   connect_bd_net -net In0_0_1 [get_bd_ports ENET0_GMII_RXD] [get_bd_pins xlconcat_1/In0]
-  connect_bd_net -net axi_master_burst_axi3_0_pixel_ready [get_bd_pins axi_master_burst_axi3_0/pixel_ready] [get_bd_pins gpu_wrapper_0/out_ready]
+  connect_bd_net -net axi_master_burst_axi3_0_pixel_ready [get_bd_pins axi_master_burst_axi3_0/pixel_ready] [get_bd_pins gpu_wrapper_vhdl_0/out_ready]
   connect_bd_net -net gpu_control_0_address [get_bd_pins axi_master_burst_axi3_0/framebuffer_baseaddr] [get_bd_pins gpu_control_0/address]
-  connect_bd_net -net gpu_control_0_mem_wr_addr [get_bd_pins gpu_control_0/mem_wr_addr] [get_bd_pins gpu_wrapper_0/mem_wr_addr]
-  connect_bd_net -net gpu_control_0_mem_wr_data [get_bd_pins gpu_control_0/mem_wr_data] [get_bd_pins gpu_wrapper_0/mem_wr_data]
-  connect_bd_net -net gpu_control_0_mem_wr_en [get_bd_pins gpu_control_0/mem_wr_en] [get_bd_pins gpu_wrapper_0/mem_wr_en]
-  connect_bd_net -net gpu_control_0_start [get_bd_pins gpu_control_0/start] [get_bd_pins gpu_wrapper_0/start]
-  connect_bd_net -net gpu_control_0_vertices_size [get_bd_pins gpu_control_0/vertex_count] [get_bd_pins gpu_wrapper_0/vertex_count]
-  connect_bd_net -net gpu_wrapper_0_draw [get_bd_pins axi_master_burst_axi3_0/draw] [get_bd_pins gpu_wrapper_0/draw]
-  connect_bd_net -net gpu_wrapper_0_frame_end [get_bd_pins gpu_control_0/status] [get_bd_pins gpu_wrapper_0/frame_end]
-  connect_bd_net -net gpu_wrapper_0_height [get_bd_pins axi_master_burst_axi3_0/height] [get_bd_pins gpu_wrapper_0/height]
-  connect_bd_net -net gpu_wrapper_0_output_color [get_bd_pins axi_master_burst_axi3_0/pixel_data] [get_bd_pins gpu_wrapper_0/output_color]
-  connect_bd_net -net gpu_wrapper_0_output_valid [get_bd_pins axi_master_burst_axi3_0/pixel_valid] [get_bd_pins gpu_wrapper_0/output_valid]
-  connect_bd_net -net gpu_wrapper_0_pixel_x_out [get_bd_pins axi_master_burst_axi3_0/pixel_x] [get_bd_pins gpu_wrapper_0/pixel_x_out]
-  connect_bd_net -net gpu_wrapper_0_pixel_y_out [get_bd_pins axi_master_burst_axi3_0/pixel_y] [get_bd_pins gpu_wrapper_0/pixel_y_out]
-  connect_bd_net -net gpu_wrapper_0_width [get_bd_pins axi_master_burst_axi3_0/width] [get_bd_pins gpu_wrapper_0/width]
-  connect_bd_net -net processing_system7_0_ENET0_GMII_TXD [get_bd_pins processing_system7_0/ENET0_GMII_TXD] [get_bd_pins xlconcat_0/In0]
+  connect_bd_net -net gpu_control_0_mem_wr_addr [get_bd_pins gpu_control_0/mem_wr_addr] [get_bd_pins gpu_wrapper_vhdl_0/mem_wr_addr]
+  connect_bd_net -net gpu_control_0_mem_wr_data [get_bd_pins gpu_control_0/mem_wr_data] [get_bd_pins gpu_wrapper_vhdl_0/mem_wr_data]
+  connect_bd_net -net gpu_control_0_mem_wr_en [get_bd_pins gpu_control_0/mem_wr_en] [get_bd_pins gpu_wrapper_vhdl_0/mem_wr_en]
+  connect_bd_net -net gpu_control_0_start [get_bd_pins gpu_control_0/start] [get_bd_pins gpu_wrapper_vhdl_0/start]
+  connect_bd_net -net gpu_control_0_vertices_size [get_bd_pins gpu_control_0/vertex_count] [get_bd_pins gpu_wrapper_vhdl_0/vertex_count]
+  connect_bd_net -net gpu_wrapper_vhdl_0_draw [get_bd_pins axi_master_burst_axi3_0/draw] [get_bd_pins gpu_wrapper_vhdl_0/draw]
+  connect_bd_net -net gpu_wrapper_vhdl_0_frame_end [get_bd_pins gpu_control_0/status] [get_bd_pins gpu_wrapper_vhdl_0/frame_end]
+  connect_bd_net -net gpu_wrapper_vhdl_0_height [get_bd_pins axi_master_burst_axi3_0/height] [get_bd_pins gpu_wrapper_vhdl_0/height]
+  connect_bd_net -net gpu_wrapper_vhdl_0_output_color [get_bd_pins axi_master_burst_axi3_0/pixel_data] [get_bd_pins gpu_wrapper_vhdl_0/output_color]
+  connect_bd_net -net gpu_wrapper_vhdl_0_output_valid [get_bd_pins axi_master_burst_axi3_0/pixel_valid] [get_bd_pins gpu_wrapper_vhdl_0/output_valid]
+  connect_bd_net -net gpu_wrapper_vhdl_0_pixel_x_out [get_bd_pins axi_master_burst_axi3_0/pixel_x] [get_bd_pins gpu_wrapper_vhdl_0/pixel_x_out]
+  connect_bd_net -net gpu_wrapper_vhdl_0_pixel_y_out [get_bd_pins axi_master_burst_axi3_0/pixel_y] [get_bd_pins gpu_wrapper_vhdl_0/pixel_y_out]
+  connect_bd_net -net gpu_wrapper_vhdl_0_width [get_bd_pins axi_master_burst_axi3_0/width] [get_bd_pins gpu_wrapper_vhdl_0/width]
+  connect_bd_net -net processing_system7_0_ENET0_GMII_TXD [get_bd_pins processing_system7_0/ENET0_GMII_TXD] [get_bd_pins xlslice_0/Din]
   connect_bd_net -net processing_system7_0_ENET0_GMII_TX_EN [get_bd_ports ENET0_GMII_TX_EN_0] [get_bd_pins processing_system7_0/ENET0_GMII_TX_EN]
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins axi_master_burst_axi3_0/clk] [get_bd_pins gpu_control_0/s00_axi_aclk] [get_bd_pins gpu_wrapper_0/clk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins axi_master_burst_axi3_0/clk] [get_bd_pins gpu_control_0/s00_axi_aclk] [get_bd_pins gpu_wrapper_vhdl_0/clk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
-  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn1 [get_bd_pins axi_master_burst_axi3_0/reset] [get_bd_pins gpu_control_0/s00_axi_aresetn] [get_bd_pins gpu_wrapper_0/reset] [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
-  connect_bd_net -net xlconcat_0_dout [get_bd_ports ENET0_GMII_TXD] [get_bd_pins xlconcat_0/dout]
+  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn1 [get_bd_pins gpu_control_0/s00_axi_aresetn] [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn] [get_bd_pins util_vector_logic_0/Op1]
+  connect_bd_net -net util_vector_logic_0_Res [get_bd_pins axi_master_burst_axi3_0/reset] [get_bd_pins gpu_wrapper_vhdl_0/reset] [get_bd_pins util_vector_logic_0/Res]
   connect_bd_net -net xlconcat_1_dout [get_bd_pins processing_system7_0/ENET0_GMII_RXD] [get_bd_pins xlconcat_1/dout]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins xlconcat_1/In1] [get_bd_pins xlconstant_0/dout]
+  connect_bd_net -net xlslice_0_Dout [get_bd_ports ENET0_GMII_TXD] [get_bd_pins xlslice_0/Dout]
 
   # Create address segments
   create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_master_burst_axi3_0/M00_AXI] [get_bd_addr_segs processing_system7_0/S_AXI_GP0/GP0_DDR_LOWOCM] SEG_processing_system7_0_GP0_DDR_LOWOCM

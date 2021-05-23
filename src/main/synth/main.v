@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-//Date        : Tue May 18 16:41:16 2021
+//Date        : Sun May 23 22:01:00 2021
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=11,numReposBlks=9,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=6,da_board_cnt=1,da_clkrst_cnt=1,da_ps7_cnt=4,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
+(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=12,numReposBlks=10,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=6,da_board_cnt=1,da_clkrst_cnt=1,da_ps7_cnt=4,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
 module main
    (DDR_addr,
     DDR_ba,
@@ -118,30 +118,30 @@ module main
   wire gpu_control_0_mem_wr_en;
   wire gpu_control_0_start;
   wire [31:0]gpu_control_0_vertices_size;
-  wire gpu_wrapper_0_draw;
-  wire gpu_wrapper_0_frame_end;
-  wire [10:0]gpu_wrapper_0_height;
-  wire [7:0]gpu_wrapper_0_output_color;
-  wire gpu_wrapper_0_output_valid;
-  wire [10:0]gpu_wrapper_0_pixel_x_out;
-  wire [10:0]gpu_wrapper_0_pixel_y_out;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_00;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_01;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_02;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_03;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_04;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_05;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_06;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_07;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_08;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_09;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_10;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_11;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_12;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_13;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_14;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_15;
-  wire [10:0]gpu_wrapper_0_width;
+  wire gpu_wrapper_vhdl_0_draw;
+  wire gpu_wrapper_vhdl_0_frame_end;
+  wire [10:0]gpu_wrapper_vhdl_0_height;
+  wire [7:0]gpu_wrapper_vhdl_0_output_color;
+  wire gpu_wrapper_vhdl_0_output_valid;
+  wire [10:0]gpu_wrapper_vhdl_0_pixel_x_out;
+  wire [10:0]gpu_wrapper_vhdl_0_pixel_y_out;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_00;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_01;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_02;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_03;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_04;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_05;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_06;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_07;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_08;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_09;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_10;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_11;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_12;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_13;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_14;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_15;
+  wire [10:0]gpu_wrapper_vhdl_0_width;
   wire [14:0]processing_system7_0_DDR_ADDR;
   wire [2:0]processing_system7_0_DDR_BA;
   wire processing_system7_0_DDR_CAS_N;
@@ -229,13 +229,14 @@ module main
   wire [3:0]ps7_0_axi_periph_M00_AXI_WSTRB;
   wire ps7_0_axi_periph_M00_AXI_WVALID;
   wire [0:0]rst_ps7_0_50M_peripheral_aresetn1;
-  wire [3:0]xlconcat_0_dout;
+  wire [0:0]util_vector_logic_0_Res;
   wire [7:0]xlconcat_1_dout;
   wire [3:0]xlconstant_0_dout;
+  wire [3:0]xlslice_0_Dout;
 
   assign ENET0_GMII_RX_CLK_0_1 = ENET0_GMII_RX_CLK_0;
   assign ENET0_GMII_RX_DV_0_1 = ENET0_GMII_RX_DV_0;
-  assign ENET0_GMII_TXD[3:0] = xlconcat_0_dout;
+  assign ENET0_GMII_TXD[3:0] = xlslice_0_Dout;
   assign ENET0_GMII_TX_CLK_0_1 = ENET0_GMII_TX_CLK_0;
   assign ENET0_GMII_TX_EN_0[0] = processing_system7_0_ENET0_GMII_TX_EN;
   assign In0_0_1 = ENET0_GMII_RXD[3:0];
@@ -279,34 +280,34 @@ module main
         .M00_AXI_wstrb(axi_master_burst_axi3_0_M00_AXI_WSTRB),
         .M00_AXI_wvalid(axi_master_burst_axi3_0_M00_AXI_WVALID),
         .clk(processing_system7_0_FCLK_CLK0),
-        .draw(gpu_wrapper_0_draw),
+        .draw(gpu_wrapper_vhdl_0_draw),
         .framebuffer_baseaddr(gpu_control_0_address),
-        .height(gpu_wrapper_0_height),
-        .pixel_data(gpu_wrapper_0_output_color),
+        .height(gpu_wrapper_vhdl_0_height),
+        .pixel_data(gpu_wrapper_vhdl_0_output_color),
         .pixel_ready(axi_master_burst_axi3_0_pixel_ready),
-        .pixel_valid(gpu_wrapper_0_output_valid),
-        .pixel_x(gpu_wrapper_0_pixel_x_out),
-        .pixel_y(gpu_wrapper_0_pixel_y_out),
-        .reset(rst_ps7_0_50M_peripheral_aresetn1),
-        .width(gpu_wrapper_0_width));
+        .pixel_valid(gpu_wrapper_vhdl_0_output_valid),
+        .pixel_x(gpu_wrapper_vhdl_0_pixel_x_out),
+        .pixel_y(gpu_wrapper_vhdl_0_pixel_y_out),
+        .reset(util_vector_logic_0_Res),
+        .width(gpu_wrapper_vhdl_0_width));
   main_gpu_control_0_0 gpu_control_0
        (.address(gpu_control_0_address),
-        .matrix_00(gpu_wrapper_0_transform_matrix_matrix_00),
-        .matrix_01(gpu_wrapper_0_transform_matrix_matrix_01),
-        .matrix_02(gpu_wrapper_0_transform_matrix_matrix_02),
-        .matrix_03(gpu_wrapper_0_transform_matrix_matrix_03),
-        .matrix_04(gpu_wrapper_0_transform_matrix_matrix_04),
-        .matrix_05(gpu_wrapper_0_transform_matrix_matrix_05),
-        .matrix_06(gpu_wrapper_0_transform_matrix_matrix_06),
-        .matrix_07(gpu_wrapper_0_transform_matrix_matrix_07),
-        .matrix_08(gpu_wrapper_0_transform_matrix_matrix_08),
-        .matrix_09(gpu_wrapper_0_transform_matrix_matrix_09),
-        .matrix_10(gpu_wrapper_0_transform_matrix_matrix_10),
-        .matrix_11(gpu_wrapper_0_transform_matrix_matrix_11),
-        .matrix_12(gpu_wrapper_0_transform_matrix_matrix_12),
-        .matrix_13(gpu_wrapper_0_transform_matrix_matrix_13),
-        .matrix_14(gpu_wrapper_0_transform_matrix_matrix_14),
-        .matrix_15(gpu_wrapper_0_transform_matrix_matrix_15),
+        .matrix_00(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_00),
+        .matrix_01(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_01),
+        .matrix_02(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_02),
+        .matrix_03(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_03),
+        .matrix_04(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_04),
+        .matrix_05(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_05),
+        .matrix_06(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_06),
+        .matrix_07(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_07),
+        .matrix_08(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_08),
+        .matrix_09(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_09),
+        .matrix_10(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_10),
+        .matrix_11(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_11),
+        .matrix_12(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_12),
+        .matrix_13(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_13),
+        .matrix_14(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_14),
+        .matrix_15(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_15),
         .mem_wr_addr(gpu_control_0_mem_wr_addr),
         .mem_wr_data(gpu_control_0_mem_wr_data),
         .mem_wr_en(gpu_control_0_mem_wr_en),
@@ -332,41 +333,41 @@ module main
         .s00_axi_wstrb(ps7_0_axi_periph_M00_AXI_WSTRB),
         .s00_axi_wvalid(ps7_0_axi_periph_M00_AXI_WVALID),
         .start(gpu_control_0_start),
-        .status(gpu_wrapper_0_frame_end),
+        .status(gpu_wrapper_vhdl_0_frame_end),
         .vertex_count(gpu_control_0_vertices_size));
-  main_gpu_wrapper_0_0 gpu_wrapper_0
+  main_gpu_wrapper_vhdl_0_0 gpu_wrapper_vhdl_0
        (.clk(processing_system7_0_FCLK_CLK0),
-        .draw(gpu_wrapper_0_draw),
-        .frame_end(gpu_wrapper_0_frame_end),
-        .height(gpu_wrapper_0_height),
-        .matrix_00(gpu_wrapper_0_transform_matrix_matrix_00),
-        .matrix_01(gpu_wrapper_0_transform_matrix_matrix_01),
-        .matrix_02(gpu_wrapper_0_transform_matrix_matrix_02),
-        .matrix_03(gpu_wrapper_0_transform_matrix_matrix_03),
-        .matrix_04(gpu_wrapper_0_transform_matrix_matrix_04),
-        .matrix_05(gpu_wrapper_0_transform_matrix_matrix_05),
-        .matrix_06(gpu_wrapper_0_transform_matrix_matrix_06),
-        .matrix_07(gpu_wrapper_0_transform_matrix_matrix_07),
-        .matrix_08(gpu_wrapper_0_transform_matrix_matrix_08),
-        .matrix_09(gpu_wrapper_0_transform_matrix_matrix_09),
-        .matrix_10(gpu_wrapper_0_transform_matrix_matrix_10),
-        .matrix_11(gpu_wrapper_0_transform_matrix_matrix_11),
-        .matrix_12(gpu_wrapper_0_transform_matrix_matrix_12),
-        .matrix_13(gpu_wrapper_0_transform_matrix_matrix_13),
-        .matrix_14(gpu_wrapper_0_transform_matrix_matrix_14),
-        .matrix_15(gpu_wrapper_0_transform_matrix_matrix_15),
+        .draw(gpu_wrapper_vhdl_0_draw),
+        .frame_end(gpu_wrapper_vhdl_0_frame_end),
+        .height(gpu_wrapper_vhdl_0_height),
+        .matrix_00(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_00),
+        .matrix_01(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_01),
+        .matrix_02(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_02),
+        .matrix_03(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_03),
+        .matrix_04(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_04),
+        .matrix_05(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_05),
+        .matrix_06(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_06),
+        .matrix_07(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_07),
+        .matrix_08(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_08),
+        .matrix_09(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_09),
+        .matrix_10(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_10),
+        .matrix_11(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_11),
+        .matrix_12(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_12),
+        .matrix_13(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_13),
+        .matrix_14(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_14),
+        .matrix_15(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_15),
         .mem_wr_addr(gpu_control_0_mem_wr_addr),
         .mem_wr_data(gpu_control_0_mem_wr_data),
         .mem_wr_en(gpu_control_0_mem_wr_en),
         .out_ready(axi_master_burst_axi3_0_pixel_ready),
-        .output_color(gpu_wrapper_0_output_color),
-        .output_valid(gpu_wrapper_0_output_valid),
-        .pixel_x_out(gpu_wrapper_0_pixel_x_out),
-        .pixel_y_out(gpu_wrapper_0_pixel_y_out),
-        .reset(rst_ps7_0_50M_peripheral_aresetn1),
+        .output_color(gpu_wrapper_vhdl_0_output_color),
+        .output_valid(gpu_wrapper_vhdl_0_output_valid),
+        .pixel_x_out(gpu_wrapper_vhdl_0_pixel_x_out),
+        .pixel_y_out(gpu_wrapper_vhdl_0_pixel_y_out),
+        .reset(util_vector_logic_0_Res),
         .start(gpu_control_0_start),
         .vertex_count(gpu_control_0_vertices_size),
-        .width(gpu_wrapper_0_width));
+        .width(gpu_wrapper_vhdl_0_width));
   main_processing_system7_0_1 processing_system7_0
        (.DDR_Addr(DDR_addr[14:0]),
         .DDR_BankAddr(DDR_ba[2:0]),
@@ -552,15 +553,18 @@ module main
         .mb_debug_sys_rst(1'b0),
         .peripheral_aresetn(rst_ps7_0_50M_peripheral_aresetn1),
         .slowest_sync_clk(processing_system7_0_FCLK_CLK0));
-  main_xlconcat_0_0 xlconcat_0
-       (.In0(processing_system7_0_ENET0_GMII_TXD[3:0]),
-        .dout(xlconcat_0_dout));
+  main_util_vector_logic_0_0 util_vector_logic_0
+       (.Op1(rst_ps7_0_50M_peripheral_aresetn1),
+        .Res(util_vector_logic_0_Res));
   main_xlconcat_1_0 xlconcat_1
        (.In0(In0_0_1),
         .In1(xlconstant_0_dout),
         .dout(xlconcat_1_dout));
   main_xlconstant_0_0 xlconstant_0
        (.dout(xlconstant_0_dout));
+  main_xlslice_0_0 xlslice_0
+       (.Din(processing_system7_0_ENET0_GMII_TXD),
+        .Dout(xlslice_0_Dout));
 endmodule
 
 module main_ps7_0_axi_periph_0

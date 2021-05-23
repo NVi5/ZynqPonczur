@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# gpu_wrapper
+# gpu_wrapper_vhdl
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -276,13 +276,13 @@ proc create_root_design { parentCell } {
   # Create instance: gpu_control_0, and set properties
   set gpu_control_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:gpu_control:1.0 gpu_control_0 ]
 
-  # Create instance: gpu_wrapper_0, and set properties
-  set block_name gpu_wrapper
-  set block_cell_name gpu_wrapper_0
-  if { [catch {set gpu_wrapper_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+  # Create instance: gpu_wrapper_vhdl_0, and set properties
+  set block_name gpu_wrapper_vhdl
+  set block_cell_name gpu_wrapper_vhdl_0
+  if { [catch {set gpu_wrapper_vhdl_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
      catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
-   } elseif { $gpu_wrapper_0 eq "" } {
+   } elseif { $gpu_wrapper_vhdl_0 eq "" } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
@@ -314,11 +314,19 @@ proc create_root_design { parentCell } {
   # Create instance: rst_clk_wiz_1_100M, and set properties
   set rst_clk_wiz_1_100M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_clk_wiz_1_100M ]
 
+  # Create instance: util_vector_logic_0, and set properties
+  set util_vector_logic_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_0 ]
+  set_property -dict [ list \
+   CONFIG.C_OPERATION {not} \
+   CONFIG.C_SIZE {1} \
+   CONFIG.LOGO_FILE {data/sym_notgate.png} \
+ ] $util_vector_logic_0
+
   # Create instance: xlconstant_0, and set properties
   set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
 
   # Create interface connections
-  connect_bd_intf_net -intf_net gpu_wrapper_0_transform_matrix [get_bd_intf_pins gpu_control_0/transform_matrix] [get_bd_intf_pins gpu_wrapper_0/transform_matrix]
+  connect_bd_intf_net -intf_net gpu_wrapper_vhdl_0_user_transform_matrix [get_bd_intf_pins gpu_control_0/transform_matrix] [get_bd_intf_pins gpu_wrapper_vhdl_0/user_transform_matrix]
   connect_bd_intf_net -intf_net microblaze_0_M_AXI_DP [get_bd_intf_pins microblaze_0/M_AXI_DP] [get_bd_intf_pins microblaze_0_axi_periph/S00_AXI]
   connect_bd_intf_net -intf_net microblaze_0_axi_periph_M00_AXI [get_bd_intf_pins gpu_control_0/S00_AXI] [get_bd_intf_pins microblaze_0_axi_periph/M00_AXI]
   connect_bd_intf_net -intf_net microblaze_0_debug [get_bd_intf_pins mdm_1/MBDEBUG_0] [get_bd_intf_pins microblaze_0/DEBUG]
@@ -328,19 +336,20 @@ proc create_root_design { parentCell } {
   # Create port connections
   connect_bd_net -net clk_wiz_1_locked [get_bd_pins clk_wiz_1/locked] [get_bd_pins rst_clk_wiz_1_100M/dcm_locked]
   connect_bd_net -net clock_1 [get_bd_ports clock] [get_bd_pins clk_wiz_1/clk_in1]
-  connect_bd_net -net gpu_control_0_mem_wr_addr [get_bd_pins gpu_control_0/mem_wr_addr] [get_bd_pins gpu_wrapper_0/mem_wr_addr]
-  connect_bd_net -net gpu_control_0_mem_wr_data [get_bd_pins gpu_control_0/mem_wr_data] [get_bd_pins gpu_wrapper_0/mem_wr_data]
-  connect_bd_net -net gpu_control_0_mem_wr_en [get_bd_pins gpu_control_0/mem_wr_en] [get_bd_pins gpu_wrapper_0/mem_wr_en]
-  connect_bd_net -net gpu_control_0_start [get_bd_pins gpu_control_0/start] [get_bd_pins gpu_wrapper_0/start]
-  connect_bd_net -net gpu_control_0_vertex_count [get_bd_pins gpu_control_0/vertex_count] [get_bd_pins gpu_wrapper_0/vertex_count]
-  connect_bd_net -net gpu_wrapper_0_frame_end [get_bd_pins gpu_control_0/status] [get_bd_pins gpu_wrapper_0/frame_end]
+  connect_bd_net -net gpu_control_0_mem_wr_addr [get_bd_pins gpu_control_0/mem_wr_addr] [get_bd_pins gpu_wrapper_vhdl_0/mem_wr_addr]
+  connect_bd_net -net gpu_control_0_mem_wr_data [get_bd_pins gpu_control_0/mem_wr_data] [get_bd_pins gpu_wrapper_vhdl_0/mem_wr_data]
+  connect_bd_net -net gpu_control_0_mem_wr_en [get_bd_pins gpu_control_0/mem_wr_en] [get_bd_pins gpu_wrapper_vhdl_0/mem_wr_en]
+  connect_bd_net -net gpu_control_0_start [get_bd_pins gpu_control_0/start] [get_bd_pins gpu_wrapper_vhdl_0/start]
+  connect_bd_net -net gpu_control_0_vertex_count [get_bd_pins gpu_control_0/vertex_count] [get_bd_pins gpu_wrapper_vhdl_0/vertex_count]
+  connect_bd_net -net gpu_wrapper_vhdl_0_frame_end [get_bd_pins gpu_control_0/status] [get_bd_pins gpu_wrapper_vhdl_0/frame_end]
   connect_bd_net -net mdm_1_debug_sys_rst [get_bd_pins mdm_1/Debug_SYS_Rst] [get_bd_pins rst_clk_wiz_1_100M/mb_debug_sys_rst]
-  connect_bd_net -net microblaze_0_Clk [get_bd_pins clk_wiz_1/clk_out1] [get_bd_pins gpu_control_0/s00_axi_aclk] [get_bd_pins gpu_wrapper_0/clk] [get_bd_pins microblaze_0/Clk] [get_bd_pins microblaze_0_axi_periph/ACLK] [get_bd_pins microblaze_0_axi_periph/M00_ACLK] [get_bd_pins microblaze_0_axi_periph/S00_ACLK] [get_bd_pins microblaze_0_local_memory/LMB_Clk] [get_bd_pins rst_clk_wiz_1_100M/slowest_sync_clk]
+  connect_bd_net -net microblaze_0_Clk [get_bd_pins clk_wiz_1/clk_out1] [get_bd_pins gpu_control_0/s00_axi_aclk] [get_bd_pins gpu_wrapper_vhdl_0/clk] [get_bd_pins microblaze_0/Clk] [get_bd_pins microblaze_0_axi_periph/ACLK] [get_bd_pins microblaze_0_axi_periph/M00_ACLK] [get_bd_pins microblaze_0_axi_periph/S00_ACLK] [get_bd_pins microblaze_0_local_memory/LMB_Clk] [get_bd_pins rst_clk_wiz_1_100M/slowest_sync_clk]
   connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_pins clk_wiz_1/resetn] [get_bd_pins rst_clk_wiz_1_100M/ext_reset_in]
   connect_bd_net -net rst_clk_wiz_1_100M_bus_struct_reset [get_bd_pins microblaze_0_local_memory/SYS_Rst] [get_bd_pins rst_clk_wiz_1_100M/bus_struct_reset]
   connect_bd_net -net rst_clk_wiz_1_100M_mb_reset [get_bd_pins microblaze_0/Reset] [get_bd_pins rst_clk_wiz_1_100M/mb_reset]
-  connect_bd_net -net rst_clk_wiz_1_100M_peripheral_aresetn [get_bd_pins gpu_control_0/s00_axi_aresetn] [get_bd_pins gpu_wrapper_0/reset] [get_bd_pins microblaze_0_axi_periph/ARESETN] [get_bd_pins microblaze_0_axi_periph/M00_ARESETN] [get_bd_pins microblaze_0_axi_periph/S00_ARESETN] [get_bd_pins rst_clk_wiz_1_100M/peripheral_aresetn]
-  connect_bd_net -net xlconstant_0_dout [get_bd_pins gpu_wrapper_0/out_ready] [get_bd_pins xlconstant_0/dout]
+  connect_bd_net -net rst_clk_wiz_1_100M_peripheral_aresetn [get_bd_pins gpu_control_0/s00_axi_aresetn] [get_bd_pins microblaze_0_axi_periph/ARESETN] [get_bd_pins microblaze_0_axi_periph/M00_ARESETN] [get_bd_pins microblaze_0_axi_periph/S00_ARESETN] [get_bd_pins rst_clk_wiz_1_100M/peripheral_aresetn] [get_bd_pins util_vector_logic_0/Op1]
+  connect_bd_net -net util_vector_logic_0_Res [get_bd_pins gpu_wrapper_vhdl_0/reset] [get_bd_pins util_vector_logic_0/Res]
+  connect_bd_net -net xlconstant_0_dout [get_bd_pins gpu_wrapper_vhdl_0/out_ready] [get_bd_pins xlconstant_0/dout]
 
   # Create address segments
   create_bd_addr_seg -range 0x00020000 -offset 0x00000000 [get_bd_addr_spaces microblaze_0/Data] [get_bd_addr_segs microblaze_0_local_memory/dlmb_bram_if_cntlr/SLMB/Mem] SEG_dlmb_bram_if_cntlr_Mem

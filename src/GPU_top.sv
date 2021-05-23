@@ -20,8 +20,6 @@ module GPU_top
     frame_end,
     draw,
     out_ready
-
-    // AXI master tutaj kiedys bedzie
 );
 
 localparam M = 11;

@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-//Date        : Tue May 18 21:34:27 2021
+//Date        : Sun May 23 21:37:50 2021
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main_ub.bd
 //Design      : main_ub
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "main_ub,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main_ub,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=16,numReposBlks=13,numNonXlnxBlks=0,numHierBlks=3,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=2,da_board_cnt=4,da_clkrst_cnt=1,da_mb_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main_ub.hwdef" *) 
+(* CORE_GENERATION_INFO = "main_ub,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main_ub,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=17,numReposBlks=14,numNonXlnxBlks=0,numHierBlks=3,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=2,da_board_cnt=4,da_clkrst_cnt=1,da_mb_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main_ub.hwdef" *) 
 module main_ub
    (clock,
     reset);
@@ -23,23 +23,23 @@ module main_ub
   wire gpu_control_0_mem_wr_en;
   wire gpu_control_0_start;
   wire [31:0]gpu_control_0_vertex_count;
-  wire gpu_wrapper_0_frame_end;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_00;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_01;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_02;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_03;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_04;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_05;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_06;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_07;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_08;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_09;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_10;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_11;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_12;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_13;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_14;
-  wire [17:0]gpu_wrapper_0_transform_matrix_matrix_15;
+  wire gpu_wrapper_vhdl_0_frame_end;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_00;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_01;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_02;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_03;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_04;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_05;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_06;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_07;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_08;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_09;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_10;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_11;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_12;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_13;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_14;
+  wire [17:0]gpu_wrapper_vhdl_0_user_transform_matrix_matrix_15;
   wire mdm_1_debug_sys_rst;
   wire microblaze_0_Clk;
   wire [31:0]microblaze_0_M_AXI_DP_ARADDR;
@@ -126,6 +126,7 @@ module main_ub
   wire [0:0]rst_clk_wiz_1_100M_bus_struct_reset;
   wire rst_clk_wiz_1_100M_mb_reset;
   wire [0:0]rst_clk_wiz_1_100M_peripheral_aresetn;
+  wire [0:0]util_vector_logic_0_Res;
   wire [0:0]xlconstant_0_dout;
 
   assign clock_1 = clock;
@@ -136,22 +137,22 @@ module main_ub
         .locked(clk_wiz_1_locked),
         .resetn(reset_1));
   main_ub_gpu_control_0_0 gpu_control_0
-       (.matrix_00(gpu_wrapper_0_transform_matrix_matrix_00),
-        .matrix_01(gpu_wrapper_0_transform_matrix_matrix_01),
-        .matrix_02(gpu_wrapper_0_transform_matrix_matrix_02),
-        .matrix_03(gpu_wrapper_0_transform_matrix_matrix_03),
-        .matrix_04(gpu_wrapper_0_transform_matrix_matrix_04),
-        .matrix_05(gpu_wrapper_0_transform_matrix_matrix_05),
-        .matrix_06(gpu_wrapper_0_transform_matrix_matrix_06),
-        .matrix_07(gpu_wrapper_0_transform_matrix_matrix_07),
-        .matrix_08(gpu_wrapper_0_transform_matrix_matrix_08),
-        .matrix_09(gpu_wrapper_0_transform_matrix_matrix_09),
-        .matrix_10(gpu_wrapper_0_transform_matrix_matrix_10),
-        .matrix_11(gpu_wrapper_0_transform_matrix_matrix_11),
-        .matrix_12(gpu_wrapper_0_transform_matrix_matrix_12),
-        .matrix_13(gpu_wrapper_0_transform_matrix_matrix_13),
-        .matrix_14(gpu_wrapper_0_transform_matrix_matrix_14),
-        .matrix_15(gpu_wrapper_0_transform_matrix_matrix_15),
+       (.matrix_00(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_00),
+        .matrix_01(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_01),
+        .matrix_02(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_02),
+        .matrix_03(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_03),
+        .matrix_04(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_04),
+        .matrix_05(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_05),
+        .matrix_06(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_06),
+        .matrix_07(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_07),
+        .matrix_08(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_08),
+        .matrix_09(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_09),
+        .matrix_10(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_10),
+        .matrix_11(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_11),
+        .matrix_12(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_12),
+        .matrix_13(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_13),
+        .matrix_14(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_14),
+        .matrix_15(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_15),
         .mem_wr_addr(gpu_control_0_mem_wr_addr),
         .mem_wr_data(gpu_control_0_mem_wr_data),
         .mem_wr_en(gpu_control_0_mem_wr_en),
@@ -177,32 +178,32 @@ module main_ub
         .s00_axi_wstrb(microblaze_0_axi_periph_M00_AXI_WSTRB),
         .s00_axi_wvalid(microblaze_0_axi_periph_M00_AXI_WVALID),
         .start(gpu_control_0_start),
-        .status(gpu_wrapper_0_frame_end),
+        .status(gpu_wrapper_vhdl_0_frame_end),
         .vertex_count(gpu_control_0_vertex_count));
-  main_ub_gpu_wrapper_0_0 gpu_wrapper_0
+  main_ub_gpu_wrapper_vhdl_0_0 gpu_wrapper_vhdl_0
        (.clk(microblaze_0_Clk),
-        .frame_end(gpu_wrapper_0_frame_end),
-        .matrix_00(gpu_wrapper_0_transform_matrix_matrix_00),
-        .matrix_01(gpu_wrapper_0_transform_matrix_matrix_01),
-        .matrix_02(gpu_wrapper_0_transform_matrix_matrix_02),
-        .matrix_03(gpu_wrapper_0_transform_matrix_matrix_03),
-        .matrix_04(gpu_wrapper_0_transform_matrix_matrix_04),
-        .matrix_05(gpu_wrapper_0_transform_matrix_matrix_05),
-        .matrix_06(gpu_wrapper_0_transform_matrix_matrix_06),
-        .matrix_07(gpu_wrapper_0_transform_matrix_matrix_07),
-        .matrix_08(gpu_wrapper_0_transform_matrix_matrix_08),
-        .matrix_09(gpu_wrapper_0_transform_matrix_matrix_09),
-        .matrix_10(gpu_wrapper_0_transform_matrix_matrix_10),
-        .matrix_11(gpu_wrapper_0_transform_matrix_matrix_11),
-        .matrix_12(gpu_wrapper_0_transform_matrix_matrix_12),
-        .matrix_13(gpu_wrapper_0_transform_matrix_matrix_13),
-        .matrix_14(gpu_wrapper_0_transform_matrix_matrix_14),
-        .matrix_15(gpu_wrapper_0_transform_matrix_matrix_15),
+        .frame_end(gpu_wrapper_vhdl_0_frame_end),
+        .matrix_00(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_00),
+        .matrix_01(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_01),
+        .matrix_02(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_02),
+        .matrix_03(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_03),
+        .matrix_04(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_04),
+        .matrix_05(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_05),
+        .matrix_06(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_06),
+        .matrix_07(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_07),
+        .matrix_08(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_08),
+        .matrix_09(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_09),
+        .matrix_10(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_10),
+        .matrix_11(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_11),
+        .matrix_12(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_12),
+        .matrix_13(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_13),
+        .matrix_14(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_14),
+        .matrix_15(gpu_wrapper_vhdl_0_user_transform_matrix_matrix_15),
         .mem_wr_addr(gpu_control_0_mem_wr_addr),
         .mem_wr_data(gpu_control_0_mem_wr_data),
         .mem_wr_en(gpu_control_0_mem_wr_en),
         .out_ready(xlconstant_0_dout),
-        .reset(rst_clk_wiz_1_100M_peripheral_aresetn),
+        .reset(util_vector_logic_0_Res),
         .start(gpu_control_0_start),
         .vertex_count(gpu_control_0_vertex_count));
   main_ub_mdm_1_0 mdm_1
@@ -374,6 +375,9 @@ module main_ub
         .mb_reset(rst_clk_wiz_1_100M_mb_reset),
         .peripheral_aresetn(rst_clk_wiz_1_100M_peripheral_aresetn),
         .slowest_sync_clk(microblaze_0_Clk));
+  main_ub_util_vector_logic_0_0 util_vector_logic_0
+       (.Op1(rst_clk_wiz_1_100M_peripheral_aresetn),
+        .Res(util_vector_logic_0_Res));
   main_ub_xlconstant_0_0 xlconstant_0
        (.dout(xlconstant_0_dout));
 endmodule
