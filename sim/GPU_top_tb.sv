@@ -88,14 +88,6 @@ initial begin
     @(posedge clk) start = 0;
 
     @(posedge frame_end) TV_LOADER.save_bmp_file("../../../../../sim/results/gpu_tb_image.bmp", framebuffer);
-    #10000;
-    
-    #16000
-    @(posedge clk) start = 1;
-    @(posedge clk) start = 0;
-
-    @(posedge frame_end) TV_LOADER.save_bmp_file("../../../../../sim/results/gpu_tb_image.bmp", framebuffer);
-    #10000;
     $stop;
 
 end
