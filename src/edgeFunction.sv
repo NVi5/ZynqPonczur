@@ -109,15 +109,10 @@ always @(posedge clk) begin
 end
 
 always @* begin
-    if (reset) begin
-        ce_d <= 4'b0;
-    end
-    else begin
-        ce_d[3] = ~out_valid_d[3] | outReady;
-        ce_d[2] = ~out_valid_d[2] | ce_d[3];
-        ce_d[1] = ~out_valid_d[1] | ce_d[2];
-        ce_d[0] = ~out_valid_d[0] | ce_d[1];
-    end
+    ce_d[3] = ~out_valid_d[3] | outReady;
+    ce_d[2] = ~out_valid_d[2] | ce_d[3];
+    ce_d[1] = ~out_valid_d[1] | ce_d[2];
+    ce_d[0] = ~out_valid_d[0] | ce_d[1];
 end
 
 assign outValid = out_valid_d[3];
