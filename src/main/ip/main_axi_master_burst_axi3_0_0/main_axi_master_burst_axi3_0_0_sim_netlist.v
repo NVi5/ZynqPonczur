@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Sun May 23 23:53:12 2021
+// Date        : Mon May 24 23:30:39 2021
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               C:/Users/nvade/OneDrive/Dokumenty/Workspace/Xilinx/ZynqSDUP/src/main/ip/main_axi_master_burst_axi3_0_0/main_axi_master_burst_axi3_0_0_sim_netlist.v
@@ -249,21 +249,21 @@ endmodule
 
 (* ORIG_REF_NAME = "axi_master_burst_axi3" *) 
 module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
-   (pixel_ready,
+   (M00_AXI_wdata,
     M00_AXI_awaddr,
-    M00_AXI_wdata,
-    M00_AXI_wstrb,
     M00_AXI_wlast,
     M00_AXI_awlen,
     M00_AXI_bready,
+    pixel_ready,
     M00_AXI_wvalid,
+    M00_AXI_wstrb,
     M00_AXI_awvalid,
-    pixel_valid,
     width,
     pixel_y,
     pixel_data,
-    reset,
     M00_AXI_bvalid,
+    pixel_valid,
+    reset,
     clk,
     M00_AXI_wready,
     height,
@@ -271,21 +271,21 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     draw,
     framebuffer_baseaddr,
     pixel_x);
-  output pixel_ready;
-  output [31:0]M00_AXI_awaddr;
   output [31:0]M00_AXI_wdata;
-  output [3:0]M00_AXI_wstrb;
+  output [31:0]M00_AXI_awaddr;
   output M00_AXI_wlast;
   output [3:0]M00_AXI_awlen;
   output M00_AXI_bready;
+  output pixel_ready;
   output M00_AXI_wvalid;
+  output [3:0]M00_AXI_wstrb;
   output M00_AXI_awvalid;
-  input pixel_valid;
   input [10:0]width;
   input [10:0]pixel_y;
   input [7:0]pixel_data;
-  input reset;
   input M00_AXI_bvalid;
+  input pixel_valid;
+  input reset;
   input clk;
   input M00_AXI_wready;
   input [10:0]height;
@@ -305,7 +305,6 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire \M00_AXI_awlen[2]_i_2_n_0 ;
   wire \M00_AXI_awlen[2]_i_3_n_0 ;
   wire \M00_AXI_awlen[3]_i_10_n_0 ;
-  wire \M00_AXI_awlen[3]_i_11_n_0 ;
   wire \M00_AXI_awlen[3]_i_1_n_0 ;
   wire \M00_AXI_awlen[3]_i_2_n_0 ;
   wire \M00_AXI_awlen[3]_i_3_n_0 ;
@@ -322,41 +321,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire M00_AXI_bready;
   wire M00_AXI_bvalid;
   wire [31:0]M00_AXI_wdata;
-  wire \M00_AXI_wdata_reg[0]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[10]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[11]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[12]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[13]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[14]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[15]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[16]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[17]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[18]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[19]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[1]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[20]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[21]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[22]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[23]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[24]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[25]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[26]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[27]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[28]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[29]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[2]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[30]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[31]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[3]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[4]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[5]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[6]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[7]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[8]_i_1_n_0 ;
-  wire \M00_AXI_wdata_reg[9]_i_1_n_0 ;
   wire M00_AXI_wlast;
-  wire M00_AXI_wlast_i_10_n_0;
-  wire M00_AXI_wlast_i_11_n_0;
   wire M00_AXI_wlast_i_1_n_0;
   wire M00_AXI_wlast_i_2_n_0;
   wire M00_AXI_wlast_i_3_n_0;
@@ -365,13 +330,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire M00_AXI_wlast_i_6_n_0;
   wire M00_AXI_wlast_i_7_n_0;
   wire M00_AXI_wlast_i_8_n_0;
-  wire M00_AXI_wlast_i_9_n_0;
   wire M00_AXI_wready;
   wire [3:0]M00_AXI_wstrb;
-  wire \M00_AXI_wstrb_reg[0]_i_1_n_0 ;
-  wire \M00_AXI_wstrb_reg[1]_i_1_n_0 ;
-  wire \M00_AXI_wstrb_reg[2]_i_1_n_0 ;
-  wire \M00_AXI_wstrb_reg[3]_i_1_n_0 ;
   wire M00_AXI_wvalid;
   wire M00_AXI_wvalid_i_1_n_0;
   wire M00_AXI_wvalid_i_2_n_0;
@@ -404,12 +364,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire \height_reg[10]_i_1_n_0 ;
   wire \height_reg[10]_i_2_n_0 ;
   wire \height_reg[10]_i_3_n_0 ;
-  wire \height_reg[10]_i_4_n_0 ;
-  wire \height_reg[10]_i_5_n_0 ;
   wire \height_reg[1]_i_1_n_0 ;
   wire \height_reg[2]_i_1_n_0 ;
   wire \height_reg[3]_i_1_n_0 ;
-  wire \height_reg[3]_i_2_n_0 ;
   wire \height_reg[4]_i_1_n_0 ;
   wire \height_reg[4]_i_2_n_0 ;
   wire \height_reg[5]_i_1_n_0 ;
@@ -417,11 +374,10 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire \height_reg[6]_i_1_n_0 ;
   wire \height_reg[7]_i_1_n_0 ;
   wire \height_reg[7]_i_2_n_0 ;
-  wire \height_reg[7]_i_3_n_0 ;
   wire \height_reg[8]_i_1_n_0 ;
-  wire \height_reg[8]_i_2_n_0 ;
   wire \height_reg[9]_i_1_n_0 ;
   wire \height_reg[9]_i_2_n_0 ;
+  wire \height_reg[9]_i_3_n_0 ;
   wire \height_reg_reg_n_0_[0] ;
   wire \height_reg_reg_n_0_[10] ;
   wire \height_reg_reg_n_0_[1] ;
@@ -455,10 +411,6 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire pixel_addr__1_carry__0_n_1;
   wire pixel_addr__1_carry__0_n_2;
   wire pixel_addr__1_carry__0_n_3;
-  wire pixel_addr__1_carry__0_n_4;
-  wire pixel_addr__1_carry__0_n_5;
-  wire pixel_addr__1_carry__0_n_6;
-  wire pixel_addr__1_carry__0_n_7;
   wire pixel_addr__1_carry__1_i_1_n_0;
   wire pixel_addr__1_carry__1_i_2_n_0;
   wire pixel_addr__1_carry__1_i_3_n_0;
@@ -531,10 +483,6 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire pixel_addr__1_carry_n_1;
   wire pixel_addr__1_carry_n_2;
   wire pixel_addr__1_carry_n_3;
-  wire pixel_addr__1_carry_n_4;
-  wire pixel_addr__1_carry_n_5;
-  wire pixel_addr__1_carry_n_6;
-  wire pixel_addr__1_carry_n_7;
   wire pixel_addr__82_carry__0_i_1_n_0;
   wire pixel_addr__82_carry__0_i_2_n_0;
   wire pixel_addr__82_carry__0_i_3_n_0;
@@ -547,10 +495,6 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire pixel_addr__82_carry__0_n_1;
   wire pixel_addr__82_carry__0_n_2;
   wire pixel_addr__82_carry__0_n_3;
-  wire pixel_addr__82_carry__0_n_4;
-  wire pixel_addr__82_carry__0_n_5;
-  wire pixel_addr__82_carry__0_n_6;
-  wire pixel_addr__82_carry__0_n_7;
   wire pixel_addr__82_carry__1_i_1_n_0;
   wire pixel_addr__82_carry__1_i_2_n_0;
   wire pixel_addr__82_carry__1_i_3_n_0;
@@ -563,10 +507,6 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire pixel_addr__82_carry__1_n_1;
   wire pixel_addr__82_carry__1_n_2;
   wire pixel_addr__82_carry__1_n_3;
-  wire pixel_addr__82_carry__1_n_4;
-  wire pixel_addr__82_carry__1_n_5;
-  wire pixel_addr__82_carry__1_n_6;
-  wire pixel_addr__82_carry__1_n_7;
   wire pixel_addr__82_carry__2_i_1_n_0;
   wire pixel_addr__82_carry__2_i_2_n_0;
   wire pixel_addr__82_carry__2_i_3_n_0;
@@ -577,10 +517,6 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire pixel_addr__82_carry__2_n_1;
   wire pixel_addr__82_carry__2_n_2;
   wire pixel_addr__82_carry__2_n_3;
-  wire pixel_addr__82_carry__2_n_4;
-  wire pixel_addr__82_carry__2_n_5;
-  wire pixel_addr__82_carry__2_n_6;
-  wire pixel_addr__82_carry__2_n_7;
   wire pixel_addr__82_carry__3_i_1_n_0;
   wire pixel_addr__82_carry__3_i_2_n_0;
   wire pixel_addr__82_carry__3_i_3_n_0;
@@ -589,10 +525,6 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire pixel_addr__82_carry__3_n_1;
   wire pixel_addr__82_carry__3_n_2;
   wire pixel_addr__82_carry__3_n_3;
-  wire pixel_addr__82_carry__3_n_4;
-  wire pixel_addr__82_carry__3_n_5;
-  wire pixel_addr__82_carry__3_n_6;
-  wire pixel_addr__82_carry__3_n_7;
   wire pixel_addr__82_carry__4_i_1_n_0;
   wire pixel_addr__82_carry__4_i_2_n_0;
   wire pixel_addr__82_carry__4_i_3_n_0;
@@ -600,10 +532,6 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire pixel_addr__82_carry__4_n_1;
   wire pixel_addr__82_carry__4_n_2;
   wire pixel_addr__82_carry__4_n_3;
-  wire pixel_addr__82_carry__4_n_4;
-  wire pixel_addr__82_carry__4_n_5;
-  wire pixel_addr__82_carry__4_n_6;
-  wire pixel_addr__82_carry__4_n_7;
   wire pixel_addr__82_carry_i_1_n_0;
   wire pixel_addr__82_carry_i_2_n_0;
   wire pixel_addr__82_carry_i_3_n_0;
@@ -615,13 +543,8 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire pixel_addr__82_carry_n_1;
   wire pixel_addr__82_carry_n_2;
   wire pixel_addr__82_carry_n_3;
-  wire pixel_addr__82_carry_n_4;
-  wire pixel_addr__82_carry_n_5;
-  wire pixel_addr__82_carry_n_6;
-  wire pixel_addr__82_carry_n_7;
   wire [7:0]pixel_data;
   wire pixel_ready;
-  wire pixel_ready0;
   wire pixel_valid;
   wire [10:0]pixel_x;
   wire [10:0]pixel_y;
@@ -629,10 +552,15 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire [1:0]state;
   wire \state[0]_i_1_n_0 ;
   wire \state[1]_i_1_n_0 ;
+  wire \state[1]_i_2_n_0 ;
   wire [10:0]width;
   wire \width_reg[10]_i_1_n_0 ;
   wire \width_reg[10]_i_3_n_0 ;
   wire \width_reg[10]_i_4_n_0 ;
+  wire \width_reg[10]_i_5_n_0 ;
+  wire \width_reg[10]_i_6_n_0 ;
+  wire \width_reg[10]_i_7_n_0 ;
+  wire \width_reg[10]_i_8_n_0 ;
   wire \width_reg[2]_i_2_n_0 ;
   wire \width_reg[3]_i_2_n_0 ;
   wire \width_reg[4]_i_2_n_0 ;
@@ -648,7 +576,9 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire \width_reg[8]_i_2_n_0 ;
   wire \width_reg[8]_i_3_n_0 ;
   wire \width_reg[8]_i_4_n_0 ;
+  wire \width_reg[8]_i_5_n_0 ;
   wire \width_reg[9]_i_2_n_0 ;
+  wire \width_reg[9]_i_3_n_0 ;
   wire \width_reg_reg_n_0_[0] ;
   wire \width_reg_reg_n_0_[10] ;
   wire \width_reg_reg_n_0_[1] ;
@@ -665,533 +595,177 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
   wire [3:3]NLW_pixel_addr__1_carry__6_CO_UNCONNECTED;
   wire [3:3]NLW_pixel_addr__82_carry__4_CO_UNCONNECTED;
 
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[0] 
-       (.CLR(reset),
-        .D(pixel_addr__1_carry_n_7),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[0]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[10] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry_n_5),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[10]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[11] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry_n_4),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[11]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[12] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__0_n_7),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[12]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[13] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__0_n_6),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[13]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[14] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__0_n_5),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[14]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[15] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__0_n_4),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[15]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[16] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__1_n_7),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[16]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[17] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__1_n_6),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[17]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[18] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__1_n_5),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[18]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[19] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__1_n_4),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[19]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[1] 
-       (.CLR(reset),
-        .D(pixel_addr__1_carry_n_6),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[1]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[20] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__2_n_7),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[20]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[21] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__2_n_6),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[21]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[22] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__2_n_5),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[22]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[23] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__2_n_4),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[23]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[24] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__3_n_7),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[24]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[25] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__3_n_6),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[25]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[26] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__3_n_5),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[26]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[27] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__3_n_4),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[27]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[28] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__4_n_7),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[28]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[29] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__4_n_6),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[29]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[2] 
-       (.CLR(reset),
-        .D(pixel_addr__1_carry_n_5),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[2]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[30] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__4_n_5),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[30]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[31] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry__4_n_4),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[31]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[3] 
-       (.CLR(reset),
-        .D(pixel_addr__1_carry_n_4),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[3]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[4] 
-       (.CLR(reset),
-        .D(pixel_addr__1_carry__0_n_7),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[4]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[5] 
-       (.CLR(reset),
-        .D(pixel_addr__1_carry__0_n_6),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[5]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[6] 
-       (.CLR(reset),
-        .D(pixel_addr__1_carry__0_n_5),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[6]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[7] 
-       (.CLR(reset),
-        .D(pixel_addr__1_carry__0_n_4),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[7]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[8] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry_n_7),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[8]));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_awaddr_reg[9] 
-       (.CLR(reset),
-        .D(pixel_addr__82_carry_n_6),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_awaddr[9]));
-  LUT6 #(
-    .INIT(64'hFFFFFFFF15151504)) 
+  LUT5 #(
+    .INIT(32'hFFFF000E)) 
     \M00_AXI_awlen[0]_i_1 
-       (.I0(state[1]),
-        .I1(state[0]),
-        .I2(M00_AXI_awlen[0]),
-        .I3(\M00_AXI_awlen[3]_i_6_n_0 ),
-        .I4(width[0]),
-        .I5(\M00_AXI_awlen[0]_i_2_n_0 ),
+       (.I0(width[0]),
+        .I1(\M00_AXI_awlen[3]_i_4_n_0 ),
+        .I2(state[1]),
+        .I3(state[0]),
+        .I4(\M00_AXI_awlen[0]_i_2_n_0 ),
         .O(\M00_AXI_awlen[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT3 #(
-    .INIT(8'h2A)) 
+  LUT5 #(
+    .INIT(32'h4C4C7F4C)) 
     \M00_AXI_awlen[0]_i_2 
-       (.I0(state[1]),
-        .I1(\width_reg_reg_n_0_[0] ),
-        .I2(\height_reg[10]_i_3_n_0 ),
+       (.I0(\M00_AXI_awlen[1]_i_3_n_0 ),
+        .I1(state[1]),
+        .I2(\width_reg_reg_n_0_[0] ),
+        .I3(state[0]),
+        .I4(M00_AXI_awlen[0]),
         .O(\M00_AXI_awlen[0]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hFF00FF0EFFFFFF0E)) 
     \M00_AXI_awlen[1]_i_1 
-       (.I0(\M00_AXI_awlen[1]_i_2_n_0 ),
-        .I1(state[1]),
-        .I2(\M00_AXI_awlen[1]_i_3_n_0 ),
-        .I3(state[0]),
-        .I4(width[1]),
-        .I5(\M00_AXI_awlen[3]_i_6_n_0 ),
+       (.I0(\M00_AXI_awlen[3]_i_4_n_0 ),
+        .I1(width[1]),
+        .I2(state[0]),
+        .I3(\M00_AXI_awlen[1]_i_2_n_0 ),
+        .I4(state[1]),
+        .I5(\M00_AXI_awlen[1]_i_3_n_0 ),
         .O(\M00_AXI_awlen[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
-  LUT3 #(
-    .INIT(8'hD7)) 
-    \M00_AXI_awlen[1]_i_2 
-       (.I0(\height_reg[10]_i_3_n_0 ),
-        .I1(\width_reg_reg_n_0_[1] ),
-        .I2(\width_reg_reg_n_0_[0] ),
-        .O(\M00_AXI_awlen[1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
-  LUT2 #(
-    .INIT(4'h9)) 
-    \M00_AXI_awlen[1]_i_3 
-       (.I0(M00_AXI_awlen[0]),
-        .I1(M00_AXI_awlen[1]),
-        .O(\M00_AXI_awlen[1]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hFF0000FF90909090)) 
+    \M00_AXI_awlen[1]_i_2 
+       (.I0(M00_AXI_awlen[1]),
+        .I1(M00_AXI_awlen[0]),
+        .I2(state[0]),
+        .I3(\width_reg_reg_n_0_[1] ),
+        .I4(\width_reg_reg_n_0_[0] ),
+        .I5(state[1]),
+        .O(\M00_AXI_awlen[1]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000002AAAAAAAA)) 
+    \M00_AXI_awlen[1]_i_3 
+       (.I0(\M00_AXI_awlen[3]_i_8_n_0 ),
+        .I1(\width_reg_reg_n_0_[2] ),
+        .I2(\width_reg_reg_n_0_[0] ),
+        .I3(\width_reg_reg_n_0_[1] ),
+        .I4(\width_reg_reg_n_0_[3] ),
+        .I5(\width_reg_reg_n_0_[4] ),
+        .O(\M00_AXI_awlen[1]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'hBBBBBBBA)) 
     \M00_AXI_awlen[2]_i_1 
        (.I0(\M00_AXI_awlen[2]_i_2_n_0 ),
-        .I1(state[1]),
-        .I2(\M00_AXI_awlen[2]_i_3_n_0 ),
-        .I3(state[0]),
-        .I4(width[2]),
-        .I5(\M00_AXI_awlen[3]_i_6_n_0 ),
-        .O(\M00_AXI_awlen[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
-  LUT4 #(
-    .INIT(16'hE1FF)) 
-    \M00_AXI_awlen[2]_i_2 
-       (.I0(\width_reg_reg_n_0_[0] ),
-        .I1(\width_reg_reg_n_0_[1] ),
-        .I2(\width_reg_reg_n_0_[2] ),
-        .I3(\height_reg[10]_i_3_n_0 ),
-        .O(\M00_AXI_awlen[2]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
-  LUT3 #(
-    .INIT(8'hA9)) 
-    \M00_AXI_awlen[2]_i_3 
-       (.I0(M00_AXI_awlen[2]),
-        .I1(M00_AXI_awlen[1]),
-        .I2(M00_AXI_awlen[0]),
-        .O(\M00_AXI_awlen[2]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'h444400000C00CCCC)) 
-    \M00_AXI_awlen[3]_i_1 
-       (.I0(\M00_AXI_awlen[3]_i_3_n_0 ),
-        .I1(pixel_valid),
-        .I2(M00_AXI_wlast),
-        .I3(M00_AXI_wready),
+        .I1(\M00_AXI_awlen[2]_i_3_n_0 ),
+        .I2(\M00_AXI_awlen[3]_i_4_n_0 ),
+        .I3(width[2]),
         .I4(state[0]),
-        .I5(state[1]),
-        .O(\M00_AXI_awlen[3]_i_1_n_0 ));
+        .O(\M00_AXI_awlen[2]_i_1_n_0 ));
   LUT5 #(
-    .INIT(32'hA6AAAAAA)) 
-    \M00_AXI_awlen[3]_i_10 
-       (.I0(width[9]),
-        .I1(width[6]),
-        .I2(M00_AXI_wlast_i_7_n_0),
-        .I3(width[7]),
-        .I4(width[8]),
-        .O(\M00_AXI_awlen[3]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'hFEFE7FFEFEFEFEFE)) 
-    \M00_AXI_awlen[3]_i_11 
-       (.I0(width[8]),
-        .I1(width[7]),
-        .I2(width[6]),
-        .I3(width[4]),
-        .I4(\width_reg[5]_i_3_n_0 ),
-        .I5(width[5]),
-        .O(\M00_AXI_awlen[3]_i_11_n_0 ));
-  LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
-    \M00_AXI_awlen[3]_i_2 
-       (.I0(\M00_AXI_awlen[3]_i_4_n_0 ),
-        .I1(state[1]),
-        .I2(\M00_AXI_awlen[3]_i_5_n_0 ),
-        .I3(state[0]),
-        .I4(width[3]),
-        .I5(\M00_AXI_awlen[3]_i_6_n_0 ),
-        .O(\M00_AXI_awlen[3]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000100000000)) 
-    \M00_AXI_awlen[3]_i_3 
-       (.I0(\height_reg[7]_i_2_n_0 ),
-        .I1(\M00_AXI_awlen[3]_i_7_n_0 ),
-        .I2(\width_reg_reg_n_0_[8] ),
-        .I3(\width_reg_reg_n_0_[9] ),
-        .I4(\width_reg_reg_n_0_[10] ),
-        .I5(\M00_AXI_awlen[3]_i_8_n_0 ),
-        .O(\M00_AXI_awlen[3]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT5 #(
-    .INIT(32'hFE01FFFF)) 
-    \M00_AXI_awlen[3]_i_4 
-       (.I0(\width_reg_reg_n_0_[0] ),
+    .INIT(32'h8882AAAA)) 
+    \M00_AXI_awlen[2]_i_2 
+       (.I0(state[1]),
         .I1(\width_reg_reg_n_0_[2] ),
         .I2(\width_reg_reg_n_0_[1] ),
-        .I3(\width_reg_reg_n_0_[3] ),
-        .I4(\height_reg[10]_i_3_n_0 ),
-        .O(\M00_AXI_awlen[3]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT4 #(
-    .INIT(16'hAAA9)) 
-    \M00_AXI_awlen[3]_i_5 
-       (.I0(M00_AXI_awlen[3]),
+        .I3(\width_reg_reg_n_0_[0] ),
+        .I4(\M00_AXI_awlen[1]_i_3_n_0 ),
+        .O(\M00_AXI_awlen[2]_i_2_n_0 ));
+  LUT5 #(
+    .INIT(32'hBBBEAAAA)) 
+    \M00_AXI_awlen[2]_i_3 
+       (.I0(state[1]),
         .I1(M00_AXI_awlen[2]),
         .I2(M00_AXI_awlen[0]),
         .I3(M00_AXI_awlen[1]),
+        .I4(state[0]),
+        .O(\M00_AXI_awlen[2]_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hAA000000BA00FF00)) 
+    \M00_AXI_awlen[3]_i_1 
+       (.I0(\M00_AXI_awlen[3]_i_3_n_0 ),
+        .I1(M00_AXI_wlast),
+        .I2(M00_AXI_wready),
+        .I3(pixel_valid),
+        .I4(state[0]),
+        .I5(state[1]),
+        .O(\M00_AXI_awlen[3]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'hF7FFFFFFFFFFAEAA)) 
+    \M00_AXI_awlen[3]_i_10 
+       (.I0(width[6]),
+        .I1(width[4]),
+        .I2(\width_reg[5]_i_3_n_0 ),
+        .I3(width[5]),
+        .I4(width[7]),
+        .I5(width[8]),
+        .O(\M00_AXI_awlen[3]_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFF000E)) 
+    \M00_AXI_awlen[3]_i_2 
+       (.I0(width[3]),
+        .I1(\M00_AXI_awlen[3]_i_4_n_0 ),
+        .I2(state[1]),
+        .I3(state[0]),
+        .I4(\M00_AXI_awlen[3]_i_5_n_0 ),
+        .I5(\M00_AXI_awlen[3]_i_6_n_0 ),
+        .O(\M00_AXI_awlen[3]_i_2_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT5 #(
+    .INIT(32'hA2AAAAAA)) 
+    \M00_AXI_awlen[3]_i_3 
+       (.I0(state[1]),
+        .I1(\M00_AXI_awlen[3]_i_7_n_0 ),
+        .I2(\width_reg_reg_n_0_[4] ),
+        .I3(\M00_AXI_awlen[3]_i_8_n_0 ),
+        .I4(\height_reg[9]_i_2_n_0 ),
+        .O(\M00_AXI_awlen[3]_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFEEFFE)) 
+    \M00_AXI_awlen[3]_i_4 
+       (.I0(\width_reg[10]_i_4_n_0 ),
+        .I1(\M00_AXI_awlen[3]_i_9_n_0 ),
+        .I2(width[5]),
+        .I3(width[4]),
+        .I4(\width_reg[5]_i_3_n_0 ),
+        .I5(\M00_AXI_awlen[3]_i_10_n_0 ),
+        .O(\M00_AXI_awlen[3]_i_4_n_0 ));
+  LUT6 #(
+    .INIT(64'h4444444000000004)) 
+    \M00_AXI_awlen[3]_i_5 
+       (.I0(state[1]),
+        .I1(state[0]),
+        .I2(M00_AXI_awlen[2]),
+        .I3(M00_AXI_awlen[0]),
+        .I4(M00_AXI_awlen[1]),
+        .I5(M00_AXI_awlen[3]),
         .O(\M00_AXI_awlen[3]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFEFFFFEE)) 
+    .INIT(64'h88888882AAAAAAAA)) 
     \M00_AXI_awlen[3]_i_6 
-       (.I0(\M00_AXI_awlen[3]_i_9_n_0 ),
-        .I1(\M00_AXI_awlen[3]_i_10_n_0 ),
-        .I2(\width_reg[5]_i_3_n_0 ),
-        .I3(width[4]),
-        .I4(width[5]),
-        .I5(\M00_AXI_awlen[3]_i_11_n_0 ),
+       (.I0(state[1]),
+        .I1(\width_reg_reg_n_0_[3] ),
+        .I2(\width_reg_reg_n_0_[2] ),
+        .I3(\width_reg_reg_n_0_[0] ),
+        .I4(\width_reg_reg_n_0_[1] ),
+        .I5(\M00_AXI_awlen[1]_i_3_n_0 ),
         .O(\M00_AXI_awlen[3]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
-  LUT4 #(
-    .INIT(16'hFFFE)) 
-    \M00_AXI_awlen[3]_i_7 
-       (.I0(\width_reg_reg_n_0_[7] ),
-        .I1(\width_reg_reg_n_0_[4] ),
-        .I2(\width_reg_reg_n_0_[5] ),
-        .I3(\width_reg_reg_n_0_[6] ),
-        .O(\M00_AXI_awlen[3]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT4 #(
     .INIT(16'h0001)) 
-    \M00_AXI_awlen[3]_i_8 
-       (.I0(\width_reg_reg_n_0_[1] ),
-        .I1(\width_reg_reg_n_0_[2] ),
-        .I2(\width_reg_reg_n_0_[0] ),
+    \M00_AXI_awlen[3]_i_7 
+       (.I0(\width_reg_reg_n_0_[2] ),
+        .I1(\width_reg_reg_n_0_[0] ),
+        .I2(\width_reg_reg_n_0_[1] ),
         .I3(\width_reg_reg_n_0_[3] ),
-        .O(\M00_AXI_awlen[3]_i_8_n_0 ));
+        .O(\M00_AXI_awlen[3]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'hAA6AAAAAAAAAAAAA)) 
+    .INIT(64'h0000000000000001)) 
+    \M00_AXI_awlen[3]_i_8 
+       (.I0(\width_reg_reg_n_0_[9] ),
+        .I1(\width_reg_reg_n_0_[6] ),
+        .I2(\width_reg_reg_n_0_[7] ),
+        .I3(\width_reg_reg_n_0_[8] ),
+        .I4(\width_reg_reg_n_0_[5] ),
+        .I5(\width_reg_reg_n_0_[10] ),
+        .O(\M00_AXI_awlen[3]_i_8_n_0 ));
+  LUT5 #(
+    .INIT(32'hA6AAAAAA)) 
     \M00_AXI_awlen[3]_i_9 
-       (.I0(width[10]),
-        .I1(width[8]),
-        .I2(width[7]),
-        .I3(M00_AXI_wlast_i_7_n_0),
-        .I4(width[6]),
-        .I5(width[9]),
+       (.I0(width[9]),
+        .I1(width[6]),
+        .I2(\width_reg[10]_i_7_n_0 ),
+        .I3(width[7]),
+        .I4(width[8]),
         .O(\M00_AXI_awlen[3]_i_9_n_0 ));
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWLEN" *) 
   FDRE \M00_AXI_awlen_reg[0] 
@@ -1222,23 +796,23 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .Q(M00_AXI_awlen[3]),
         .R(reset));
   LUT6 #(
-    .INIT(64'hD5C50D0D80C00C0C)) 
+    .INIT(64'h88229F3388228022)) 
     M00_AXI_awvalid_i_1
-       (.I0(M00_AXI_awvalid_i_2_n_0),
-        .I1(pixel_valid),
-        .I2(state[1]),
-        .I3(\M00_AXI_awlen[3]_i_3_n_0 ),
-        .I4(state[0]),
+       (.I0(pixel_valid),
+        .I1(state[1]),
+        .I2(\M00_AXI_awlen[3]_i_3_n_0 ),
+        .I3(state[0]),
+        .I4(M00_AXI_awvalid_i_2_n_0),
         .I5(M00_AXI_awvalid),
         .O(M00_AXI_awvalid_i_1_n_0));
   LUT6 #(
-    .INIT(64'h4444444440444040)) 
+    .INIT(64'h4444444444440040)) 
     M00_AXI_awvalid_i_2
        (.I0(state[1]),
         .I1(state[0]),
-        .I2(M00_AXI_wlast),
+        .I2(M00_AXI_wready),
         .I3(pixel_valid),
-        .I4(M00_AXI_wready),
+        .I4(M00_AXI_wlast),
         .I5(M00_AXI_awready),
         .O(M00_AXI_awvalid_i_2_n_0));
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI AWVALID" *) 
@@ -1255,720 +829,339 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .D(1'b1),
         .Q(M00_AXI_bready),
         .R(reset));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[0] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[0]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[0]));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'h04)) 
-    \M00_AXI_wdata_reg[0]_i_1 
-       (.I0(pixel_addr__1_carry_n_7),
+    \M00_AXI_wdata[0]_INST_0 
+       (.I0(M00_AXI_awaddr[0]),
         .I1(pixel_data[0]),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[0]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[10] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[10]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[10]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[0]));
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT3 #(
     .INIT(8'h08)) 
-    \M00_AXI_wdata_reg[10]_i_1 
+    \M00_AXI_wdata[10]_INST_0 
        (.I0(pixel_data[2]),
-        .I1(pixel_addr__1_carry_n_7),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[10]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[11] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[11]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[11]));
+        .I1(M00_AXI_awaddr[0]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[10]));
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  LUT3 #(
+    .INIT(8'h08)) 
+    \M00_AXI_wdata[11]_INST_0 
+       (.I0(pixel_data[3]),
+        .I1(M00_AXI_awaddr[0]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[11]));
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT3 #(
+    .INIT(8'h08)) 
+    \M00_AXI_wdata[12]_INST_0 
+       (.I0(pixel_data[4]),
+        .I1(M00_AXI_awaddr[0]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[12]));
   (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'h08)) 
-    \M00_AXI_wdata_reg[11]_i_1 
-       (.I0(pixel_data[3]),
-        .I1(pixel_addr__1_carry_n_7),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[11]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[12] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[12]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[12]));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
-  LUT3 #(
-    .INIT(8'h08)) 
-    \M00_AXI_wdata_reg[12]_i_1 
-       (.I0(pixel_data[4]),
-        .I1(pixel_addr__1_carry_n_7),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[12]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[13] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[13]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[13]));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
-  LUT3 #(
-    .INIT(8'h08)) 
-    \M00_AXI_wdata_reg[13]_i_1 
+    \M00_AXI_wdata[13]_INST_0 
        (.I0(pixel_data[5]),
-        .I1(pixel_addr__1_carry_n_7),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[13]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[14] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[14]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[14]));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+        .I1(M00_AXI_awaddr[0]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[13]));
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'h08)) 
-    \M00_AXI_wdata_reg[14]_i_1 
+    \M00_AXI_wdata[14]_INST_0 
        (.I0(pixel_data[6]),
-        .I1(pixel_addr__1_carry_n_7),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[14]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[15] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[15]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[15]));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+        .I1(M00_AXI_awaddr[0]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[14]));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
     .INIT(8'h08)) 
-    \M00_AXI_wdata_reg[15]_i_1 
+    \M00_AXI_wdata[15]_INST_0 
        (.I0(pixel_data[7]),
-        .I1(pixel_addr__1_carry_n_7),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[15]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[16] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[16]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[16]));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+        .I1(M00_AXI_awaddr[0]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[15]));
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT3 #(
     .INIT(8'h20)) 
-    \M00_AXI_wdata_reg[16]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
-        .I1(pixel_addr__1_carry_n_7),
+    \M00_AXI_wdata[16]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
+        .I1(M00_AXI_awaddr[0]),
         .I2(pixel_data[0]),
-        .O(\M00_AXI_wdata_reg[16]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[17] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[17]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[17]));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+        .O(M00_AXI_wdata[16]));
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT3 #(
     .INIT(8'h20)) 
-    \M00_AXI_wdata_reg[17]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
-        .I1(pixel_addr__1_carry_n_7),
+    \M00_AXI_wdata[17]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
+        .I1(M00_AXI_awaddr[0]),
         .I2(pixel_data[1]),
-        .O(\M00_AXI_wdata_reg[17]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[18] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[18]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[18]));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
-  LUT3 #(
-    .INIT(8'h20)) 
-    \M00_AXI_wdata_reg[18]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
-        .I1(pixel_addr__1_carry_n_7),
-        .I2(pixel_data[2]),
-        .O(\M00_AXI_wdata_reg[18]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[19] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[19]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[19]));
+        .O(M00_AXI_wdata[17]));
   (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT3 #(
     .INIT(8'h20)) 
-    \M00_AXI_wdata_reg[19]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
-        .I1(pixel_addr__1_carry_n_7),
+    \M00_AXI_wdata[18]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
+        .I1(M00_AXI_awaddr[0]),
+        .I2(pixel_data[2]),
+        .O(M00_AXI_wdata[18]));
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  LUT3 #(
+    .INIT(8'h20)) 
+    \M00_AXI_wdata[19]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
+        .I1(M00_AXI_awaddr[0]),
         .I2(pixel_data[3]),
-        .O(\M00_AXI_wdata_reg[19]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[1] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[1]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[1]));
+        .O(M00_AXI_wdata[19]));
   (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'h04)) 
-    \M00_AXI_wdata_reg[1]_i_1 
-       (.I0(pixel_addr__1_carry_n_7),
+    \M00_AXI_wdata[1]_INST_0 
+       (.I0(M00_AXI_awaddr[0]),
         .I1(pixel_data[1]),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[1]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[20] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[20]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[20]));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[1]));
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'h20)) 
-    \M00_AXI_wdata_reg[20]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
-        .I1(pixel_addr__1_carry_n_7),
+    \M00_AXI_wdata[20]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
+        .I1(M00_AXI_awaddr[0]),
         .I2(pixel_data[4]),
-        .O(\M00_AXI_wdata_reg[20]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[21] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[21]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[21]));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+        .O(M00_AXI_wdata[20]));
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT3 #(
     .INIT(8'h20)) 
-    \M00_AXI_wdata_reg[21]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
-        .I1(pixel_addr__1_carry_n_7),
+    \M00_AXI_wdata[21]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
+        .I1(M00_AXI_awaddr[0]),
         .I2(pixel_data[5]),
-        .O(\M00_AXI_wdata_reg[21]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[22] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[22]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[22]));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+        .O(M00_AXI_wdata[21]));
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT3 #(
     .INIT(8'h20)) 
-    \M00_AXI_wdata_reg[22]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
-        .I1(pixel_addr__1_carry_n_7),
+    \M00_AXI_wdata[22]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
+        .I1(M00_AXI_awaddr[0]),
         .I2(pixel_data[6]),
-        .O(\M00_AXI_wdata_reg[22]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[23] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[23]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[23]));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
-  LUT3 #(
-    .INIT(8'h20)) 
-    \M00_AXI_wdata_reg[23]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
-        .I1(pixel_addr__1_carry_n_7),
-        .I2(pixel_data[7]),
-        .O(\M00_AXI_wdata_reg[23]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[24] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[24]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[24]));
+        .O(M00_AXI_wdata[22]));
   (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
+    .INIT(8'h20)) 
+    \M00_AXI_wdata[23]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
+        .I1(M00_AXI_awaddr[0]),
+        .I2(pixel_data[7]),
+        .O(M00_AXI_wdata[23]));
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  LUT3 #(
     .INIT(8'h80)) 
-    \M00_AXI_wdata_reg[24]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
+    \M00_AXI_wdata[24]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
         .I1(pixel_data[0]),
-        .I2(pixel_addr__1_carry_n_7),
-        .O(\M00_AXI_wdata_reg[24]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[25] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[25]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[25]));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+        .I2(M00_AXI_awaddr[0]),
+        .O(M00_AXI_wdata[24]));
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT3 #(
     .INIT(8'h80)) 
-    \M00_AXI_wdata_reg[25]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
+    \M00_AXI_wdata[25]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
         .I1(pixel_data[1]),
-        .I2(pixel_addr__1_carry_n_7),
-        .O(\M00_AXI_wdata_reg[25]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[26] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[26]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[26]));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
-  LUT3 #(
-    .INIT(8'h80)) 
-    \M00_AXI_wdata_reg[26]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
-        .I1(pixel_data[2]),
-        .I2(pixel_addr__1_carry_n_7),
-        .O(\M00_AXI_wdata_reg[26]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[27] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[27]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[27]));
+        .I2(M00_AXI_awaddr[0]),
+        .O(M00_AXI_wdata[25]));
   (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT3 #(
     .INIT(8'h80)) 
-    \M00_AXI_wdata_reg[27]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
+    \M00_AXI_wdata[26]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
+        .I1(pixel_data[2]),
+        .I2(M00_AXI_awaddr[0]),
+        .O(M00_AXI_wdata[26]));
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  LUT3 #(
+    .INIT(8'h80)) 
+    \M00_AXI_wdata[27]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
         .I1(pixel_data[3]),
-        .I2(pixel_addr__1_carry_n_7),
-        .O(\M00_AXI_wdata_reg[27]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[28] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[28]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[28]));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+        .I2(M00_AXI_awaddr[0]),
+        .O(M00_AXI_wdata[27]));
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'h80)) 
-    \M00_AXI_wdata_reg[28]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
+    \M00_AXI_wdata[28]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
         .I1(pixel_data[4]),
-        .I2(pixel_addr__1_carry_n_7),
-        .O(\M00_AXI_wdata_reg[28]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[29] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[29]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[29]));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+        .I2(M00_AXI_awaddr[0]),
+        .O(M00_AXI_wdata[28]));
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT3 #(
     .INIT(8'h80)) 
-    \M00_AXI_wdata_reg[29]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
+    \M00_AXI_wdata[29]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
         .I1(pixel_data[5]),
-        .I2(pixel_addr__1_carry_n_7),
-        .O(\M00_AXI_wdata_reg[29]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[2] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[2]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[2]));
+        .I2(M00_AXI_awaddr[0]),
+        .O(M00_AXI_wdata[29]));
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  LUT3 #(
+    .INIT(8'h04)) 
+    \M00_AXI_wdata[2]_INST_0 
+       (.I0(M00_AXI_awaddr[0]),
+        .I1(pixel_data[2]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[2]));
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  LUT3 #(
+    .INIT(8'h80)) 
+    \M00_AXI_wdata[30]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
+        .I1(pixel_data[6]),
+        .I2(M00_AXI_awaddr[0]),
+        .O(M00_AXI_wdata[30]));
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  LUT3 #(
+    .INIT(8'h80)) 
+    \M00_AXI_wdata[31]_INST_0 
+       (.I0(M00_AXI_awaddr[1]),
+        .I1(pixel_data[7]),
+        .I2(M00_AXI_awaddr[0]),
+        .O(M00_AXI_wdata[31]));
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  LUT3 #(
+    .INIT(8'h04)) 
+    \M00_AXI_wdata[3]_INST_0 
+       (.I0(M00_AXI_awaddr[0]),
+        .I1(pixel_data[3]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[3]));
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT3 #(
+    .INIT(8'h04)) 
+    \M00_AXI_wdata[4]_INST_0 
+       (.I0(M00_AXI_awaddr[0]),
+        .I1(pixel_data[4]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[4]));
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  LUT3 #(
+    .INIT(8'h04)) 
+    \M00_AXI_wdata[5]_INST_0 
+       (.I0(M00_AXI_awaddr[0]),
+        .I1(pixel_data[5]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[5]));
   (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'h04)) 
-    \M00_AXI_wdata_reg[2]_i_1 
-       (.I0(pixel_addr__1_carry_n_7),
-        .I1(pixel_data[2]),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[2]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[30] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[30]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[30]));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
-  LUT3 #(
-    .INIT(8'h80)) 
-    \M00_AXI_wdata_reg[30]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
+    \M00_AXI_wdata[6]_INST_0 
+       (.I0(M00_AXI_awaddr[0]),
         .I1(pixel_data[6]),
-        .I2(pixel_addr__1_carry_n_7),
-        .O(\M00_AXI_wdata_reg[30]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[31] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[31]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[31]));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[6]));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
-    .INIT(8'h80)) 
-    \M00_AXI_wdata_reg[31]_i_1 
-       (.I0(pixel_addr__1_carry_n_6),
+    .INIT(8'h04)) 
+    \M00_AXI_wdata[7]_INST_0 
+       (.I0(M00_AXI_awaddr[0]),
         .I1(pixel_data[7]),
-        .I2(pixel_addr__1_carry_n_7),
-        .O(\M00_AXI_wdata_reg[31]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[3] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[3]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[3]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
-  LUT3 #(
-    .INIT(8'h04)) 
-    \M00_AXI_wdata_reg[3]_i_1 
-       (.I0(pixel_addr__1_carry_n_7),
-        .I1(pixel_data[3]),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[3]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[4] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[4]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[4]));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
-  LUT3 #(
-    .INIT(8'h04)) 
-    \M00_AXI_wdata_reg[4]_i_1 
-       (.I0(pixel_addr__1_carry_n_7),
-        .I1(pixel_data[4]),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[4]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[5] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[5]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[5]));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
-  LUT3 #(
-    .INIT(8'h04)) 
-    \M00_AXI_wdata_reg[5]_i_1 
-       (.I0(pixel_addr__1_carry_n_7),
-        .I1(pixel_data[5]),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[5]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[6] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[6]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[6]));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
-  LUT3 #(
-    .INIT(8'h04)) 
-    \M00_AXI_wdata_reg[6]_i_1 
-       (.I0(pixel_addr__1_carry_n_7),
-        .I1(pixel_data[6]),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[6]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[7] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[7]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[7]));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
-  LUT3 #(
-    .INIT(8'h04)) 
-    \M00_AXI_wdata_reg[7]_i_1 
-       (.I0(pixel_addr__1_carry_n_7),
-        .I1(pixel_data[7]),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[7]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[8] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[8]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[8]));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[7]));
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'h08)) 
-    \M00_AXI_wdata_reg[8]_i_1 
+    \M00_AXI_wdata[8]_INST_0 
        (.I0(pixel_data[0]),
-        .I1(pixel_addr__1_carry_n_7),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[8]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wdata_reg[9] 
-       (.CLR(reset),
-        .D(\M00_AXI_wdata_reg[9]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wdata[9]));
+        .I1(M00_AXI_awaddr[0]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[8]));
   (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'h08)) 
-    \M00_AXI_wdata_reg[9]_i_1 
+    \M00_AXI_wdata[9]_INST_0 
        (.I0(pixel_data[1]),
-        .I1(pixel_addr__1_carry_n_7),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wdata_reg[9]_i_1_n_0 ));
+        .I1(M00_AXI_awaddr[0]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wdata[9]));
   LUT6 #(
-    .INIT(64'hFFFFFFFF1010FF10)) 
+    .INIT(64'hFFFFFFFFAAAAEAAA)) 
     M00_AXI_wlast_i_1
-       (.I0(\M00_AXI_awlen[3]_i_6_n_0 ),
-        .I1(M00_AXI_wlast_i_2_n_0),
-        .I2(M00_AXI_wlast_i_3_n_0),
-        .I3(M00_AXI_wlast_i_4_n_0),
-        .I4(M00_AXI_wlast_i_5_n_0),
-        .I5(M00_AXI_wlast_i_6_n_0),
+       (.I0(M00_AXI_wlast_i_2_n_0),
+        .I1(pixel_valid),
+        .I2(state[0]),
+        .I3(\M00_AXI_awlen[3]_i_3_n_0 ),
+        .I4(M00_AXI_wlast_i_3_n_0),
+        .I5(M00_AXI_wlast_i_4_n_0),
         .O(M00_AXI_wlast_i_1_n_0));
   LUT6 #(
-    .INIT(64'h0000000000000001)) 
-    M00_AXI_wlast_i_10
-       (.I0(\width_reg_reg_n_0_[6] ),
-        .I1(\width_reg_reg_n_0_[5] ),
-        .I2(\width_reg_reg_n_0_[4] ),
-        .I3(\width_reg_reg_n_0_[7] ),
-        .I4(\width_reg_reg_n_0_[9] ),
-        .I5(\width_reg_reg_n_0_[8] ),
-        .O(M00_AXI_wlast_i_10_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT5 #(
-    .INIT(32'h00400000)) 
-    M00_AXI_wlast_i_11
-       (.I0(state[1]),
-        .I1(state[0]),
-        .I2(M00_AXI_wready),
-        .I3(M00_AXI_wlast),
-        .I4(pixel_valid),
-        .O(M00_AXI_wlast_i_11_n_0));
-  LUT5 #(
-    .INIT(32'hFFFFBFFD)) 
+    .INIT(64'h0200000000000002)) 
     M00_AXI_wlast_i_2
-       (.I0(M00_AXI_wlast_i_7_n_0),
-        .I1(width[6]),
-        .I2(width[7]),
-        .I3(width[8]),
-        .I4(M00_AXI_wlast_i_8_n_0),
+       (.I0(M00_AXI_wlast_i_5_n_0),
+        .I1(\M00_AXI_awlen[3]_i_10_n_0 ),
+        .I2(M00_AXI_wlast_i_6_n_0),
+        .I3(width[10]),
+        .I4(M00_AXI_wlast_i_7_n_0),
+        .I5(width[9]),
         .O(M00_AXI_wlast_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT3 #(
-    .INIT(8'h04)) 
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFDFFFF)) 
     M00_AXI_wlast_i_3
-       (.I0(state[0]),
-        .I1(pixel_valid),
-        .I2(state[1]),
+       (.I0(\M00_AXI_awlen[1]_i_3_n_0 ),
+        .I1(\width_reg_reg_n_0_[2] ),
+        .I2(\width_reg_reg_n_0_[10] ),
+        .I3(\width_reg_reg_n_0_[3] ),
+        .I4(\width_reg_reg_n_0_[0] ),
+        .I5(\width_reg_reg_n_0_[1] ),
         .O(M00_AXI_wlast_i_3_n_0));
   LUT5 #(
-    .INIT(32'h80808000)) 
-    M00_AXI_wlast_i_4
-       (.I0(state[1]),
-        .I1(state[0]),
-        .I2(pixel_valid),
-        .I3(M00_AXI_wlast_i_9_n_0),
-        .I4(\height_reg[7]_i_2_n_0 ),
-        .O(M00_AXI_wlast_i_4_n_0));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFDF)) 
-    M00_AXI_wlast_i_5
-       (.I0(M00_AXI_wlast_i_10_n_0),
-        .I1(\width_reg_reg_n_0_[3] ),
-        .I2(\width_reg_reg_n_0_[0] ),
-        .I3(\width_reg_reg_n_0_[10] ),
-        .I4(\width_reg_reg_n_0_[1] ),
-        .I5(\width_reg_reg_n_0_[2] ),
-        .O(M00_AXI_wlast_i_5_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT5 #(
     .INIT(32'h00020000)) 
-    M00_AXI_wlast_i_6
-       (.I0(M00_AXI_wlast_i_11_n_0),
-        .I1(M00_AXI_awlen[2]),
-        .I2(M00_AXI_awlen[3]),
+    M00_AXI_wlast_i_4
+       (.I0(M00_AXI_wlast_i_8_n_0),
+        .I1(M00_AXI_awlen[3]),
+        .I2(M00_AXI_awlen[2]),
         .I3(M00_AXI_awlen[1]),
         .I4(M00_AXI_awlen[0]),
-        .O(M00_AXI_wlast_i_6_n_0));
-  LUT6 #(
-    .INIT(64'h7FFFFFFFFFFFFFFF)) 
-    M00_AXI_wlast_i_7
-       (.I0(width[4]),
-        .I1(width[2]),
-        .I2(width[0]),
-        .I3(width[1]),
-        .I4(width[3]),
-        .I5(width[5]),
-        .O(M00_AXI_wlast_i_7_n_0));
+        .O(M00_AXI_wlast_i_4_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT3 #(
+    .INIT(8'h02)) 
+    M00_AXI_wlast_i_5
+       (.I0(pixel_valid),
+        .I1(state[0]),
+        .I2(state[1]),
+        .O(M00_AXI_wlast_i_5_n_0));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    M00_AXI_wlast_i_8
+    M00_AXI_wlast_i_6
        (.I0(width[5]),
         .I1(width[4]),
         .I2(width[2]),
         .I3(width[3]),
         .I4(width[0]),
         .I5(width[1]),
-        .O(M00_AXI_wlast_i_8_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+        .O(M00_AXI_wlast_i_6_n_0));
+  LUT6 #(
+    .INIT(64'h0080000000000000)) 
+    M00_AXI_wlast_i_7
+       (.I0(width[8]),
+        .I1(width[7]),
+        .I2(width[5]),
+        .I3(\width_reg[5]_i_3_n_0 ),
+        .I4(width[4]),
+        .I5(width[6]),
+        .O(M00_AXI_wlast_i_7_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
-    .INIT(32'hFFFFFFFD)) 
-    M00_AXI_wlast_i_9
-       (.I0(\M00_AXI_awlen[3]_i_8_n_0 ),
-        .I1(\width_reg_reg_n_0_[10] ),
-        .I2(\width_reg_reg_n_0_[9] ),
-        .I3(\width_reg_reg_n_0_[8] ),
-        .I4(\M00_AXI_awlen[3]_i_7_n_0 ),
-        .O(M00_AXI_wlast_i_9_n_0));
+    .INIT(32'h00004000)) 
+    M00_AXI_wlast_i_8
+       (.I0(state[1]),
+        .I1(state[0]),
+        .I2(pixel_valid),
+        .I3(M00_AXI_wready),
+        .I4(M00_AXI_wlast),
+        .O(M00_AXI_wlast_i_8_n_0));
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI WLAST" *) 
   FDRE M00_AXI_wlast_reg
        (.C(clk),
@@ -1976,84 +1169,40 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .D(M00_AXI_wlast_i_1_n_0),
         .Q(M00_AXI_wlast),
         .R(reset));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wstrb_reg[0] 
-       (.CLR(reset),
-        .D(\M00_AXI_wstrb_reg[0]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wstrb[0]));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT3 #(
     .INIT(8'h02)) 
-    \M00_AXI_wstrb_reg[0]_i_1 
+    \M00_AXI_wstrb[0]_INST_0 
        (.I0(draw),
-        .I1(pixel_addr__1_carry_n_7),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wstrb_reg[0]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wstrb_reg[1] 
-       (.CLR(reset),
-        .D(\M00_AXI_wstrb_reg[1]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wstrb[1]));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+        .I1(M00_AXI_awaddr[0]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wstrb[0]));
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT3 #(
     .INIT(8'h20)) 
-    \M00_AXI_wstrb_reg[1]_i_1 
+    \M00_AXI_wstrb[1]_INST_0 
        (.I0(draw),
-        .I1(pixel_addr__1_carry_n_6),
-        .I2(pixel_addr__1_carry_n_7),
-        .O(\M00_AXI_wstrb_reg[1]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wstrb_reg[2] 
-       (.CLR(reset),
-        .D(\M00_AXI_wstrb_reg[2]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wstrb[2]));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+        .I1(M00_AXI_awaddr[1]),
+        .I2(M00_AXI_awaddr[0]),
+        .O(M00_AXI_wstrb[1]));
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT3 #(
     .INIT(8'h20)) 
-    \M00_AXI_wstrb_reg[2]_i_1 
+    \M00_AXI_wstrb[2]_INST_0 
        (.I0(draw),
-        .I1(pixel_addr__1_carry_n_7),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wstrb_reg[2]_i_1_n_0 ));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    \M00_AXI_wstrb_reg[3] 
-       (.CLR(reset),
-        .D(\M00_AXI_wstrb_reg[3]_i_1_n_0 ),
-        .G(reset),
-        .GE(1'b1),
-        .Q(M00_AXI_wstrb[3]));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+        .I1(M00_AXI_awaddr[0]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wstrb[2]));
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT3 #(
     .INIT(8'h80)) 
-    \M00_AXI_wstrb_reg[3]_i_1 
+    \M00_AXI_wstrb[3]_INST_0 
        (.I0(draw),
-        .I1(pixel_addr__1_carry_n_7),
-        .I2(pixel_addr__1_carry_n_6),
-        .O(\M00_AXI_wstrb_reg[3]_i_1_n_0 ));
+        .I1(M00_AXI_awaddr[0]),
+        .I2(M00_AXI_awaddr[1]),
+        .O(M00_AXI_wstrb[3]));
   LUT6 #(
-    .INIT(64'hF5C50F0F05C50C0C)) 
+    .INIT(64'hAAFAABABAA0AA8A8)) 
     M00_AXI_wvalid_i_1
        (.I0(M00_AXI_wvalid_i_2_n_0),
         .I1(pixel_valid),
@@ -2062,13 +1211,15 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .I4(state[0]),
         .I5(M00_AXI_wvalid),
         .O(M00_AXI_wvalid_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT3 #(
-    .INIT(8'hBA)) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  LUT5 #(
+    .INIT(32'hA00AA0BA)) 
     M00_AXI_wvalid_i_2
-       (.I0(M00_AXI_wlast),
-        .I1(pixel_valid),
-        .I2(M00_AXI_wready),
+       (.I0(pixel_valid),
+        .I1(M00_AXI_wready),
+        .I2(state[0]),
+        .I3(state[1]),
+        .I4(M00_AXI_wlast),
         .O(M00_AXI_wvalid_i_2_n_0));
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M00_AXI WVALID" *) 
   FDRE M00_AXI_wvalid_reg
@@ -2099,71 +1250,55 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .O({\NLW_height_reg0_inferred__0/i__carry__1_O_UNCONNECTED [3],\height_reg0_inferred__0/i__carry__1_n_5 ,\height_reg0_inferred__0/i__carry__1_n_6 ,\height_reg0_inferred__0/i__carry__1_n_7 }),
         .S({1'b0,i__carry__1_i_1_n_0,i__carry__1_i_2_n_0,i__carry__1_i_3_n_0}));
   LUT4 #(
-    .INIT(16'h2F20)) 
+    .INIT(16'h1F10)) 
     \height_reg[0]_i_1 
-       (.I0(\height_reg[7]_i_2_n_0 ),
-        .I1(\height_reg_reg_n_0_[0] ),
+       (.I0(\height_reg_reg_n_0_[0] ),
+        .I1(\height_reg[9]_i_2_n_0 ),
         .I2(state[1]),
         .I3(\height_reg0_inferred__0/i__carry_n_7 ),
         .O(\height_reg[0]_i_1_n_0 ));
   LUT5 #(
-    .INIT(32'h40000F00)) 
+    .INIT(32'h800080F0)) 
     \height_reg[10]_i_1 
        (.I0(\M00_AXI_awlen[3]_i_3_n_0 ),
-        .I1(\height_reg[10]_i_3_n_0 ),
-        .I2(state[0]),
-        .I3(pixel_valid),
+        .I1(\M00_AXI_awlen[1]_i_3_n_0 ),
+        .I2(pixel_valid),
+        .I3(state[0]),
         .I4(state[1]),
         .O(\height_reg[10]_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'h8F80)) 
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
     \height_reg[10]_i_2 
        (.I0(\height_reg_reg_n_0_[10] ),
-        .I1(\height_reg[10]_i_4_n_0 ),
-        .I2(state[1]),
-        .I3(\height_reg0_inferred__0/i__carry__1_n_5 ),
+        .I1(\height_reg_reg_n_0_[9] ),
+        .I2(\height_reg_reg_n_0_[8] ),
+        .I3(\height_reg[10]_i_3_n_0 ),
+        .I4(state[1]),
+        .I5(\height_reg0_inferred__0/i__carry__1_n_5 ),
         .O(\height_reg[10]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000001011)) 
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
     \height_reg[10]_i_3 
-       (.I0(\width_reg_reg_n_0_[7] ),
-        .I1(\height_reg[10]_i_5_n_0 ),
-        .I2(\M00_AXI_awlen[3]_i_8_n_0 ),
-        .I3(\width_reg_reg_n_0_[4] ),
-        .I4(\width_reg_reg_n_0_[5] ),
-        .I5(\width_reg_reg_n_0_[6] ),
+       (.I0(\height_reg_reg_n_0_[7] ),
+        .I1(\height_reg_reg_n_0_[5] ),
+        .I2(\height_reg_reg_n_0_[3] ),
+        .I3(\height_reg[4]_i_2_n_0 ),
+        .I4(\height_reg_reg_n_0_[4] ),
+        .I5(\height_reg_reg_n_0_[6] ),
         .O(\height_reg[10]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT5 #(
-    .INIT(32'hFFFFFFFE)) 
-    \height_reg[10]_i_4 
-       (.I0(\height_reg_reg_n_0_[9] ),
-        .I1(\height_reg_reg_n_0_[7] ),
-        .I2(\height_reg[7]_i_3_n_0 ),
-        .I3(\height_reg_reg_n_0_[6] ),
-        .I4(\height_reg_reg_n_0_[8] ),
-        .O(\height_reg[10]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT3 #(
-    .INIT(8'hFE)) 
-    \height_reg[10]_i_5 
-       (.I0(\width_reg_reg_n_0_[10] ),
-        .I1(\width_reg_reg_n_0_[9] ),
-        .I2(\width_reg_reg_n_0_[8] ),
-        .O(\height_reg[10]_i_5_n_0 ));
-  LUT5 #(
-    .INIT(32'h82FF8200)) 
+    .INIT(32'h41FF4100)) 
     \height_reg[1]_i_1 
-       (.I0(\height_reg[7]_i_2_n_0 ),
+       (.I0(\height_reg[9]_i_2_n_0 ),
         .I1(\height_reg_reg_n_0_[1] ),
         .I2(\height_reg_reg_n_0_[0] ),
         .I3(state[1]),
         .I4(\height_reg0_inferred__0/i__carry_n_6 ),
         .O(\height_reg[1]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hA802FFFFA8020000)) 
+    .INIT(64'h5401FFFF54010000)) 
     \height_reg[2]_i_1 
-       (.I0(\height_reg[7]_i_2_n_0 ),
+       (.I0(\height_reg[9]_i_2_n_0 ),
         .I1(\height_reg_reg_n_0_[0] ),
         .I2(\height_reg_reg_n_0_[1] ),
         .I3(\height_reg_reg_n_0_[2] ),
@@ -2171,47 +1306,40 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .I5(\height_reg0_inferred__0/i__carry_n_5 ),
         .O(\height_reg[2]_i_1_n_0 ));
   LUT5 #(
-    .INIT(32'h82FF8200)) 
+    .INIT(32'h41FF4100)) 
     \height_reg[3]_i_1 
-       (.I0(\height_reg[7]_i_2_n_0 ),
-        .I1(\height_reg[3]_i_2_n_0 ),
+       (.I0(\height_reg[9]_i_2_n_0 ),
+        .I1(\height_reg[4]_i_2_n_0 ),
         .I2(\height_reg_reg_n_0_[3] ),
         .I3(state[1]),
         .I4(\height_reg0_inferred__0/i__carry_n_4 ),
         .O(\height_reg[3]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'h5401FFFF54010000)) 
+    \height_reg[4]_i_1 
+       (.I0(\height_reg[9]_i_2_n_0 ),
+        .I1(\height_reg_reg_n_0_[3] ),
+        .I2(\height_reg[4]_i_2_n_0 ),
+        .I3(\height_reg_reg_n_0_[4] ),
+        .I4(state[1]),
+        .I5(\height_reg0_inferred__0/i__carry__0_n_7 ),
+        .O(\height_reg[4]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'hFE)) 
-    \height_reg[3]_i_2 
+    \height_reg[4]_i_2 
        (.I0(\height_reg_reg_n_0_[2] ),
         .I1(\height_reg_reg_n_0_[1] ),
         .I2(\height_reg_reg_n_0_[0] ),
-        .O(\height_reg[3]_i_2_n_0 ));
-  LUT5 #(
-    .INIT(32'h82FF8200)) 
-    \height_reg[4]_i_1 
-       (.I0(\height_reg[7]_i_2_n_0 ),
-        .I1(\height_reg[4]_i_2_n_0 ),
-        .I2(\height_reg_reg_n_0_[4] ),
-        .I3(state[1]),
-        .I4(\height_reg0_inferred__0/i__carry__0_n_7 ),
-        .O(\height_reg[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT4 #(
-    .INIT(16'hFFFE)) 
-    \height_reg[4]_i_2 
-       (.I0(\height_reg_reg_n_0_[3] ),
-        .I1(\height_reg_reg_n_0_[0] ),
-        .I2(\height_reg_reg_n_0_[1] ),
-        .I3(\height_reg_reg_n_0_[2] ),
         .O(\height_reg[4]_i_2_n_0 ));
   LUT5 #(
-    .INIT(32'h82FF8200)) 
+    .INIT(32'h00AAC3AA)) 
     \height_reg[5]_i_1 
-       (.I0(\height_reg[7]_i_2_n_0 ),
-        .I1(\height_reg[5]_i_2_n_0 ),
-        .I2(\height_reg_reg_n_0_[5] ),
+       (.I0(\height_reg0_inferred__0/i__carry__0_n_6 ),
+        .I1(\height_reg_reg_n_0_[5] ),
+        .I2(\height_reg[5]_i_2_n_0 ),
         .I3(state[1]),
-        .I4(\height_reg0_inferred__0/i__carry__0_n_6 ),
+        .I4(\height_reg[9]_i_2_n_0 ),
         .O(\height_reg[5]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
@@ -2224,79 +1352,71 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .I4(\height_reg_reg_n_0_[3] ),
         .O(\height_reg[5]_i_2_n_0 ));
   LUT5 #(
-    .INIT(32'h82FF8200)) 
+    .INIT(32'h00AAC3AA)) 
     \height_reg[6]_i_1 
-       (.I0(\height_reg[7]_i_2_n_0 ),
-        .I1(\height_reg[7]_i_3_n_0 ),
-        .I2(\height_reg_reg_n_0_[6] ),
+       (.I0(\height_reg0_inferred__0/i__carry__0_n_5 ),
+        .I1(\height_reg_reg_n_0_[6] ),
+        .I2(\height_reg[7]_i_2_n_0 ),
         .I3(state[1]),
-        .I4(\height_reg0_inferred__0/i__carry__0_n_5 ),
+        .I4(\height_reg[9]_i_2_n_0 ),
         .O(\height_reg[6]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hA802FFFFA8020000)) 
+    .INIT(64'h0000AAAACCC3AAAA)) 
     \height_reg[7]_i_1 
-       (.I0(\height_reg[7]_i_2_n_0 ),
-        .I1(\height_reg_reg_n_0_[6] ),
-        .I2(\height_reg[7]_i_3_n_0 ),
-        .I3(\height_reg_reg_n_0_[7] ),
+       (.I0(\height_reg0_inferred__0/i__carry__0_n_4 ),
+        .I1(\height_reg_reg_n_0_[7] ),
+        .I2(\height_reg[7]_i_2_n_0 ),
+        .I3(\height_reg_reg_n_0_[6] ),
         .I4(state[1]),
-        .I5(\height_reg0_inferred__0/i__carry__0_n_4 ),
+        .I5(\height_reg[9]_i_2_n_0 ),
         .O(\height_reg[7]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
     \height_reg[7]_i_2 
-       (.I0(\height_reg_reg_n_0_[10] ),
-        .I1(\height_reg_reg_n_0_[8] ),
-        .I2(\height_reg_reg_n_0_[6] ),
-        .I3(\height_reg[7]_i_3_n_0 ),
-        .I4(\height_reg_reg_n_0_[7] ),
-        .I5(\height_reg_reg_n_0_[9] ),
-        .O(\height_reg[7]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    \height_reg[7]_i_3 
        (.I0(\height_reg_reg_n_0_[5] ),
         .I1(\height_reg_reg_n_0_[3] ),
         .I2(\height_reg_reg_n_0_[0] ),
         .I3(\height_reg_reg_n_0_[1] ),
         .I4(\height_reg_reg_n_0_[2] ),
         .I5(\height_reg_reg_n_0_[4] ),
-        .O(\height_reg[7]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hF00EFFFFF00E0000)) 
-    \height_reg[8]_i_1 
-       (.I0(\height_reg_reg_n_0_[9] ),
-        .I1(\height_reg_reg_n_0_[10] ),
-        .I2(\height_reg[8]_i_2_n_0 ),
-        .I3(\height_reg_reg_n_0_[8] ),
-        .I4(state[1]),
-        .I5(\height_reg0_inferred__0/i__carry__1_n_7 ),
-        .O(\height_reg[8]_i_1_n_0 ));
-  LUT3 #(
-    .INIT(8'hFE)) 
-    \height_reg[8]_i_2 
-       (.I0(\height_reg_reg_n_0_[7] ),
-        .I1(\height_reg[7]_i_3_n_0 ),
-        .I2(\height_reg_reg_n_0_[6] ),
-        .O(\height_reg[8]_i_2_n_0 ));
+        .O(\height_reg[7]_i_2_n_0 ));
   LUT5 #(
-    .INIT(32'hC2FFC200)) 
-    \height_reg[9]_i_1 
-       (.I0(\height_reg_reg_n_0_[10] ),
-        .I1(\height_reg[9]_i_2_n_0 ),
-        .I2(\height_reg_reg_n_0_[9] ),
+    .INIT(32'h00AAC3AA)) 
+    \height_reg[8]_i_1 
+       (.I0(\height_reg0_inferred__0/i__carry__1_n_7 ),
+        .I1(\height_reg_reg_n_0_[8] ),
+        .I2(\height_reg[10]_i_3_n_0 ),
         .I3(state[1]),
-        .I4(\height_reg0_inferred__0/i__carry__1_n_6 ),
+        .I4(\height_reg[9]_i_2_n_0 ),
+        .O(\height_reg[8]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'h2E222E222E22222E)) 
+    \height_reg[9]_i_1 
+       (.I0(\height_reg0_inferred__0/i__carry__1_n_6 ),
+        .I1(state[1]),
+        .I2(\height_reg[9]_i_2_n_0 ),
+        .I3(\height_reg_reg_n_0_[9] ),
+        .I4(\height_reg[10]_i_3_n_0 ),
+        .I5(\height_reg_reg_n_0_[8] ),
         .O(\height_reg[9]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  LUT6 #(
+    .INIT(64'h0000000000000001)) 
+    \height_reg[9]_i_2 
+       (.I0(\height_reg[4]_i_2_n_0 ),
+        .I1(\height_reg[9]_i_3_n_0 ),
+        .I2(\height_reg_reg_n_0_[9] ),
+        .I3(\height_reg_reg_n_0_[10] ),
+        .I4(\height_reg_reg_n_0_[8] ),
+        .I5(\height_reg_reg_n_0_[7] ),
+        .O(\height_reg[9]_i_2_n_0 ));
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \height_reg[9]_i_2 
-       (.I0(\height_reg_reg_n_0_[8] ),
-        .I1(\height_reg_reg_n_0_[6] ),
-        .I2(\height_reg[7]_i_3_n_0 ),
-        .I3(\height_reg_reg_n_0_[7] ),
-        .O(\height_reg[9]_i_2_n_0 ));
+    \height_reg[9]_i_3 
+       (.I0(\height_reg_reg_n_0_[6] ),
+        .I1(\height_reg_reg_n_0_[5] ),
+        .I2(\height_reg_reg_n_0_[4] ),
+        .I3(\height_reg_reg_n_0_[3] ),
+        .O(\height_reg[9]_i_3_n_0 ));
   FDRE \height_reg_reg[0] 
        (.C(clk),
         .CE(\height_reg[10]_i_1_n_0 ),
@@ -2417,21 +1537,21 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .INIT(4'h6)) 
     i__carry_i_4
        (.I0(height[0]),
-        .I1(\M00_AXI_awlen[3]_i_6_n_0 ),
+        .I1(\M00_AXI_awlen[3]_i_4_n_0 ),
         .O(i__carry_i_4_n_0));
   CARRY4 pixel_addr__1_carry
        (.CI(1'b0),
         .CO({pixel_addr__1_carry_n_0,pixel_addr__1_carry_n_1,pixel_addr__1_carry_n_2,pixel_addr__1_carry_n_3}),
         .CYINIT(1'b0),
         .DI(framebuffer_baseaddr[3:0]),
-        .O({pixel_addr__1_carry_n_4,pixel_addr__1_carry_n_5,pixel_addr__1_carry_n_6,pixel_addr__1_carry_n_7}),
+        .O(M00_AXI_awaddr[3:0]),
         .S({pixel_addr__1_carry_i_1_n_0,pixel_addr__1_carry_i_2_n_0,pixel_addr__1_carry_i_3_n_0,pixel_addr__1_carry_i_4_n_0}));
   CARRY4 pixel_addr__1_carry__0
        (.CI(pixel_addr__1_carry_n_0),
         .CO({pixel_addr__1_carry__0_n_0,pixel_addr__1_carry__0_n_1,pixel_addr__1_carry__0_n_2,pixel_addr__1_carry__0_n_3}),
         .CYINIT(1'b0),
         .DI({pixel_addr__1_carry__0_i_1_n_0,pixel_addr__1_carry__0_i_2_n_0,framebuffer_baseaddr[5:4]}),
-        .O({pixel_addr__1_carry__0_n_4,pixel_addr__1_carry__0_n_5,pixel_addr__1_carry__0_n_6,pixel_addr__1_carry__0_n_7}),
+        .O(M00_AXI_awaddr[7:4]),
         .S({pixel_addr__1_carry__0_i_3_n_0,pixel_addr__1_carry__0_i_4_n_0,pixel_addr__1_carry__0_i_5_n_0,pixel_addr__1_carry__0_i_6_n_0}));
   (* HLUTNM = "lutpair0" *) 
   LUT3 #(
@@ -2680,14 +1800,14 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .CO({pixel_addr__82_carry_n_0,pixel_addr__82_carry_n_1,pixel_addr__82_carry_n_2,pixel_addr__82_carry_n_3}),
         .CYINIT(1'b0),
         .DI({pixel_addr__82_carry_i_1_n_0,pixel_addr__82_carry_i_2_n_0,pixel_addr__82_carry_i_3_n_0,1'b0}),
-        .O({pixel_addr__82_carry_n_4,pixel_addr__82_carry_n_5,pixel_addr__82_carry_n_6,pixel_addr__82_carry_n_7}),
+        .O(M00_AXI_awaddr[11:8]),
         .S({pixel_addr__82_carry_i_4_n_0,pixel_addr__82_carry_i_5_n_0,pixel_addr__82_carry_i_6_n_0,pixel_addr__82_carry_i_7_n_0}));
   CARRY4 pixel_addr__82_carry__0
        (.CI(pixel_addr__82_carry_n_0),
         .CO({pixel_addr__82_carry__0_n_0,pixel_addr__82_carry__0_n_1,pixel_addr__82_carry__0_n_2,pixel_addr__82_carry__0_n_3}),
         .CYINIT(1'b0),
         .DI({pixel_addr__82_carry__0_i_1_n_0,pixel_addr__82_carry__0_i_2_n_0,pixel_addr__82_carry__0_i_3_n_0,pixel_addr__82_carry__0_i_4_n_0}),
-        .O({pixel_addr__82_carry__0_n_4,pixel_addr__82_carry__0_n_5,pixel_addr__82_carry__0_n_6,pixel_addr__82_carry__0_n_7}),
+        .O(M00_AXI_awaddr[15:12]),
         .S({pixel_addr__82_carry__0_i_5_n_0,pixel_addr__82_carry__0_i_6_n_0,pixel_addr__82_carry__0_i_7_n_0,pixel_addr__82_carry__0_i_8_n_0}));
   LUT3 #(
     .INIT(8'hD4)) 
@@ -2762,7 +1882,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .CO({pixel_addr__82_carry__1_n_0,pixel_addr__82_carry__1_n_1,pixel_addr__82_carry__1_n_2,pixel_addr__82_carry__1_n_3}),
         .CYINIT(1'b0),
         .DI({pixel_addr__82_carry__1_i_1_n_0,pixel_addr__82_carry__1_i_2_n_0,pixel_addr__82_carry__1_i_3_n_0,pixel_addr__82_carry__1_i_4_n_0}),
-        .O({pixel_addr__82_carry__1_n_4,pixel_addr__82_carry__1_n_5,pixel_addr__82_carry__1_n_6,pixel_addr__82_carry__1_n_7}),
+        .O(M00_AXI_awaddr[19:16]),
         .S({pixel_addr__82_carry__1_i_5_n_0,pixel_addr__82_carry__1_i_6_n_0,pixel_addr__82_carry__1_i_7_n_0,pixel_addr__82_carry__1_i_8_n_0}));
   LUT3 #(
     .INIT(8'hD4)) 
@@ -2836,7 +1956,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .CO({pixel_addr__82_carry__2_n_0,pixel_addr__82_carry__2_n_1,pixel_addr__82_carry__2_n_2,pixel_addr__82_carry__2_n_3}),
         .CYINIT(1'b0),
         .DI({pixel_addr__1_carry__4_n_5,pixel_addr__1_carry__4_n_6,pixel_addr__82_carry__2_i_1_n_0,pixel_addr__82_carry__2_i_2_n_0}),
-        .O({pixel_addr__82_carry__2_n_4,pixel_addr__82_carry__2_n_5,pixel_addr__82_carry__2_n_6,pixel_addr__82_carry__2_n_7}),
+        .O(M00_AXI_awaddr[23:20]),
         .S({pixel_addr__82_carry__2_i_3_n_0,pixel_addr__82_carry__2_i_4_n_0,pixel_addr__82_carry__2_i_5_n_0,pixel_addr__82_carry__2_i_6_n_0}));
   LUT2 #(
     .INIT(4'hE)) 
@@ -2882,7 +2002,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .CO({pixel_addr__82_carry__3_n_0,pixel_addr__82_carry__3_n_1,pixel_addr__82_carry__3_n_2,pixel_addr__82_carry__3_n_3}),
         .CYINIT(1'b0),
         .DI({pixel_addr__1_carry__5_n_5,pixel_addr__1_carry__5_n_6,pixel_addr__1_carry__5_n_7,pixel_addr__1_carry__4_n_4}),
-        .O({pixel_addr__82_carry__3_n_4,pixel_addr__82_carry__3_n_5,pixel_addr__82_carry__3_n_6,pixel_addr__82_carry__3_n_7}),
+        .O(M00_AXI_awaddr[27:24]),
         .S({pixel_addr__82_carry__3_i_1_n_0,pixel_addr__82_carry__3_i_2_n_0,pixel_addr__82_carry__3_i_3_n_0,pixel_addr__82_carry__3_i_4_n_0}));
   LUT2 #(
     .INIT(4'h9)) 
@@ -2913,7 +2033,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .CO({NLW_pixel_addr__82_carry__4_CO_UNCONNECTED[3],pixel_addr__82_carry__4_n_1,pixel_addr__82_carry__4_n_2,pixel_addr__82_carry__4_n_3}),
         .CYINIT(1'b0),
         .DI({1'b0,pixel_addr__1_carry__6_n_6,pixel_addr__1_carry__6_n_7,pixel_addr__1_carry__5_n_4}),
-        .O({pixel_addr__82_carry__4_n_4,pixel_addr__82_carry__4_n_5,pixel_addr__82_carry__4_n_6,pixel_addr__82_carry__4_n_7}),
+        .O(M00_AXI_awaddr[31:28]),
         .S({pixel_addr__82_carry__4_i_1_n_0,pixel_addr__82_carry__4_i_2_n_0,pixel_addr__82_carry__4_i_3_n_0,pixel_addr__82_carry__4_i_4_n_0}));
   LUT2 #(
     .INIT(4'h9)) 
@@ -2992,43 +2112,41 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
        (.I0(pixel_y[0]),
         .I1(pixel_addr__1_carry__1_n_7),
         .O(pixel_addr__82_carry_i_7_n_0));
-  (* OPT_MODIFIED = "MLO " *) 
-  (* XILINX_LEGACY_PRIM = "LDC" *) 
-  LDCE #(
-    .INIT(1'b0),
-    .IS_G_INVERTED(1'b1)) 
-    pixel_ready_reg
-       (.CLR(reset),
-        .D(pixel_ready0),
-        .G(reset),
-        .GE(1'b1),
-        .Q(pixel_ready));
   LUT2 #(
     .INIT(4'h8)) 
-    pixel_ready_reg_i_1
+    pixel_ready_INST_0
        (.I0(M00_AXI_wvalid),
         .I1(M00_AXI_wready),
-        .O(pixel_ready0));
+        .O(pixel_ready));
   LUT6 #(
-    .INIT(64'h5F0C500C5FFC50FC)) 
+    .INIT(64'h55CC0FFF55CC0F00)) 
     \state[0]_i_1 
-       (.I0(\M00_AXI_awlen[3]_i_3_n_0 ),
-        .I1(pixel_valid),
-        .I2(state[0]),
-        .I3(state[1]),
-        .I4(M00_AXI_bvalid),
-        .I5(M00_AXI_wlast),
+       (.I0(\state[1]_i_2_n_0 ),
+        .I1(M00_AXI_bvalid),
+        .I2(M00_AXI_wlast),
+        .I3(state[0]),
+        .I4(state[1]),
+        .I5(pixel_valid),
         .O(\state[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
-    .INIT(32'h1FF01F00)) 
+    .INIT(32'h0FC05FC0)) 
     \state[1]_i_1 
-       (.I0(\M00_AXI_awlen[3]_i_3_n_0 ),
-        .I1(pixel_valid),
+       (.I0(\state[1]_i_2_n_0 ),
+        .I1(M00_AXI_wlast),
         .I2(state[0]),
         .I3(state[1]),
-        .I4(M00_AXI_wlast),
+        .I4(pixel_valid),
         .O(\state[1]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT4 #(
+    .INIT(16'h0800)) 
+    \state[1]_i_2 
+       (.I0(\height_reg[9]_i_2_n_0 ),
+        .I1(\M00_AXI_awlen[3]_i_8_n_0 ),
+        .I2(\width_reg_reg_n_0_[4] ),
+        .I3(\M00_AXI_awlen[3]_i_7_n_0 ),
+        .O(\state[1]_i_2_n_0 ));
   FDRE \state_reg[0] 
        (.C(clk),
         .CE(1'b1),
@@ -3041,74 +2159,108 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .D(\state[1]_i_1_n_0 ),
         .Q(state[1]),
         .R(reset));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
-    .INIT(32'h0A00CAFF)) 
+    .INIT(32'h22002EFF)) 
     \width_reg[0]_i_1 
        (.I0(\width_reg_reg_n_0_[0] ),
-        .I1(\height_reg[7]_i_2_n_0 ),
-        .I2(\height_reg[10]_i_3_n_0 ),
+        .I1(\M00_AXI_awlen[1]_i_3_n_0 ),
+        .I2(\height_reg[9]_i_2_n_0 ),
         .I3(state[1]),
         .I4(width[0]),
         .O(p_1_in[0]));
   LUT4 #(
-    .INIT(16'h4030)) 
+    .INIT(16'hA300)) 
     \width_reg[10]_i_1 
        (.I0(\M00_AXI_awlen[3]_i_3_n_0 ),
         .I1(state[1]),
-        .I2(pixel_valid),
-        .I3(state[0]),
+        .I2(state[0]),
+        .I3(pixel_valid),
         .O(\width_reg[10]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'hB8B8B888888888B8)) 
+    .INIT(64'hF4FFF400F400F400)) 
     \width_reg[10]_i_2 
        (.I0(\width_reg[10]_i_3_n_0 ),
-        .I1(state[1]),
-        .I2(\M00_AXI_awlen[3]_i_6_n_0 ),
-        .I3(width[9]),
-        .I4(\width_reg[10]_i_4_n_0 ),
-        .I5(width[10]),
+        .I1(\width_reg[10]_i_4_n_0 ),
+        .I2(\width_reg[10]_i_5_n_0 ),
+        .I3(state[1]),
+        .I4(\width_reg[10]_i_6_n_0 ),
+        .I5(\M00_AXI_awlen[3]_i_4_n_0 ),
         .O(p_1_in[10]));
-  LUT5 #(
-    .INIT(32'h80FF8080)) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  LUT2 #(
+    .INIT(4'hB)) 
     \width_reg[10]_i_3 
-       (.I0(\height_reg[10]_i_3_n_0 ),
-        .I1(\height_reg[7]_i_2_n_0 ),
-        .I2(\M00_AXI_awlen[3]_i_9_n_0 ),
-        .I3(M00_AXI_wlast_i_10_n_0),
-        .I4(\width_reg_reg_n_0_[10] ),
+       (.I0(\height_reg[9]_i_2_n_0 ),
+        .I1(\M00_AXI_awlen[1]_i_3_n_0 ),
         .O(\width_reg[10]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFEFF)) 
+    .INIT(64'hAAAA6AAAAAAAAAAA)) 
     \width_reg[10]_i_4 
-       (.I0(width[8]),
-        .I1(width[6]),
-        .I2(width[4]),
-        .I3(\width_reg[5]_i_3_n_0 ),
-        .I4(width[5]),
-        .I5(width[7]),
+       (.I0(width[10]),
+        .I1(width[9]),
+        .I2(width[8]),
+        .I3(width[7]),
+        .I4(\width_reg[10]_i_7_n_0 ),
+        .I5(width[6]),
         .O(\width_reg[10]_i_4_n_0 ));
+  LUT3 #(
+    .INIT(8'h8A)) 
+    \width_reg[10]_i_5 
+       (.I0(\width_reg_reg_n_0_[10] ),
+        .I1(\width_reg_reg_n_0_[9] ),
+        .I2(\width_reg[10]_i_8_n_0 ),
+        .O(\width_reg[10]_i_5_n_0 ));
   LUT6 #(
-    .INIT(64'h0A00CAFFCAFF0A00)) 
+    .INIT(64'hAAAAAAAAAAA9AAAA)) 
+    \width_reg[10]_i_6 
+       (.I0(width[10]),
+        .I1(width[9]),
+        .I2(width[8]),
+        .I3(width[6]),
+        .I4(\width_reg[7]_i_3_n_0 ),
+        .I5(width[7]),
+        .O(\width_reg[10]_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'h7FFFFFFFFFFFFFFF)) 
+    \width_reg[10]_i_7 
+       (.I0(width[4]),
+        .I1(width[2]),
+        .I2(width[0]),
+        .I3(width[1]),
+        .I4(width[3]),
+        .I5(width[5]),
+        .O(\width_reg[10]_i_7_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  LUT5 #(
+    .INIT(32'h00000001)) 
+    \width_reg[10]_i_8 
+       (.I0(\width_reg_reg_n_0_[8] ),
+        .I1(\width_reg_reg_n_0_[6] ),
+        .I2(\width_reg_reg_n_0_[5] ),
+        .I3(\width_reg_reg_n_0_[4] ),
+        .I4(\width_reg_reg_n_0_[7] ),
+        .O(\width_reg[10]_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'h300074FF74FF3000)) 
     \width_reg[1]_i_1 
-       (.I0(\width_reg_reg_n_0_[1] ),
-        .I1(\height_reg[7]_i_2_n_0 ),
-        .I2(\height_reg[10]_i_3_n_0 ),
+       (.I0(\height_reg[9]_i_2_n_0 ),
+        .I1(\M00_AXI_awlen[1]_i_3_n_0 ),
+        .I2(\width_reg_reg_n_0_[1] ),
         .I3(state[1]),
-        .I4(width[0]),
-        .I5(width[1]),
+        .I4(width[1]),
+        .I5(width[0]),
         .O(p_1_in[1]));
   LUT6 #(
-    .INIT(64'hCAFF0A000A00CAFF)) 
+    .INIT(64'h2EFF220022002EFF)) 
     \width_reg[2]_i_1 
        (.I0(\width_reg_reg_n_0_[2] ),
-        .I1(\height_reg[7]_i_2_n_0 ),
-        .I2(\height_reg[10]_i_3_n_0 ),
+        .I1(\M00_AXI_awlen[1]_i_3_n_0 ),
+        .I2(\height_reg[9]_i_2_n_0 ),
         .I3(state[1]),
         .I4(width[2]),
         .I5(\width_reg[2]_i_2_n_0 ),
         .O(p_1_in[2]));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT2 #(
     .INIT(4'h7)) 
     \width_reg[2]_i_2 
@@ -3116,15 +2268,15 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .I1(width[1]),
         .O(\width_reg[2]_i_2_n_0 ));
   LUT5 #(
-    .INIT(32'h0DAF0D05)) 
+    .INIT(32'h300074FF)) 
     \width_reg[3]_i_1 
-       (.I0(state[1]),
-        .I1(\height_reg[7]_i_2_n_0 ),
-        .I2(\width_reg[3]_i_2_n_0 ),
-        .I3(\height_reg[10]_i_3_n_0 ),
-        .I4(\width_reg_reg_n_0_[3] ),
+       (.I0(\height_reg[9]_i_2_n_0 ),
+        .I1(\M00_AXI_awlen[1]_i_3_n_0 ),
+        .I2(\width_reg_reg_n_0_[3] ),
+        .I3(state[1]),
+        .I4(\width_reg[3]_i_2_n_0 ),
         .O(p_1_in[3]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT4 #(
     .INIT(16'h9555)) 
     \width_reg[3]_i_2 
@@ -3134,18 +2286,18 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .I3(width[1]),
         .O(\width_reg[3]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h8B008BFF03FF0300)) 
+    .INIT(64'h03FF0300470047FF)) 
     \width_reg[4]_i_1 
-       (.I0(\height_reg[7]_i_2_n_0 ),
-        .I1(\height_reg[10]_i_3_n_0 ),
+       (.I0(\height_reg[9]_i_2_n_0 ),
+        .I1(\M00_AXI_awlen[1]_i_3_n_0 ),
         .I2(\width_reg_reg_n_0_[4] ),
         .I3(state[1]),
-        .I4(\M00_AXI_awlen[3]_i_6_n_0 ),
+        .I4(\M00_AXI_awlen[3]_i_4_n_0 ),
         .I5(\width_reg[4]_i_2_n_0 ),
         .O(p_1_in[4]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
-    .INIT(32'h6AAAAAAA)) 
+    .INIT(32'h95555555)) 
     \width_reg[4]_i_2 
        (.I0(width[4]),
         .I1(width[3]),
@@ -3158,21 +2310,21 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     \width_reg[5]_i_1 
        (.I0(\width_reg[5]_i_2_n_0 ),
         .I1(state[1]),
-        .I2(\M00_AXI_awlen[3]_i_6_n_0 ),
+        .I2(\M00_AXI_awlen[3]_i_4_n_0 ),
         .I3(width[4]),
         .I4(\width_reg[5]_i_3_n_0 ),
         .I5(width[5]),
         .O(p_1_in[5]));
   LUT5 #(
-    .INIT(32'h8F80808F)) 
+    .INIT(32'h2F20202F)) 
     \width_reg[5]_i_2 
-       (.I0(\height_reg[7]_i_2_n_0 ),
-        .I1(\width_reg[5]_i_4_n_0 ),
-        .I2(\height_reg[10]_i_3_n_0 ),
+       (.I0(\width_reg[5]_i_4_n_0 ),
+        .I1(\height_reg[9]_i_2_n_0 ),
+        .I2(\M00_AXI_awlen[1]_i_3_n_0 ),
         .I3(\width_reg_reg_n_0_[4] ),
         .I4(\width_reg_reg_n_0_[5] ),
         .O(\width_reg[5]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \width_reg[5]_i_3 
@@ -3192,23 +2344,23 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .I5(width[3]),
         .O(\width_reg[5]_i_4_n_0 ));
   LUT5 #(
-    .INIT(32'hB88888B8)) 
+    .INIT(32'h88B8B888)) 
     \width_reg[6]_i_1 
        (.I0(\width_reg[6]_i_2_n_0 ),
         .I1(state[1]),
-        .I2(\M00_AXI_awlen[3]_i_6_n_0 ),
+        .I2(\M00_AXI_awlen[3]_i_4_n_0 ),
         .I3(\width_reg[7]_i_3_n_0 ),
         .I4(width[6]),
         .O(p_1_in[6]));
   LUT6 #(
-    .INIT(64'h88888888F0F0F00F)) 
+    .INIT(64'h44444444F0F0F00F)) 
     \width_reg[6]_i_2 
-       (.I0(\height_reg[7]_i_2_n_0 ),
+       (.I0(\height_reg[9]_i_2_n_0 ),
         .I1(\width_reg[6]_i_3_n_0 ),
         .I2(\width_reg_reg_n_0_[6] ),
         .I3(\width_reg_reg_n_0_[5] ),
         .I4(\width_reg_reg_n_0_[4] ),
-        .I5(\height_reg[10]_i_3_n_0 ),
+        .I5(\M00_AXI_awlen[1]_i_3_n_0 ),
         .O(\width_reg[6]_i_2_n_0 ));
   LUT4 #(
     .INIT(16'hA6AA)) 
@@ -3219,26 +2371,27 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .I3(width[4]),
         .O(\width_reg[6]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'hB8B8B888888888B8)) 
+    .INIT(64'hB888B8B888B88888)) 
     \width_reg[7]_i_1 
        (.I0(\width_reg[7]_i_2_n_0 ),
         .I1(state[1]),
-        .I2(\M00_AXI_awlen[3]_i_6_n_0 ),
+        .I2(\M00_AXI_awlen[3]_i_4_n_0 ),
         .I3(width[6]),
         .I4(\width_reg[7]_i_3_n_0 ),
         .I5(width[7]),
         .O(p_1_in[7]));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
-    .INIT(32'h8F80808F)) 
+    .INIT(32'h4444F00F)) 
     \width_reg[7]_i_2 
-       (.I0(\height_reg[7]_i_2_n_0 ),
+       (.I0(\height_reg[9]_i_2_n_0 ),
         .I1(\width_reg[7]_i_4_n_0 ),
-        .I2(\height_reg[10]_i_3_n_0 ),
-        .I3(\width_reg_reg_n_0_[7] ),
-        .I4(\width_reg[7]_i_5_n_0 ),
+        .I2(\width_reg_reg_n_0_[7] ),
+        .I3(\width_reg[7]_i_5_n_0 ),
+        .I4(\M00_AXI_awlen[1]_i_3_n_0 ),
         .O(\width_reg[7]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFEAAAAAAA)) 
+    .INIT(64'h0000000015555555)) 
     \width_reg[7]_i_3 
        (.I0(width[5]),
         .I1(width[2]),
@@ -3247,7 +2400,7 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .I4(width[3]),
         .I5(width[4]),
         .O(\width_reg[7]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
     .INIT(32'hAA6AAAAA)) 
     \width_reg[7]_i_4 
@@ -3257,7 +2410,6 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
         .I3(\width_reg[5]_i_3_n_0 ),
         .I4(width[5]),
         .O(\width_reg[7]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'hFE)) 
     \width_reg[7]_i_5 
@@ -3270,20 +2422,20 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     \width_reg[8]_i_1 
        (.I0(\width_reg[8]_i_2_n_0 ),
         .I1(state[1]),
-        .I2(\M00_AXI_awlen[3]_i_6_n_0 ),
+        .I2(\M00_AXI_awlen[3]_i_4_n_0 ),
         .I3(\width_reg[8]_i_3_n_0 ),
         .I4(width[8]),
         .O(p_1_in[8]));
   LUT5 #(
-    .INIT(32'h8888F00F)) 
+    .INIT(32'h4F40404F)) 
     \width_reg[8]_i_2 
-       (.I0(\height_reg[7]_i_2_n_0 ),
+       (.I0(\height_reg[9]_i_2_n_0 ),
         .I1(\width_reg[8]_i_4_n_0 ),
-        .I2(\width_reg_reg_n_0_[8] ),
-        .I3(\M00_AXI_awlen[3]_i_7_n_0 ),
-        .I4(\height_reg[10]_i_3_n_0 ),
+        .I2(\M00_AXI_awlen[1]_i_3_n_0 ),
+        .I3(\width_reg_reg_n_0_[8] ),
+        .I4(\width_reg[8]_i_5_n_0 ),
         .O(\width_reg[8]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
     .INIT(32'hFFFFFFEF)) 
     \width_reg[8]_i_3 
@@ -3297,31 +2449,49 @@ module main_axi_master_burst_axi3_0_0_axi_master_burst_axi3
     .INIT(64'hAA6AAAAAAAAAAAAA)) 
     \width_reg[8]_i_4 
        (.I0(width[8]),
+        .I1(width[7]),
+        .I2(width[5]),
+        .I3(\width_reg[5]_i_3_n_0 ),
+        .I4(width[4]),
+        .I5(width[6]),
+        .O(\width_reg[8]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \width_reg[8]_i_5 
+       (.I0(\width_reg_reg_n_0_[7] ),
+        .I1(\width_reg_reg_n_0_[4] ),
+        .I2(\width_reg_reg_n_0_[5] ),
+        .I3(\width_reg_reg_n_0_[6] ),
+        .O(\width_reg[8]_i_5_n_0 ));
+  LUT5 #(
+    .INIT(32'h88B8B888)) 
+    \width_reg[9]_i_1 
+       (.I0(\width_reg[9]_i_2_n_0 ),
+        .I1(state[1]),
+        .I2(\M00_AXI_awlen[3]_i_4_n_0 ),
+        .I3(\width_reg[9]_i_3_n_0 ),
+        .I4(width[9]),
+        .O(p_1_in[9]));
+  LUT5 #(
+    .INIT(32'h404F4F40)) 
+    \width_reg[9]_i_2 
+       (.I0(\height_reg[9]_i_2_n_0 ),
+        .I1(\M00_AXI_awlen[3]_i_9_n_0 ),
+        .I2(\M00_AXI_awlen[1]_i_3_n_0 ),
+        .I3(\width_reg_reg_n_0_[9] ),
+        .I4(\width_reg[10]_i_8_n_0 ),
+        .O(\width_reg[9]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000000000100)) 
+    \width_reg[9]_i_3 
+       (.I0(width[8]),
         .I1(width[6]),
         .I2(width[4]),
         .I3(\width_reg[5]_i_3_n_0 ),
         .I4(width[5]),
         .I5(width[7]),
-        .O(\width_reg[8]_i_4_n_0 ));
-  LUT5 #(
-    .INIT(32'hB88888B8)) 
-    \width_reg[9]_i_1 
-       (.I0(\width_reg[9]_i_2_n_0 ),
-        .I1(state[1]),
-        .I2(\M00_AXI_awlen[3]_i_6_n_0 ),
-        .I3(\width_reg[10]_i_4_n_0 ),
-        .I4(width[9]),
-        .O(p_1_in[9]));
-  LUT6 #(
-    .INIT(64'h88888888F0F0F00F)) 
-    \width_reg[9]_i_2 
-       (.I0(\height_reg[7]_i_2_n_0 ),
-        .I1(\M00_AXI_awlen[3]_i_10_n_0 ),
-        .I2(\width_reg_reg_n_0_[9] ),
-        .I3(\M00_AXI_awlen[3]_i_7_n_0 ),
-        .I4(\width_reg_reg_n_0_[8] ),
-        .I5(\height_reg[10]_i_3_n_0 ),
-        .O(\width_reg[9]_i_2_n_0 ));
+        .O(\width_reg[9]_i_3_n_0 ));
   FDRE \width_reg_reg[0] 
        (.C(clk),
         .CE(\width_reg[10]_i_1_n_0 ),

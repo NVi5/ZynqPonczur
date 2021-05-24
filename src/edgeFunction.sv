@@ -123,18 +123,6 @@ assign pixel_y_out = pixel_y_d[3];
 always @(posedge clk) begin
     if (reset) begin
         isInside <= 0;
-        P_X_minus_V1_X <= 0;
-        V2_Y_minus_V1_Y <= 0;
-        P_Y_minus_V1_Y <= 0;
-        V2_X_minus_V1_X <= 0;
-
-        mul1_result <= 0;
-        mul2_result <= 0;
-
-        sub_result <= 0;
-
-        pixel_x_d <= {4{11'b0}};
-        pixel_y_d <= {4{11'b0}};
     end
     else begin
         if (ce_d[0]) begin
