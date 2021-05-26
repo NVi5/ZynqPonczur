@@ -3,4 +3,4 @@
 //org.eclipse.debug.core.PREFERRED_DELEGATES/org.eclipse.cdt.launch.postmortemLaunchType=org.eclipse.cdt.dsf.gdb.launch.coreCLaunch,debug,;
 //org.eclipse.debug.core.PREFERRED_DELEGATES/org.eclipse.cdt.launch.remoteApplicationLaunchType=org.eclipse.rse.remotecdt.dsf.debug,debug,;
 eclipse.preferences.version=1
-prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<watchExpressions>\r\n<expression enabled\="true" text\="read"/>\r\n<expression enabled\="true" text\="framebuffer"/>\r\n<expression enabled\="true" text\="gpu_mem[0x13]"/>\r\n<expression enabled\="true" text\="matrix"/>\r\n<expression enabled\="true" text\="(uint32_t[32])gpu_mem"/>\r\n</watchExpressions>\r\n
+prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<watchExpressions>\r\n<expression enabled\="true" text\="read"/>\r\n<expression enabled\="true" text\="framebuffer"/>\r\n<expression enabled\="true" text\="gpu_mem[0x13]"/>\r\n<expression enabled\="true" text\="matrix"/>\r\n<expression enabled\="true" text\="(uint32_t*)(0x43C00000)"/>\r\n</watchExpressions>\r\n

@@ -6,8 +6,8 @@ module rasterizer_control (
     input  wire [31:0] vertex_count,
     input  wire        start,
 
-    output reg  [$clog2(16384)-1:0] addra,
-    input  wire [10:0] douta,
+    output reg                [$clog2(16384)-1:0] addra,
+    input  wire signed [10:0] douta,
 
     output wire  [7:0] out_data,
     input  wire        out_ready,
@@ -58,7 +58,7 @@ rasterizer rasterizer_u0(
     .isInside(isInside)
 );
 
-reg [14:0] vertex_counter;
+reg [31:0] vertex_counter;
 reg [4:0]  vertex_select;
 
 reg [7:0] color;
@@ -85,12 +85,13 @@ always @(posedge clk) begin
         force_black_d[0] <= force_black;
         force_black_d[1] <= force_black_d[0];
         force_black_d[2] <= force_black_d[1];
+        force_black_d[3] <= force_black_d[2];
     end
 end
 
-assign draw      = force_black_d[2] || isInside;
-assign out_data  = force_black_d[2] ? 8'b0 : color;
-assign out_valid = force_black_d[2] ? 1'b1 : out_valid_int;
+assign draw      = force_black_d[3] || isInside;
+assign out_data  = force_black_d[3] ? 8'b0 : color;
+assign out_valid = force_black_d[3] ? 1'b1 : out_valid_int;
 
 localparam IDLE = 0, LOAD_VERTEX = 1, CHECK_ZERO_SIZE = 2, TRIANGLE_CLIPPING_1 = 3,
            TRIANGLE_CLIPPING_2 = 4, TRIANGLE_CLIPPING_3 = 5, TRIANGLE_CLIPPING_4 = 6,
@@ -98,7 +99,7 @@ localparam IDLE = 0, LOAD_VERTEX = 1, CHECK_ZERO_SIZE = 2, TRIANGLE_CLIPPING_1 =
            CLEAR_SCREEN = 11;
 reg [3:0] state;
 
-assign in_valid = in_ready & (state == RASTERIZE);
+assign in_valid = state == RASTERIZE;
 
 always @(posedge clk) begin
     if (reset) begin
@@ -145,8 +146,8 @@ always @(posedge clk) begin
             BB_TL_y <= 0;
             BB_BR_x <= 799;
             BB_BR_y <= 599;
-            width <= 799;
-            height <= 599;
+            width <= 800;
+            height <= 600;
             state <= RASTERIZE;
         end
         START: begin
@@ -163,26 +164,40 @@ always @(posedge clk) begin
         end
         LOAD_VERTEX: begin
             vertex_select <= vertex_select + 1;
-            addra <= addra + 1;
-            vertex_counter <= vertex_counter - 1;
+            //addra <= addra + 1;
+            //vertex_counter <= vertex_counter - 1;
             case (vertex_select)
-                0: V1_x <= $signed(douta) + 400;
-                1: V1_y <= $signed(douta) + 300;
-                2: ;
-                3: ;
-                4: V2_x <= $signed(douta) + 400;
-                5: V2_y <= $signed(douta) + 300;
-                6: ;
-                7: ;
-                8: V3_x <= $signed(douta) + 400;
-                9: V3_y <= $signed(douta) + 300;
-                10: ;
-                11: ;
+                0: begin 
+                    V1_x <= douta + 400;
+                    addra <= addra + 3;
+                end
+                1: begin 
+                    V1_y <= douta + 300;
+                    addra <= addra + 1;
+                end
+                2: begin
+                    V2_x <= douta + 400;
+                    addra <= addra + 3;
+                end
+                3: begin 
+                    V2_y <= douta + 300;
+                    addra <= addra + 1;
+                end
+                4: begin
+                    V3_x <= douta + 400;
+                    addra <= addra + 3;
+                end
+                5: begin
+                    V3_y <= douta + 300;
+                    //addra <= addra + 1;
+                    vertex_counter <= vertex_counter - 12;
+                end
+                default: ;
             endcase
             if (vertex_select == 5'd11) begin
                 vertex_select <= 0;
                 state <= TRIANGLE_CLIPPING_1;
-                addra <= addra;
+                //addra <= addra;
             end
         end
         TRIANGLE_CLIPPING_1: begin
@@ -237,8 +252,8 @@ always @(posedge clk) begin
                 state <= START;
             end
             else begin
-                width <= BB_BR_x - BB_TL_x;
-                height <= BB_BR_y - BB_TL_y;
+                width <= BB_BR_x - BB_TL_x + 1;
+                height <= BB_BR_y - BB_TL_y + 1;
                 pixel_x <= BB_TL_x;
                 pixel_y <= BB_TL_y;
                 state <= RASTERIZE;
@@ -255,7 +270,6 @@ always @(posedge clk) begin
                         pixel_y <= pixel_y + 1;
                     end
                     else begin
-                        pixel_y <= BB_TL_y;
                         if (force_black) force_black <= 0;
                         state <= START;
                     end

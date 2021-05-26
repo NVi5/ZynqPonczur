@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="framebu" key="selection"/>
+		<item value="framebuffer" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="framebuffer"/>
+			<item value="framebuf"/>
+			<item value="framesuffer"/>
 			<item value="ponczur[0] = buffer_pos&amp;0x000000ff;"/>
 			<item value="framebu"/>
 			<item value="GPU"/>
 			<item value="tcp_fast"/>
 			<item value="tcp_fasttmr"/>
-			<item value="fastt"/>
-			<item value="lwip_init"/>
-			<item value="callbackP9XScuTimer"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="284" key="DIALOG_WIDTH"/>
-		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
 		<item value="993" key="DIALOG_X_ORIGIN"/>
 		<item value="297" key="DIALOG_Y_ORIGIN"/>

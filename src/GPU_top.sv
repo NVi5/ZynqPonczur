@@ -74,7 +74,7 @@ always @(posedge clk) begin
     end
     else if (vertex_count_reg == '0 & start == 1'b1) begin
                          // force vertex count to be divisdable by 4
-        vertex_count_reg <= vertex_count & 32'hfffffffc;
+        vertex_count_reg <= vertex_count - 1;
         vertex_mem_rd_addr <= '0;
         input_vertex_valid <= '0;
     end
