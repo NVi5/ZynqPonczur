@@ -201,13 +201,25 @@ always @(posedge clk) begin
                     else if (width == 1) begin
                         M00_AXI_awlen <= 0;
                         M00_AXI_wlast <= 1;
-                        width_left <= width;
-                        height_left <= height - 1;
+                        if (height > 1) begin
+                            width_left <= width;
+                            height_left <= height - 1;
+                        end
+                        else begin
+                            height_left <= 0;
+                            width_left <= 0;
+                        end
                     end
                     else begin
                         M00_AXI_awlen <= width - 1;
-                        width_left <= width;
-                        height_left <= height - 1;
+                        if (height > 1) begin
+                            width_left <= width;
+                            height_left <= height - 1;
+                        end
+                        else begin
+                            height_left <= 0;
+                            width_left <= 0;
+                        end
                     end
                 end
                 else begin
