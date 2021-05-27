@@ -1,15 +1,15 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-//Date        : Mon May 24 23:30:05 2021
-//Host        : RYZEN-PC running 64-bit major release  (build 9200)
+//Date        : Thu May 27 19:14:35 2021
+//Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
 //Purpose     : IP block netlist
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=12,numReposBlks=10,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=6,da_board_cnt=1,da_clkrst_cnt=1,da_ps7_cnt=4,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
+(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=11,numReposBlks=9,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=6,da_board_cnt=1,da_clkrst_cnt=1,da_ps7_cnt=4,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
 module main
    (DDR_addr,
     DDR_ba,
@@ -552,10 +552,8 @@ module main
         .ext_reset_in(processing_system7_0_FCLK_RESET0_N),
         .mb_debug_sys_rst(1'b0),
         .peripheral_aresetn(rst_ps7_0_50M_peripheral_aresetn1),
+        .peripheral_reset(util_vector_logic_0_Res),
         .slowest_sync_clk(processing_system7_0_FCLK_CLK0));
-  main_util_vector_logic_0_0 util_vector_logic_0
-       (.Op1(rst_ps7_0_50M_peripheral_aresetn1),
-        .Res(util_vector_logic_0_Res));
   main_xlconcat_1_0 xlconcat_1
        (.In0(In0_0_1),
         .In1(xlconstant_0_dout),

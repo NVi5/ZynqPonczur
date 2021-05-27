@@ -138,9 +138,9 @@ bool loadOBJ(std::vector<vec3_t> &out_vertices) {
     for( unsigned int i=0; i<vertexIndices.size(); i++ ){
         unsigned int vertexIndex = vertexIndices[i];
         vec3_t vertex = temp_vertices[ vertexIndex-1 ];
-        vertex.x = 300.0f*vertex.x/vector_length_max;
-        vertex.y = 300.0f*vertex.y/vector_length_max;
-        vertex.z = 300.0f*vertex.z/vector_length_max;
+//        vertex.x = 300.0f*vertex.x/vector_length_max;
+//        vertex.y = 300.0f*vertex.y/vector_length_max;
+//        vertex.z = 300.0f*vertex.z/vector_length_max;
         out_vertices.push_back(vertex);
     }
     return true;

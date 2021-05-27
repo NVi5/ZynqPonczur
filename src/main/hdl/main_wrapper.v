@@ -1,8 +1,8 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-//Date        : Mon May 24 23:30:05 2021
-//Host        : RYZEN-PC running 64-bit major release  (build 9200)
+//Date        : Thu May 27 19:14:35 2021
+//Host        : DESKTOP-U02U875 running 64-bit major release  (build 9200)
 //Command     : generate_target main_wrapper.bd
 //Design      : main_wrapper
 //Purpose     : IP block netlist

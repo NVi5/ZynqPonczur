@@ -5,7 +5,7 @@ module tv_loader
 (
 );
 
-localparam fxp_scale = 7;
+localparam fxp_scale = 0;
 
 int       tv_int[];
 shortreal tv_float32[];
