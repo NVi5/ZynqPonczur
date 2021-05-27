@@ -247,7 +247,7 @@ always @(posedge clk) begin
             state <= TRIANGLE_CLIPPING_5;
         end
         TRIANGLE_CLIPPING_5: begin
-            if ((BB_TL_x == BB_BR_x) || (BB_TL_y == BB_BR_y)) begin
+            if ((BB_BR_x - BB_TL_x + 1 == 0) || (BB_BR_y - BB_TL_y + 1 == 0)) begin
                 state <= START;
             end
             else begin

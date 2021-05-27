@@ -21,7 +21,7 @@
 
 module rasterize_behav # (
     parameter M = 11,
-    parameter N = 3
+    parameter N = 7
 )
 (
     ref reg [7:0] framebuffer[800*600],
@@ -45,14 +45,14 @@ module rasterize_behav # (
             integer V1_x,V1_y,V2_x,V2_y,V3_x,V3_y;
             integer BB_TL_x, BB_TL_y, BB_BR_x, BB_BR_y;
             reg isInside;
-            
+
             V1_x = vertices[v * 12 + 0] + 400;
             V1_y = vertices[v * 12 + 1] + 300;
             V2_x = vertices[v * 12 + 4] + 400;
             V2_y = vertices[v * 12 + 5] + 300;
             V3_x = vertices[v * 12 + 8] + 400;
             V3_y = vertices[v * 12 + 9] + 300;
-            
+
             if (V1_x > V2_x) begin
                 BB_BR_x = V1_x;
                 BB_TL_x = V2_x;
