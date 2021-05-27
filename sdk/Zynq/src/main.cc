@@ -100,6 +100,7 @@ bool loadOBJ(std::vector<vec3_t> &out_vertices) {
     std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
     std::vector<vec3_t> temp_vertices;
 	resetpos();
+	float vector_length_max = 0.0f;
     while(1){
         char* line = getline((char*)&file_buffer[file_pos]);
         if (line == NULL)
@@ -107,6 +108,10 @@ bool loadOBJ(std::vector<vec3_t> &out_vertices) {
         if ( strncmp( line, "v", 1 ) == 0 ){
             vec3_t vertex;
             sscanf(line, "v %f %f %f\n", &vertex.x, &vertex.y, &vertex.z );
+
+            float vector_length = sqrtf( vertex.x*vertex.x + vertex.y*vertex.y + vertex.z*vertex.z);
+            if (vector_length > vector_length_max) vector_length_max = vector_length;
+
             temp_vertices.push_back(vertex);
         }
         else if ( strncmp( line, "f", 1 ) == 0 ){
@@ -116,6 +121,7 @@ bool loadOBJ(std::vector<vec3_t> &out_vertices) {
             if (matches != 9){
                 return false;
             }
+
             vertexIndices.push_back(vertexIndex[0]);
             vertexIndices.push_back(vertexIndex[1]);
             vertexIndices.push_back(vertexIndex[2]);
@@ -132,6 +138,9 @@ bool loadOBJ(std::vector<vec3_t> &out_vertices) {
     for( unsigned int i=0; i<vertexIndices.size(); i++ ){
         unsigned int vertexIndex = vertexIndices[i];
         vec3_t vertex = temp_vertices[ vertexIndex-1 ];
+        vertex.x = 300.0f*vertex.x/vector_length_max;
+        vertex.y = 300.0f*vertex.y/vector_length_max;
+        vertex.z = 300.0f*vertex.z/vector_length_max;
         out_vertices.push_back(vertex);
     }
     return true;
@@ -227,9 +236,9 @@ int main()
 						len = out_vertices.size() * 4;
 						GPU_VERTEX_COUNT = len;
 						for (unsigned int i = 0; i < out_vertices.size(); i++){
-							GPU_VERTEX_MEMORY[4*i+0] = (int32_t)(out_vertices[i].x * 50*128.0f);
-							GPU_VERTEX_MEMORY[4*i+1] = (int32_t)(out_vertices[i].y * 50*128.0f);
-							GPU_VERTEX_MEMORY[4*i+2] = (int32_t)(out_vertices[i].z * 50*128.0f);
+							GPU_VERTEX_MEMORY[4*i+0] = ((int32_t)(out_vertices[i].x*128.0f));
+							GPU_VERTEX_MEMORY[4*i+1] = ((int32_t)(out_vertices[i].y*128.0f));
+							GPU_VERTEX_MEMORY[4*i+2] = ((int32_t)(out_vertices[i].z*128.0f));
 							GPU_VERTEX_MEMORY[4*i+3] = 128;
 						}
 					}
@@ -241,10 +250,10 @@ int main()
 				GPU_DDR_ADDRESS = (uint32_t)framebuffer[current_framebuffer];
 
 				glm::mat4 Model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+				Model = glm::scale(Model, glm::vec3(scale_x,scale_y,1.0f));
 				Model = glm::rotate(Model, alpha, glm::vec3(1.0f, 0.0f, 0.0f));
 				Model = glm::rotate(Model, beta, glm::vec3(0.0f, 1.0f, 0.0f));
 				Model = glm::rotate(Model, gamm, glm::vec3(0.0f, 0.0f, 1.0f));
-				Model = glm::scale(Model, glm::vec3(scale_x,scale_y,1.0f));
 
 				glm::mat4 MVP = Model;
 				glm_mat4_to_fpga(MVP, GPU_TRANSFORM_MATRIX);
