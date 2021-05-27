@@ -1,0 +1,14 @@
+#ifndef SRC_MODEL_LOADER_H_
+#define SRC_MODEL_LOADER_H_
+
+
+typedef struct {
+    float x;
+    float y;
+    float z;
+} vec3_t;
+
+bool loadOBJ(std::vector<vec3_t> &out_vertices);
+
+
+#endif /* SRC_MODEL_LOADER_H_ */
