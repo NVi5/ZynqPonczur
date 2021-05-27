@@ -1,0 +1,101 @@
+#include <stdint.h>
+#include "software_renderer.h"
+
+static uint8_t edgeFunction(int V1_x, int V1_y, int V2_x, int V2_y, int P_x, int P_y) {
+    return ((P_x - V1_x) * (V2_y - V1_y) - (P_y - V1_y) * (V2_x - V1_x) >= 0) ? 0x01 : 0x00;
+}
+
+void vertex_process_software (float input[4], float Rm[4][4]) {
+	float temp[3];
+	temp[0] = Rm[0][0] * input[0] + Rm[0][1] * input[1] + Rm[0][2] * input[2] + Rm[0][3] * input[3];
+	temp[1] = Rm[1][0] * input[0] + Rm[1][1] * input[1] + Rm[1][2] * input[2] + Rm[1][3] * input[3];
+	temp[2] = Rm[2][0] * input[0] + Rm[2][1] * input[1] + Rm[2][2] * input[2] + Rm[2][3] * input[3];
+	input[3] = Rm[3][0] * input[0] + Rm[3][1] * input[1] + Rm[3][2] * input[2] + Rm[3][3] * input[3];
+	input[0] = temp[0];
+	input[1] = temp[1];
+	input[2] = temp[2];
+}
+
+void rasterize_software (float *vertices, uint8_t *framebuffer, int n_vertices) {
+
+	for (int i = 0; i < 800*600; i++){
+		framebuffer[i] = 0x00;
+	}
+
+	uint8_t color = 1;
+
+	for (int v = 0; v < n_vertices/12; v++){
+
+		int V1_x = *vertices++ * 200.0 + 400;
+		int V1_y = *vertices++ * 200.0 + 300;
+		vertices++;
+		vertices++;
+		int V2_x = *vertices++ * 200.0 + 400;
+		int V2_y = *vertices++ * 200.0 + 300;
+		vertices++;
+		vertices++;
+		int V3_x = *vertices++ * 200.0 + 400;
+		int V3_y = *vertices++ * 200.0 + 300;
+		vertices++;
+		vertices++;
+
+		int BB_TL_x;
+		int BB_TL_y;
+		int BB_BR_x;
+		int BB_BR_y;
+
+		if (V1_x > V2_x) {
+			BB_BR_x = V1_x;
+			BB_TL_x = V2_x;
+		}
+		else {
+			BB_BR_x = V2_x;
+			BB_TL_x = V1_x;
+		}
+		if (V1_y > V2_y) {
+			BB_BR_y = V1_y;
+			BB_TL_y = V2_y;
+		}
+		else {
+			BB_BR_y = V2_y;
+			BB_TL_y = V1_y;
+		}
+		if (V3_x > BB_BR_x) {
+			BB_BR_x = V3_x;
+		}
+		if (V3_y > BB_BR_y) {
+			BB_BR_y = V3_y;
+		}
+		if (V3_x < BB_TL_x) {
+			BB_TL_x = V3_x;
+		}
+		if (V3_y < BB_TL_y) {
+			BB_TL_y = V3_y;
+		}
+
+		if (BB_TL_x < 0) BB_TL_x = 0;
+		if (BB_TL_y < 0) BB_TL_y = 0;
+		if (BB_BR_x < 0) BB_BR_x = 0;
+		if (BB_BR_y < 0) BB_BR_y = 0;
+
+		if (BB_TL_x > 799) BB_TL_x = 799;
+		if (BB_TL_y > 599) BB_TL_y = 599;
+		if (BB_BR_x > 799) BB_BR_x = 799;
+		if (BB_BR_y > 599) BB_BR_y = 599;
+
+		if ((BB_TL_x == BB_BR_x) || (BB_TL_y == BB_BR_y)) {
+			continue;
+		}
+
+		for (int y = BB_TL_y; y < BB_BR_y; y++){
+			for (int x = BB_TL_x; x < BB_BR_x; x++){
+				uint8_t inside = 0x01;
+				inside &= edgeFunction(V1_x, V1_y, V2_x, V2_y, x, y);
+				inside &= edgeFunction(V2_x, V2_y, V3_x, V3_y, x, y);
+				inside &= edgeFunction(V3_x, V3_y, V1_x, V1_y, x, y);
+				if (inside) framebuffer[y * 800 + x] = color;
+			}
+		}
+		color++;
+	}
+}

@@ -1,0 +1,10 @@
+#include "webserver.h"
+
+#include "lwip/tcp.h"
+
+void start_webserver() {
+	http_server = tcp_new();
+	tcp_bind(http_server, IP_ADDR_ANY, 80);
+	http_server = tcp_listen(http_server);
+	tcp_accept(http_server, http_accept);
+}
