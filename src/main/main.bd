@@ -437,16 +437,16 @@
               }
             },
             "interface_nets": {
-              "auto_pc_to_s00_couplers": {
-                "interface_ports": [
-                  "M_AXI",
-                  "auto_pc/M_AXI"
-                ]
-              },
               "s00_couplers_to_auto_pc": {
                 "interface_ports": [
                   "S_AXI",
                   "auto_pc/S_AXI"
+                ]
+              },
+              "auto_pc_to_s00_couplers": {
+                "interface_ports": [
+                  "M_AXI",
+                  "auto_pc/M_AXI"
                 ]
               }
             },
@@ -587,17 +587,13 @@
                 "value": "4",
                 "value_src": "constant"
               },
-              "CLK_DOMAIN": {
-                "value": "main_processing_system7_0_1_FCLK_CLK0",
-                "value_src": "default_prop"
-              },
               "DATA_WIDTH": {
                 "value": "32",
                 "value_src": "constant"
               },
               "FREQ_HZ": {
                 "value": "100000000",
-                "value_src": "user_prop"
+                "value_src": "constant"
               },
               "HAS_BRESP": {
                 "value": "1",
@@ -684,7 +680,7 @@
                 "value_src": "constant"
               },
               "SUPPORTS_NARROW_BURST": {
-                "value": "0",
+                "value": "1",
                 "value_src": "constant"
               },
               "WUSER_BITS_PER_BYTE": {
@@ -939,6 +935,11 @@
           },
           "pixel_ready": {
             "direction": "O"
+          },
+          "state": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
           }
         },
         "addressing": {
@@ -1133,16 +1134,16 @@
       }
     },
     "interface_nets": {
+      "processing_system7_0_MDIO_ETHERNET_0": {
+        "interface_ports": [
+          "MDIO_ETHERNET_0_0",
+          "processing_system7_0/MDIO_ETHERNET_0"
+        ]
+      },
       "gpu_wrapper_vhdl_0_user_transform_matrix": {
         "interface_ports": [
           "gpu_wrapper_vhdl_0/user_transform_matrix",
           "gpu_control_0/transform_matrix"
-        ]
-      },
-      "ps7_0_axi_periph_M00_AXI": {
-        "interface_ports": [
-          "ps7_0_axi_periph/M00_AXI",
-          "gpu_control_0/S00_AXI"
         ]
       },
       "processing_system7_0_M_AXI_GP0": {
@@ -1157,22 +1158,22 @@
           "processing_system7_0/S_AXI_GP0"
         ]
       },
-      "processing_system7_0_FIXED_IO": {
-        "interface_ports": [
-          "FIXED_IO",
-          "processing_system7_0/FIXED_IO"
-        ]
-      },
-      "processing_system7_0_MDIO_ETHERNET_0": {
-        "interface_ports": [
-          "MDIO_ETHERNET_0_0",
-          "processing_system7_0/MDIO_ETHERNET_0"
-        ]
-      },
       "processing_system7_0_DDR": {
         "interface_ports": [
           "DDR",
           "processing_system7_0/DDR"
+        ]
+      },
+      "ps7_0_axi_periph_M00_AXI": {
+        "interface_ports": [
+          "ps7_0_axi_periph/M00_AXI",
+          "gpu_control_0/S00_AXI"
+        ]
+      },
+      "processing_system7_0_FIXED_IO": {
+        "interface_ports": [
+          "FIXED_IO",
+          "processing_system7_0/FIXED_IO"
         ]
       }
     },

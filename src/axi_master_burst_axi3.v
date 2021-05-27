@@ -52,7 +52,7 @@ module axi_master_burst_axi3(
     M00_AXI_rlast,
     M00_AXI_rvalid,
     M00_AXI_rready,
-    
+
     state
 );
 
@@ -152,9 +152,9 @@ wire [31:0] pixel_multiplied;
 assign pixel_multiplied = (pixel_y << 5) + (pixel_y << 8) + (pixel_y << 9); // pixel_y * 800
 assign pixel_addr = framebuffer_baseaddr + pixel_multiplied + pixel_x;
 
-
-reg  [10:0] height_reg;
-reg  [10:0] width_reg;
+reg  [10:0] width_max;
+reg  [10:0] height_left;
+reg  [10:0] width_left;
 
 localparam IDLE = 0, BURST = 1, BURST_VALID = 2, NEXT_BURST = 3, DATA_ACCEPTED = 4, ADDRESS_ACCEPTED = 5;
 
@@ -170,8 +170,9 @@ end
 always @(posedge clk) begin
     if (reset) begin
         state <= IDLE;
-        height_reg <= 0;
-        width_reg <= 0;
+        height_left <= 0;
+        width_left <= 0;
+        width_max <= 0;
         M00_AXI_awlen <= 0;
         M00_AXI_awvalid <= 0;
         M00_AXI_wlast <= 0;
@@ -188,21 +189,22 @@ always @(posedge clk) begin
                     M00_AXI_wvalid  <= 1;
                     M00_AXI_awvalid <= 1;
                     state <= BURST;
+                    width_max <= width;
                     if (width > 11'd16) begin
                         M00_AXI_awlen <= 4'd15;
-                        width_reg <= width - 11'd16;
-                        height_reg <= height;
+                        width_left <= width - 11'd16;
+                        height_left <= height;
                     end
                     else if (width == 1) begin
                         M00_AXI_awlen <= 0;
                         M00_AXI_wlast <= 1;
-                        width_reg <= width;
-                        height_reg <= height - 1;
+                        width_left <= width;
+                        height_left <= height - 1;
                     end
                     else begin
                         M00_AXI_awlen <= width - 1;
-                        width_reg <= width;
-                        height_reg <= height - 1;
+                        width_left <= width;
+                        height_left <= height - 1;
                     end
                 end
                 else begin
@@ -225,7 +227,7 @@ always @(posedge clk) begin
                     if (pixel_valid) begin
                         M00_AXI_awlen <= M00_AXI_awlen - 1;
                         M00_AXI_wvalid <= 1;
-                        if (M00_AXI_awlen == 4'd1) begin 
+                        if (M00_AXI_awlen == 4'd1) begin
                             M00_AXI_wlast <= 1;
                         end
                         else begin
@@ -246,7 +248,7 @@ always @(posedge clk) begin
                 end
             end
             NEXT_BURST: begin
-                if (width_reg == 0 && height_reg == 0) begin
+                if (width_left == 0 && height_left == 0) begin
                     state <= IDLE;
                     M00_AXI_wvalid  <= 0;
                     M00_AXI_awvalid <= 0;
@@ -256,32 +258,32 @@ always @(posedge clk) begin
                         M00_AXI_wvalid  <= 1;
                         M00_AXI_awvalid <= 1;
                         state <= BURST;
-                        if (width_reg > 11'd16) begin
+                        if (width_left > 11'd16) begin
                             M00_AXI_awlen <= 4'd15;
-                            width_reg <= width_reg - 11'd16;
-                            height_reg <= height_reg;
+                            width_left <= width_left - 11'd16;
+                            height_left <= height_left;
                         end
-                        else if (width_reg == 1) begin
+                        else if (width_left == 1) begin
                             M00_AXI_awlen <= 0;
                             M00_AXI_wlast <= 1;
-                            if (height_reg > 1) begin
-                                width_reg <= width;
-                                height_reg <= height_reg - 1;
+                            if (height_left > 1) begin
+                                width_left <= width_max;
+                                height_left <= height_left - 1;
                             end
                             else begin
-                                height_reg <= 0;
-                                width_reg <= 0;
+                                height_left <= 0;
+                                width_left <= 0;
                             end
                         end
                         else begin
-                            M00_AXI_awlen <= width_reg - 1;
-                            if (height_reg > 1) begin
-                                width_reg <= width;
-                                height_reg <= height_reg - 1;
+                            M00_AXI_awlen <= width_left - 1;
+                            if (height_left > 1) begin
+                                width_left <= width_max;
+                                height_left <= height_left - 1;
                             end
                             else begin
-                                height_reg <= 0;
-                                width_reg <= 0;
+                                height_left <= 0;
+                                width_left <= 0;
                             end
                         end
                     end

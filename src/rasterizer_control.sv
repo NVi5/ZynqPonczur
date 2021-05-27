@@ -159,7 +159,6 @@ always @(posedge clk) begin
                 rasterize_end <= 1;
             end
             vertex_select <= 0;
-            color <= color + 1;
             addra <= addra + 1;
         end
         LOAD_VERTEX: begin
@@ -167,11 +166,11 @@ always @(posedge clk) begin
             //addra <= addra + 1;
             //vertex_counter <= vertex_counter - 1;
             case (vertex_select)
-                0: begin 
+                0: begin
                     V1_x <= douta + 400;
                     addra <= addra + 3;
                 end
-                1: begin 
+                1: begin
                     V1_y <= douta + 300;
                     addra <= addra + 1;
                 end
@@ -179,7 +178,7 @@ always @(posedge clk) begin
                     V2_x <= douta + 400;
                     addra <= addra + 3;
                 end
-                3: begin 
+                3: begin
                     V2_y <= douta + 300;
                     addra <= addra + 1;
                 end
@@ -258,6 +257,7 @@ always @(posedge clk) begin
                 pixel_y <= BB_TL_y;
                 state <= RASTERIZE;
             end
+            color <= color + 1;
         end
         RASTERIZE: begin
             if (in_ready) begin
