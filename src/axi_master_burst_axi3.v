@@ -149,6 +149,7 @@ output reg M00_AXI_rready = 1'b0;
 
 wire [31:0] pixel_addr;
 wire [31:0] pixel_multiplied;
+reg  [ 7:0] pixel_reg;
 assign pixel_multiplied = (pixel_y << 5) + (pixel_y << 8) + (pixel_y << 9); // pixel_y * 800
 assign pixel_addr = framebuffer_baseaddr + pixel_multiplied + pixel_x;
 
@@ -161,7 +162,7 @@ localparam IDLE = 0, BURST = 1, BURST_VALID = 2, NEXT_BURST = 3, DATA_ACCEPTED =
 always @* begin
     pixel_ready = M00_AXI_wready & M00_AXI_wvalid;
 
-    M00_AXI_wdata = {24'b0,pixel_data} << (8 * pixel_addr[1:0]);
+    M00_AXI_wdata = {24'b0,pixel_reg} << (8 * pixel_addr[1:0]);
     M00_AXI_awaddr = pixel_addr;
     M00_AXI_wstrb = (draw) ? (4'b0001 << pixel_addr[1:0]) : 4'b0;
 
@@ -173,6 +174,7 @@ always @(posedge clk) begin
         height_left <= 0;
         width_left <= 0;
         width_max <= 0;
+        pixel_reg <= 0;
         M00_AXI_awlen <= 0;
         M00_AXI_awvalid <= 0;
         M00_AXI_wlast <= 0;
@@ -190,6 +192,7 @@ always @(posedge clk) begin
                     M00_AXI_awvalid <= 1;
                     state <= BURST;
                     width_max <= width;
+                    pixel_reg <= pixel_data;
                     if (width > 11'd16) begin
                         M00_AXI_awlen <= 4'd15;
                         width_left <= width - 11'd16;
