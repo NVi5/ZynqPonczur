@@ -7,3 +7,5 @@
 ![](sim/results/rtl_tb_image.bmp)
 ## Behavioral simulation result
 ![](sim/results/behav_tb_image_0.bmp)
+## XD result
+![](sim/results/XD.gif)
