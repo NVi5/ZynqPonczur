@@ -1,0 +1,137 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GPU TEST</title>
+</head>
+<body>
+    <div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event)" style="border: 2px dashed blue; width: 800px; height: 100px; text-align: center; vertical-align: middle;">
+        <p>Drag file to this Drop Zone ...</p>
+    </div>
+    <div class="angle_sliders_container">
+        <button onclick="refreshFunction()">Load model</button><button onclick="switchRendererFunction()">Hardware/Software rendering</button><br>
+        <input type="range" min="-180" max="180" value="0" class="slider" id="alfa_angle_slider" oninput="angle_value_changed()" style="width: 500px">alfa<br>
+        <input type="range" min="-180" max="180" value="0" class="slider" id="beta_angle_slider" oninput="angle_value_changed()" style="width: 500px">beta<br>
+        <input type="range" min="-180" max="180" value="0" class="slider" id="gamma_angle_slider" oninput="angle_value_changed()" style="width: 500px">gamma<br>
+        <input type="range" min="20" max="100" value="100" class="slider" id="scale_x_slider" oninput="angle_value_changed()" style="width: 500px">scale x<br>
+        <input type="range" min="20" max="100" value="100" class="slider" id="scale_y_slider" oninput="angle_value_changed()" style="width: 500px">scale y<br>
+    </div>
+    <canvas id="myCanvas" width="800" height="600" style="border:1px solid #000000;"></canvas>
+<script>
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+ws = new WebSocket("ws://"+location.host+":1000");
+//ws = new WebSocket("ws://"+"172.16.0.10"+":1000");
+ws.binaryType = 'arraybuffer';
+
+var framebuffer = new Uint32Array(800*600);
+var current_pixel = 0;
+
+var rx_data_cnt = 0;
+var frame_cnt = 0;
+
+ws.onmessage = (event) => {
+    pixel_array = new Uint8Array(event.data);
+
+    if (rx_data_cnt == 480000) {
+        rx_data_cnt = 0;
+        frame_cnt += 1;
+        console.log(frame_cnt);
+        var iData = new ImageData(new Uint8ClampedArray(framebuffer.buffer), 800, 600);
+        ctx.putImageData(iData, 0, 0);
+    }
+
+    rx_data_cnt += pixel_array.length - 4;
+
+    var buffer_pos = 0;
+    buffer_pos = pixel_array[0]&0x000000ff | (pixel_array[1]&0x000000ff) << 8 | (pixel_array[2]&0x000000ff) << 16 | (pixel_array[3]&0x000000ff) << 24;
+
+    for(var i=0; i < pixel_array.length-4; i++) {
+        framebuffer[buffer_pos + i] = 0xff000000|(((((pixel_array[i+4]&0xe0)>>5)*0x1f)<<16)|((((pixel_array[i+4]&0x1c)>>2)*0x1f)<<8)|((((pixel_array[i+4]&0x3))*0x7f)<<0));
+    }
+    current_pixel = (current_pixel + event.data) % (800*600);
+}
+
+function angle_value_changed() {
+	var alfa_slider = document.getElementById("alfa_angle_slider");
+    var beta_slider = document.getElementById("beta_angle_slider");
+    var gamma_slider = document.getElementById("gamma_angle_slider");
+    var scale_x_slider = document.getElementById("scale_x_slider");
+    var scale_y_slider = document.getElementById("scale_y_slider");
+
+    var alfa_angle = alfa_slider.value/180*3.14;
+    var beta_angle = beta_slider.value/180*3.14;
+    var gamma_angle = gamma_slider.value/180*3.14;
+    var scale_x = scale_x_slider.value/100.0;
+    var scale_y = scale_y_slider.value/100.0;
+
+	ws.send(new Float32Array([alfa_angle, beta_angle, gamma_angle, scale_x, scale_y]));
+}
+
+var filereader = new FileReader;
+
+function dropHandler(ev) {
+  ev.preventDefault();
+
+    if (ev.dataTransfer.items) {
+        if (ev.dataTransfer.items[0].kind === 'file') {
+            var file = ev.dataTransfer.items[0].getAsFile(); 
+            filereader.readAsArrayBuffer(file)
+        }
+    } 
+}
+
+var filesize;
+
+filereader.onload = function() {
+    var vertices = new Uint8Array(filereader.result);
+
+    console.log(vertices.length)
+    var div = Math.floor(vertices.length / 1434);
+    var remainder = Math.floor(vertices.length % 1434);
+    var current_index = 0;
+
+    for (var  i = 0; i < div; i++) {
+        var frame = new Uint8Array(1434 + 4);
+        console.log(current_index);
+        frame[3] = (current_index & 0xff000000) >> 24;
+        frame[2] = (current_index & 0x00ff0000) >> 16;
+        frame[1] = (current_index & 0x0000ff00) >> 8;
+        frame[0] = (current_index & 0x000000ff);
+        frame.set(vertices.slice(current_index, current_index+1434), 4);
+        ws.send(frame);
+        current_index += 1434;
+    }
+    var frame = new Uint8Array(remainder + 4);
+    console.log(current_index);
+    frame[3] = (current_index & 0xff000000) >> 24;
+    frame[2] = (current_index & 0x00ff0000) >> 16;
+    frame[1] = (current_index & 0x0000ff00) >> 8;
+    frame[0] = (current_index & 0x000000ff);
+    frame.set(vertices.slice(current_index, current_index + remainder), 4);
+    ws.send(frame);
+    filesize = vertices.length;
+};
+
+function dragOverHandler(ev) {
+  ev.preventDefault();
+}
+
+var software_renderer = 0;
+
+function refreshFunction() {
+    ws.send(filesize);
+}
+
+function switchRendererFunction() {
+    software_renderer = !software_renderer;
+    if (software_renderer) ws.send("software");
+    else ws.send("hardware");
+}
+
+</script>
+</body>
+</html>
